@@ -1,11 +1,9 @@
 import { useLoginWithEmail } from '@/hooks/useLoginWithEmail';
+import { Session } from '@/types/session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-type Session = {
-  entityToken: string;
-  expirationDate: Date;
-};
+const SESSION_STORAGE_KEY = 'session';
 
 type AuthState = {
   entityToken?: string;
@@ -15,13 +13,7 @@ type AuthState = {
   isError: boolean;
 };
 
-const AuthContext = createContext<AuthState>({
-  entityToken: undefined,
-  isLoggedIn: false,
-  login: () => undefined,
-  isLoading: false,
-  isError: false,
-});
+const AuthContext = createContext<AuthState | undefined>(undefined);
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session>();
@@ -32,13 +24,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     (async () => {
-      const rawStoredSession = await AsyncStorage.getItem('session');
+      const rawStoredSession = await AsyncStorage.getItem(SESSION_STORAGE_KEY);
       if (rawStoredSession) {
         const storedSession = JSON.parse(rawStoredSession);
-        setSession({
-          entityToken: storedSession.EntityToken,
-          expirationDate: new Date(storedSession.TokenExpiration),
-        });
+        setSession({ entityToken: storedSession.entityToken, expirationDate: new Date(storedSession.expirationDate) });
       } else {
         setIsLoading(false);
       }
@@ -47,11 +36,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     if (data) {
-      setSession({
-        entityToken: data.EntityToken,
-        expirationDate: new Date(data.TokenExpiration),
-      });
-      AsyncStorage.setItem('session', JSON.stringify(data));
+      setSession(data);
+      AsyncStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(data));
     }
   }, [data]);
 

@@ -1,4 +1,5 @@
 import { BASE_URL, TITLE_ID } from '@/constants';
+import { Session } from '@/types/session';
 import { useMutation } from '@tanstack/react-query';
 
 type LoginWithEmailAddressRequest = {
@@ -6,9 +7,13 @@ type LoginWithEmailAddressRequest = {
   password: string;
 };
 
-type LoginWithEmailAddressResponse = {
-  EntityToken: string;
-  TokenExpiration: string;
+export type LoginWithEmailAddressResponse = {
+  data: {
+    EntityToken: {
+      EntityToken: string;
+      TokenExpiration: string;
+    };
+  };
 };
 
 const loginWithEmailAddress = async ({ email, password }: LoginWithEmailAddressRequest) => {
@@ -28,7 +33,12 @@ const loginWithEmailAddress = async ({ email, password }: LoginWithEmailAddressR
     throw new Error('Failed to login');
   }
 
-  return (await response.json()).data.EntityToken as LoginWithEmailAddressResponse;
+  const dto = (await response.json()) as LoginWithEmailAddressResponse;
+
+  return {
+    entityToken: dto.data.EntityToken.EntityToken,
+    expirationDate: new Date(dto.data.EntityToken.TokenExpiration),
+  } as Session;
 };
 
 export const useLoginWithEmail = () => {
