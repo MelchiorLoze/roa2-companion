@@ -4,19 +4,19 @@ import React, { createContext, PropsWithChildren, useContext, useEffect, useStat
 
 type Session = {
   entityToken: string;
-  expiration: Date;
+  expirationDate: Date;
 };
 
-type Auth = {
-  token?: string;
+type AuthState = {
+  entityToken?: string;
   isLoggedIn: boolean;
   login: ReturnType<typeof useLoginWithEmail>['loginWithEmail'];
   isLoading: boolean;
   isError: boolean;
 };
 
-const AuthContext = createContext<Auth>({
-  token: undefined,
+const AuthContext = createContext<AuthState>({
+  entityToken: undefined,
   isLoggedIn: false,
   login: () => undefined,
   isLoading: false,
@@ -26,7 +26,7 @@ const AuthContext = createContext<Auth>({
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session>();
   const [isLoading, setIsLoading] = useState(true);
-  const isLoggedIn = Boolean(session?.expiration && session.expiration.getTime() > Date.now());
+  const isLoggedIn = Boolean(session?.expirationDate && session.expirationDate.getTime() > Date.now());
 
   const { data, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
 
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         const storedSession = JSON.parse(rawStoredSession);
         setSession({
           entityToken: storedSession.EntityToken,
-          expiration: new Date(storedSession.TokenExpiration),
+          expirationDate: new Date(storedSession.TokenExpiration),
         });
       } else {
         setIsLoading(false);
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     if (data) {
       setSession({
         entityToken: data.EntityToken,
-        expiration: new Date(data.TokenExpiration),
+        expirationDate: new Date(data.TokenExpiration),
       });
       AsyncStorage.setItem('session', JSON.stringify(data));
     }
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   return (
     <AuthContext.Provider
       value={{
-        token: session?.entityToken,
+        entityToken: session?.entityToken,
         isLoggedIn,
         login: loginWithEmail,
         isLoading: isLoading || isLoginLoading,
