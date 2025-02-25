@@ -1,25 +1,33 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Index() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, isLoggedIn } = useAuth();
+  const [isInvalid, setIsInvalid] = useState(false);
+  const { login, isLoggedIn, isLoading, isError } = useAuth();
+
+  if (isLoading) return <ActivityIndicator style={styles.container} />;
 
   if (isLoggedIn) return <Redirect href="/store" />;
 
   const onSubmit = () => {
-    if (!email || !password) return;
+    if (!email || !password) {
+      setIsInvalid(false);
+      return;
+    }
+    setIsInvalid(false);
     login({ email, password });
   };
 
   return (
     <View style={styles.container}>
-      <Text>Please login</Text>
-      <TextInput placeholder="Email" onChangeText={setEmail} />
-      <TextInput placeholder="Password" onChangeText={setPassword} />
+      <Text style={styles.title}>Please login with your ingame account</Text>
+      <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
+      <TextInput placeholder="Password" value={password} onChangeText={setPassword} />
+      {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
       <Button title="Login" onPress={onSubmit} />
     </View>
   );
@@ -30,5 +38,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 16,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  errorMessage: {
+    color: 'red',
+    fontSize: 12,
   },
 });

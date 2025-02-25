@@ -11,19 +11,24 @@ type Auth = {
   token?: string;
   isLoggedIn: boolean;
   login: ReturnType<typeof useLoginWithEmail>['loginWithEmail'];
+  isLoading: boolean;
+  isError: boolean;
 };
 
 const AuthContext = createContext<Auth>({
   token: undefined,
   isLoggedIn: false,
   login: () => undefined,
+  isLoading: false,
+  isError: false,
 });
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session>();
+  const [isLoading, setIsLoading] = useState(true);
   const isLoggedIn = Boolean(session?.expiration && session.expiration.getTime() > Date.now());
 
-  const { data, loginWithEmail, isLoading, isError } = useLoginWithEmail();
+  const { data, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
 
   useEffect(() => {
     (async () => {
@@ -34,6 +39,8 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
           entityToken: storedSession.EntityToken,
           expiration: new Date(storedSession.TokenExpiration),
         });
+      } else {
+        setIsLoading(false);
       }
     })();
   }, []);
@@ -48,12 +55,18 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (session) setIsLoading(false);
+  }, [session]);
+
   return (
     <AuthContext.Provider
       value={{
         token: session?.entityToken,
         isLoggedIn,
         login: loginWithEmail,
+        isLoading: isLoading || isLoginLoading,
+        isError,
       }}
     >
       {children}
