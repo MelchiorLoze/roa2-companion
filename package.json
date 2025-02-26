@@ -11,10 +11,17 @@
     "lint": "expo lint"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "./jest.mock.ts"
+    ],
+    "testMatch": [
+      "**/?(*.)+(test).[jt]s?(x)"
+    ]
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
+    "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "@tanstack/react-query": "^5.66.9",
@@ -39,13 +46,13 @@
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
     "react-native-web": "~0.19.13",
-    "react-native-webview": "13.12.5",
-    "@react-native-async-storage/async-storage": "1.23.1"
+    "react-native-webview": "13.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@tanstack/eslint-plugin-query": "^5.66.1",
-    "@types/jest": "^29.5.12",
+    "@testing-library/react-native": "^13.0.1",
+    "@types/jest": "^29.5.14",
     "@types/react": "~18.3.12",
     "@types/react-test-renderer": "^18.3.0",
     "jest": "^29.2.1",

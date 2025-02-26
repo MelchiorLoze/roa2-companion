@@ -15,10 +15,12 @@ type AuthState = {
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
 
+const isSessionValid = (session: Session) => session.expirationDate.getTime() > Date.now();
+
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session>();
   const [isLoading, setIsLoading] = useState(true);
-  const isLoggedIn = Boolean(session?.expirationDate && session.expirationDate.getTime() > Date.now());
+  const isLoggedIn = Boolean(session && isSessionValid(session));
 
   const { data, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
 
@@ -35,7 +37,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && isSessionValid(data)) {
       setSession(data);
       AsyncStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(data));
     }
