@@ -1,4 +1,3 @@
-import { Session } from '@/types/session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
@@ -24,7 +23,7 @@ const Wrapper = ({ children }: PropsWithChildren) => (
 );
 
 const renderUseAuth = async () => {
-  const { result } = renderHook(() => useAuth(), { wrapper: Wrapper });
+  const { result } = renderHook(useAuth, { wrapper: Wrapper });
 
   await waitFor(() => {
     expect(result.current.isLoading).toBe(false);
@@ -46,7 +45,10 @@ describe('useAuth', () => {
   });
 
   it('should throw an error when not used inside an AuthProvider', async () => {
-    expect(() => renderHook(() => useAuth())).toThrow('useAuth must be used within an AuthProvider');
+    const originalError = console.error;
+    console.error = jest.fn();
+    expect(() => renderHook(useAuth)).toThrow('useAuth must be used within an AuthProvider');
+    console.error = originalError;
   });
 
   it('should not be logged in when the storage an login sessions are empty', async () => {
@@ -151,7 +153,7 @@ describe('useAuth', () => {
 
     const result = await renderUseAuth();
 
-    expect(result.isLoggedIn).toBe(true);
+    await waitFor(() => expect(result.isLoggedIn).toBe(true));
     expect(result.entityToken).toBe('loginToken');
     expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
     expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(1);
