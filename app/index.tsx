@@ -15,7 +15,7 @@ export default function Index() {
 
   const onSubmit = () => {
     if (!email || !password) {
-      setIsInvalid(false);
+      setIsInvalid(true);
       return;
     }
     setIsInvalid(false);
