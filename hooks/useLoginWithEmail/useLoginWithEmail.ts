@@ -8,7 +8,7 @@ type LoginWithEmailAddressRequest = {
   password: string;
 };
 
-export type LoginWithEmailAddressResponse = {
+type LoginWithEmailAddressResponse = {
   data: {
     EntityToken: {
       EntityToken: string;
@@ -34,11 +34,12 @@ const loginWithEmailAddress = async ({ email, password }: LoginWithEmailAddressR
     throw new Error('Failed to login');
   }
 
-  const dto = (await response.json()) as LoginWithEmailAddressResponse;
+  const responseData = (await response.json()) as LoginWithEmailAddressResponse;
+  const result = responseData.data.EntityToken;
 
   return {
-    entityToken: dto.data.EntityToken.EntityToken,
-    expirationDate: new Date(dto.data.EntityToken.TokenExpiration),
+    entityToken: result.EntityToken,
+    expirationDate: new Date(result.TokenExpiration),
   } as Session;
 };
 
