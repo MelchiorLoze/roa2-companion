@@ -16,8 +16,10 @@ const oneHourInMs = 1 * 60 * 60 * 1000;
 const validExpirationDate = new Date(Date.now() + oneHourInMs);
 const invalidExpirationDate = new Date(Date.now() - oneHourInMs);
 
+const queryClient = new QueryClient();
+
 const Wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={new QueryClient()}>
+  <QueryClientProvider client={queryClient}>
     <AuthProvider>{children}</AuthProvider>
   </QueryClientProvider>
 );
