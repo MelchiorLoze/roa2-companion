@@ -9,3 +9,7 @@ afterEach(() => {
   mockAsyncStorage.clear();
   fetchMock.removeRoutes();
 });
+
+afterAll(() => {
+  fetchMock.unmockGlobal();
+});

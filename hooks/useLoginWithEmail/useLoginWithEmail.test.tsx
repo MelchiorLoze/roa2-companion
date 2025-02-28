@@ -1,26 +1,14 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
-import { PropsWithChildren } from 'react';
 
+import { TestQueryClientProvider } from '@/test-helpers';
 import { useLoginWithEmail } from './useLoginWithEmail';
 
-const queryClient = new QueryClient();
-
-const Wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
 const renderUseLoginWithEmail = async () => {
-  const { result, rerender } = renderHook(useLoginWithEmail, { wrapper: Wrapper });
+  const { result } = renderHook(useLoginWithEmail, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
-  const rerenderHook = async () => {
-    rerender(undefined);
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-  };
-
-  return { result, rerender: rerenderHook };
+  return { result };
 };
 
 describe('useLoginWithEmail', () => {
@@ -47,11 +35,11 @@ describe('useLoginWithEmail', () => {
     });
 
     it('should return the session correctly', async () => {
-      const { result, rerender } = await renderUseLoginWithEmail();
+      const { result } = await renderUseLoginWithEmail();
 
-      act(() => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
-      await rerender();
+      await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
+      await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.data).toEqual({
         entityToken: 'token',
         expirationDate: expect.any(Date),
@@ -68,11 +56,11 @@ describe('useLoginWithEmail', () => {
     });
 
     it('should return an error', async () => {
-      const { result, rerender } = await renderUseLoginWithEmail();
+      const { result } = await renderUseLoginWithEmail();
 
-      act(() => result.current.loginWithEmail({ email: 'test', password: 'test' }));
-      await rerender();
+      await act(async () => result.current.loginWithEmail({ email: 'test', password: 'test' }));
 
+      await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.data).toBeUndefined();
       expect(result.current.isError).toBe(true);
     });

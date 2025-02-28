@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import { PropsWithChildren } from 'react';
 
 import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
+import { TestQueryClientProvider } from '@/test-helpers';
 import { AuthProvider, useAuth } from './AuthContext';
 
 jest.mock('@/hooks/useLoginWithEmail/useLoginWithEmail');
@@ -16,12 +16,10 @@ const oneHourInMs = 1 * 60 * 60 * 1000;
 const validExpirationDate = new Date(Date.now() + oneHourInMs);
 const invalidExpirationDate = new Date(Date.now() - oneHourInMs);
 
-const queryClient = new QueryClient();
-
 const Wrapper = ({ children }: PropsWithChildren) => (
-  <QueryClientProvider client={queryClient}>
+  <TestQueryClientProvider>
     <AuthProvider>{children}</AuthProvider>
-  </QueryClientProvider>
+  </TestQueryClientProvider>
 );
 
 const renderUseAuth = async () => {
