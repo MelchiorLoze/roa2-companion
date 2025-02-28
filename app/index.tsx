@@ -1,7 +1,8 @@
-import { useAuth } from '@/contexts/AuthContext';
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+
+import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
 export default function Index() {
   const [email, setEmail] = useState('');

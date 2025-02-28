@@ -1,7 +1,8 @@
-import { AuthProvider } from '@/contexts/AuthContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { StrictMode } from 'react';
+
+import { AuthProvider } from '@/contexts/AuthContext/AuthContext';
 
 const queryClient = new QueryClient();
 

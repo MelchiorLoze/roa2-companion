@@ -1,6 +1,7 @@
-import { BASE_URL, TITLE_ID } from '@/constants';
 import { Session } from '@/types/session';
 import { useMutation } from '@tanstack/react-query';
+
+import { BASE_URL, TITLE_ID } from '@/constants';
 
 type LoginWithEmailAddressRequest = {
   email: string;

@@ -1,7 +1,8 @@
-import { useLoginWithEmail } from '@/hooks/useLoginWithEmail';
 import { Session } from '@/types/session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+
+import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
 
 const SESSION_STORAGE_KEY = 'session';
 

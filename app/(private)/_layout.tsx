@@ -1,5 +1,6 @@
-import { useAuth } from '@/contexts/AuthContext';
 import { Redirect, Stack } from 'expo-router';
+
+import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
 export default function PrivateLayout() {
   const { isLoggedIn } = useAuth();

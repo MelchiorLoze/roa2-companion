@@ -3,10 +3,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import { PropsWithChildren } from 'react';
 
-import { useLoginWithEmail } from '@/hooks/useLoginWithEmail';
+import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
 import { AuthProvider, useAuth } from './AuthContext';
 
-jest.mock('@/hooks/useLoginWithEmail');
+jest.mock('@/hooks/useLoginWithEmail/useLoginWithEmail');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 
 const asyncStorageGetItemSpy = jest.spyOn(AsyncStorage, 'getItem');
