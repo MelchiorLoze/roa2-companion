@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react';
 
 import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
 import { TestQueryClientProvider } from '@/test-helpers';
+import { Session } from '@/types/session';
 import { AuthProvider, useAuth } from './AuthContext';
 
 jest.mock('@/hooks/useLoginWithEmail/useLoginWithEmail');
