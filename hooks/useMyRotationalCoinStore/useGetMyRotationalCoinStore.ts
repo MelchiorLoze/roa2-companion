@@ -1,0 +1,65 @@
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
+
+import { BASE_URL } from '@/constants';
+import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
+import { RotationalCoinStore } from '@/types/store';
+
+const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+const QUERY_KEY = ['getMyRotationalCoinStore'];
+
+type GetMyRotationalCointStoreResponse = ExecuteFunctionResponse<{
+  expirationDateTime: string;
+  itemIds: string[];
+}>;
+
+async function getMyRotationalCoinStore(entityToken: string): Promise<RotationalCoinStore> {
+  const response = await fetch(`${BASE_URL}/CloudScript/ExecuteFunction`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-EntityToken': entityToken,
+    },
+    body: JSON.stringify({
+      FunctionName: 'GetMyRotationalCoinStore',
+    } as ExecuteFunctionRequest<undefined>),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to get rotational coin store');
+  }
+
+  const responseData = (await response.json()) as GetMyRotationalCointStoreResponse;
+  const result = responseData.data.FunctionResult;
+
+  return {
+    itemIds: result.itemIds,
+    expirationDate: new Date(result.expirationDateTime),
+  } as RotationalCoinStore;
+}
+
+export const useGetMyRotationalCoinStore = () => {
+  const queryClient = useQueryClient();
+  const { entityToken, isLoggedIn } = useAuth();
+  const { data, isLoading, isError } = useQuery({
+    queryKey: QUERY_KEY,
+    queryFn: () => getMyRotationalCoinStore(entityToken ?? ''),
+    enabled: isLoggedIn,
+    gcTime: TWENTY_FOUR_HOURS_IN_MS,
+    staleTime: TWENTY_FOUR_HOURS_IN_MS,
+  });
+
+  useEffect(() => {
+    if (!data) return;
+
+    const timeUntilExpiration = data.expirationDate.getTime() - Date.now();
+    const timeout = setTimeout(() => {
+      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+    }, timeUntilExpiration);
+
+    return () => clearTimeout(timeout);
+  }, [data?.expirationDate, queryClient]);
+
+  return { rotationalCoinStore: data, isLoading, isError };
+};
