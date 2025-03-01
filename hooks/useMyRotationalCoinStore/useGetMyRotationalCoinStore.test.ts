@@ -11,8 +11,8 @@ const useAuthMock = jest.mocked(useAuth);
 
 const renderUseGetMyRotationalCoinStore = async () => {
   const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
-
   await waitFor(() => expect(result.current.isLoading).toBe(false));
+
   return { result };
 };
 
@@ -52,13 +52,26 @@ describe('useGetMyRotationalCoinStore', () => {
     it('should return the rotational coin store', async () => {
       const { result } = await renderUseGetMyRotationalCoinStore();
 
-      await waitFor(() => {
-        expect(result.current.rotationalCoinStore).toEqual({
-          itemIds: ['1', '2'],
-          expirationDate: expect.any(DateTime),
-        });
+      expect(result.current.rotationalCoinStore).toEqual({
+        itemIds: ['1', '2'],
+        expirationDate: expect.any(DateTime),
       });
       expect(result.current.isError).toBe(false);
+    });
+  });
+
+  describe('when the request fails', () => {
+    beforeEach(() => {
+      fetchMock.post('*', {
+        status: 400,
+      });
+    });
+
+    it('should return nothing', async () => {
+      const { result } = await renderUseGetMyRotationalCoinStore();
+
+      expect(result.current.rotationalCoinStore).toBeUndefined();
+      expect(result.current.isError).toBe(true);
     });
   });
 });
