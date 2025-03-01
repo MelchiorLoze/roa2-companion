@@ -11,7 +11,7 @@ export default function PrivateLayout() {
 
   return (
     <Stack>
-      <Stack.Screen name="store" />
+      <Stack.Screen name="store" options={{ headerShown: false }} />
     </Stack>
   );
 }
