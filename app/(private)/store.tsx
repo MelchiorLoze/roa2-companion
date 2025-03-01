@@ -14,7 +14,7 @@ export default function Store() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>This is the store</Text>
+      <Text style={styles.title}>This is your daily rotation</Text>
       <ItemList items={items} />
     </View>
   );

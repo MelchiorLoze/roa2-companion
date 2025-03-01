@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { renderHook, waitFor } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 import { PropsWithChildren } from 'react';
 
@@ -14,6 +14,7 @@ const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 
 const asyncStorageGetItemSpy = jest.spyOn(AsyncStorage, 'getItem');
 const asyncStorageSetItemSpy = jest.spyOn(AsyncStorage, 'setItem');
+const asyncStorageRemoveItemSpy = jest.spyOn(AsyncStorage, 'removeItem');
 
 const validExpirationDate = DateTime.now().plus({ day: 1 });
 const invalidExpirationDate = DateTime.now().minus({ day: 1 });
@@ -31,7 +32,7 @@ const renderUseAuth = async () => {
     expect(result.current.isLoading).toBe(false);
   });
 
-  return result.current;
+  return { result };
 };
 
 describe('useAuth', () => {
@@ -44,6 +45,7 @@ describe('useAuth', () => {
     });
     asyncStorageGetItemSpy.mockClear();
     asyncStorageSetItemSpy.mockClear();
+    asyncStorageRemoveItemSpy.mockClear();
   });
 
   it('should throw an error when not used inside an AuthProvider', async () => {
@@ -54,9 +56,9 @@ describe('useAuth', () => {
   });
 
   it('should not be logged in when the storage an login sessions are empty', async () => {
-    const result = await renderUseAuth();
+    const { result } = await renderUseAuth();
 
-    expect(result.isLoggedIn).toBe(false);
+    expect(result.current.isLoggedIn).toBe(false);
     expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
     expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
   });
@@ -70,10 +72,10 @@ describe('useAuth', () => {
       await AsyncStorage.setItem('session', JSON.stringify(session));
       asyncStorageSetItemSpy.mockClear();
 
-      const result = await renderUseAuth();
+      const { result } = await renderUseAuth();
 
-      expect(result.isLoggedIn).toBe(true);
-      expect(result.entityToken).toBe('token');
+      expect(result.current.isLoggedIn).toBe(true);
+      expect(result.current.entityToken).toBe('token');
       expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
       expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
     });
@@ -86,9 +88,9 @@ describe('useAuth', () => {
       await AsyncStorage.setItem('session', JSON.stringify(session));
       asyncStorageSetItemSpy.mockClear();
 
-      const result = await renderUseAuth();
+      const { result } = await renderUseAuth();
 
-      expect(result.isLoggedIn).toBe(false);
+      expect(result.current.isLoggedIn).toBe(false);
       expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
       expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
     });
@@ -106,10 +108,10 @@ describe('useAuth', () => {
         loginWithEmail: jest.fn(),
       });
 
-      const result = await renderUseAuth();
+      const { result } = await renderUseAuth();
 
-      expect(result.isLoggedIn).toBe(true);
-      expect(result.entityToken).toBe('token');
+      expect(result.current.isLoggedIn).toBe(true);
+      expect(result.current.entityToken).toBe('token');
       expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
       expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(1);
       expect(asyncStorageSetItemSpy).toHaveBeenCalledWith(
@@ -129,9 +131,9 @@ describe('useAuth', () => {
         loginWithEmail: jest.fn(),
       });
 
-      const result = await renderUseAuth();
+      const { result } = await renderUseAuth();
 
-      expect(result.isLoggedIn).toBe(false);
+      expect(result.current.isLoggedIn).toBe(false);
       expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
       expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
     });
@@ -153,15 +155,33 @@ describe('useAuth', () => {
     );
     asyncStorageSetItemSpy.mockClear();
 
-    const result = await renderUseAuth();
+    const { result } = await renderUseAuth();
 
-    await waitFor(() => expect(result.isLoggedIn).toBe(true));
-    expect(result.entityToken).toBe('loginToken');
+    await waitFor(() => expect(result.current.entityToken).toBe('loginToken'));
+    expect(result.current.isLoggedIn).toBe(true);
     expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
     expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(1);
     expect(asyncStorageSetItemSpy).toHaveBeenCalledWith(
       'session',
       JSON.stringify({ entityToken: 'loginToken', expirationDate: validExpirationDate }),
     );
+  });
+
+  it('should logout', async () => {
+    const session: Session = {
+      entityToken: 'token',
+      expirationDate: validExpirationDate,
+    };
+    await AsyncStorage.setItem('session', JSON.stringify(session));
+    asyncStorageSetItemSpy.mockClear();
+
+    const { result } = await renderUseAuth();
+    expect(result.current.isLoggedIn).toBe(true);
+    await act(async () => result.current.logout());
+
+    await waitFor(() => expect(result.current.isLoggedIn).toBe(false));
+    expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
+    expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
+    expect(asyncStorageRemoveItemSpy).toHaveBeenCalledTimes(1);
   });
 });

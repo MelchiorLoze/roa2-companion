@@ -11,6 +11,7 @@ type AuthState = {
   entityToken?: string;
   isLoggedIn: boolean;
   login: ReturnType<typeof useLoginWithEmail>['loginWithEmail'];
+  logout: () => void;
   isLoading: boolean;
   isError: boolean;
 };
@@ -25,6 +26,11 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   const isLoggedIn = Boolean(session && isSessionValid(session));
 
   const { data, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
+
+  const logout = () => {
+    setSession(undefined);
+    AsyncStorage.removeItem(SESSION_STORAGE_KEY);
+  };
 
   useEffect(() => {
     (async () => {
@@ -58,6 +64,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         entityToken: session?.entityToken,
         isLoggedIn,
         login: loginWithEmail,
+        logout,
         isLoading: isLoading || isLoginLoading,
         isError,
       }}
