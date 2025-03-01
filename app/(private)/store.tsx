@@ -9,7 +9,7 @@ export default function Store() {
   const { items, isLoading: isSearchItemsLoading } = useSearchItems(rotationalCoinStore?.itemIds ?? []);
 
   if (isRotationalCoinStoreLoading || isSearchItemsLoading) {
-    return <ActivityIndicator style={styles.spinner} />;
+    return <ActivityIndicator size="large" style={styles.spinner} />;
   }
 
   return (

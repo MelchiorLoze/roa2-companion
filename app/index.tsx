@@ -10,7 +10,7 @@ export default function Index() {
   const [isInvalid, setIsInvalid] = useState(false);
   const { login, isLoggedIn, isLoading, isError } = useAuth();
 
-  if (isLoading) return <ActivityIndicator style={styles.container} />;
+  if (isLoading) return <ActivityIndicator size="large" style={styles.container} />;
 
   if (isLoggedIn) return <Redirect href="/store" />;
 
@@ -26,8 +26,23 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Please login with your ingame account</Text>
-      <TextInput onChangeText={setEmail} placeholder="Email" value={email} />
-      <TextInput onChangeText={setPassword} placeholder="Password" value={password} />
+      <TextInput
+        autoCapitalize="none"
+        autoComplete="email"
+        onChangeText={setEmail}
+        placeholder="Email"
+        style={styles.input}
+        value={email}
+      />
+      <TextInput
+        autoCapitalize="none"
+        autoComplete="current-password"
+        onChangeText={setPassword}
+        placeholder="Password"
+        secureTextEntry
+        style={styles.input}
+        value={password}
+      />
       {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
       <Button onPress={onSubmit} title="Login" />
     </View>
@@ -40,11 +55,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 16,
+    padding: 24,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  input: {
+    width: '100%',
+    height: 48,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 4,
   },
   errorMessage: {
     color: 'red',
