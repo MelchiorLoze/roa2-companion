@@ -1,5 +1,6 @@
 import { Session } from '@/types/session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DateTime } from 'luxon';
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
@@ -16,7 +17,7 @@ type AuthState = {
 
 const AuthContext = createContext<AuthState | undefined>(undefined);
 
-const isSessionValid = (session: Session) => session.expirationDate.getTime() > Date.now();
+const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session>();
@@ -30,7 +31,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       const rawStoredSession = await AsyncStorage.getItem(SESSION_STORAGE_KEY);
       if (rawStoredSession) {
         const storedSession = JSON.parse(rawStoredSession);
-        setSession({ entityToken: storedSession.entityToken, expirationDate: new Date(storedSession.expirationDate) });
+        setSession({
+          entityToken: storedSession.entityToken,
+          expirationDate: DateTime.fromISO(storedSession.expirationDate),
+        });
       } else {
         setIsLoading(false);
       }

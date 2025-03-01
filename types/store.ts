@@ -1,4 +1,6 @@
+import type { DateTime } from 'luxon';
+
 export type RotationalCoinStore = {
-  expirationDate: Date;
+  expirationDate: DateTime;
   itemIds: string[];
 };

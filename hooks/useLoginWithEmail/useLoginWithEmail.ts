@@ -1,5 +1,6 @@
 import { Session } from '@/types/session';
 import { useMutation } from '@tanstack/react-query';
+import { DateTime } from 'luxon';
 
 import { BASE_URL, TITLE_ID } from '@/constants';
 
@@ -39,7 +40,7 @@ const loginWithEmailAddress = async ({ email, password }: LoginWithEmailAddressR
 
   return {
     entityToken: result.EntityToken,
-    expirationDate: new Date(result.TokenExpiration),
+    expirationDate: DateTime.fromISO(result.TokenExpiration),
   } as Session;
 };
 

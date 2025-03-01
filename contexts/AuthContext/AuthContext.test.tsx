@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { renderHook, waitFor } from '@testing-library/react-native';
+import { DateTime, Duration } from 'luxon';
 import { PropsWithChildren } from 'react';
 
 import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
@@ -13,9 +14,9 @@ const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 const asyncStorageGetItemSpy = jest.spyOn(AsyncStorage, 'getItem');
 const asyncStorageSetItemSpy = jest.spyOn(AsyncStorage, 'setItem');
 
-const oneHourInMs = 1 * 60 * 60 * 1000;
-const validExpirationDate = new Date(Date.now() + oneHourInMs);
-const invalidExpirationDate = new Date(Date.now() - oneHourInMs);
+const oneHourInMs = Duration.fromObject({ hours: 1 }).as('milliseconds');
+const validExpirationDate = DateTime.now().plus({ day: 1 });
+const invalidExpirationDate = DateTime.now().minus({ day: 1 });
 
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>

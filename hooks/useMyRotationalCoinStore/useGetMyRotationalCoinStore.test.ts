@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
+import { DateTime } from 'luxon';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
@@ -41,7 +42,7 @@ describe('useGetMyRotationalCoinStore', () => {
           data: {
             FunctionResult: {
               itemIds: ['1', '2'],
-              expirationDateTime: new Date(Date.now() + 1 * 60 * 60 * 1000).toISOString(),
+              expirationDateTime: DateTime.now().plus({ hours: 24 }).toISO(),
             },
           },
         },
@@ -54,7 +55,7 @@ describe('useGetMyRotationalCoinStore', () => {
       await waitFor(() => {
         expect(result.current.rotationalCoinStore).toEqual({
           itemIds: ['1', '2'],
-          expirationDate: expect.any(Date),
+          expirationDate: expect.any(DateTime),
         });
       });
       expect(result.current.isError).toBe(false);

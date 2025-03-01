@@ -1,5 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
+import { DateTime } from 'luxon';
 
 import { TestQueryClientProvider } from '@/test-helpers';
 import { useLoginWithEmail } from './useLoginWithEmail';
@@ -27,7 +28,7 @@ describe('useLoginWithEmail', () => {
           data: {
             EntityToken: {
               EntityToken: 'token',
-              ExpirationDate: new Date(),
+              ExpirationDate: DateTime.now().toISO(),
             },
           },
         },
@@ -42,7 +43,7 @@ describe('useLoginWithEmail', () => {
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.data).toEqual({
         entityToken: 'token',
-        expirationDate: expect.any(Date),
+        expirationDate: expect.any(DateTime),
       });
       expect(result.current.isError).toBe(false);
     });

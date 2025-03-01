@@ -1,4 +1,5 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { DateTime, Duration } from 'luxon';
 import { useEffect } from 'react';
 
 import { BASE_URL } from '@/constants';
@@ -6,7 +7,7 @@ import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { RotationalCoinStore } from '@/types/store';
 
-const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
+const TWENTY_FOUR_HOURS_IN_MS = Duration.fromObject({ hours: 24 }).as('milliseconds');
 const QUERY_KEY = ['getMyRotationalCoinStore'];
 
 type GetMyRotationalCointStoreResponse = ExecuteFunctionResponse<{
@@ -35,7 +36,7 @@ async function getMyRotationalCoinStore(entityToken: string): Promise<Rotational
 
   return {
     itemIds: result.itemIds,
-    expirationDate: new Date(result.expirationDateTime),
+    expirationDate: DateTime.fromISO(result.expirationDateTime),
   } as RotationalCoinStore;
 }
 
@@ -53,7 +54,7 @@ export const useGetMyRotationalCoinStore = () => {
   useEffect(() => {
     if (!data) return;
 
-    const timeUntilExpiration = data.expirationDate.getTime() - Date.now();
+    const timeUntilExpiration = data.expirationDate.diffNow().as('millisecond');
     const timeout = setTimeout(() => {
       queryClient.invalidateQueries({ queryKey: QUERY_KEY });
     }, timeUntilExpiration);
