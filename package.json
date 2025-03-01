@@ -15,6 +15,7 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
+      "./jest.setup.ts",
       "./jest.mock.ts"
     ],
     "testMatch": [
