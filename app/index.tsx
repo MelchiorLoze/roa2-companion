@@ -26,10 +26,10 @@ export default function Index() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Please login with your ingame account</Text>
-      <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
-      <TextInput placeholder="Password" value={password} onChangeText={setPassword} />
+      <TextInput onChangeText={setEmail} placeholder="Email" value={email} />
+      <TextInput onChangeText={setPassword} placeholder="Password" value={password} />
       {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
-      <Button title="Login" onPress={onSubmit} />
+      <Button onPress={onSubmit} title="Login" />
     </View>
   );
 }

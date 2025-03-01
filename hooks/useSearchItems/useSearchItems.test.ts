@@ -4,6 +4,7 @@ import fetchMock from 'fetch-mock';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Category, CurrencyId } from '@/types/store';
+
 import { useSearchItems } from './useSearchItems';
 
 jest.mock('@/contexts/AuthContext/AuthContext');

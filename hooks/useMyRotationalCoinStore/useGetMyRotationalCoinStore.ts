@@ -60,7 +60,7 @@ export const useGetMyRotationalCoinStore = () => {
     }, timeUntilExpiration);
 
     return () => clearTimeout(timeout);
-  }, [data?.expirationDate, queryClient]);
+  }, [data, queryClient]);
 
   return { rotationalCoinStore: data, isLoading, isError };
 };

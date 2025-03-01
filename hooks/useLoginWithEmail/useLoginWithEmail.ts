@@ -1,8 +1,8 @@
-import { Session } from '@/types/session';
 import { useMutation } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 
 import { BASE_URL, TITLE_ID } from '@/constants';
+import { Session } from '@/types/session';
 
 type LoginWithEmailAddressRequest = {
   email: string;
