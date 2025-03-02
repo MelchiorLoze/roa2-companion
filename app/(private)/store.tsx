@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-import { ItemList } from '@/components/ItemList/ItemList';
+import { Countdown, ItemList } from '@/components';
 import { useGetMyRotationalCoinStore, useSearchItems } from '@/hooks/data';
 
 export default function Store() {
@@ -13,7 +13,9 @@ export default function Store() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>This is your daily rotation</Text>
+      <Text style={styles.title}>
+        Next rotation in <Countdown date={rotationalCoinStore?.expirationDate} />
+      </Text>
       <ItemList items={items} />
     </View>
   );
@@ -31,7 +33,6 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   title: {
-    fontSize: 24,
     fontWeight: 'bold',
   },
 });

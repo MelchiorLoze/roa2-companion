@@ -1,6 +1,6 @@
 import { Redirect, Stack } from 'expo-router';
 
-import { Header } from '@/components/Header/Header';
+import { Header } from '@/components';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
 export default function PrivateLayout() {
