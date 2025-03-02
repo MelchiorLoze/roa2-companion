@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { DateTime, Duration } from 'luxon';
 import { useEffect } from 'react';
 
@@ -63,4 +63,8 @@ export const useGetMyRotationalCoinStore = () => {
   }, [data, queryClient]);
 
   return { rotationalCoinStore: data, isLoading, isError };
+};
+
+export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient) => {
+  queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };

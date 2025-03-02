@@ -1,8 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { QueryClient, useQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@/constants';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { InventoryItem } from '@/types/store';
+
+const QUERY_KEY = ['inventoryItems'];
 
 type GetInventoryItemsResponse = {
   data: {
@@ -42,7 +44,7 @@ export const useGetInventoryItems = () => {
   const { entityToken, isLoggedIn } = useAuth();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['inventoryItems'],
+    queryKey: QUERY_KEY,
     queryFn: () => getInventoryItems(entityToken ?? ''),
     enabled: isLoggedIn,
     staleTime: Infinity,
@@ -50,4 +52,8 @@ export const useGetInventoryItems = () => {
   });
 
   return { inventoryItems: data, isLoading, isError };
+};
+
+export const invalidateGetInventoryItems = (queryClient: QueryClient) => {
+  queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };
