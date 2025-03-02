@@ -16,7 +16,7 @@ export default function Store() {
       <Text style={styles.title}>
         Next rotation in <Countdown date={rotationalCoinStore?.expirationDate} />
       </Text>
-      <ItemList items={items} />
+      <ItemList items={items.sort((itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0))} />
     </View>
   );
 }

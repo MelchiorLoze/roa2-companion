@@ -6,6 +6,8 @@ import { ItemCard } from '../ItemCard/ItemCard';
 
 const keyExtractor = (item: Item) => item.id;
 
+const renderItem = ({ item }: { item: Item }) => <ItemCard item={item} />;
+
 type Props = { items: Item[] };
 
 export const ItemList = ({ items }: Props) => {
@@ -16,7 +18,7 @@ export const ItemList = ({ items }: Props) => {
       data={items}
       keyExtractor={keyExtractor}
       numColumns={2}
-      renderItem={ItemCard}
+      renderItem={renderItem}
     />
   );
 };

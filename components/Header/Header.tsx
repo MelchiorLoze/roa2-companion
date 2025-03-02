@@ -13,7 +13,7 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
   return (
     <>
       <View style={styles.topContainer}>
-        <Text>{options.title}</Text>
+        <Text style={styles.title}>{options.title}</Text>
         <FontAwesome.Button
           backgroundColor="transparent"
           color="red"
@@ -43,7 +43,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 8,
+    paddingLeft: 16,
     backgroundColor: 'white',
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   bottomContainer: {
     flexDirection: 'row',
