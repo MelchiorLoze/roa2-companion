@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@/constants';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { InventoryItem } from '@/types/store';
 
 type GetInventoryItemsResponse = {
   data: {
@@ -10,11 +11,6 @@ type GetInventoryItemsResponse = {
       Amount: number;
     }[];
   };
-};
-
-type InventoryItem = {
-  id: string;
-  amount: number;
 };
 
 async function getInventoryItems(entityToken: string): Promise<InventoryItem[]> {
