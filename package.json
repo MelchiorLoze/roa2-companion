@@ -10,8 +10,10 @@
     "test": "jest --randomize",
     "test:dev": "jest --randomize --watchAll",
     "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --randomize --forceExit",
     "lint": "expo lint",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "type-check": "tsc --noEmit"
   },
   "jest": {
     "preset": "jest-expo",
