@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DateTime } from 'luxon';
 import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
+import { useLoginWithEmail } from '@/hooks/data';
 import { Session } from '@/types/session';
 
 const SESSION_STORAGE_KEY = 'session';

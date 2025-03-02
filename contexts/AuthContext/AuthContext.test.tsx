@@ -3,13 +3,13 @@ import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 import { PropsWithChildren } from 'react';
 
-import { useLoginWithEmail } from '@/hooks/useLoginWithEmail/useLoginWithEmail';
+import { useLoginWithEmail } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Session } from '@/types/session';
 
 import { AuthProvider, useAuth } from './AuthContext';
 
-jest.mock('@/hooks/useLoginWithEmail/useLoginWithEmail');
+jest.mock('@/hooks/data/useLoginWithEmail/useLoginWithEmail');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 
 const asyncStorageGetItemSpy = jest.spyOn(AsyncStorage, 'getItem');

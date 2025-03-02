@@ -1,8 +1,7 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { ItemList } from '@/components/ItemList/ItemList';
-import { useGetMyRotationalCoinStore } from '@/hooks/useMyRotationalCoinStore/useGetMyRotationalCoinStore';
-import { useSearchItems } from '@/hooks/useSearchItems/useSearchItems';
+import { useGetMyRotationalCoinStore, useSearchItems } from '@/hooks/data';
 
 export default function Store() {
   const { rotationalCoinStore, isLoading: isRotationalCoinStoreLoading } = useGetMyRotationalCoinStore();
