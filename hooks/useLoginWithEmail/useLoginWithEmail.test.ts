@@ -41,11 +41,13 @@ describe('useLoginWithEmail', () => {
 
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
-      await waitFor(() => expect(result.current.isLoading).toBe(false));
-      expect(result.current.data).toEqual({
-        entityToken: 'token',
-        expirationDate: expect.any(DateTime),
-      });
+      await waitFor(() =>
+        expect(result.current.data).toEqual({
+          entityToken: 'token',
+          expirationDate: expect.any(DateTime),
+        }),
+      );
+      expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBe(false);
     });
   });
@@ -62,9 +64,9 @@ describe('useLoginWithEmail', () => {
 
       await act(async () => result.current.loginWithEmail({ email: 'test', password: 'test' }));
 
-      await waitFor(() => expect(result.current.isLoading).toBe(false));
+      await waitFor(() => expect(result.current.isError).toBe(true));
+      expect(result.current.isLoading).toBe(false);
       expect(result.current.data).toBeUndefined();
-      expect(result.current.isError).toBe(true);
     });
   });
 });
