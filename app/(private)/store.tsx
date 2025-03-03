@@ -1,22 +1,21 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { Countdown, ItemList } from '@/components';
-import { useGetMyRotationalCoinStore, useSearchItems } from '@/hooks/data';
+import { useCoinStoreRotation } from '@/hooks/business';
 
 export default function Store() {
-  const { rotationalCoinStore, isLoading: isRotationalCoinStoreLoading } = useGetMyRotationalCoinStore();
-  const { items, isLoading: isSearchItemsLoading } = useSearchItems(rotationalCoinStore?.itemIds ?? []);
+  const { coinStoreRotation, isLoading } = useCoinStoreRotation();
 
-  if (isRotationalCoinStoreLoading || isSearchItemsLoading) {
+  if (isLoading) {
     return <ActivityIndicator size="large" style={styles.spinner} />;
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
-        Next rotation in <Countdown date={rotationalCoinStore?.expirationDate} />
+        Next rotation in <Countdown date={coinStoreRotation?.expirationDate} />
       </Text>
-      <ItemList items={items.sort((itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0))} />
+      <ItemList items={coinStoreRotation.items} />
     </View>
   );
 }

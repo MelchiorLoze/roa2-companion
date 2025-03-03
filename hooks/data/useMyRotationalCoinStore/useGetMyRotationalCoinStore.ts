@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 import { BASE_URL } from '@/constants';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
-import { RotationalCoinStore } from '@/types/store';
+import { Item, RotationalCoinStore } from '@/types/store';
 
 const TWENTY_FOUR_HOURS_IN_MS = Duration.fromObject({ hours: 24 }).as('milliseconds');
 const QUERY_KEY = ['getMyRotationalCoinStore'];
 
-type GetMyRotationalCointStoreResponse = ExecuteFunctionResponse<{
+type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
   expirationDateTime: string;
-  itemIds: string[];
+  itemIds: Item['id'][];
 }>;
 
 async function getMyRotationalCoinStore(entityToken: string): Promise<RotationalCoinStore> {
@@ -31,7 +31,7 @@ async function getMyRotationalCoinStore(entityToken: string): Promise<Rotational
     throw new Error('Failed to get rotational coin store');
   }
 
-  const responseData = (await response.json()) as GetMyRotationalCointStoreResponse;
+  const responseData = (await response.json()) as GetMyRotationalCoinStoreResponse;
   const result = responseData.data.FunctionResult;
 
   return {
