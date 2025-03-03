@@ -3,34 +3,19 @@ import { useMemo } from 'react';
 
 import { BASE_URL } from '@/constants';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
-import { Category, CurrencyId, Item } from '@/types/store';
+import { Item, ItemDto } from '@/types/store';
+import { itemFromDto } from '@/utils/itemFromDto';
 
 // above 9 items, the server will return an error
 const MAX_ITEMS_PER_REQUEST = 9;
 
 type SearchItemsResponse = {
   data: {
-    Items: {
-      Id: string;
-      Title: { NEUTRAL: string };
-      ContentType: Category;
-      PriceOptions: {
-        Prices: {
-          Amounts: {
-            ItemId: CurrencyId;
-            Amount: number;
-          }[];
-        }[];
-      };
-    }[];
+    Items: ItemDto[];
   };
 };
 
-const getPrice = (item: SearchItemsResponse['data']['Items'][0], currencyId: CurrencyId) => {
-  return item.PriceOptions.Prices.find((price) => price.Amounts[0].ItemId === currencyId)?.Amounts[0].Amount;
-};
-
-const searchItems = async (entityToken: string, itemIds: string[]) => {
+const searchItems = async (entityToken: string, itemIds: Item['id'][]) => {
   if (itemIds.length > MAX_ITEMS_PER_REQUEST) {
     throw new Error('Too many items requested');
   }
@@ -50,19 +35,10 @@ const searchItems = async (entityToken: string, itemIds: string[]) => {
 
   const responeData = (await response.json()) as SearchItemsResponse;
 
-  return responeData.data.Items.map(
-    (item) =>
-      ({
-        id: item.Id,
-        title: item.Title.NEUTRAL,
-        category: item.ContentType,
-        buckPrice: getPrice(item, CurrencyId.BUCKS),
-        coinPrice: getPrice(item, CurrencyId.COINS),
-      } as Item),
-  );
+  return responeData.data.Items.map(itemFromDto);
 };
 
-export function useSearchItems(itemIds: string[]) {
+export function useSearchItems(itemIds: Item['id'][]) {
   const { entityToken, isLoggedIn } = useAuth();
 
   const batchSize = Math.min(MAX_ITEMS_PER_REQUEST, itemIds.length);

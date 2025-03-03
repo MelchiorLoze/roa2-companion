@@ -9,7 +9,21 @@ export type Category = 'icon' | 'palette' | 'skin' | 'emote' | 'deatheffect';
 
 export type RotationalCoinStore = {
   expirationDate: DateTime;
-  itemIds: string[];
+  itemIds: Item['id'][];
+};
+
+export type ItemDto = {
+  Id: string;
+  Title: { NEUTRAL: string };
+  ContentType: Category;
+  PriceOptions: {
+    Prices: {
+      Amounts: {
+        ItemId: CurrencyId;
+        Amount: number;
+      }[];
+    }[];
+  };
 };
 
 export type Item = {
@@ -21,6 +35,6 @@ export type Item = {
 };
 
 export type InventoryItem = {
-  id: string;
+  id: Item['id'];
   amount: number;
 };

@@ -2,31 +2,15 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
-import { TestQueryClientProvider } from '@/test-helpers';
-import { Category, CurrencyId } from '@/types/store';
+import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
+import { Item } from '@/types/store';
 
 import { useSearchItems } from './useSearchItems';
 
 jest.mock('@/contexts/AuthContext/AuthContext');
-const mockUseAuth = jest.mocked(useAuth);
+const useAuthMock = jest.mocked(useAuth);
 
-const createItem = (id: string, category: Category, buckPrice: number) => ({
-  Id: id,
-  Title: { NEUTRAL: `Item ${id}` },
-  ContentType: category,
-  PriceOptions: {
-    Prices: [
-      {
-        Amounts: [{ ItemId: CurrencyId.BUCKS, Amount: buckPrice }],
-      },
-      {
-        Amounts: [{ ItemId: CurrencyId.COINS, Amount: buckPrice * 100 }],
-      },
-    ],
-  },
-});
-
-const renderUseSearchItems = async (itemIds: string[]) => {
+const renderUseSearchItems = async (itemIds: Item['id'][]) => {
   const { result } = renderHook(() => useSearchItems(itemIds), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
@@ -35,12 +19,12 @@ const renderUseSearchItems = async (itemIds: string[]) => {
 
 describe('useSearchItems', () => {
   beforeEach(() => {
-    mockUseAuth.mockReturnValue({ entityToken: 'entityToken', isLoggedIn: true } as ReturnType<typeof useAuth>);
+    useAuthMock.mockReturnValue({ entityToken: 'entityToken', isLoggedIn: true } as ReturnType<typeof useAuth>);
   });
 
   describe('should return empty array', () => {
     it('when not logged in', async () => {
-      mockUseAuth.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useAuth>);
+      useAuthMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useAuth>);
       const { result } = await renderUseSearchItems(['1', '2']);
 
       expect(result.current.items).toEqual([]);
@@ -59,7 +43,7 @@ describe('useSearchItems', () => {
     it('should return items with one batch', async () => {
       fetchMock.postOnce('*', {
         data: {
-          Items: [createItem('1', 'skin', 500), createItem('2', 'icon', 20)],
+          Items: [createItemDto('1', 'skin', 500), createItemDto('2', 'icon', 20)],
         },
       });
 
@@ -75,12 +59,12 @@ describe('useSearchItems', () => {
     it('should return items with multiple batches', async () => {
       fetchMock.postOnce('*', {
         data: {
-          Items: [createItem('1', 'skin', 500)],
+          Items: [createItemDto('1', 'skin', 500)],
         },
       });
       fetchMock.postOnce('*', {
         data: {
-          Items: [createItem('2', 'icon', 20)],
+          Items: [createItemDto('2', 'icon', 20)],
         },
       });
 
@@ -109,7 +93,7 @@ describe('useSearchItems', () => {
     it('should return nothing with multiple batches', async () => {
       fetchMock.postOnce('*', {
         data: {
-          Items: [createItem('1', 'skin', 500)],
+          Items: [createItemDto('1', 'skin', 500)],
         },
       });
 
