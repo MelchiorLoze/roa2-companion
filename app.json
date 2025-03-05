@@ -34,12 +34,9 @@
       [
         "expo-font",
         {
-          "fonts": [
-            "./assets/fonts"
-          ]
+          "fonts": ["./assets/fonts"]
         }
-      ],
-      "react-native-edge-to-edge"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
