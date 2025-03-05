@@ -12,9 +12,10 @@ export default function Store() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>
-        Next rotation in <Countdown date={coinStoreRotation?.expirationDate} />
-      </Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Items refresh in:</Text>
+        <Countdown date={coinStoreRotation?.expirationDate} style={styles.title} />
+      </View>
       <ItemList items={coinStoreRotation.items} />
     </View>
   );
@@ -30,8 +31,19 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     gap: 16,
+    backgroundColor: 'darkblue',
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'flex-end',
+    gap: 4,
   },
   title: {
-    fontWeight: 'bold',
+    fontSize: 16,
+    textTransform: 'uppercase',
+    fontFamily: 'AgencyFB-Bold',
+    color: 'white',
   },
 });

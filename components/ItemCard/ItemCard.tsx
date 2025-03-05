@@ -1,5 +1,6 @@
+import { Image } from 'expo-image';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { CurrencyId, Item } from '@/types/store';
@@ -18,34 +19,54 @@ export const ItemCard = ({ item }: Props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.category}>{item.category.toUpperCase()}</Text>
+    <Pressable disabled={isLoading} onPress={handlePurchase} style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
-      {purchase && item.coinPrice && (
-        <Button disabled={isLoading} onPress={handlePurchase} title={item.coinPrice.toString()} />
-      )}
-    </View>
+      <View style={styles.info}>
+        <Text style={styles.infoText}>{item.category}</Text>
+        {item.coinPrice && (
+          <View style={styles.priceContainer}>
+            <Image
+              contentFit="contain"
+              source={require('@/assets/images/coins.png')}
+              style={{ width: 16, height: 16 }}
+            />
+            <Text style={styles.infoText}>{item.coinPrice}</Text>
+          </View>
+        )}
+      </View>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#0E0B2A',
+    borderColor: 'lightblue',
+    borderWidth: 2,
     flex: 1 / 2,
-    padding: 8,
-    backgroundColor: 'white',
-    borderRadius: 4,
-    gap: 8,
+    gap: 16,
     justifyContent: 'space-between',
-  },
-  category: {
-    fontSize: 8,
-    color: 'white',
-    alignSelf: 'flex-start',
-    backgroundColor: 'black',
-    padding: 2,
+    padding: 8,
   },
   title: {
-    fontWeight: 'bold',
+    color: 'white',
+    fontFamily: 'AgencyFB-Bold',
+    fontSize: 14,
+    textTransform: 'uppercase',
+  },
+  info: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  infoText: {
+    color: 'white',
+    fontFamily: 'AgencyFB-Bold',
     fontSize: 12,
+    textTransform: 'uppercase',
+  },
+  priceContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 4,
   },
 });

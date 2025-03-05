@@ -14,8 +14,8 @@ export default function PrivateLayout() {
   }
 
   return (
-    <Stack screenOptions={{ header: renderHeader }}>
-      <Stack.Screen name="store" options={{ title: 'Coins store' }} />
+    <Stack screenOptions={{ header: renderHeader, statusBarBackgroundColor: 'darkblue' }}>
+      <Stack.Screen name="store" options={{ title: 'Rotating coin shop' }} />
     </Stack>
   );
 }

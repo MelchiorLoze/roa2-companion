@@ -25,12 +25,13 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Please login with your ingame account</Text>
+      <Text style={styles.title}>Login with your ingame account</Text>
       <TextInput
         autoCapitalize="none"
         autoComplete="email"
         onChangeText={setEmail}
         placeholder="Email"
+        placeholderTextColor="lightblue"
         style={styles.input}
         value={email}
       />
@@ -39,6 +40,7 @@ export default function Index() {
         autoComplete="current-password"
         onChangeText={setPassword}
         placeholder="Password"
+        placeholderTextColor="lightblue"
         secureTextEntry
         style={styles.input}
         value={password}
@@ -56,19 +58,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 16,
     padding: 24,
+    backgroundColor: '#0E0B2A',
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontFamily: 'FranklinGothicDemiCond-Italic',
     textAlign: 'center',
+    textTransform: 'uppercase',
+    color: 'white',
   },
   input: {
     width: '100%',
     height: 48,
     padding: 8,
     borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 4,
+    borderColor: 'white',
+    color: 'white',
   },
   errorMessage: {
     color: 'red',

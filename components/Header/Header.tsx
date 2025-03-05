@@ -1,4 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
+import FontAwesome from '@expo/vector-icons/FontAwesome6';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Image } from 'expo-image';
 import { StyleSheet, Text, View } from 'react-native';
@@ -16,9 +16,9 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
         <Text style={styles.title}>{options.title}</Text>
         <FontAwesome.Button
           backgroundColor="transparent"
-          color="red"
+          color="crimson"
           iconStyle={styles.logoutIcon}
-          name="power-off"
+          name="arrow-right-from-bracket"
           onPress={logout}
         />
       </View>
@@ -44,18 +44,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 8,
     paddingLeft: 16,
-    backgroundColor: 'white',
+    backgroundColor: 'darkblue',
   },
   title: {
-    fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: 24,
+    fontFamily: 'FranklinGothicDemiCond-Italic',
+    textTransform: 'uppercase',
+    color: 'white',
   },
   bottomContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: 4,
-    backgroundColor: 'darkblue',
+    backgroundColor: '#0E0B2A',
   },
   currencyContainer: {
     flexDirection: 'row',
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   },
   currencyLabel: {
     color: 'white',
+    fontFamily: 'AgencyFB-Black',
   },
   currencyIcon: {
     width: 24,

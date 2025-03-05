@@ -1,8 +1,8 @@
 import { DateTime, Duration } from 'luxon';
 import { useEffect, useState } from 'react';
-import { Text } from 'react-native';
+import { StyleProp, StyleSheet, Text, TextStyle, View } from 'react-native';
 
-export const Countdown = ({ date }: { date?: DateTime }) => {
+export const Countdown = ({ date, style }: { date?: DateTime; style: StyleProp<TextStyle> }) => {
   const [timeLeft, setTimeLeft] = useState<Duration>();
 
   useEffect(() => {
@@ -18,9 +18,22 @@ export const Countdown = ({ date }: { date?: DateTime }) => {
     return () => clearInterval(interval);
   }, [date]);
 
+  const hours = timeLeft?.toFormat('hh');
+  const minutes = Duration.fromObject({ minutes: timeLeft?.minutes }).toFormat('mm');
+  const seconds = Duration.fromObject({ seconds: timeLeft?.seconds }).toFormat('ss');
+
   return (
-    <Text>
-      {timeLeft?.hours}h {timeLeft?.minutes}m {timeLeft?.seconds}s
-    </Text>
+    <View style={styles.container}>
+      <Text style={style}>
+        {hours}h {minutes}m {seconds}s
+      </Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    width: 95,
+  },
+});
