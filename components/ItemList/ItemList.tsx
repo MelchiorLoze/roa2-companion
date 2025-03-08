@@ -7,11 +7,9 @@ import { ItemCard } from '../ItemCard/ItemCard';
 
 const keyExtractor = (item: Item) => item.id;
 
-const renderItem = ({ item }: { item: Item }) => <ItemCard item={item} />;
+type Props = { items: Item[]; onSelect: (item: Item) => void };
 
-type Props = { items: Item[] };
-
-export const ItemList = ({ items }: Props) => {
+export const ItemList = ({ items, onSelect }: Props) => {
   return (
     <FlatList
       columnWrapperStyle={styles.container}
@@ -19,7 +17,7 @@ export const ItemList = ({ items }: Props) => {
       data={items}
       keyExtractor={keyExtractor}
       numColumns={2}
-      renderItem={renderItem}
+      renderItem={({ item }: { item: Item }) => <ItemCard item={item} onPress={() => onSelect(item)} />}
     />
   );
 };

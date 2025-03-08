@@ -43,12 +43,12 @@ export async function purchaseInventoryItems(entityToken: string, item: ItemToPu
 
 export const usePurchaseInventoryItems = () => {
   const { entityToken, isLoggedIn } = useAuth();
-  const queryCLient = useQueryClient();
+  const queryClient = useQueryClient();
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (item: ItemToPurchase) => purchaseInventoryItems(entityToken ?? '', item),
     onSuccess: (_, item) => {
-      invalidateGetInventoryItems(queryCLient);
-      if (item.price.currencyId === CurrencyId.COINS) invalidateGetMyRotationalCoinStore(queryCLient);
+      invalidateGetInventoryItems(queryClient);
+      if (item.price.currencyId === CurrencyId.COINS) invalidateGetMyRotationalCoinStore(queryClient);
     },
   });
 

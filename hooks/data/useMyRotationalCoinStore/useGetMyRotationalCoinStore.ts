@@ -66,5 +66,5 @@ export const useGetMyRotationalCoinStore = () => {
 };
 
 export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient) => {
-  queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+  queryClient.removeQueries({ queryKey: QUERY_KEY });
 };

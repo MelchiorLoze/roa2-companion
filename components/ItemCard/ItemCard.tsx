@@ -3,28 +3,17 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
-import { CurrencyId, Item } from '@/types/store';
+import { Item } from '@/types/store';
 
-type Props = { item: Item };
+type Props = { item: Item; onPress: () => void };
 
-export const ItemCard = ({ item }: Props) => {
+export const ItemCard = ({ item, onPress }: Props) => {
   styles.useVariants({
     textColor: item.rarity,
   });
 
-  const { purchase, isLoading } = usePurchaseInventoryItems();
-
-  const handlePurchase = () => {
-    if (!item.coinPrice || !purchase) return;
-    purchase({
-      id: item.id,
-      price: { value: item.coinPrice, currencyId: CurrencyId.COINS },
-    });
-  };
-
   return (
-    <Pressable disabled={isLoading} onPress={handlePurchase} style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.info}>
         <Text style={styles.category}>{item.category}</Text>
