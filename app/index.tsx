@@ -1,8 +1,9 @@
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Button, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { Button } from '@/components/Button/Button';
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
 export default function Index() {
@@ -48,7 +49,7 @@ export default function Index() {
         value={password}
       />
       {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
-      <Button onPress={onSubmit} title="Login" />
+      <Button label="Login" onPress={onSubmit} />
     </View>
   );
 }
