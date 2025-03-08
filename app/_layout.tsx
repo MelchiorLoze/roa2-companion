@@ -27,7 +27,9 @@ export default function RootLayout() {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
-          <Stack screenOptions={{ headerShown: false, statusBarBackgroundColor: '#0E0B2A' }}>
+          <Stack
+            screenOptions={{ headerShown: false, statusBarBackgroundColor: '#0E0B2A', navigationBarColor: '#2B1F74' }}
+          >
             <Stack.Screen name="index" />
             <Stack.Screen name="(private)" />
           </Stack>

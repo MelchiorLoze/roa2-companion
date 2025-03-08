@@ -5,7 +5,12 @@ export enum CurrencyId {
   BUCKS = 'ed4812be-4dcd-446b-b61e-96d8be8f6121',
 }
 
-export type Category = 'icon' | 'palette' | 'skin' | 'emote' | 'deatheffect';
+export enum Currency {
+  COINS = 'coins',
+  BUCKS = 'bucks',
+}
+
+export type Category = 'deatheffect' | 'emote' | 'icon' | 'palette' | 'platform' | 'skin';
 
 export type RotationalCoinStore = {
   expirationDate: DateTime;

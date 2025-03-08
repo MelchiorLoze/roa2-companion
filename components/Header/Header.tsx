@@ -1,11 +1,13 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome6';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useCurrencyBalance } from '@/hooks/business';
+import { Currency } from '@/types/store';
+
+import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
 
 export const Header = ({ options }: NativeStackHeaderProps) => {
   const { logout } = useAuth();
@@ -14,6 +16,10 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
   return (
     <>
       <View style={styles.topContainer}>
+        <CurrencyBalance balance={coinsBalance ?? 0} currency={Currency.COINS} />
+        <CurrencyBalance balance={bucksBalance ?? 0} currency={Currency.BUCKS} />
+      </View>
+      <View style={styles.bottomContainer}>
         <Text style={styles.title}>{options.title}</Text>
         <FontAwesome.Button
           backgroundColor="transparent"
@@ -23,16 +29,6 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
           onPress={logout}
         />
       </View>
-      <View style={styles.bottomContainer}>
-        <View style={styles.currencyContainer}>
-          <Image contentFit="contain" source={require('@/assets/images/coins.png')} style={styles.currencyIcon} />
-          <Text style={styles.currencyLabel}>{coinsBalance}</Text>
-        </View>
-        <View style={styles.currencyContainer}>
-          <Image contentFit="contain" source={require('@/assets/images/bucks.png')} style={styles.currencyIcon} />
-          <Text style={styles.currencyLabel}>{bucksBalance}</Text>
-        </View>
-      </View>
     </>
   );
 };
@@ -40,37 +36,26 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
 const styles = StyleSheet.create((theme) => ({
   topContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: theme.spacing.s,
+    backgroundColor: theme.color.highlight,
+    borderBottomWidth: 2,
+    borderBottomColor: theme.color.accent,
+  },
+  bottomContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: theme.spacing.m,
     paddingLeft: theme.spacing.l,
-    backgroundColor: theme.color.highlight,
+    backgroundColor: theme.color.background,
   },
   title: {
     fontSize: 24,
     fontFamily: theme.font.primary.italic,
     textTransform: 'uppercase',
     color: theme.color.white,
-  },
-  bottomContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    padding: theme.spacing.s,
-    backgroundColor: theme.color.background,
-  },
-  currencyContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.s,
-  },
-  currencyLabel: {
-    color: theme.color.white,
-    fontFamily: theme.font.secondary.black,
-  },
-  currencyIcon: {
-    width: 24,
-    height: 24,
   },
   logoutIcon: {
     marginRight: theme.spacing.none,
