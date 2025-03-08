@@ -1,6 +1,6 @@
 {
   "name": "roa2-companion",
-  "main": "expo-router/entry",
+  "main": "index.ts",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
@@ -50,14 +50,17 @@
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
     "react-native-gesture-handler": "~2.20.2",
+    "react-native-nitro-modules": "^0.24.1",
     "react-native-reanimated": "~3.16.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "~4.4.0",
+    "react-native-unistyles": "^3.0.0-beta.8",
     "react-native-web": "~0.19.13",
     "react-native-webview": "13.12.5"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@react-native-community/cli": "^17.0.0",
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@testing-library/react-native": "^13.0.1",
     "@types/fetch-mock": "^7.3.8",

@@ -1,6 +1,7 @@
 import { Image } from 'expo-image';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { CurrencyId, Item } from '@/types/store';
@@ -38,19 +39,19 @@ export const ItemCard = ({ item }: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: '#0E0B2A',
-    borderColor: 'lightblue',
+    backgroundColor: theme.color.background,
+    borderColor: theme.color.border,
     borderWidth: 2,
     flex: 1 / 2,
-    gap: 16,
+    gap: theme.spacing.l,
     justifyContent: 'space-between',
-    padding: 8,
+    padding: theme.spacing.m,
   },
   title: {
-    color: 'white',
-    fontFamily: 'AgencyFB-Bold',
+    color: theme.color.white,
+    fontFamily: theme.font.secondary.bold,
     fontSize: 14,
     textTransform: 'uppercase',
   },
@@ -59,14 +60,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   infoText: {
-    color: 'white',
-    fontFamily: 'AgencyFB-Bold',
+    color: theme.color.white,
+    fontFamily: theme.font.secondary.bold,
     fontSize: 12,
     textTransform: 'uppercase',
   },
   priceContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 4,
+    gap: theme.spacing.s,
   },
-});
+}));

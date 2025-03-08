@@ -1,7 +1,8 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome6';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Image } from 'expo-image';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useCurrencyBalance } from '@/hooks/business';
@@ -36,43 +37,42 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   topContainer: {
-    position: 'relative',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 8,
-    paddingLeft: 16,
-    backgroundColor: 'darkblue',
+    padding: theme.spacing.m,
+    paddingLeft: theme.spacing.l,
+    backgroundColor: theme.color.highlight,
   },
   title: {
     fontSize: 24,
-    fontFamily: 'FranklinGothicDemiCond-Italic',
+    fontFamily: theme.font.primary.italic,
     textTransform: 'uppercase',
-    color: 'white',
+    color: theme.color.white,
   },
   bottomContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: 4,
-    backgroundColor: '#0E0B2A',
+    padding: theme.spacing.s,
+    backgroundColor: theme.color.background,
   },
   currencyContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
+    gap: theme.spacing.s,
   },
   currencyLabel: {
-    color: 'white',
-    fontFamily: 'AgencyFB-Black',
+    color: theme.color.white,
+    fontFamily: theme.font.secondary.black,
   },
   currencyIcon: {
     width: 24,
     height: 24,
   },
   logoutIcon: {
-    marginRight: 0,
+    marginRight: theme.spacing.none,
   },
-});
+}));

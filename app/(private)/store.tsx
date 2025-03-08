@@ -1,4 +1,5 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { Countdown, ItemList } from '@/components';
 import { useCoinStoreRotation } from '@/hooks/business';
@@ -21,7 +22,7 @@ export default function Store() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   spinner: {
     flex: 1,
     justifyContent: 'center',
@@ -29,21 +30,21 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 16,
-    gap: 16,
-    backgroundColor: 'darkblue',
+    padding: theme.spacing.l,
+    gap: theme.spacing.l,
+    backgroundColor: theme.color.highlight,
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
     justifyContent: 'flex-end',
-    gap: 4,
+    gap: theme.spacing.s,
   },
   title: {
-    fontSize: 16,
+    fontSize: theme.spacing.l,
     textTransform: 'uppercase',
-    fontFamily: 'AgencyFB-Bold',
-    color: 'white',
+    fontFamily: theme.font.secondary.bold,
+    color: theme.color.white,
   },
-});
+}));

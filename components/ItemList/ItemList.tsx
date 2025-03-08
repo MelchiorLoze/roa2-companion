@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet } from 'react-native';
+import { FlatList } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { Item } from '@/types/store';
 
@@ -23,8 +24,8 @@ export const ItemList = ({ items }: Props) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
-    gap: 16,
+    gap: theme.spacing.l,
   },
-});
+}));

@@ -1,6 +1,7 @@
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Button, Text, TextInput, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
@@ -30,8 +31,8 @@ export default function Index() {
         autoCapitalize="none"
         autoComplete="email"
         onChangeText={setEmail}
-        placeholder="Email"
-        placeholderTextColor="lightblue"
+        placeholder="EMAIL"
+        placeholderTextColor="#676767"
         style={styles.input}
         value={email}
       />
@@ -39,8 +40,8 @@ export default function Index() {
         autoCapitalize="none"
         autoComplete="current-password"
         onChangeText={setPassword}
-        placeholder="Password"
-        placeholderTextColor="lightblue"
+        placeholder="PASSWORD"
+        placeholderTextColor="#676767"
         secureTextEntry
         style={styles.input}
         value={password}
@@ -51,32 +52,33 @@ export default function Index() {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 16,
-    padding: 24,
-    backgroundColor: '#0E0B2A',
+    gap: theme.spacing.l,
+    padding: theme.spacing.xl,
+    backgroundColor: theme.color.background,
   },
   title: {
     fontSize: 24,
-    fontFamily: 'FranklinGothicDemiCond-Italic',
+    fontFamily: theme.font.primary.italic,
     textAlign: 'center',
     textTransform: 'uppercase',
-    color: 'white',
+    color: theme.color.white,
   },
   input: {
     width: '100%',
-    height: 48,
-    padding: 8,
+    height: 40,
+    padding: theme.spacing.m,
     borderWidth: 1,
-    borderColor: 'white',
-    color: 'white',
+    borderColor: theme.color.accent,
+    color: theme.color.white,
+    backgroundColor: theme.color.dark,
   },
   errorMessage: {
-    color: 'red',
+    color: theme.color.error,
     fontSize: 12,
   },
-});
+}));
