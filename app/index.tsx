@@ -1,7 +1,7 @@
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Button, Text, TextInput, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 
@@ -10,6 +10,7 @@ export default function Index() {
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const { login, isLoggedIn, isLoading, isError } = useAuth();
+  const { theme } = useUnistyles();
 
   if (isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
 
@@ -32,7 +33,7 @@ export default function Index() {
         autoComplete="email"
         onChangeText={setEmail}
         placeholder="EMAIL"
-        placeholderTextColor="#676767"
+        placeholderTextColor={theme.color.weak}
         style={styles.input}
         value={email}
       />
@@ -41,7 +42,7 @@ export default function Index() {
         autoComplete="current-password"
         onChangeText={setPassword}
         placeholder="PASSWORD"
-        placeholderTextColor="#676767"
+        placeholderTextColor={theme.color.weak}
         secureTextEntry
         style={styles.input}
         value={password}

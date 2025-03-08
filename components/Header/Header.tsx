@@ -1,7 +1,7 @@
 import FontAwesome from '@expo/vector-icons/FontAwesome6';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { useCurrencyBalance } from '@/hooks/business';
@@ -10,6 +10,7 @@ import { Currency } from '@/types/store';
 import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
 
 export const Header = ({ options }: NativeStackHeaderProps) => {
+  const { theme } = useUnistyles();
   const { logout } = useAuth();
   const { coinsBalance, bucksBalance } = useCurrencyBalance();
 
@@ -22,8 +23,8 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
       <View style={styles.bottomContainer}>
         <Text style={styles.title}>{options.title}</Text>
         <FontAwesome.Button
-          backgroundColor="transparent"
-          color="crimson"
+          backgroundColor={theme.color.transparent}
+          color={theme.color.danger}
           iconStyle={styles.logoutIcon}
           name="arrow-right-from-bracket"
           onPress={logout}
