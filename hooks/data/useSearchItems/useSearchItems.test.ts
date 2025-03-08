@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
-import { Item } from '@/types/store';
+import { Item, Rarity } from '@/types/store';
 
 import { useSearchItems } from './useSearchItems';
 
@@ -50,8 +50,8 @@ describe('useSearchItems', () => {
       const { result } = await renderUseSearchItems(['1', '2']);
 
       expect(result.current.items).toEqual([
-        { id: '1', title: 'Item 1', category: 'skin', buckPrice: 500, coinPrice: 50000 },
-        { id: '2', title: 'Item 2', category: 'icon', buckPrice: 20, coinPrice: 2000 },
+        { id: '1', title: 'Item 1', category: 'skin', rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
+        { id: '2', title: 'Item 2', category: 'icon', rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
       ]);
       expect(result.current.isError).toBe(false);
     });
@@ -71,8 +71,8 @@ describe('useSearchItems', () => {
       const { result } = await renderUseSearchItems(['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']);
 
       expect(result.current.items).toEqual([
-        { id: '1', title: 'Item 1', category: 'skin', buckPrice: 500, coinPrice: 50000 },
-        { id: '2', title: 'Item 2', category: 'icon', buckPrice: 20, coinPrice: 2000 },
+        { id: '1', title: 'Item 1', category: 'skin', rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
+        { id: '2', title: 'Item 2', category: 'icon', rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
       ]);
       expect(result.current.isError).toBe(false);
     });

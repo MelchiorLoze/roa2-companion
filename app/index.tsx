@@ -11,7 +11,7 @@ export default function Index() {
   const [isInvalid, setIsInvalid] = useState(false);
   const { login, isLoggedIn, isLoading, isError } = useAuth();
 
-  if (isLoading) return <ActivityIndicator size="large" style={styles.container} />;
+  if (isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
 
   if (isLoggedIn) return <Redirect href="/store" />;
 

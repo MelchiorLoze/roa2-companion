@@ -8,7 +8,7 @@ export default function Store() {
   const { coinStoreRotation, isLoading } = useCoinStoreRotation();
 
   if (isLoading) {
-    return <ActivityIndicator size="large" style={styles.spinner} />;
+    return <ActivityIndicator color="white" size="large" style={styles.spinner} />;
   }
 
   return (
@@ -27,6 +27,7 @@ const styles = StyleSheet.create((theme) => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.color.highlight,
   },
   container: {
     flex: 1,

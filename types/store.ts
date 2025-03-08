@@ -10,6 +10,20 @@ export enum Currency {
   BUCKS = 'bucks',
 }
 
+export enum RarityValue {
+  COMMON = 1,
+  RARE = 2,
+  EPIC = 3,
+  LEGENDARY = 4,
+}
+
+export enum Rarity {
+  COMMON = 'common',
+  RARE = 'rare',
+  EPIC = 'epic',
+  LEGENDARY = 'legendary',
+}
+
 export type Category = 'deatheffect' | 'emote' | 'icon' | 'palette' | 'platform' | 'skin';
 
 export type RotationalCoinStore = {
@@ -29,12 +43,16 @@ export type ItemDto = {
       }[];
     }[];
   };
+  DisplayProperties: {
+    rarity: RarityValue;
+  };
 };
 
 export type Item = {
   id: string;
   title: string;
   category: Category;
+  rarity: Rarity;
   buckPrice?: number;
   coinPrice?: number;
 };

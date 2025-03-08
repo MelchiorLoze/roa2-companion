@@ -9,6 +9,10 @@ import { CurrencyId, Item } from '@/types/store';
 type Props = { item: Item };
 
 export const ItemCard = ({ item }: Props) => {
+  styles.useVariants({
+    textColor: item.rarity,
+  });
+
   const { purchase, isLoading } = usePurchaseInventoryItems();
 
   const handlePurchase = () => {
@@ -23,7 +27,7 @@ export const ItemCard = ({ item }: Props) => {
     <Pressable disabled={isLoading} onPress={handlePurchase} style={styles.container}>
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.info}>
-        <Text style={styles.infoText}>{item.category}</Text>
+        <Text style={styles.category}>{item.category}</Text>
         {item.coinPrice && (
           <View style={styles.priceContainer}>
             <Image
@@ -31,7 +35,7 @@ export const ItemCard = ({ item }: Props) => {
               source={require('@/assets/images/coins.png')}
               style={{ width: 16, height: 16 }}
             />
-            <Text style={styles.infoText}>{item.coinPrice}</Text>
+            <Text style={styles.price}>{item.coinPrice}</Text>
           </View>
         )}
       </View>
@@ -59,7 +63,21 @@ const styles = StyleSheet.create((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  infoText: {
+  category: {
+    fontFamily: theme.font.secondary.bold,
+    fontSize: 12,
+    textTransform: 'uppercase',
+    variants: {
+      textColor: {
+        common: { color: theme.color.common },
+        rare: { color: theme.color.rare },
+        epic: { color: theme.color.epic },
+        legendary: { color: theme.color.legendary },
+        default: { color: theme.color.white },
+      },
+    },
+  },
+  price: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
     fontSize: 12,

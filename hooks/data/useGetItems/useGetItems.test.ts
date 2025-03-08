@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { useAuth } from '@/contexts/AuthContext/AuthContext';
 import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
-import { Item } from '@/types/store';
+import { Item, Rarity } from '@/types/store';
 
 import { useGetItems } from './useGetItems';
 
@@ -59,8 +59,8 @@ describe('useGetItems', () => {
       const { result } = await renderUseGetItems(['1', '2']);
 
       expect(result.current.items).toEqual([
-        { id: '1', title: 'Item 1', category: 'skin', buckPrice: 500, coinPrice: 50000 },
-        { id: '2', title: 'Item 2', category: 'icon', buckPrice: 20, coinPrice: 2000 },
+        { id: '1', title: 'Item 1', category: 'skin', rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
+        { id: '2', title: 'Item 2', category: 'icon', rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
       ]);
       expect(result.current.isError).toBe(false);
     });

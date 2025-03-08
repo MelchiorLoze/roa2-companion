@@ -15,4 +15,7 @@ export const createItemDto = (id: string, category: Category, buckPrice: number)
         },
       ],
     },
+    DisplayProperties: {
+      rarity: 1,
+    },
   } as ItemDto);

@@ -12,6 +12,10 @@ const theme = {
     white: 'white',
     error: 'crimson',
     danger: 'crimson',
+    common: '#D3D5E4',
+    rare: '#447CF1',
+    epic: '#C161E5',
+    legendary: '#FFDF77',
   },
   spacing: {
     none: 0,
