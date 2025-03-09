@@ -30,13 +30,14 @@ export default function RootLayout() {
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <Stack
+            initialRouteName="sign-in"
             screenOptions={{
               headerShown: false,
               statusBarBackgroundColor: theme.color.background,
               navigationBarColor: theme.color.background,
             }}
           >
-            <Stack.Screen name="index" />
+            <Stack.Screen name="sign-in" />
             <Stack.Screen name="(private)" />
           </Stack>
         </AuthProvider>

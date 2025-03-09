@@ -1,6 +1,6 @@
 import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
 
-import { useStorageState } from '@/hooks/business/useStorageState/useStorageState';
+import { useStorageState } from '@/hooks/business';
 import { useLoginWithEmail } from '@/hooks/data';
 import { Session } from '@/types/session';
 

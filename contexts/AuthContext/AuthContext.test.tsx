@@ -2,7 +2,7 @@ import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 import { PropsWithChildren, useState } from 'react';
 
-import { useStorageState } from '@/hooks/business/useStorageState/useStorageState';
+import { useStorageState } from '@/hooks/business';
 import { useLoginWithEmail } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Session } from '@/types/session';
@@ -12,7 +12,7 @@ import { AuthProvider, useSession } from './AuthContext';
 const VALID_DATE = DateTime.now().plus({ day: 1 });
 const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
 
-jest.mock('@/hooks/business/useStorageState/useStorageState');
+jest.mock('@/hooks/business');
 const useStorageStateMock = jest.mocked(useStorageState);
 
 const mockValidSession = () => {

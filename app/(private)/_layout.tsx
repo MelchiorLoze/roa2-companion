@@ -13,7 +13,7 @@ export default function PrivateLayout() {
   const { isLoggedIn } = useSession();
 
   if (!isLoggedIn) {
-    return <Redirect href="/" />;
+    return <Redirect href="/sign-in" />;
   }
 
   return (
