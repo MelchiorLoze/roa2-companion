@@ -3,7 +3,7 @@ import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { useCurrencyBalance } from '@/hooks/business';
 import { Currency } from '@/types/store';
 
@@ -11,7 +11,7 @@ import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
 
 export const Header = ({ options }: NativeStackHeaderProps) => {
   const { theme } = useUnistyles();
-  const { logout } = useAuth();
+  const { logout } = useSession();
   const { coinsBalance, bucksBalance } = useCurrencyBalance();
 
   return (

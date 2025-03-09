@@ -1,7 +1,7 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@/constants';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { InventoryItem } from '@/types/store';
 
 const QUERY_KEY = ['inventoryItems'];
@@ -41,7 +41,7 @@ async function getInventoryItems(entityToken: string): Promise<InventoryItem[]> 
 }
 
 export const useGetInventoryItems = () => {
-  const { entityToken, isLoggedIn } = useAuth();
+  const { entityToken, isLoggedIn } = useSession();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: QUERY_KEY,

@@ -1,7 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { DateTime } from 'luxon';
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect } from 'react';
 
+import { useStorageState } from '@/hooks/business/useStorageState/useStorageState';
 import { useLoginWithEmail } from '@/hooks/data';
 import { Session } from '@/types/session';
 
@@ -21,42 +20,16 @@ const AuthContext = createContext<AuthState | undefined>(undefined);
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
 
 export const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [session, setSession] = useState<Session>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [[session, isLoading], setSession] = useStorageState(SESSION_STORAGE_KEY);
   const isLoggedIn = Boolean(session && isSessionValid(session));
 
   const { data, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
 
-  const logout = () => {
-    setSession(undefined);
-    AsyncStorage.removeItem(SESSION_STORAGE_KEY);
-  };
-
-  useEffect(() => {
-    (async () => {
-      const rawStoredSession = await AsyncStorage.getItem(SESSION_STORAGE_KEY);
-      if (rawStoredSession) {
-        const storedSession = JSON.parse(rawStoredSession);
-        setSession({
-          entityToken: storedSession.entityToken,
-          expirationDate: DateTime.fromISO(storedSession.expirationDate),
-        });
-      } else {
-        setIsLoading(false);
-      }
-    })();
-  }, []);
-
   useEffect(() => {
     if (data && isSessionValid(data)) {
       setSession(data);
-      AsyncStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(data));
     }
-  }, [data]);
-
-  useEffect(() => {
-    if (session) setIsLoading(false);
-  }, [session]);
+  }, [data, setSession]);
 
   return (
     <AuthContext.Provider
@@ -64,7 +37,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
         entityToken: session?.entityToken,
         isLoggedIn,
         login: loginWithEmail,
-        logout,
+        logout: () => setSession(null),
         isLoading: isLoading || isLoginLoading,
         isError,
       }}
@@ -74,10 +47,10 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useAuth = () => {
+export const useSession = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useSession must be used within an AuthProvider');
   }
   return context;
 };

@@ -3,7 +3,7 @@ import { DateTime, Duration } from 'luxon';
 import { useEffect } from 'react';
 
 import { BASE_URL } from '@/constants';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { Item, RotationalCoinStore } from '@/types/store';
 
@@ -42,7 +42,7 @@ async function getMyRotationalCoinStore(entityToken: string): Promise<Rotational
 
 export const useGetMyRotationalCoinStore = () => {
   const queryClient = useQueryClient();
-  const { entityToken, isLoggedIn } = useAuth();
+  const { entityToken, isLoggedIn } = useSession();
   const { data, isLoading, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () => getMyRotationalCoinStore(entityToken ?? ''),

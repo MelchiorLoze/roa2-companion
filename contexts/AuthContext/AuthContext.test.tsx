@@ -1,23 +1,41 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useState } from 'react';
 
+import { useStorageState } from '@/hooks/business/useStorageState/useStorageState';
 import { useLoginWithEmail } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Session } from '@/types/session';
 
-import { AuthProvider, useAuth } from './AuthContext';
+import { AuthProvider, useSession } from './AuthContext';
+
+const VALID_DATE = DateTime.now().plus({ day: 1 });
+const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
+
+jest.mock('@/hooks/business/useStorageState/useStorageState');
+const useStorageStateMock = jest.mocked(useStorageState);
+
+const mockValidSession = () => {
+  useStorageStateMock.mockImplementation(() => {
+    const [state, setState] = useState<Session | null>({ entityToken: 'validToken', expirationDate: VALID_DATE });
+    return [[state, false], setState];
+  });
+};
+const mockExpiredSession = () => {
+  useStorageStateMock.mockImplementation(() => {
+    const [state, setState] = useState<Session | null>({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE });
+    return [[state, false], setState];
+  });
+};
+const mockEmptySession = () => {
+  useStorageStateMock.mockImplementation(() => {
+    const [state, setState] = useState<Session | null>(null);
+    return [[state, false], setState];
+  });
+};
 
 jest.mock('@/hooks/data/useLoginWithEmail/useLoginWithEmail');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
-
-const asyncStorageGetItemSpy = jest.spyOn(AsyncStorage, 'getItem');
-const asyncStorageSetItemSpy = jest.spyOn(AsyncStorage, 'setItem');
-const asyncStorageRemoveItemSpy = jest.spyOn(AsyncStorage, 'removeItem');
-
-const validExpirationDate = DateTime.now().plus({ day: 1 });
-const invalidExpirationDate = DateTime.now().minus({ day: 1 });
 
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>
@@ -25,8 +43,8 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   </TestQueryClientProvider>
 );
 
-const renderUseAuth = async () => {
-  const { result } = renderHook(useAuth, { wrapper: Wrapper });
+const renderUseSession = async () => {
+  const { result } = renderHook(useSession, { wrapper: Wrapper });
 
   await waitFor(() => {
     expect(result.current.isLoading).toBe(false);
@@ -35,64 +53,46 @@ const renderUseAuth = async () => {
   return { result };
 };
 
-describe('useAuth', () => {
+describe('useSession', () => {
   beforeEach(() => {
+    mockEmptySession();
     useLoginWithEmailMock.mockReturnValue({
       data: undefined,
       isLoading: false,
       isError: false,
       loginWithEmail: jest.fn(),
     });
-    asyncStorageGetItemSpy.mockClear();
-    asyncStorageSetItemSpy.mockClear();
-    asyncStorageRemoveItemSpy.mockClear();
   });
 
   it('should throw an error when not used inside an AuthProvider', async () => {
     const originalError = console.error;
     console.error = jest.fn();
-    expect(() => renderHook(useAuth)).toThrow('useAuth must be used within an AuthProvider');
+    expect(() => renderHook(useSession)).toThrow('useSession must be used within an AuthProvider');
     console.error = originalError;
   });
 
   it('should not be logged in when the storage an login sessions are empty', async () => {
-    const { result } = await renderUseAuth();
+    const { result } = await renderUseSession();
 
     expect(result.current.isLoggedIn).toBe(false);
-    expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-    expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
   });
 
   describe('from storage', () => {
     it('should be logged in when the storage contains a valid session', async () => {
-      const session: Session = {
-        entityToken: 'token',
-        expirationDate: validExpirationDate,
-      };
-      await AsyncStorage.setItem('session', JSON.stringify(session));
-      asyncStorageSetItemSpy.mockClear();
+      mockValidSession();
 
-      const { result } = await renderUseAuth();
+      const { result } = await renderUseSession();
 
       expect(result.current.isLoggedIn).toBe(true);
-      expect(result.current.entityToken).toBe('token');
-      expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-      expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
+      expect(result.current.entityToken).toBe('validToken');
     });
 
     it('should not be logged in when the storage contains an expired session', async () => {
-      const session: Session = {
-        entityToken: 'token',
-        expirationDate: invalidExpirationDate,
-      };
-      await AsyncStorage.setItem('session', JSON.stringify(session));
-      asyncStorageSetItemSpy.mockClear();
+      mockExpiredSession();
 
-      const { result } = await renderUseAuth();
+      const { result } = await renderUseSession();
 
       expect(result.current.isLoggedIn).toBe(false);
-      expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-      expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -101,87 +101,61 @@ describe('useAuth', () => {
       useLoginWithEmailMock.mockReturnValue({
         data: {
           entityToken: 'token',
-          expirationDate: validExpirationDate,
+          expirationDate: VALID_DATE,
         },
         isLoading: false,
         isError: false,
         loginWithEmail: jest.fn(),
       });
 
-      const { result } = await renderUseAuth();
+      const { result } = await renderUseSession();
 
       expect(result.current.isLoggedIn).toBe(true);
       expect(result.current.entityToken).toBe('token');
-      expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-      expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(1);
-      expect(asyncStorageSetItemSpy).toHaveBeenCalledWith(
-        'session',
-        JSON.stringify({ entityToken: 'token', expirationDate: validExpirationDate }),
-      );
     });
 
     it('should not be logged in when received expired token from login', async () => {
       useLoginWithEmailMock.mockReturnValue({
         data: {
           entityToken: 'token',
-          expirationDate: invalidExpirationDate,
+          expirationDate: EXPIRED_DATE,
         },
         isLoading: false,
         isError: false,
         loginWithEmail: jest.fn(),
       });
 
-      const { result } = await renderUseAuth();
+      const { result } = await renderUseSession();
 
       expect(result.current.isLoggedIn).toBe(false);
-      expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-      expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
     });
   });
 
   it('should prioritize login over storage', async () => {
+    mockValidSession();
     useLoginWithEmailMock.mockReturnValue({
       data: {
         entityToken: 'loginToken',
-        expirationDate: validExpirationDate,
+        expirationDate: VALID_DATE,
       },
       isLoading: false,
       isError: false,
       loginWithEmail: jest.fn(),
     });
-    await AsyncStorage.setItem(
-      'session',
-      JSON.stringify({ entityToken: 'storageToken', expirationDate: validExpirationDate }),
-    );
-    asyncStorageSetItemSpy.mockClear();
 
-    const { result } = await renderUseAuth();
+    const { result } = await renderUseSession();
 
     await waitFor(() => expect(result.current.entityToken).toBe('loginToken'));
     expect(result.current.isLoggedIn).toBe(true);
-    expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-    expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(1);
-    expect(asyncStorageSetItemSpy).toHaveBeenCalledWith(
-      'session',
-      JSON.stringify({ entityToken: 'loginToken', expirationDate: validExpirationDate }),
-    );
   });
 
   it('should logout', async () => {
-    const session: Session = {
-      entityToken: 'token',
-      expirationDate: validExpirationDate,
-    };
-    await AsyncStorage.setItem('session', JSON.stringify(session));
-    asyncStorageSetItemSpy.mockClear();
+    mockValidSession();
 
-    const { result } = await renderUseAuth();
+    const { result } = await renderUseSession();
     expect(result.current.isLoggedIn).toBe(true);
     await act(async () => result.current.logout());
 
     await waitFor(() => expect(result.current.isLoggedIn).toBe(false));
-    expect(asyncStorageGetItemSpy).toHaveBeenCalledTimes(1);
-    expect(asyncStorageSetItemSpy).toHaveBeenCalledTimes(0);
-    expect(asyncStorageRemoveItemSpy).toHaveBeenCalledTimes(1);
   });
 });

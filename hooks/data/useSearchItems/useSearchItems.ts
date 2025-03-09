@@ -2,7 +2,7 @@ import { useQueries } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import { BASE_URL } from '@/constants';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { Item, ItemDto } from '@/types/store';
 import { itemFromDto } from '@/utils/itemFromDto';
 
@@ -39,7 +39,7 @@ const searchItems = async (entityToken: string, itemIds: Item['id'][]) => {
 };
 
 export function useSearchItems(itemIds: Item['id'][]) {
-  const { entityToken, isLoggedIn } = useAuth();
+  const { entityToken, isLoggedIn } = useSession();
 
   const batchSize = Math.min(MAX_ITEMS_PER_REQUEST, itemIds.length);
 

@@ -36,7 +36,8 @@
         {
           "fonts": ["./assets/fonts"]
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

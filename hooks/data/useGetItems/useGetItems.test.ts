@@ -1,14 +1,14 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
 import { Item, Rarity } from '@/types/store';
 
 import { useGetItems } from './useGetItems';
 
 jest.mock('@/contexts/AuthContext/AuthContext');
-const useAuthMock = jest.mocked(useAuth);
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetItems = async (itemIds: Item['id'][]) => {
   const { result } = renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
@@ -19,12 +19,12 @@ const renderUseGetItems = async (itemIds: Item['id'][]) => {
 
 describe('useGetItems', () => {
   beforeEach(() => {
-    useAuthMock.mockReturnValue({ entityToken: 'entityToken', isLoggedIn: true } as ReturnType<typeof useAuth>);
+    useSessionMock.mockReturnValue({ entityToken: 'entityToken', isLoggedIn: true } as ReturnType<typeof useSession>);
   });
 
   describe('should return empty array', () => {
     it('when not logged in', async () => {
-      useAuthMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useAuth>);
+      useSessionMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useSession>);
       const { result } = await renderUseGetItems(['1', '2']);
 
       expect(result.current.items).toEqual([]);

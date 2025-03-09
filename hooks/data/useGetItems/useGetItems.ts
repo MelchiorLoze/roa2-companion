@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { BASE_URL } from '@/constants';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { Item, ItemDto } from '@/types/store';
 import { itemFromDto } from '@/utils/itemFromDto';
 
@@ -31,7 +31,7 @@ const getItems = async (entityToken: string, itemIds: Item['id'][]) => {
 };
 
 export const useGetItems = (itemIds: Item['id'][]) => {
-  const { entityToken, isLoggedIn } = useAuth();
+  const { entityToken, isLoggedIn } = useSession();
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['items', ...itemIds],

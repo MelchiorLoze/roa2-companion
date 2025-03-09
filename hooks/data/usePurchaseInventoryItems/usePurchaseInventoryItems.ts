@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { BASE_URL } from '@/constants';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { CurrencyId, Item } from '@/types/store';
 
 import { invalidateGetInventoryItems } from '../useGetInventoryItems/useGetInventoryItems';
@@ -42,7 +42,7 @@ export async function purchaseInventoryItems(entityToken: string, item: ItemToPu
 }
 
 export const usePurchaseInventoryItems = () => {
-  const { entityToken, isLoggedIn } = useAuth();
+  const { entityToken, isLoggedIn } = useSession();
   const queryClient = useQueryClient();
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (item: ItemToPurchase) => purchaseInventoryItems(entityToken ?? '', item),

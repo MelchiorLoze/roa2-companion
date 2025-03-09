@@ -1,14 +1,14 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { CurrencyId } from '@/types/store';
 
 import { usePurchaseInventoryItems } from './usePurchaseInventoryItems';
 
 jest.mock('@/contexts/AuthContext/AuthContext');
-const useAuthMock = jest.mocked(useAuth);
+const useSessionMock = jest.mocked(useSession);
 
 const invalidateGetInventoryItemsSpy = jest.spyOn(
   require('../useGetInventoryItems/useGetInventoryItems'),
@@ -28,7 +28,7 @@ const renderPurchaseInventoryItems = async () => {
 
 describe('usePurchaseInventoryItems', () => {
   beforeEach(() => {
-    useAuthMock.mockReturnValue({ isLoggedIn: true, entityToken: 'token' } as ReturnType<typeof useAuth>);
+    useSessionMock.mockReturnValue({ isLoggedIn: true, entityToken: 'token' } as ReturnType<typeof useSession>);
   });
 
   afterEach(() => {
@@ -37,7 +37,7 @@ describe('usePurchaseInventoryItems', () => {
   });
 
   it('should not return the mutation function when not logged in', async () => {
-    useAuthMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useAuth>);
+    useSessionMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useSession>);
 
     const { result } = await renderPurchaseInventoryItems();
 

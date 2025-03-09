@@ -3,14 +3,14 @@ import { Redirect, Stack } from 'expo-router';
 import { useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 
 const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();
 
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useSession();
 
   if (!isLoggedIn) {
     return <Redirect href="/" />;

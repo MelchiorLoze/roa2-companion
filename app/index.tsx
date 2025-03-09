@@ -4,13 +4,13 @@ import { ActivityIndicator, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button } from '@/components/Button/Button';
-import { useAuth } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts/AuthContext/AuthContext';
 
 export default function Index() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
-  const { login, isLoggedIn, isLoading, isError } = useAuth();
+  const { login, isLoggedIn, isLoading, isError } = useSession();
   const { theme } = useUnistyles();
 
   if (isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
