@@ -10,19 +10,19 @@ jest.mock('@/contexts', () => ({
   useSession: jest.fn(),
 }));
 const useSessionMock = jest.mocked(useSession);
-const mockSetSession = jest.fn();
+const setSessionMock = jest.fn();
 
 describe('useHttpClient', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue({
       entityToken: 'mock-token',
       isValid: true,
-      setSession: mockSetSession,
+      setSession: setSessionMock,
     } as unknown as ReturnType<typeof useSession>);
   });
 
   afterEach(() => {
-    mockSetSession.mockClear();
+    setSessionMock.mockClear();
   });
 
   it('should validate path correctly', async () => {
@@ -41,7 +41,7 @@ describe('useHttpClient', () => {
     useSessionMock.mockReturnValue({
       entityToken: 'test-token',
       isValid: true,
-      setSession: mockSetSession,
+      setSession: setSessionMock,
     } as unknown as ReturnType<typeof useSession>);
 
     fetchMock.post(
@@ -65,7 +65,7 @@ describe('useHttpClient', () => {
     useSessionMock.mockReturnValue({
       entityToken: undefined,
       isValid: false,
-      setSession: mockSetSession,
+      setSession: setSessionMock,
     } as unknown as ReturnType<typeof useSession>);
 
     const { result } = renderHook(() => useHttpClient());
@@ -135,8 +135,8 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Unauthorized');
-    expect(mockSetSession).toHaveBeenCalledTimes(1);
-    expect(mockSetSession).toHaveBeenCalledWith(null);
+    expect(setSessionMock).toHaveBeenCalledTimes(1);
+    expect(setSessionMock).toHaveBeenCalledWith(null);
   });
 
   it('should throw error on other failed responses', async () => {
@@ -148,7 +148,7 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
-    expect(mockSetSession).not.toHaveBeenCalled();
+    expect(setSessionMock).not.toHaveBeenCalled();
   });
 
   it('should handle typed responses correctly', async () => {
