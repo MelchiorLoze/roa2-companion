@@ -4,6 +4,7 @@ fetchMock.mockGlobal();
 
 afterEach(() => {
   fetchMock.removeRoutes();
+  fetchMock.clearHistory();
 });
 
 afterAll(() => {
