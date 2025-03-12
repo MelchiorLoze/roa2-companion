@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/networking';
+import { useHttpClient } from '@/hooks/core';
 import { CurrencyId, Item } from '@/types/store';
 
 import { invalidateGetInventoryItems } from '../useGetInventoryItems/useGetInventoryItems';

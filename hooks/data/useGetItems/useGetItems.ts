@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/networking';
+import { useHttpClient } from '@/hooks/core';
 import { Item, ItemDto } from '@/types/store';
 import { itemFromDto } from '@/utils/itemFromDto';
 

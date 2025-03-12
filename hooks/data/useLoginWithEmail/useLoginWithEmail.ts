@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 
 import { TITLE_ID } from '@/constants';
-import { useHttpClient } from '@/networking';
+import { useHttpClient } from '@/hooks/core';
 import { Session } from '@/types/session';
 
 type LoginWithEmailAddressRequest = {

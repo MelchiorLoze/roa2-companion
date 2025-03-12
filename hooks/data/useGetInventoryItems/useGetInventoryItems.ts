@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/networking';
+import { useHttpClient } from '@/hooks/core';
 import { InventoryItem } from '@/types/store';
 
 const QUERY_KEY = ['inventoryItems'];

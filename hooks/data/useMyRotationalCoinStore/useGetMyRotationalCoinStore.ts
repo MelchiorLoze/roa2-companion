@@ -2,7 +2,7 @@ import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { DateTime, Duration } from 'luxon';
 import { useEffect } from 'react';
 
-import { useHttpClient } from '@/networking';
+import { useHttpClient } from '@/hooks/core';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { Item, RotationalCoinStore } from '@/types/store';
 
