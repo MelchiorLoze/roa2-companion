@@ -86,7 +86,7 @@ describe('useSession', () => {
     });
   });
 
-  it('should setSession to null', async () => {
+  it('should allow to setSession to null', async () => {
     mockValidSession();
 
     const { result } = await renderUseSession();
@@ -94,5 +94,27 @@ describe('useSession', () => {
     await act(async () => result.current.setSession(null));
 
     await waitFor(() => expect(result.current.isValid).toBe(false));
+  });
+
+  it('should allow to setSession to a valid session', async () => {
+    mockExpiredSession();
+
+    const { result } = await renderUseSession();
+    expect(result.current.isValid).toBe(false);
+    await act(async () => result.current.setSession({ entityToken: 'validToken', expirationDate: VALID_DATE }));
+
+    await waitFor(() => expect(result.current.isValid).toBe(true));
+    expect(result.current.entityToken).toBe('validToken');
+  });
+
+  it('should not allow to setSession to an expired session', async () => {
+    mockValidSession();
+
+    const { result } = await renderUseSession();
+    expect(result.current.isValid).toBe(true);
+    await act(async () => result.current.setSession({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE }));
+
+    expect(result.current.isValid).toBe(true);
+    expect(result.current.entityToken).toBe('validToken');
   });
 });
