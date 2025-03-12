@@ -6,7 +6,7 @@ import { CurrencyId } from '@/types/store';
 
 import { usePurchaseInventoryItems } from './usePurchaseInventoryItems';
 
-jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 

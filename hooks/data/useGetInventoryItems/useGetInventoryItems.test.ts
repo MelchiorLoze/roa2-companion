@@ -5,7 +5,7 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetInventoryItems } from './useGetInventoryItems';
 
-jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 

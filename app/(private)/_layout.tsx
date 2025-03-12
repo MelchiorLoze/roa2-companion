@@ -3,7 +3,7 @@ import { Redirect, Stack } from 'expo-router';
 import { useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components';
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts';
 
 const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 

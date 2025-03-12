@@ -4,7 +4,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { StrictMode, useEffect } from 'react';
 import { useUnistyles } from 'react-native-unistyles';
 
-import { AuthProvider } from '@/contexts/AuthContext/AuthContext';
+import { SessionProvider } from '@/contexts';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,7 +28,7 @@ export default function RootLayout() {
   return (
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider>
+        <SessionProvider>
           <Stack
             initialRouteName="sign-in"
             screenOptions={{
@@ -40,7 +40,7 @@ export default function RootLayout() {
             <Stack.Screen name="sign-in" />
             <Stack.Screen name="(private)" />
           </Stack>
-        </AuthProvider>
+        </SessionProvider>
       </QueryClientProvider>
     </StrictMode>
   );

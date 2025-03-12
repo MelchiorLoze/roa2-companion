@@ -1,5 +1,5 @@
 import { BASE_URL } from '@/constants';
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts';
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 

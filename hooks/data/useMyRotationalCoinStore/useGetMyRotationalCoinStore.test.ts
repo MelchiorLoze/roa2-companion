@@ -6,7 +6,7 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
 
-jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 

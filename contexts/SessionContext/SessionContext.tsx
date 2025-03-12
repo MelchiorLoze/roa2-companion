@@ -6,7 +6,7 @@ import { Session } from '@/types/session';
 
 const SESSION_STORAGE_KEY = 'session';
 
-type AuthState = {
+type SessionState = {
   entityToken?: string;
   isLoggedIn: boolean;
   login: ReturnType<typeof useLoginWithEmail>['loginWithEmail'];
@@ -15,11 +15,11 @@ type AuthState = {
   isError: boolean;
 };
 
-const AuthContext = createContext<AuthState | undefined>(undefined);
+const SessionContext = createContext<SessionState | undefined>(undefined);
 
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
+export const SessionProvider = ({ children }: PropsWithChildren) => {
   const [[session, isLoading], setSession] = useStorageState(SESSION_STORAGE_KEY);
   const isLoggedIn = Boolean(session && isSessionValid(session));
 
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
   }, [data, setSession]);
 
   return (
-    <AuthContext.Provider
+    <SessionContext.Provider
       value={{
         entityToken: session?.entityToken,
         isLoggedIn,
@@ -43,14 +43,14 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
       }}
     >
       {children}
-    </AuthContext.Provider>
+    </SessionContext.Provider>
   );
 };
 
 export const useSession = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(SessionContext);
   if (!context) {
-    throw new Error('useSession must be used within an AuthProvider');
+    throw new Error('useSession must be used within a SessionProvider');
   }
   return context;
 };

@@ -4,7 +4,7 @@ import { ActivityIndicator, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button } from '@/components/Button/Button';
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');

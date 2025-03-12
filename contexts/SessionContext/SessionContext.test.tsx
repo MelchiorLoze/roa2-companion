@@ -7,7 +7,7 @@ import { useLoginWithEmail } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Session } from '@/types/session';
 
-import { AuthProvider, useSession } from './AuthContext';
+import { SessionProvider, useSession } from './SessionContext';
 
 const VALID_DATE = DateTime.now().plus({ day: 1 });
 const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
@@ -39,7 +39,7 @@ const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>
-    <AuthProvider>{children}</AuthProvider>
+    <SessionProvider>{children}</SessionProvider>
   </TestQueryClientProvider>
 );
 
@@ -64,10 +64,10 @@ describe('useSession', () => {
     });
   });
 
-  it('should throw an error when not used inside an AuthProvider', async () => {
+  it('should throw an error when not used inside a SessionProvider', async () => {
     const originalError = console.error;
     console.error = jest.fn();
-    expect(() => renderHook(useSession)).toThrow('useSession must be used within an AuthProvider');
+    expect(() => renderHook(useSession)).toThrow('useSession must be used within a SessionProvider');
     console.error = originalError;
   });
 

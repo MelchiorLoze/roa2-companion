@@ -3,7 +3,7 @@ import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts';
 import { useCurrencyBalance } from '@/hooks/business';
 import { Currency } from '@/types/store';
 

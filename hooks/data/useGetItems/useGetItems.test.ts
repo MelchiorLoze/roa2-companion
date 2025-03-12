@@ -6,7 +6,7 @@ import { Item, Rarity } from '@/types/store';
 
 import { useGetItems } from './useGetItems';
 
-jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 

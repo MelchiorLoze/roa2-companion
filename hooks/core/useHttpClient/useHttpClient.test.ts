@@ -2,11 +2,11 @@ import { renderHook } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { BASE_URL } from '@/constants';
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useSession } from '@/contexts';
 
 import { useHttpClient } from './useHttpClient';
 
-jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+jest.mock('@/contexts', () => ({
   useSession: jest.fn(),
 }));
 const useSessionMock = jest.mocked(useSession);
