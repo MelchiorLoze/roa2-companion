@@ -3,7 +3,6 @@ import { DateTime } from 'luxon';
 import { PropsWithChildren, useState } from 'react';
 
 import { useStorageState } from '@/hooks/core';
-import { useLoginWithEmail } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { Session } from '@/types/session';
 
@@ -34,9 +33,6 @@ const mockEmptySession = () => {
   });
 };
 
-jest.mock('@/hooks/data/useLoginWithEmail/useLoginWithEmail');
-const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
-
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>
     <SessionProvider>{children}</SessionProvider>
@@ -56,12 +52,6 @@ const renderUseSession = async () => {
 describe('useSession', () => {
   beforeEach(() => {
     mockEmptySession();
-    useLoginWithEmailMock.mockReturnValue({
-      data: undefined,
-      isLoading: false,
-      isError: false,
-      loginWithEmail: jest.fn(),
-    });
   });
 
   it('should throw an error when not used inside a SessionProvider', async () => {
@@ -74,7 +64,7 @@ describe('useSession', () => {
   it('should not be logged in when the storage an login sessions are empty', async () => {
     const { result } = await renderUseSession();
 
-    expect(result.current.isLoggedIn).toBe(false);
+    expect(result.current.isValid).toBe(false);
   });
 
   describe('from storage', () => {
@@ -83,7 +73,7 @@ describe('useSession', () => {
 
       const { result } = await renderUseSession();
 
-      expect(result.current.isLoggedIn).toBe(true);
+      expect(result.current.isValid).toBe(true);
       expect(result.current.entityToken).toBe('validToken');
     });
 
@@ -92,70 +82,17 @@ describe('useSession', () => {
 
       const { result } = await renderUseSession();
 
-      expect(result.current.isLoggedIn).toBe(false);
+      expect(result.current.isValid).toBe(false);
     });
   });
 
-  describe('from login', () => {
-    it('should be logged in when received valid token from login', async () => {
-      useLoginWithEmailMock.mockReturnValue({
-        data: {
-          entityToken: 'token',
-          expirationDate: VALID_DATE,
-        },
-        isLoading: false,
-        isError: false,
-        loginWithEmail: jest.fn(),
-      });
-
-      const { result } = await renderUseSession();
-
-      expect(result.current.isLoggedIn).toBe(true);
-      expect(result.current.entityToken).toBe('token');
-    });
-
-    it('should not be logged in when received expired token from login', async () => {
-      useLoginWithEmailMock.mockReturnValue({
-        data: {
-          entityToken: 'token',
-          expirationDate: EXPIRED_DATE,
-        },
-        isLoading: false,
-        isError: false,
-        loginWithEmail: jest.fn(),
-      });
-
-      const { result } = await renderUseSession();
-
-      expect(result.current.isLoggedIn).toBe(false);
-    });
-  });
-
-  it('should prioritize login over storage', async () => {
-    mockValidSession();
-    useLoginWithEmailMock.mockReturnValue({
-      data: {
-        entityToken: 'loginToken',
-        expirationDate: VALID_DATE,
-      },
-      isLoading: false,
-      isError: false,
-      loginWithEmail: jest.fn(),
-    });
-
-    const { result } = await renderUseSession();
-
-    await waitFor(() => expect(result.current.entityToken).toBe('loginToken'));
-    expect(result.current.isLoggedIn).toBe(true);
-  });
-
-  it('should logout', async () => {
+  it('should setSession to null', async () => {
     mockValidSession();
 
     const { result } = await renderUseSession();
-    expect(result.current.isLoggedIn).toBe(true);
-    await act(async () => result.current.logout());
+    expect(result.current.isValid).toBe(true);
+    await act(async () => result.current.setSession(null));
 
-    await waitFor(() => expect(result.current.isLoggedIn).toBe(false));
+    await waitFor(() => expect(result.current.isValid).toBe(false));
   });
 });

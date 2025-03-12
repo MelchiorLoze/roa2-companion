@@ -10,19 +10,19 @@ jest.mock('@/contexts', () => ({
   useSession: jest.fn(),
 }));
 const useSessionMock = jest.mocked(useSession);
-const mockLogout = jest.fn();
+const mockSetSession = jest.fn();
 
 describe('useHttpClient', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue({
       entityToken: 'mock-token',
-      isLoggedIn: true,
-      logout: mockLogout,
+      isValid: true,
+      setSession: mockSetSession,
     } as unknown as ReturnType<typeof useSession>);
   });
 
   afterEach(() => {
-    mockLogout.mockClear();
+    mockSetSession.mockClear();
   });
 
   it('should validate path correctly', async () => {
@@ -40,8 +40,8 @@ describe('useHttpClient', () => {
   it('should add auth headers when logged in', async () => {
     useSessionMock.mockReturnValue({
       entityToken: 'test-token',
-      isLoggedIn: true,
-      logout: mockLogout,
+      isValid: true,
+      setSession: mockSetSession,
     } as unknown as ReturnType<typeof useSession>);
 
     fetchMock.post(
@@ -64,8 +64,8 @@ describe('useHttpClient', () => {
   it('should not add auth headers when not logged in', async () => {
     useSessionMock.mockReturnValue({
       entityToken: undefined,
-      isLoggedIn: false,
-      logout: mockLogout,
+      isValid: false,
+      setSession: mockSetSession,
     } as unknown as ReturnType<typeof useSession>);
 
     const { result } = renderHook(() => useHttpClient());
@@ -135,7 +135,8 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Unauthorized');
-    expect(mockLogout).toHaveBeenCalledTimes(1);
+    expect(mockSetSession).toHaveBeenCalledTimes(1);
+    expect(mockSetSession).toHaveBeenCalledWith(null);
   });
 
   it('should throw error on other failed responses', async () => {
@@ -147,7 +148,7 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
-    expect(mockLogout).not.toHaveBeenCalled();
+    expect(mockSetSession).not.toHaveBeenCalled();
   });
 
   it('should handle typed responses correctly', async () => {

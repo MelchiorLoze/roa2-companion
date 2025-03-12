@@ -24,14 +24,14 @@ const fetchWrapper = async (path: string, options: { method: Method; headers: ob
 };
 
 export const useHttpClient = () => {
-  const { entityToken, isLoggedIn, logout } = useSession();
+  const { entityToken, isValid: isLoggedIn, setSession } = useSession();
 
   const headers = isLoggedIn && entityToken ? { 'X-EntityToken': entityToken } : {};
 
   const handleResponse = async <T>(response: Response) => {
     if (!response.ok) {
       if (response.status === 401) {
-        logout();
+        setSession(null);
         throw new Error('Unauthorized');
       }
       throw new Error('Request failed');
