@@ -2,8 +2,7 @@ import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { DateTime, Duration } from 'luxon';
 import { useEffect } from 'react';
 
-import { BASE_URL } from '@/constants';
-import { useSession } from '@/contexts/AuthContext/AuthContext';
+import { useHttpClient } from '@/networking';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { Item, RotationalCoinStore } from '@/types/store';
 
@@ -15,38 +14,21 @@ type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
   itemIds: Item['id'][];
 }>;
 
-async function getMyRotationalCoinStore(entityToken: string): Promise<RotationalCoinStore> {
-  const response = await fetch(`${BASE_URL}/CloudScript/ExecuteFunction`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-EntityToken': entityToken,
-    },
-    body: JSON.stringify({
-      FunctionName: 'GetMyRotationalCoinStore',
-    } as ExecuteFunctionRequest<undefined>),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to get rotational coin store');
-  }
-
-  const responseData = (await response.json()) as GetMyRotationalCoinStoreResponse;
-  const result = responseData.data.FunctionResult;
-
-  return {
-    itemIds: result.itemIds,
-    expirationDate: DateTime.fromISO(result.expirationDateTime),
-  } as RotationalCoinStore;
-}
-
 export const useGetMyRotationalCoinStore = () => {
+  const httpClient = useHttpClient();
   const queryClient = useQueryClient();
-  const { entityToken, isLoggedIn } = useSession();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: QUERY_KEY,
-    queryFn: () => getMyRotationalCoinStore(entityToken ?? ''),
-    enabled: isLoggedIn,
+    queryFn: () =>
+      httpClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
+        FunctionName: 'GetMyRotationalCoinStore',
+      } as ExecuteFunctionRequest),
+    select: ({ FunctionResult: result }) =>
+      ({
+        itemIds: result.itemIds,
+        expirationDate: DateTime.fromISO(result.expirationDateTime),
+      } as RotationalCoinStore),
     gcTime: TWENTY_FOUR_HOURS_IN_MS,
     staleTime: TWENTY_FOUR_HOURS_IN_MS,
   });

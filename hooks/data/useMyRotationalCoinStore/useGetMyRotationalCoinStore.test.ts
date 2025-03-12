@@ -2,13 +2,13 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 import { DateTime } from 'luxon';
 
-import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
 
-jest.mock('@/contexts/AuthContext/AuthContext');
-const useSessionMock = jest.mocked(useSession);
+jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+  useSession: jest.fn().mockReturnValue({}),
+}));
 
 const renderUseGetMyRotationalCoinStore = async () => {
   const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
@@ -18,23 +18,6 @@ const renderUseGetMyRotationalCoinStore = async () => {
 };
 
 describe('useGetMyRotationalCoinStore', () => {
-  beforeEach(() => {
-    useSessionMock.mockReturnValue({ isLoggedIn: true, entityToken: 'entityToken' } as ReturnType<typeof useSession>);
-  });
-
-  describe('when the user is not logged in', () => {
-    beforeEach(() => {
-      useSessionMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useSession>);
-    });
-
-    it('should not perform the query', async () => {
-      const { result } = await renderUseGetMyRotationalCoinStore();
-
-      expect(result.current.rotationalCoinStore).toBeUndefined();
-      expect(result.current.isError).toBe(false);
-    });
-  });
-
   describe('when the request succeeds', () => {
     beforeEach(() => {
       fetchMock.post('*', {

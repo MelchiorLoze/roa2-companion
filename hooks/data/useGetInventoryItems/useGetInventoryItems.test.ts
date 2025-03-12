@@ -1,13 +1,13 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetInventoryItems } from './useGetInventoryItems';
 
-jest.mock('@/contexts/AuthContext/AuthContext');
-const useSessionMock = jest.mocked(useSession);
+jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+  useSession: jest.fn().mockReturnValue({}),
+}));
 
 const renderUseGetInventoryItems = async () => {
   const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
@@ -17,23 +17,6 @@ const renderUseGetInventoryItems = async () => {
 };
 
 describe('useGetInventoryItems', () => {
-  beforeEach(() => {
-    useSessionMock.mockReturnValue({ entityToken: 'token', isLoggedIn: true } as ReturnType<typeof useSession>);
-  });
-
-  describe('when the user is not logged in', () => {
-    beforeEach(() => {
-      useSessionMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useSession>);
-    });
-
-    it('should not perform the query', async () => {
-      const { result } = await renderUseGetInventoryItems();
-
-      expect(result.current.inventoryItems).toBeUndefined();
-      expect(result.current.isError).toBe(false);
-    });
-  });
-
   describe('when the request succeeds', () => {
     beforeEach(() => {
       fetchMock.post('*', {

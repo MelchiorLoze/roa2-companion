@@ -6,6 +6,10 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useLoginWithEmail } from './useLoginWithEmail';
 
+jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+  useSession: jest.fn().mockReturnValue({}),
+}));
+
 const renderUseLoginWithEmail = async () => {
   const { result } = renderHook(useLoginWithEmail, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));

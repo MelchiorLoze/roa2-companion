@@ -1,7 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 
-import { BASE_URL, TITLE_ID } from '@/constants';
+import { TITLE_ID } from '@/constants';
+import { useHttpClient } from '@/networking';
 import { Session } from '@/types/session';
 
 type LoginWithEmailAddressRequest = {
@@ -10,48 +11,32 @@ type LoginWithEmailAddressRequest = {
 };
 
 type LoginWithEmailAddressResponse = {
-  data: {
-    EntityToken: {
-      EntityToken: string;
-      TokenExpiration: string;
-    };
+  EntityToken: {
+    EntityToken: string;
+    TokenExpiration: string;
   };
 };
 
-const loginWithEmailAddress = async ({ email, password }: LoginWithEmailAddressRequest) => {
-  const response = await fetch(`${BASE_URL}/Client/LoginWithEmailAddress`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      TitleId: TITLE_ID,
-      Email: email,
-      Password: password,
-    }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to login');
-  }
-
-  const responseData = (await response.json()) as LoginWithEmailAddressResponse;
-  const result = responseData.data.EntityToken;
-
-  return {
-    entityToken: result.EntityToken,
-    expirationDate: DateTime.fromISO(result.TokenExpiration),
-  } as Session;
-};
-
 export const useLoginWithEmail = () => {
+  const httpClient = useHttpClient();
   const {
     data,
     mutate: loginWithEmail,
     isError,
     isPending,
   } = useMutation({
-    mutationFn: loginWithEmailAddress,
+    mutationFn: async ({ email, password }: LoginWithEmailAddressRequest) => {
+      const data = await httpClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {
+        TitleId: TITLE_ID,
+        Email: email,
+        Password: password,
+      });
+      const result = data.EntityToken;
+      return {
+        entityToken: result.EntityToken,
+        expirationDate: DateTime.fromISO(result.TokenExpiration),
+      } as Session;
+    },
   });
 
   return { data, loginWithEmail, isLoading: isPending, isError };

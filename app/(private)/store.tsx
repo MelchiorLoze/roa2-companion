@@ -13,8 +13,10 @@ export default function Store() {
   const { coinStoreRotation, isLoading: isCoinStoreLoading } = useCoinStoreRotation();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
 
+  const isLoading = isCoinStoreLoading || isPurchaseLoading;
+
   const handlePurchase = () => {
-    if (!selectedItem?.coinPrice || !purchase) return;
+    if (!selectedItem?.coinPrice) return;
     purchase({
       id: selectedItem.id,
       price: { value: selectedItem.coinPrice, currencyId: CurrencyId.COINS },
@@ -24,7 +26,7 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isCoinStoreLoading || isPurchaseLoading) {
+  if (isLoading) {
     return <ActivityIndicator color="white" size="large" style={styles.spinner} />;
   }
 
@@ -39,7 +41,7 @@ export default function Store() {
       </View>
       {selectedItem && (
         <>
-          <Pressable onPress={closeDialog} style={styles.overlay} />
+          <Pressable disabled={isLoading} onPress={closeDialog} style={styles.overlay} />
           <View style={styles.confirmationDialog}>
             <Text style={styles.title}>
               Are you sure you want to buy the {selectedItem.category} {selectedItem.title} for {selectedItem.coinPrice}

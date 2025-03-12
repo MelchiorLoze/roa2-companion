@@ -1,14 +1,14 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { useSession } from '@/contexts/AuthContext/AuthContext';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { CurrencyId } from '@/types/store';
 
 import { usePurchaseInventoryItems } from './usePurchaseInventoryItems';
 
-jest.mock('@/contexts/AuthContext/AuthContext');
-const useSessionMock = jest.mocked(useSession);
+jest.mock('@/contexts/AuthContext/AuthContext', () => ({
+  useSession: jest.fn().mockReturnValue({}),
+}));
 
 const invalidateGetInventoryItemsSpy = jest.spyOn(
   require('../useGetInventoryItems/useGetInventoryItems'),
@@ -27,24 +27,9 @@ const renderPurchaseInventoryItems = async () => {
 };
 
 describe('usePurchaseInventoryItems', () => {
-  beforeEach(() => {
-    useSessionMock.mockReturnValue({ isLoggedIn: true, entityToken: 'token' } as ReturnType<typeof useSession>);
-  });
-
   afterEach(() => {
     invalidateGetInventoryItemsSpy.mockClear();
     invalidateGetMyRotationalCoinStoreSpy.mockClear();
-  });
-
-  it('should not return the mutation function when not logged in', async () => {
-    useSessionMock.mockReturnValue({ isLoggedIn: false } as ReturnType<typeof useSession>);
-
-    const { result } = await renderPurchaseInventoryItems();
-
-    expect(result.current.purchase).toBeUndefined();
-    expect(result.current.isError).toBe(false);
-    expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(0);
-    expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(0);
   });
 
   it('should return the mutation function when logged in', async () => {

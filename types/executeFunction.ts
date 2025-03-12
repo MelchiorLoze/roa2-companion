@@ -1,8 +1,8 @@
-export type ExecuteFunctionRequest<FP> = {
+export type ExecuteFunctionRequest<FP = undefined> = {
   FunctionName: string;
-  FunctionParams: FP;
+  FunctionParams?: FP;
 };
 
 export type ExecuteFunctionResponse<FR> = {
-  data: { FunctionResult: FR };
+  FunctionResult: FR;
 };
