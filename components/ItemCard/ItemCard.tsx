@@ -19,11 +19,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
         <Text style={styles.category}>{item.category}</Text>
         {item.coinPrice && (
           <View style={styles.priceContainer}>
-            <Image
-              contentFit="contain"
-              source={require('@/assets/images/coins.png')}
-              style={{ width: 16, height: 16 }}
-            />
+            <Image contentFit="contain" source={require('@/assets/images/coins.png')} style={styles.currencyIcon} />
             <Text style={styles.price}>{item.coinPrice}</Text>
           </View>
         )}
@@ -66,15 +62,19 @@ const styles = StyleSheet.create((theme) => ({
       },
     },
   },
+  priceContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: theme.spacing.s,
+  },
+  currencyIcon: {
+    width: 16,
+    height: 16,
+  },
   price: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
     fontSize: 14,
     textTransform: 'uppercase',
-  },
-  priceContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: theme.spacing.s,
   },
 }));
