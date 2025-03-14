@@ -79,7 +79,7 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.s,
   },
   title: {
-    fontSize: theme.spacing.l,
+    fontSize: 18,
     textTransform: 'uppercase',
     fontFamily: theme.font.secondary.bold,
     color: theme.color.white,

@@ -81,6 +81,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   errorMessage: {
     color: theme.color.error,
-    fontSize: 12,
+    fontSize: 14,
   },
 }));

@@ -45,7 +45,7 @@ const styles = StyleSheet.create((theme) => ({
   title: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
-    fontSize: 14,
+    fontSize: 16,
     textTransform: 'uppercase',
   },
   info: {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   category: {
     fontFamily: theme.font.secondary.bold,
-    fontSize: 12,
+    fontSize: 14,
     textTransform: 'uppercase',
     variants: {
       textColor: {
@@ -69,7 +69,7 @@ const styles = StyleSheet.create((theme) => ({
   price: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
-    fontSize: 12,
+    fontSize: 14,
     textTransform: 'uppercase',
   },
   priceContainer: {

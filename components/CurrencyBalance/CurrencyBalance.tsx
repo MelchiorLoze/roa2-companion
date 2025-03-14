@@ -38,6 +38,7 @@ const styles = StyleSheet.create((theme) => ({
   label: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.black,
+    fontSize: 16,
   },
   icon: {
     width: 24,
