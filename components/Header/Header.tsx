@@ -56,6 +56,7 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.italic,
     textTransform: 'uppercase',
     color: theme.color.white,
+    paddingRight: theme.spacing.xs,
   },
   logoutIcon: {
     marginRight: theme.spacing.none,
