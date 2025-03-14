@@ -3,7 +3,19 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Item } from '@/types/store';
+import CoinsIcon from '@/assets/images/coins.png';
+import CommonIcon from '@/assets/images/common.webp';
+import EpicIcon from '@/assets/images/epic.webp';
+import LegendaryIcon from '@/assets/images/legendary.webp';
+import RareIcon from '@/assets/images/rare.webp';
+import { Item, Rarity } from '@/types/store';
+
+const rarityIcons = {
+  [Rarity.COMMON]: CommonIcon,
+  [Rarity.RARE]: RareIcon,
+  [Rarity.EPIC]: EpicIcon,
+  [Rarity.LEGENDARY]: LegendaryIcon,
+};
 
 type Props = { item: Item; onPress: () => void };
 
@@ -14,12 +26,15 @@ export const ItemCard = ({ item, onPress }: Props) => {
 
   return (
     <Pressable onPress={onPress} style={styles.container}>
-      <Text style={styles.title}>{item.title}</Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{item.title}</Text>
+        <Image contentFit="contain" source={rarityIcons[item.rarity]} style={styles.rarityIcon} />
+      </View>
       <View style={styles.info}>
         <Text style={styles.category}>{item.category}</Text>
         {item.coinPrice && (
           <View style={styles.priceContainer}>
-            <Image contentFit="contain" source={require('@/assets/images/coins.png')} style={styles.currencyIcon} />
+            <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
             <Text style={styles.price}>{item.coinPrice}</Text>
           </View>
         )}
@@ -38,11 +53,21 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-between',
     padding: theme.spacing.m,
   },
+  titleContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   title: {
     color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
+    flex: 1,
+  },
+  rarityIcon: {
+    width: 16,
+    height: 16,
+    marginTop: theme.spacing.xs,
   },
   info: {
     flexDirection: 'row',

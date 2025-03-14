@@ -5,7 +5,7 @@ const theme = {
     background: '#0E0B2A',
     highlight: '#2B1F74',
     accent: '#FFDF77',
-    border: '#A0B3D4',
+    border: '#CACEFF',
     dark: '#161616',
     weak: '#676767',
     black: 'black',
@@ -16,7 +16,7 @@ const theme = {
     common: '#D3D5E4',
     rare: '#447CF1',
     epic: '#C161E5',
-    legendary: '#FFDF77',
+    legendary: '#EFDB77',
   },
   spacing: {
     none: 0,
