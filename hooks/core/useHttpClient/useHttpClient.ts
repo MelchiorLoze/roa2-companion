@@ -13,6 +13,8 @@ const validatePath = (path: string) => {
 const fetchWrapper = async (path: string, options: { method: Method; headers: object; body?: object }) => {
   validatePath(path);
 
+  console.log('Fetching', path);
+
   return await fetch(`${BASE_URL}${path}`, {
     method: options.method,
     headers: {

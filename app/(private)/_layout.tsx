@@ -9,7 +9,7 @@ const renderHeader = (props: NativeStackHeaderProps) => <Header {...props} />;
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth({ enableAutoRefresh: true });
 
   if (!isLoggedIn) {
     return <Redirect href="/sign-in" />;

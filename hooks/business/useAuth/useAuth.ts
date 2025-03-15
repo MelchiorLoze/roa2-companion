@@ -1,12 +1,13 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { useSession } from '@/contexts';
 import { useGetEntityToken, useLoginWithEmail } from '@/hooks/data';
 
-export const useAuth = () => {
-  const { isValid, shouldRenew, setSession, isLoading: isSessionLoading } = useSession();
+export const useAuth = ({ enableAutoRefresh } = { enableAutoRefresh: false }) => {
+  const { isValid, shouldRenew: shouldRenewSession, setSession, isLoading: isSessionLoading } = useSession();
   const { session, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
   const { newSession, renew } = useGetEntityToken();
+  const hasRenewedRef = useRef(false);
 
   const logout = () => setSession(null);
 
@@ -19,8 +20,11 @@ export const useAuth = () => {
   }, [newSession, setSession]);
 
   useEffect(() => {
-    if (shouldRenew) renew();
-  }, [shouldRenew, renew]);
+    if (enableAutoRefresh && shouldRenewSession && !hasRenewedRef.current) {
+      renew();
+      hasRenewedRef.current = true;
+    }
+  }, [enableAutoRefresh, shouldRenewSession, renew]);
 
   return {
     isLoggedIn: isValid,
