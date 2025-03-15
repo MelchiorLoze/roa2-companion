@@ -9,29 +9,23 @@ import { Session } from '@/types/session';
 import { SessionProvider, useSession } from './SessionContext';
 
 const VALID_DATE = DateTime.now().plus({ day: 1 });
+const RENEWABLE_DATE = DateTime.now().plus({ hours: 22 });
 const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
 
 jest.mock('@/hooks/core');
 const useStorageStateMock = jest.mocked(useStorageState);
 
-const mockValidSession = () => {
+const mockSession = (session: Session | null) => {
   useStorageStateMock.mockImplementation(() => {
-    const [state, setState] = useState<Session | null>({ entityToken: 'validToken', expirationDate: VALID_DATE });
+    const [state, setState] = useState<Session | null>(session);
     return [[state, false], setState];
   });
 };
-const mockExpiredSession = () => {
-  useStorageStateMock.mockImplementation(() => {
-    const [state, setState] = useState<Session | null>({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE });
-    return [[state, false], setState];
-  });
-};
-const mockEmptySession = () => {
-  useStorageStateMock.mockImplementation(() => {
-    const [state, setState] = useState<Session | null>(null);
-    return [[state, false], setState];
-  });
-};
+
+const mockValidSession = () => mockSession({ entityToken: 'validToken', expirationDate: VALID_DATE });
+const mockRenewableSession = () => mockSession({ entityToken: 'renewableToken', expirationDate: RENEWABLE_DATE });
+const mockExpiredSession = () => mockSession({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE });
+const mockEmptySession = () => mockSession(null);
 
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>
@@ -116,5 +110,37 @@ describe('useSession', () => {
 
     expect(result.current.isValid).toBe(true);
     expect(result.current.entityToken).toBe('validToken');
+  });
+
+  it('should ask for renewal when the session is old enough', async () => {
+    mockRenewableSession();
+
+    const { result } = await renderUseSession();
+
+    expect(result.current.shouldRenew).toBe(true);
+  });
+
+  it('should not ask for renewal when the session is not old enough', async () => {
+    mockValidSession();
+
+    const { result } = await renderUseSession();
+
+    expect(result.current.shouldRenew).toBe(false);
+  });
+
+  it('should not ask for renewal when the session is expired', async () => {
+    mockExpiredSession();
+
+    const { result } = await renderUseSession();
+
+    expect(result.current.shouldRenew).toBe(false);
+  });
+
+  it('should not ask for renewal when the session is empty', async () => {
+    mockEmptySession();
+
+    const { result } = await renderUseSession();
+
+    expect(result.current.shouldRenew).toBe(false);
   });
 });
