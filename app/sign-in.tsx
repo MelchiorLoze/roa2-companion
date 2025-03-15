@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button } from '@/components/Button/Button';
+import { Button } from '@/components';
 import { useAuth } from '@/hooks/business';
 
 export default function SignIn() {

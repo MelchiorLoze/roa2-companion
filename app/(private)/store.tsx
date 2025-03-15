@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Countdown, ItemList } from '@/components';
-import { Button } from '@/components/Button/Button';
+import { Button, Countdown, ItemList } from '@/components';
 import { useCoinStoreRotation } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { CurrencyId, Item } from '@/types/store';
