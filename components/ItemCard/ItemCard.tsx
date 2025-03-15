@@ -3,11 +3,7 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import CoinsIcon from '@/assets/images/coins.png';
-import CommonIcon from '@/assets/images/common.webp';
-import EpicIcon from '@/assets/images/epic.webp';
-import LegendaryIcon from '@/assets/images/legendary.webp';
-import RareIcon from '@/assets/images/rare.webp';
+import { CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
 import { Item, Rarity } from '@/types/store';
 
 const rarityIcons = {

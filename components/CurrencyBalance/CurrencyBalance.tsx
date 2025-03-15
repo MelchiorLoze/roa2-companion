@@ -2,8 +2,7 @@ import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import BucksIcon from '@/assets/images/bucks.png';
-import CoinsIcon from '@/assets/images/coins.png';
+import { BucksIcon, CoinsIcon } from '@/assets/images';
 import { Currency } from '@/types/store';
 
 type Props = {
