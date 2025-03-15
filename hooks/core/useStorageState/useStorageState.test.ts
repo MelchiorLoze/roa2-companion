@@ -1,9 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import * as SecureStorage from 'expo-secure-store';
-import { DateTime } from 'luxon';
 import { Platform } from 'react-native';
-
-import { Session } from '@/types/session';
 
 import { useStorageState } from './useStorageState';
 
@@ -39,17 +36,17 @@ const localStorageMock = (() => {
   };
 })();
 
-const TEST_KEY = 'test-session-key';
-const MOCK_SESSION: Session = {
-  entityToken: 'test-token-123',
-  expirationDate: DateTime.now().plus({ days: 1 }),
+const TEST_KEY = 'test-key';
+const MOCK_OBJECT = {
+  id: 123,
+  name: 'John Doe',
 };
-const MOCK_SESSION_STRING = JSON.stringify(MOCK_SESSION);
+const SERIALIZED_MOCK_OBJECT = JSON.stringify(MOCK_OBJECT);
 
-const renderUseStorageState = async (isLoading = true) => {
-  const { result } = renderHook(() => useStorageState(TEST_KEY));
+const renderUseStorageState = async (isMobileEnv = true, converter?: (raw: any) => any) => {
+  const { result } = renderHook(() => useStorageState(TEST_KEY, converter));
 
-  if (isLoading) expect(result.current[0][1]).toBe(true);
+  if (isMobileEnv) expect(result.current[0][1]).toBe(true);
 
   await waitFor(() => expect(result.current[0][1]).toBe(false));
   return { result };
@@ -70,28 +67,37 @@ describe('useStorageState', () => {
 
     it('should initialize with loading state and null value', async () => {
       const { result } = await renderUseStorageState();
-      const [[session]] = result.current;
+      const [[stateValue]] = result.current;
 
-      expect(session).toBe(null);
+      expect(stateValue).toBe(null);
     });
 
-    it('should load session from SecureStore on initialization', async () => {
-      getItemAsyncMock.mockResolvedValue(MOCK_SESSION_STRING);
+    it('should load value from SecureStore on initialization', async () => {
+      getItemAsyncMock.mockResolvedValue(SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState();
 
       expect(getItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
 
-      const [[session]] = result.current;
-      expect(session).toEqual(MOCK_SESSION);
+      const [[stateValue]] = result.current;
+      expect(stateValue).toEqual(MOCK_OBJECT);
     });
 
-    it('should save session to SecureStore when setValue is called', async () => {
+    it('should convert the loaded value using the converter function', async () => {
+      getItemAsyncMock.mockResolvedValue(SERIALIZED_MOCK_OBJECT);
+
+      const { result } = await renderUseStorageState(true, (raw) => ({ ...raw, age: 30 }));
+
+      const [[stateValue]] = result.current;
+      expect(stateValue).toEqual({ ...MOCK_OBJECT, age: 30 });
+    });
+
+    it('should save value to SecureStore when setValue is called', async () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
       await act(async () => {
-        setValue(MOCK_SESSION);
+        setValue(MOCK_OBJECT);
       });
 
       expect(setItemAsyncMock).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
@@ -99,14 +105,10 @@ describe('useStorageState', () => {
       // Verify the serialized data is correct
       const savedData = setItemAsyncMock.mock.calls[0][1];
       const parsedData = JSON.parse(savedData);
-      expect(parsedData.entityToken).toBe(MOCK_SESSION.entityToken);
-      expect(DateTime.fromISO(parsedData.expirationDate).toMillis()).toBeCloseTo(
-        MOCK_SESSION.expirationDate.toMillis(),
-        -2, // Allowing 100ms difference due to serialization/parsing
-      );
+      expect(parsedData).toMatchObject(MOCK_OBJECT);
     });
 
-    it('should remove session from SecureStore when setValue is called with null', async () => {
+    it('should remove value from SecureStore when setValue is called with null', async () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
@@ -141,23 +143,39 @@ describe('useStorageState', () => {
       Object.defineProperty(global, 'localStorage', { value: localStorageMock, configurable: true });
     });
 
-    it('should load session from localStorage on initialization', async () => {
-      localStorageMock.setItem(TEST_KEY, MOCK_SESSION_STRING);
+    it('should initialize with loading state and null value', async () => {
+      const { result } = await renderUseStorageState(false);
+      const [[stateValue]] = result.current;
+
+      expect(stateValue).toBe(null);
+    });
+
+    it('should load value from localStorage on initialization', async () => {
+      localStorageMock.setItem(TEST_KEY, SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState(false);
 
       expect(localStorageMock.getItem).toHaveBeenCalledWith(TEST_KEY);
 
-      const [[session]] = result.current;
-      expect(session).toEqual(MOCK_SESSION);
+      const [[stateValue]] = result.current;
+      expect(stateValue).toEqual(MOCK_OBJECT);
     });
 
-    it('should save session to localStorage when setValue is called', async () => {
+    it('should convert the loaded value using the converter function', async () => {
+      localStorageMock.setItem(TEST_KEY, SERIALIZED_MOCK_OBJECT);
+
+      const { result } = await renderUseStorageState(false, (raw) => ({ ...raw, age: 30 }));
+
+      const [[stateValue]] = result.current;
+      expect(stateValue).toEqual({ ...MOCK_OBJECT, age: 30 });
+    });
+
+    it('should save value to localStorage when setValue is called', async () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
       await act(async () => {
-        setValue(MOCK_SESSION);
+        setValue(MOCK_OBJECT);
       });
 
       expect(localStorageMock.setItem).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
@@ -165,14 +183,10 @@ describe('useStorageState', () => {
       // Verify the serialized data is correct
       const savedData = localStorageMock.setItem.mock.calls[0][1];
       const parsedData = JSON.parse(savedData);
-      expect(parsedData.entityToken).toBe(MOCK_SESSION.entityToken);
-      expect(DateTime.fromISO(parsedData.expirationDate).toMillis()).toBeCloseTo(
-        MOCK_SESSION.expirationDate.toMillis(),
-        -2, // Allowing 100ms difference
-      );
+      expect(parsedData).toMatchObject(MOCK_OBJECT);
     });
 
-    it('should remove session from localStorage when setValue is called with null', async () => {
+    it('should remove value from localStorage when setValue is called with null', async () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 

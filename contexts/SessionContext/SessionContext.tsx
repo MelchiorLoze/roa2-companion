@@ -1,4 +1,4 @@
-import { Duration } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 
 import { useStorageState } from '@/hooks/core';
@@ -18,13 +18,20 @@ type SessionState = {
 
 const SessionContext = createContext<SessionState | undefined>(undefined);
 
+const parseSession = (raw: any): Session => {
+  return {
+    entityToken: raw.entityToken,
+    expirationDate: DateTime.fromISO(raw.expirationDate),
+  };
+};
+
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
 const shouldRenewSession = (session: Session): boolean =>
   session.expirationDate.diffNow().as('millisecond') <
   Duration.fromObject({ hours: SESSION_TTL_IN_HOURS - SESSION_RENEW_THRESHOLD }).as('millisecond');
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
-  const [[session, isLoading], setSession] = useStorageState(SESSION_STORAGE_KEY);
+  const [[session, isLoading], setSession] = useStorageState<Session>(SESSION_STORAGE_KEY, parseSession);
   const isValid = Boolean(session && isSessionValid(session));
   const shouldRenew = Boolean(session && isValid && shouldRenewSession(session));
 

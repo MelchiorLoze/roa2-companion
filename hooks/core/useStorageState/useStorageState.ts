@@ -1,9 +1,6 @@
 import * as SecureStorage from 'expo-secure-store';
-import { DateTime } from 'luxon';
 import { useCallback, useEffect, useReducer } from 'react';
 import { Platform } from 'react-native';
-
-import { Session } from '@/types/session';
 
 type UseStateHook<T> = [[T | null, boolean], (value: T | null) => void];
 
@@ -34,22 +31,19 @@ async function setStorageItemAsync(key: string, value: string | null) {
   }
 }
 
-export function useStorageState(key: string): UseStateHook<Session> {
-  const [state, setState] = useAsyncState<Session>();
+export function useStorageState<T>(key: string, converter?: (value: any) => T): UseStateHook<T> {
+  const [state, setState] = useAsyncState<T>();
 
   const setStateFromString = useCallback(
     (value: string | null) => {
       if (value) {
-        const storedSession = JSON.parse(value);
-        setState({
-          entityToken: storedSession.entityToken,
-          expirationDate: DateTime.fromISO(storedSession.expirationDate),
-        });
+        const parsedValue = JSON.parse(value);
+        setState(converter ? converter(parsedValue) : parsedValue);
       } else {
         setState(null);
       }
     },
-    [setState],
+    [setState, converter],
   );
 
   // Get
@@ -69,7 +63,7 @@ export function useStorageState(key: string): UseStateHook<Session> {
 
   // Set
   const setValue = useCallback(
-    (value: Session | null) => {
+    (value: T | null) => {
       setState(value);
       setStorageItemAsync(key, value ? JSON.stringify(value) : null);
     },

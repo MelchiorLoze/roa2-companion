@@ -17,7 +17,7 @@ const useStorageStateMock = jest.mocked(useStorageState);
 
 const mockSession = (session: Session | null) => {
   useStorageStateMock.mockImplementation(() => {
-    const [state, setState] = useState<Session | null>(session);
+    const [state, setState] = useState<unknown>(session);
     return [[state, false], setState];
   });
 };
