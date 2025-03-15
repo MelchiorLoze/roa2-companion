@@ -52,6 +52,7 @@ const styles = StyleSheet.create((theme) => ({
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    gap: theme.spacing.s,
   },
   title: {
     color: theme.color.white,
