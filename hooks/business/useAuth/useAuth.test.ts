@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import { useSession } from '@/contexts';
-import { useLoginWithEmail } from '@/hooks/data';
+import { useGetEntityToken, useLoginWithEmail } from '@/hooks/data';
 import { Session } from '@/types/session';
 
 import { useAuth } from './useAuth';
@@ -13,20 +13,27 @@ const setSessionMock = jest.fn();
 
 jest.mock('@/hooks/data');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
+const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
 
 describe('useAuth hook', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue({
       isValid: false,
+      shouldRenew: false,
       setSession: setSessionMock,
       isLoading: false,
     });
 
     useLoginWithEmailMock.mockReturnValue({
-      data: undefined,
+      session: undefined,
       loginWithEmail: jest.fn(),
       isLoading: false,
       isError: false,
+    });
+
+    useGetEntityTokenMock.mockReturnValue({
+      newSession: undefined,
+      renew: jest.fn(),
     });
   });
 
@@ -47,7 +54,7 @@ describe('useAuth hook', () => {
   it('should call setSession when login data is available', () => {
     const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.now().plus({ day: 1 }) };
     useLoginWithEmailMock.mockReturnValue({
-      data: loginSession,
+      session: loginSession,
       loginWithEmail: jest.fn(),
       isLoading: false,
       isError: false,
@@ -64,6 +71,7 @@ describe('useAuth hook', () => {
 
     useSessionMock.mockReturnValue({
       isValid: true,
+      shouldRenew: false,
       setSession: setSessionMock,
       isLoading: false,
     });
@@ -76,6 +84,7 @@ describe('useAuth hook', () => {
   it('logout should call setSession with null', () => {
     useSessionMock.mockReturnValue({
       isValid: true,
+      shouldRenew: false,
       setSession: setSessionMock,
       isLoading: false,
     });
@@ -89,6 +98,7 @@ describe('useAuth hook', () => {
   it('should set isLoading to true when session is loading', () => {
     useSessionMock.mockReturnValue({
       isValid: false,
+      shouldRenew: false,
       setSession: setSessionMock,
       isLoading: true,
     });
@@ -100,7 +110,7 @@ describe('useAuth hook', () => {
 
   it('should set isLoading to true when login is loading', () => {
     useLoginWithEmailMock.mockReturnValue({
-      data: undefined,
+      session: undefined,
       loginWithEmail: jest.fn(),
       isLoading: true,
       isError: false,
@@ -113,7 +123,7 @@ describe('useAuth hook', () => {
 
   it('should expose login error state', () => {
     useLoginWithEmailMock.mockReturnValue({
-      data: undefined,
+      session: undefined,
       loginWithEmail: jest.fn(),
       isLoading: false,
       isError: true,
@@ -122,5 +132,36 @@ describe('useAuth hook', () => {
     const { result } = renderHook(useAuth);
 
     expect(result.current.isError).toBe(true);
+  });
+
+  it('should call renew when shouldRenew is true', () => {
+    useSessionMock.mockReturnValue({
+      isValid: false,
+      shouldRenew: true,
+      setSession: setSessionMock,
+      isLoading: false,
+    });
+
+    renderHook(useAuth);
+
+    expect(useGetEntityTokenMock().renew).toHaveBeenCalled();
+  });
+
+  it('should not call renew when shouldRenew is false', () => {
+    renderHook(useAuth);
+
+    expect(useGetEntityTokenMock().renew).not.toHaveBeenCalled();
+  });
+
+  it('should call setSession when newSession is available', () => {
+    const newSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.now().plus({ day: 1 }) };
+    useGetEntityTokenMock.mockReturnValue({
+      newSession,
+      renew: jest.fn(),
+    });
+
+    renderHook(useAuth);
+
+    expect(setSessionMock).toHaveBeenCalledWith(newSession);
   });
 });

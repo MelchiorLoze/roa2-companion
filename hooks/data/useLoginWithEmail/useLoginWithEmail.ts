@@ -39,5 +39,5 @@ export const useLoginWithEmail = () => {
     },
   });
 
-  return { data, loginWithEmail, isLoading: isPending, isError };
+  return { session: data, loginWithEmail, isLoading: isPending, isError };
 };

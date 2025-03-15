@@ -21,7 +21,7 @@ describe('useLoginWithEmail', () => {
   it('should default values correctly', async () => {
     const { result } = await renderUseLoginWithEmail();
 
-    expect(result.current.data).toBeUndefined();
+    expect(result.current.session).toBeUndefined();
     expect(result.current.isError).toBe(false);
   });
 
@@ -46,7 +46,7 @@ describe('useLoginWithEmail', () => {
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
       await waitFor(() =>
-        expect(result.current.data).toEqual({
+        expect(result.current.session).toEqual({
           entityToken: 'token',
           expirationDate: expect.any(DateTime),
         }),
@@ -70,7 +70,7 @@ describe('useLoginWithEmail', () => {
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);
-      expect(result.current.data).toBeUndefined();
+      expect(result.current.session).toBeUndefined();
     });
   });
 });
