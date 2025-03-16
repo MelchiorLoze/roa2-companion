@@ -1,15 +1,15 @@
-import { ActivityIndicator, Text, View } from 'react-native';
+import { ActivityIndicator, RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { usePlayerStats } from '@/hooks/business';
 
 export default function Stats() {
-  const { stats, isLoading } = usePlayerStats();
+  const { stats, refresh, isLoading } = usePlayerStats();
 
   if (!stats || isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
 
   return (
-    <View style={styles.container}>
+    <ScrollView refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />} style={styles.container}>
       <View style={styles.section}>
         <Text style={styles.title}>Ranked</Text>
         <View>
@@ -49,7 +49,7 @@ export default function Stats() {
           <Text style={styles.label}>Zetterburn: {stats.zetMatchCount}</Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
