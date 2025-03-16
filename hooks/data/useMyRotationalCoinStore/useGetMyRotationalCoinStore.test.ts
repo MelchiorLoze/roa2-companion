@@ -18,6 +18,14 @@ const renderUseGetMyRotationalCoinStore = async () => {
 };
 
 describe('useGetMyRotationalCoinStore', () => {
+  it('should return nothing when the request is loading', async () => {
+    const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.rotationalCoinStore).toBeUndefined();
+    expect(result.current.isError).toBe(false);
+  });
+
   describe('when the request succeeds', () => {
     beforeEach(() => {
       fetchMock.post('*', {
