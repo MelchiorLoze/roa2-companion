@@ -6,12 +6,13 @@ const sortItems = (items: Item[]) =>
     (itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0) || itemA.category.localeCompare(itemB.category),
   );
 
-export const useCoinStoreRotation = () => {
+export const useRotatingCoinShop = () => {
   const { rotationalCoinStore, isLoading: isRotationalCoinStoreLoading } = useGetMyRotationalCoinStore();
   const { items, isLoading: isGetItemsLoading } = useGetItems(rotationalCoinStore?.itemIds ?? []);
 
   return {
-    coinStoreRotation: { expirationDate: rotationalCoinStore?.expirationDate, items: sortItems(items) },
+    items: sortItems(items),
+    expirationDate: rotationalCoinStore?.expirationDate,
     isLoading: isRotationalCoinStoreLoading || isGetItemsLoading,
   };
 };

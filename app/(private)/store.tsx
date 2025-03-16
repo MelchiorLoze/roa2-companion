@@ -3,13 +3,13 @@ import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { Button, Countdown, ItemList } from '@/components';
-import { useCoinStoreRotation } from '@/hooks/business';
+import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { CurrencyId, Item } from '@/types/store';
 
 export default function Store() {
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-  const { coinStoreRotation, isLoading: isCoinStoreLoading } = useCoinStoreRotation();
+  const { items, expirationDate, isLoading: isCoinStoreLoading } = useRotatingCoinShop();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
 
   const isLoading = isCoinStoreLoading || isPurchaseLoading;
@@ -34,9 +34,9 @@ export default function Store() {
       <View style={styles.container}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>Items refresh in:</Text>
-          <Countdown date={coinStoreRotation?.expirationDate} style={styles.title} />
+          <Countdown date={expirationDate} style={styles.title} />
         </View>
-        <ItemList items={coinStoreRotation.items} onSelect={setSelectedItem} />
+        <ItemList items={items} onSelect={setSelectedItem} />
       </View>
       {selectedItem && (
         <>
