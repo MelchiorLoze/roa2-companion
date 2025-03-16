@@ -33,11 +33,17 @@ export default function RootLayout() {
             initialRouteName="sign-in"
             screenOptions={{
               headerShown: false,
-              statusBarBackgroundColor: theme.color.background,
+              statusBarBackgroundColor: theme.color.highlight,
               navigationBarColor: theme.color.background,
+              contentStyle: { backgroundColor: theme.color.background },
             }}
           >
-            <Stack.Screen name="sign-in" />
+            <Stack.Screen
+              name="sign-in"
+              options={{
+                statusBarBackgroundColor: theme.color.background,
+              }}
+            />
             <Stack.Screen name="(private)" />
           </Stack>
         </SessionProvider>

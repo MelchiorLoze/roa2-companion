@@ -1,16 +1,13 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome6';
-import { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { Text, View } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { useAuth, useCurrencyBalance } from '@/hooks/business';
+import { useCurrencyBalance } from '@/hooks/business';
 import { Currency } from '@/types/store';
 
 import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
 
-export const Header = ({ options }: NativeStackHeaderProps) => {
-  const { theme } = useUnistyles();
-  const { logout } = useAuth();
+export const Header = ({ options }: BottomTabHeaderProps) => {
   const { coinsBalance, bucksBalance } = useCurrencyBalance();
 
   return (
@@ -21,13 +18,6 @@ export const Header = ({ options }: NativeStackHeaderProps) => {
       </View>
       <View style={styles.bottomContainer}>
         <Text style={styles.title}>{options.title}</Text>
-        <FontAwesome.Button
-          backgroundColor={theme.color.transparent}
-          color={theme.color.danger}
-          iconStyle={styles.logoutIcon}
-          name="arrow-right-from-bracket"
-          onPress={logout}
-        />
       </View>
     </>
   );
@@ -44,11 +34,8 @@ const styles = StyleSheet.create((theme) => ({
     borderBottomColor: theme.color.accent,
   },
   bottomContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     padding: theme.spacing.m,
-    paddingLeft: theme.spacing.l,
+    paddingHorizontal: theme.spacing.l,
     backgroundColor: theme.color.background,
   },
   title: {
@@ -56,9 +43,5 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.italic,
     textTransform: 'uppercase',
     color: theme.color.white,
-    paddingRight: theme.spacing.xs,
-  },
-  logoutIcon: {
-    marginRight: theme.spacing.none,
   },
 }));
