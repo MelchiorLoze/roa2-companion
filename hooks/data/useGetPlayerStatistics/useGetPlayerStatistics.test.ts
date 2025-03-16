@@ -2,6 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers';
+import { StatisticName } from '@/types/stats';
 
 import { useGetPlayerStatistics } from './useGetPlayerStatistics';
 
@@ -21,7 +22,7 @@ describe('useGetPlayerStatistics', () => {
     const { result } = renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.statistics).toEqual([]);
+    expect(result.current.statistics).toBeUndefined();
     expect(result.current.isError).toBe(false);
   });
 
@@ -30,7 +31,7 @@ describe('useGetPlayerStatistics', () => {
 
     const { result } = await renderUseGetPlayerStatistics();
 
-    expect(result.current.statistics).toEqual([]);
+    expect(result.current.statistics).toBeUndefined();
     expect(result.current.isError).toBe(true);
   });
 
@@ -38,18 +39,18 @@ describe('useGetPlayerStatistics', () => {
     fetchMock.postOnce('*', {
       data: {
         Statistics: [
-          { StatisticName: 'Statistic 1', Value: 500 },
-          { StatisticName: 'Statistic 2', Value: 20 },
+          { StatisticName: StatisticName.RANKED_SEASON_ELO, Value: 932 },
+          { StatisticName: StatisticName.RANKED_SEASON_MATCHES, Value: 708 },
         ],
       },
     });
 
     const { result } = await renderUseGetPlayerStatistics();
 
-    expect(result.current.statistics).toEqual([
-      { name: 'Statistic 1', value: 500 },
-      { name: 'Statistic 2', value: 20 },
-    ]);
+    expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_SEASON_ELO]: 932,
+      [StatisticName.RANKED_SEASON_MATCHES]: 708,
+    });
     expect(result.current.isError).toBe(false);
   });
 });

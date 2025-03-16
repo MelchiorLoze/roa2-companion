@@ -105,7 +105,7 @@ describe('useStorageState', () => {
       // Verify the serialized data is correct
       const savedData = setItemAsyncMock.mock.calls[0][1];
       const parsedData = JSON.parse(savedData);
-      expect(parsedData).toMatchObject(MOCK_OBJECT);
+      expect(parsedData).toEqual(MOCK_OBJECT);
     });
 
     it('should remove value from SecureStore when setValue is called with null', async () => {
@@ -183,7 +183,7 @@ describe('useStorageState', () => {
       // Verify the serialized data is correct
       const savedData = localStorageMock.setItem.mock.calls[0][1];
       const parsedData = JSON.parse(savedData);
-      expect(parsedData).toMatchObject(MOCK_OBJECT);
+      expect(parsedData).toEqual(MOCK_OBJECT);
     });
 
     it('should remove value from localStorage when setValue is called with null', async () => {

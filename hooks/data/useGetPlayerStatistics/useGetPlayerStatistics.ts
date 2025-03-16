@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useHttpClient } from '@/hooks/core';
-import { Statistic } from '@/types/stats';
+import { PlayerStats, StatisticName } from '@/types/stats';
 
 type GetPlayerStatisticsResponse = {
   Statistics: {
-    StatisticName: string;
+    StatisticName: StatisticName;
     Value: number;
   }[];
 };
@@ -17,13 +17,16 @@ export const useGetPlayerStatistics = () => {
     queryKey: ['playerStatistics'],
     queryFn: async () => httpClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
     select: (data) =>
-      data.Statistics.map(({ StatisticName, Value }) => ({ name: StatisticName, value: Value } as Statistic)),
+      data.Statistics.reduce((acc, { StatisticName, Value }) => {
+        acc[StatisticName] = Value;
+        return acc;
+      }, {} as PlayerStats),
     staleTime: Infinity,
     gcTime: Infinity,
   });
 
   return {
-    statistics: data ?? [],
+    statistics: data,
     isLoading,
     isError,
   };
