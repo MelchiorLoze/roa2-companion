@@ -11,7 +11,7 @@ type GetItemsResponse = {
 export const useGetItems = (itemIds: Item['id'][]) => {
   const httpClient = useHttpClient();
 
-  const { data, isFetching, isPending, isError } = useQuery({
+  const { data, isFetching, isError } = useQuery({
     queryKey: ['items', ...itemIds],
     queryFn: () => httpClient.post<GetItemsResponse>('/Catalog/GetItems', { Ids: itemIds }),
     enabled: itemIds.length > 0,
@@ -22,7 +22,7 @@ export const useGetItems = (itemIds: Item['id'][]) => {
 
   return {
     items: data ?? [],
-    isLoading: isFetching || isPending,
+    isLoading: isFetching,
     isError,
   };
 };
