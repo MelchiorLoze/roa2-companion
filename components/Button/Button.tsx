@@ -13,19 +13,19 @@ export const Button = ({ label, onPress }: Props) => {
 
 const styles = StyleSheet.create((theme) => ({
   button: {
-    backgroundColor: theme.color.highlight,
-    padding: theme.spacing.s,
     width: '25%',
+    padding: theme.spacing.s,
+    backgroundColor: theme.color.highlight,
   },
   buttonPressed: {
     backgroundColor: theme.color.accent,
   },
   label: {
-    color: theme.color.white,
-    fontSize: 16,
     fontFamily: theme.font.primary.regular,
-    textTransform: 'uppercase',
+    fontSize: 16,
+    color: theme.color.white,
     textAlign: 'center',
+    textTransform: 'uppercase',
   },
   labelPressed: {
     color: theme.color.black,

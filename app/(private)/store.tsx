@@ -60,8 +60,6 @@ export default function Store() {
 const styles = StyleSheet.create((theme) => ({
   spinner: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   container: {
     flex: 1,
@@ -70,16 +68,16 @@ const styles = StyleSheet.create((theme) => ({
   },
   titleContainer: {
     flexDirection: 'row',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    justifyContent: 'flex-end',
     gap: theme.spacing.s,
   },
   title: {
-    fontSize: 18,
-    textTransform: 'uppercase',
     fontFamily: theme.font.secondary.bold,
+    fontSize: 18,
     color: theme.color.white,
+    textTransform: 'uppercase',
   },
   overlay: {
     position: 'absolute',
@@ -93,13 +91,13 @@ const styles = StyleSheet.create((theme) => ({
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '75%',
     transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
-    backgroundColor: theme.color.background,
+    width: '75%',
     padding: theme.spacing.l,
     gap: theme.spacing.l,
     borderWidth: 2,
     borderColor: theme.color.accent,
+    backgroundColor: theme.color.background,
   },
   buttonContainer: {
     flexDirection: 'row',

@@ -35,7 +35,7 @@ export const Countdown = ({ date, style }: { date?: DateTime; style: StyleProp<T
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    minWidth: 100,
     justifyContent: 'flex-end',
+    minWidth: 100,
   },
 });

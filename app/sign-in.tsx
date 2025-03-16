@@ -59,16 +59,16 @@ const styles = StyleSheet.create((theme) => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: theme.spacing.l,
     padding: theme.spacing.xl,
+    gap: theme.spacing.l,
     backgroundColor: theme.color.background,
   },
   title: {
-    fontSize: 24,
     fontFamily: theme.font.primary.italic,
+    fontSize: 24,
+    color: theme.color.white,
     textAlign: 'center',
     textTransform: 'uppercase',
-    color: theme.color.white,
   },
   input: {
     width: '100%',
@@ -80,7 +80,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.dark,
   },
   errorMessage: {
-    color: theme.color.error,
     fontSize: 14,
+    color: theme.color.error,
   },
 }));

@@ -36,9 +36,9 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.background,
   },
   label: {
-    color: theme.color.white,
     fontFamily: theme.font.secondary.black,
     fontSize: 16,
+    color: theme.color.white,
   },
   icon: {
     width: 24,

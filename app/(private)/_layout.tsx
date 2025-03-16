@@ -53,14 +53,14 @@ export default function PrivateLayout() {
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: theme.color.background,
     height: 60,
-    borderColor: theme.color.accent,
+    backgroundColor: theme.color.background,
     borderTopWidth: 2,
+    borderColor: theme.color.accent,
   },
   label: {
-    textTransform: 'uppercase',
-    fontSize: 14,
     fontFamily: theme.font.primary.italic,
+    fontSize: 14,
+    textTransform: 'uppercase',
   },
 }));

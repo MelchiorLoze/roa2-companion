@@ -40,9 +40,9 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.background,
   },
   title: {
-    fontSize: 24,
     fontFamily: theme.font.primary.italic,
-    textTransform: 'uppercase',
+    fontSize: 24,
     color: theme.color.white,
+    textTransform: 'uppercase',
   },
 }));

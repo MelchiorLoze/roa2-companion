@@ -41,13 +41,13 @@ export const ItemCard = ({ item, onPress }: Props) => {
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    backgroundColor: theme.color.background,
-    borderColor: theme.color.border,
-    borderWidth: 2,
     flex: 1 / 2,
-    gap: theme.spacing.l,
     justifyContent: 'space-between',
     padding: theme.spacing.m,
+    gap: theme.spacing.l,
+    borderWidth: 2,
+    borderColor: theme.color.border,
+    backgroundColor: theme.color.background,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -55,11 +55,11 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.s,
   },
   title: {
-    color: theme.color.white,
+    flex: 1,
     fontFamily: theme.font.secondary.bold,
     fontSize: 16,
+    color: theme.color.white,
     textTransform: 'uppercase',
-    flex: 1,
   },
   rarityIcon: {
     width: 16,
@@ -73,7 +73,6 @@ const styles = StyleSheet.create((theme) => ({
   category: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 14,
-    textTransform: 'uppercase',
     variants: {
       textColor: {
         common: { color: theme.color.common },
@@ -83,10 +82,11 @@ const styles = StyleSheet.create((theme) => ({
         default: { color: theme.color.white },
       },
     },
+    textTransform: 'uppercase',
   },
   priceContainer: {
-    alignItems: 'center',
     flexDirection: 'row',
+    alignItems: 'center',
     gap: theme.spacing.s,
   },
   currencyIcon: {
@@ -94,9 +94,9 @@ const styles = StyleSheet.create((theme) => ({
     height: 16,
   },
   price: {
-    color: theme.color.white,
     fontFamily: theme.font.secondary.bold,
     fontSize: 14,
+    color: theme.color.white,
     textTransform: 'uppercase',
   },
 }));
