@@ -43,7 +43,7 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1 / 2,
     justifyContent: 'space-between',
-    padding: theme.spacing.m,
+    padding: theme.spacing.s,
     gap: theme.spacing.l,
     borderWidth: 2,
     borderColor: theme.color.border,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create((theme) => ({
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   title: {
     flex: 1,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create((theme) => ({
   rarityIcon: {
     width: 16,
     height: 16,
-    marginTop: theme.spacing.xs,
+    marginTop: theme.spacing.xxs,
   },
   info: {
     flexDirection: 'row',
@@ -87,7 +87,7 @@ const styles = StyleSheet.create((theme) => ({
   priceContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   currencyIcon: {
     width: 16,

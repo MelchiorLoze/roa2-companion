@@ -73,7 +73,7 @@ const styles = StyleSheet.create((theme) => ({
   input: {
     width: '100%',
     height: 40,
-    padding: theme.spacing.m,
+    padding: theme.spacing.s,
     borderWidth: 1,
     borderColor: theme.color.accent,
     color: theme.color.white,

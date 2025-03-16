@@ -1,4 +1,4 @@
-import Feather from '@expo/vector-icons/Feather';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Image } from 'expo-image';
 import { ExternalPathString, useRouter } from 'expo-router';
 import { ComponentProps } from 'react';
@@ -9,7 +9,7 @@ type Props = {
   label: string;
   url?: URL;
   logo?: URL;
-  iconName: ComponentProps<typeof Feather>['name'];
+  iconName: ComponentProps<typeof MaterialIcons>['name'];
   onPress?: () => void;
 };
 
@@ -23,7 +23,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Props) => {
     >
       {logo && <Image source={logo.toString()} style={styles.logo} />}
       <Text style={styles.label}>{label}</Text>
-      <Feather color="white" name={iconName} size={16} style={styles.icon} />
+      <MaterialIcons color="white" name={iconName} size={20} style={styles.icon} />
     </Pressable>
   );
 };
@@ -32,17 +32,18 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: theme.spacing.l,
-    gap: theme.spacing.m,
+    padding: theme.spacing.m,
+    paddingHorizontal: theme.spacing.l,
+    gap: theme.spacing.s,
     backgroundColor: theme.color.background,
   },
   logo: {
-    width: 16,
-    height: 16,
+    width: 20,
+    height: 20,
   },
   label: {
     fontFamily: theme.font.primary.regular,
-    fontSize: 14,
+    fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
   },

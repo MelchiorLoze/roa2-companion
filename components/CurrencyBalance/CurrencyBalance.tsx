@@ -30,7 +30,7 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   leadingZeros: {
     color: theme.color.background,

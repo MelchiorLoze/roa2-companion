@@ -71,7 +71,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   title: {
     fontFamily: theme.font.secondary.bold,

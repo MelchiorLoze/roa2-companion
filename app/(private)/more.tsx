@@ -43,7 +43,7 @@ const Separator = () => <View style={styles.separator} />;
 const keyExtractor = (item: ExternalLink) => item.label;
 
 const renderItem = ({ item }: { item: ExternalLink }) => (
-  <ActionRow iconName="arrow-up-right" label={item.label} logo={item.logo} url={item.url} />
+  <ActionRow iconName="arrow-outward" label={item.label} logo={item.logo} url={item.url} />
 );
 
 export default function More() {
@@ -60,7 +60,7 @@ export default function More() {
       />
       <View>
         <Separator />
-        <ActionRow iconName="log-out" label="Log out" onPress={logout} />
+        <ActionRow iconName="logout" label="Log out" onPress={logout} />
         <Separator />
       </View>
     </View>
