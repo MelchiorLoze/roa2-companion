@@ -16,9 +16,11 @@ export const Header = ({ options }: BottomTabHeaderProps) => {
         <CurrencyBalance balance={coinsBalance ?? 0} currency={Currency.COINS} />
         <CurrencyBalance balance={bucksBalance ?? 0} currency={Currency.BUCKS} />
       </View>
-      <View style={styles.bottomContainer}>
-        <Text style={styles.title}>{options.title}</Text>
-      </View>
+      {options.title && (
+        <View style={styles.bottomContainer}>
+          <Text style={styles.title}>{options.title}</Text>
+        </View>
+      )}
     </>
   );
 };
@@ -29,7 +31,6 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: theme.spacing.s,
-    backgroundColor: theme.color.highlight,
     borderBottomWidth: 2,
     borderBottomColor: theme.color.accent,
   },

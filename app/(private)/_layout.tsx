@@ -44,7 +44,6 @@ export default function PrivateLayout() {
       <Tabs.Screen
         name="more"
         options={{
-          title: 'More',
           tabBarIcon: ({ color }) => <Ionicons color={color} name="information-circle-sharp" size={24} />,
         }}
       />

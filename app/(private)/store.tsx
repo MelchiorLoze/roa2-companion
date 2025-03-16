@@ -62,13 +62,11 @@ const styles = StyleSheet.create((theme) => ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: theme.color.highlight,
   },
   container: {
     flex: 1,
     padding: theme.spacing.l,
     gap: theme.spacing.l,
-    backgroundColor: theme.color.highlight,
   },
   titleContainer: {
     flexDirection: 'row',
