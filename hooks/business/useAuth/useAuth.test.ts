@@ -134,7 +134,7 @@ describe('useAuth hook', () => {
     expect(result.current.isError).toBe(true);
   });
 
-  it('should call renew when shouldRenew is true', () => {
+  it('should call renew when shouldRenew is true and auto refresh is enabled', () => {
     useSessionMock.mockReturnValue({
       isValid: false,
       shouldRenew: true,
@@ -142,13 +142,26 @@ describe('useAuth hook', () => {
       isLoading: false,
     });
 
-    renderHook(useAuth);
+    renderHook(() => useAuth({ enableAutoRefresh: true }));
 
-    expect(useGetEntityTokenMock().renew).toHaveBeenCalled();
+    expect(useGetEntityTokenMock().renew).toHaveBeenCalledTimes(1);
   });
 
   it('should not call renew when shouldRenew is false', () => {
-    renderHook(useAuth);
+    renderHook(() => useAuth({ enableAutoRefresh: true }));
+
+    expect(useGetEntityTokenMock().renew).not.toHaveBeenCalled();
+  });
+
+  it('should not call renew when auto refresh is disabled', () => {
+    useSessionMock.mockReturnValue({
+      isValid: false,
+      shouldRenew: true,
+      setSession: setSessionMock,
+      isLoading: false,
+    });
+
+    renderHook(() => useAuth({ enableAutoRefresh: false }));
 
     expect(useGetEntityTokenMock().renew).not.toHaveBeenCalled();
   });
