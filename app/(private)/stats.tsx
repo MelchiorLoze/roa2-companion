@@ -9,7 +9,10 @@ export default function Stats() {
   if (!stats || isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
 
   return (
-    <ScrollView refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />} style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />}
+    >
       <View style={styles.section}>
         <Text style={styles.title}>Ranked</Text>
         <View>
