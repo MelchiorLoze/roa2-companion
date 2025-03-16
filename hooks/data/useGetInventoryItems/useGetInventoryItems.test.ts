@@ -17,6 +17,14 @@ const renderUseGetInventoryItems = async () => {
 };
 
 describe('useGetInventoryItems', () => {
+  it('should return empty array when the request is loading', async () => {
+    const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.inventoryItems).toEqual([]);
+    expect(result.current.isError).toBe(false);
+  });
+
   describe('when the request succeeds', () => {
     beforeEach(() => {
       fetchMock.post('*', {
@@ -53,7 +61,7 @@ describe('useGetInventoryItems', () => {
     it('should return nothing', async () => {
       const { result } = await renderUseGetInventoryItems();
 
-      expect(result.current.inventoryItems).toBeUndefined();
+      expect(result.current.inventoryItems).toEqual([]);
       expect(result.current.isError).toBe(true);
     });
   });

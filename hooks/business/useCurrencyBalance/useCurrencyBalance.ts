@@ -1,7 +1,7 @@
 import { useGetInventoryItems } from '@/hooks/data';
 import { CurrencyId, InventoryItem } from '@/types/store';
 
-const getCurrencyBalance = (currencyId: CurrencyId, items?: InventoryItem[]) => {
+const getCurrencyBalance = (currencyId: CurrencyId, items: InventoryItem[]) => {
   return items?.find((item) => item.id === currencyId)?.amount;
 };
 

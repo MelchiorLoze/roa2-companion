@@ -10,7 +10,7 @@ const useGetInventoryItemsMock = jest.mocked(useGetInventoryItems);
 
 describe('useCurrencyBalance', () => {
   it('should return undefined when the inventory items are not loaded', () => {
-    useGetInventoryItemsMock.mockReturnValue({ inventoryItems: undefined, isLoading: true, isError: false });
+    useGetInventoryItemsMock.mockReturnValue({ inventoryItems: [], isLoading: true, isError: false });
 
     const { result } = renderHook(useCurrencyBalance);
 
@@ -60,7 +60,7 @@ describe('useCurrencyBalance', () => {
   });
 
   it('should return undefined when the inventory items failed to load', () => {
-    useGetInventoryItemsMock.mockReturnValue({ inventoryItems: undefined, isLoading: false, isError: true });
+    useGetInventoryItemsMock.mockReturnValue({ inventoryItems: [], isLoading: false, isError: true });
 
     const { result } = renderHook(useCurrencyBalance);
 

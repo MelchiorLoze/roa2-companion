@@ -26,7 +26,7 @@ export const useGetInventoryItems = () => {
     gcTime: Infinity,
   });
 
-  return { inventoryItems: data, isLoading, isError };
+  return { inventoryItems: data ?? [], isLoading, isError };
 };
 
 export const invalidateGetInventoryItems = (queryClient: QueryClient) => {
