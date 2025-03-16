@@ -15,7 +15,7 @@ type GetInventoryItemsResponse = {
 export const useGetInventoryItems = () => {
   const httpCLient = useHttpClient();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isFetching, isPending, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
       httpCLient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
@@ -26,7 +26,7 @@ export const useGetInventoryItems = () => {
     gcTime: Infinity,
   });
 
-  return { inventoryItems: data ?? [], isLoading, isError };
+  return { inventoryItems: data ?? [], isLoading: isFetching || isPending, isError };
 };
 
 export const invalidateGetInventoryItems = (queryClient: QueryClient) => {

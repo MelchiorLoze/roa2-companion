@@ -13,7 +13,7 @@ type GetPlayerStatisticsResponse = {
 export const useGetPlayerStatistics = () => {
   const httpClient = useHttpClient();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, refetch, isFetching, isPending, isError } = useQuery({
     queryKey: ['playerStatistics'],
     queryFn: async () => httpClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
     select: (data) =>
@@ -27,7 +27,8 @@ export const useGetPlayerStatistics = () => {
 
   return {
     statistics: data,
-    isLoading,
+    refetch,
+    isLoading: isFetching || isPending,
     isError,
   };
 };

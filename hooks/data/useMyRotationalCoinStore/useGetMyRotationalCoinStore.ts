@@ -18,7 +18,7 @@ export const useGetMyRotationalCoinStore = () => {
   const httpClient = useHttpClient();
   const queryClient = useQueryClient();
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isFetching, isPending, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
       httpClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
@@ -44,7 +44,7 @@ export const useGetMyRotationalCoinStore = () => {
     return () => clearTimeout(timeout);
   }, [data, queryClient]);
 
-  return { rotationalCoinStore: data, isLoading, isError };
+  return { rotationalCoinStore: data, isLoading: isFetching || isPending, isError };
 };
 
 export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient) => {
