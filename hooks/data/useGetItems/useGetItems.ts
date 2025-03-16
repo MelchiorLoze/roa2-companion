@@ -16,7 +16,6 @@ export const useGetItems = (itemIds: Item['id'][]) => {
     queryFn: () => httpClient.post<GetItemsResponse>('/Catalog/GetItems', { Ids: itemIds }),
     enabled: itemIds.length > 0,
     select: (data) => data.Items.map(itemFromDto),
-
     staleTime: Infinity,
     gcTime: Infinity,
   });

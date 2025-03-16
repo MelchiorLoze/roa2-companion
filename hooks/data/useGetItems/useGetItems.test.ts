@@ -19,6 +19,14 @@ const renderUseGetItems = async (itemIds: Item['id'][]) => {
 
 describe('useGetItems', () => {
   describe('should return empty array', () => {
+    it('when the request is loading', async () => {
+      const { result } = renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });
+
+      expect(result.current.isLoading).toBe(true);
+      expect(result.current.items).toEqual([]);
+      expect(result.current.isError).toBe(false);
+    });
+
     it('when itemIds is empty', async () => {
       const { result } = await renderUseGetItems([]);
 
