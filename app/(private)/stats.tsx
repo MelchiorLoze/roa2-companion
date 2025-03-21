@@ -14,7 +14,7 @@ export default function Stats() {
       refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />}
     >
       <View style={styles.section}>
-        <Text style={styles.title}>Ranked</Text>
+        <Text style={styles.title}>Ranked (sets)</Text>
         <View>
           <Text style={styles.label}>Elo: {stats.rankedElo}</Text>
           <Text style={styles.label}>
@@ -26,7 +26,7 @@ export default function Stats() {
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.title}>Global</Text>
+        <Text style={styles.title}>Global (games)</Text>
         <View>
           <Text style={styles.label}>
             Wins: {stats.globalWinCount} - Losses: {stats.globalMatchCount - stats.globalWinCount}
@@ -37,7 +37,7 @@ export default function Stats() {
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.title}>Character matches</Text>
+        <Text style={styles.title}>Per character (games)</Text>
         <View>
           <Text style={styles.label}>Clairen: {stats.claMatchCount}</Text>
           <Text style={styles.label}>Etalus: {stats.etaMatchCount}</Text>
