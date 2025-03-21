@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -12,7 +13,7 @@ export default function Store() {
   const { items, expirationDate, isLoading: isCoinStoreLoading } = useRotatingCoinShop();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
 
-  const isLoading = isCoinStoreLoading || isPurchaseLoading;
+  useFocusEffect(useCallback(() => setSelectedItem(null), []));
 
   const handlePurchase = () => {
     if (!selectedItem?.coinPrice) return;
@@ -25,9 +26,12 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isLoading) {
-    return <ActivityIndicator color="white" size="large" style={styles.spinner} />;
-  }
+  if (isCoinStoreLoading || isPurchaseLoading)
+    return (
+      <View style={styles.spinner}>
+        <ActivityIndicator color="white" size="large" />
+      </View>
+    );
 
   return (
     <>
@@ -40,7 +44,7 @@ export default function Store() {
       </View>
       {selectedItem && (
         <>
-          <Pressable disabled={isLoading} onPress={closeDialog} style={styles.overlay} />
+          <Pressable onPress={closeDialog} style={styles.overlay} />
           <View style={styles.confirmationDialog}>
             <Text style={styles.title}>
               Are you sure you want to buy the {selectedItem.category} {selectedItem.title} for {selectedItem.coinPrice}
@@ -60,6 +64,7 @@ export default function Store() {
 const styles = StyleSheet.create((theme) => ({
   spinner: {
     flex: 1,
+    justifyContent: 'center',
   },
   container: {
     flex: 1,
