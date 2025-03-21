@@ -25,6 +25,10 @@ const externalLinks: ExternalLink[] = [
     url: new URL('https://clamtime.github.io/rivals2-stage-viewer/'),
   },
   {
+    label: 'Elo History',
+    url: new URL('https://scarekroow.com/roa2-ranked-stats.html'),
+  },
+  {
     label: 'Game Reddit',
     url: new URL('https://www.reddit.com/r/RivalsOfAether/'),
     logo: new URL('https://www.reddit.com/favicon.ico'),
