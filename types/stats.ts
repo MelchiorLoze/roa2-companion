@@ -1,3 +1,5 @@
+import { Character } from './character';
+
 export enum StatisticName {
   TOTAL_SESSIONS_PLAYED = 'TotalSessionsPlayed', // Total number of games played
   BETA_WINS = 'Beta Wins', // Total number of games won
@@ -23,3 +25,8 @@ export enum StatisticName {
 }
 
 export type PlayerStats = Record<StatisticName, number>;
+
+export type CharacterStat = {
+  character: Character;
+  value: number;
+};

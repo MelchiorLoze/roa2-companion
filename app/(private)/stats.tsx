@@ -2,35 +2,17 @@ import { Image } from 'expo-image';
 import { ActivityIndicator, RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import {
-  BronzeIcon,
-  ClairenIcon,
-  DiamondIcon,
-  EtalusIcon,
-  FleetIcon,
-  ForsburnIcon,
-  GoldIcon,
-  KraggIcon,
-  LoxodontIcon,
-  MasterIcon,
-  MaypulIcon,
-  OrcaneIcon,
-  PlatinumIcon,
-  RannoIcon,
-  SilverIcon,
-  StoneIcon,
-  WrastorIcon,
-  ZetterburnIcon,
-} from '@/assets/images';
+import { BronzeIcon, DiamondIcon, GoldIcon, MasterIcon, PlatinumIcon, SilverIcon, StoneIcon } from '@/assets/images';
 import { usePlayerStats } from '@/hooks/business';
+import { CHARACTER_ICONS, CHARACTER_NAMES } from '@/types/character';
 
 const getRankIcon = (elo: number) => {
-  if (elo < 499) return StoneIcon;
-  if (elo < 699) return BronzeIcon;
-  if (elo < 899) return SilverIcon;
-  if (elo < 1099) return GoldIcon;
-  if (elo < 1299) return PlatinumIcon;
-  if (elo < 1499) return DiamondIcon;
+  if (elo < 500) return StoneIcon;
+  if (elo < 700) return BronzeIcon;
+  if (elo < 900) return SilverIcon;
+  if (elo < 1100) return GoldIcon;
+  if (elo < 1300) return PlatinumIcon;
+  if (elo < 1500) return DiamondIcon;
   return MasterIcon;
 };
 
@@ -73,50 +55,16 @@ export default function Stats() {
       <View style={styles.section}>
         <Text style={styles.title}>Per character (games)</Text>
         <View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={ClairenIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.claMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={EtalusIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.etaMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={FleetIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.fleMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={ForsburnIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.forMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={KraggIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.kraMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={LoxodontIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.loxMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={MaypulIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.mayMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={OrcaneIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.orcMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={RannoIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.ranMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={WrastorIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.wraMatchCount}</Text>
-          </View>
-          <View style={styles.labelWithIconContainer}>
-            <Image source={ZetterburnIcon} style={styles.icon} />
-            <Text style={styles.label}>{stats.zetMatchCount}</Text>
-          </View>
+          {stats.gamesPlayedPerCharacter
+            .sort((a, b) => b.value - a.value)
+            .map((charStat) => (
+              <View key={charStat.character} style={styles.labelWithIconContainer}>
+                <Image source={CHARACTER_ICONS[charStat.character]} style={styles.icon} />
+                <Text style={styles.label}>
+                  {CHARACTER_NAMES[charStat.character]}: {charStat.value}
+                </Text>
+              </View>
+            ))}
         </View>
       </View>
     </ScrollView>
@@ -146,7 +94,7 @@ const styles = StyleSheet.create((theme) => ({
   labelWithIconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.xs,
+    gap: theme.spacing.s,
   },
   icon: {
     width: 24,

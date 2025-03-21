@@ -24,6 +24,7 @@ describe('useGetMyRotationalCoinStore', () => {
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rotationalCoinStore).toBeUndefined();
     expect(result.current.isError).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   describe('when the request succeeds', () => {
