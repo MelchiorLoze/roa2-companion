@@ -1,7 +1,8 @@
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { BronzeIcon, DiamondIcon, GoldIcon, MasterIcon, PlatinumIcon, SilverIcon, StoneIcon } from '@/assets/images';
 import { Spinner } from '@/components';
@@ -20,12 +21,16 @@ const getRankIcon = (elo: number) => {
 
 type SectionProps = { title: string } & PropsWithChildren;
 
-const Section = ({ title, children }: SectionProps) => (
-  <View style={styles.section}>
-    <Text style={styles.title}>{title}</Text>
-    <View>{children}</View>
-  </View>
-);
+const Section = ({ title, children }: SectionProps) => {
+  const { theme } = useUnistyles();
+
+  return (
+    <LinearGradient colors={theme.color.labelGradient(true)} end={[1, 0]} start={[0, 0]} style={styles.section}>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      <View style={styles.sectionContent}>{children}</View>
+    </LinearGradient>
+  );
+};
 
 export default function Stats() {
   const { stats, refresh, isLoading } = usePlayerStats();
@@ -57,13 +62,13 @@ export default function Stats() {
         <Text style={styles.label}>Winrate: {(stats.globalWinRate ?? 0).toFixed(2)}%</Text>
       </Section>
 
-      <Section title="Per character (games)">
+      <Section title="Per character">
         {stats.gamesPlayedPerCharacter
           .sort((a, b) => b.value - a.value)
           .map((charStat) => (
             <View key={charStat.character} style={styles.labelWithIconContainer}>
               <Image source={CHARACTER_ICONS[charStat.character]} style={styles.icon} />
-              <Text style={styles.label}>{charStat.value}</Text>
+              <Text style={styles.label}>{charStat.value} games</Text>
             </View>
           ))}
       </Section>
@@ -77,13 +82,18 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.l,
   },
   section: {
+    padding: theme.spacing.s,
     gap: theme.spacing.s,
   },
-  title: {
+  sectionTitle: {
     fontFamily: theme.font.primary.italic,
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
+  },
+  sectionContent: {
+    width: '75%',
+    alignItems: 'center',
   },
   label: {
     fontFamily: theme.font.primary.regular,

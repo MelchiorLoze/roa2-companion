@@ -1,7 +1,8 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button, Countdown, ItemList, Spinner } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
@@ -9,6 +10,8 @@ import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItem
 import { CurrencyId, Item } from '@/types/store';
 
 export default function Store() {
+  const { theme } = useUnistyles();
+
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
   const { items, expirationDate, isLoading: isCoinShopLoading } = useRotatingCoinShop();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
@@ -31,10 +34,10 @@ export default function Store() {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.titleContainer}>
+        <LinearGradient colors={theme.color.labelGradient()} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
           <Text style={styles.title}>Items refresh in:</Text>
           <Countdown date={expirationDate} style={styles.title} />
-        </View>
+        </LinearGradient>
         <ItemList items={items} onSelect={setSelectedItem} />
       </View>
       {selectedItem && (
@@ -67,6 +70,8 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'flex-end',
     alignItems: 'center',
     width: '100%',
+    padding: theme.spacing.s,
+    paddingRight: theme.spacing.m,
     gap: theme.spacing.xs,
   },
   title: {

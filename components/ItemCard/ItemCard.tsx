@@ -1,7 +1,8 @@
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Pressable, Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
 import { Item, Rarity } from '@/types/store';
@@ -16,25 +17,32 @@ const rarityIcons = {
 type Props = { item: Item; onPress: () => void };
 
 export const ItemCard = ({ item, onPress }: Props) => {
+  const { theme } = useUnistyles();
   styles.useVariants({
     textColor: item.rarity,
   });
 
   return (
     <Pressable onPress={onPress} style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Image contentFit="contain" source={rarityIcons[item.rarity]} style={styles.rarityIcon} />
-      </View>
-      <View style={styles.info}>
-        <Text style={styles.category}>{item.category}</Text>
-        {item.coinPrice && (
-          <View style={styles.priceContainer}>
-            <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
-            <Text style={styles.price}>{item.coinPrice}</Text>
-          </View>
-        )}
-      </View>
+      {({ pressed }) => (
+        <LinearGradient colors={theme.color.borderGradient(pressed)} style={styles.borderGradient}>
+          <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
+            <View style={styles.titleContainer}>
+              <Text style={[styles.title, pressed && styles.textPressed]}>{item.title}</Text>
+              <Image contentFit="contain" source={rarityIcons[item.rarity]} style={styles.rarityIcon} />
+            </View>
+            <View style={styles.info}>
+              <Text style={styles.category}>{item.category}</Text>
+              {item.coinPrice && (
+                <View style={styles.priceContainer}>
+                  <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
+                  <Text style={[styles.price, pressed && styles.textPressed]}>{item.coinPrice}</Text>
+                </View>
+              )}
+            </View>
+          </LinearGradient>
+        </LinearGradient>
+      )}
     </Pressable>
   );
 };
@@ -42,12 +50,16 @@ export const ItemCard = ({ item, onPress }: Props) => {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1 / 2,
+  },
+  borderGradient: {
+    flex: 1,
+    padding: theme.spacing.xxs,
+  },
+  gradient: {
+    flex: 1,
     justifyContent: 'space-between',
     padding: theme.spacing.s,
     gap: theme.spacing.l,
-    borderWidth: 2,
-    borderColor: theme.color.border,
-    backgroundColor: theme.color.background,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -98,5 +110,8 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 14,
     color: theme.color.white,
     textTransform: 'uppercase',
+  },
+  textPressed: {
+    color: theme.color.black,
   },
 }));
