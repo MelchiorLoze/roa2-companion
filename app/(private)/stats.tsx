@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import { BronzeIcon, DiamondIcon, GoldIcon, MasterIcon, PlatinumIcon, SilverIcon, StoneIcon } from '@/assets/images';
 import { Spinner } from '@/components';
 import { usePlayerStats } from '@/hooks/business';
-import { CHARACTER_ICONS, CHARACTER_NAMES } from '@/types/character';
+import { CHARACTER_ICONS } from '@/types/character';
 
 const getRankIcon = (elo: number) => {
   if (elo < 500) return StoneIcon;
@@ -37,22 +37,22 @@ export default function Stats() {
       contentContainerStyle={styles.container}
       refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />}
     >
-      <Section title="Ranked (sets)">
+      <Section title="Ranked">
         <View style={styles.labelWithIconContainer}>
-          <Text style={styles.label}>Elo: {stats.rankedElo}</Text>
           <Image source={getRankIcon(stats.rankedElo)} style={styles.icon} />
+          <Text style={styles.label}>{stats.rankedElo}</Text>
         </View>
-        <Text style={styles.label}>Matches: {stats.rankedMatchCount}</Text>
+        <Text style={styles.label}>{stats.rankedMatchCount} sets</Text>
         <Text style={styles.label}>
-          Wins: {stats.rankedWinCount} - Losses: {stats.rankedMatchCount - stats.rankedWinCount}
+          {stats.rankedWinCount} wins - {stats.rankedMatchCount - stats.rankedWinCount} losses
         </Text>
         <Text style={styles.label}>Winrate: {(stats.rankedWinRate ?? 0).toFixed(2)}%</Text>
       </Section>
 
-      <Section title="Global (games)">
-        <Text style={styles.label}>Matches: {stats.globalMatchCount}</Text>
+      <Section title="Global">
+        <Text style={styles.label}>{stats.globalMatchCount} games</Text>
         <Text style={styles.label}>
-          Wins: {stats.globalWinCount} - Losses: {stats.globalMatchCount - stats.globalWinCount}
+          {stats.globalWinCount} wins - {stats.globalMatchCount - stats.globalWinCount} losses
         </Text>
         <Text style={styles.label}>Winrate: {(stats.globalWinRate ?? 0).toFixed(2)}%</Text>
       </Section>
@@ -63,9 +63,7 @@ export default function Stats() {
           .map((charStat) => (
             <View key={charStat.character} style={styles.labelWithIconContainer}>
               <Image source={CHARACTER_ICONS[charStat.character]} style={styles.icon} />
-              <Text style={styles.label}>
-                {CHARACTER_NAMES[charStat.character]}: {charStat.value}
-              </Text>
+              <Text style={styles.label}>{charStat.value}</Text>
             </View>
           ))}
       </Section>
@@ -96,7 +94,7 @@ const styles = StyleSheet.create((theme) => ({
   labelWithIconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   icon: {
     width: 24,
