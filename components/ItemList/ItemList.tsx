@@ -10,6 +10,8 @@ const keyExtractor = (item: Item) => item.id;
 type Props = { items: Item[]; onSelect: (item: Item) => void };
 
 export const ItemList = ({ items, onSelect }: Props) => {
+  const renderItem = ({ item }: { item: Item }) => <ItemCard item={item} onPress={() => onSelect(item)} />;
+
   return (
     <FlatList
       columnWrapperStyle={styles.container}
@@ -17,7 +19,7 @@ export const ItemList = ({ items, onSelect }: Props) => {
       data={items}
       keyExtractor={keyExtractor}
       numColumns={2}
-      renderItem={({ item }: { item: Item }) => <ItemCard item={item} onPress={() => onSelect(item)} />}
+      renderItem={renderItem}
     />
   );
 };

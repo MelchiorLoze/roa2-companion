@@ -3,7 +3,7 @@ import { Image } from 'expo-image';
 import { ExternalPathString, useRouter } from 'expo-router';
 import { ComponentProps } from 'react';
 import { Pressable, Text } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 type Props = {
   label: string;
@@ -15,15 +15,25 @@ type Props = {
 
 export const ActionRow = ({ label, url, logo, iconName, onPress }: Props) => {
   const router = useRouter();
+  const { theme } = useUnistyles();
 
   return (
     <Pressable
       onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress?.())}
-      style={styles.container}
+      style={({ pressed }) => [styles.container, pressed && styles.containerPressed]}
     >
-      {logo && <Image source={logo.toString()} style={styles.logo} />}
-      <Text style={styles.label}>{label}</Text>
-      <MaterialIcons color="white" name={iconName} size={20} style={styles.icon} />
+      {({ pressed }) => (
+        <>
+          {logo && <Image contentFit="contain" source={logo.toString()} style={styles.logo} />}
+          <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
+          <MaterialIcons
+            color={pressed ? theme.color.black : theme.color.white}
+            name={iconName}
+            size={20}
+            style={styles.icon}
+          />
+        </>
+      )}
     </Pressable>
   );
 };
@@ -37,6 +47,9 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.s,
     backgroundColor: theme.color.background,
   },
+  containerPressed: {
+    backgroundColor: theme.color.accent,
+  },
   logo: {
     width: 20,
     height: 20,
@@ -46,6 +59,9 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
+  },
+  labelPressed: {
+    color: theme.color.black,
   },
   icon: {
     marginLeft: 'auto',
