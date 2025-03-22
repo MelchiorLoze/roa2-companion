@@ -90,8 +90,8 @@ describe('usePurchaseInventoryItems', () => {
         result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
       );
 
-      await waitFor(() => expect(result.current.isLoading).toBe(false));
-      expect(result.current.isError).toBe(true);
+      await waitFor(() => expect(result.current.isError).toBe(true));
+      expect(result.current.isLoading).toBe(false);
       expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(0);
       expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(0);
     });

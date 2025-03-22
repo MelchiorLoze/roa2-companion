@@ -12,7 +12,7 @@ type GetEntityTokenResponse = {
 export const useGetEntityToken = () => {
   const httpClient = useHttpClient();
 
-  const { data, mutate } = useMutation({
+  const { data, mutate, isPending, isError } = useMutation({
     mutationFn: async () => {
       const data = await httpClient.post<GetEntityTokenResponse>('/Authentication/GetEntityToken');
       return {
@@ -25,5 +25,7 @@ export const useGetEntityToken = () => {
   return {
     newSession: data,
     renew: mutate,
+    isLoading: isPending,
+    isError,
   };
 };

@@ -25,6 +25,7 @@ describe('useGetItems', () => {
       expect(result.current.isLoading).toBe(true);
       expect(result.current.items).toEqual([]);
       expect(result.current.isError).toBe(false);
+      await waitFor(() => expect(result.current.isLoading).toBe(false));
     });
 
     it('when itemIds is empty', async () => {

@@ -10,13 +10,16 @@ jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
-const renderUseGetEntityToken = () => {
-  return renderHook(useGetEntityToken, { wrapper: TestQueryClientProvider });
+const renderUseGetEntityToken = async () => {
+  const { result } = renderHook(useGetEntityToken, { wrapper: TestQueryClientProvider });
+  await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+  return { result };
 };
 
 describe('useGetEntityToken', () => {
-  it('should return initial state with undefined newSession', () => {
-    const { result } = renderUseGetEntityToken();
+  it('should return initial state with undefined newSession', async () => {
+    const { result } = await renderUseGetEntityToken();
 
     expect(result.current.newSession).toBeUndefined();
     expect(typeof result.current.renew).toBe('function');
@@ -34,7 +37,7 @@ describe('useGetEntityToken', () => {
         },
       });
 
-      const { result } = renderUseGetEntityToken();
+      const { result } = await renderUseGetEntityToken();
 
       await act(async () => {
         result.current.renew();
@@ -44,6 +47,8 @@ describe('useGetEntityToken', () => {
       expect(result.current.newSession?.entityToken).toBe(mockEntityToken);
       expect(result.current.newSession?.expirationDate instanceof DateTime).toBeTruthy();
       expect(result.current.newSession?.expirationDate.toISO()).toBe(mockTokenExpiration);
+      expect(result.current.isLoading).toBe(false);
+      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -55,12 +60,14 @@ describe('useGetEntityToken', () => {
     });
 
     it('should return nothing', async () => {
-      const { result } = renderUseGetEntityToken();
+      const { result } = await renderUseGetEntityToken();
 
       await act(async () => {
         result.current.renew();
       });
 
+      await waitFor(() => expect(result.current.isError).toBe(true));
+      expect(result.current.isLoading).toBe(false);
       expect(result.current.newSession).toBeUndefined();
     });
   });

@@ -1,12 +1,11 @@
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
-import { DateTime, Duration } from 'luxon';
+import { DateTime } from 'luxon';
 import { useEffect } from 'react';
 
 import { useHttpClient } from '@/hooks/core';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { Item, RotationalCoinStore } from '@/types/store';
 
-const TWENTY_FOUR_HOURS_IN_MS = Duration.fromObject({ hours: 24 }).as('milliseconds');
 const QUERY_KEY = ['getMyRotationalCoinStore'];
 
 type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
@@ -29,8 +28,8 @@ export const useGetMyRotationalCoinStore = () => {
         itemIds: result.itemIds,
         expirationDate: DateTime.fromISO(result.expirationDateTime),
       } as RotationalCoinStore),
-    gcTime: TWENTY_FOUR_HOURS_IN_MS,
-    staleTime: TWENTY_FOUR_HOURS_IN_MS,
+    gcTime: Infinity,
+    staleTime: Infinity,
   });
 
   useEffect(() => {

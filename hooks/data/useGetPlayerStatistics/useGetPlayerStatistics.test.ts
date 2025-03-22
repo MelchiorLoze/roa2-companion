@@ -24,6 +24,7 @@ describe('useGetPlayerStatistics', () => {
     expect(result.current.isLoading).toBe(true);
     expect(result.current.statistics).toBeUndefined();
     expect(result.current.isError).toBe(false);
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
   it('should return empty array when the request fails', async () => {
