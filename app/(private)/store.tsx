@@ -10,7 +10,7 @@ import { CurrencyId, Item } from '@/types/store';
 
 export default function Store() {
   const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-  const { items, expirationDate, isLoading: isCoinStoreLoading } = useRotatingCoinShop();
+  const { items, expirationDate, isLoading: isCoinShopLoading } = useRotatingCoinShop();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
 
   useFocusEffect(useCallback(() => setSelectedItem(null), []));
@@ -26,7 +26,7 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isCoinStoreLoading || isPurchaseLoading)
+  if (isCoinShopLoading || isPurchaseLoading)
     return (
       <View style={styles.spinner}>
         <ActivityIndicator color="white" size="large" />
