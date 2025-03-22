@@ -1,9 +1,10 @@
 import { Image } from 'expo-image';
 import { PropsWithChildren } from 'react';
-import { ActivityIndicator, RefreshControl, ScrollView, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { BronzeIcon, DiamondIcon, GoldIcon, MasterIcon, PlatinumIcon, SilverIcon, StoneIcon } from '@/assets/images';
+import { Spinner } from '@/components';
 import { usePlayerStats } from '@/hooks/business';
 import { CHARACTER_ICONS, CHARACTER_NAMES } from '@/types/character';
 
@@ -29,7 +30,7 @@ const Section = ({ title, children }: SectionProps) => (
 export default function Stats() {
   const { stats, refresh, isLoading } = usePlayerStats();
 
-  if (!stats || isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
+  if (!stats || isLoading) return <Spinner />;
 
   return (
     <ScrollView

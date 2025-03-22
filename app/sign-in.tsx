@@ -1,9 +1,9 @@
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Text, TextInput, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button } from '@/components';
+import { Button, Spinner } from '@/components';
 import { useAuth } from '@/hooks/business';
 
 export default function SignIn() {
@@ -13,7 +13,7 @@ export default function SignIn() {
   const { login, isLoggedIn, isLoading, isError } = useAuth();
   const { theme } = useUnistyles();
 
-  if (isLoading) return <ActivityIndicator color="white" size="large" style={styles.container} />;
+  if (isLoading) return <Spinner />;
 
   if (isLoggedIn) return <Redirect href="/store" />;
 

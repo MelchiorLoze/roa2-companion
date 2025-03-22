@@ -1,9 +1,9 @@
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Button, Countdown, ItemList } from '@/components';
+import { Button, Countdown, ItemList, Spinner } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { CurrencyId, Item } from '@/types/store';
@@ -26,12 +26,7 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isCoinShopLoading || isPurchaseLoading)
-    return (
-      <View style={styles.spinner}>
-        <ActivityIndicator color="white" size="large" />
-      </View>
-    );
+  if (isCoinShopLoading || isPurchaseLoading) return <Spinner />;
 
   return (
     <>
@@ -62,10 +57,6 @@ export default function Store() {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  spinner: {
-    flex: 1,
-    justifyContent: 'center',
-  },
   container: {
     flex: 1,
     padding: theme.spacing.l,
