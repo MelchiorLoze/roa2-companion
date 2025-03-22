@@ -3,6 +3,14 @@ import { Character } from '@/types/character';
 import { CharacterStat, PlayerStats, StatisticName } from '@/types/stats';
 
 const computeStats = (statistics: PlayerStats) => {
+  const rankedMatchCount = statistics[StatisticName.RANKED_SEASON_MATCHES];
+  const rankedWinCount = statistics[StatisticName.RANKED_SEASON_WINS];
+  const rankedWinRate = rankedMatchCount ? (rankedWinCount / rankedMatchCount) * 100 : 0;
+
+  const globalMatchCount = statistics[StatisticName.TOTAL_SESSIONS_PLAYED];
+  const globalWinCount = statistics[StatisticName.BETA_WINS];
+  const globalWinRate = globalMatchCount ? (globalWinCount / globalMatchCount) * 100 : 0;
+
   const gamesPlayedPerCharacter: CharacterStat[] = Object.values(Character).map((character) => ({
     character,
     value: statistics[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
@@ -10,14 +18,13 @@ const computeStats = (statistics: PlayerStats) => {
 
   return {
     rankedElo: statistics[StatisticName.RANKED_SEASON_ELO],
-    rankedMatchCount: statistics[StatisticName.RANKED_SEASON_MATCHES],
-    rankedWinCount: statistics[StatisticName.RANKED_SEASON_WINS],
-    rankedWinRate:
-      (statistics[StatisticName.RANKED_SEASON_WINS] / statistics[StatisticName.RANKED_SEASON_MATCHES]) * 100,
+    rankedMatchCount,
+    rankedWinCount,
+    rankedWinRate,
 
-    globalMatchCount: statistics[StatisticName.TOTAL_SESSIONS_PLAYED],
-    globalWinCount: statistics[StatisticName.BETA_WINS],
-    globalWinRate: (statistics[StatisticName.BETA_WINS] / statistics[StatisticName.TOTAL_SESSIONS_PLAYED]) * 100,
+    globalMatchCount,
+    globalWinCount,
+    globalWinRate,
 
     gamesPlayedPerCharacter,
   };

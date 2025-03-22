@@ -15,8 +15,8 @@ import {
 export enum Character {
   CLAIREN = 'cla',
   ETALUS = 'eta',
-  FORSBURN = 'for',
   FLEET = 'fle',
+  FORSBURN = 'for',
   KRAGG = 'kra',
   LOXODONT = 'lox',
   MAYPUL = 'may',
@@ -30,8 +30,8 @@ export enum Character {
 export const CHARACTER_NAMES: Record<Character, string> = {
   [Character.CLAIREN]: 'Clairen',
   [Character.ETALUS]: 'Etalus',
-  [Character.FORSBURN]: 'Forsburn',
   [Character.FLEET]: 'Fleet',
+  [Character.FORSBURN]: 'Forsburn',
   [Character.KRAGG]: 'Kragg',
   [Character.LOXODONT]: 'Loxodont',
   [Character.MAYPUL]: 'Maypul',
@@ -45,8 +45,8 @@ export const CHARACTER_NAMES: Record<Character, string> = {
 export const CHARACTER_ICONS: Record<Character, any> = {
   [Character.CLAIREN]: ClairenIcon,
   [Character.ETALUS]: EtalusIcon,
-  [Character.FORSBURN]: ForsburnIcon,
   [Character.FLEET]: FleetIcon,
+  [Character.FORSBURN]: ForsburnIcon,
   [Character.KRAGG]: KraggIcon,
   [Character.LOXODONT]: LoxodontIcon,
   [Character.MAYPUL]: MaypulIcon,
