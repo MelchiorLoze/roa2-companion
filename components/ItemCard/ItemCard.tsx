@@ -7,6 +7,8 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
 import { Item, Rarity } from '@/types/store';
 
+import { OutlinedText } from '../OutlinedText/OutlinedText';
+
 const rarityIcons = {
   [Rarity.COMMON]: CommonIcon,
   [Rarity.RARE]: RareIcon,
@@ -32,7 +34,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
               <Image contentFit="contain" source={rarityIcons[item.rarity]} style={styles.rarityIcon} />
             </View>
             <View style={styles.info}>
-              <Text style={styles.category}>{item.category}</Text>
+              <OutlinedText color={styles.category.color} strokeWidth={2} text={item.category.toUpperCase()} />
               {item.coinPrice && (
                 <View style={styles.priceContainer}>
                   <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
@@ -83,8 +85,6 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-between',
   },
   category: {
-    fontFamily: theme.font.secondary.bold,
-    fontSize: 14,
     variants: {
       textColor: {
         common: { color: theme.color.common },
@@ -94,7 +94,6 @@ const styles = StyleSheet.create((theme) => ({
         default: { color: theme.color.white },
       },
     },
-    textTransform: 'uppercase',
   },
   priceContainer: {
     flexDirection: 'row',
