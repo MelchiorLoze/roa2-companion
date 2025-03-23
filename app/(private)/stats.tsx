@@ -19,14 +19,14 @@ const getRankIcon = (elo: number) => {
   return MasterIcon;
 };
 
-type SectionProps = { title: string } & PropsWithChildren;
+type SectionProps = { title?: string } & PropsWithChildren;
 
 const Section = ({ title, children }: SectionProps) => {
   const { theme } = useUnistyles();
 
   return (
     <LinearGradient colors={theme.color.labelGradient(true)} end={[1, 0]} start={[0, 0]} style={styles.section}>
-      <Text style={styles.sectionTitle}>{title}</Text>
+      {title && <Text style={styles.sectionTitle}>{title}</Text>}
       <View style={styles.sectionContent}>{children}</View>
     </LinearGradient>
   );
@@ -44,7 +44,7 @@ export default function Stats() {
     >
       <Section title="Ranked">
         <View style={styles.labelWithIconContainer}>
-          <Image source={getRankIcon(stats.rankedElo)} style={styles.icon} />
+          <Image contentFit="contain" source={getRankIcon(stats.rankedElo)} style={styles.icon} />
           <Text style={styles.label}>{stats.rankedElo}</Text>
         </View>
         <Text style={styles.label}>{stats.rankedMatchCount} sets</Text>
@@ -62,13 +62,21 @@ export default function Stats() {
         <Text style={styles.label}>Winrate: {(stats.globalWinRate ?? 0).toFixed(2)}%</Text>
       </Section>
 
-      <Section title="Per character">
-        {stats.gamesPlayedPerCharacter
-          .sort((a, b) => b.value - a.value)
+      <Section>
+        <View style={styles.tableRow}>
+          <View style={styles.firstColumn} />
+          <Text style={[styles.label, styles.otherColumns]}>Level</Text>
+          <Text style={[styles.label, styles.otherColumns]}>Games</Text>
+        </View>
+        {stats.characterStats
+          .sort((a, b) => b.level - a.level || b.gameCount - a.gameCount)
           .map((charStat) => (
-            <View key={charStat.character} style={styles.labelWithIconContainer}>
-              <Image source={CHARACTER_ICONS[charStat.character]} style={styles.icon} />
-              <Text style={styles.label}>{charStat.value} games</Text>
+            <View key={charStat.character} style={styles.tableRow}>
+              <View style={styles.firstColumn}>
+                <Image contentFit="contain" source={CHARACTER_ICONS[charStat.character]} style={styles.icon} />
+              </View>
+              <Text style={[styles.label, styles.otherColumns]}>{charStat.level}</Text>
+              <Text style={[styles.label, styles.otherColumns]}>{charStat.gameCount}</Text>
             </View>
           ))}
       </Section>
@@ -101,13 +109,24 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
+  icon: {
+    width: 24,
+    height: 24,
+  },
   labelWithIconContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.xs,
   },
-  icon: {
-    width: 24,
-    height: 24,
+  tableRow: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  firstColumn: {
+    flex: 1 / 5,
+  },
+  otherColumns: {
+    flex: 2 / 5,
   },
 }));
