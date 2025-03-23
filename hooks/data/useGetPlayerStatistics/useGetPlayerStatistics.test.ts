@@ -18,7 +18,7 @@ const renderUseGetPlayerStatistics = async () => {
 };
 
 describe('useGetPlayerStatistics', () => {
-  it('should return empty array when the request is loading', async () => {
+  it('should return nothing when the request is loading', async () => {
     const { result } = renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
@@ -27,7 +27,7 @@ describe('useGetPlayerStatistics', () => {
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
-  it('should return empty array when the request fails', async () => {
+  it('should return nothing when the request fails', async () => {
     fetchMock.postOnce('*', 400);
 
     const { result } = await renderUseGetPlayerStatistics();

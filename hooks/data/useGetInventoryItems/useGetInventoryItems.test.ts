@@ -59,7 +59,7 @@ describe('useGetInventoryItems', () => {
       });
     });
 
-    it('should return nothing', async () => {
+    it('should return an empty array', async () => {
       const { result } = await renderUseGetInventoryItems();
 
       expect(result.current.inventoryItems).toEqual([]);

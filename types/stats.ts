@@ -26,6 +26,8 @@ export enum StatisticName {
 
 export type PlayerStats = Record<StatisticName, number>;
 
+export type UserData = { characterData: Record<Character, { lvl: number }> };
+
 export type CharacterStat = {
   character: Character;
   value: number;

@@ -13,18 +13,18 @@ import {
 } from '@/assets/images';
 
 export enum Character {
-  CLAIREN = 'cla',
-  ETALUS = 'eta',
-  FLEET = 'fle',
-  FORSBURN = 'for',
-  KRAGG = 'kra',
-  LOXODONT = 'lox',
-  MAYPUL = 'may',
-  //OLYMPIA = 'oly',
-  ORCANE = 'orc',
-  RANNO = 'ran',
-  WRASTOR = 'wra',
-  ZETTERBURN = 'zet',
+  CLAIREN = 'Cla',
+  ETALUS = 'Eta',
+  FLEET = 'Fle',
+  FORSBURN = 'For',
+  KRAGG = 'Kra',
+  LOXODONT = 'Lox',
+  MAYPUL = 'May',
+  //OLYMPIA = 'Oly',
+  ORCANE = 'Orc',
+  RANNO = 'Ran',
+  WRASTOR = 'Wra',
+  ZETTERBURN = 'Zet',
 }
 
 export const CHARACTER_NAMES: Record<Character, string> = {
