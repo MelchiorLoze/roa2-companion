@@ -1,39 +1,48 @@
-import { useGetPlayerStatistics } from '@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { CharacterStat, PlayerStats, StatisticName } from '@/types/stats';
+import { CharacterStat, PlayerStats, StatisticName, UserData } from '@/types/stats';
 
-const computeStats = (statistics: PlayerStats) => {
-  const rankedMatchCount = statistics[StatisticName.RANKED_SEASON_MATCHES];
+const computeStats = (statistics: PlayerStats, userReadOnlyData: UserData) => {
+  const rankedSetCount = statistics[StatisticName.RANKED_SEASON_MATCHES];
   const rankedWinCount = statistics[StatisticName.RANKED_SEASON_WINS];
-  const rankedWinRate = rankedMatchCount ? (rankedWinCount / rankedMatchCount) * 100 : 0;
+  const rankedWinRate = rankedSetCount ? (rankedWinCount / rankedSetCount) * 100 : 0;
 
-  const globalMatchCount = statistics[StatisticName.TOTAL_SESSIONS_PLAYED];
+  const globalGameCount = statistics[StatisticName.TOTAL_SESSIONS_PLAYED];
   const globalWinCount = statistics[StatisticName.BETA_WINS];
-  const globalWinRate = globalMatchCount ? (globalWinCount / globalMatchCount) * 100 : 0;
+  const globalWinRate = globalGameCount ? (globalWinCount / globalGameCount) * 100 : 0;
 
-  const gamesPlayedPerCharacter: CharacterStat[] = Object.values(Character).map((character) => ({
+  const characterStats: CharacterStat[] = Object.values(Character).map((character) => ({
     character,
-    value: statistics[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
+    gameCount: statistics[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
+    level: userReadOnlyData.characterData[character].lvl,
   }));
 
   return {
     rankedElo: statistics[StatisticName.RANKED_SEASON_ELO],
-    rankedMatchCount,
+    rankedMatchCount: rankedSetCount,
     rankedWinCount,
     rankedWinRate,
 
-    globalMatchCount,
+    globalMatchCount: globalGameCount,
     globalWinCount,
     globalWinRate,
 
-    gamesPlayedPerCharacter,
+    characterStats,
   };
 };
 
 export const usePlayerStats = () => {
-  const { statistics, refetch, isLoading } = useGetPlayerStatistics();
+  const { statistics, refetch: refetchStatistics, isLoading: isStatisticsLoading } = useGetPlayerStatistics();
+  const { userData, refetch: refetchUserData, isLoading: isUserDataLoading } = useGetUserReadOnlyData();
 
-  const stats = statistics && !isLoading ? computeStats(statistics) : undefined;
+  const refresh = () => {
+    refetchStatistics();
+    refetchUserData();
+  };
 
-  return { stats, refresh: refetch, isLoading };
+  const isLoading = isStatisticsLoading || isUserDataLoading;
+
+  const stats = statistics && userData && !isLoading ? computeStats(statistics, userData) : undefined;
+
+  return { stats, refresh, isLoading };
 };

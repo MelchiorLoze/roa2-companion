@@ -30,5 +30,6 @@ export type UserData = { characterData: Record<Character, { lvl: number }> };
 
 export type CharacterStat = {
   character: Character;
-  value: number;
+  gameCount: number;
+  level: number;
 };

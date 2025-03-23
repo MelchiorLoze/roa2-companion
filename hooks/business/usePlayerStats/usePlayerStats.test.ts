@@ -1,28 +1,45 @@
 import { renderHook } from '@testing-library/react-native';
 import { act } from 'react';
 
-import { useGetPlayerStatistics } from '@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { PlayerStats, StatisticName } from '@/types/stats';
+import { PlayerStats, StatisticName, UserData } from '@/types/stats';
 
 import { usePlayerStats } from './usePlayerStats';
 
-jest.mock('@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics');
+jest.mock('@/hooks/data');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
+const useGetUserReadOnlyDataMock = jest.mocked(useGetUserReadOnlyData);
+
+const characters = Object.values(Character);
+
+const mockUserData: UserData = {
+  characterData: characters.reduce((acc, character, index) => {
+    acc[character] = { lvl: 5 + index * 10 };
+    return acc;
+  }, {} as UserData['characterData']),
+};
 
 describe('usePlayerStats', () => {
   beforeEach(() => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: undefined,
+      statistics: {} as PlayerStats,
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
+    useGetUserReadOnlyDataMock.mockReturnValue({
+      userData: mockUserData,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
     });
   });
 
-  test('should return loading state when statistics are loading', () => {
+  it('should return loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: undefined,
+      statistics: {} as PlayerStats,
       refetch: jest.fn(),
       isLoading: true,
       isError: false,
@@ -35,14 +52,50 @@ describe('usePlayerStats', () => {
     expect(typeof result.current.refresh).toBe('function');
   });
 
-  test('should return undefined stats when statistics are null', () => {
+  it('should return loading state when user data is loading', () => {
+    useGetUserReadOnlyDataMock.mockReturnValue({
+      userData: {} as UserData,
+      refetch: jest.fn(),
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderHook(() => usePlayerStats());
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.stats).toBeUndefined();
+    expect(typeof result.current.refresh).toBe('function');
+  });
+
+  it('should return nothing when statistics are not present', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      statistics: undefined,
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
     const { result } = renderHook(() => usePlayerStats());
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  test('should compute stats correctly from player statistics', () => {
+  it('should return nothing when user data is not present', () => {
+    useGetUserReadOnlyDataMock.mockReturnValue({
+      userData: undefined,
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
+    const { result } = renderHook(() => usePlayerStats());
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.stats).toBeUndefined();
+  });
+
+  it('should compute stats correctly from player statistics', () => {
     const mockStatistics: Partial<PlayerStats> = {
       [StatisticName.RANKED_SEASON_ELO]: 1500,
       [StatisticName.RANKED_SEASON_MATCHES]: 100,
@@ -74,7 +127,7 @@ describe('usePlayerStats', () => {
     expect(result.current.stats).toMatchObject(expectedStats);
   });
 
-  test('should handle zero matches played when calculating win rates', () => {
+  it('should handle zero matches played when calculating win rates', () => {
     const mockStatistics: Partial<PlayerStats> = {
       [StatisticName.RANKED_SEASON_MATCHES]: 0,
       [StatisticName.RANKED_SEASON_WINS]: 0,
@@ -95,12 +148,20 @@ describe('usePlayerStats', () => {
     expect(result.current.stats?.globalWinRate).toBe(0);
   });
 
-  test('should pass through the refetch function correctly', async () => {
-    const mockRefetch = jest.fn();
+  it('should pass through the refetch function correctly', async () => {
+    const mockRefetchStatistics = jest.fn();
+    const mockRefetchUserData = jest.fn();
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: undefined,
-      refetch: mockRefetch,
+      refetch: mockRefetchStatistics,
+      isLoading: false,
+      isError: false,
+    });
+
+    useGetUserReadOnlyDataMock.mockReturnValue({
+      userData: undefined,
+      refetch: mockRefetchUserData,
       isLoading: false,
       isError: false,
     });
@@ -111,17 +172,16 @@ describe('usePlayerStats', () => {
       result.current.refresh();
     });
 
-    expect(mockRefetch).toHaveBeenCalledTimes(1);
+    expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
+    expect(mockRefetchUserData).toHaveBeenCalledTimes(1);
   });
 
-  test('should compute gamesPlayedPerCharacter for all characters', () => {
-    const mockStatistics: Partial<PlayerStats> = {};
-
-    const realCharacters = Object.values(Character);
-    realCharacters.forEach((character, index) => {
+  it('should compute character stats for all characters', () => {
+    const mockStatistics: PlayerStats = characters.reduce((acc, character, index) => {
       const statKey = `${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName;
-      mockStatistics[StatisticName[statKey]] = 10 + index * 5;
-    });
+      acc[StatisticName[statKey]] = 10 + index * 5;
+      return acc;
+    }, {} as PlayerStats);
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics as PlayerStats,
@@ -132,10 +192,11 @@ describe('usePlayerStats', () => {
 
     const { result } = renderHook(() => usePlayerStats());
 
-    expect(result.current.stats?.gamesPlayedPerCharacter.length).toBe(realCharacters.length);
-    realCharacters.forEach((character, index) => {
-      const characterStat = result.current.stats?.gamesPlayedPerCharacter.find((stat) => stat.character === character);
-      expect(characterStat?.value).toBe(10 + index * 5);
+    expect(result.current.stats?.characterStats.length).toBe(characters.length);
+    characters.forEach((character, index) => {
+      const characterStat = result.current.stats?.characterStats.find((stat) => stat.character === character);
+      expect(characterStat?.gameCount).toBe(10 + index * 5);
+      expect(characterStat?.level).toBe(5 + index * 10);
     });
   });
 });
