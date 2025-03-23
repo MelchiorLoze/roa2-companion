@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -10,7 +11,10 @@ const keyExtractor = (item: Item) => item.id;
 type Props = { items: Item[]; onSelect: (item: Item) => void };
 
 export const ItemList = ({ items, onSelect }: Props) => {
-  const renderItem = ({ item }: { item: Item }) => <ItemCard item={item} onPress={() => onSelect(item)} />;
+  const renderItem = useCallback(
+    ({ item }: { item: Item }) => <ItemCard item={item} onPress={() => onSelect(item)} />,
+    [onSelect],
+  );
 
   return (
     <FlatList
