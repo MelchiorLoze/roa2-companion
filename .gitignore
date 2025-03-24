@@ -39,3 +39,5 @@ coverage/
 *.tsbuildinfo
 
 app-example
+*.zip
+*.apk
