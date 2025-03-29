@@ -22,9 +22,6 @@
     "setupFilesAfterEnv": [
       "./jest.setup.ts",
       "./jest.mock.ts"
-    ],
-    "testMatch": [
-      "**/?(*.)+(test).[jt]s?(x)"
     ]
   },
   "dependencies": {

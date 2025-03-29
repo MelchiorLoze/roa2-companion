@@ -8,7 +8,7 @@ import { Session } from '@/types/session';
 
 import { SessionProvider, useSession } from './SessionContext';
 
-const VALID_DATE = DateTime.now().plus({ day: 1 });
+const VALID_DATE = DateTime.utc().plus({ day: 1 });
 const RENEWABLE_DATE = DateTime.now().plus({ hours: 22 });
 const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
 
@@ -33,12 +33,9 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   </TestQueryClientProvider>
 );
 
-const renderUseSession = async () => {
+const renderUseSession = () => {
   const { result } = renderHook(useSession, { wrapper: Wrapper });
-
-  await waitFor(() => {
-    expect(result.current.isLoading).toBe(false);
-  });
+  expect(result.current.isLoading).toBe(false);
 
   return { result };
 };
@@ -56,7 +53,7 @@ describe('useSession', () => {
   });
 
   it('should not be logged in when the storage an login sessions are empty', async () => {
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
 
     expect(result.current.isValid).toBe(false);
   });
@@ -65,7 +62,7 @@ describe('useSession', () => {
     it('should be logged in when the storage contains a valid session', async () => {
       mockValidSession();
 
-      const { result } = await renderUseSession();
+      const { result } = renderUseSession();
 
       expect(result.current.isValid).toBe(true);
       expect(result.current.entityToken).toBe('validToken');
@@ -74,7 +71,7 @@ describe('useSession', () => {
     it('should not be logged in when the storage contains an expired session', async () => {
       mockExpiredSession();
 
-      const { result } = await renderUseSession();
+      const { result } = renderUseSession();
 
       expect(result.current.isValid).toBe(false);
     });
@@ -83,7 +80,7 @@ describe('useSession', () => {
   it('should allow to setSession to null', async () => {
     mockValidSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
     expect(result.current.isValid).toBe(true);
     await act(async () => result.current.setSession(null));
 
@@ -93,7 +90,7 @@ describe('useSession', () => {
   it('should allow to setSession to a valid session', async () => {
     mockExpiredSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
     expect(result.current.isValid).toBe(false);
     await act(async () => result.current.setSession({ entityToken: 'validToken', expirationDate: VALID_DATE }));
 
@@ -104,7 +101,7 @@ describe('useSession', () => {
   it('should not allow to setSession to an expired session', async () => {
     mockValidSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
     expect(result.current.isValid).toBe(true);
     await act(async () => result.current.setSession({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE }));
 
@@ -115,7 +112,7 @@ describe('useSession', () => {
   it('should ask for renewal when the session is old enough', async () => {
     mockRenewableSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
 
     expect(result.current.shouldRenew).toBe(true);
   });
@@ -123,7 +120,7 @@ describe('useSession', () => {
   it('should not ask for renewal when the session is not old enough', async () => {
     mockValidSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
 
     expect(result.current.shouldRenew).toBe(false);
   });
@@ -131,7 +128,7 @@ describe('useSession', () => {
   it('should not ask for renewal when the session is expired', async () => {
     mockExpiredSession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
 
     expect(result.current.shouldRenew).toBe(false);
   });
@@ -139,7 +136,7 @@ describe('useSession', () => {
   it('should not ask for renewal when the session is empty', async () => {
     mockEmptySession();
 
-    const { result } = await renderUseSession();
+    const { result } = renderUseSession();
 
     expect(result.current.shouldRenew).toBe(false);
   });

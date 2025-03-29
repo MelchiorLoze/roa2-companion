@@ -5,7 +5,7 @@ import { useStorageState } from '@/hooks/core';
 import { Session } from '@/types/session';
 
 const SESSION_STORAGE_KEY = 'session';
-const SESSION_TTL_IN_HOURS = 24;
+const SESSION_TTL = 24; // hours
 const SESSION_RENEW_THRESHOLD = 1;
 
 type SessionState = {
@@ -28,7 +28,7 @@ const parseSession = (raw: any): Session => {
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
 const shouldRenewSession = (session: Session): boolean =>
   session.expirationDate.diffNow().as('millisecond') <
-  Duration.fromObject({ hours: SESSION_TTL_IN_HOURS - SESSION_RENEW_THRESHOLD }).as('millisecond');
+  Duration.fromObject({ hours: SESSION_TTL - SESSION_RENEW_THRESHOLD }).as('millisecond');
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
   const [[session, isLoading], setSession] = useStorageState<Session>(SESSION_STORAGE_KEY, parseSession);
