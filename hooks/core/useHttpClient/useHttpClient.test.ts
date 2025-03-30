@@ -6,19 +6,21 @@ import { useSession } from '@/contexts';
 
 import { useHttpClient } from './useHttpClient';
 
-jest.mock('@/contexts', () => ({
-  useSession: jest.fn(),
-}));
+jest.mock('@/contexts');
 const useSessionMock = jest.mocked(useSession);
 const setSessionMock = jest.fn();
 
+const defaultSessionState: ReturnType<typeof useSession> = {
+  entityToken: 'mock-token',
+  isValid: true,
+  shouldRenew: false,
+  setSession: setSessionMock,
+  isLoading: false,
+};
+
 describe('useHttpClient', () => {
   beforeEach(() => {
-    useSessionMock.mockReturnValue({
-      entityToken: 'mock-token',
-      isValid: true,
-      setSession: setSessionMock,
-    } as unknown as ReturnType<typeof useSession>);
+    useSessionMock.mockReturnValue(defaultSessionState);
   });
 
   afterEach(() => {
@@ -26,7 +28,7 @@ describe('useHttpClient', () => {
   });
 
   it('should validate path correctly', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     // Valid path
     fetchMock.postOnce(`${BASE_URL}/valid/path`, { data: { success: true } });
@@ -38,24 +40,18 @@ describe('useHttpClient', () => {
   });
 
   it('should add auth headers when logged in', async () => {
-    useSessionMock.mockReturnValue({
-      entityToken: 'test-token',
-      isValid: true,
-      setSession: setSessionMock,
-    } as unknown as ReturnType<typeof useSession>);
-
     fetchMock.post(
       `${BASE_URL}/api/data`,
       { data: { success: true } },
       {
         matcherFunction: ({ options }) => {
           const headers = options.headers as Record<string, string>;
-          return headers['x-entitytoken'] === 'test-token' && headers['content-type'] === 'application/json';
+          return headers['x-entitytoken'] === 'mock-token' && headers['content-type'] === 'application/json';
         },
       },
     );
 
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     await result.current.post('/api/data');
     expect(fetchMock.callHistory.callLogs).toHaveLength(1);
@@ -63,12 +59,12 @@ describe('useHttpClient', () => {
 
   it('should not add auth headers when not logged in', async () => {
     useSessionMock.mockReturnValue({
+      ...defaultSessionState,
       entityToken: undefined,
       isValid: false,
-      setSession: setSessionMock,
-    } as unknown as ReturnType<typeof useSession>);
+    });
 
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     fetchMock.postOnce(
       `${BASE_URL}/api/data`,
@@ -86,7 +82,7 @@ describe('useHttpClient', () => {
   });
 
   it('should properly serialize body content', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
     const testBody = { name: 'test', value: 123 };
 
     fetchMock.postOnce(
@@ -104,7 +100,7 @@ describe('useHttpClient', () => {
   });
 
   it('should handle successful responses with data property', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     fetchMock.postOnce(`${BASE_URL}/api/data`, {
       data: { id: 1, name: 'test' },
@@ -115,7 +111,7 @@ describe('useHttpClient', () => {
   });
 
   it('should handle successful responses without data property', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     fetchMock.postOnce(`${BASE_URL}/api/data`, {
       id: 1,
@@ -127,7 +123,7 @@ describe('useHttpClient', () => {
   });
 
   it('should logout and throw error on 401 response', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     fetchMock.postOnce(`${BASE_URL}/api/data`, {
       status: 401,
@@ -140,7 +136,7 @@ describe('useHttpClient', () => {
   });
 
   it('should throw error on other failed responses', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     fetchMock.postOnce(`${BASE_URL}/api/data`, {
       status: 500,
@@ -152,7 +148,7 @@ describe('useHttpClient', () => {
   });
 
   it('should handle typed responses correctly', async () => {
-    const { result } = renderHook(() => useHttpClient());
+    const { result } = renderHook(useHttpClient);
 
     interface TestData {
       id: number;

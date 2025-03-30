@@ -6,6 +6,8 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
 
+const VALID_DATE = DateTime.utc().plus({ day: 1 });
+
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
@@ -35,7 +37,7 @@ describe('useGetMyRotationalCoinStore', () => {
           data: {
             FunctionResult: {
               itemIds: ['1', '2'],
-              expirationDateTime: DateTime.now().plus({ hours: 24 }).toISO(),
+              expirationDateTime: VALID_DATE.toISO(),
             },
           },
         },
@@ -47,7 +49,7 @@ describe('useGetMyRotationalCoinStore', () => {
 
       expect(result.current.rotationalCoinStore).toEqual({
         itemIds: ['1', '2'],
-        expirationDate: expect.any(DateTime),
+        expirationDate: VALID_DATE,
       });
       expect(result.current.isError).toBe(false);
     });

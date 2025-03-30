@@ -6,6 +6,8 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useGetEntityToken } from './useGetEntityToken';
 
+const VALID_DATE = DateTime.utc().plus({ day: 1 });
+
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
@@ -28,12 +30,11 @@ describe('useGetEntityToken', () => {
   describe('when the request succeeds', () => {
     it('should return the new session', async () => {
       const mockEntityToken = 'mock-token';
-      const mockTokenExpiration = DateTime.now().plus({ day: 1 }).toISO();
 
       fetchMock.postOnce('*', {
         status: 200,
         body: {
-          data: { EntityToken: mockEntityToken, TokenExpiration: mockTokenExpiration },
+          data: { EntityToken: mockEntityToken, TokenExpiration: VALID_DATE.toISO() },
         },
       });
 
@@ -45,8 +46,7 @@ describe('useGetEntityToken', () => {
 
       await waitFor(() => expect(result.current.newSession).toBeDefined());
       expect(result.current.newSession?.entityToken).toBe(mockEntityToken);
-      expect(result.current.newSession?.expirationDate instanceof DateTime).toBeTruthy();
-      expect(result.current.newSession?.expirationDate.toISO()).toBe(mockTokenExpiration);
+      expect(result.current.newSession?.expirationDate).toEqual(VALID_DATE);
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBe(false);
     });

@@ -26,7 +26,7 @@ export const useGetMyRotationalCoinStore = () => {
     select: ({ FunctionResult: result }) =>
       ({
         itemIds: result.itemIds,
-        expirationDate: DateTime.fromISO(result.expirationDateTime),
+        expirationDate: DateTime.fromISO(result.expirationDateTime, { zone: 'utc' }),
       } as RotationalCoinStore),
     gcTime: Infinity,
     staleTime: Infinity,

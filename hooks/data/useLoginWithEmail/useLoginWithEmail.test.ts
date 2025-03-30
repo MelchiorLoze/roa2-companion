@@ -6,6 +6,8 @@ import { TestQueryClientProvider } from '@/test-helpers';
 
 import { useLoginWithEmail } from './useLoginWithEmail';
 
+const VALID_DATE = DateTime.utc().plus({ day: 1 });
+
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
@@ -33,7 +35,7 @@ describe('useLoginWithEmail', () => {
           data: {
             EntityToken: {
               EntityToken: 'token',
-              ExpirationDate: DateTime.now().toISO(),
+              TokenExpiration: VALID_DATE.toISO(),
             },
           },
         },
@@ -45,12 +47,9 @@ describe('useLoginWithEmail', () => {
 
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
-      await waitFor(() =>
-        expect(result.current.session).toEqual({
-          entityToken: 'token',
-          expirationDate: expect.any(DateTime),
-        }),
-      );
+      await waitFor(() => expect(result.current.session).toBeDefined());
+      expect(result.current.session?.entityToken).toBe('token');
+      expect(result.current.session?.expirationDate).toEqual(VALID_DATE);
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBe(false);
     });

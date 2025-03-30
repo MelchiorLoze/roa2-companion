@@ -34,7 +34,7 @@ export const useLoginWithEmail = () => {
       const result = data.EntityToken;
       return {
         entityToken: result.EntityToken,
-        expirationDate: DateTime.fromISO(result.TokenExpiration),
+        expirationDate: DateTime.fromISO(result.TokenExpiration, { zone: 'utc' }),
       } as Session;
     },
   });

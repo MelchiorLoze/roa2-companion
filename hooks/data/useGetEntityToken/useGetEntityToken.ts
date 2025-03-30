@@ -17,7 +17,7 @@ export const useGetEntityToken = () => {
       const data = await httpClient.post<GetEntityTokenResponse>('/Authentication/GetEntityToken');
       return {
         entityToken: data.EntityToken,
-        expirationDate: DateTime.fromISO(data.TokenExpiration),
+        expirationDate: DateTime.fromISO(data.TokenExpiration, { zone: 'utc' }),
       } as Session;
     },
   });

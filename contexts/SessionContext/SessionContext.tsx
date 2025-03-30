@@ -21,7 +21,7 @@ const SessionContext = createContext<SessionState | undefined>(undefined);
 const parseSession = (raw: any): Session => {
   return {
     entityToken: raw.entityToken,
-    expirationDate: DateTime.fromISO(raw.expirationDate),
+    expirationDate: DateTime.fromISO(raw.expirationDate, { zone: 'utc' }),
   };
 };
 

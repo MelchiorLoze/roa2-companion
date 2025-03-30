@@ -6,6 +6,8 @@ import { Item, Rarity } from '@/types/store';
 
 import { useRotatingCoinShop } from './useRotatingCoinShop';
 
+const VALID_DATE = DateTime.utc().plus({ day: 1 });
+
 jest.mock('@/hooks/data');
 const useGetMyRotationalCoinStoreMock = jest.mocked(useGetMyRotationalCoinStore);
 const useGetItemsMock = jest.mocked(useGetItems);
@@ -53,7 +55,7 @@ describe('useRotatingCoinShop', () => {
 
   it('should return loading state when items are loading', () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
-      rotationalCoinStore: { itemIds: ['1', '2', '3'], expirationDate: DateTime.now().plus({ days: 1 }) },
+      rotationalCoinStore: { itemIds: ['1', '2', '3'], expirationDate: VALID_DATE },
       isLoading: false,
       isError: false,
     });
@@ -67,14 +69,14 @@ describe('useRotatingCoinShop', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.items).toEqual([]);
-    expect(result.current.expirationDate).toEqual(expect.any(DateTime));
+    expect(result.current.expirationDate).toEqual(VALID_DATE);
   });
 
   it('should pass correct itemIds to useGetItems', () => {
     const itemIds = ['1', '2', '3'];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({
-      rotationalCoinStore: { itemIds, expirationDate: DateTime.now().plus({ days: 1 }) },
+      rotationalCoinStore: { itemIds, expirationDate: DateTime.utc().plus({ days: 1 }) },
       isLoading: false,
       isError: false,
     });
@@ -100,7 +102,7 @@ describe('useRotatingCoinShop', () => {
     ];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({
-      rotationalCoinStore: { itemIds: ['1', '2', '3', '4'], expirationDate: DateTime.now().plus({ days: 1 }) },
+      rotationalCoinStore: { itemIds: ['1', '2', '3', '4'], expirationDate: VALID_DATE },
       isLoading: false,
       isError: false,
     });
@@ -114,6 +116,6 @@ describe('useRotatingCoinShop', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.items).toEqual(expectedSortedItems);
-    expect(result.current.expirationDate).toEqual(expect.any(DateTime));
+    expect(result.current.expirationDate).toEqual(VALID_DATE);
   });
 });

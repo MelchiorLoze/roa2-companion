@@ -45,7 +45,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.stats).toBeUndefined();
@@ -60,7 +60,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.stats).toBeUndefined();
@@ -75,7 +75,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
@@ -89,7 +89,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
@@ -121,7 +121,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toMatchObject(expectedStats);
@@ -142,7 +142,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.stats?.rankedWinRate).toBe(0);
     expect(result.current.stats?.globalWinRate).toBe(0);
@@ -166,7 +166,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     await act(async () => {
       result.current.refresh();
@@ -190,7 +190,7 @@ describe('usePlayerStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(() => usePlayerStats());
+    const { result } = renderHook(usePlayerStats);
 
     expect(result.current.stats?.characterStats.length).toBe(characters.length);
     characters.forEach((character, index) => {

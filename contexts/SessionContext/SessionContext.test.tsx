@@ -9,8 +9,8 @@ import { Session } from '@/types/session';
 import { SessionProvider, useSession } from './SessionContext';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
-const RENEWABLE_DATE = DateTime.now().plus({ hours: 22 });
-const EXPIRED_DATE = DateTime.now().minus({ day: 1 });
+const RENEWABLE_DATE = DateTime.utc().plus({ hours: 22 });
+const EXPIRED_DATE = DateTime.utc().minus({ day: 1 });
 
 jest.mock('@/hooks/core');
 const useStorageStateMock = jest.mocked(useStorageState);

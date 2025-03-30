@@ -34,6 +34,8 @@ describe('useAuth hook', () => {
     useGetEntityTokenMock.mockReturnValue({
       newSession: undefined,
       renew: jest.fn(),
+      isLoading: false,
+      isError: false,
     });
   });
 
@@ -52,7 +54,7 @@ describe('useAuth hook', () => {
   });
 
   it('should call setSession when login data is available', () => {
-    const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.now().plus({ day: 1 }) };
+    const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useLoginWithEmailMock.mockReturnValue({
       session: loginSession,
       loginWithEmail: jest.fn(),
@@ -90,7 +92,7 @@ describe('useAuth hook', () => {
     });
 
     const { result } = renderHook(useAuth);
-    act(() => result.current.logout());
+    act(result.current.logout);
 
     expect(setSessionMock).toHaveBeenCalledWith(null);
   });
@@ -167,10 +169,12 @@ describe('useAuth hook', () => {
   });
 
   it('should call setSession when newSession is available', () => {
-    const newSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.now().plus({ day: 1 }) };
+    const newSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useGetEntityTokenMock.mockReturnValue({
       newSession,
       renew: jest.fn(),
+      isLoading: false,
+      isError: false,
     });
 
     renderHook(useAuth);
