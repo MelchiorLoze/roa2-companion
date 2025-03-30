@@ -6,7 +6,7 @@ export const Spinner = () => {
 
   return (
     <View style={styles.container}>
-      <ActivityIndicator color={theme.color.white} size="large" />
+      <ActivityIndicator accessibilityHint="Loading..." color={theme.color.white} size="large" />
     </View>
   );
 };
