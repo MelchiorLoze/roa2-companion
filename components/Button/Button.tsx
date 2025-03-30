@@ -5,7 +5,11 @@ type Props = { label: string; onPress: () => void };
 
 export const Button = ({ label, onPress }: Props) => {
   return (
-    <Pressable onPress={onPress} style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}>
+    <Pressable
+      onPress={onPress}
+      role="button"
+      style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
+    >
       {({ pressed }) => <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>}
     </Pressable>
   );
