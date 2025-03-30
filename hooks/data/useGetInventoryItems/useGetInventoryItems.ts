@@ -30,5 +30,5 @@ export const useGetInventoryItems = () => {
 };
 
 export const invalidateGetInventoryItems = (queryClient: QueryClient) => {
-  queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+  void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };

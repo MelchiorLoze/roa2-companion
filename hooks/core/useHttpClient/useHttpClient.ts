@@ -37,9 +37,9 @@ export const useHttpClient = () => {
       throw new Error('Request failed');
     }
 
-    const data = await response.json();
+    const data: unknown = await response.json();
 
-    if (typeof data === 'object' && 'data' in data) {
+    if (data && typeof data === 'object' && 'data' in data) {
       return data.data as T;
     }
 

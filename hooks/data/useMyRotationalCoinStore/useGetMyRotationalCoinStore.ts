@@ -37,7 +37,7 @@ export const useGetMyRotationalCoinStore = () => {
 
     const timeUntilExpiration = data.expirationDate.diffNow().as('millisecond');
     const timeout = setTimeout(() => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+      void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
     }, timeUntilExpiration);
 
     return () => clearTimeout(timeout);

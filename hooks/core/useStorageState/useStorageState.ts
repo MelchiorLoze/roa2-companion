@@ -65,7 +65,7 @@ export function useStorageState<T>(key: string, converter?: (value: any) => T): 
   const setValue = useCallback(
     (value: T | null) => {
       setState(value);
-      setStorageItemAsync(key, value ? JSON.stringify(value) : null);
+      void setStorageItemAsync(key, value ? JSON.stringify(value) : null);
     },
     [key, setState],
   );

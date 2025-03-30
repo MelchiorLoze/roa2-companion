@@ -6,7 +6,7 @@ import { useUnistyles } from 'react-native-unistyles';
 
 import { SessionProvider } from '@/contexts';
 
-SplashScreen.preventAutoHideAsync();
+void SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
@@ -21,7 +21,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded || error) {
-      SplashScreen.hideAsync();
+      void SplashScreen.hideAsync();
     }
   }, [loaded, error]);
 

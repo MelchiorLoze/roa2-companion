@@ -150,13 +150,13 @@ describe('useHttpClient', () => {
   it('should handle typed responses correctly', async () => {
     const { result } = renderHook(useHttpClient);
 
-    interface TestData {
+    type TestData = {
       id: number;
       name: string;
-    }
+    };
 
     fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      data: { id: 1, name: 'test' },
+      data: { id: 1, name: 'test' } as TestData,
     });
 
     const response = await result.current.post<TestData>('/api/data');

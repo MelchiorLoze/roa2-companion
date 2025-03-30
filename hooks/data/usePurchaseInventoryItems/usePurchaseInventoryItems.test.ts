@@ -11,11 +11,11 @@ jest.mock('@/contexts', () => ({
 }));
 
 const invalidateGetInventoryItemsSpy = jest.spyOn(
-  require('../useGetInventoryItems/useGetInventoryItems'),
+  jest.requireActual('../useGetInventoryItems/useGetInventoryItems'),
   'invalidateGetInventoryItems',
 );
 const invalidateGetMyRotationalCoinStoreSpy = jest.spyOn(
-  require('../useMyRotationalCoinStore/useGetMyRotationalCoinStore'),
+  jest.requireActual('../useMyRotationalCoinStore/useGetMyRotationalCoinStore'),
   'invalidateGetMyRotationalCoinStore',
 );
 

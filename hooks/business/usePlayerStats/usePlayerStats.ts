@@ -36,8 +36,8 @@ export const usePlayerStats = () => {
   const { userData, refetch: refetchUserData, isLoading: isUserDataLoading } = useGetUserReadOnlyData();
 
   const refresh = () => {
-    refetchStatistics();
-    refetchUserData();
+    void refetchStatistics();
+    void refetchUserData();
   };
 
   const isLoading = isStatisticsLoading || isUserDataLoading;
