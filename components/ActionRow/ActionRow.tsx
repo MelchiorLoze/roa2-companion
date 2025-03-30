@@ -1,17 +1,25 @@
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { ExternalPathString, useRouter } from 'expo-router';
 import { ComponentProps } from 'react';
 import { Pressable, Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+type EitherLinkOrButton =
+  | {
+      url: URL;
+      onPress?: never;
+    }
+  | {
+      url?: never;
+      onPress: () => void;
+    };
+
 type Props = {
   label: string;
-  url?: URL;
   logo?: URL;
   iconName: ComponentProps<typeof MaterialIcons>['name'];
-  onPress?: () => void;
-};
+} & EitherLinkOrButton;
 
 export const ActionRow = ({ label, url, logo, iconName, onPress }: Props) => {
   const router = useRouter();
@@ -20,6 +28,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Props) => {
   return (
     <Pressable
       onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress?.())}
+      role={url ? 'link' : 'button'}
       style={({ pressed }) => [styles.container, pressed && styles.containerPressed]}
     >
       {({ pressed }) => (
