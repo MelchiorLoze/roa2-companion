@@ -24,7 +24,7 @@ App using the game's client API to provide useful information and tools for play
 3. Start the app
 
    ```bash
-      npm start
+   npm start
    ```
 
    In the output, you'll find options to open the app in the different environments.
