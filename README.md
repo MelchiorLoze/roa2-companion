@@ -10,14 +10,27 @@ App using the game's client API to provide useful information and tools for play
    npm install
    ```
 
-2. Start the app
+2. Build the app
 
    ```bash
-    npm start
+   npm run reset
    ```
 
-In the output, you'll find options to open the app in the different environments.
+   ```bash
+   npm run android
+   npm run ios
+   ```
+
+3. Start the app
+
+   ```bash
+      npm start
+   ```
+
+   In the output, you'll find options to open the app in the different environments.
 
 ## Disclaimer
 
-_This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. All trademarks, registered trademarks, product names, and company names or logos mentioned herein are the property of their respective owners. This project was created solely for entertainment and educational purposes._
+_This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. All trademarks, registered trademarks, product names, and company names or logos mentioned herein are the property of their respective owners. This project was created solely as a community resource, for entertainment and educational purposes._
+
+_The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect or transmit any personal information or data from users._
