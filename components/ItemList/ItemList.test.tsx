@@ -31,6 +31,10 @@ const renderComponent = (items: Item[]) => {
 };
 
 describe('ItemList', () => {
+  afterEach(() => {
+    onSelectMock.mockClear();
+  });
+
   it('should render correctly an empty item list', () => {
     renderComponent([]);
 

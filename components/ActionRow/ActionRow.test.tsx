@@ -28,10 +28,15 @@ const renderComponent = (props: ComponentProps<typeof ActionRow>) => {
   render(<ActionRow {...props} />);
 
   expect(pushMock).not.toHaveBeenCalled();
-  expect(props.onPress).not.toHaveBeenCalled();
+  if (props.onPress) expect(props.onPress).not.toHaveBeenCalled();
 };
 
 describe('ActionRow', () => {
+  afterEach(() => {
+    pushMock.mockClear();
+    onPressMock.mockClear();
+  });
+
   it('navigates to the correct URL when link is pressed', () => {
     renderComponent(linkProps);
 
