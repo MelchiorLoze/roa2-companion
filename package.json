@@ -19,9 +19,13 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "moduleNameMapper": {
+      "react-native-unistyles": "<rootDir>/react-native-unistyles-mock.js"
+    },
     "setupFilesAfterEnv": [
       "./jest.setup.ts",
-      "./jest.mock.ts"
+      "./jest.mock.ts",
+      "@shopify/react-native-skia/jestSetup.js"
     ]
   },
   "dependencies": {
