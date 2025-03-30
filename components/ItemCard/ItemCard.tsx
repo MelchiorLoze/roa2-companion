@@ -25,7 +25,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
   });
 
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable onPress={onPress} role="button" style={styles.container}>
       {({ pressed }) => (
         <LinearGradient colors={theme.color.borderGradient(pressed)} style={styles.borderGradient}>
           <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
