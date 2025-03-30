@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { Redirect } from 'expo-router';
 
 import { useAuth } from '@/hooks/business';
 
-import { Redirect } from 'expo-router';
 import SignIn from './sign-in';
 
 jest.mock('expo-router');
