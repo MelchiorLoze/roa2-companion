@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, ListRenderItem, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { ActionRow } from '@/components';
@@ -46,9 +46,7 @@ const Separator = () => <View style={styles.separator} />;
 
 const keyExtractor = (item: ExternalLink) => item.label;
 
-const renderItem = ({ item }: { item: ExternalLink }) => (
-  <ActionRow iconName="arrow-outward" label={item.label} logo={item.logo} url={item.url} />
-);
+const renderItem: ListRenderItem<ExternalLink> = ({ item }) => <ActionRow {...item} iconName="arrow-outward" />;
 
 export default function More() {
   const { logout } = useAuth();
