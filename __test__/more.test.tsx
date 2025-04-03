@@ -1,10 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 
+import More from '@/app/(private)/more';
 import { useAuth } from '@/hooks/business';
 
-import More from './more';
-
-jest.mock('../../hooks/business');
+jest.mock('../hooks/business');
 const useAuthMock = jest.mocked(useAuth);
 const logoutMock = jest.fn();
 useAuthMock.mockReturnValue({
