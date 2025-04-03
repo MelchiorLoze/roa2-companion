@@ -97,16 +97,16 @@ describe('usePlayerStats', () => {
 
   it('should compute stats correctly from player statistics', () => {
     const mockStatistics: Partial<PlayerStats> = {
-      [StatisticName.RANKED_SEASON_ELO]: 1500,
-      [StatisticName.RANKED_SEASON_MATCHES]: 100,
-      [StatisticName.RANKED_SEASON_WINS]: 60,
+      [StatisticName.RANKED_S2_ELO]: 1500,
+      [StatisticName.RANKED_S2_SETS]: 100,
+      [StatisticName.RANKED_S2_WINS]: 60,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 200,
       [StatisticName.BETA_WINS]: 120,
     };
 
     const expectedStats = {
       rankedElo: 1500,
-      rankedMatchCount: 100,
+      rankedSetCount: 100,
       rankedWinCount: 60,
       rankedWinRate: 60,
       globalMatchCount: 200,
@@ -129,8 +129,8 @@ describe('usePlayerStats', () => {
 
   it('should handle zero matches played when calculating win rates', () => {
     const mockStatistics: Partial<PlayerStats> = {
-      [StatisticName.RANKED_SEASON_MATCHES]: 0,
-      [StatisticName.RANKED_SEASON_WINS]: 0,
+      [StatisticName.RANKED_S1_SETS]: 0,
+      [StatisticName.RANKED_S1_WINS]: 0,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 0,
       [StatisticName.BETA_WINS]: 0,
     };

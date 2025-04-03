@@ -47,9 +47,9 @@ export default function Stats() {
           <Image contentFit="contain" source={getRankIcon(stats.rankedElo)} style={styles.icon} />
           <Text style={styles.label}>{stats.rankedElo}</Text>
         </View>
-        <Text style={styles.label}>{stats.rankedMatchCount} sets</Text>
+        <Text style={styles.label}>{stats.rankedSetCount} sets</Text>
         <Text style={styles.label}>
-          {stats.rankedWinCount} wins - {stats.rankedMatchCount - stats.rankedWinCount} losses
+          {stats.rankedWinCount} wins - {stats.rankedSetCount - stats.rankedWinCount} losses
         </Text>
         <Text style={styles.label}>Winrate: {(stats.rankedWinRate ?? 0).toFixed(2)}%</Text>
       </Section>

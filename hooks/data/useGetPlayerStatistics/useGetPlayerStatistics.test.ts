@@ -40,8 +40,8 @@ describe('useGetPlayerStatistics', () => {
     fetchMock.postOnce('*', {
       data: {
         Statistics: [
-          { StatisticName: StatisticName.RANKED_SEASON_ELO, Value: 932 },
-          { StatisticName: StatisticName.RANKED_SEASON_MATCHES, Value: 708 },
+          { StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 },
+          { StatisticName: StatisticName.RANKED_S1_SETS, Value: 708 },
         ],
       },
     });
@@ -49,8 +49,8 @@ describe('useGetPlayerStatistics', () => {
     const { result } = await renderUseGetPlayerStatistics();
 
     expect(result.current.statistics).toEqual({
-      [StatisticName.RANKED_SEASON_ELO]: 932,
-      [StatisticName.RANKED_SEASON_MATCHES]: 708,
+      [StatisticName.RANKED_S1_ELO]: 932,
+      [StatisticName.RANKED_S1_SETS]: 708,
     });
     expect(result.current.isError).toBe(false);
   });

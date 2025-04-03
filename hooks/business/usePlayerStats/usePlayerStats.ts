@@ -3,8 +3,8 @@ import { Character } from '@/types/character';
 import { CharacterStat, PlayerStats, StatisticName, UserData } from '@/types/stats';
 
 const computeStats = (statistics: PlayerStats, userReadOnlyData: UserData) => {
-  const rankedSetCount = statistics[StatisticName.RANKED_SEASON_MATCHES];
-  const rankedWinCount = statistics[StatisticName.RANKED_SEASON_WINS];
+  const rankedSetCount = statistics[StatisticName.RANKED_S2_SETS];
+  const rankedWinCount = statistics[StatisticName.RANKED_S2_WINS];
   const rankedWinRate = rankedSetCount ? (rankedWinCount / rankedSetCount) * 100 : 0;
 
   const globalGameCount = statistics[StatisticName.TOTAL_SESSIONS_PLAYED];
@@ -18,8 +18,8 @@ const computeStats = (statistics: PlayerStats, userReadOnlyData: UserData) => {
   }));
 
   return {
-    rankedElo: statistics[StatisticName.RANKED_SEASON_ELO],
-    rankedMatchCount: rankedSetCount,
+    rankedElo: statistics[StatisticName.RANKED_S2_ELO],
+    rankedSetCount,
     rankedWinCount,
     rankedWinRate,
 
