@@ -8,13 +8,14 @@ import { Currency } from '@/types/store';
 import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
 
 export const Header = ({ options }: BottomTabHeaderProps) => {
-  const { coinsBalance, bucksBalance } = useCurrencyBalance();
+  const { coinsBalance, bucksBalance, medalsBalance } = useCurrencyBalance();
 
   return (
     <>
       <View style={styles.topContainer}>
-        <CurrencyBalance balance={coinsBalance ?? 0} currency={Currency.COINS} />
-        <CurrencyBalance balance={bucksBalance ?? 0} currency={Currency.BUCKS} />
+        <CurrencyBalance balance={coinsBalance} currency={Currency.COINS} />
+        <CurrencyBalance balance={bucksBalance} currency={Currency.BUCKS} />
+        <CurrencyBalance balance={medalsBalance} currency={Currency.MEDALS} />
       </View>
       {options.title && (
         <View style={styles.bottomContainer}>

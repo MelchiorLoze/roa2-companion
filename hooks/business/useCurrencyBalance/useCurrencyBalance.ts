@@ -2,7 +2,7 @@ import { useGetInventoryItems } from '@/hooks/data';
 import { CurrencyId, InventoryItem } from '@/types/store';
 
 const getCurrencyBalance = (currencyId: CurrencyId, items: InventoryItem[]) => {
-  return items?.find((item) => item.id === currencyId)?.amount;
+  return items?.find((item) => item.id === currencyId)?.amount ?? 0;
 };
 
 export const useCurrencyBalance = () => {
@@ -10,6 +10,7 @@ export const useCurrencyBalance = () => {
 
   const coinsBalance = getCurrencyBalance(CurrencyId.COINS, inventoryItems);
   const bucksBalance = getCurrencyBalance(CurrencyId.BUCKS, inventoryItems);
+  const medalsBalance = getCurrencyBalance(CurrencyId.MEDALS, inventoryItems);
 
-  return { coinsBalance, bucksBalance, isLoading, isError };
+  return { coinsBalance, bucksBalance, medalsBalance, isLoading, isError };
 };

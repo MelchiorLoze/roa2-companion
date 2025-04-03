@@ -2,8 +2,7 @@ import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { BucksIcon, CoinsIcon } from '@/assets/images';
-import { Currency } from '@/types/store';
+import { Currency, CURRENCY_ICONS } from '@/types/store';
 
 type Props = {
   balance: number;
@@ -11,13 +10,11 @@ type Props = {
 };
 
 export const CurrencyBalance = ({ balance, currency }: Props) => {
-  const leadingZeros = '0'.repeat(10 - balance.toString().length);
-
-  const iconSrc = currency === Currency.COINS ? CoinsIcon : BucksIcon;
+  const leadingZeros = '0'.repeat(8 - balance.toString().length);
 
   return (
     <View style={styles.container}>
-      <Image contentFit="contain" source={iconSrc} style={styles.icon} />
+      <Image contentFit="contain" source={CURRENCY_ICONS[currency]} style={styles.icon} />
       <Text style={styles.label}>
         <Text style={styles.leadingZeros}>{leadingZeros}</Text>
         {balance}
