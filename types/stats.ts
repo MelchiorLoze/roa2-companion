@@ -15,7 +15,7 @@ export enum StatisticName {
   KRA_MATCH_COUNT = 'Kra Match Count', // Total number of games played with Kragg
   LOX_MATCH_COUNT = 'Lox Match Count', // Total number of games played with Loxodont
   MAY_MATCH_COUNT = 'May Match Count', // Total number of games played with Maypul
-  // OLY_MATCH_COUNT = 'Oly Match Count', // Total number of games played with Olympia
+  OLY_MATCH_COUNT = 'Oly Match Count', // Total number of games played with Olympia
   ORC_MATCH_COUNT = 'Orc Match Count', // Total number of games played with Orcane
   RAN_MATCH_COUNT = 'Ran Match Count', // Total number of games played with Ranno
   WRA_MATCH_COUNT = 'Wra Match Count', // Total number of games played with Wrastor
