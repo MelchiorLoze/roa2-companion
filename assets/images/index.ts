@@ -16,6 +16,8 @@ export const GoldIcon = require('./rank/gold.png');
 export const PlatinumIcon = require('./rank/platinum.png');
 export const DiamondIcon = require('./rank/diamond.png');
 export const MasterIcon = require('./rank/master.png');
+export const GrandmasterIcon = require('./rank/grandmaster.png');
+export const AethereanIcon = require('./rank/aetherean.png');
 
 // CHARACTERS
 export const ClairenIcon = require('./character/clairen.png');

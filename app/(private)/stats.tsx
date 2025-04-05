@@ -4,7 +4,17 @@ import { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { BronzeIcon, DiamondIcon, GoldIcon, MasterIcon, PlatinumIcon, SilverIcon, StoneIcon } from '@/assets/images';
+import {
+  AethereanIcon,
+  BronzeIcon,
+  DiamondIcon,
+  GoldIcon,
+  GrandmasterIcon,
+  MasterIcon,
+  PlatinumIcon,
+  SilverIcon,
+  StoneIcon,
+} from '@/assets/images';
 import { Spinner } from '@/components';
 import { usePlayerStats } from '@/hooks/business';
 import { CHARACTER_ICONS } from '@/types/character';
@@ -16,7 +26,9 @@ const getRankIcon = (elo: number) => {
   if (elo < 1100) return GoldIcon;
   if (elo < 1300) return PlatinumIcon;
   if (elo < 1500) return DiamondIcon;
-  return MasterIcon;
+  if (elo < 1700) return MasterIcon;
+  if (elo < 1800) return GrandmasterIcon;
+  return AethereanIcon; // TODO: must be > 1800 elo and top 100
 };
 
 type SectionProps = { title?: string } & PropsWithChildren;
