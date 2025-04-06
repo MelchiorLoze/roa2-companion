@@ -56,6 +56,7 @@ export default function Stats() {
     >
       <Section title="Ranked">
         <View style={styles.labelWithIconContainer}>
+          <Text style={styles.label}>#{stats.rankedPosition} -</Text>
           <Image contentFit="contain" source={getRankIcon(stats.rankedElo)} style={styles.icon} />
           <Text style={styles.label}>{stats.rankedElo}</Text>
         </View>
