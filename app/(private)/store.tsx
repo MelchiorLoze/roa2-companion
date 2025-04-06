@@ -16,8 +16,6 @@ export default function Store() {
   const { items, expirationDate, isLoading: isCoinShopLoading } = useRotatingCoinShop();
   const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
 
-  useFocusEffect(useCallback(() => setSelectedItem(null), []));
-
   const handlePurchase = () => {
     if (!selectedItem?.coinPrice) return;
     purchase({
@@ -27,7 +25,13 @@ export default function Store() {
     closeDialog();
   };
 
+  const openDialog = (item: Item) => {
+    if (item.coinPrice) setSelectedItem(item);
+  };
+
   const closeDialog = () => setSelectedItem(null);
+
+  useFocusEffect(useCallback(closeDialog, []));
 
   if (isCoinShopLoading || isPurchaseLoading) return <Spinner />;
 
@@ -38,11 +42,11 @@ export default function Store() {
           <Text style={styles.title}>Items refresh in:</Text>
           <Countdown date={expirationDate} style={styles.title} />
         </LinearGradient>
-        <ItemList items={items} onSelect={setSelectedItem} />
+        <ItemList items={items} onSelect={openDialog} />
       </View>
       {selectedItem && (
         <>
-          <Pressable onPress={closeDialog} style={styles.overlay} />
+          <Pressable onPress={closeDialog} style={styles.overlay} testID="overlay" />
           <View style={styles.confirmationDialog}>
             <Text style={styles.title}>
               Are you sure you want to buy the {selectedItem.category} {selectedItem.title} for {selectedItem.coinPrice}
