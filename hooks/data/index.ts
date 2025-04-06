@@ -5,3 +5,4 @@ export { useGetPlayerStatistics } from './useGetPlayerStatistics/useGetPlayerSta
 export { useGetUserReadOnlyData } from './useGetUserReadOnlyData/useGetUserReadOnlyData';
 export { useLoginWithEmail } from './useLoginWithEmail/useLoginWithEmail';
 export { useGetMyRotationalCoinStore } from './useMyRotationalCoinStore/useGetMyRotationalCoinStore';
+export { usePurchaseInventoryItems } from './usePurchaseInventoryItems/usePurchaseInventoryItems';

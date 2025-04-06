@@ -6,7 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button, Countdown, ItemList, Spinner } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
-import { usePurchaseInventoryItems } from '@/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
+import { usePurchaseInventoryItems } from '@/hooks/data';
 import { CurrencyId, Item } from '@/types/store';
 
 export default function Store() {

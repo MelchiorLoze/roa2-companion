@@ -5,7 +5,7 @@ import { CurrencyId } from '@/types/store';
 
 import { useCurrencyBalance } from './useCurrencyBalance';
 
-jest.mock('@/hooks/data/useGetInventoryItems/useGetInventoryItems');
+jest.mock('@/hooks/data');
 const useGetInventoryItemsMock = jest.mocked(useGetInventoryItems);
 
 describe('useCurrencyBalance', () => {
