@@ -4,32 +4,10 @@ import { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import {
-  AethereanIcon,
-  BronzeIcon,
-  DiamondIcon,
-  GoldIcon,
-  GrandmasterIcon,
-  MasterIcon,
-  PlatinumIcon,
-  SilverIcon,
-  StoneIcon,
-} from '@/assets/images';
 import { Spinner } from '@/components';
 import { useUserStats } from '@/hooks/business';
 import { CHARACTER_ICONS } from '@/types/character';
-
-const getRankIcon = (elo: number) => {
-  if (elo < 500) return StoneIcon;
-  if (elo < 700) return BronzeIcon;
-  if (elo < 900) return SilverIcon;
-  if (elo < 1100) return GoldIcon;
-  if (elo < 1300) return PlatinumIcon;
-  if (elo < 1500) return DiamondIcon;
-  if (elo < 1700) return MasterIcon;
-  if (elo < 1800) return GrandmasterIcon;
-  return AethereanIcon; // TODO: must be > 1800 elo and top 100
-};
+import { Rank, RANK_ICONS } from '@/types/stats';
 
 type SectionProps = { title?: string } & PropsWithChildren;
 
@@ -37,7 +15,7 @@ const Section = ({ title, children }: SectionProps) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient colors={theme.color.labelGradient(true)} end={[1, 0]} start={[0, 0]} style={styles.section}>
+    <LinearGradient colors={theme.color.statsGradient} end={[1, 0]} start={[1 / 3, 0]} style={styles.section}>
       {title && <Text style={styles.sectionTitle}>{title}</Text>}
       <View style={styles.sectionContent}>{children}</View>
     </LinearGradient>
@@ -57,8 +35,8 @@ export default function Stats() {
       <Section title="Ranked">
         <View style={styles.labelWithIconContainer}>
           <Text style={styles.label}>#{stats.rankedPosition} -</Text>
-          <Image contentFit="contain" source={getRankIcon(stats.rankedElo)} style={styles.icon} />
-          <Text style={styles.label}>{stats.rankedElo}</Text>
+          <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
+          <Text style={[styles.label, styles.eloLabel(stats.rank)]}>{stats.rankedElo}</Text>
         </View>
         <Text style={styles.label}>{stats.rankedSetCount} sets</Text>
         <Text style={styles.label}>
@@ -122,6 +100,9 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
+  eloLabel: (rank: Rank) => ({
+    color: theme.color[rank],
+  }),
   icon: {
     width: 24,
     height: 24,

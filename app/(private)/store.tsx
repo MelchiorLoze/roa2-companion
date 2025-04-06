@@ -38,7 +38,7 @@ export default function Store() {
   return (
     <>
       <View style={styles.container}>
-        <LinearGradient colors={theme.color.labelGradient()} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
+        <LinearGradient colors={theme.color.labelGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
           <Text style={styles.title}>Items refresh in:</Text>
           <Countdown date={expirationDate} style={styles.title} />
         </LinearGradient>

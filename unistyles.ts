@@ -17,12 +17,22 @@ const theme = {
     rare: '#447CF1',
     epic: '#C161E5',
     legendary: '#EFDB77',
+    // Rank colors
+    stone: 'white',
+    bronze: 'white',
+    silver: 'white',
+    gold: '#FFC64E',
+    platinum: 'white',
+    diamond: '#95DFEC',
+    master: '#9CE7AC',
+    grandmaster: '#FC7575',
+    aetherean: '#BD7CC5',
     // Gradients
-    labelGradient: (reversed?: boolean): [string, string] =>
-      reversed ? ['black', 'transparent'] : ['transparent', 'black'],
+    labelGradient: ['transparent', 'black'] as [string, string],
     cardGradient: (pressed?: boolean): [string, string] => (pressed ? ['#F2CF6C', '#CD8944'] : ['#161049', '#0D071D']),
     borderGradient: (pressed?: boolean): [string, string] =>
       pressed ? ['#CD8944', '#F2CF6C'] : ['#CACEFF', '#6B76DC'],
+    statsGradient: ['#4B7AB8', 'transparent'] as [string, string],
   },
   spacing: {
     none: 0,

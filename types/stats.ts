@@ -1,3 +1,15 @@
+import {
+  AethereanIcon,
+  BronzeIcon,
+  DiamondIcon,
+  GoldIcon,
+  GrandmasterIcon,
+  MasterIcon,
+  PlatinumIcon,
+  SilverIcon,
+  StoneIcon,
+} from '@/assets/images';
+
 import { Character } from './character';
 
 export enum StatisticName {
@@ -33,6 +45,30 @@ export enum StatisticName {
 
   RANDOM_MATCH_COUNT = 'Random Match Count',
 }
+
+export enum Rank {
+  STONE = 'stone',
+  BRONZE = 'bronze',
+  SILVER = 'silver',
+  GOLD = 'gold',
+  PLATINUM = 'platinum',
+  DIAMOND = 'diamond',
+  MASTER = 'master',
+  GRANDMASTER = 'grandmaster',
+  AETHEREAN = 'aetherean',
+}
+
+export const RANK_ICONS: Record<Rank, any> = {
+  [Rank.STONE]: StoneIcon,
+  [Rank.BRONZE]: BronzeIcon,
+  [Rank.SILVER]: SilverIcon,
+  [Rank.GOLD]: GoldIcon,
+  [Rank.PLATINUM]: PlatinumIcon,
+  [Rank.DIAMOND]: DiamondIcon,
+  [Rank.MASTER]: MasterIcon,
+  [Rank.GRANDMASTER]: GrandmasterIcon,
+  [Rank.AETHEREAN]: AethereanIcon,
+};
 
 export type PlayerPosition = {
   displayName: string;
