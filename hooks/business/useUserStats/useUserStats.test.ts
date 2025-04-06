@@ -159,6 +159,7 @@ describe('useUserStats', () => {
 
   it('should compute stats correctly from player statistics', () => {
     const mockStatistics: Partial<UserStats> = {
+      [StatisticName.RANKED_S2_ELO]: 915,
       [StatisticName.RANKED_S2_SETS]: 100,
       [StatisticName.RANKED_S2_WINS]: 60,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 200,
@@ -167,7 +168,7 @@ describe('useUserStats', () => {
 
     const expectedStats = {
       rankedPosition: 4404,
-      rankedElo: 916,
+      rankedElo: 915,
       rankedSetCount: 100,
       rankedWinCount: 60,
       rankedWinRate: 60,

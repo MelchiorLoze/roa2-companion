@@ -19,7 +19,7 @@ const computeStats = (statistics: UserStats, userPosition: PlayerPosition, userR
 
   return {
     rankedPosition: userPosition.position,
-    rankedElo: userPosition.statisticValue,
+    rankedElo: statistics[StatisticName.RANKED_S2_ELO],
     rankedSetCount,
     rankedWinCount,
     rankedWinRate,
