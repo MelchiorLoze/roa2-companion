@@ -1,8 +1,8 @@
 import { useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { CharacterStat, PlayerStats, StatisticName, UserData } from '@/types/stats';
+import { CharacterStat, StatisticName, UserData, UserStats } from '@/types/stats';
 
-const computeStats = (statistics: PlayerStats, userReadOnlyData: UserData) => {
+const computeStats = (statistics: UserStats, userReadOnlyData: UserData) => {
   const rankedSetCount = statistics[StatisticName.RANKED_S2_SETS];
   const rankedWinCount = statistics[StatisticName.RANKED_S2_WINS];
   const rankedWinRate = rankedSetCount ? (rankedWinCount / rankedSetCount) * 100 : 0;
@@ -31,7 +31,7 @@ const computeStats = (statistics: PlayerStats, userReadOnlyData: UserData) => {
   };
 };
 
-export const usePlayerStats = () => {
+export const useUserStats = () => {
   const { statistics, refetch: refetchStatistics, isLoading: isStatisticsLoading } = useGetPlayerStatistics();
   const { userData, refetch: refetchUserData, isLoading: isUserDataLoading } = useGetUserReadOnlyData();
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useHttpClient } from '@/hooks/core';
-import { PlayerStats, StatisticName } from '@/types/stats';
+import { StatisticName, UserStats } from '@/types/stats';
 
 type GetPlayerStatisticsResponse = {
   Statistics: {
@@ -20,7 +20,7 @@ export const useGetPlayerStatistics = () => {
       data.Statistics.reduce((acc, { StatisticName, Value }) => {
         acc[StatisticName] = Value;
         return acc;
-      }, {} as PlayerStats),
+      }, {} as UserStats),
     staleTime: Infinity,
     gcTime: Infinity,
   });

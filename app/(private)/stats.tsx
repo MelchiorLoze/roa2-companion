@@ -16,7 +16,7 @@ import {
   StoneIcon,
 } from '@/assets/images';
 import { Spinner } from '@/components';
-import { usePlayerStats } from '@/hooks/business';
+import { useUserStats } from '@/hooks/business';
 import { CHARACTER_ICONS } from '@/types/character';
 
 const getRankIcon = (elo: number) => {
@@ -45,7 +45,7 @@ const Section = ({ title, children }: SectionProps) => {
 };
 
 export default function Stats() {
-  const { stats, refresh, isLoading } = usePlayerStats();
+  const { stats, refresh, isLoading } = useUserStats();
 
   if (!stats || isLoading) return <Spinner />;
 

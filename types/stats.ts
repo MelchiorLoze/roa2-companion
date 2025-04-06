@@ -9,7 +9,7 @@ export enum StatisticName {
   RANKED_S1_SETS = 'Ranked_SeasonMatches',
   RANKED_S1_WINS = 'Ranked_SeasonWins',
 
-  RANKED_S2_ELO = 'Ranked_SeasonElo_2',
+  RANKED_S2_ELO = 'Ranked_SeasonEloPure_2',
   RANKED_S2_SETS = 'Ranked_Matches',
   RANKED_S2_WINS = 'Ranked_Wins',
 
@@ -34,7 +34,7 @@ export enum StatisticName {
   RANDOM_MATCH_COUNT = 'Random Match Count',
 }
 
-export type PlayerStats = Record<StatisticName, number>;
+export type UserStats = Record<StatisticName, number>;
 
 export type UserData = { characterData: Record<Character, { lvl: number }> };
 
