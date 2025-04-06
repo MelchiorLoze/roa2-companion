@@ -4,25 +4,15 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
-import { Item, Rarity } from '@/types/store';
+import { CoinsIcon } from '@/assets/images';
+import { Item, Rarity, RARITY_ICONS } from '@/types/store';
 
 import { OutlinedText } from '../OutlinedText/OutlinedText';
-
-const rarityIcons = {
-  [Rarity.COMMON]: CommonIcon,
-  [Rarity.RARE]: RareIcon,
-  [Rarity.EPIC]: EpicIcon,
-  [Rarity.LEGENDARY]: LegendaryIcon,
-};
 
 type Props = { item: Item; onPress: () => void };
 
 export const ItemCard = ({ item, onPress }: Props) => {
   const { theme } = useUnistyles();
-  styles.useVariants({
-    textColor: item.rarity,
-  });
 
   return (
     <Pressable onPress={onPress} role="button" style={styles.container}>
@@ -31,10 +21,14 @@ export const ItemCard = ({ item, onPress }: Props) => {
           <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
             <View style={styles.titleContainer}>
               <Text style={[styles.title, pressed && styles.textPressed]}>{item.title}</Text>
-              <Image contentFit="contain" source={rarityIcons[item.rarity]} style={styles.rarityIcon} />
+              <Image contentFit="contain" source={RARITY_ICONS[item.rarity]} style={styles.rarityIcon} />
             </View>
             <View style={styles.info}>
-              <OutlinedText color={styles.category.color} strokeWidth={2} text={item.category.toUpperCase()} />
+              <OutlinedText
+                color={styles.category(item.rarity).color}
+                strokeWidth={2}
+                text={item.category.toUpperCase()}
+              />
               {item.coinPrice && (
                 <View style={styles.priceContainer}>
                   <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
@@ -84,17 +78,9 @@ const styles = StyleSheet.create((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  category: {
-    variants: {
-      textColor: {
-        common: { color: theme.color.common },
-        rare: { color: theme.color.rare },
-        epic: { color: theme.color.epic },
-        legendary: { color: theme.color.legendary },
-        default: { color: theme.color.white },
-      },
-    },
-  },
+  category: (rarity: Rarity) => ({
+    color: theme.color[rarity],
+  }),
   priceContainer: {
     flexDirection: 'row',
     alignItems: 'center',

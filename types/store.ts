@@ -1,6 +1,8 @@
 import type { DateTime } from 'luxon';
 
-import { BucksIcon, CoinsIcon } from '@/assets/images';
+import { BucksIcon, CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
+
+// CURRENCIES
 
 export enum CurrencyId {
   COINS = 'b3f4a8f0-dd58-4e3f-ae0a-7a17418fc903',
@@ -20,6 +22,8 @@ export const CURRENCY_ICONS: Record<Currency, any> = {
   [Currency.MEDALS]: BucksIcon,
 };
 
+// RARITIES
+
 export enum RarityValue {
   COMMON = 1,
   RARE = 2,
@@ -34,12 +38,16 @@ export enum Rarity {
   LEGENDARY = 'legendary',
 }
 
-export type Category = 'deatheffect' | 'emote' | 'icon' | 'palette' | 'platform' | 'skin' | 'stageskin' | 'taunt';
-
-export type RotationalCoinStore = {
-  expirationDate: DateTime;
-  itemIds: Item['id'][];
+export const RARITY_ICONS: Record<Rarity, any> = {
+  [Rarity.COMMON]: CommonIcon,
+  [Rarity.RARE]: RareIcon,
+  [Rarity.EPIC]: EpicIcon,
+  [Rarity.LEGENDARY]: LegendaryIcon,
 };
+
+// ITEMS
+
+export type Category = 'deatheffect' | 'emote' | 'icon' | 'palette' | 'platform' | 'skin' | 'stageskin' | 'taunt';
 
 export type ItemDto = {
   Id: string;
@@ -70,4 +78,9 @@ export type Item = {
 export type InventoryItem = {
   id: Item['id'];
   amount: number;
+};
+
+export type RotationalCoinStore = {
+  expirationDate: DateTime;
+  itemIds: Item['id'][];
 };
