@@ -1,15 +1,25 @@
 import { renderHook } from '@testing-library/react-native';
 import { act } from 'react';
 
-import { useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
+import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { StatisticName, UserData, UserStats } from '@/types/stats';
+import { PlayerPosition, StatisticName, UserData, UserStats } from '@/types/stats';
 
 import { useUserStats } from './useUserStats';
 
 jest.mock('@/hooks/data');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
+const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPlayer);
 const useGetUserReadOnlyDataMock = jest.mocked(useGetUserReadOnlyData);
+
+const mockedPlayerPositions: PlayerPosition[] = [
+  {
+    displayName: 'Player1',
+    statisticName: StatisticName.RANKED_S2_ELO,
+    statisticValue: 916,
+    position: 4404,
+  },
+];
 
 const characters = Object.values(Character);
 
@@ -20,10 +30,27 @@ const mockUserData: UserData = {
   }, {} as UserData['characterData']),
 };
 
+const renderUseUserStats = () => {
+  const { result } = renderHook(useUserStats);
+
+  expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
+  expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledTimes(1);
+  expect(useGetUserReadOnlyDataMock).toHaveBeenCalledTimes(1);
+
+  return { result };
+};
+
 describe('useUserStats', () => {
   beforeEach(() => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {} as UserStats,
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      playerPositions: mockedPlayerPositions,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -37,6 +64,12 @@ describe('useUserStats', () => {
     });
   });
 
+  afterEach(() => {
+    useGetPlayerStatisticsMock.mockClear();
+    useGetLeaderboardAroundPlayerMock.mockClear();
+    useGetUserReadOnlyDataMock.mockClear();
+  });
+
   it('should return loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {} as UserStats,
@@ -45,7 +78,22 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.stats).toBeUndefined();
+    expect(typeof result.current.refresh).toBe('function');
+  });
+
+  it('should return loading state when player positions are loading', () => {
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      playerPositions: [],
+      refetch: jest.fn(),
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.stats).toBeUndefined();
@@ -60,7 +108,7 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.stats).toBeUndefined();
@@ -75,7 +123,21 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.stats).toBeUndefined();
+  });
+
+  it('should return nothing when player positions are not present', () => {
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      playerPositions: [],
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
+    const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
@@ -89,7 +151,7 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
@@ -97,7 +159,6 @@ describe('useUserStats', () => {
 
   it('should compute stats correctly from player statistics', () => {
     const mockStatistics: Partial<UserStats> = {
-      [StatisticName.RANKED_S2_ELO]: 1500,
       [StatisticName.RANKED_S2_SETS]: 100,
       [StatisticName.RANKED_S2_WINS]: 60,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 200,
@@ -105,7 +166,8 @@ describe('useUserStats', () => {
     };
 
     const expectedStats = {
-      rankedElo: 1500,
+      rankedPosition: 4404,
+      rankedElo: 916,
       rankedSetCount: 100,
       rankedWinCount: 60,
       rankedWinRate: 60,
@@ -121,7 +183,7 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toMatchObject(expectedStats);
@@ -142,7 +204,7 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
     expect(result.current.stats?.rankedWinRate).toBe(0);
     expect(result.current.stats?.globalWinRate).toBe(0);
@@ -150,11 +212,19 @@ describe('useUserStats', () => {
 
   it('should pass through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
+    const mockRefetchPlayerPositions = jest.fn();
     const mockRefetchUserData = jest.fn();
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: undefined,
       refetch: mockRefetchStatistics,
+      isLoading: false,
+      isError: false,
+    });
+
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      playerPositions: mockedPlayerPositions,
+      refetch: mockRefetchPlayerPositions,
       isLoading: false,
       isError: false,
     });
@@ -166,13 +236,12 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
-    await act(async () => {
-      result.current.refresh();
-    });
+    await act(async () => result.current.refresh());
 
     expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
+    expect(mockRefetchPlayerPositions).toHaveBeenCalledTimes(1);
     expect(mockRefetchUserData).toHaveBeenCalledTimes(1);
   });
 
@@ -190,7 +259,7 @@ describe('useUserStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserStats);
+    const { result } = renderUseUserStats();
 
     expect(result.current.stats?.characterStats.length).toBe(characters.length);
     characters.forEach((character, index) => {

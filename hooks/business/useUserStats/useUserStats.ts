@@ -1,8 +1,8 @@
-import { useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
+import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { CharacterStat, StatisticName, UserData, UserStats } from '@/types/stats';
+import { CharacterStat, PlayerPosition, StatisticName, UserData, UserStats } from '@/types/stats';
 
-const computeStats = (statistics: UserStats, userReadOnlyData: UserData) => {
+const computeStats = (statistics: UserStats, userPosition: PlayerPosition, userReadOnlyData: UserData) => {
   const rankedSetCount = statistics[StatisticName.RANKED_S2_SETS];
   const rankedWinCount = statistics[StatisticName.RANKED_S2_WINS];
   const rankedWinRate = rankedSetCount ? (rankedWinCount / rankedSetCount) * 100 : 0;
@@ -18,7 +18,8 @@ const computeStats = (statistics: UserStats, userReadOnlyData: UserData) => {
   }));
 
   return {
-    rankedElo: statistics[StatisticName.RANKED_S2_ELO],
+    rankedPosition: userPosition.position,
+    rankedElo: userPosition.statisticValue,
     rankedSetCount,
     rankedWinCount,
     rankedWinRate,
@@ -33,16 +34,25 @@ const computeStats = (statistics: UserStats, userReadOnlyData: UserData) => {
 
 export const useUserStats = () => {
   const { statistics, refetch: refetchStatistics, isLoading: isStatisticsLoading } = useGetPlayerStatistics();
+  const {
+    playerPositions: [userRankedPosition],
+    refetch: refetchPlayerPositions,
+    isLoading: isPlayerPositionLoading,
+  } = useGetLeaderboardAroundPlayer({ maxResultCount: 1, statisticName: StatisticName.RANKED_S2_ELO });
   const { userData, refetch: refetchUserData, isLoading: isUserDataLoading } = useGetUserReadOnlyData();
 
   const refresh = () => {
     void refetchStatistics();
+    void refetchPlayerPositions();
     void refetchUserData();
   };
 
-  const isLoading = isStatisticsLoading || isUserDataLoading;
+  const isLoading = isStatisticsLoading || isPlayerPositionLoading || isUserDataLoading;
 
-  const stats = statistics && userData && !isLoading ? computeStats(statistics, userData) : undefined;
+  const stats =
+    statistics && userRankedPosition && userData && !isLoading
+      ? computeStats(statistics, userRankedPosition, userData)
+      : undefined;
 
   return { stats, refresh, isLoading };
 };
