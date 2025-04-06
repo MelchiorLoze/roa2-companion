@@ -67,6 +67,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     });
 
     expect(result.current.playerPositions[0].statisticName).toBe(StatisticName.RANKED_S2_WINS);
+    expect(result.current.isError).toBe(false);
   });
 
   it('should handle API error', async () => {
@@ -109,6 +110,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 2,
       },
     ]);
+    expect(result.current.isError).toBe(false);
   });
 
   it('should return empty array when response has no leaderboard', async () => {

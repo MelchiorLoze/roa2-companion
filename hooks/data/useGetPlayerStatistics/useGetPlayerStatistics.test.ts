@@ -54,4 +54,41 @@ describe('useGetPlayerStatistics', () => {
     });
     expect(result.current.isError).toBe(false);
   });
+
+  it('should refetch the data', async () => {
+    fetchMock.postOnce('*', {
+      data: {
+        Statistics: [
+          { StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 },
+          { StatisticName: StatisticName.RANKED_S1_SETS, Value: 708 },
+        ],
+      },
+    });
+
+    const { result } = await renderUseGetPlayerStatistics();
+
+    expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_S1_ELO]: 932,
+      [StatisticName.RANKED_S1_SETS]: 708,
+    });
+
+    fetchMock.postOnce('*', {
+      data: {
+        Statistics: [
+          { StatisticName: StatisticName.RANKED_S1_ELO, Value: 1000 },
+          { StatisticName: StatisticName.RANKED_S1_SETS, Value: 800 },
+        ],
+      },
+    });
+
+    result.current.refetch();
+
+    await waitFor(() =>
+      expect(result.current.statistics).toEqual({
+        [StatisticName.RANKED_S1_ELO]: 1000,
+        [StatisticName.RANKED_S1_SETS]: 800,
+      }),
+    );
+    expect(result.current.isError).toBe(false);
+  });
 });

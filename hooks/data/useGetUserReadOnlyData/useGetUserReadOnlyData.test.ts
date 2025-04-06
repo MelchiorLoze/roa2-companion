@@ -55,4 +55,44 @@ describe('useGetUserReadOnlyData', () => {
     });
     expect(result.current.isError).toBe(false);
   });
+
+  it('should refetch the data', async () => {
+    fetchMock.postOnce('*', {
+      data: {
+        Data: {
+          character_data: { Value: '{"Cla":{"lvl":40}, "Ran":{"lvl":213}}' },
+        },
+      },
+    });
+
+    const { result } = await renderUseGetUserReadOnlyData();
+
+    expect(result.current.userData).toEqual({
+      characterData: {
+        [Character.CLAIREN]: { lvl: 40 },
+        [Character.RANNO]: { lvl: 213 },
+      },
+    });
+
+    fetchMock.postOnce('*', {
+      data: {
+        Data: {
+          character_data: { Value: '{"Cla":{"lvl":42}, "Ran":{"lvl":227}, "Kra":{"lvl":40}}' },
+        },
+      },
+    });
+
+    result.current.refetch();
+
+    await waitFor(() =>
+      expect(result.current.userData).toEqual({
+        characterData: {
+          [Character.CLAIREN]: { lvl: 42 },
+          [Character.RANNO]: { lvl: 227 },
+          [Character.KRAGG]: { lvl: 40 },
+        },
+      }),
+    );
+    expect(result.current.isError).toBe(false);
+  });
 });
