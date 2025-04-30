@@ -87,8 +87,8 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.xs,
   },
   currencyIcon: {
-    width: 16,
-    height: 16,
+    width: 20,
+    height: 20,
   },
   price: {
     fontFamily: theme.font.secondary.bold,

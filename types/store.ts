@@ -1,6 +1,6 @@
 import type { DateTime } from 'luxon';
 
-import { BucksIcon, CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images';
+import { BucksIcon, CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, MedalsIcon, RareIcon } from '@/assets/images';
 
 // CURRENCIES
 
@@ -19,7 +19,7 @@ export enum Currency {
 export const CURRENCY_ICONS: Record<Currency, any> = {
   [Currency.COINS]: CoinsIcon,
   [Currency.BUCKS]: BucksIcon,
-  [Currency.MEDALS]: BucksIcon,
+  [Currency.MEDALS]: MedalsIcon,
 };
 
 // RARITIES
