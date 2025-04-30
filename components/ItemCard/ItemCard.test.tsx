@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 
-import { Item, Rarity } from '@/types/store';
+import { Category, Item, Rarity } from '@/types/store';
 
 import { ItemCard } from './ItemCard';
 
@@ -8,7 +8,7 @@ const item: Item = {
   id: '1',
   title: 'Item Title',
   rarity: Rarity.COMMON,
-  category: 'icon',
+  category: Category.DEATHEFFECT,
   coinPrice: 20,
   buckPrice: 2000,
 };
@@ -35,7 +35,7 @@ describe('ItemCard', () => {
     renderComponent(item);
 
     screen.getByText(item.title);
-    // screen.getByText(item.category.toUpperCase()); // TODO: fix react-native-skia setup in tests
+    // screen.getByText(CATEGORY_LABELS[item.category]); // TODO: fix react-native-skia setup in tests
     screen.getByText(item.coinPrice!.toString());
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
@@ -44,7 +44,7 @@ describe('ItemCard', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
     screen.getByText(item.title);
-    // screen.getByText(item.category.toUpperCase()); // TODO: fix react-native-skia setup in tests
+    // screen.getByText(CATEGORY_LABELS[item.category]); // TODO: fix react-native-skia setup in tests
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 

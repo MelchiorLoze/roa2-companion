@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
-import { Item, Rarity } from '@/types/store';
+import { Category, Item, Rarity } from '@/types/store';
 
 import { useGetItems } from './useGetItems';
 
@@ -49,15 +49,15 @@ describe('useGetItems', () => {
     it('should return items', async () => {
       fetchMock.postOnce('*', {
         data: {
-          Items: [createItemDto('1', 'skin', 500), createItemDto('2', 'icon', 20)],
+          Items: [createItemDto('1', Category.SKIN, 500), createItemDto('2', Category.ICON, 20)],
         },
       });
 
       const { result } = await renderUseGetItems(['1', '2']);
 
       expect(result.current.items).toEqual([
-        { id: '1', title: 'Item 1', category: 'skin', rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
-        { id: '2', title: 'Item 2', category: 'icon', rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
+        { id: '1', title: 'Item 1', category: Category.SKIN, rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
+        { id: '2', title: 'Item 2', category: Category.ICON, rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
       ]);
       expect(result.current.isError).toBe(false);
     });

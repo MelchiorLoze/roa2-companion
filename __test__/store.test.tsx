@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import Store from '@/app/(private)/store';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data';
-import { CurrencyId, Item, Rarity } from '@/types/store';
+import { Category, CATEGORY_LABELS, CurrencyId, Item, Rarity } from '@/types/store';
 
 jest.mock('expo-router');
 
@@ -20,7 +20,7 @@ const items: Item[] = [
     id: '1',
     title: 'Item 1',
     rarity: Rarity.COMMON,
-    category: 'icon',
+    category: Category.ICON,
     coinPrice: 2000,
     buckPrice: 20,
   },
@@ -28,13 +28,13 @@ const items: Item[] = [
     id: '2',
     title: 'Item 2',
     rarity: Rarity.EPIC,
-    category: 'skin',
+    category: Category.DEATHEFFECT,
     buckPrice: 500,
   },
 ];
 
 const confirmationDialogTitle = (item: Item) =>
-  `Are you sure you want to buy the ${item.category} ${item.title} for ${item.coinPrice}?`;
+  `Are you sure you want to buy the ${CATEGORY_LABELS[item.category]} ${item.title} for ${item.coinPrice}?`;
 
 const renderComponent = () => {
   render(<Store />);

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react-native';
 
-import { Item, Rarity } from '@/types/store';
+import { Category, Item, Rarity } from '@/types/store';
 
 import { ItemList } from './ItemList';
 
@@ -9,7 +9,7 @@ const items: Item[] = [
     id: '1',
     title: 'Item 1',
     rarity: Rarity.COMMON,
-    category: 'icon',
+    category: Category.ICON,
     coinPrice: 2000,
     buckPrice: 20,
   },
@@ -17,7 +17,7 @@ const items: Item[] = [
     id: '2',
     title: 'Item 2',
     rarity: Rarity.EPIC,
-    category: 'skin',
+    category: Category.DEATHEFFECT,
     coinPrice: 50000,
     buckPrice: 500,
   },

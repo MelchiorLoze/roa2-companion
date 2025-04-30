@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { CoinsIcon } from '@/assets/images';
-import { Item, Rarity, RARITY_ICONS } from '@/types/store';
+import { CATEGORY_LABELS, Item, Rarity, RARITY_ICONS } from '@/types/store';
 
 import { OutlinedText } from '../OutlinedText/OutlinedText';
 
@@ -27,7 +27,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
               <OutlinedText
                 color={styles.category(item.rarity).color}
                 strokeWidth={2}
-                text={item.category.toUpperCase()}
+                text={CATEGORY_LABELS[item.category]}
               />
               {item.coinPrice && (
                 <View style={styles.priceContainer}>

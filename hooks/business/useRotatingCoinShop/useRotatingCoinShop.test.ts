@@ -2,7 +2,7 @@ import { renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import { useGetItems, useGetMyRotationalCoinStore } from '@/hooks/data';
-import { Item, Rarity } from '@/types/store';
+import { Category, Item, Rarity } from '@/types/store';
 
 import { useRotatingCoinShop } from './useRotatingCoinShop';
 
@@ -88,17 +88,17 @@ describe('useRotatingCoinShop', () => {
 
   it('should return sorted items when data is loaded', () => {
     const mockItems: Item[] = [
-      { id: '1', title: 'Item B', coinPrice: 20, category: 'icon', rarity: Rarity.LEGENDARY },
-      { id: '2', title: 'Item A', coinPrice: 10, category: 'icon', rarity: Rarity.COMMON },
-      { id: '3', title: 'Item C', coinPrice: 10, category: 'deatheffect', rarity: Rarity.EPIC },
-      { id: '4', title: 'Item D', coinPrice: undefined, category: 'deatheffect', rarity: Rarity.RARE },
+      { id: '1', title: 'Item B', coinPrice: 20, category: Category.ICON, rarity: Rarity.LEGENDARY },
+      { id: '2', title: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },
+      { id: '3', title: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
+      { id: '4', title: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
     ];
 
     const expectedSortedItems: Item[] = [
-      { id: '4', title: 'Item D', coinPrice: undefined, category: 'deatheffect', rarity: Rarity.RARE },
-      { id: '3', title: 'Item C', coinPrice: 10, category: 'deatheffect', rarity: Rarity.EPIC },
-      { id: '2', title: 'Item A', coinPrice: 10, category: 'icon', rarity: Rarity.COMMON },
-      { id: '1', title: 'Item B', coinPrice: 20, category: 'icon', rarity: Rarity.LEGENDARY },
+      { id: '4', title: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
+      { id: '3', title: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
+      { id: '2', title: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },
+      { id: '1', title: 'Item B', coinPrice: 20, category: Category.ICON, rarity: Rarity.LEGENDARY },
     ];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({

@@ -47,7 +47,27 @@ export const RARITY_ICONS: Record<Rarity, any> = {
 
 // ITEMS
 
-export type Category = 'deatheffect' | 'emote' | 'icon' | 'palette' | 'platform' | 'skin' | 'stageskin' | 'taunt';
+export enum Category {
+  DEATHEFFECT = 'deatheffect',
+  EMOTE = 'emote',
+  ICON = 'icon',
+  PALETTE = 'palette',
+  PLATFORM = 'platform',
+  SKIN = 'skin',
+  STAGESKIN = 'stageskin',
+  TAUNT = 'taunt',
+}
+
+export const CATEGORY_LABELS: Record<Category, string> = {
+  [Category.DEATHEFFECT]: 'DEATH',
+  [Category.EMOTE]: 'EMOTE',
+  [Category.ICON]: 'ICON',
+  [Category.PALETTE]: 'PALETTE',
+  [Category.PLATFORM]: 'PLATFORM',
+  [Category.SKIN]: 'SKIN',
+  [Category.STAGESKIN]: 'STAGE SKIN',
+  [Category.TAUNT]: 'TAUNT',
+};
 
 export type ItemDto = {
   Id: string;

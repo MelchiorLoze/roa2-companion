@@ -7,7 +7,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { Button, Countdown, ItemList, Spinner } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data';
-import { CurrencyId, Item } from '@/types/store';
+import { CATEGORY_LABELS, CurrencyId, Item } from '@/types/store';
 
 export default function Store() {
   const { theme } = useUnistyles();
@@ -49,8 +49,8 @@ export default function Store() {
           <Pressable onPress={closeDialog} style={styles.overlay} testID="overlay" />
           <View style={styles.confirmationDialog}>
             <Text style={styles.title}>
-              Are you sure you want to buy the {selectedItem.category} {selectedItem.title} for {selectedItem.coinPrice}
-              ?
+              Are you sure you want to buy the {CATEGORY_LABELS[selectedItem.category]} {selectedItem.title} for{' '}
+              {selectedItem.coinPrice}?
             </Text>
             <View style={styles.buttonContainer}>
               <Button label="Yes" onPress={handlePurchase} />
