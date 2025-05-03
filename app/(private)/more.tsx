@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -31,7 +32,7 @@ const externalLinks: ExternalLink[] = [
   {
     label: 'Game Reddit',
     url: new URL('https://www.reddit.com/r/RivalsOfAether/'),
-    logo: new URL('https://www.reddit.com/favicon.ico'),
+    logo: new URL('https://www.redditstatic.com/shreddit/assets/favicon/64x64.png'),
   },
   {
     label: 'Game Discord',
@@ -47,6 +48,7 @@ const keyExtractor = (item: ExternalLink) => item.label;
 const renderItem: ListRenderItem<ExternalLink> = ({ item }) => <ActionRow {...item} iconName="arrow-outward" />;
 
 export default function More() {
+  const router = useRouter();
   const { logout } = useAuth();
 
   return (
@@ -58,6 +60,13 @@ export default function More() {
         renderItem={renderItem}
         style={styles.list}
       />
+
+      <View>
+        <Separator />
+        <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
+        <Separator />
+      </View>
+
       <View>
         <Separator />
         <ActionRow iconName="logout" label="Log out" onPress={logout} />

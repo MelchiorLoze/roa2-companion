@@ -6,7 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { Header } from '@/components';
 import { useAuth } from '@/hooks/business';
 
-const renderHeader = (props: BottomTabHeaderProps) => <Header {...props} />;
+const renderHeader = ({ options }: BottomTabHeaderProps) => <Header showCurrencies title={options.title} />;
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();

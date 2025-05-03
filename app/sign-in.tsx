@@ -1,4 +1,5 @@
-import { Redirect } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { Redirect, useRouter } from 'expo-router';
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -12,6 +13,7 @@ export default function SignIn() {
   const [isInvalid, setIsInvalid] = useState(false);
   const { login, isLoggedIn, isLoading, isError } = useAuth();
   const { theme } = useUnistyles();
+  const router = useRouter();
 
   if (isLoading) return <Spinner />;
 
@@ -27,30 +29,39 @@ export default function SignIn() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login with your ingame account</Text>
-      <TextInput
-        autoCapitalize="none"
-        autoComplete="email"
-        onChangeText={setEmail}
-        placeholder="EMAIL"
-        placeholderTextColor={theme.color.weak}
-        style={styles.input}
-        value={email}
+    <>
+      <Ionicons.Button
+        backgroundColor={theme.color.transparent}
+        iconStyle={styles.aboutButtonIcon}
+        name="information-circle-sharp"
+        onPress={() => router.navigate('/about')}
+        style={styles.aboutButton}
       />
-      <TextInput
-        autoCapitalize="none"
-        autoComplete="current-password"
-        onChangeText={setPassword}
-        placeholder="PASSWORD"
-        placeholderTextColor={theme.color.weak}
-        secureTextEntry
-        style={styles.input}
-        value={password}
-      />
-      {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
-      <Button label="Login" onPress={onSubmit} />
-    </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>Login with your ingame account</Text>
+        <TextInput
+          autoCapitalize="none"
+          autoComplete="email"
+          onChangeText={setEmail}
+          placeholder="EMAIL"
+          placeholderTextColor={theme.color.weak}
+          style={styles.input}
+          value={email}
+        />
+        <TextInput
+          autoCapitalize="none"
+          autoComplete="current-password"
+          onChangeText={setPassword}
+          placeholder="PASSWORD"
+          placeholderTextColor={theme.color.weak}
+          secureTextEntry
+          style={styles.input}
+          value={password}
+        />
+        {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
+        <Button label="Login" onPress={onSubmit} />
+      </View>
+    </>
   );
 }
 
@@ -62,6 +73,14 @@ const styles = StyleSheet.create((theme) => ({
     padding: theme.spacing.xl,
     gap: theme.spacing.l,
     backgroundColor: theme.color.background,
+  },
+  aboutButton: {
+    padding: theme.spacing.l,
+    alignSelf: 'flex-end',
+  },
+  aboutButtonIcon: {
+    fontSize: 32,
+    marginRight: 0,
   },
   title: {
     fontFamily: theme.font.primary.italic,
