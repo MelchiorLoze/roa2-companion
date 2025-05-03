@@ -1,7 +1,7 @@
 import { FlatList, ListRenderItem, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { ActionRow } from '@/components';
+import { ActionRow, Separator } from '@/components';
 import { useAuth } from '@/hooks/business';
 
 type ExternalLink = {
@@ -42,8 +42,6 @@ const externalLinks: ExternalLink[] = [
   },
 ];
 
-const Separator = () => <View style={styles.separator} />;
-
 const keyExtractor = (item: ExternalLink) => item.label;
 
 const renderItem: ListRenderItem<ExternalLink> = ({ item }) => <ActionRow {...item} iconName="arrow-outward" />;
@@ -78,9 +76,5 @@ const styles = StyleSheet.create((theme) => ({
     flexGrow: 0,
     borderBottomWidth: 1,
     borderColor: theme.color.border,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: theme.color.border,
   },
 }));
