@@ -18,9 +18,9 @@ const theme = {
     epic: '#C161E5',
     legendary: '#EFDB77',
     // Rank colors
-    stone: 'white',
+    stone: '#7F7A66',
     bronze: 'white',
-    silver: 'white',
+    silver: '#C8C8D5',
     gold: '#FFC64E',
     platinum: 'white',
     diamond: '#95DFEC',
