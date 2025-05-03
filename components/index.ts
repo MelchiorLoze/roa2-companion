@@ -1,6 +1,6 @@
 export { ActionRow } from './ActionRow/ActionRow';
 export { Button } from './Button/Button';
-export { Countdown } from './Countdown/Countdown';
 export { Header } from './Header/Header';
 export { ItemList } from './ItemList/ItemList';
 export { Spinner } from './Spinner/Spinner';
+export { TimeCountdown } from './TimeCountdown/TimeCountdown';

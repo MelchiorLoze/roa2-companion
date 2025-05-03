@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button, Countdown, ItemList, Spinner } from '@/components';
+import { Button, ItemList, Spinner, TimeCountdown } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data';
 import { CATEGORY_LABELS, CurrencyId, Item } from '@/types/store';
@@ -38,10 +38,12 @@ export default function Store() {
   return (
     <>
       <View style={styles.container}>
-        <LinearGradient colors={theme.color.labelGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
-          <Text style={styles.title}>Items refresh in:</Text>
-          <Countdown date={expirationDate} style={styles.title} />
-        </LinearGradient>
+        {expirationDate && (
+          <LinearGradient colors={theme.color.labelGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
+            <Text style={styles.title}>Items refresh in:</Text>
+            <TimeCountdown date={expirationDate} style={styles.title} />
+          </LinearGradient>
+        )}
         <ItemList items={items} onSelect={openDialog} />
       </View>
       {selectedItem && (
