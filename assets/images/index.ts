@@ -1,7 +1,7 @@
 // CURRENCIES
-export const CoinsIcon = require('./currency/coins.webp');
-export const BucksIcon = require('./currency/bucks.webp');
-export const MedalsIcon = require('./currency/medals.webp');
+export const CoinsIcon = require('./currency/coins.png');
+export const BucksIcon = require('./currency/bucks.png');
+export const MedalsIcon = require('./currency/medals.png');
 
 // RARITIES
 export const CommonIcon = require('./rarity/common.webp');

@@ -38,7 +38,7 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
   },
   icon: {
-    width: 24,
-    height: 24,
+    width: 20,
+    height: 20,
   },
 }));
