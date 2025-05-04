@@ -30,4 +30,36 @@ describe('Input', () => {
     expect(input.props.secureTextEntry).toBe(true);
     expect(input).toHaveDisplayValue('1_L0V3_R0CK5');
   });
+
+  it('displays error message when errorMessage prop is provided', () => {
+    render(
+      <Input
+        autoComplete="email"
+        errorMessage="Please provide a valid email"
+        onChange={jest.fn()}
+        placeholder="EMAIL"
+        value=""
+      />,
+    );
+
+    screen.getByText('Please provide a valid email');
+  });
+
+  it('displays contextual CTA when provided', () => {
+    const mockOnPress = jest.fn();
+    render(
+      <Input
+        autoComplete="email"
+        contextualCTA={{ label: 'Forgot your password?', onPress: mockOnPress }}
+        onChange={jest.fn()}
+        placeholder="EMAIL"
+        value=""
+      />,
+    );
+
+    const ctaButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(ctaButton);
+
+    expect(mockOnPress).toHaveBeenCalledTimes(1);
+  });
 });

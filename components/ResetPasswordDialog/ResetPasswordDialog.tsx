@@ -18,7 +18,7 @@ const Content = ({ email: propsEmail, onClose }: Props) => {
   const { sendRecoveryEmail, isLoading, isSuccess, isError } = useSendAccountRecoveryEmail();
 
   const onSubmit = () => {
-    if (!email) {
+    if (!email?.length) {
       setIsInvalid(true);
       return;
     }
@@ -45,8 +45,13 @@ const Content = ({ email: propsEmail, onClose }: Props) => {
       <Text style={styles.description}>
         After submitting, you will receive an email from Aether Studios allowing you to reset your password
       </Text>
-      <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
-      {(isInvalid || isError) && <Text style={styles.errorMessage}>Please provide a valid email</Text>}
+      <Input
+        autoComplete="email"
+        errorMessage={isInvalid || isError ? 'Please provide a valid email' : undefined}
+        onChange={setEmail}
+        placeholder="EMAIL"
+        value={email}
+      />
       <Button label="Reset password" onPress={onSubmit} />
     </>
   );
@@ -61,14 +66,9 @@ export const ResetPasswordDialog = ({ email, onClose }: Props) => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  errorMessage: {
-    fontFamily: theme.font.primary.regular,
-    fontSize: 14,
-    color: theme.color.error,
-  },
   description: {
     fontFamily: theme.font.primary.regular,
-    fontSize: 14,
+    fontSize: 16,
     color: theme.color.white,
   },
 }));

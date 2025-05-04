@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Redirect, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button, Input, ResetPasswordDialog, Spinner } from '@/components';
@@ -35,7 +35,7 @@ export default function SignIn() {
   };
 
   const onSubmit = () => {
-    if (!email || !password) {
+    if (!email?.length || !password?.length) {
       setIsInvalid(true);
       return;
     }
@@ -58,17 +58,16 @@ export default function SignIn() {
           <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
           <Input
             autoComplete="current-password"
+            contextualCTA={{
+              label: 'Forgot your password?',
+              onPress: onForgotPassword,
+            }}
+            errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
             hidden
             onChange={setPassword}
             placeholder="PASSWORD"
             value={password}
           />
-          <View style={styles.formFooter}>
-            {(isInvalid || isError) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
-            <Pressable onPress={onForgotPassword} role="button" style={styles.forgotPasswordButton}>
-              <Text style={styles.forgotPasswordButtonLabel}>Forgot your password?</Text>
-            </Pressable>
-          </View>
         </View>
         <Button label="Login" onPress={onSubmit} />
       </View>
@@ -105,29 +104,5 @@ const styles = StyleSheet.create((theme) => ({
   form: {
     width: '100%',
     gap: theme.spacing.l,
-  },
-  formFooter: {
-    marginTop: -theme.spacing.m,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    gap: theme.spacing.s,
-  },
-  errorMessage: {
-    fontFamily: theme.font.primary.regular,
-    fontSize: 14,
-    color: theme.color.error,
-  },
-  forgotPasswordButton: {
-    flex: 1,
-    padding: theme.spacing.xs,
-  },
-  forgotPasswordButtonLabel: {
-    fontFamily: theme.font.primary.italic,
-    fontSize: 14,
-    color: theme.color.border,
-    textAlign: 'right',
-    textDecorationLine: 'underline',
   },
 }));
