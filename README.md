@@ -33,4 +33,4 @@ App using the game's client API to provide useful information and tools for play
 
 _This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. All trademarks, registered trademarks, product names, and company names or logos mentioned herein are the property of their respective owners. This project was created solely as a community resource, for entertainment and educational purposes._
 
-_The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect or transmit any personal information or data from users._
+_The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect nor transmit any personal information or data from users to any third party. Everything stays exclusively between your device and the official game servers._

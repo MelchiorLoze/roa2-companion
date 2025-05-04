@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock';
 
 jest.mock('@expo/vector-icons', () => ({
-  Ionicons: { Button: '' },
+  Ionicons: '',
   MaterialIcons: '',
 }));
 

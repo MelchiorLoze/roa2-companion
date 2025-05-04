@@ -1,10 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
-import { Redirect, useRouter } from 'expo-router';
+import { Redirect } from 'expo-router';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { Button, Input, ResetPasswordDialog, Spinner } from '@/components';
+import { Disclaimer } from '@/components/Disclaimer/Disclaimer';
 import { useAuth } from '@/hooks/business';
 
 export default function SignIn() {
@@ -14,8 +14,6 @@ export default function SignIn() {
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
 
   const { login, isLoggedIn, isLoading, isError } = useAuth();
-  const { theme } = useUnistyles();
-  const router = useRouter();
 
   if (isLoading) return <Spinner />;
 
@@ -45,31 +43,27 @@ export default function SignIn() {
 
   return (
     <>
-      <Ionicons.Button
-        backgroundColor={theme.color.transparent}
-        iconStyle={styles.aboutButtonIcon}
-        name="information-circle-sharp"
-        onPress={() => router.navigate('/about')}
-        style={styles.aboutButton}
-      />
       <View style={styles.container}>
-        <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
-        <View style={styles.form}>
-          <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
-          <Input
-            autoComplete="current-password"
-            contextualCTA={{
-              label: 'Forgot your password?',
-              onPress: onForgotPassword,
-            }}
-            errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
-            hidden
-            onChange={setPassword}
-            placeholder="PASSWORD"
-            value={password}
-          />
+        <Disclaimer />
+        <View style={styles.signInContainer}>
+          <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
+          <View style={styles.form}>
+            <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
+            <Input
+              autoComplete="current-password"
+              contextualCTA={{
+                label: 'Forgot your password?',
+                onPress: onForgotPassword,
+              }}
+              errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
+              hidden
+              onChange={setPassword}
+              placeholder="PASSWORD"
+              value={password}
+            />
+          </View>
+          <Button label="Login" onPress={onSubmit} />
         </View>
-        <Button label="Login" onPress={onSubmit} />
       </View>
       {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
     </>
@@ -77,21 +71,16 @@ export default function SignIn() {
 }
 
 const styles = StyleSheet.create((theme) => ({
-  aboutButton: {
-    padding: theme.spacing.l,
-    alignSelf: 'flex-end',
-  },
-  aboutButtonIcon: {
-    fontSize: 32,
-    marginRight: 0,
-  },
   container: {
+    flex: 1,
+    padding: theme.spacing.l,
+    paddingVertical: theme.spacing.xl,
+  },
+  signInContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: theme.spacing.xl,
     gap: theme.spacing.xl,
-    backgroundColor: theme.color.background,
   },
   title: {
     width: '100%',
