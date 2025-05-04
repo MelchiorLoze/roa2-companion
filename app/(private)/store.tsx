@@ -1,10 +1,11 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button, ItemList, Spinner, TimeCountdown } from '@/components';
+import { Dialog } from '@/components/Dialog/Dialog';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data';
 import { CATEGORY_LABELS, CurrencyId, Item } from '@/types/store';
@@ -47,19 +48,16 @@ export default function Store() {
         <ItemList items={items} onSelect={openDialog} />
       </View>
       {selectedItem && (
-        <>
-          <Pressable onPress={closeDialog} style={styles.overlay} testID="overlay" />
-          <View style={styles.confirmationDialog}>
-            <Text style={styles.title}>
-              Are you sure you want to buy the {CATEGORY_LABELS[selectedItem.category]} {selectedItem.title} for{' '}
-              {selectedItem.coinPrice}?
-            </Text>
-            <View style={styles.buttonContainer}>
-              <Button label="Yes" onPress={handlePurchase} />
-              <Button label="No" onPress={closeDialog} />
-            </View>
+        <Dialog onClose={closeDialog}>
+          <Text style={styles.title}>
+            Are you sure you want to buy the {CATEGORY_LABELS[selectedItem.category]} {selectedItem.title} for{' '}
+            {selectedItem.coinPrice}?
+          </Text>
+          <View style={styles.buttonContainer}>
+            <Button label="Yes" onPress={handlePurchase} />
+            <Button label="No" onPress={closeDialog} />
           </View>
-        </>
+        </Dialog>
       )}
     </>
   );
@@ -85,26 +83,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  overlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: theme.color.dark + 'AA',
-  },
-  confirmationDialog: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
-    width: '75%',
-    padding: theme.spacing.l,
-    gap: theme.spacing.l,
-    borderWidth: 2,
-    borderColor: theme.color.accent,
-    backgroundColor: theme.color.background,
   },
   buttonContainer: {
     flexDirection: 'row',
