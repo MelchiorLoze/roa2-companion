@@ -17,7 +17,7 @@ export const usePurchaseInventoryItems = () => {
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (item: ItemToPurchase) =>
-      httpClient.post('/Inventory/PurchaseInventoryItems', {
+      httpClient.post<void>('/Inventory/PurchaseInventoryItems', {
         Amount: 1,
         DeleteEmptyStacks: false,
         Item: {

@@ -19,7 +19,7 @@ const invalidateGetMyRotationalCoinStoreSpy = jest.spyOn(
   'invalidateGetMyRotationalCoinStore',
 );
 
-const renderPurchaseInventoryItems = async () => {
+const renderUsePurchaseInventoryItems = async () => {
   const { result } = renderHook(usePurchaseInventoryItems, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
@@ -33,7 +33,7 @@ describe('usePurchaseInventoryItems', () => {
   });
 
   it('should return the mutation function when logged in', async () => {
-    const { result } = await renderPurchaseInventoryItems();
+    const { result } = await renderUsePurchaseInventoryItems();
 
     expect(result.current.purchase).toBeDefined();
     expect(result.current.isError).toBe(false);
@@ -50,7 +50,7 @@ describe('usePurchaseInventoryItems', () => {
     });
 
     it('should invalidate inventory and rotation cache when using coins', async () => {
-      const { result } = await renderPurchaseInventoryItems();
+      const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>
         result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
@@ -63,7 +63,7 @@ describe('usePurchaseInventoryItems', () => {
     });
 
     it('should invalidate inventory cache when using bucks', async () => {
-      const { result } = await renderPurchaseInventoryItems();
+      const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>
         result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.BUCKS } }),
@@ -84,7 +84,7 @@ describe('usePurchaseInventoryItems', () => {
     });
 
     it('should return an error', async () => {
-      const { result } = await renderPurchaseInventoryItems();
+      const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>
         result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
