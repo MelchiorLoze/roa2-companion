@@ -18,6 +18,8 @@ const defaultAuthState = {
   isError: false,
 };
 
+const screenTitle = 'Login to your ingame account';
+
 const renderComponent = () => {
   render(<SignIn />);
 
@@ -39,7 +41,7 @@ describe('SignIn', () => {
   it('renders correctly', () => {
     renderComponent();
 
-    screen.getByText('Login with your ingame account');
+    screen.getByText(screenTitle);
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     expect(emailInput).toHaveDisplayValue('');
@@ -59,7 +61,7 @@ describe('SignIn', () => {
     renderComponent();
 
     screen.getByAccessibilityHint('Loading...');
-    expect(screen.queryByText('Login with your ingame account')).toBeNull();
+    expect(screen.queryByText(screenTitle)).toBeNull();
   });
 
   it('redirects to store when already logged in', () => {
@@ -72,7 +74,7 @@ describe('SignIn', () => {
 
     expect(RedirectMock).toHaveBeenCalledTimes(1);
     expect(RedirectMock).toHaveBeenCalledWith({ href: '/store' }, {});
-    expect(screen.queryByText('Login with your ingame account')).toBeNull();
+    expect(screen.queryByText(screenTitle)).toBeNull();
   });
 
   it('shows an error message when submitting with empty email or password', () => {

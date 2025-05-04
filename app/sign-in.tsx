@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Redirect, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Pressable, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Button, Spinner } from '@/components';
@@ -38,27 +38,34 @@ export default function SignIn() {
         style={styles.aboutButton}
       />
       <View style={styles.container}>
-        <Text style={styles.title}>Login with your ingame account</Text>
-        <TextInput
-          autoCapitalize="none"
-          autoComplete="email"
-          onChangeText={setEmail}
-          placeholder="EMAIL"
-          placeholderTextColor={theme.color.weak}
-          style={styles.input}
-          value={email}
-        />
-        <TextInput
-          autoCapitalize="none"
-          autoComplete="current-password"
-          onChangeText={setPassword}
-          placeholder="PASSWORD"
-          placeholderTextColor={theme.color.weak}
-          secureTextEntry
-          style={styles.input}
-          value={password}
-        />
-        {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
+        <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
+        <View style={styles.form}>
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="email"
+            onChangeText={setEmail}
+            placeholder="EMAIL"
+            placeholderTextColor={theme.color.weak}
+            style={styles.input}
+            value={email}
+          />
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="current-password"
+            onChangeText={setPassword}
+            placeholder="PASSWORD"
+            placeholderTextColor={theme.color.weak}
+            secureTextEntry
+            style={styles.input}
+            value={password}
+          />
+          <View style={styles.formFooter}>
+            {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
+            <Pressable style={styles.forgottenPasswordButton}>
+              <Text style={styles.forgottenPasswordLabel}>Forgot your password?</Text>
+            </Pressable>
+          </View>
+        </View>
         <Button label="Login" onPress={onSubmit} />
       </View>
     </>
@@ -71,7 +78,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     padding: theme.spacing.xl,
-    gap: theme.spacing.l,
+    gap: theme.spacing.xl,
     backgroundColor: theme.color.background,
   },
   aboutButton: {
@@ -82,7 +89,12 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 32,
     marginRight: 0,
   },
+  form: {
+    width: '100%',
+    gap: theme.spacing.l,
+  },
   title: {
+    width: '100%',
     fontFamily: theme.font.primary.italic,
     fontSize: 24,
     color: theme.color.white,
@@ -98,8 +110,29 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     backgroundColor: theme.color.dark,
   },
+  formFooter: {
+    marginTop: -theme.spacing.m,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    gap: theme.spacing.s,
+  },
   errorMessage: {
+    fontFamily: theme.font.primary.regular,
     fontSize: 14,
     color: theme.color.error,
+  },
+  forgottenPasswordButton: {
+    flex: 1,
+    padding: theme.spacing.xs,
+  },
+  forgottenPasswordLabel: {
+    paddingRight: theme.spacing.xxs,
+    fontFamily: theme.font.primary.italic,
+    fontSize: 14,
+    color: theme.color.border,
+    textAlign: 'right',
+    textDecorationLine: 'underline',
   },
 }));
