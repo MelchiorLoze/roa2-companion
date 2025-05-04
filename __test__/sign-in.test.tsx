@@ -48,6 +48,7 @@ describe('SignIn', () => {
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
     expect(passwordInput).toHaveDisplayValue('');
     expect(screen.queryByText('Invalid email or password')).toBeNull();
+    screen.getByRole('button', { name: 'Forgot your password?' });
 
     screen.getByRole('button', { name: 'Login' });
   });

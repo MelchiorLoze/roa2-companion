@@ -6,7 +6,7 @@ import { useHttpClient } from '@/hooks/core';
 export const useSendAccountRecoveryEmail = () => {
   const httpClient = useHttpClient();
 
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate, isPending, isSuccess, isError } = useMutation({
     mutationFn: (email: string) =>
       httpClient.post<void>('/Client/SendAccountRecoveryEmail', {
         TitleId: TITLE_ID,
@@ -17,6 +17,7 @@ export const useSendAccountRecoveryEmail = () => {
   return {
     sendRecoveryEmail: mutate,
     isLoading: isPending,
+    isSuccess,
     isError,
   };
 };

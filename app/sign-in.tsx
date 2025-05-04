@@ -1,16 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Redirect, useRouter } from 'expo-router';
 import { useState } from 'react';
-import { Pressable, Text, TextInput, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button, Spinner } from '@/components';
+import { Button, Input, ResetPasswordDialog, Spinner } from '@/components';
 import { useAuth } from '@/hooks/business';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
+  const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
+
   const { login, isLoggedIn, isLoading, isError } = useAuth();
   const { theme } = useUnistyles();
   const router = useRouter();
@@ -18,6 +20,19 @@ export default function SignIn() {
   if (isLoading) return <Spinner />;
 
   if (isLoggedIn) return <Redirect href="/store" />;
+
+  const onForgotPassword = () => {
+    setShowResetPasswordDialog(true);
+    setIsInvalid(false);
+  };
+
+  const onCloseResetPasswordDialog = (email?: string) => {
+    setShowResetPasswordDialog(false);
+    if (email) {
+      setEmail(email);
+      setPassword('');
+    }
+  };
 
   const onSubmit = () => {
     if (!email || !password) {
@@ -40,47 +55,29 @@ export default function SignIn() {
       <View style={styles.container}>
         <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
         <View style={styles.form}>
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="email"
-            onChangeText={setEmail}
-            placeholder="EMAIL"
-            placeholderTextColor={theme.color.weak}
-            style={styles.input}
-            value={email}
-          />
-          <TextInput
-            autoCapitalize="none"
+          <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
+          <Input
             autoComplete="current-password"
-            onChangeText={setPassword}
+            hidden
+            onChange={setPassword}
             placeholder="PASSWORD"
-            placeholderTextColor={theme.color.weak}
-            secureTextEntry
-            style={styles.input}
             value={password}
           />
           <View style={styles.formFooter}>
-            {(isError || isInvalid) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
-            <Pressable style={styles.forgottenPasswordButton}>
-              <Text style={styles.forgottenPasswordLabel}>Forgot your password?</Text>
+            {(isInvalid || isError) && <Text style={styles.errorMessage}>Invalid email or password</Text>}
+            <Pressable onPress={onForgotPassword} role="button" style={styles.forgotPasswordButton}>
+              <Text style={styles.forgotPasswordButtonLabel}>Forgot your password?</Text>
             </Pressable>
           </View>
         </View>
         <Button label="Login" onPress={onSubmit} />
       </View>
+      {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
     </>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing.xl,
-    gap: theme.spacing.xl,
-    backgroundColor: theme.color.background,
-  },
   aboutButton: {
     padding: theme.spacing.l,
     alignSelf: 'flex-end',
@@ -89,9 +86,13 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 32,
     marginRight: 0,
   },
-  form: {
-    width: '100%',
-    gap: theme.spacing.l,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing.xl,
+    gap: theme.spacing.xl,
+    backgroundColor: theme.color.background,
   },
   title: {
     width: '100%',
@@ -101,14 +102,9 @@ const styles = StyleSheet.create((theme) => ({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-  input: {
+  form: {
     width: '100%',
-    height: 40,
-    padding: theme.spacing.s,
-    borderWidth: 1,
-    borderColor: theme.color.accent,
-    color: theme.color.white,
-    backgroundColor: theme.color.dark,
+    gap: theme.spacing.l,
   },
   formFooter: {
     marginTop: -theme.spacing.m,
@@ -123,12 +119,11 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 14,
     color: theme.color.error,
   },
-  forgottenPasswordButton: {
+  forgotPasswordButton: {
     flex: 1,
     padding: theme.spacing.xs,
   },
-  forgottenPasswordLabel: {
-    paddingRight: theme.spacing.xxs,
+  forgotPasswordButtonLabel: {
     fontFamily: theme.font.primary.italic,
     fontSize: 14,
     color: theme.color.border,

@@ -7,3 +7,4 @@ export { useGetUserReadOnlyData } from './useGetUserReadOnlyData/useGetUserReadO
 export { useLoginWithEmail } from './useLoginWithEmail/useLoginWithEmail';
 export { useGetMyRotationalCoinStore } from './useMyRotationalCoinStore/useGetMyRotationalCoinStore';
 export { usePurchaseInventoryItems } from './usePurchaseInventoryItems/usePurchaseInventoryItems';
+export { useSendAccountRecoveryEmail } from './useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';

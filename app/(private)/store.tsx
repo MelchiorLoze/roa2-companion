@@ -4,8 +4,7 @@ import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button, ItemList, Spinner, TimeCountdown } from '@/components';
-import { Dialog } from '@/components/Dialog/Dialog';
+import { Button, Dialog, ItemList, Spinner, TimeCountdown } from '@/components';
 import { useRotatingCoinShop } from '@/hooks/business';
 import { usePurchaseInventoryItems } from '@/hooks/data';
 import { CATEGORY_LABELS, CurrencyId, Item } from '@/types/store';

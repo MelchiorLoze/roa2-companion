@@ -17,8 +17,8 @@ export const Button = ({ label, onPress }: Props) => {
 
 const styles = StyleSheet.create((theme) => ({
   button: {
-    width: '25%',
     padding: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.xl,
     backgroundColor: theme.color.highlight,
   },
   buttonPressed: {
