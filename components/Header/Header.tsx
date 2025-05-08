@@ -3,10 +3,7 @@ import { useRouter } from 'expo-router';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { useCurrencyBalance } from '@/hooks/business';
-import { Currency } from '@/types/store';
-
-import { CurrencyBalance } from '../CurrencyBalance/CurrencyBalance';
+import { CurrenciesBalance } from '../CurrenciesBalance/CurrenciesBalance';
 import { Separator } from '../Separator/Separator';
 
 type Props = {
@@ -15,23 +12,12 @@ type Props = {
   withBackNavigation?: boolean;
 };
 
-const Currencies = () => {
-  const { coinsBalance, bucksBalance, medalsBalance } = useCurrencyBalance();
-
-  return (
-    <View style={styles.topContainer}>
-      <CurrencyBalance balance={coinsBalance} currency={Currency.COINS} />
-      <CurrencyBalance balance={bucksBalance} currency={Currency.BUCKS} />
-      <CurrencyBalance balance={medalsBalance} currency={Currency.MEDALS} />
-    </View>
-  );
-};
-
 export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => {
   const router = useRouter();
+
   return (
     <>
-      {showCurrencies ? <Currencies /> : <View style={styles.topSpacing} />}
+      {showCurrencies ? <CurrenciesBalance style={styles.topContainer} /> : <View style={styles.topSpacing} />}
       <Separator height={2} variant="accent" />
       {title && (
         <View style={styles.bottomContainer(withBackNavigation)}>
