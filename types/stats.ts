@@ -1,3 +1,5 @@
+import { ImageSource } from 'expo-image';
+
 import {
   AethereanIcon,
   BronzeIcon,
@@ -10,7 +12,6 @@ import {
   StoneIcon,
 } from '@/assets/images';
 
-import { ImageSource } from 'expo-image';
 import { Character } from './character';
 
 export enum StatisticName {

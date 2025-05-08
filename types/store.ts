@@ -1,7 +1,7 @@
+import { ImageSource } from 'expo-image';
 import type { DateTime } from 'luxon';
 
 import { BucksIcon, CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, MedalsIcon, RareIcon } from '@/assets/images';
-import { ImageSource } from 'expo-image';
 
 // CURRENCIES
 

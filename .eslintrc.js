@@ -2,7 +2,7 @@
 module.exports = {
   extends: ['expo', 'plugin:react-native/all', 'plugin:react/recommended'],
   ignorePatterns: ['/dist/*'],
-  plugins: ['simple-import-sort'],
+  plugins: ['simple-import-sort', 'react-native', 'react'],
   rules: {
     'react/react-in-jsx-scope': 'off', // Not necessary after React 17
     'react-native/sort-styles': 'off',

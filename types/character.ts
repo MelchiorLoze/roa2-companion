@@ -1,3 +1,5 @@
+import { ImageSource } from 'expo-image';
+
 import {
   ClairenIcon,
   EtalusIcon,
@@ -12,7 +14,6 @@ import {
   WrastorIcon,
   ZetterburnIcon,
 } from '@/assets/images';
-import { ImageSource } from 'expo-image';
 
 export enum Character {
   CLAIREN = 'Cla',
