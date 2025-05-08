@@ -23,10 +23,12 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => 
         <View style={styles.bottomContainer(withBackNavigation)}>
           {withBackNavigation && (
             <MaterialIcons.Button
+              accessibilityLabel="Back"
               backgroundColor={'transparent'}
               iconStyle={styles.backButtonIcon}
               name="arrow-back"
               onPress={router.back}
+              role="button"
               style={styles.backButton}
             />
           )}

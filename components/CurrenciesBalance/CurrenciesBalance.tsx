@@ -13,7 +13,7 @@ export const CurrenciesBalance = ({ style }: Props) => {
   const { coinsBalance, bucksBalance, medalsBalance } = useCurrencyBalance();
 
   return (
-    <View style={style}>
+    <View style={style} testID="currencies-balance">
       <CurrencyBalance balance={coinsBalance} currency={Currency.COINS} />
       <CurrencyBalance balance={bucksBalance} currency={Currency.BUCKS} />
       <CurrencyBalance balance={medalsBalance} currency={Currency.MEDALS} />
