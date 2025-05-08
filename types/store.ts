@@ -1,6 +1,7 @@
 import type { DateTime } from 'luxon';
 
 import { BucksIcon, CoinsIcon, CommonIcon, EpicIcon, LegendaryIcon, MedalsIcon, RareIcon } from '@/assets/images';
+import { ImageSource } from 'expo-image';
 
 // CURRENCIES
 
@@ -16,7 +17,7 @@ export enum Currency {
   MEDALS = 'medals',
 }
 
-export const CURRENCY_ICONS: Readonly<Record<Currency, any>> = Object.freeze({
+export const CURRENCY_ICONS: Readonly<Record<Currency, ImageSource>> = Object.freeze({
   [Currency.COINS]: CoinsIcon,
   [Currency.BUCKS]: BucksIcon,
   [Currency.MEDALS]: MedalsIcon,
@@ -38,7 +39,7 @@ export enum Rarity {
   LEGENDARY = 'legendary',
 }
 
-export const RARITY_ICONS: Readonly<Record<Rarity, any>> = Object.freeze({
+export const RARITY_ICONS: Readonly<Record<Rarity, ImageSource>> = Object.freeze({
   [Rarity.COMMON]: CommonIcon,
   [Rarity.RARE]: RareIcon,
   [Rarity.EPIC]: EpicIcon,

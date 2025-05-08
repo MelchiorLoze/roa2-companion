@@ -12,6 +12,7 @@ import {
   WrastorIcon,
   ZetterburnIcon,
 } from '@/assets/images';
+import { ImageSource } from 'expo-image';
 
 export enum Character {
   CLAIREN = 'Cla',
@@ -43,7 +44,7 @@ export const CHARACTER_NAMES: Readonly<Record<Character, string>> = Object.freez
   [Character.ZETTERBURN]: 'Zetterburn',
 });
 
-export const CHARACTER_ICONS: Readonly<Record<Character, any>> = Object.freeze({
+export const CHARACTER_ICONS: Readonly<Record<Character, ImageSource>> = Object.freeze({
   [Character.CLAIREN]: ClairenIcon,
   [Character.ETALUS]: EtalusIcon,
   [Character.FLEET]: FleetIcon,

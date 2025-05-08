@@ -10,6 +10,7 @@ import {
   StoneIcon,
 } from '@/assets/images';
 
+import { ImageSource } from 'expo-image';
 import { Character } from './character';
 
 export enum StatisticName {
@@ -58,7 +59,7 @@ export enum Rank {
   AETHEREAN = 'aetherean',
 }
 
-export const RANK_ICONS: Readonly<Record<Rank, any>> = Object.freeze({
+export const RANK_ICONS: Readonly<Record<Rank, ImageSource>> = Object.freeze({
   [Rank.STONE]: StoneIcon,
   [Rank.BRONZE]: BronzeIcon,
   [Rank.SILVER]: SilverIcon,

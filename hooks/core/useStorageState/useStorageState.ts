@@ -31,7 +31,7 @@ async function setStorageItemAsync(key: string, value: string | null) {
   }
 }
 
-export function useStorageState<T>(key: string, converter?: (value: any) => T): UseStateHook<T> {
+export function useStorageState<T>(key: string, converter?: (value: Record<keyof T, any>) => T): UseStateHook<T> {
   const [state, setState] = useAsyncState<T>();
 
   const setStateFromString = useCallback(

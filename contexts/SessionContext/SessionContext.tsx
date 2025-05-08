@@ -18,7 +18,7 @@ type SessionState = {
 
 const SessionContext = createContext<SessionState | undefined>(undefined);
 
-const parseSession = (raw: any): Session => {
+const parseSession = (raw: Record<keyof Session, string>): Session => {
   return {
     entityToken: raw.entityToken,
     expirationDate: DateTime.fromISO(raw.expirationDate, { zone: 'utc' }),

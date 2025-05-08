@@ -1,37 +1,37 @@
-type Image = ReturnType<typeof require>;
+import { ImageSource } from 'expo-image';
 
 // CURRENCIES
-export const CoinsIcon: Image = require('./currency/coins.png');
-export const BucksIcon: Image = require('./currency/bucks.png');
-export const MedalsIcon: Image = require('./currency/medals.png');
+export const CoinsIcon: ImageSource = require('./currency/coins.png');
+export const BucksIcon: ImageSource = require('./currency/bucks.png');
+export const MedalsIcon: ImageSource = require('./currency/medals.png');
 
 // RARITIES
-export const CommonIcon: Image = require('./rarity/common.webp');
-export const RareIcon: Image = require('./rarity/rare.webp');
-export const EpicIcon: Image = require('./rarity/epic.webp');
-export const LegendaryIcon: Image = require('./rarity/legendary.webp');
+export const CommonIcon: ImageSource = require('./rarity/common.webp');
+export const RareIcon: ImageSource = require('./rarity/rare.webp');
+export const EpicIcon: ImageSource = require('./rarity/epic.webp');
+export const LegendaryIcon: ImageSource = require('./rarity/legendary.webp');
 
 // RANKS
-export const StoneIcon: Image = require('./rank/stone.png');
-export const BronzeIcon: Image = require('./rank/bronze.png');
-export const SilverIcon: Image = require('./rank/silver.png');
-export const GoldIcon: Image = require('./rank/gold.png');
-export const PlatinumIcon: Image = require('./rank/platinum.png');
-export const DiamondIcon: Image = require('./rank/diamond.png');
-export const MasterIcon: Image = require('./rank/master.png');
-export const GrandmasterIcon: Image = require('./rank/grandmaster.png');
-export const AethereanIcon: Image = require('./rank/aetherean.png');
+export const StoneIcon: ImageSource = require('./rank/stone.png');
+export const BronzeIcon: ImageSource = require('./rank/bronze.png');
+export const SilverIcon: ImageSource = require('./rank/silver.png');
+export const GoldIcon: ImageSource = require('./rank/gold.png');
+export const PlatinumIcon: ImageSource = require('./rank/platinum.png');
+export const DiamondIcon: ImageSource = require('./rank/diamond.png');
+export const MasterIcon: ImageSource = require('./rank/master.png');
+export const GrandmasterIcon: ImageSource = require('./rank/grandmaster.png');
+export const AethereanIcon: ImageSource = require('./rank/aetherean.png');
 
 // CHARACTERS
-export const ClairenIcon: Image = require('./character/clairen.png');
-export const EtalusIcon: Image = require('./character/etalus.png');
-export const ForsburnIcon: Image = require('./character/forsburn.png');
-export const FleetIcon: Image = require('./character/fleet.png');
-export const KraggIcon: Image = require('./character/kragg.png');
-export const LoxodontIcon: Image = require('./character/loxodont.png');
-export const MaypulIcon: Image = require('./character/maypul.png');
-export const OlympiaIcon: Image = require('./character/olympia.png');
-export const OrcaneIcon: Image = require('./character/orcane.png');
-export const RannoIcon: Image = require('./character/ranno.png');
-export const WrastorIcon: Image = require('./character/wrastor.png');
-export const ZetterburnIcon: Image = require('./character/zetterburn.png');
+export const ClairenIcon: ImageSource = require('./character/clairen.png');
+export const EtalusIcon: ImageSource = require('./character/etalus.png');
+export const ForsburnIcon: ImageSource = require('./character/forsburn.png');
+export const FleetIcon: ImageSource = require('./character/fleet.png');
+export const KraggIcon: ImageSource = require('./character/kragg.png');
+export const LoxodontIcon: ImageSource = require('./character/loxodont.png');
+export const MaypulIcon: ImageSource = require('./character/maypul.png');
+export const OlympiaIcon: ImageSource = require('./character/olympia.png');
+export const OrcaneIcon: ImageSource = require('./character/orcane.png');
+export const RannoIcon: ImageSource = require('./character/ranno.png');
+export const WrastorIcon: ImageSource = require('./character/wrastor.png');
+export const ZetterburnIcon: ImageSource = require('./character/zetterburn.png');
