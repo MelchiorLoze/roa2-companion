@@ -28,7 +28,7 @@ export enum Character {
   ZETTERBURN = 'Zet',
 }
 
-export const CHARACTER_NAMES: Record<Character, string> = {
+export const CHARACTER_NAMES: Readonly<Record<Character, string>> = Object.freeze({
   [Character.CLAIREN]: 'Clairen',
   [Character.ETALUS]: 'Etalus',
   [Character.FLEET]: 'Fleet',
@@ -41,9 +41,9 @@ export const CHARACTER_NAMES: Record<Character, string> = {
   [Character.RANNO]: 'Ranno',
   [Character.WRASTOR]: 'Wrastor',
   [Character.ZETTERBURN]: 'Zetterburn',
-};
+});
 
-export const CHARACTER_ICONS: Record<Character, any> = {
+export const CHARACTER_ICONS: Readonly<Record<Character, any>> = Object.freeze({
   [Character.CLAIREN]: ClairenIcon,
   [Character.ETALUS]: EtalusIcon,
   [Character.FLEET]: FleetIcon,
@@ -56,4 +56,4 @@ export const CHARACTER_ICONS: Record<Character, any> = {
   [Character.RANNO]: RannoIcon,
   [Character.WRASTOR]: WrastorIcon,
   [Character.ZETTERBURN]: ZetterburnIcon,
-};
+});

@@ -16,11 +16,11 @@ export enum Currency {
   MEDALS = 'medals',
 }
 
-export const CURRENCY_ICONS: Record<Currency, any> = {
+export const CURRENCY_ICONS: Readonly<Record<Currency, any>> = Object.freeze({
   [Currency.COINS]: CoinsIcon,
   [Currency.BUCKS]: BucksIcon,
   [Currency.MEDALS]: MedalsIcon,
-};
+});
 
 // RARITIES
 
@@ -38,12 +38,12 @@ export enum Rarity {
   LEGENDARY = 'legendary',
 }
 
-export const RARITY_ICONS: Record<Rarity, any> = {
+export const RARITY_ICONS: Readonly<Record<Rarity, any>> = Object.freeze({
   [Rarity.COMMON]: CommonIcon,
   [Rarity.RARE]: RareIcon,
   [Rarity.EPIC]: EpicIcon,
   [Rarity.LEGENDARY]: LegendaryIcon,
-};
+});
 
 // ITEMS
 
@@ -58,7 +58,7 @@ export enum Category {
   TAUNT = 'taunt',
 }
 
-export const CATEGORY_LABELS: Record<Category, string> = {
+export const CATEGORY_LABELS: Readonly<Record<Category, string>> = Object.freeze({
   [Category.DEATHEFFECT]: 'DEATH',
   [Category.EMOTE]: 'EMOTE',
   [Category.ICON]: 'ICON',
@@ -67,7 +67,7 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   [Category.SKIN]: 'SKIN',
   [Category.STAGESKIN]: 'STAGE SKIN',
   [Category.TAUNT]: 'TAUNT',
-};
+});
 
 export type ItemDto = {
   Id: string;

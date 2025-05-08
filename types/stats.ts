@@ -58,7 +58,7 @@ export enum Rank {
   AETHEREAN = 'aetherean',
 }
 
-export const RANK_ICONS: Record<Rank, any> = {
+export const RANK_ICONS: Readonly<Record<Rank, any>> = Object.freeze({
   [Rank.STONE]: StoneIcon,
   [Rank.BRONZE]: BronzeIcon,
   [Rank.SILVER]: SilverIcon,
@@ -68,7 +68,7 @@ export const RANK_ICONS: Record<Rank, any> = {
   [Rank.MASTER]: MasterIcon,
   [Rank.GRANDMASTER]: GrandmasterIcon,
   [Rank.AETHEREAN]: AethereanIcon,
-};
+});
 
 export type PlayerPosition = {
   displayName: string;
