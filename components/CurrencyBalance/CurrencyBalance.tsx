@@ -4,13 +4,16 @@ import { StyleSheet } from 'react-native-unistyles';
 
 import { Currency, CURRENCY_ICONS } from '@/types/store';
 
+const MIN_DIGIT_COUNT = 8;
+
 type Props = {
   balance: number;
   currency: Currency;
 };
 
 export const CurrencyBalance = ({ balance, currency }: Props) => {
-  const leadingZeros = '0'.repeat(8 - balance.toString().length);
+  const balanceDigitCount = balance.toString().length;
+  const leadingZeros = '0'.repeat(MIN_DIGIT_COUNT - Math.min(MIN_DIGIT_COUNT, balanceDigitCount));
 
   return (
     <View style={styles.container}>
