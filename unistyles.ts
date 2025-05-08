@@ -19,7 +19,7 @@ const theme = {
     legendary: '#EFDB77',
     // Rank colors
     stone: '#7F7A66',
-    bronze: 'white',
+    bronze: '#B87A2E',
     silver: '#C8C8D5',
     gold: '#FFC64E',
     platinum: 'white',
