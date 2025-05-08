@@ -1,33 +1,20 @@
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
-import { StrictMode, useEffect } from 'react';
+import { Stack } from 'expo-router';
+import { StrictMode } from 'react';
 import { useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components';
 import { SessionProvider } from '@/contexts';
-
-void SplashScreen.preventAutoHideAsync();
+import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
 
 const queryClient = new QueryClient();
 
 const renderHeader = ({ options }: NativeStackHeaderProps) => <Header title={options.title} withBackNavigation />;
 
 export default function RootLayout() {
-  const [loaded, error] = useFonts({
-    'AgencyFB-Bold': require('../assets/fonts/AgencyFB-Bold.ttf'),
-    'AgencyFB-Black': require('../assets/fonts/AgencyFB-Black.otf'),
-    'FranklinGothicDemiCond-Regular': require('../assets/fonts/FranklinGothicDemiCond-Regular.ttf'),
-    'FranklinGothicDemiCond-Italic': require('../assets/fonts/FranklinGothicDemiCond-Italic.otf'),
-  });
+  useAppFonts();
   const { theme } = useUnistyles();
-
-  useEffect(() => {
-    if (loaded || error) {
-      void SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
 
   return (
     <StrictMode>
