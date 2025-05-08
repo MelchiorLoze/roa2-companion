@@ -7,7 +7,7 @@ jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
 
 describe('index', () => {
-  beforeEach(() => {
+  afterEach(() => {
     RedirectMock.mockClear();
   });
 
