@@ -1,7 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { useRouter } from 'expo-router';
 
 import More from '@/app/(private)/more';
 import { useAuth } from '@/hooks/business';
+
+jest.mock('expo-router');
+const useRouterMock = jest.mocked(useRouter);
+const navigateMock = jest.fn();
+useRouterMock.mockReturnValue({
+  navigate: navigateMock,
+} as unknown as ReturnType<typeof useRouter>);
 
 jest.mock('../hooks/business');
 const useAuthMock = jest.mocked(useAuth);
@@ -33,6 +41,16 @@ describe('More', () => {
     const links = screen.getAllByRole('link');
 
     expect(links).toHaveLength(6);
+  });
+
+  it('navigates to about page on button press', () => {
+    renderComponent();
+
+    const button = screen.getByRole('button', { name: 'About this app' });
+    fireEvent.press(button);
+
+    expect(navigateMock).toHaveBeenCalledTimes(1);
+    expect(navigateMock).toHaveBeenCalledWith('/about');
   });
 
   it('calls logout on button press', () => {

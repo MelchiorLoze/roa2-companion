@@ -1,11 +1,21 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { fireEvent, render, screen, within } from '@testing-library/react-native';
 import { Redirect } from 'expo-router';
 
 import SignIn from '@/app/sign-in';
 import { useAuth } from '@/hooks/business';
+import { useSendAccountRecoveryEmail } from '@/hooks/data';
 
 jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
+
+jest.mock('../hooks/data');
+const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
+const defaultSendRecoveryEmailState = {
+  sendRecoveryEmail: jest.fn(),
+  isLoading: false,
+  isSuccess: false,
+  isError: false,
+};
 
 jest.mock('../hooks/business');
 const useAuthMock = jest.mocked(useAuth);
@@ -21,15 +31,18 @@ const defaultAuthState = {
 const screenTitle = 'Login to your ingame account';
 
 const renderComponent = () => {
-  render(<SignIn />);
+  const result = render(<SignIn />);
 
   expect(useAuthMock).toHaveBeenCalledTimes(1);
   expect(loginMock).not.toHaveBeenCalled();
+
+  return result;
 };
 
 describe('SignIn', () => {
   beforeEach(() => {
     useAuthMock.mockReturnValue(defaultAuthState);
+    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendRecoveryEmailState);
   });
 
   afterEach(() => {
@@ -134,5 +147,45 @@ describe('SignIn', () => {
     fireEvent.press(loginButton);
 
     expect(screen.queryByText('Invalid email or password')).toBeNull();
+  });
+
+  it('shows reset password dialog when clicking on forgot password', () => {
+    renderComponent();
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+    const withinDialog = within(screen.getByTestId('dialog'));
+
+    withinDialog.getByText(
+      'After submitting, you will receive an email from Aether Studios allowing you to reset your password',
+    );
+  });
+
+  it('fills email field when reset password dialog is closed with email', () => {
+    const { rerender } = renderComponent();
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    expect(emailInput).toHaveDisplayValue('');
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+    const withinDialog = within(screen.getByTestId('dialog'));
+
+    const resetPasswordEmailInput = withinDialog.getByPlaceholderText('EMAIL');
+    fireEvent.changeText(resetPasswordEmailInput, 'kragg@example.com');
+
+    const resetPasswordButton = withinDialog.getByRole('button', { name: 'Reset password' });
+    fireEvent.press(resetPasswordButton);
+
+    useSendAccountRecoveryEmailMock.mockReturnValue({
+      ...defaultSendRecoveryEmailState,
+      isSuccess: true,
+    });
+    rerender(<SignIn />);
+
+    const closeButton = withinDialog.getByRole('button', { name: 'Ok' });
+    fireEvent.press(closeButton);
+
+    expect(emailInput).toHaveDisplayValue('kragg@example.com');
   });
 });

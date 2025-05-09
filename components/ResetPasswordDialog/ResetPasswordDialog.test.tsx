@@ -31,9 +31,17 @@ describe('ResetPasswordDialog', () => {
     screen.getByText(
       'After submitting, you will receive an email from Aether Studios allowing you to reset your password',
     );
-    screen.getByPlaceholderText('EMAIL');
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    expect(emailInput).toHaveDisplayValue('');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
     screen.getByRole('button', { name: 'Reset password' });
+  });
+
+  it('renders correctly when an email is provided', () => {
+    render(<ResetPasswordDialog email="kragg@example.com" onClose={jest.fn()} />);
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    expect(emailInput).toHaveDisplayValue('kragg@example.com');
   });
 
   it('calls onClose when the overlay is pressed', () => {

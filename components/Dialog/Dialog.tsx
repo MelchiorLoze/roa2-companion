@@ -9,7 +9,9 @@ type Props = PropsWithChildren & {
 export const Dialog = ({ onClose, children }: Props) => (
   <>
     <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
-    <View style={styles.container}>{children}</View>
+    <View style={styles.container} testID="dialog">
+      {children}
+    </View>
   </>
 );
 

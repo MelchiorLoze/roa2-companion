@@ -39,6 +39,13 @@ export enum Rarity {
   LEGENDARY = 'legendary',
 }
 
+export const RARITY_VALUES_MAPPING: Readonly<Record<RarityValue, Rarity>> = Object.freeze({
+  [RarityValue.COMMON]: Rarity.COMMON,
+  [RarityValue.RARE]: Rarity.RARE,
+  [RarityValue.EPIC]: Rarity.EPIC,
+  [RarityValue.LEGENDARY]: Rarity.LEGENDARY,
+});
+
 export const RARITY_ICONS: Readonly<Record<Rarity, ImageSource>> = Object.freeze({
   [Rarity.COMMON]: CommonIcon,
   [Rarity.RARE]: RareIcon,

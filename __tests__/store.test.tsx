@@ -74,10 +74,11 @@ describe('Store', () => {
     within(itemCards[1]).getByText(items[1].title);
 
     fireEvent.press(itemCards[0]);
+    const withinDialog = within(screen.getByTestId('dialog'));
 
-    screen.getByText(confirmationDialogTitle(items[0]));
-    screen.getByRole('button', { name: 'Yes' });
-    screen.getByRole('button', { name: 'No' });
+    withinDialog.getByText(confirmationDialogTitle(items[0]));
+    withinDialog.getByRole('button', { name: 'Yes' });
+    withinDialog.getByRole('button', { name: 'No' });
   });
 
   it('does not show the confirmation dialog when the selected item does not have a coin price', () => {
@@ -98,8 +99,9 @@ describe('Store', () => {
 
     const itemCards = screen.getAllByRole('button');
     fireEvent.press(itemCards[0]);
+    const withinDialog = within(screen.getByTestId('dialog'));
 
-    screen.getByText(confirmationDialogTitle(items[0]));
+    withinDialog.getByText(confirmationDialogTitle(items[0]));
 
     const overlay = screen.getByTestId('overlay');
     fireEvent.press(overlay);
@@ -112,10 +114,11 @@ describe('Store', () => {
 
     const itemCards = screen.getAllByRole('button');
     fireEvent.press(itemCards[0]);
+    const withinDialog = within(screen.getByTestId('dialog'));
 
-    screen.getByText(confirmationDialogTitle(items[0]));
+    withinDialog.getByText(confirmationDialogTitle(items[0]));
 
-    const noButton = screen.getByRole('button', { name: 'No' });
+    const noButton = withinDialog.getByRole('button', { name: 'No' });
     fireEvent.press(noButton);
 
     expect(screen.queryByText(confirmationDialogTitle(items[0]))).toBeNull();
@@ -126,10 +129,11 @@ describe('Store', () => {
 
     const itemCards = screen.getAllByRole('button');
     fireEvent.press(itemCards[0]);
+    const withinDialog = within(screen.getByTestId('dialog'));
 
-    screen.getByText(confirmationDialogTitle(items[0]));
+    withinDialog.getByText(confirmationDialogTitle(items[0]));
 
-    const yesButton = screen.getByRole('button', { name: 'Yes' });
+    const yesButton = withinDialog.getByRole('button', { name: 'Yes' });
     fireEvent.press(yesButton);
 
     expect(purchaseMock).toHaveBeenCalledTimes(1);
