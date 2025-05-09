@@ -25,7 +25,6 @@ const getParagraph = (text: string, color: string, strokeWidth: number, fontMana
   const textStyle: SkTextStyle = {
     fontSize: 18,
     fontFamilies: ['AgencyFB-Bold'],
-    color: Skia.Color(color),
   };
 
   const paragraphOutline = Skia.ParagraphBuilder.Make(paragraphStyle, fontManager)

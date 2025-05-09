@@ -1,8 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { Text } from 'react-native';
 
-import { Category, Item, Rarity } from '@/types/store';
+import { Category, CATEGORY_LABELS, Item, Rarity } from '@/types/store';
 
+import { OutlinedText } from '../OutlinedText/OutlinedText';
 import { ItemCard } from './ItemCard';
+
+jest.mock('@/components/OutlinedText/OutlinedText');
+jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
 const item: Item = {
   id: '1',
@@ -35,7 +40,7 @@ describe('ItemCard', () => {
     renderComponent(item);
 
     screen.getByText(item.title);
-    // screen.getByText(CATEGORY_LABELS[item.category]); // TODO: fix react-native-skia setup in tests
+    screen.getByText(CATEGORY_LABELS[item.category]);
     screen.getByText(item.coinPrice!.toString());
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
@@ -44,7 +49,7 @@ describe('ItemCard', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
     screen.getByText(item.title);
-    // screen.getByText(CATEGORY_LABELS[item.category]); // TODO: fix react-native-skia setup in tests
+    screen.getByText(CATEGORY_LABELS[item.category]);
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 
