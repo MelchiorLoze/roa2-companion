@@ -81,7 +81,7 @@ export type ItemDto = {
   Id: string;
   Title: { NEUTRAL: string };
   ContentType: Category;
-  PriceOptions: {
+  PriceOptions?: {
     Prices: {
       Amounts: {
         ItemId: CurrencyId;
@@ -99,8 +99,8 @@ export type Item = {
   title: string;
   category: Category;
   rarity: Rarity;
-  buckPrice?: number;
   coinPrice?: number;
+  buckPrice?: number;
 };
 
 export type InventoryItem = {
