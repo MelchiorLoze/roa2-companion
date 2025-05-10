@@ -23,16 +23,24 @@ useAuthMock.mockReturnValue({
 });
 
 const renderComponent = () => {
-  render(<More />);
+  const result = render(<More />);
 
   expect(useAuthMock).toHaveBeenCalledTimes(1);
   expect(logoutMock).not.toHaveBeenCalled();
+
+  return result;
 };
 
 describe('More', () => {
   afterEach(() => {
     useAuthMock.mockClear();
     logoutMock.mockClear();
+  });
+
+  it('matches the snapshot', () => {
+    const tree = renderComponent().toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders the list of external links', () => {

@@ -37,11 +37,13 @@ const confirmationDialogTitle = (item: Item) =>
   `Are you sure you want to buy the ${CATEGORY_LABELS[item.category]} ${item.title} for ${item.coinPrice}?`;
 
 const renderComponent = () => {
-  render(<Store />);
+  const result = render(<Store />);
 
   expect(useRotatingCoinShopMock).toHaveBeenCalledTimes(1);
   expect(usePurchaseInventoryItemsMock).toHaveBeenCalledTimes(1);
   expect(purchaseMock).not.toHaveBeenCalled();
+
+  return result;
 };
 
 describe('Store', () => {
@@ -62,6 +64,12 @@ describe('Store', () => {
     useRotatingCoinShopMock.mockClear();
     usePurchaseInventoryItemsMock.mockClear();
     purchaseMock.mockClear();
+  });
+
+  it('matches the snapshot', () => {
+    const tree = renderComponent().toJSON();
+
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders the items of the store', () => {

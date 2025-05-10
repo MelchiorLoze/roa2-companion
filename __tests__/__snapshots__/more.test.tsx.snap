@@ -1,0 +1,848 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`More matches the snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+      "gap": 24,
+    }
+  }
+>
+  <RCTScrollView
+    ItemSeparatorComponent={[Function]}
+    data={
+      [
+        {
+          "label": "Game wiki",
+          "logo": "https://dragdown.wiki/favicon.ico",
+          "url": "https://dragdown.wiki/wiki/RoA2",
+        },
+        {
+          "label": "Frame data",
+          "url": "https://rivalsframedata.com/",
+        },
+        {
+          "label": "Stage viewer",
+          "url": "https://clamtime.github.io/rivals2-stage-viewer/",
+        },
+        {
+          "label": "Elo History",
+          "url": "https://scarekroow.com/roa2-ranked-stats.html",
+        },
+        {
+          "label": "Game Reddit",
+          "logo": "https://www.redditstatic.com/shreddit/assets/favicon/64x64.png",
+          "url": "https://www.reddit.com/r/RivalsOfAether/",
+        },
+        {
+          "label": "Game Discord",
+          "logo": "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/62fddf0fde45a8baedcc7ee5_847541504914fd33810e70a0ea73177e%20(2)-1.png",
+          "url": "https://discord.gg/roa",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    style={
+      {
+        "borderBottomWidth": 1,
+        "borderColor": "#CACEFF",
+        "flexGrow": 0,
+      }
+    }
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://dragdown.wiki/favicon.ico",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 20,
+                "width": 20,
+              }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Game wiki
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "#CACEFF",
+              "height": 1,
+            }
+          }
+        />
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Frame data
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "#CACEFF",
+              "height": 1,
+            }
+          }
+        />
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Stage viewer
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "#CACEFF",
+              "height": 1,
+            }
+          }
+        />
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Elo History
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "#CACEFF",
+              "height": 1,
+            }
+          }
+        />
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://www.redditstatic.com/shreddit/assets/favicon/64x64.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 20,
+                "width": 20,
+              }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Game Reddit
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+        <View
+          style={
+            {
+              "backgroundColor": "#CACEFF",
+              "height": 1,
+            }
+          }
+        />
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="link"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#0E0B2A",
+                "flexDirection": "row",
+                "gap": 8,
+                "padding": 12,
+                "paddingHorizontal": 16,
+              },
+              false,
+            ]
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/62fddf0fde45a8baedcc7ee5_847541504914fd33810e70a0ea73177e%20(2)-1.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 20,
+                "width": 20,
+              }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Game Discord
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+  <View>
+    <View
+      style={
+        {
+          "backgroundColor": "#CACEFF",
+          "height": 1,
+        }
+      }
+    />
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "backgroundColor": "#0E0B2A",
+            "flexDirection": "row",
+            "gap": 8,
+            "padding": 12,
+            "paddingHorizontal": 16,
+          },
+          false,
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 18,
+              "textTransform": "uppercase",
+            },
+            false,
+          ]
+        }
+      >
+        About this app
+      </Text>
+      <
+        color="white"
+        name="arrow-forward"
+        size={20}
+        style={
+          {
+            "marginLeft": "auto",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#CACEFF",
+          "height": 1,
+        }
+      }
+    />
+  </View>
+  <View>
+    <View
+      style={
+        {
+          "backgroundColor": "#CACEFF",
+          "height": 1,
+        }
+      }
+    />
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="button"
+      style={
+        [
+          {
+            "alignItems": "center",
+            "backgroundColor": "#0E0B2A",
+            "flexDirection": "row",
+            "gap": 8,
+            "padding": 12,
+            "paddingHorizontal": 16,
+          },
+          false,
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 18,
+              "textTransform": "uppercase",
+            },
+            false,
+          ]
+        }
+      >
+        Log out
+      </Text>
+      <
+        color="white"
+        name="logout"
+        size={20}
+        style={
+          {
+            "marginLeft": "auto",
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#CACEFF",
+          "height": 1,
+        }
+      }
+    />
+  </View>
+</View>
+`;

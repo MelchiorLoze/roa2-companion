@@ -6,13 +6,23 @@ import Index from '@/app/index';
 jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
 
+const renderComponent = () => {
+  return render(<Index />);
+};
+
 describe('index', () => {
   afterEach(() => {
     RedirectMock.mockClear();
   });
 
+  it('matches the snapshot', () => {
+    const tree = renderComponent().toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
   it('redirects to sign-in page', () => {
-    render(<Index />);
+    renderComponent();
 
     expect(RedirectMock).toHaveBeenCalledWith({ href: '/sign-in' }, {});
   });

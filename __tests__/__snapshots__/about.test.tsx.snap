@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About matches the snapshot 1`] = `
+[
+  <View
+    style={
+      {
+        "gap": 24,
+        "padding": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontFamily": "FranklinGothicDemiCond-Regular",
+          "gap": 24,
+        }
+      }
+    >
+      This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. All trademarks, registered trademarks, product names, and company names or logos mentioned herein are the property of their respective owners. This project was created solely as a community resource, for entertainment and educational purposes.
+    </Text>
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontFamily": "FranklinGothicDemiCond-Regular",
+          "gap": 24,
+        }
+      }
+    >
+      The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect nor transmit any personal information or data from users to any third party. Everything stays exclusively between your device and the official game servers.
+    </Text>
+  </View>,
+  <View
+    style={
+      {
+        "backgroundColor": "#CACEFF",
+        "height": 1,
+      }
+    }
+  />,
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    role="link"
+    style={
+      [
+        {
+          "alignItems": "center",
+          "backgroundColor": "#0E0B2A",
+          "flexDirection": "row",
+          "gap": 8,
+          "padding": 12,
+          "paddingHorizontal": 16,
+        },
+        false,
+      ]
+    }
+  >
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="contain"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      height={20}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      source={
+        [
+          {
+            "uri": "https://github.githubassets.com/favicons/favicon-dark.png",
+          },
+        ]
+      }
+      style={
+        {
+          "height": 20,
+          "width": 20,
+        }
+      }
+      transition={null}
+      width={20}
+    />
+    <Text
+      style={
+        [
+          {
+            "color": "white",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 18,
+            "textTransform": "uppercase",
+          },
+          false,
+        ]
+      }
+    >
+      GitHub
+    </Text>
+    <
+      color="white"
+      name="arrow-outward"
+      size={20}
+      style={
+        {
+          "marginLeft": "auto",
+        }
+      }
+    />
+  </View>,
+  <View
+    style={
+      {
+        "backgroundColor": "#CACEFF",
+        "height": 1,
+      }
+    }
+  />,
+]
+`;

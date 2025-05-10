@@ -51,6 +51,12 @@ describe('SignIn', () => {
     loginMock.mockClear();
   });
 
+  it('matches the snapshot', () => {
+    const tree = renderComponent().toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
   it('renders correctly', () => {
     renderComponent();
 
@@ -60,6 +66,7 @@ describe('SignIn', () => {
     expect(emailInput).toHaveDisplayValue('');
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
     expect(passwordInput).toHaveDisplayValue('');
+
     expect(screen.queryByText('Invalid email or password')).toBeNull();
     screen.getByRole('button', { name: 'Forgot your password?' });
 
