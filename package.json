@@ -15,7 +15,7 @@
     "test:ci": "jest --ci --randomize",
     "lint": "expo lint",
     "lint:fix": "eslint --fix .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --strict --noEmit"
   },
   "jest": {
     "preset": "jest-expo",
