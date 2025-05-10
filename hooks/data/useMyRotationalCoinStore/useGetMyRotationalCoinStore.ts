@@ -37,7 +37,7 @@ export const useGetMyRotationalCoinStore = () => {
 
     const timeUntilExpiration = data.expirationDate.diffNow().as('millisecond');
     const timeout = setTimeout(() => {
-      void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+      invalidateGetMyRotationalCoinStore(queryClient);
     }, timeUntilExpiration);
 
     return () => clearTimeout(timeout);
@@ -47,5 +47,5 @@ export const useGetMyRotationalCoinStore = () => {
 };
 
 export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient) => {
-  queryClient.removeQueries({ queryKey: QUERY_KEY });
+  void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };

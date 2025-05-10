@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 
 import { useSession } from '@/contexts';
@@ -9,7 +10,12 @@ export const useAuth = ({ enableAutoRefresh } = { enableAutoRefresh: false }) =>
   const { newSession, renew } = useGetEntityToken();
   const hasRenewedRef = useRef(false);
 
-  const logout = () => setSession(null);
+  const queryClient = useQueryClient();
+
+  const logout = () => {
+    setSession(null);
+    queryClient.clear();
+  };
 
   useEffect(() => {
     if (session) setSession(session);

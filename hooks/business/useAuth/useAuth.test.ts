@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { act, renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
@@ -7,6 +8,12 @@ import { Session } from '@/types/session';
 
 import { useAuth } from './useAuth';
 
+jest.mock('@tanstack/react-query');
+const queryClientClearMock = jest.fn();
+jest.mocked(useQueryClient).mockReturnValue({
+  clear: queryClientClearMock,
+} as unknown as ReturnType<typeof useQueryClient>);
+
 jest.mock('@/contexts');
 const useSessionMock = jest.mocked(useSession);
 const setSessionMock = jest.fn();
@@ -14,6 +21,10 @@ const setSessionMock = jest.fn();
 jest.mock('@/hooks/data');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
+
+const renderUseAuth = (props: Parameters<typeof useAuth>[0] = undefined) => {
+  return renderHook(() => useAuth(props));
+};
 
 describe('useAuth hook', () => {
   beforeEach(() => {
@@ -41,10 +52,11 @@ describe('useAuth hook', () => {
 
   afterEach(() => {
     setSessionMock.mockClear();
+    queryClientClearMock.mockClear();
   });
 
   it('should return correct initial state', () => {
-    const { result } = renderHook(useAuth);
+    const { result } = renderUseAuth();
 
     expect(result.current.isLoggedIn).toBe(false);
     expect(typeof result.current.login).toBe('function');
@@ -62,13 +74,13 @@ describe('useAuth hook', () => {
       isError: false,
     });
 
-    renderHook(useAuth);
+    renderUseAuth();
 
     expect(setSessionMock).toHaveBeenCalledWith(loginSession);
   });
 
   it('should update isLoggedIn when session becomes valid', () => {
-    const { result, rerender } = renderHook(useAuth);
+    const { result, rerender } = renderUseAuth();
     expect(result.current.isLoggedIn).toBe(false);
 
     useSessionMock.mockReturnValue({
@@ -83,7 +95,7 @@ describe('useAuth hook', () => {
     expect(result.current.isLoggedIn).toBe(true);
   });
 
-  it('logout should call setSession with null', () => {
+  it('logout should clear the session', () => {
     useSessionMock.mockReturnValue({
       isValid: true,
       shouldRenew: false,
@@ -91,10 +103,11 @@ describe('useAuth hook', () => {
       isLoading: false,
     });
 
-    const { result } = renderHook(useAuth);
+    const { result } = renderUseAuth();
     act(result.current.logout);
 
     expect(setSessionMock).toHaveBeenCalledWith(null);
+    expect(queryClientClearMock).toHaveBeenCalledTimes(1);
   });
 
   it('should set isLoading to true when session is loading', () => {
@@ -105,7 +118,7 @@ describe('useAuth hook', () => {
       isLoading: true,
     });
 
-    const { result } = renderHook(useAuth);
+    const { result } = renderUseAuth();
 
     expect(result.current.isLoading).toBe(true);
   });
@@ -118,7 +131,7 @@ describe('useAuth hook', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useAuth);
+    const { result } = renderUseAuth();
 
     expect(result.current.isLoading).toBe(true);
   });
@@ -131,7 +144,7 @@ describe('useAuth hook', () => {
       isError: true,
     });
 
-    const { result } = renderHook(useAuth);
+    const { result } = renderUseAuth();
 
     expect(result.current.isError).toBe(true);
   });
@@ -144,13 +157,13 @@ describe('useAuth hook', () => {
       isLoading: false,
     });
 
-    renderHook(() => useAuth({ enableAutoRefresh: true }));
+    renderUseAuth({ enableAutoRefresh: true });
 
     expect(useGetEntityTokenMock().renew).toHaveBeenCalledTimes(1);
   });
 
   it('should not call renew when shouldRenew is false', () => {
-    renderHook(() => useAuth({ enableAutoRefresh: true }));
+    renderUseAuth({ enableAutoRefresh: true });
 
     expect(useGetEntityTokenMock().renew).not.toHaveBeenCalled();
   });
@@ -163,7 +176,7 @@ describe('useAuth hook', () => {
       isLoading: false,
     });
 
-    renderHook(() => useAuth({ enableAutoRefresh: false }));
+    renderUseAuth();
 
     expect(useGetEntityTokenMock().renew).not.toHaveBeenCalled();
   });
@@ -177,7 +190,7 @@ describe('useAuth hook', () => {
       isError: false,
     });
 
-    renderHook(useAuth);
+    renderUseAuth();
 
     expect(setSessionMock).toHaveBeenCalledWith(newSession);
   });
