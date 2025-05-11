@@ -2,7 +2,7 @@ import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 import { useEffect } from 'react';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import { Item, RotationalCoinStore } from '@/types/store';
 
@@ -14,15 +14,17 @@ type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
 }>;
 
 export const useGetMyRotationalCoinStore = () => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
   const queryClient = useQueryClient();
 
   const { data, isFetching, isPending, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
-      httpClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
-        FunctionName: 'GetMyRotationalCoinStore',
-      } as ExecuteFunctionRequest),
+      apiClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
+        body: {
+          FunctionName: 'GetMyRotationalCoinStore',
+        } as ExecuteFunctionRequest,
+      }),
     select: ({ FunctionResult: result }) =>
       ({
         itemIds: result.itemIds,

@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { CurrencyId, Item } from '@/types/store';
 
 import { invalidateGetInventoryItems } from '../useGetInventoryItems/useGetInventoryItems';
@@ -12,23 +12,25 @@ type ItemToPurchase = {
 };
 
 export const usePurchaseInventoryItems = () => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
   const queryClient = useQueryClient();
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (item: ItemToPurchase) =>
-      httpClient.post<void>('/Inventory/PurchaseInventoryItems', {
-        Amount: 1,
-        DeleteEmptyStacks: false,
-        Item: {
-          Id: item.id,
-        },
-        PriceAmounts: [
-          {
-            Amount: item.price.value,
-            ItemId: item.price.currencyId,
+      apiClient.post<void>('/Inventory/PurchaseInventoryItems', {
+        body: {
+          Amount: 1,
+          DeleteEmptyStacks: false,
+          Item: {
+            Id: item.id,
           },
-        ],
+          PriceAmounts: [
+            {
+              Amount: item.price.value,
+              ItemId: item.price.currencyId,
+            },
+          ],
+        },
       }),
     onSuccess: (_, item) => {
       invalidateGetInventoryItems(queryClient);

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { UserData } from '@/types/stats';
 
 type GetUserReadOnlyDataResponse = {
@@ -12,11 +12,11 @@ type GetUserReadOnlyDataResponse = {
 };
 
 export const useGetUserReadOnlyData = () => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
 
   const { data, refetch, isFetching, isPending, isError } = useQuery({
     queryKey: ['userReadOnlyData'],
-    queryFn: () => httpClient.post<GetUserReadOnlyDataResponse>('/Client/GetUserReadOnlyData'),
+    queryFn: () => apiClient.post<GetUserReadOnlyDataResponse>('/Client/GetUserReadOnlyData'),
     select: (data) => ({ characterData: JSON.parse(data.Data.character_data.Value) }) as UserData,
     staleTime: Infinity,
     gcTime: Infinity,

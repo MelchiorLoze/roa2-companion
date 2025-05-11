@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { StatisticName, UserStats } from '@/types/stats';
 
 type GetPlayerStatisticsResponse = {
@@ -11,11 +11,11 @@ type GetPlayerStatisticsResponse = {
 };
 
 export const useGetPlayerStatistics = () => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
 
   const { data, refetch, isFetching, isPending, isError } = useQuery({
     queryKey: ['playerStatistics'],
-    queryFn: async () => httpClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
+    queryFn: async () => apiClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
     select: (data) =>
       data.Statistics.reduce((acc, { StatisticName, Value }) => {
         acc[StatisticName] = Value;

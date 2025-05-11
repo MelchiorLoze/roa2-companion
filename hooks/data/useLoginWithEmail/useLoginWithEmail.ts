@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 
 import { TITLE_ID } from '@/constants';
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { Session } from '@/types/session';
 
 type LoginWithEmailAddressRequest = {
@@ -18,7 +18,7 @@ type LoginWithEmailAddressResponse = {
 };
 
 export const useLoginWithEmail = () => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
   const {
     data,
     mutate: loginWithEmail,
@@ -26,10 +26,12 @@ export const useLoginWithEmail = () => {
     isPending,
   } = useMutation({
     mutationFn: async ({ email, password }: LoginWithEmailAddressRequest) => {
-      const data = await httpClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {
-        TitleId: TITLE_ID,
-        Email: email,
-        Password: password,
+      const data = await apiClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {
+        body: {
+          TitleId: TITLE_ID,
+          Email: email,
+          Password: password,
+        },
       });
       const result = data.EntityToken;
       return {

@@ -29,7 +29,7 @@ describe('useLoginWithEmail', () => {
 
   describe('when the request succeeds', () => {
     beforeEach(() => {
-      fetchMock.post('*', {
+      fetchMock.postOnce('*', {
         status: 200,
         body: {
           data: {
@@ -57,7 +57,7 @@ describe('useLoginWithEmail', () => {
 
   describe('when the request fails', () => {
     beforeEach(() => {
-      fetchMock.post('*', {
+      fetchMock.postOnce('*', {
         status: 400,
       });
     });

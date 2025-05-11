@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { Item, ItemDto } from '@/types/store';
 import { itemFromDto } from '@/utils/itemFromDto';
 
@@ -9,11 +9,11 @@ type GetItemsResponse = {
 };
 
 export const useGetItems = (itemIds: Item['id'][]) => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
 
   const { data, isFetching, isError } = useQuery({
     queryKey: ['items', ...itemIds],
-    queryFn: () => httpClient.post<GetItemsResponse>('/Catalog/GetItems', { Ids: itemIds }),
+    queryFn: () => apiClient.post<GetItemsResponse>('/Catalog/GetItems', { body: { Ids: itemIds } }),
     enabled: itemIds.length > 0,
     select: (data) => data.Items.map(itemFromDto),
     staleTime: Infinity,

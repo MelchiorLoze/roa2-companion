@@ -1,162 +1,64 @@
 import { renderHook } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { BASE_URL } from '@/constants';
-import { useSession } from '@/contexts';
-
 import { useHttpClient } from './useHttpClient';
 
-jest.mock('@/contexts');
-const useSessionMock = jest.mocked(useSession);
-const defaultSessionState: ReturnType<typeof useSession> = {
-  entityToken: 'mock-token',
-  isValid: true,
-  shouldRenew: false,
-  setSession: jest.fn(),
-  clearSession: jest.fn(),
-  isLoading: false,
+const BASE_URL = 'https://example.com';
+
+const responseDataMock = { data: { id: 1, name: 'test' } };
+const handleResponseMock = jest.fn().mockResolvedValue(responseDataMock);
+
+const renderUseHttpClient = (options?: Pick<Parameters<typeof useHttpClient>[0], 'baseQueryParams' | 'headers'>) => {
+  return renderHook(() => useHttpClient({ baseUrl: BASE_URL, handleResponse: handleResponseMock, ...options }));
 };
 
 describe('useHttpClient', () => {
-  beforeEach(() => {
-    useSessionMock.mockReturnValue(defaultSessionState);
-  });
+  it('allows request with no params', async () => {
+    fetchMock.postOnce(`${BASE_URL}/api/data`, responseDataMock);
 
-  it('should validate path correctly', async () => {
-    const { result } = renderHook(useHttpClient);
-
-    // Valid path
-    fetchMock.postOnce(`${BASE_URL}/valid/path`, { data: { success: true } });
-    await expect(result.current.post('/valid/path')).resolves.toEqual({ success: true });
-
-    // Invalid paths
-    await expect(result.current.post('invalid-path')).rejects.toThrow('Invalid path');
-    await expect(result.current.post('/ending-with-slash/')).rejects.toThrow('Invalid path');
-  });
-
-  it('should add auth headers when logged in', async () => {
-    fetchMock.post(
-      `${BASE_URL}/api/data`,
-      { data: { success: true } },
-      {
-        matcherFunction: ({ options }) => {
-          const headers = options.headers as Record<string, string>;
-          return headers['x-entitytoken'] === 'mock-token' && headers['content-type'] === 'application/json';
-        },
-      },
-    );
-
-    const { result } = renderHook(useHttpClient);
-
-    await result.current.post('/api/data');
-    expect(fetchMock.callHistory.callLogs).toHaveLength(1);
-  });
-
-  it('should not add auth headers when not logged in', async () => {
-    useSessionMock.mockReturnValue({
-      ...defaultSessionState,
-      entityToken: undefined,
-      isValid: false,
-    });
-
-    const { result } = renderHook(useHttpClient);
-
-    fetchMock.postOnce(
-      `${BASE_URL}/api/data`,
-      { data: { success: true } },
-      {
-        matcherFunction: ({ options }) => {
-          const headers = options.headers as Record<string, string>;
-          return !headers['x-entityToken'] && headers['content-type'] === 'application/json';
-        },
-      },
-    );
-
-    await result.current.post('/api/data');
-    expect(fetchMock.callHistory.callLogs).toHaveLength(1);
-  });
-
-  it('should properly serialize body content', async () => {
-    const { result } = renderHook(useHttpClient);
-    const testBody = { name: 'test', value: 123 };
-
-    fetchMock.postOnce(
-      `${BASE_URL}/api/data`,
-      { data: { success: true } },
-      {
-        matcherFunction: ({ options }) => {
-          return options.body === JSON.stringify(testBody);
-        },
-      },
-    );
-
-    await result.current.post('/api/data', testBody);
-    expect(fetchMock.callHistory.callLogs).toHaveLength(1);
-  });
-
-  it('should handle successful responses with data property', async () => {
-    const { result } = renderHook(useHttpClient);
-
-    fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      data: { id: 1, name: 'test' },
-    });
-
+    const { result } = renderUseHttpClient();
     const response = await result.current.post('/api/data');
-    expect(response).toEqual({ id: 1, name: 'test' });
+
+    expect(response).toEqual(responseDataMock);
+    expect(handleResponseMock).toHaveBeenCalledTimes(1);
+    expect(handleResponseMock).toHaveBeenCalledWith(expect.any(Response));
   });
 
-  it('should handle successful responses without data property', async () => {
-    const { result } = renderHook(useHttpClient);
-
-    fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      id: 1,
-      name: 'test',
+  it('allows request with headers', async () => {
+    fetchMock.postOnce(`${BASE_URL}/api/data`, responseDataMock, {
+      headers: { 'x-custom-header': 'value' },
     });
 
+    const { result } = renderUseHttpClient({ headers: { 'x-custom-header': 'value' } });
     const response = await result.current.post('/api/data');
-    expect(response).toEqual({ id: 1, name: 'test' });
+
+    expect(response).toEqual(responseDataMock);
+    expect(handleResponseMock).toHaveBeenCalledTimes(1);
+    expect(handleResponseMock).toHaveBeenCalledWith(expect.any(Response));
   });
 
-  it('should logout and throw error on 401 response', async () => {
-    const { result } = renderHook(useHttpClient);
+  it('allows request with params', async () => {
+    fetchMock.postOnce(`${BASE_URL}/api/data?param1=value1&param2=value2`, responseDataMock);
 
-    fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      status: 401,
-      body: { error: 'Unauthorized' },
-    });
+    const { result } = renderUseHttpClient({ baseQueryParams: { param1: 'value1' } });
+    const response = await result.current.post('/api/data', { params: { param2: 'value2' } });
 
-    await expect(result.current.post('/api/data')).rejects.toThrow('Unauthorized');
-    expect(defaultSessionState.clearSession).toHaveBeenCalledTimes(1);
+    expect(response).toEqual(responseDataMock);
+    expect(handleResponseMock).toHaveBeenCalledTimes(1);
+    expect(handleResponseMock).toHaveBeenCalledWith(expect.any(Response));
   });
 
-  it('should throw error on other failed responses', async () => {
-    const { result } = renderHook(useHttpClient);
-
-    fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      status: 500,
-      body: { error: 'Server Error' },
+  it('allows request with body', async () => {
+    const requestBody = { name: 'test' };
+    fetchMock.postOnce(`${BASE_URL}/api/data`, responseDataMock, {
+      body: requestBody,
     });
 
-    await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
-    expect(defaultSessionState.clearSession).not.toHaveBeenCalled();
-  });
+    const { result } = renderUseHttpClient();
+    const response = await result.current.post('/api/data', { body: requestBody });
 
-  it('should handle typed responses correctly', async () => {
-    const { result } = renderHook(useHttpClient);
-
-    type TestData = {
-      id: number;
-      name: string;
-    };
-
-    fetchMock.postOnce(`${BASE_URL}/api/data`, {
-      data: { id: 1, name: 'test' } as TestData,
-    });
-
-    const response = await result.current.post<TestData>('/api/data');
-
-    // TypeScript should ensure this is valid
-    expect(response.id).toBe(1);
-    expect(response.name).toBe('test');
+    expect(response).toEqual(responseDataMock);
+    expect(handleResponseMock).toHaveBeenCalledTimes(1);
+    expect(handleResponseMock).toHaveBeenCalledWith(expect.any(Response));
   });
 });

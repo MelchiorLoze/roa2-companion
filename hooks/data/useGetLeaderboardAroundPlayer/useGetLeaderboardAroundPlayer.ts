@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { PlayerPosition, StatisticName } from '@/types/stats';
 
 type GetLeaderboardAroundPlayerRequest = {
@@ -22,14 +22,16 @@ const defaultRequest: GetLeaderboardAroundPlayerRequest = {
 };
 
 export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName } = defaultRequest) => {
-  const httpClient = useHttpClient();
+  const apiClient = useGameApiClient();
 
   const { data, refetch, isFetching, isPending, isError } = useQuery({
     queryKey: ['getLeaderboardAroundPlayer', maxResultCount, statisticName],
     queryFn: () =>
-      httpClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
-        MaxResultCount: maxResultCount,
-        StatisticName: statisticName,
+      apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
+        body: {
+          MaxResultCount: maxResultCount,
+          StatisticName: statisticName,
+        },
       }),
     select: (data) =>
       data.Leaderboard.map(

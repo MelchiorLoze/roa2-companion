@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 
-import { useHttpClient } from '@/hooks/core';
+import { useGameApiClient } from '@/hooks/apiClients';
 import { InventoryItem } from '@/types/store';
 
 const QUERY_KEY = ['inventoryItems'];
@@ -13,13 +13,15 @@ type GetInventoryItemsResponse = {
 };
 
 export const useGetInventoryItems = () => {
-  const httpCLient = useHttpClient();
+  const apiClient = useGameApiClient();
 
   const { data, isFetching, isPending, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
-      httpCLient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
-        Count: 10000,
+      apiClient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
+        body: {
+          Count: 10000,
+        },
       }),
     select: (data) => data.Items.map((item) => ({ id: item.Id, amount: item.Amount }) as InventoryItem),
     staleTime: Infinity,
