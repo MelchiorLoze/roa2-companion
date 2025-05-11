@@ -32,11 +32,6 @@ const renderComponent = () => {
 };
 
 describe('More', () => {
-  afterEach(() => {
-    useAuthMock.mockClear();
-    logoutMock.mockClear();
-  });
-
   it('matches the snapshot', () => {
     const tree = renderComponent().toJSON();
 

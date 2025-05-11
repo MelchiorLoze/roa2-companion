@@ -27,10 +27,6 @@ describe('useRotatingCoinShop', () => {
     });
   });
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should handle null rotationalCoinStore', () => {
     const { result } = renderHook(useRotatingCoinShop);
 

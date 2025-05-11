@@ -12,10 +12,6 @@ const renderComponent = () => {
 };
 
 describe('Button', () => {
-  afterEach(() => {
-    onPressMock.mockClear();
-  });
-
   it('should call onPress when pressed', () => {
     renderComponent();
 

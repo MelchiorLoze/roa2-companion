@@ -7,7 +7,7 @@ import { Rank } from '@/types/stats';
 
 jest.mock('@/hooks/business');
 const useUserStatsMock = jest.mocked(useUserStats);
-const defaultUserStatsState = {
+const defaultUserStatsState: ReturnType<typeof useUserStats> = {
   stats: {
     rankedPosition: 123,
     rank: Rank.GOLD,
@@ -42,10 +42,6 @@ const renderComponent = () => {
 describe('Stats', () => {
   beforeEach(() => {
     useUserStatsMock.mockReturnValue(defaultUserStatsState);
-  });
-
-  afterEach(() => {
-    useUserStatsMock.mockClear();
   });
 
   it('matches the snapshot', () => {

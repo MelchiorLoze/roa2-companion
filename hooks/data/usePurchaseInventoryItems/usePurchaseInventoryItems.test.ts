@@ -27,11 +27,6 @@ const renderUsePurchaseInventoryItems = async () => {
 };
 
 describe('usePurchaseInventoryItems', () => {
-  afterEach(() => {
-    invalidateGetInventoryItemsSpy.mockClear();
-    invalidateGetMyRotationalCoinStoreSpy.mockClear();
-  });
-
   it('should return the mutation function when logged in', async () => {
     const { result } = await renderUsePurchaseInventoryItems();
 

@@ -1,3 +1,4 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { DateTime, Duration } from 'luxon';
 import React, { createContext, PropsWithChildren, useCallback, useContext } from 'react';
 
@@ -13,7 +14,8 @@ type SessionState = {
   isValid: boolean;
   isLoading: boolean;
   shouldRenew: boolean;
-  setSession: (session: Session | null) => void;
+  setSession: (session: Session) => void;
+  clearSession: () => void;
 };
 
 const SessionContext = createContext<SessionState | undefined>(undefined);
@@ -31,16 +33,23 @@ const shouldRenewSession = (session: Session): boolean =>
   Duration.fromObject({ hours: SESSION_TTL - SESSION_RENEW_THRESHOLD }).as('millisecond');
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
+  const queryClient = useQueryClient();
   const [[session, isLoading], setSession] = useStorageState<Session>(SESSION_STORAGE_KEY, parseSession);
+
   const isValid = Boolean(session && isSessionValid(session));
   const shouldRenew = Boolean(session && isValid && shouldRenewSession(session));
 
   const setValidSession = useCallback(
-    (session: Session | null) => {
-      if (!session || isSessionValid(session)) setSession(session);
+    (session: Session) => {
+      if (isSessionValid(session)) setSession(session);
     },
     [setSession],
   );
+
+  const clearSession = useCallback(() => {
+    setSession(null);
+    queryClient.clear();
+  }, [queryClient, setSession]);
 
   return (
     <SessionContext.Provider
@@ -49,6 +58,7 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
         isValid,
         shouldRenew,
         setSession: setValidSession,
+        clearSession,
         isLoading,
       }}
     >

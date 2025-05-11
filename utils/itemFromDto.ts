@@ -12,4 +12,4 @@ export const itemFromDto = (item: ItemDto) =>
     coinPrice: getPriceValueFromItemDto(item, CurrencyId.COINS),
     buckPrice: getPriceValueFromItemDto(item, CurrencyId.BUCKS),
     rarity: RARITY_VALUES_MAPPING[item.DisplayProperties.rarity],
-  } as Item);
+  }) as Item;

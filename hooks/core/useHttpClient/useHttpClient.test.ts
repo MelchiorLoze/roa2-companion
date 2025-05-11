@@ -8,23 +8,18 @@ import { useHttpClient } from './useHttpClient';
 
 jest.mock('@/contexts');
 const useSessionMock = jest.mocked(useSession);
-const setSessionMock = jest.fn();
-
 const defaultSessionState: ReturnType<typeof useSession> = {
   entityToken: 'mock-token',
   isValid: true,
   shouldRenew: false,
-  setSession: setSessionMock,
+  setSession: jest.fn(),
+  clearSession: jest.fn(),
   isLoading: false,
 };
 
 describe('useHttpClient', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue(defaultSessionState);
-  });
-
-  afterEach(() => {
-    setSessionMock.mockClear();
   });
 
   it('should validate path correctly', async () => {
@@ -131,8 +126,7 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Unauthorized');
-    expect(setSessionMock).toHaveBeenCalledTimes(1);
-    expect(setSessionMock).toHaveBeenCalledWith(null);
+    expect(defaultSessionState.clearSession).toHaveBeenCalledTimes(1);
   });
 
   it('should throw error on other failed responses', async () => {
@@ -144,7 +138,7 @@ describe('useHttpClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
-    expect(setSessionMock).not.toHaveBeenCalled();
+    expect(defaultSessionState.clearSession).not.toHaveBeenCalled();
   });
 
   it('should handle typed responses correctly', async () => {

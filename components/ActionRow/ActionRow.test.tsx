@@ -17,11 +17,10 @@ const linkProps: ComponentProps<typeof ActionRow> = {
   url: new URL('https://example.com'),
 };
 
-const onPressMock = jest.fn();
 const buttonProps: ComponentProps<typeof ActionRow> = {
   ...linkProps,
   url: undefined,
-  onPress: onPressMock,
+  onPress: jest.fn(),
 };
 
 const renderComponent = (props: ComponentProps<typeof ActionRow>) => {
@@ -32,11 +31,6 @@ const renderComponent = (props: ComponentProps<typeof ActionRow>) => {
 };
 
 describe('ActionRow', () => {
-  afterEach(() => {
-    pushMock.mockClear();
-    onPressMock.mockClear();
-  });
-
   it('navigates to the correct URL when link is pressed', () => {
     renderComponent(linkProps);
 
@@ -54,6 +48,6 @@ describe('ActionRow', () => {
     fireEvent.press(button);
 
     expect(pushMock).not.toHaveBeenCalled();
-    expect(onPressMock).toHaveBeenCalledTimes(1);
+    expect(buttonProps.onPress).toHaveBeenCalledTimes(1);
   });
 });

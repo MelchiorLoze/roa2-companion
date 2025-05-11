@@ -32,10 +32,6 @@ describe('ItemCard', () => {
     expect(item.buckPrice).toBeDefined();
   });
 
-  afterEach(() => {
-    onPressMock.mockClear();
-  });
-
   it('should render correctly', () => {
     renderComponent(item);
 

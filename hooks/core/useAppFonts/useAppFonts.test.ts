@@ -12,10 +12,6 @@ const SplashScreenMock = jest.mocked(SplashScreen);
 SplashScreenMock.hideAsync = jest.fn();
 
 describe('useAppFonts', () => {
-  afterEach(() => {
-    SplashScreenMock.hideAsync.mockClear();
-  });
-
   it('should hide splash screen when fonts are loaded', () => {
     useFontsMock.mockReturnValue([true, null]);
 

@@ -77,12 +77,12 @@ describe('useSession', () => {
     });
   });
 
-  it('should allow to setSession to null', async () => {
+  it('should allow to clear session', async () => {
     mockValidSession();
 
     const { result } = renderUseSession();
     expect(result.current.isValid).toBe(true);
-    await act(async () => result.current.setSession(null));
+    await act(async () => result.current.clearSession());
 
     await waitFor(() => expect(result.current.isValid).toBe(false));
   });

@@ -39,7 +39,7 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName } 
             statisticName: statisticName,
             statisticValue: StatValue,
             position: Position,
-          } as PlayerPosition),
+          }) as PlayerPosition,
       ),
     staleTime: Infinity,
     gcTime: Infinity,

@@ -10,7 +10,7 @@ const RedirectMock = jest.mocked(Redirect);
 
 jest.mock('../hooks/data');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
-const defaultSendRecoveryEmailState = {
+const defaultSendRecoveryEmailState: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: jest.fn(),
   isLoading: false,
   isSuccess: false,
@@ -19,10 +19,9 @@ const defaultSendRecoveryEmailState = {
 
 jest.mock('../hooks/business');
 const useAuthMock = jest.mocked(useAuth);
-const loginMock = jest.fn();
-const defaultAuthState = {
+const defaultAuthState: ReturnType<typeof useAuth> = {
   isLoggedIn: false,
-  login: loginMock,
+  login: jest.fn(),
   logout: jest.fn(),
   isLoading: false,
   isError: false,
@@ -34,7 +33,7 @@ const renderComponent = () => {
   const result = render(<SignIn />);
 
   expect(useAuthMock).toHaveBeenCalledTimes(1);
-  expect(loginMock).not.toHaveBeenCalled();
+  expect(defaultAuthState.login).not.toHaveBeenCalled();
 
   return result;
 };
@@ -43,12 +42,6 @@ describe('SignIn', () => {
   beforeEach(() => {
     useAuthMock.mockReturnValue(defaultAuthState);
     useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendRecoveryEmailState);
-  });
-
-  afterEach(() => {
-    RedirectMock.mockClear();
-    useAuthMock.mockClear();
-    loginMock.mockClear();
   });
 
   it('matches the snapshot', () => {
@@ -105,7 +98,7 @@ describe('SignIn', () => {
     fireEvent.press(loginButton);
 
     screen.getByText('Invalid email or password');
-    expect(loginMock).not.toHaveBeenCalled();
+    expect(defaultAuthState.login).not.toHaveBeenCalled();
   });
 
   it('shows error message when login fails', () => {
@@ -132,8 +125,8 @@ describe('SignIn', () => {
     expect(passwordInput).toHaveDisplayValue('r0ck');
     fireEvent.press(loginButton);
 
-    expect(loginMock).toHaveBeenCalledTimes(1);
-    expect(loginMock).toHaveBeenCalledWith({
+    expect(defaultAuthState.login).toHaveBeenCalledTimes(1);
+    expect(defaultAuthState.login).toHaveBeenCalledWith({
       email: 'kragg@example.com',
       password: 'r0ck',
     });

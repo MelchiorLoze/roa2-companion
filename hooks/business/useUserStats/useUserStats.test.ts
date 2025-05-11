@@ -24,10 +24,13 @@ const mockedPlayerPositions: PlayerPosition[] = [
 const characters = Object.values(Character);
 
 const mockUserData: UserData = {
-  characterData: characters.reduce((acc, character, index) => {
-    acc[character] = { lvl: 5 + index * 10 };
-    return acc;
-  }, {} as UserData['characterData']),
+  characterData: characters.reduce(
+    (acc, character, index) => {
+      acc[character] = { lvl: 5 + index * 10 };
+      return acc;
+    },
+    {} as UserData['characterData'],
+  ),
 };
 
 const renderUseUserStats = () => {
@@ -62,12 +65,6 @@ describe('useUserStats', () => {
       isLoading: false,
       isError: false,
     });
-  });
-
-  afterEach(() => {
-    useGetPlayerStatisticsMock.mockClear();
-    useGetLeaderboardAroundPlayerMock.mockClear();
-    useGetUserReadOnlyDataMock.mockClear();
   });
 
   it('should return loading state when statistics are loading', () => {

@@ -8,6 +8,7 @@ jest.mock('@expo/vector-icons', () => ({
 fetchMock.mockGlobal();
 
 afterEach(() => {
+  jest.clearAllMocks();
   fetchMock.removeRoutes();
   fetchMock.clearHistory();
 });

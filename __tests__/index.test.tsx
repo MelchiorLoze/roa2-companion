@@ -11,10 +11,6 @@ const renderComponent = () => {
 };
 
 describe('index', () => {
-  afterEach(() => {
-    RedirectMock.mockClear();
-  });
-
   it('matches the snapshot', () => {
     const tree = renderComponent().toJSON();
 

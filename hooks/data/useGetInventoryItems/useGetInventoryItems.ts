@@ -21,7 +21,7 @@ export const useGetInventoryItems = () => {
       httpCLient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
         Count: 10000,
       }),
-    select: (data) => data.Items.map((item) => ({ id: item.Id, amount: item.Amount } as InventoryItem)),
+    select: (data) => data.Items.map((item) => ({ id: item.Id, amount: item.Amount }) as InventoryItem),
     staleTime: Infinity,
     gcTime: Infinity,
   });

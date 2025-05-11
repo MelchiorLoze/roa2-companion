@@ -8,10 +8,6 @@ jest.mock('@/hooks/business');
 const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
 
 describe('CurrenciesBalance', () => {
-  afterEach(() => {
-    useCurrencyBalanceMock.mockClear();
-  });
-
   it('should render correctly when the balances are loaded', () => {
     useCurrencyBalanceMock.mockReturnValue({
       coinsBalance: 208092,

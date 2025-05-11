@@ -60,12 +60,6 @@ describe('Store', () => {
     });
   });
 
-  afterEach(() => {
-    useRotatingCoinShopMock.mockClear();
-    usePurchaseInventoryItemsMock.mockClear();
-    purchaseMock.mockClear();
-  });
-
   it('matches the snapshot', () => {
     const tree = renderComponent().toJSON();
 
