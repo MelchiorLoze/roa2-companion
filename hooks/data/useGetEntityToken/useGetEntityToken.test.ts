@@ -20,7 +20,7 @@ const renderUseGetEntityToken = async () => {
 };
 
 describe('useGetEntityToken', () => {
-  it('should return initial state with undefined newSession', async () => {
+  it('returns initial state with undefined newSession', async () => {
     const { result } = await renderUseGetEntityToken();
 
     expect(result.current.newSession).toBeUndefined();
@@ -28,7 +28,7 @@ describe('useGetEntityToken', () => {
   });
 
   describe('when the request succeeds', () => {
-    it('should return the new session', async () => {
+    it('returns the new session', async () => {
       const mockEntityToken = 'mock-token';
 
       fetchMock.postOnce('*', {
@@ -59,7 +59,7 @@ describe('useGetEntityToken', () => {
       });
     });
 
-    it('should return nothing', async () => {
+    it('returns nothing', async () => {
       const { result } = await renderUseGetEntityToken();
 
       await act(async () => {

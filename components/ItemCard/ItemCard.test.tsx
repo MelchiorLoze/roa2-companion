@@ -32,7 +32,7 @@ describe('ItemCard', () => {
     expect(item.buckPrice).toBeDefined();
   });
 
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     renderComponent(item);
 
     screen.getByText(item.title);
@@ -41,7 +41,7 @@ describe('ItemCard', () => {
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 
-  it('should render correctly when coinPrice is not defined', () => {
+  it('renders correctly when coinPrice is not defined', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
     screen.getByText(item.title);
@@ -49,7 +49,7 @@ describe('ItemCard', () => {
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 
-  it('should call onPress when pressed', () => {
+  it('calls onPress when pressed', () => {
     renderComponent(item);
 
     const card = screen.getByRole('button');

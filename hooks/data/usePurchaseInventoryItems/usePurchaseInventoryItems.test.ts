@@ -27,7 +27,7 @@ const renderUsePurchaseInventoryItems = async () => {
 };
 
 describe('usePurchaseInventoryItems', () => {
-  it('should return the mutation function when logged in', async () => {
+  it('returns the mutation function when logged in', async () => {
     const { result } = await renderUsePurchaseInventoryItems();
 
     expect(result.current.purchase).toBeDefined();
@@ -44,7 +44,7 @@ describe('usePurchaseInventoryItems', () => {
       });
     });
 
-    it('should invalidate inventory and rotation cache when using coins', async () => {
+    it('invalidates inventory and rotation cache when using coins', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>
@@ -57,7 +57,7 @@ describe('usePurchaseInventoryItems', () => {
       expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should invalidate inventory cache when using bucks', async () => {
+    it('invalidates inventory cache when using bucks', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>
@@ -78,7 +78,7 @@ describe('usePurchaseInventoryItems', () => {
       });
     });
 
-    it('should return an error', async () => {
+    it('returns an error', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
       await act(async () =>

@@ -5,7 +5,7 @@ import { Currency } from '@/types/store';
 import { CurrencyBalance } from './CurrencyBalance';
 
 describe('CurrencyBalance', () => {
-  it('should render the balance with correct amount of leading zeros', () => {
+  it('renders the balance with correct amount of leading zeros', () => {
     render(<CurrencyBalance balance={0} currency={Currency.COINS} />);
     expect(screen.getByText('00000000')).toBeTruthy();
 

@@ -20,7 +20,7 @@ const renderUseGetMyRotationalCoinStore = async () => {
 };
 
 describe('useGetMyRotationalCoinStore', () => {
-  it('should return nothing when the request is loading', async () => {
+  it('returns nothing when the request is loading', async () => {
     const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
@@ -44,7 +44,7 @@ describe('useGetMyRotationalCoinStore', () => {
       });
     });
 
-    it('should return the rotational coin store', async () => {
+    it('returns the rotational coin store', async () => {
       const { result } = await renderUseGetMyRotationalCoinStore();
 
       expect(result.current.rotationalCoinStore).toEqual({
@@ -62,7 +62,7 @@ describe('useGetMyRotationalCoinStore', () => {
       });
     });
 
-    it('should return nothing', async () => {
+    it('returns nothing', async () => {
       const { result } = await renderUseGetMyRotationalCoinStore();
 
       expect(result.current.rotationalCoinStore).toBeUndefined();

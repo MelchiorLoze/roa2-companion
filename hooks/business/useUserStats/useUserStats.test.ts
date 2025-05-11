@@ -67,7 +67,7 @@ describe('useUserStats', () => {
     });
   });
 
-  it('should return loading state when statistics are loading', () => {
+  it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {} as UserStats,
       refetch: jest.fn(),
@@ -82,7 +82,7 @@ describe('useUserStats', () => {
     expect(typeof result.current.refresh).toBe('function');
   });
 
-  it('should return loading state when player positions are loading', () => {
+  it('returns loading state when player positions are loading', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       playerPositions: [],
       refetch: jest.fn(),
@@ -97,7 +97,7 @@ describe('useUserStats', () => {
     expect(typeof result.current.refresh).toBe('function');
   });
 
-  it('should return loading state when user data is loading', () => {
+  it('returns loading state when user data is loading', () => {
     useGetUserReadOnlyDataMock.mockReturnValue({
       userData: {} as UserData,
       refetch: jest.fn(),
@@ -112,7 +112,7 @@ describe('useUserStats', () => {
     expect(typeof result.current.refresh).toBe('function');
   });
 
-  it('should return nothing when statistics are not present', () => {
+  it('returns nothing when statistics are not present', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: undefined,
       refetch: jest.fn(),
@@ -126,7 +126,7 @@ describe('useUserStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('should return nothing when player positions are not present', () => {
+  it('returns nothing when player positions are not present', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       playerPositions: [],
       refetch: jest.fn(),
@@ -140,7 +140,7 @@ describe('useUserStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('should return nothing when user data is not present', () => {
+  it('returns nothing when user data is not present', () => {
     useGetUserReadOnlyDataMock.mockReturnValue({
       userData: undefined,
       refetch: jest.fn(),
@@ -154,7 +154,7 @@ describe('useUserStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('should compute stats correctly from player statistics', () => {
+  it('computes stats correctly from player statistics', () => {
     const mockStatistics: Partial<UserStats> = {
       [StatisticName.RANKED_S2_ELO]: 915,
       [StatisticName.RANKED_S2_SETS]: 100,
@@ -187,7 +187,7 @@ describe('useUserStats', () => {
     expect(result.current.stats).toMatchObject(expectedStats);
   });
 
-  it('should handle zero matches played when calculating win rates', () => {
+  it('handles zero matches played when calculating win rates', () => {
     const mockStatistics: Partial<UserStats> = {
       [StatisticName.RANKED_S1_SETS]: 0,
       [StatisticName.RANKED_S1_WINS]: 0,
@@ -208,7 +208,7 @@ describe('useUserStats', () => {
     expect(result.current.stats?.globalWinRate).toBe(0);
   });
 
-  it('should pass through the refetch function correctly', async () => {
+  it('pass through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
     const mockRefetchPlayerPositions = jest.fn();
     const mockRefetchUserData = jest.fn();
@@ -243,7 +243,7 @@ describe('useUserStats', () => {
     expect(mockRefetchUserData).toHaveBeenCalledTimes(1);
   });
 
-  it('should compute character stats for all characters', () => {
+  it('computes character stats for all characters', () => {
     const mockStatistics: UserStats = characters.reduce((acc, character, index) => {
       const statKey = `${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName;
       acc[StatisticName[statKey]] = 10 + index * 5;

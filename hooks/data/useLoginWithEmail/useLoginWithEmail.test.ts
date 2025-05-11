@@ -20,7 +20,7 @@ const renderUseLoginWithEmail = async () => {
 };
 
 describe('useLoginWithEmail', () => {
-  it('should default values correctly', async () => {
+  it('returns default values correctly', async () => {
     const { result } = await renderUseLoginWithEmail();
 
     expect(result.current.session).toBeUndefined();
@@ -42,7 +42,7 @@ describe('useLoginWithEmail', () => {
       });
     });
 
-    it('should return the session correctly', async () => {
+    it('returns the session correctly', async () => {
       const { result } = await renderUseLoginWithEmail();
 
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
@@ -62,7 +62,7 @@ describe('useLoginWithEmail', () => {
       });
     });
 
-    it('should return an error', async () => {
+    it('returns an error', async () => {
       const { result } = await renderUseLoginWithEmail();
 
       await act(async () => result.current.loginWithEmail({ email: 'test', password: 'test' }));

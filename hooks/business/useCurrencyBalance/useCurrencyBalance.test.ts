@@ -9,7 +9,7 @@ jest.mock('@/hooks/data');
 const useGetInventoryItemsMock = jest.mocked(useGetInventoryItems);
 
 describe('useCurrencyBalance', () => {
-  it('should return zero when the inventory items are not loaded', () => {
+  it('returns zero when the inventory items are not loaded', () => {
     useGetInventoryItemsMock.mockReturnValue({ inventoryItems: [], isLoading: true, isError: false });
 
     const { result } = renderHook(useCurrencyBalance);
@@ -21,7 +21,7 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should return the currency balances when the inventory items are loaded', () => {
+  it('returns the currency balances when the inventory items are loaded', () => {
     useGetInventoryItemsMock.mockReturnValue({
       inventoryItems: [
         { id: '1', amount: 1 },
@@ -44,7 +44,7 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should return zero when the currency is not found', () => {
+  it('returns zero when the currency is not found', () => {
     useGetInventoryItemsMock.mockReturnValue({
       inventoryItems: [
         { id: '1', amount: 1 },
@@ -63,7 +63,7 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should return zero when the inventory items failed to load', () => {
+  it('returns zero when the inventory items failed to load', () => {
     useGetInventoryItemsMock.mockReturnValue({ inventoryItems: [], isLoading: false, isError: true });
 
     const { result } = renderHook(useCurrencyBalance);

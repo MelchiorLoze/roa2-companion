@@ -17,7 +17,7 @@ const renderUseSendAccountRecoveryEmail = async () => {
 };
 
 describe('usePurchaseInventoryItems', () => {
-  it('should return the mutation function', async () => {
+  it('returns the mutation function', async () => {
     const { result } = await renderUseSendAccountRecoveryEmail();
 
     expect(result.current.sendRecoveryEmail).toBeDefined();
@@ -32,7 +32,7 @@ describe('usePurchaseInventoryItems', () => {
       });
     });
 
-    it('should invalidate inventory and rotation cache when using coins', async () => {
+    it('invalidates inventory and rotation cache when using coins', async () => {
       const { result } = await renderUseSendAccountRecoveryEmail();
 
       await act(async () => result.current.sendRecoveryEmail?.('kragg@example.com'));
@@ -49,7 +49,7 @@ describe('usePurchaseInventoryItems', () => {
       });
     });
 
-    it('should return an error', async () => {
+    it('returns an error', async () => {
       const { result } = await renderUseSendAccountRecoveryEmail();
 
       await act(async () => result.current.sendRecoveryEmail?.('kragg@email.com'));

@@ -23,7 +23,7 @@ jest.mock('@/hooks/business', () => ({
 }));
 
 describe('Header', () => {
-  it('should render without crashing when no props are provided', () => {
+  it('renders without crashing when no props are provided', () => {
     render(<Header />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
@@ -31,7 +31,7 @@ describe('Header', () => {
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
 
-  it('should render with currencies balance', () => {
+  it('renders with currencies balance', () => {
     render(<Header showCurrencies />);
 
     screen.getByTestId('currencies-balance');
@@ -39,7 +39,7 @@ describe('Header', () => {
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
 
-  it('should render with title', () => {
+  it('renders with title', () => {
     render(<Header title="Test Title" />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
@@ -47,7 +47,7 @@ describe('Header', () => {
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
 
-  it('should render with title and back navigation', () => {
+  it('renders with title and back navigation', () => {
     render(<Header title="Test Title" withBackNavigation />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
@@ -59,7 +59,7 @@ describe('Header', () => {
     expect(backMock).toHaveBeenCalledTimes(1);
   });
 
-  it('should not render back navigation when no title is provided', () => {
+  it('does not render back navigation when no title is provided', () => {
     render(<Header withBackNavigation />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();

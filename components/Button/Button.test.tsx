@@ -12,7 +12,7 @@ const renderComponent = () => {
 };
 
 describe('Button', () => {
-  it('should call onPress when pressed', () => {
+  it('calls onPress when pressed', () => {
     renderComponent();
 
     const button = screen.getByRole('button', { name: label });

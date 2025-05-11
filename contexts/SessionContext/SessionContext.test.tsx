@@ -45,21 +45,21 @@ describe('useSession', () => {
     mockEmptySession();
   });
 
-  it('should throw an error when not used inside a SessionProvider', async () => {
+  it('throws an error when not used inside a SessionProvider', async () => {
     const originalError = console.error;
     console.error = jest.fn();
     expect(() => renderHook(useSession)).toThrow('useSession must be used within a SessionProvider');
     console.error = originalError;
   });
 
-  it('should not be logged in when the storage an login sessions are empty', async () => {
+  it('does not be logged in when the storage an login sessions are empty', async () => {
     const { result } = renderUseSession();
 
     expect(result.current.isValid).toBe(false);
   });
 
   describe('from storage', () => {
-    it('should be logged in when the storage contains a valid session', async () => {
+    it('returns true storage contains a valid session', async () => {
       mockValidSession();
 
       const { result } = renderUseSession();
@@ -68,7 +68,7 @@ describe('useSession', () => {
       expect(result.current.entityToken).toBe('validToken');
     });
 
-    it('should not be logged in when the storage contains an expired session', async () => {
+    it('returns false when the storage contains an expired session', async () => {
       mockExpiredSession();
 
       const { result } = renderUseSession();
@@ -77,7 +77,7 @@ describe('useSession', () => {
     });
   });
 
-  it('should allow to clear session', async () => {
+  it('allows to clear session', async () => {
     mockValidSession();
 
     const { result } = renderUseSession();
@@ -87,7 +87,7 @@ describe('useSession', () => {
     await waitFor(() => expect(result.current.isValid).toBe(false));
   });
 
-  it('should allow to setSession to a valid session', async () => {
+  it('allows to setSession to a valid session', async () => {
     mockExpiredSession();
 
     const { result } = renderUseSession();
@@ -98,7 +98,7 @@ describe('useSession', () => {
     expect(result.current.entityToken).toBe('validToken');
   });
 
-  it('should not allow to setSession to an expired session', async () => {
+  it('does not allow to setSession to an expired session', async () => {
     mockValidSession();
 
     const { result } = renderUseSession();
@@ -109,7 +109,7 @@ describe('useSession', () => {
     expect(result.current.entityToken).toBe('validToken');
   });
 
-  it('should ask for renewal when the session is old enough', async () => {
+  it('asks for renewal when the session is old enough', async () => {
     mockRenewableSession();
 
     const { result } = renderUseSession();
@@ -117,7 +117,7 @@ describe('useSession', () => {
     expect(result.current.shouldRenew).toBe(true);
   });
 
-  it('should not ask for renewal when the session is not old enough', async () => {
+  it('does not ask for renewal when the session is not old enough', async () => {
     mockValidSession();
 
     const { result } = renderUseSession();
@@ -125,7 +125,7 @@ describe('useSession', () => {
     expect(result.current.shouldRenew).toBe(false);
   });
 
-  it('should not ask for renewal when the session is expired', async () => {
+  it('does not ask for renewal when the session is expired', async () => {
     mockExpiredSession();
 
     const { result } = renderUseSession();
@@ -133,7 +133,7 @@ describe('useSession', () => {
     expect(result.current.shouldRenew).toBe(false);
   });
 
-  it('should not ask for renewal when the session is empty', async () => {
+  it('does not ask for renewal when the session is empty', async () => {
     mockEmptySession();
 
     const { result } = renderUseSession();

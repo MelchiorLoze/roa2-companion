@@ -30,7 +30,7 @@ const renderUseGetLeaderboardAroundPlayer = async (args?: Parameters<typeof useG
 };
 
 describe('useGetLeaderboardAroundPlayer', () => {
-  it('should fetch and transform leaderboard data with default params', async () => {
+  it('fetches and transform leaderboard data with default params', async () => {
     fetchMock.postOnce('*', mockResponse);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
@@ -58,7 +58,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should fetch with custom parameters', async () => {
+  it('fetches with custom parameters', async () => {
     fetchMock.postOnce('*', mockResponse);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer({
@@ -70,7 +70,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should handle API error', async () => {
+  it('handles API error', async () => {
     fetchMock.postOnce('*', 400);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
@@ -79,7 +79,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(true);
   });
 
-  it('refetch should call the query function again', async () => {
+  it('calls the query function again when refetching', async () => {
     fetchMock.postOnce('*', mockResponse);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
@@ -113,7 +113,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should return empty array when response has no leaderboard', async () => {
+  it('returns empty array when response has no leaderboard', async () => {
     fetchMock.postOnce('*', { Leaderboard: [] });
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();

@@ -65,14 +65,14 @@ describe('useStorageState', () => {
       Platform.OS = 'ios';
     });
 
-    it('should initialize with loading state and null value', async () => {
+    it('initializes with loading state and null value', async () => {
       const { result } = await renderUseStorageState();
       const [[stateValue]] = result.current;
 
       expect(stateValue).toBe(null);
     });
 
-    it('should load value from SecureStore on initialization', async () => {
+    it('loads value from SecureStore on initialization', async () => {
       getItemAsyncMock.mockResolvedValue(SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState();
@@ -83,7 +83,7 @@ describe('useStorageState', () => {
       expect(stateValue).toEqual(MOCK_OBJECT);
     });
 
-    it('should convert the loaded value using the converter function', async () => {
+    it('converts the loaded value using the converter function', async () => {
       getItemAsyncMock.mockResolvedValue(SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState(true, (raw) => ({ ...raw, age: 30 }));
@@ -92,7 +92,7 @@ describe('useStorageState', () => {
       expect(stateValue).toEqual({ ...MOCK_OBJECT, age: 30 });
     });
 
-    it('should save value to SecureStore when setValue is called', async () => {
+    it('saves value to SecureStore when setValue is called', async () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
@@ -108,7 +108,7 @@ describe('useStorageState', () => {
       expect(parsedData).toEqual(MOCK_OBJECT);
     });
 
-    it('should remove value from SecureStore when setValue is called with null', async () => {
+    it('removes value from SecureStore when setValue is called with null', async () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
@@ -119,7 +119,7 @@ describe('useStorageState', () => {
       expect(deleteItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
     });
 
-    it('should handle JSON parse errors gracefully', async () => {
+    it('handles JSON parse errors gracefully', async () => {
       getItemAsyncMock.mockResolvedValue('invalid-json');
 
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
@@ -143,14 +143,14 @@ describe('useStorageState', () => {
       Object.defineProperty(global, 'localStorage', { value: localStorageMock, configurable: true });
     });
 
-    it('should initialize with loading state and null value', async () => {
+    it('initializes with loading state and null value', async () => {
       const { result } = await renderUseStorageState(false);
       const [[stateValue]] = result.current;
 
       expect(stateValue).toBe(null);
     });
 
-    it('should load value from localStorage on initialization', async () => {
+    it('loads value from localStorage on initialization', async () => {
       localStorageMock.setItem(TEST_KEY, SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState(false);
@@ -161,7 +161,7 @@ describe('useStorageState', () => {
       expect(stateValue).toEqual(MOCK_OBJECT);
     });
 
-    it('should convert the loaded value using the converter function', async () => {
+    it('converts the loaded value using the converter function', async () => {
       localStorageMock.setItem(TEST_KEY, SERIALIZED_MOCK_OBJECT);
 
       const { result } = await renderUseStorageState(false, (raw) => ({ ...raw, age: 30 }));
@@ -170,7 +170,7 @@ describe('useStorageState', () => {
       expect(stateValue).toEqual({ ...MOCK_OBJECT, age: 30 });
     });
 
-    it('should save value to localStorage when setValue is called', async () => {
+    it('saves value to localStorage when setValue is called', async () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
@@ -186,7 +186,7 @@ describe('useStorageState', () => {
       expect(parsedData).toEqual(MOCK_OBJECT);
     });
 
-    it('should remove value from localStorage when setValue is called with null', async () => {
+    it('removes value from localStorage when setValue is called with null', async () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
@@ -197,7 +197,7 @@ describe('useStorageState', () => {
       expect(localStorageMock.removeItem).toHaveBeenCalledWith(TEST_KEY);
     });
 
-    it('should handle localStorage errors gracefully', async () => {
+    it('handles localStorage errors gracefully', async () => {
       localStorageMock.getItem.mockImplementationOnce(() => {
         throw new Error('localStorage error');
       });
@@ -211,7 +211,7 @@ describe('useStorageState', () => {
       consoleSpy.mockRestore();
     });
 
-    it('should handle undefined localStorage gracefully', async () => {
+    it('handles undefined localStorage gracefully', async () => {
       Object.defineProperty(global, 'localStorage', { value: undefined });
 
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation();

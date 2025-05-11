@@ -18,7 +18,7 @@ const renderUseGetItems = async (itemIds: Item['id'][]) => {
 };
 
 describe('useGetItems', () => {
-  describe('should return empty array', () => {
+  describe('returns empty array', () => {
     it('when the request is loading', async () => {
       const { result } = renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });
 
@@ -46,7 +46,7 @@ describe('useGetItems', () => {
   });
 
   describe('when the request succeeds', () => {
-    it('should return items', async () => {
+    it('returns items', async () => {
       fetchMock.postOnce('*', {
         data: {
           Items: [createItemDto('1', Category.SKIN, 500), createItemDto('2', Category.ICON, 20)],

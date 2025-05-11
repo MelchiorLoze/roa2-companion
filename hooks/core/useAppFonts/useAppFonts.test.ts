@@ -12,7 +12,7 @@ const SplashScreenMock = jest.mocked(SplashScreen);
 SplashScreenMock.hideAsync = jest.fn();
 
 describe('useAppFonts', () => {
-  it('should hide splash screen when fonts are loaded', () => {
+  it('hides splash screen when fonts are loaded', () => {
     useFontsMock.mockReturnValue([true, null]);
 
     renderHook(useAppFonts);
@@ -20,7 +20,7 @@ describe('useAppFonts', () => {
     expect(SplashScreenMock.hideAsync).toHaveBeenCalledTimes(1);
   });
 
-  it('should hide splash screen when there is an error loading fonts', () => {
+  it('hides splash screen when there is an error loading fonts', () => {
     useFontsMock.mockReturnValue([false, new Error('Failed to load fonts')]);
 
     renderHook(useAppFonts);
@@ -28,7 +28,7 @@ describe('useAppFonts', () => {
     expect(SplashScreenMock.hideAsync).toHaveBeenCalledTimes(1);
   });
 
-  it('should not hide splash screen when fonts are not loaded yet', () => {
+  it('does not hide splash screen when fonts are not loaded yet', () => {
     useFontsMock.mockReturnValue([false, null]);
 
     renderHook(useAppFonts);

@@ -44,7 +44,7 @@ describe('useAuth hook', () => {
     useGetEntityTokenMock.mockReturnValue(defaultGetEntityTokenState);
   });
 
-  it('should return correct initial state', () => {
+  it('returns correct initial state', () => {
     const { result } = renderUseAuth();
 
     expect(result.current.isLoggedIn).toBe(false);
@@ -54,7 +54,7 @@ describe('useAuth hook', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should call setSession when login data is available', () => {
+  it('calls setSession when login data is available', () => {
     const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailState,
@@ -66,7 +66,7 @@ describe('useAuth hook', () => {
     expect(defaultSessionState.setSession).toHaveBeenCalledWith(loginSession);
   });
 
-  it('should update isLoggedIn when session becomes valid', () => {
+  it('updates isLoggedIn when session becomes valid', () => {
     const { result, rerender } = renderUseAuth();
     expect(result.current.isLoggedIn).toBe(false);
 
@@ -80,7 +80,7 @@ describe('useAuth hook', () => {
     expect(result.current.isLoggedIn).toBe(true);
   });
 
-  it('logout should clear the session', () => {
+  it('clears the session when calling logout', () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionState,
       isValid: true,
@@ -92,7 +92,7 @@ describe('useAuth hook', () => {
     expect(defaultSessionState.clearSession).toHaveBeenCalledTimes(1);
   });
 
-  it('should set isLoading to true when session is loading', () => {
+  it('sets isLoading to true when session is loading', () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionState,
       isLoading: true,
@@ -103,7 +103,7 @@ describe('useAuth hook', () => {
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('should set isLoading to true when login is loading', () => {
+  it('sets isLoading to true when login is loading', () => {
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailState,
       isLoading: true,
@@ -114,7 +114,7 @@ describe('useAuth hook', () => {
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('should expose login error state', () => {
+  it('exposes login error state', () => {
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailState,
       isError: true,
@@ -125,7 +125,7 @@ describe('useAuth hook', () => {
     expect(result.current.isError).toBe(true);
   });
 
-  it('should call renew when shouldRenew is true and auto refresh is enabled', () => {
+  it('calls renew when shouldRenew is true and auto refresh is enabled', () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionState,
       shouldRenew: true,
@@ -136,13 +136,13 @@ describe('useAuth hook', () => {
     expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
   });
 
-  it('should not call renew when shouldRenew is false', () => {
+  it('does not call renew when shouldRenew is false', () => {
     renderUseAuth({ enableAutoRefresh: true });
 
     expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
   });
 
-  it('should not call renew when auto refresh is disabled', () => {
+  it('does not call renew when auto refresh is disabled', () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionState,
       shouldRenew: true,
@@ -153,7 +153,7 @@ describe('useAuth hook', () => {
     expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
   });
 
-  it('should call setSession when newSession is available', () => {
+  it('calls setSession when newSession is available', () => {
     const newSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useGetEntityTokenMock.mockReturnValue({
       ...defaultGetEntityTokenState,

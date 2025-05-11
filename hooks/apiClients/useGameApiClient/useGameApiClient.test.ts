@@ -31,7 +31,7 @@ describe('useGameApiClient', () => {
     useSessionMock.mockReturnValue(defaultSessionState);
   });
 
-  it('should add auth headers when logged in', async () => {
+  it('adds auth headers when logged in', async () => {
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock, {
       matcherFunction: ({ options }) => {
         const headers = options.headers as Record<string, string>;
@@ -45,7 +45,7 @@ describe('useGameApiClient', () => {
     expect(fetchMock.callHistory.callLogs).toHaveLength(1);
   });
 
-  it('should not add auth headers when not logged in', async () => {
+  it('does not add auth headers when not logged in', async () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionState,
       entityToken: undefined,
@@ -65,7 +65,7 @@ describe('useGameApiClient', () => {
     expect(fetchMock.callHistory.callLogs).toHaveLength(1);
   });
 
-  it('should handle successful responses with data property', async () => {
+  it('handles successful responses with data property', async () => {
     const { result } = renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock);
@@ -74,7 +74,7 @@ describe('useGameApiClient', () => {
     expect(response).toEqual({ id: 1, name: 'test' });
   });
 
-  it('should handle successful responses without data property', async () => {
+  it('handles successful responses without data property', async () => {
     const { result } = renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock.data);
@@ -83,7 +83,7 @@ describe('useGameApiClient', () => {
     expect(response).toEqual({ id: 1, name: 'test' });
   });
 
-  it('should clear session and throw error on 401 response', async () => {
+  it('clears session and throw error on 401 response', async () => {
     const { result } = renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, {
@@ -95,7 +95,7 @@ describe('useGameApiClient', () => {
     expect(defaultSessionState.clearSession).toHaveBeenCalledTimes(1);
   });
 
-  it('should throw error on other failed responses', async () => {
+  it('throws error on other failed responses', async () => {
     const { result } = renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, {
@@ -107,7 +107,7 @@ describe('useGameApiClient', () => {
     expect(defaultSessionState.clearSession).not.toHaveBeenCalled();
   });
 
-  it('should handle typed responses correctly', async () => {
+  it('handles typed responses correctly', async () => {
     const { result } = renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock);

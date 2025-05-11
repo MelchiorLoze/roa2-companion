@@ -31,13 +31,13 @@ const renderComponent = (items: Item[]) => {
 };
 
 describe('ItemList', () => {
-  it('should render correctly an empty item list', () => {
+  it('renders correctly an empty item list', () => {
     renderComponent([]);
 
     expect(screen.queryByRole('button')).toBeNull();
   });
 
-  it('should render correctly items from the list', () => {
+  it('renders correctly items from the list', () => {
     renderComponent(items);
 
     const itemCards = screen.getAllByRole('button');
@@ -46,7 +46,7 @@ describe('ItemList', () => {
     within(itemCards[1]).getByText(items[1].title);
   });
 
-  it('should call onSelect when an item is pressed', () => {
+  it('calls onSelect when an item is pressed', () => {
     renderComponent(items);
 
     const itemCards = screen.getAllByRole('button');

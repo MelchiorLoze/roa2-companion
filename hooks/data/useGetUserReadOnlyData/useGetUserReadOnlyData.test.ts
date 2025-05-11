@@ -18,7 +18,7 @@ const renderUseGetUserReadOnlyData = async () => {
 };
 
 describe('useGetUserReadOnlyData', () => {
-  it('should return nothing when the request is loading', async () => {
+  it('returns nothing when the request is loading', async () => {
     const { result } = renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
@@ -27,7 +27,7 @@ describe('useGetUserReadOnlyData', () => {
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
-  it('should return nothing when the request fails', async () => {
+  it('returns nothing when the request fails', async () => {
     fetchMock.postOnce('*', 400);
 
     const { result } = await renderUseGetUserReadOnlyData();
@@ -36,7 +36,7 @@ describe('useGetUserReadOnlyData', () => {
     expect(result.current.isError).toBe(true);
   });
 
-  it('should return statistics when the request succeeds', async () => {
+  it('returns statistics when the request succeeds', async () => {
     fetchMock.postOnce('*', {
       data: {
         Data: {
@@ -56,7 +56,7 @@ describe('useGetUserReadOnlyData', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('should refetch the data', async () => {
+  it('refetches the data', async () => {
     fetchMock.postOnce('*', {
       data: {
         Data: {

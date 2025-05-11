@@ -17,7 +17,7 @@ const renderUseGetInventoryItems = async () => {
 };
 
 describe('useGetInventoryItems', () => {
-  it('should return empty array when the request is loading', async () => {
+  it('returns empty array when the request is loading', async () => {
     const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
@@ -41,7 +41,7 @@ describe('useGetInventoryItems', () => {
       });
     });
 
-    it('should return the rotational coin store', async () => {
+    it('returns the rotational coin store', async () => {
       const { result } = await renderUseGetInventoryItems();
 
       expect(result.current.inventoryItems).toEqual([
@@ -59,7 +59,7 @@ describe('useGetInventoryItems', () => {
       });
     });
 
-    it('should return an empty array', async () => {
+    it('returns an empty array', async () => {
       const { result } = await renderUseGetInventoryItems();
 
       expect(result.current.inventoryItems).toEqual([]);
