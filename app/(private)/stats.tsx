@@ -27,7 +27,7 @@ type ChartProps = {
   width: number;
 };
 
-const DistributionChart = ({ width }: ChartProps) => {
+const RankDistributionBarChart = ({ width }: ChartProps) => {
   const { firstPlayerElo, lastAethereanElo, rankDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats();
 
   if (isLoadingLeaderboard) return <Spinner />;
@@ -53,13 +53,13 @@ const DistributionChart = ({ width }: ChartProps) => {
   );
 };
 
-const Chart = ({ width }: ChartProps) => {
+const EloDistributionLineChart = ({ width }: ChartProps) => {
   const { eloDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats();
 
   if (isLoadingLeaderboard) return null;
 
   return (
-    <View style={{ position: 'absolute' }}>
+    <View style={styles.lineChartContainer}>
       <LineChart
         adjustToWidth
         data={eloDistribution}
@@ -114,8 +114,8 @@ export default function Stats() {
             <Text style={[styles.label, styles.eloLabel(stats.rank)]}>{stats.rankedElo}</Text>
             <Text style={styles.label}>- #{stats.rankedPosition}</Text>
           </View>
-          <DistributionChart width={width} />
-          <Chart width={width} />
+          <RankDistributionBarChart width={width} />
+          <EloDistributionLineChart width={width} />
         </View>
       </Section>
 
@@ -199,5 +199,8 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.secondary.black,
     fontSize: 10,
     color: theme.color.black,
+  },
+  lineChartContainer: {
+    position: 'absolute',
   },
 }));
