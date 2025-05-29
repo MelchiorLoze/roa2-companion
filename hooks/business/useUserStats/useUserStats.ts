@@ -2,7 +2,7 @@ import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOn
 import { Character } from '@/types/character';
 import { CharacterStat, PlayerPosition, Rank, StatisticName, UserData, UserStats } from '@/types/stats';
 
-const getRank = (elo: number, position: number) => {
+export const getRank = (elo: number, position: number) => {
   if (elo < 500) return Rank.STONE;
   if (elo < 700) return Rank.BRONZE;
   if (elo < 900) return Rank.SILVER;
