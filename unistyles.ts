@@ -22,7 +22,7 @@ const theme = {
     bronze: '#B87A2E',
     silver: '#C8C8D5',
     gold: '#FFC64E',
-    platinum: 'white',
+    platinum: '#C3C4FF',
     diamond: '#95DFEC',
     master: '#9CE7AC',
     grandmaster: '#FC7575',
