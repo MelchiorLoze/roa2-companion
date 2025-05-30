@@ -2,88 +2,12 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, useWindowDimensions, View } from 'react-native';
-import { BarChart, LineChart } from 'react-native-gifted-charts';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Spinner } from '@/components';
+import { EloDistributionLineChart, RankDistributionBarChart, Spinner } from '@/components';
 import { useUserStats } from '@/hooks/business';
-import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { CHARACTER_ICONS } from '@/types/character';
-import { Rank, RANK_ELO_INTERVALS, RANK_ICONS } from '@/types/rank';
-
-const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) =>
-  [
-    RANK_ELO_INTERVALS[Rank.STONE].max - lastPlayerElo + 1, // Assuming there could be players below 0 elo
-    RANK_ELO_INTERVALS[Rank.BRONZE].size(),
-    RANK_ELO_INTERVALS[Rank.SILVER].size(),
-    RANK_ELO_INTERVALS[Rank.GOLD].size(),
-    RANK_ELO_INTERVALS[Rank.PLATINUM].size(),
-    RANK_ELO_INTERVALS[Rank.DIAMOND].size(),
-    RANK_ELO_INTERVALS[Rank.MASTER].size(),
-    lastAethereanElo - RANK_ELO_INTERVALS[Rank.GRANDMASTER].min + 1,
-    firstPlayerElo - lastAethereanElo,
-  ].map((eloIntervalSize) => (eloIntervalSize / firstPlayerElo) * totalWidth);
-
-type ChartProps = {
-  width: number;
-};
-
-const RankDistributionBarChart = ({ width }: ChartProps) => {
-  const {
-    firstPlayerElo,
-    lastPlayerElo,
-    lastAethereanElo,
-    rankDistribution,
-    isLoading: isLoadingLeaderboard,
-  } = useLeaderboardStats();
-
-  if (isLoadingLeaderboard) return <Spinner />;
-
-  const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
-
-  return (
-    <BarChart
-      data={rankDistribution.reverse().map((item, index) => ({
-        ...item,
-        barWidth: barWidths[index] % 100,
-        topLabelComponent: () => <Text style={styles.chartBarTopLabel}>{item.value}</Text>,
-      }))}
-      disablePress
-      disableScroll
-      height={width}
-      hideAxesAndRules
-      spacing={0}
-      width={width}
-      xAxisLabelsHeight={0}
-      yAxisLabelWidth={0}
-    />
-  );
-};
-
-const EloDistributionLineChart = ({ width }: ChartProps) => {
-  const { eloDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats();
-
-  if (isLoadingLeaderboard) return null;
-
-  return (
-    <View style={styles.lineChartContainer}>
-      <LineChart
-        adjustToWidth
-        data={eloDistribution}
-        dataPointsColor="transparent"
-        dataPointsRadius={2}
-        disableScroll
-        height={width}
-        hideAxesAndRules
-        initialSpacing={0}
-        thickness={1}
-        width={width}
-        xAxisLabelsHeight={0}
-        yAxisLabelWidth={0}
-      />
-    </View>
-  );
-};
+import { Rank, RANK_ICONS } from '@/types/rank';
 
 type SectionProps = { title?: string } & PropsWithChildren;
 
@@ -122,7 +46,7 @@ export default function Stats() {
             <Text style={styles.label}>- #{stats.rankedPosition}</Text>
           </View>
           <RankDistributionBarChart width={width} />
-          <EloDistributionLineChart width={width} />
+          <EloDistributionLineChart style={styles.lineChartContainer} width={width} />
         </View>
       </Section>
 
@@ -201,11 +125,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   otherColumns: {
     flex: 2 / 5,
-  },
-  chartBarTopLabel: {
-    fontFamily: theme.font.secondary.black,
-    fontSize: 10,
-    color: theme.color.black,
   },
   lineChartContainer: {
     position: 'absolute',
