@@ -1,18 +1,7 @@
 import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
 import { Character } from '@/types/character';
-import { CharacterStat, PlayerPosition, Rank, StatisticName, UserData, UserStats } from '@/types/stats';
-
-export const getRank = (elo: number, position: number) => {
-  if (elo < 500) return Rank.STONE;
-  if (elo < 700) return Rank.BRONZE;
-  if (elo < 900) return Rank.SILVER;
-  if (elo < 1100) return Rank.GOLD;
-  if (elo < 1300) return Rank.PLATINUM;
-  if (elo < 1500) return Rank.DIAMOND;
-  if (elo < 1700) return Rank.MASTER;
-  if (elo < 1800 || position > 100) return Rank.GRANDMASTER;
-  return Rank.AETHEREAN;
-};
+import { getRank } from '@/types/rank';
+import { CharacterStat, PlayerPosition, StatisticName, UserData, UserStats } from '@/types/stats';
 
 const computeStats = (statistics: UserStats, userPosition: PlayerPosition, userReadOnlyData: UserData) => {
   const rankedPosition = userPosition.position;

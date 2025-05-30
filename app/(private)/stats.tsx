@@ -9,30 +9,37 @@ import { Spinner } from '@/components';
 import { useUserStats } from '@/hooks/business';
 import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { CHARACTER_ICONS } from '@/types/character';
-import { Rank, RANK_ICONS } from '@/types/stats';
+import { Rank, RANK_ELO_INTERVALS, RANK_ICONS } from '@/types/rank';
 
-const getBarWidths = (firstPlayerElo: number, lastAethereanElo: number, totalWidth: number) => [
-  ((500 - 0) / firstPlayerElo) * totalWidth, // Stone: 0 to 500
-  ((700 - 500) / firstPlayerElo) * totalWidth, // Bronze: 500 to 700
-  ((900 - 700) / firstPlayerElo) * totalWidth, // Silver: 700 to 900
-  ((1100 - 900) / firstPlayerElo) * totalWidth, // Gold: 900 to 1100
-  ((1300 - 1100) / firstPlayerElo) * totalWidth, // Platinum: 1100 to 1300
-  ((1500 - 1300) / firstPlayerElo) * totalWidth, // Diamond: 1300 to 1500
-  ((1700 - 1500) / firstPlayerElo) * totalWidth, // Master: 1500 to 1700
-  ((lastAethereanElo - 1700) / firstPlayerElo) * totalWidth, // Grandmaster: 1700 to minAetherianElo
-  ((firstPlayerElo - lastAethereanElo) / firstPlayerElo) * totalWidth, // Aetherian: minAetherianElo to maxElo
-];
+const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) =>
+  [
+    RANK_ELO_INTERVALS[Rank.STONE].max - lastPlayerElo + 1, // Assuming there could be players below 0 elo
+    RANK_ELO_INTERVALS[Rank.BRONZE].size(),
+    RANK_ELO_INTERVALS[Rank.SILVER].size(),
+    RANK_ELO_INTERVALS[Rank.GOLD].size(),
+    RANK_ELO_INTERVALS[Rank.PLATINUM].size(),
+    RANK_ELO_INTERVALS[Rank.DIAMOND].size(),
+    RANK_ELO_INTERVALS[Rank.MASTER].size(),
+    lastAethereanElo - RANK_ELO_INTERVALS[Rank.GRANDMASTER].min + 1,
+    firstPlayerElo - lastAethereanElo,
+  ].map((eloIntervalSize) => (eloIntervalSize / firstPlayerElo) * totalWidth);
 
 type ChartProps = {
   width: number;
 };
 
 const RankDistributionBarChart = ({ width }: ChartProps) => {
-  const { firstPlayerElo, lastAethereanElo, rankDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats();
+  const {
+    firstPlayerElo,
+    lastPlayerElo,
+    lastAethereanElo,
+    rankDistribution,
+    isLoading: isLoadingLeaderboard,
+  } = useLeaderboardStats();
 
   if (isLoadingLeaderboard) return <Spinner />;
 
-  const barWidths = getBarWidths(firstPlayerElo, lastAethereanElo, width);
+  const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
 
   return (
     <BarChart
