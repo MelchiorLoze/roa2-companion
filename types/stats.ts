@@ -35,7 +35,7 @@ export enum StatisticName {
 }
 
 export type PlayerPosition = {
-  displayName: string;
+  playerName: string;
   statisticName: StatisticName;
   statisticValue: number;
   position: number;

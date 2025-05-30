@@ -3,6 +3,8 @@ export class Interval {
   public readonly max: number;
 
   constructor(min: number, max: number) {
+    if (min > max) throw new Error('Invalid interval: min cannot be greater than max');
+
     this.min = min;
     this.max = max;
   }

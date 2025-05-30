@@ -37,7 +37,7 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName } 
       data.Leaderboard.map(
         ({ DisplayName, StatValue, Position }) =>
           ({
-            displayName: DisplayName,
+            playerName: DisplayName,
             statisticName: statisticName,
             statisticValue: StatValue,
             position: Position,

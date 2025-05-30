@@ -66,3 +66,16 @@ export const getRank = (elo: number, leaderboardPosition: number) => {
   if (rank === Rank.AETHEREAN && leaderboardPosition > 100) return Rank.GRANDMASTER; // Aetherean rank is only for top 100 players
   return rank;
 };
+
+export type Leaderboard = {
+  id: number;
+  name: string;
+  displayName: string;
+  entryCount: number;
+};
+
+export type LeaderboardEntry = {
+  steamId: string;
+  position: number;
+  elo: number;
+};

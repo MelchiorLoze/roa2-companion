@@ -2,21 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 
 import { STEAM_APP_ID } from '@/constants';
 import { useSteamCommunityApiClient } from '@/hooks/apiClients';
+import { Leaderboard } from '@/types/rank';
 
 type CommunityLeaderboardsResponse = {
   leaderboard: {
+    lbid: number;
     name: string;
     display_name: string;
     entries: number;
-    lbid: number;
   }[];
-};
-
-type Leaderboard = {
-  id: number;
-  name: string;
-  displayName: string;
-  entryCount: number;
 };
 
 export const useCommunityLeaderboards = () => {
