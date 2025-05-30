@@ -1,7 +1,7 @@
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 
-import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useLeaderboardStats } from '@/hooks/business';
 
 type Props = {
   width: number;

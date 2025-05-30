@@ -1,9 +1,9 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { Spinner } from '@/components';
-import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useLeaderboardStats } from '@/hooks/business';
 import { Rank, RANK_ELO_INTERVALS } from '@/types/rank';
 
 // Caclulate the widths of the chart bars to be proportional to the elo intervals
@@ -40,21 +40,23 @@ export const RankDistributionBarChart = ({ width }: Props) => {
   const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
 
   return (
-    <BarChart
-      data={rankDistribution.reverse().map((item, index) => ({
-        ...item,
-        barWidth: barWidths[index] % 100,
-        topLabelComponent: () => <Text style={styles.topLabel}>{item.value}</Text>,
-      }))}
-      disablePress
-      disableScroll
-      height={width}
-      hideAxesAndRules
-      spacing={0}
-      width={width}
-      xAxisLabelsHeight={0}
-      yAxisLabelWidth={0}
-    />
+    <View testID="rank-distribution">
+      <BarChart
+        data={rankDistribution.reverse().map((item, index) => ({
+          ...item,
+          barWidth: barWidths[index] % 100,
+          topLabelComponent: () => <Text style={styles.topLabel}>{item.value}</Text>,
+        }))}
+        disablePress
+        disableScroll
+        height={width}
+        hideAxesAndRules
+        spacing={0}
+        width={width}
+        xAxisLabelsHeight={0}
+        yAxisLabelWidth={0}
+      />
+    </View>
   );
 };
 

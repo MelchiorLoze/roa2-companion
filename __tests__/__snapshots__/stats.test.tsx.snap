@@ -55,87 +55,7 @@ exports[`Stats matches the snapshot 1`] = `
       >
         Ranked
       </Text>
-      <View
-        style={
-          {
-            "alignItems": "center",
-            "width": "75%",
-          }
-        }
-      >
-        <View
-          style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "gap": 4,
-            }
-          }
-        >
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            #
-            123
-             -
-          </Text>
-          <ViewManagerAdapter_ExpoImage
-            containerViewRef={"[React.ref]"}
-            contentFit="contain"
-            contentPosition={
-              {
-                "left": "50%",
-                "top": "50%",
-              }
-            }
-            height={24}
-            nativeViewRef={"[React.ref]"}
-            onError={[Function]}
-            onLoad={[Function]}
-            onLoadStart={[Function]}
-            onProgress={[Function]}
-            placeholder={[]}
-            source={
-              [
-                {
-                  "testUri": "../../../assets/images/rank/gold.png",
-                },
-              ]
-            }
-            style={
-              {
-                "height": 24,
-                "width": 24,
-              }
-            }
-            transition={null}
-            width={24}
-          />
-          <Text
-            style={
-              [
-                {
-                  "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
-                },
-                {
-                  "color": "#FFC64E",
-                },
-              ]
-            }
-          >
-            925
-          </Text>
-        </View>
+      <View>
         <Text
           style={
             {
@@ -147,22 +67,11 @@ exports[`Stats matches the snapshot 1`] = `
           }
         >
           100
-           sets
-        </Text>
-        <Text
-          style={
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
-            }
-          }
-        >
+           sets: 
           75
-           wins - 
+           W - 
           25
-           losses
+           L
         </Text>
         <Text
           style={
@@ -178,6 +87,121 @@ exports[`Stats matches the snapshot 1`] = `
           75.00
           %
         </Text>
+        <View>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../assets/images/rank/gold.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "white",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                    "textTransform": "uppercase",
+                  },
+                  {
+                    "color": "#FFC64E",
+                  },
+                ]
+              }
+            >
+              925
+            </Text>
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              - #
+              123
+            </Text>
+          </View>
+          <View
+            testID="rank-distribution"
+          >
+            <
+              data={[]}
+              disablePress={true}
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              spacing={0}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
+            />
+          </View>
+          <View
+            style={
+              {
+                "position": "absolute",
+              }
+            }
+            testID="elo-distribution"
+          >
+            <
+              adjustToWidth={true}
+              data={[]}
+              dataPointsColor="transparent"
+              dataPointsRadius={2}
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              initialSpacing={0}
+              thickness={1}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
+            />
+          </View>
+        </View>
       </View>
     </ViewManagerAdapter_ExpoLinearGradient>
     <ViewManagerAdapter_ExpoLinearGradient
@@ -218,14 +242,7 @@ exports[`Stats matches the snapshot 1`] = `
       >
         Global
       </Text>
-      <View
-        style={
-          {
-            "alignItems": "center",
-            "width": "75%",
-          }
-        }
-      >
+      <View>
         <Text
           style={
             {
@@ -237,22 +254,11 @@ exports[`Stats matches the snapshot 1`] = `
           }
         >
           500
-           games
-        </Text>
-        <Text
-          style={
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
-            }
-          }
-        >
+           games: 
           300
-           wins - 
+           W - 
           200
-           losses
+           L
         </Text>
         <Text
           style={
@@ -296,14 +302,7 @@ exports[`Stats matches the snapshot 1`] = `
         }
       }
     >
-      <View
-        style={
-          {
-            "alignItems": "center",
-            "width": "75%",
-          }
-        }
-      >
+      <View>
         <View
           style={
             {

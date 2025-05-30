@@ -5,6 +5,11 @@ jest.mock('@expo/vector-icons', () => ({
   MaterialIcons: '',
 }));
 
+jest.mock('react-native-gifted-charts', () => ({
+  LineChart: '',
+  BarChart: '',
+}));
+
 fetchMock.mockGlobal();
 
 afterEach(() => {

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react-native';
 
 import Stats from '@/app/(private)/stats';
-import { useUserStats } from '@/hooks/business';
+import { useLeaderboardStats, useUserStats } from '@/hooks/business';
 import { Character } from '@/types/character';
 import { Rank } from '@/types/rank';
 
@@ -30,6 +30,16 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
   refresh: jest.fn(),
   isLoading: false,
 };
+
+const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
+useLeaderboardStatsMock.mockReturnValue({
+  firstPlayerElo: 1000,
+  lastPlayerElo: -1000,
+  lastAethereanElo: 1800,
+  rankDistribution: [],
+  eloDistribution: [],
+  isLoading: false,
+});
 
 const renderComponent = () => {
   const result = render(<Stats />);
