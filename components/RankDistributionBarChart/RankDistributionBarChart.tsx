@@ -7,8 +7,9 @@ import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLea
 import { Rank, RANK_ELO_INTERVALS } from '@/types/rank';
 
 // Caclulate the widths of the chart bars to be proportional to the elo intervals
-const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) =>
-  [
+const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) => {
+  const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
+  return [
     RANK_ELO_INTERVALS[Rank.STONE].max - lastPlayerElo + 1, // Assuming there could be players below 0 elo
     RANK_ELO_INTERVALS[Rank.BRONZE].size(),
     RANK_ELO_INTERVALS[Rank.SILVER].size(),
@@ -18,7 +19,8 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
     RANK_ELO_INTERVALS[Rank.MASTER].size(),
     lastAethereanElo - RANK_ELO_INTERVALS[Rank.GRANDMASTER].min + 1,
     firstPlayerElo - lastAethereanElo,
-  ].map((eloIntervalSize) => (eloIntervalSize / firstPlayerElo) * totalWidth);
+  ].map((eloIntervalSize) => (eloIntervalSize / totalEloRange) * totalWidth);
+};
 
 type Props = {
   width: number;

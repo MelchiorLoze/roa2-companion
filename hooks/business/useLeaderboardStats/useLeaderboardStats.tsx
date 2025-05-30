@@ -11,6 +11,9 @@ const DISTRIBUTION_PRECISION = 10;
 
 const roundedElo = (elo: number) => Math.floor(elo / DISTRIBUTION_PRECISION) * DISTRIBUTION_PRECISION;
 
+type RankDistributionBarDataItem = barDataItem;
+type EloDistributionLineDataItem = lineDataItem & { elo: number };
+
 export const useLeaderboardStats = () => {
   const { leaderboards, isLoading: isLoadingLeaderboards } = useCommunityLeaderboards();
   const { leaderboardEntries, isLoading: isLoadingLeaderboard } = useCommunityLeaderboard(leaderboards[1]?.id ?? -1);
@@ -29,21 +32,19 @@ export const useLeaderboardStats = () => {
       else acc[rank] = { value: 1, frontColor: theme.color[rank] };
       return acc;
     },
-    {} as Record<Rank, barDataItem>,
+    {} as Record<Rank, RankDistributionBarDataItem>,
   );
 
-  const distributionPerElo = useMemo(() => {
+  const eloDistribution = useMemo(() => {
     if (!leaderboardEntries.length || !firstPlayerElo) return [];
 
+    const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
     const result = Array.from(
-      { length: Math.ceil(firstPlayerElo / DISTRIBUTION_PRECISION) },
-      (_, i) => i * DISTRIBUTION_PRECISION,
+      { length: Math.ceil(totalEloRange / DISTRIBUTION_PRECISION) + 1 },
+      (_, i) => i * DISTRIBUTION_PRECISION + roundedElo(lastPlayerElo),
     ).reduce(
-      (acc, elo) => {
-        acc[elo] = { value: 0, label: elo.toString() };
-        return acc;
-      },
-      {} as Record<number, lineDataItem>,
+      (acc, elo) => ({ ...acc, [elo]: { value: 0, elo: elo } as EloDistributionLineDataItem }),
+      {} as Record<number, EloDistributionLineDataItem>,
     );
 
     leaderboardEntries.forEach((entry) => {
@@ -57,15 +58,15 @@ export const useLeaderboardStats = () => {
       if (result[playerElo]) result[playerElo].dataPointColor = 'red';
     }
 
-    return result;
-  }, [firstPlayerElo, leaderboardEntries, stats?.rankedElo]);
+    return Object.values(result).sort((a, b) => a.elo - b.elo);
+  }, [firstPlayerElo, lastPlayerElo, leaderboardEntries, stats?.rankedElo]);
 
   return {
     firstPlayerElo,
     lastPlayerElo,
     lastAethereanElo,
     rankDistribution: Object.values(distributionPerRank),
-    eloDistribution: Object.values(distributionPerElo),
+    eloDistribution,
     isLoading: isLoadingUserStats || isLoadingLeaderboards || isLoadingLeaderboard,
   };
 };
