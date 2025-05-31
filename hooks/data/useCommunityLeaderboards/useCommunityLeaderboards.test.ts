@@ -12,6 +12,7 @@ const renderUseCommunityLeaderboards = async () => {
 
   return { result };
 };
+
 describe('useCommunityLeaderboards', () => {
   it('returns empty array when the request is loading', async () => {
     const { result } = renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
