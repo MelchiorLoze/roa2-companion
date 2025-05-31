@@ -1,13 +1,13 @@
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { PropsWithChildren } from 'react';
-import { RefreshControl, ScrollView, Text, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Spinner } from '@/components';
+import { EloDistributionLineChart, RankDistributionBarChart, Spinner } from '@/components';
 import { useUserStats } from '@/hooks/business';
 import { CHARACTER_ICONS } from '@/types/character';
-import { Rank, RANK_ICONS } from '@/types/stats';
+import { Rank, RANK_ICONS } from '@/types/rank';
 
 type SectionProps = { title?: string } & PropsWithChildren;
 
@@ -17,13 +17,15 @@ const Section = ({ title, children }: SectionProps) => {
   return (
     <LinearGradient colors={theme.color.statsGradient} end={[1, 0]} start={[1 / 3, 0]} style={styles.section}>
       {title && <Text style={styles.sectionTitle}>{title}</Text>}
-      <View style={styles.sectionContent}>{children}</View>
+      <View>{children}</View>
     </LinearGradient>
   );
 };
 
 export default function Stats() {
   const { stats, refresh, isLoading } = useUserStats();
+  const dimensions = useWindowDimensions();
+  const width = dimensions.width - 2 * 24;
 
   if (!stats || isLoading) return <Spinner />;
 
@@ -33,22 +35,24 @@ export default function Stats() {
       refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />}
     >
       <Section title="Ranked">
-        <View style={styles.labelWithIconContainer}>
-          <Text style={styles.label}>#{stats.rankedPosition} -</Text>
-          <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
-          <Text style={[styles.label, styles.eloLabel(stats.rank)]}>{stats.rankedElo}</Text>
-        </View>
-        <Text style={styles.label}>{stats.rankedSetCount} sets</Text>
         <Text style={styles.label}>
-          {stats.rankedWinCount} wins - {stats.rankedSetCount - stats.rankedWinCount} losses
+          {stats.rankedSetCount} sets: {stats.rankedWinCount} W - {stats.rankedSetCount - stats.rankedWinCount} L
         </Text>
         <Text style={styles.label}>Winrate: {(stats.rankedWinRate ?? 0).toFixed(2)}%</Text>
+        <View>
+          <View style={styles.labelWithIconContainer}>
+            <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
+            <Text style={[styles.label, styles.eloLabel(stats.rank)]}>{stats.rankedElo}</Text>
+            <Text style={styles.label}>- #{stats.rankedPosition}</Text>
+          </View>
+          <RankDistributionBarChart width={width} />
+          <EloDistributionLineChart style={styles.lineChartContainer} userElo={stats.rankedElo} width={width} />
+        </View>
       </Section>
 
       <Section title="Global">
-        <Text style={styles.label}>{stats.globalMatchCount} games</Text>
         <Text style={styles.label}>
-          {stats.globalWinCount} wins - {stats.globalMatchCount - stats.globalWinCount} losses
+          {stats.globalMatchCount} games: {stats.globalWinCount} W - {stats.globalMatchCount - stats.globalWinCount} L
         </Text>
         <Text style={styles.label}>Winrate: {(stats.globalWinRate ?? 0).toFixed(2)}%</Text>
       </Section>
@@ -90,10 +94,6 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
-  sectionContent: {
-    width: '75%',
-    alignItems: 'center',
-  },
   label: {
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
@@ -108,6 +108,9 @@ const styles = StyleSheet.create((theme) => ({
     height: 24,
   },
   labelWithIconContainer: {
+    position: 'absolute',
+    top: theme.spacing.s,
+    right: theme.spacing.s,
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.xs,
@@ -122,5 +125,8 @@ const styles = StyleSheet.create((theme) => ({
   },
   otherColumns: {
     flex: 2 / 5,
+  },
+  lineChartContainer: {
+    position: 'absolute',
   },
 }));

@@ -14,7 +14,7 @@ const useGetUserReadOnlyDataMock = jest.mocked(useGetUserReadOnlyData);
 
 const mockedPlayerPositions: PlayerPosition[] = [
   {
-    displayName: 'Player1',
+    playerName: 'Player1',
     statisticName: StatisticName.RANKED_S2_ELO,
     statisticValue: 916,
     position: 4404,

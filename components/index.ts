@@ -1,9 +1,11 @@
 export { ActionRow } from './ActionRow/ActionRow';
 export { Button } from './Button/Button';
 export { Dialog } from './Dialog/Dialog';
+export { EloDistributionLineChart } from './EloDistributionLineChart/EloDistributionLineChart';
 export { Header } from './Header/Header';
 export { Input } from './Input/Input';
 export { ItemList } from './ItemList/ItemList';
+export { RankDistributionBarChart } from './RankDistributionBarChart/RankDistributionBarChart';
 export { ResetPasswordDialog } from './ResetPasswordDialog/ResetPasswordDialog';
 export { Separator } from './Separator/Separator';
 export { Spinner } from './Spinner/Spinner';

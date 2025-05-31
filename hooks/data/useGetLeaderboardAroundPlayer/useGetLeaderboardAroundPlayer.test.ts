@@ -37,19 +37,19 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     expect(result.current.playerPositions).toEqual([
       {
-        displayName: 'Player1',
+        playerName: 'Player1',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2500,
         position: 1,
       },
       {
-        displayName: 'Player2',
+        playerName: 'Player2',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2400,
         position: 2,
       },
       {
-        displayName: 'Player3',
+        playerName: 'Player3',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2300,
         position: 3,
@@ -98,13 +98,13 @@ describe('useGetLeaderboardAroundPlayer', () => {
     await waitFor(() => expect(result.current.playerPositions).toHaveLength(2));
     expect(result.current.playerPositions).toEqual([
       {
-        displayName: 'NewPlayer1',
+        playerName: 'NewPlayer1',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2600,
         position: 1,
       },
       {
-        displayName: 'NewPlayer2',
+        playerName: 'NewPlayer2',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2550,
         position: 2,
