@@ -4,12 +4,13 @@ import { LineChart } from 'react-native-gifted-charts';
 import { useLeaderboardStats } from '@/hooks/business';
 
 type Props = {
+  userElo: number;
   width: number;
   style?: StyleProp<ViewStyle>;
 };
 
-export const EloDistributionLineChart = ({ width, style }: Props) => {
-  const { eloDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats();
+export const EloDistributionLineChart = ({ userElo, width, style }: Props) => {
+  const { eloDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats(userElo);
 
   if (isLoadingLeaderboard) return null;
 
