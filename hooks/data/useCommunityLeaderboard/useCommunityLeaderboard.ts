@@ -11,7 +11,7 @@ type CommunityLeaderboardResponse = {
   entryEnd: number;
   entries: {
     entry: {
-      steamid: string;
+      steamid: number;
       score: number;
       rank: number;
     }[];

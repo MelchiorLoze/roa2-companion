@@ -46,7 +46,7 @@ export default function Stats() {
             <Text style={styles.label}>- #{stats.rankedPosition}</Text>
           </View>
           <RankDistributionBarChart width={width} />
-          <EloDistributionLineChart style={styles.lineChartContainer} width={width} />
+          <EloDistributionLineChart style={styles.lineChartContainer} userElo={stats.rankedElo} width={width} />
         </View>
       </Section>
 
