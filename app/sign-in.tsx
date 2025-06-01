@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Button, Input, ResetPasswordDialog, Spinner } from '@/components';
-import { Disclaimer } from '@/components/Disclaimer/Disclaimer';
+import { Button, Disclaimer, Input, ResetPasswordDialog, Spinner } from '@/components';
 import { useAuth } from '@/hooks/business';
 
 export default function SignIn() {

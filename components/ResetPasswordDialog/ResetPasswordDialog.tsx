@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Dialog } from '@/components/Dialog/Dialog';
 import { useSendAccountRecoveryEmail } from '@/hooks/data';
 
 import { Button } from '../Button/Button';
+import { Dialog } from '../Dialog/Dialog';
 import { Input } from '../Input/Input';
 import { Spinner } from '../Spinner/Spinner';
 

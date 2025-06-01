@@ -6,7 +6,7 @@ import { useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components';
 import { SessionProvider } from '@/contexts';
-import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
+import { useAppFonts } from '@/hooks/core';
 
 const queryClient = new QueryClient();
 

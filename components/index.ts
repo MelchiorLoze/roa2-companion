@@ -1,6 +1,7 @@
 export { ActionRow } from './ActionRow/ActionRow';
 export { Button } from './Button/Button';
 export { Dialog } from './Dialog/Dialog';
+export { Disclaimer } from './Disclaimer/Disclaimer';
 export { EloDistributionLineChart } from './EloDistributionLineChart/EloDistributionLineChart';
 export { Header } from './Header/Header';
 export { Input } from './Input/Input';
