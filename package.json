@@ -1,6 +1,6 @@
 {
   "name": "roa2-companion",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -22,11 +22,11 @@
   "jest": {
     "preset": "jest-expo",
     "setupFilesAfterEnv": [
-      "./jest.setup.ts",
-      "./jest.mock.ts",
+      "@shopify/react-native-skia/jestSetup.js",
       "react-native-unistyles/mocks",
-      "./unistyles.ts",
-      "@shopify/react-native-skia/jestSetup.js"
+      "./src/unistyles.ts",
+      "./src/jest.setup.ts",
+      "./src/jest.mock.ts"
     ]
   },
   "dependencies": {
@@ -67,6 +67,8 @@
     "@types/jest": "^29.5.14",
     "@types/luxon": "^3.4.2",
     "@types/react": "~18.3.12",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
     "eslint": "^8.57.0",
     "eslint-config-expo": "~8.0.1",
     "eslint-plugin-react": "^7.37.4",
