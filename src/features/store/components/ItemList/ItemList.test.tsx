@@ -1,12 +1,13 @@
 import { fireEvent, render, screen, within } from '@testing-library/react-native';
 
-import { testItemList } from '../../test-helpers';
-import type { StoreItem } from '../../types/item';
+import { testItemList } from '@/test-helpers';
+import type { Item } from '@/types/item';
+
 import { ItemList } from './ItemList';
 
 const onSelectMock = jest.fn();
 
-const renderComponent = (items: StoreItem[]) => {
+const renderComponent = (items: Item[]) => {
   render(<ItemList items={items} onSelect={onSelectMock} />);
 
   expect(onSelectMock).not.toHaveBeenCalled();

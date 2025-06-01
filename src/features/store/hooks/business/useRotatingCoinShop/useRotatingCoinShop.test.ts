@@ -1,10 +1,9 @@
 import { renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
-import type { StoreItem } from '@/features/store/types/item';
-import { Category, Rarity } from '@/types/item';
+import { useGetItems } from '@/hooks/data';
+import { Category, type Item, Rarity } from '@/types/item';
 
-import { useGetItems } from '../../data/useGetItems/useGetItems';
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 import { useRotatingCoinShop } from './useRotatingCoinShop';
 
@@ -12,7 +11,7 @@ const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
 jest.mock('../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');
 const useGetMyRotationalCoinStoreMock = jest.mocked(useGetMyRotationalCoinStore);
-jest.mock('../../data/useGetItems/useGetItems');
+jest.mock('@/hooks/data');
 const useGetItemsMock = jest.mocked(useGetItems);
 
 describe('useRotatingCoinShop', () => {
@@ -86,14 +85,14 @@ describe('useRotatingCoinShop', () => {
   });
 
   it('returns sorted items when data is loaded', () => {
-    const mockItems: StoreItem[] = [
+    const mockItems: Item[] = [
       { id: '1', name: 'Item B', coinPrice: 20, category: Category.ICON, rarity: Rarity.LEGENDARY },
       { id: '2', name: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },
       { id: '3', name: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
       { id: '4', name: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
     ];
 
-    const expectedSortedItems: StoreItem[] = [
+    const expectedSortedItems: Item[] = [
       { id: '4', name: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
       { id: '3', name: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
       { id: '2', name: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },

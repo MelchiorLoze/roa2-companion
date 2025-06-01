@@ -1,13 +1,11 @@
 import { CurrencyId } from '@/types/currency';
-import { RARITY_VALUES_MAPPING } from '@/types/item';
+import { type Item, type ItemDto, RARITY_VALUES_MAPPING } from '@/types/item';
 
-import type { StoreItem, StoreItemDto } from '../types/item';
-
-const getPriceValueFromItemDto = (item: StoreItemDto, currencyId: CurrencyId) => {
+const getPriceValueFromItemDto = (item: ItemDto, currencyId: CurrencyId) => {
   return item.PriceOptions?.Prices.find((price) => price.Amounts[0].ItemId === currencyId)?.Amounts[0].Amount;
 };
 
-export const itemFromDto = (item: StoreItemDto) =>
+export const itemFromDto = (item: ItemDto) =>
   ({
     id: item.Id,
     name: item.Title.NEUTRAL,
@@ -15,4 +13,4 @@ export const itemFromDto = (item: StoreItemDto) =>
     coinPrice: getPriceValueFromItemDto(item, CurrencyId.COINS),
     buckPrice: getPriceValueFromItemDto(item, CurrencyId.BUCKS),
     rarity: RARITY_VALUES_MAPPING[item.DisplayProperties.rarity],
-  }) as StoreItem;
+  }) as Item;

@@ -6,12 +6,9 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { CoinsIcon } from '@/assets/images';
 import { OutlinedText } from '@/components';
-import type { Rarity } from '@/types/item';
-import { CATEGORY_LABELS, RARITY_ICONS } from '@/types/item';
+import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/item';
 
-import type { StoreItem } from '../../types/item';
-
-type Props = { item: StoreItem; onPress: () => void };
+type Props = { item: Item; onPress: () => void };
 
 export const ItemCard = ({ item, onPress }: Props) => {
   const { theme } = useUnistyles();

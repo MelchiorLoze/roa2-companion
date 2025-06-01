@@ -3,12 +3,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useGameApiClient } from '@/hooks/apiClients';
 import { invalidateGetInventoryItems } from '@/hooks/data';
 import { CurrencyId } from '@/types/currency';
+import type { Item } from '@/types/item';
 
-import type { StoreItem } from '../../../types/item';
 import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
 type ItemToPurchase = {
-  id: StoreItem['id'];
+  id: Item['id'];
   price: { value: number; currencyId: CurrencyId };
 };
 

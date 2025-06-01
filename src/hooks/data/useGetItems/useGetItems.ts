@@ -1,15 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients';
-
-import type { StoreItem, StoreItemDto } from '../../../types/item';
-import { itemFromDto } from '../../../utils/itemFromDto';
+import type { Item, ItemDto } from '@/types/item';
+import { itemFromDto } from '@/utils/itemFromDto';
 
 type GetItemsResponse = {
-  Items: StoreItemDto[];
+  Items: ItemDto[];
 };
 
-export const useGetItems = (itemIds: StoreItem['id'][]) => {
+export const useGetItems = (itemIds: Item['id'][]) => {
   const apiClient = useGameApiClient();
 
   const { data, isFetching, isError } = useQuery({

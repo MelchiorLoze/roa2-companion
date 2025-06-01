@@ -2,9 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
 import { OutlinedText } from '@/components';
-import { Category, CATEGORY_LABELS, Rarity } from '@/types/item';
+import { Category, CATEGORY_LABELS, type Item, Rarity } from '@/types/item';
 
-import type { StoreItem } from '../../types/item';
 import { ItemCard } from './ItemCard';
 
 jest.mock<typeof import('@/components')>('@/components', () => ({
@@ -13,7 +12,7 @@ jest.mock<typeof import('@/components')>('@/components', () => ({
 }));
 jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
-const item: StoreItem = {
+const item: Item = {
   id: '1',
   name: 'Item Title',
   rarity: Rarity.COMMON,
@@ -24,7 +23,7 @@ const item: StoreItem = {
 
 const onPressMock = jest.fn();
 
-const renderComponent = (item: StoreItem) => {
+const renderComponent = (item: Item) => {
   render(<ItemCard item={item} onPress={onPressMock} />);
 
   expect(onPressMock).not.toHaveBeenCalled();

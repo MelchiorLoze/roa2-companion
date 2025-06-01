@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import Store from '@/app/(private)/store';
 import { useRotatingCoinShop } from '@/features/store';
-import { testItemList } from '@/features/store/test-helpers';
+import { testItemList } from '@/test-helpers';
 
 jest.mock('expo-router');
 

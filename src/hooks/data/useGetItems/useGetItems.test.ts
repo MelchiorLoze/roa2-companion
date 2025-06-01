@@ -1,18 +1,16 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { TestQueryClientProvider } from '@/test-helpers';
-import { Category, Rarity } from '@/types/item';
+import { createItemDto, TestQueryClientProvider } from '@/test-helpers';
+import { Category, type Item, Rarity } from '@/types/item';
 
-import { createItemDto } from '../../../test-helpers/createItemDto';
-import { type StoreItem } from '../../../types/item';
 import { useGetItems } from './useGetItems';
 
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
-const renderUseGetItems = async (itemIds: StoreItem['id'][]) => {
+const renderUseGetItems = async (itemIds: Item['id'][]) => {
   const { result } = renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 

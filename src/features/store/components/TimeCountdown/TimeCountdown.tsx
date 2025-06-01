@@ -1,7 +1,7 @@
-import type { DateTime} from 'luxon';
+import type { DateTime } from 'luxon';
 import { Duration } from 'luxon';
 import { useEffect, useState } from 'react';
-import type { StyleProp, TextStyle} from 'react-native';
+import type { StyleProp, TextStyle } from 'react-native';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
