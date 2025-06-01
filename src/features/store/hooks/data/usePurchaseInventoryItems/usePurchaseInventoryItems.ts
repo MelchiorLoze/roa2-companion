@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients';
-import { invalidateGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
+import { invalidateGetInventoryItems } from '@/hooks/data';
 import { CurrencyId } from '@/types/currency';
 
 import type { Item } from '../../../types/item';

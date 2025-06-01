@@ -1,16 +1,7 @@
-import type {
-  SkParagraphStyle,
-  SkTextStyle,
-  SkTypefaceFontProvider} from '@shopify/react-native-skia';
-import {
-  Canvas,
-  Group,
-  PaintStyle,
-  Paragraph,
-  Skia,
-  TextAlign,
-  useFonts,
-} from '@shopify/react-native-skia';
+import type { DataModule, SkParagraphStyle, SkTextStyle, SkTypefaceFontProvider } from '@shopify/react-native-skia';
+import { Canvas, Group, PaintStyle, Paragraph, Skia, TextAlign, useFonts } from '@shopify/react-native-skia';
+
+import { AgencyFBBold } from '@/assets/fonts';
 
 const getParagraph = (text: string, color: string, strokeWidth: number, fontManager: SkTypefaceFontProvider) => {
   const outlineForegroundPaint = Skia.Paint();
@@ -58,7 +49,7 @@ type Props = {
 
 export const OutlinedText = ({ text, color, strokeWidth }: Props) => {
   const fontMngr = useFonts({
-    'AgencyFB-Bold': [require('../../assets/fonts/AgencyFB-Bold.ttf')],
+    'AgencyFB-Bold': [AgencyFBBold as DataModule],
   });
 
   if (!fontMngr) return null;

@@ -1,23 +1,22 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { invalidateGetInventoryItems } from '@/hooks/data';
 import { TestQueryClientProvider } from '@/test-helpers';
 import { CurrencyId } from '@/types/currency';
 
+import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 import { usePurchaseInventoryItems } from './usePurchaseInventoryItems';
 
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
-const invalidateGetInventoryItemsSpy = jest.spyOn(
-  jest.requireActual('@/hooks/data/useGetInventoryItems/useGetInventoryItems'),
-  'invalidateGetInventoryItems',
-);
-const invalidateGetMyRotationalCoinStoreSpy = jest.spyOn(
-  jest.requireActual('../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore'),
-  'invalidateGetMyRotationalCoinStore',
-);
+jest.mock('@/hooks/data');
+const invalidateGetInventoryItemsMock = jest.mocked(invalidateGetInventoryItems);
+
+jest.mock('../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');
+const invalidateGetMyRotationalCoinStoreMock = jest.mocked(invalidateGetMyRotationalCoinStore);
 
 const renderUsePurchaseInventoryItems = async () => {
   const { result } = renderHook(usePurchaseInventoryItems, { wrapper: TestQueryClientProvider });
@@ -32,8 +31,8 @@ describe('usePurchaseInventoryItems', () => {
 
     expect(result.current.purchase).toBeDefined();
     expect(result.current.isError).toBe(false);
-    expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(0);
-    expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(0);
+    expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(0);
+    expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(0);
   });
 
   describe('when the request succeeds', () => {
@@ -53,8 +52,8 @@ describe('usePurchaseInventoryItems', () => {
 
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.isError).toBe(false);
-      expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(1);
-      expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(1);
+      expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(1);
+      expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(1);
     });
 
     it('invalidates inventory cache when using bucks', async () => {
@@ -66,8 +65,8 @@ describe('usePurchaseInventoryItems', () => {
 
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.isError).toBe(false);
-      expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(1);
-      expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(0);
+      expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(1);
+      expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -87,8 +86,8 @@ describe('usePurchaseInventoryItems', () => {
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);
-      expect(invalidateGetInventoryItemsSpy).toHaveBeenCalledTimes(0);
-      expect(invalidateGetMyRotationalCoinStoreSpy).toHaveBeenCalledTimes(0);
+      expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(0);
+      expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(0);
     });
   });
 });

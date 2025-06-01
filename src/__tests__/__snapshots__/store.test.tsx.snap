@@ -270,7 +270,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../features/store/assets/rarity/common.webp",
+                          "testUri": "../../../src/features/store/assets/rarity/common.webp",
                         },
                       ]
                     }
@@ -321,7 +321,7 @@ exports[`Store matches the snapshot 1`] = `
                       source={
                         [
                           {
-                            "testUri": "../../../assets/images/currency/coins.png",
+                            "testUri": "../../../src/assets/images/currency/coins.png",
                           },
                         ]
                       }
@@ -466,7 +466,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../features/store/assets/rarity/epic.webp",
+                          "testUri": "../../../src/features/store/assets/rarity/epic.webp",
                         },
                       ]
                     }

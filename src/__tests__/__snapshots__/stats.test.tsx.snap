@@ -119,7 +119,7 @@ exports[`Stats matches the snapshot 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../assets/images/rank/gold.png",
+                    "testUri": "../../../src/assets/images/rank/gold.png",
                   },
                 ]
               }
@@ -389,7 +389,7 @@ exports[`Stats matches the snapshot 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../assets/images/character/olympia.png",
+                    "testUri": "../../../src/assets/images/character/olympia.png",
                   },
                 ]
               }
@@ -473,7 +473,7 @@ exports[`Stats matches the snapshot 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../assets/images/character/clairen.png",
+                    "testUri": "../../../src/assets/images/character/clairen.png",
                   },
                 ]
               }
@@ -557,7 +557,7 @@ exports[`Stats matches the snapshot 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../assets/images/character/ranno.png",
+                    "testUri": "../../../src/assets/images/character/ranno.png",
                   },
                 ]
               }
@@ -641,7 +641,7 @@ exports[`Stats matches the snapshot 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../assets/images/character/kragg.png",
+                    "testUri": "../../../src/assets/images/character/kragg.png",
                   },
                 ]
               }
