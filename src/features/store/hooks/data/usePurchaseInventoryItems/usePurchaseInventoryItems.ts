@@ -12,7 +12,9 @@ type ItemToPurchase = {
   price: { value: number; currencyId: CurrencyId };
 };
 
-export const usePurchaseInventoryItems = () => {
+type Props = { onSuccess?: () => void };
+
+export const usePurchaseInventoryItems = ({ onSuccess }: Props = {}) => {
   const apiClient = useGameApiClient();
   const queryClient = useQueryClient();
 
@@ -36,6 +38,7 @@ export const usePurchaseInventoryItems = () => {
     onSuccess: (_, item) => {
       invalidateGetInventoryItems(queryClient);
       if (item.price.currencyId === CurrencyId.COINS) invalidateGetMyRotationalCoinStore(queryClient);
+      onSuccess?.();
     },
   });
 

@@ -52,6 +52,8 @@ export type Item = {
   buckPrice?: number;
 };
 
+export type ItemWithCoinPrice = Item & Required<Pick<Item, 'coinPrice'>>;
+
 export type RotationalCoinStore = {
   expirationDate: DateTime;
   itemIds: Item['id'][];

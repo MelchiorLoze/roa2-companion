@@ -18,8 +18,8 @@ const invalidateGetInventoryItemsMock = jest.mocked(invalidateGetInventoryItems)
 jest.mock('../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');
 const invalidateGetMyRotationalCoinStoreMock = jest.mocked(invalidateGetMyRotationalCoinStore);
 
-const renderUsePurchaseInventoryItems = async () => {
-  const { result } = renderHook(usePurchaseInventoryItems, { wrapper: TestQueryClientProvider });
+const renderUsePurchaseInventoryItems = async (...props: Parameters<typeof usePurchaseInventoryItems>) => {
+  const { result } = renderHook(() => usePurchaseInventoryItems(...props), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -67,6 +67,17 @@ describe('usePurchaseInventoryItems', () => {
       expect(result.current.isError).toBe(false);
       expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(1);
       expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(0);
+    });
+
+    it('calls onSuccess callback if provided', async () => {
+      const onSuccess = jest.fn();
+      const { result } = await renderUsePurchaseInventoryItems({ onSuccess });
+
+      await act(async () =>
+        result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
+      );
+
+      expect(onSuccess).toHaveBeenCalledTimes(1);
     });
   });
 

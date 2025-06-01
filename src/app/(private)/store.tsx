@@ -4,36 +4,31 @@ import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Button, Dialog, Spinner } from '@/components';
-import { type Item, ItemList, TimeCountdown, usePurchaseInventoryItems, useRotatingCoinShop } from '@/features/store';
-import { CATEGORY_LABELS } from '@/features/store/types/item';
-import { CurrencyId } from '@/types/currency';
+import { Spinner } from '@/components';
+import {
+  type Item,
+  ItemList,
+  type ItemWithCoinPrice,
+  PurchaseConfirmationDialog,
+  TimeCountdown,
+  useRotatingCoinShop,
+} from '@/features/store';
 
 export default function Store() {
   const { theme } = useUnistyles();
 
-  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
-  const { items, expirationDate, isLoading: isCoinShopLoading } = useRotatingCoinShop();
-  const { purchase, isLoading: isPurchaseLoading } = usePurchaseInventoryItems();
-
-  const handlePurchase = () => {
-    if (!selectedItem?.coinPrice) return;
-    purchase({
-      id: selectedItem.id,
-      price: { value: selectedItem.coinPrice, currencyId: CurrencyId.COINS },
-    });
-    closeDialog();
-  };
+  const [selectedItem, setSelectedItem] = useState<ItemWithCoinPrice | null>(null);
+  const { items, expirationDate, isLoading } = useRotatingCoinShop();
 
   const openDialog = (item: Item) => {
-    if (item.coinPrice) setSelectedItem(item);
+    if (item.coinPrice) setSelectedItem(item as ItemWithCoinPrice);
   };
 
   const closeDialog = () => setSelectedItem(null);
 
   useFocusEffect(useCallback(closeDialog, []));
 
-  if (isCoinShopLoading || isPurchaseLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -46,18 +41,7 @@ export default function Store() {
         )}
         <ItemList items={items} onSelect={openDialog} />
       </View>
-      {selectedItem && (
-        <Dialog onClose={closeDialog}>
-          <Text style={styles.title}>
-            Are you sure you want to buy the {CATEGORY_LABELS[selectedItem.category]} {selectedItem.title} for{' '}
-            {selectedItem.coinPrice}?
-          </Text>
-          <View style={styles.buttonContainer}>
-            <Button label="Yes" onPress={handlePurchase} />
-            <Button label="No" onPress={closeDialog} />
-          </View>
-        </Dialog>
-      )}
+      {selectedItem && <PurchaseConfirmationDialog item={selectedItem} onClose={closeDialog} />}
     </>
   );
 }
@@ -82,9 +66,5 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
   },
 }));
