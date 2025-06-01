@@ -2,7 +2,7 @@ import type { QueryClient } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients';
-import type { InventoryItem } from '@/types/currency';
+import type { Item } from '@/types/item';
 
 const QUERY_KEY = ['inventoryItems'];
 
@@ -11,6 +11,10 @@ type GetInventoryItemsResponse = {
     Id: string;
     Amount: number;
   }[];
+};
+
+type InventoryItem = Pick<Item, 'id'> & {
+  amount: number;
 };
 
 export const useGetInventoryItems = () => {

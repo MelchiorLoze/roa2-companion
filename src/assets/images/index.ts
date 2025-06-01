@@ -5,6 +5,12 @@ export const CoinsIcon: ImageSource = require('./currency/coins.png');
 export const BucksIcon: ImageSource = require('./currency/bucks.png');
 export const MedalsIcon: ImageSource = require('./currency/medals.png');
 
+// RARITIES
+export const CommonIcon: ImageSource = require('./rarity/common.webp');
+export const RareIcon: ImageSource = require('./rarity/rare.webp');
+export const EpicIcon: ImageSource = require('./rarity/epic.webp');
+export const LegendaryIcon: ImageSource = require('./rarity/legendary.webp');
+
 // RANKS
 export const StoneIcon: ImageSource = require('./rank/stone.png');
 export const BronzeIcon: ImageSource = require('./rank/bronze.png');

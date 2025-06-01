@@ -3,15 +3,15 @@ import type { ListRenderItem } from 'react-native';
 import { FlatList } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import type { Item } from '../../types/item';
+import type { StoreItem } from '../../types/item';
 import { ItemCard } from '../ItemCard/ItemCard';
 
-const keyExtractor = (item: Item) => item.id;
+const keyExtractor = (item: StoreItem) => item.id;
 
-type Props = { items: Item[]; onSelect: (item: Item) => void };
+type Props = { items: StoreItem[]; onSelect: (item: StoreItem) => void };
 
 export const ItemList = ({ items, onSelect }: Props) => {
-  const renderItem = useCallback<ListRenderItem<Item>>(
+  const renderItem = useCallback<ListRenderItem<StoreItem>>(
     ({ item }) => <ItemCard item={item} onPress={() => onSelect(item)} />,
     [onSelect],
   );

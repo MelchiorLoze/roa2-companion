@@ -1,0 +1,60 @@
+import type { ImageSource } from 'expo-image';
+
+import { CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '../assets/images';
+
+export const enum Category {
+  DEATHEFFECT = 'deatheffect',
+  EMOTE = 'emote',
+  ICON = 'icon',
+  PALETTE = 'palette',
+  PLATFORM = 'platform',
+  SKIN = 'skin',
+  STAGESKIN = 'stageskin',
+  TAUNT = 'taunt',
+}
+
+export const CATEGORY_LABELS: Readonly<Record<Category, string>> = Object.freeze({
+  [Category.DEATHEFFECT]: 'DEATH',
+  [Category.EMOTE]: 'EMOTE',
+  [Category.ICON]: 'ICON',
+  [Category.PALETTE]: 'PALETTE',
+  [Category.PLATFORM]: 'PLATFORM',
+  [Category.SKIN]: 'SKIN',
+  [Category.STAGESKIN]: 'STAGE SKIN',
+  [Category.TAUNT]: 'TAUNT',
+});
+
+export const enum RarityValue {
+  COMMON = 1,
+  RARE = 2,
+  EPIC = 3,
+  LEGENDARY = 4,
+}
+
+export const enum Rarity {
+  COMMON = 'common',
+  RARE = 'rare',
+  EPIC = 'epic',
+  LEGENDARY = 'legendary',
+}
+
+export const RARITY_VALUES_MAPPING: Readonly<Record<RarityValue, Rarity>> = Object.freeze({
+  [RarityValue.COMMON]: Rarity.COMMON,
+  [RarityValue.RARE]: Rarity.RARE,
+  [RarityValue.EPIC]: Rarity.EPIC,
+  [RarityValue.LEGENDARY]: Rarity.LEGENDARY,
+});
+
+export const RARITY_ICONS: Readonly<Record<Rarity, ImageSource>> = Object.freeze({
+  [Rarity.COMMON]: CommonIcon,
+  [Rarity.RARE]: RareIcon,
+  [Rarity.EPIC]: EpicIcon,
+  [Rarity.LEGENDARY]: LegendaryIcon,
+});
+
+export type Item = {
+  id: string;
+  name: string;
+  category: Category;
+  rarity: Rarity;
+};

@@ -112,36 +112,36 @@ exports[`Store matches the snapshot 1`] = `
           "category": "icon",
           "coinPrice": 2000,
           "id": "1",
+          "name": "Item 1",
           "rarity": "common",
-          "title": "Item 1",
         },
         {
           "buckPrice": 500,
           "category": "deatheffect",
           "id": "2",
+          "name": "Item 2",
           "rarity": "epic",
-          "title": "Item 2",
         },
         {
           "category": "emote",
           "coinPrice": 1500,
           "id": "3",
+          "name": "Item 3",
           "rarity": "rare",
-          "title": "Item 3",
         },
         {
           "category": "skin",
           "id": "4",
+          "name": "Item 4",
           "rarity": "legendary",
-          "title": "Item 4",
         },
         {
           "buckPrice": 2000,
           "category": "stageskin",
           "coinPrice": 200000,
           "id": "5",
+          "name": "Item 5",
           "rarity": "common",
-          "title": "Item 5",
         },
       ]
     }
@@ -291,7 +291,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/features/store/assets/rarity/common.webp",
+                          "testUri": "../../../src/assets/images/rarity/common.webp",
                         },
                       ]
                     }
@@ -487,7 +487,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/features/store/assets/rarity/epic.webp",
+                          "testUri": "../../../src/assets/images/rarity/epic.webp",
                         },
                       ]
                     }
@@ -644,7 +644,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/features/store/assets/rarity/rare.webp",
+                          "testUri": "../../../src/assets/images/rarity/rare.webp",
                         },
                       ]
                     }
@@ -840,7 +840,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/features/store/assets/rarity/legendary.webp",
+                          "testUri": "../../../src/assets/images/rarity/legendary.webp",
                         },
                       ]
                     }
@@ -997,7 +997,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/features/store/assets/rarity/common.webp",
+                          "testUri": "../../../src/assets/images/rarity/common.webp",
                         },
                       ]
                     }

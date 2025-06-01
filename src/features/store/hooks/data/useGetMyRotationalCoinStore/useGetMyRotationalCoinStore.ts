@@ -5,8 +5,7 @@ import { useEffect } from 'react';
 
 import { useGameApiClient } from '@/hooks/apiClients';
 import type { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
-
-import type { Item, RotationalCoinStore } from '../../../types/item';
+import type { Item } from '@/types/item';
 
 const QUERY_KEY = ['getMyRotationalCoinStore'];
 
@@ -14,6 +13,11 @@ type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
   expirationDateTime: string;
   itemIds: Item['id'][];
 }>;
+
+type RotationalCoinStore = {
+  expirationDate: DateTime;
+  itemIds: Item['id'][];
+};
 
 export const useGetMyRotationalCoinStore = () => {
   const apiClient = useGameApiClient();

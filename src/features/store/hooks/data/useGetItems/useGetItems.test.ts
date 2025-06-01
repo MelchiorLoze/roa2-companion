@@ -2,17 +2,17 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers';
+import { Category, Rarity } from '@/types/item';
 
-import { Category, type Item } from '../../../types/item';
-import { Rarity } from '../../../types/rarity';
-import { createItemDto } from './createItemDto';
+import { createItemDto } from '../../../test-helpers/createItemDto';
+import { type StoreItem } from '../../../types/item';
 import { useGetItems } from './useGetItems';
 
 jest.mock('@/contexts', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
-const renderUseGetItems = async (itemIds: Item['id'][]) => {
+const renderUseGetItems = async (itemIds: StoreItem['id'][]) => {
   const { result } = renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
@@ -58,8 +58,8 @@ describe('useGetItems', () => {
       const { result } = await renderUseGetItems(['1', '2']);
 
       expect(result.current.items).toEqual([
-        { id: '1', title: 'Item 1', category: Category.SKIN, rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
-        { id: '2', title: 'Item 2', category: Category.ICON, rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
+        { id: '1', name: 'Item 1', category: Category.SKIN, rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
+        { id: '2', name: 'Item 2', category: Category.ICON, rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
       ]);
       expect(result.current.isError).toBe(false);
     });

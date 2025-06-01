@@ -4,11 +4,11 @@ import { useGameApiClient } from '@/hooks/apiClients';
 import { invalidateGetInventoryItems } from '@/hooks/data';
 import { CurrencyId } from '@/types/currency';
 
-import type { Item } from '../../../types/item';
+import type { StoreItem } from '../../../types/item';
 import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
 type ItemToPurchase = {
-  id: Item['id'];
+  id: StoreItem['id'];
   price: { value: number; currencyId: CurrencyId };
 };
 

@@ -2,9 +2,9 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
 import { OutlinedText } from '@/components';
+import { Category, CATEGORY_LABELS, Rarity } from '@/types/item';
 
-import { Category, CATEGORY_LABELS, type Item } from '../../types/item';
-import { Rarity } from '../../types/rarity';
+import type { StoreItem } from '../../types/item';
 import { ItemCard } from './ItemCard';
 
 jest.mock<typeof import('@/components')>('@/components', () => ({
@@ -13,9 +13,9 @@ jest.mock<typeof import('@/components')>('@/components', () => ({
 }));
 jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
-const item: Item = {
+const item: StoreItem = {
   id: '1',
-  title: 'Item Title',
+  name: 'Item Title',
   rarity: Rarity.COMMON,
   category: Category.DEATHEFFECT,
   coinPrice: 20,
@@ -24,7 +24,7 @@ const item: Item = {
 
 const onPressMock = jest.fn();
 
-const renderComponent = (item: Item) => {
+const renderComponent = (item: StoreItem) => {
   render(<ItemCard item={item} onPress={onPressMock} />);
 
   expect(onPressMock).not.toHaveBeenCalled();
@@ -39,7 +39,7 @@ describe('ItemCard', () => {
   it('renders correctly', () => {
     renderComponent(item);
 
-    screen.getByText(item.title);
+    screen.getByText(item.name);
     screen.getByText(CATEGORY_LABELS[item.category]);
     screen.getByText(item.coinPrice!.toString());
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
@@ -48,7 +48,7 @@ describe('ItemCard', () => {
   it('renders correctly when coinPrice is not defined', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
-    screen.getByText(item.title);
+    screen.getByText(item.name);
     screen.getByText(CATEGORY_LABELS[item.category]);
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });

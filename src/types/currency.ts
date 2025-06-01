@@ -1,7 +1,6 @@
 import type { ImageSource } from 'expo-image';
 
 import { BucksIcon, CoinsIcon, MedalsIcon } from '@/assets/images';
-import type { Item } from '@/features/store';
 
 export const enum CurrencyId {
   COINS = 'b3f4a8f0-dd58-4e3f-ae0a-7a17418fc903',
@@ -20,8 +19,3 @@ export const CURRENCY_ICONS: Readonly<Record<Currency, ImageSource>> = Object.fr
   [Currency.BUCKS]: BucksIcon,
   [Currency.MEDALS]: MedalsIcon,
 });
-
-export type InventoryItem = {
-  id: Item['id'];
-  amount: number;
-};

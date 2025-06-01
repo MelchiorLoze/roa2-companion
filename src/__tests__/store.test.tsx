@@ -54,8 +54,8 @@ describe('Store', () => {
     screen.getByText('Items refresh in:');
     const itemCards = screen.getAllByRole('button');
     expect(itemCards).toHaveLength(testItemList.length);
-    within(itemCards[0]).getByText(testItemList[0].title);
-    within(itemCards[1]).getByText(testItemList[1].title);
+    within(itemCards[0]).getByText(testItemList[0].name);
+    within(itemCards[1]).getByText(testItemList[1].name);
 
     fireEvent.press(itemCards[0]);
     const withinDialog = within(screen.getByTestId('dialog'));
@@ -71,7 +71,7 @@ describe('Store', () => {
     renderComponent();
 
     const itemCards = screen.getAllByRole('button');
-    within(itemCards[1]).getByText(testItemList[1].title);
+    within(itemCards[1]).getByText(testItemList[1].name);
 
     fireEvent.press(itemCards[1]);
 

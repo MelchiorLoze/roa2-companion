@@ -7,4 +7,4 @@ export { TimeCountdown } from './components/TimeCountdown/TimeCountdown';
 export { useRotatingCoinShop } from './hooks/business/useRotatingCoinShop/useRotatingCoinShop';
 
 // TYPES
-export type { Item, ItemWithCoinPrice } from './types/item';
+export type { CoinStoreItem } from './types/item';

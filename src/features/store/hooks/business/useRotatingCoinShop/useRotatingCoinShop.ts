@@ -1,8 +1,8 @@
-import type { Item } from '../../../types/item';
+import type { StoreItem } from '../../../types/item';
 import { useGetItems } from '../../data/useGetItems/useGetItems';
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
-const sortItems = (items: Item[]) =>
+const sortItems = (items: StoreItem[]) =>
   items.sort(
     (itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0) || itemA.category.localeCompare(itemB.category),
   );

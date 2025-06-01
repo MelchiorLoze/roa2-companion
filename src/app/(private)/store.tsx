@@ -6,9 +6,8 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Spinner } from '@/components';
 import {
-  type Item,
+  type CoinStoreItem,
   ItemList,
-  type ItemWithCoinPrice,
   PurchaseConfirmationDialog,
   TimeCountdown,
   useRotatingCoinShop,
@@ -17,11 +16,11 @@ import {
 export default function Store() {
   const { theme } = useUnistyles();
 
-  const [selectedItem, setSelectedItem] = useState<ItemWithCoinPrice | null>(null);
+  const [selectedItem, setSelectedItem] = useState<CoinStoreItem | null>(null);
   const { items, expirationDate, isLoading } = useRotatingCoinShop();
 
-  const openDialog = (item: Item) => {
-    if (item.coinPrice) setSelectedItem(item as ItemWithCoinPrice);
+  const openDialog = (item: (typeof items)[0]) => {
+    if (item.coinPrice) setSelectedItem(item as CoinStoreItem);
   };
 
   const closeDialog = () => setSelectedItem(null);
