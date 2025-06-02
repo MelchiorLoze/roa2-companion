@@ -1,9 +1,8 @@
 import { act, renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
-import type { Session } from '@/features/auth/types/session';
-
 import { useSession } from '../../../contexts/SessionContext/SessionContext';
+import type { Session } from '../../../types/session';
 import { useGetEntityToken } from '../../data/useGetEntityToken/useGetEntityToken';
 import { useLoginWithEmail } from '../../data/useLoginWithEmail/useLoginWithEmail';
 import { useAuth } from './useAuth';
