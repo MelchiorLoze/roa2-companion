@@ -1,7 +1,7 @@
 import type { StyleProp, ViewStyle } from 'react-native';
 import { View } from 'react-native';
 
-import { useCurrencyBalance } from '@/hooks/business';
+import { useCurrencyBalance } from '@/hooks/business/useCurrencyBalance/useCurrencyBalance';
 import { Currency } from '@/types/currency';
 
 import { CurrencyBalance } from './CurrencyBalance/CurrencyBalance';

@@ -1,7 +1,8 @@
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { ActionRow, Separator } from '@/components';
+import { ActionRow } from '@/components/ActionRow/ActionRow';
+import { Separator } from '@/components/Separator/Separator';
 
 export default function About() {
   return (

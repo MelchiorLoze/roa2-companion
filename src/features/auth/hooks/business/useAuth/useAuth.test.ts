@@ -1,13 +1,14 @@
 import { act, renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
-import { useSession } from '@/contexts';
-import { useGetEntityToken, useLoginWithEmail } from '@/hooks/data';
-import type { Session } from '@/types/session';
+import type { Session } from '@/features/auth/types/session';
 
+import { useSession } from '../../../contexts/SessionContext/SessionContext';
+import { useGetEntityToken } from '../../data/useGetEntityToken/useGetEntityToken';
+import { useLoginWithEmail } from '../../data/useLoginWithEmail/useLoginWithEmail';
 import { useAuth } from './useAuth';
 
-jest.mock('@/contexts');
+jest.mock('../../../contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 const defaultSessionState: ReturnType<typeof useSession> = {
   isValid: false,
@@ -17,7 +18,7 @@ const defaultSessionState: ReturnType<typeof useSession> = {
   isLoading: false,
 };
 
-jest.mock('@/hooks/data');
+jest.mock('../../data/useLoginWithEmail/useLoginWithEmail');
 const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
 const defaultLoginWithEmailState: ReturnType<typeof useLoginWithEmail> = {
   session: undefined,
@@ -25,6 +26,8 @@ const defaultLoginWithEmailState: ReturnType<typeof useLoginWithEmail> = {
   isLoading: false,
   isError: false,
 };
+
+jest.mock('../../data/useGetEntityToken/useGetEntityToken');
 const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
 const defaultGetEntityTokenState: ReturnType<typeof useGetEntityToken> = {
   newSession: undefined,

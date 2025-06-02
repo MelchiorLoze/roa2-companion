@@ -4,8 +4,10 @@ import type { PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { EloDistributionLineChart, RankDistributionBarChart, Spinner } from '@/components';
-import { useUserStats } from '@/hooks/business';
+import { EloDistributionLineChart } from '@/components/EloDistributionLineChart/EloDistributionLineChart';
+import { RankDistributionBarChart } from '@/components/RankDistributionBarChart/RankDistributionBarChart';
+import { Spinner } from '@/components/Spinner/Spinner';
+import { useUserStats } from '@/hooks/business/useUserStats/useUserStats';
 import { CHARACTER_ICONS } from '@/types/character';
 import type { Rank } from '@/types/rank';
 import { RANK_ICONS } from '@/types/rank';

@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { useLeaderboardStats } from '@/hooks/business';
+import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
 
 import { EloDistributionLineChart } from './EloDistributionLineChart';
 
-jest.mock('@/hooks/business');
+jest.mock('@/hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 const defaultLeaderboardStatsState = {
   firstPlayerElo: 0,

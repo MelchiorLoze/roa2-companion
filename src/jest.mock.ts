@@ -13,7 +13,6 @@ jest.mock('react-native-gifted-charts', () => ({
 fetchMock.mockGlobal();
 
 afterEach(() => {
-  jest.clearAllMocks();
   fetchMock.removeRoutes();
   fetchMock.clearHistory();
 });

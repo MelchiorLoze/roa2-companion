@@ -18,12 +18,7 @@ module.exports = {
     'react/jsx-sort-props': 'warn',
     'react/react-in-jsx-scope': 'off', // Not necessary after React 17
     '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
-    '@typescript-eslint/consistent-type-imports': [
-      'warn',
-      {
-        disallowTypeAnnotations: false,
-      },
-    ],
+    '@typescript-eslint/consistent-type-imports': 'warn',
     '@typescript-eslint/consistent-type-exports': 'warn',
     '@typescript-eslint/no-unused-vars': [
       'warn',
@@ -47,36 +42,6 @@ module.exports = {
             target: './!(__tests__)/**',
             from: './app/**',
             message: 'App routes must not be imported outside of tests',
-          },
-          {
-            target: './!(assets)/**',
-            from: './assets/**',
-            except: ['**/index.ts'],
-            message: 'Asset modules should only be imported through the index file (@/assets/*/)',
-          },
-          {
-            target: './!(components)/**',
-            from: './components/**',
-            except: ['**/index.ts'],
-            message: 'Component modules should only be imported through the index file (@/components)',
-          },
-          {
-            target: './!(contexts)/**',
-            from: './contexts/**',
-            except: ['**/index.ts'],
-            message: 'Context modules should only be imported through the index file (@/context)',
-          },
-          {
-            target: './!(features)/**',
-            from: './features/**',
-            except: ['**/index.ts'],
-            message: 'Feature modules should only be imported through the index file (@/features/*/)',
-          },
-          {
-            target: './!(hooks)/**',
-            from: './hooks/**',
-            except: ['**/index.ts'],
-            message: 'Hook modules should only be imported through the index file (@/hooks/*/)',
           },
         ],
       },

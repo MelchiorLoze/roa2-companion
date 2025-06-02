@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { CoinsIcon } from '@/assets/images';
-import { OutlinedText } from '@/components';
+import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/item';
 
 type Props = { item: Item; onPress: () => void };

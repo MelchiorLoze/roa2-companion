@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react-native';
 
-import { useCommunityLeaderboard, useCommunityLeaderboards } from '@/hooks/data';
+import { useCommunityLeaderboard } from '@/hooks/data/useCommunityLeaderboard/useCommunityLeaderboard';
+import { useCommunityLeaderboards } from '@/hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 
 import { useLeaderboardStats } from './useLeaderboardStats';
 
-jest.mock('@/hooks/data');
-
+jest.mock('@/hooks/data/useCommunityLeaderboards/useCommunityLeaderboards');
 const useCommunityLeaderboardsMock = jest.mocked(useCommunityLeaderboards);
 const defaultCommunityLeaderboardsState: ReturnType<typeof useCommunityLeaderboards> = {
   leaderboards: [
@@ -17,6 +17,7 @@ const defaultCommunityLeaderboardsState: ReturnType<typeof useCommunityLeaderboa
   isError: false,
 };
 
+jest.mock('@/hooks/data/useCommunityLeaderboard/useCommunityLeaderboard');
 const useCommunityLeaderboardMock = jest.mocked(useCommunityLeaderboard);
 const defaultCommunityLeaderboardState: ReturnType<typeof useCommunityLeaderboard> = {
   leaderboardEntries: [],

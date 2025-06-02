@@ -1,15 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
-import { OutlinedText } from '@/components';
+import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Category, CATEGORY_LABELS, type Item, Rarity } from '@/types/item';
 
 import { ItemCard } from './ItemCard';
 
-jest.mock<typeof import('@/components')>('@/components', () => ({
-  ...jest.requireActual('@/components'),
-  OutlinedText: jest.fn(),
-}));
+jest.mock('@/components/OutlinedText/OutlinedText');
 jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
 const item: Item = {

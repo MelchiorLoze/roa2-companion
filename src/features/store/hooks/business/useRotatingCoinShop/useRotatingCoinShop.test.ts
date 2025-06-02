@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
-import { useGetItems } from '@/hooks/data';
+import { useGetItems } from '@/hooks/data/useGetItems/useGetItems';
 import { Category, type Item, Rarity } from '@/types/item';
 
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
@@ -11,7 +11,8 @@ const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
 jest.mock('../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');
 const useGetMyRotationalCoinStoreMock = jest.mocked(useGetMyRotationalCoinStore);
-jest.mock('@/hooks/data');
+
+jest.mock('@/hooks/data/useGetItems/useGetItems');
 const useGetItemsMock = jest.mocked(useGetItems);
 
 describe('useRotatingCoinShop', () => {

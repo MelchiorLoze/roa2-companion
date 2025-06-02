@@ -1,7 +1,7 @@
 import type { QueryClient } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 
-import { useGameApiClient } from '@/hooks/apiClients';
+import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 import type { Item } from '@/types/item';
 
 const QUERY_KEY = ['inventoryItems'];

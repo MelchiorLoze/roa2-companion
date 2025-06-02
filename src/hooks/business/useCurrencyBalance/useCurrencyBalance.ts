@@ -1,4 +1,4 @@
-import { useGetInventoryItems } from '@/hooks/data';
+import { useGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
 import { CurrencyId } from '@/types/currency';
 import type { Item } from '@/types/item';
 

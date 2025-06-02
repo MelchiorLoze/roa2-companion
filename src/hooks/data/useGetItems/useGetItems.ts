@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useGameApiClient } from '@/hooks/apiClients';
+import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 import type { Item, ItemDto } from '@/types/item';
 import { itemFromDto } from '@/utils/itemFromDto';
 

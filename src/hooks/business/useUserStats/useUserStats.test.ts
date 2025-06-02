@@ -1,16 +1,22 @@
 import { renderHook } from '@testing-library/react-native';
 import { act } from 'react';
 
-import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
+import { useGetLeaderboardAroundPlayer } from '@/hooks/data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
+import { useGetPlayerStatistics } from '@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useGetUserReadOnlyData } from '@/hooks/data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 import { Character } from '@/types/character';
 import type { PlayerPosition, UserData, UserStats } from '@/types/stats';
 import { StatisticName } from '@/types/stats';
 
 import { useUserStats } from './useUserStats';
 
-jest.mock('@/hooks/data');
+jest.mock('@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
+
+jest.mock('@/hooks/data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
 const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPlayer);
+
+jest.mock('@/hooks/data/useGetUserReadOnlyData/useGetUserReadOnlyData');
 const useGetUserReadOnlyDataMock = jest.mocked(useGetUserReadOnlyData);
 
 const mockedPlayerPositions: PlayerPosition[] = [

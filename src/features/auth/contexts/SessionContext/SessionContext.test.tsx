@@ -3,17 +3,17 @@ import { DateTime } from 'luxon';
 import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 
-import { useStorageState } from '@/hooks/core';
-import { TestQueryClientProvider } from '@/test-helpers';
-import type { Session } from '@/types/session';
+import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
+import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
+import type { Session } from '../../types/session';
 import { SessionProvider, useSession } from './SessionContext';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 const RENEWABLE_DATE = DateTime.utc().plus({ hours: 22 });
 const EXPIRED_DATE = DateTime.utc().minus({ day: 1 });
 
-jest.mock('@/hooks/core');
+jest.mock('@/hooks/core/useStorageState/useStorageState');
 const useStorageStateMock = jest.mocked(useStorageState);
 
 const mockSession = (session: Session | null) => {

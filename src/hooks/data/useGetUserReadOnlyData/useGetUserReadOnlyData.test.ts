@@ -1,12 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { TestQueryClientProvider } from '@/test-helpers';
+import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Character } from '@/types/character';
 
 import { useGetUserReadOnlyData } from './useGetUserReadOnlyData';
 
-jest.mock('@/contexts', () => ({
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 

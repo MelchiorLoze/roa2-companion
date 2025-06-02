@@ -1,10 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 
-import { useSendAccountRecoveryEmail } from '@/hooks/data';
-
+import { useSendAccountRecoveryEmail } from '../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
 import { ResetPasswordDialog } from './ResetPasswordDialog';
 
-jest.mock('../../hooks/data');
+jest.mock('../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
 const defaultSendAccountRecoveryEmailState: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: jest.fn(),

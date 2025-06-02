@@ -1,4 +1,4 @@
-import { useGetItems } from '@/hooks/data';
+import { useGetItems } from '@/hooks/data/useGetItems/useGetItems';
 import type { Item } from '@/types/item';
 
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';

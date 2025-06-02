@@ -4,9 +4,9 @@ import { Stack } from 'expo-router';
 import { StrictMode } from 'react';
 import { useUnistyles } from 'react-native-unistyles';
 
-import { Header } from '@/components';
-import { SessionProvider } from '@/contexts';
-import { useAppFonts } from '@/hooks/core';
+import { Header } from '@/components/Header/Header';
+import { SessionProvider } from '@/features/auth/contexts/SessionContext/SessionContext';
+import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
 
 const queryClient = new QueryClient();
 

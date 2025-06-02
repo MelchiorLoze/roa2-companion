@@ -1,4 +1,6 @@
-import { useGetLeaderboardAroundPlayer, useGetPlayerStatistics, useGetUserReadOnlyData } from '@/hooks/data';
+import { useGetLeaderboardAroundPlayer } from '@/hooks/data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
+import { useGetPlayerStatistics } from '@/hooks/data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useGetUserReadOnlyData } from '@/hooks/data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 import { Character } from '@/types/character';
 import { getRank } from '@/types/rank';
 import type { CharacterStat, PlayerPosition, UserData, UserStats } from '@/types/stats';

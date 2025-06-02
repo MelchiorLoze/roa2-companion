@@ -4,14 +4,12 @@ import { useCallback, useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { Spinner } from '@/components';
-import {
-  type CoinStoreItem,
-  ItemList,
-  PurchaseConfirmationDialog,
-  TimeCountdown,
-  useRotatingCoinShop,
-} from '@/features/store';
+import { Spinner } from '@/components/Spinner/Spinner';
+import { ItemList } from '@/features/store/components/ItemList/ItemList';
+import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';
+import { TimeCountdown } from '@/features/store/components/TimeCountdown/TimeCountdown';
+import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
+import type { CoinStoreItem } from '@/features/store/types/item';
 
 export default function Store() {
   const { theme } = useUnistyles();

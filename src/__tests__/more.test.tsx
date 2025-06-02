@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
 import More from '@/app/(private)/more';
-import { useAuth } from '@/hooks/business';
+import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
 jest.mock('expo-router');
 const useRouterMock = jest.mocked(useRouter);
@@ -11,7 +11,7 @@ useRouterMock.mockReturnValue({
   navigate: navigateMock,
 } as unknown as ReturnType<typeof useRouter>);
 
-jest.mock('../hooks/business');
+jest.mock('@/features/auth/hooks/business/useAuth/useAuth');
 const useAuthMock = jest.mocked(useAuth);
 const logoutMock = jest.fn();
 useAuthMock.mockReturnValue({

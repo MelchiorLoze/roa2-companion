@@ -1,8 +1,6 @@
-import type { DateTime } from 'luxon';
-import { Duration } from 'luxon';
+import { type DateTime, Duration } from 'luxon';
 import { useEffect, useState } from 'react';
-import type { StyleProp, TextStyle } from 'react-native';
-import { Text, View } from 'react-native';
+import { type StyleProp, Text, type TextStyle, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 export const TimeCountdown = ({ date, style }: { date: DateTime; style?: StyleProp<TextStyle> }) => {

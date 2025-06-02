@@ -3,8 +3,9 @@ import type { ListRenderItem } from 'react-native';
 import { FlatList, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { ActionRow, Separator } from '@/components';
-import { useAuth } from '@/hooks/business';
+import { ActionRow } from '@/components/ActionRow/ActionRow';
+import { Separator } from '@/components/Separator/Separator';
+import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
 type ExternalLink = {
   label: string;

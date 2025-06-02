@@ -1,18 +1,18 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { invalidateGetInventoryItems } from '@/hooks/data';
-import { TestQueryClientProvider } from '@/test-helpers';
+import { invalidateGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
+import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { CurrencyId } from '@/types/currency';
 
 import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 import { usePurchaseInventoryItems } from './usePurchaseInventoryItems';
 
-jest.mock('@/contexts', () => ({
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
-jest.mock('@/hooks/data');
+jest.mock('@/hooks/data/useGetInventoryItems/useGetInventoryItems');
 const invalidateGetInventoryItemsMock = jest.mocked(invalidateGetInventoryItems);
 
 jest.mock('../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');

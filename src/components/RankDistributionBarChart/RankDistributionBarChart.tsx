@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 import { BarChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { useLeaderboardStats } from '@/hooks/business';
+import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { Rank, RANK_ELO_INTERVALS } from '@/types/rank';
 
 import { Spinner } from '../Spinner/Spinner';

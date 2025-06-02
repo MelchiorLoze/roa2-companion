@@ -2,7 +2,8 @@ import type { barDataItem, lineDataItem } from 'react-native-gifted-charts';
 import { useUnistyles } from 'react-native-unistyles';
 import type { UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/types';
 
-import { useCommunityLeaderboard, useCommunityLeaderboards } from '@/hooks/data';
+import { useCommunityLeaderboard } from '@/hooks/data/useCommunityLeaderboard/useCommunityLeaderboard';
+import { useCommunityLeaderboards } from '@/hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import type { LeaderboardEntry, Rank } from '@/types/rank';
 import { getRank, MAX_AETHEREAN_PLAYERS } from '@/types/rank';
 

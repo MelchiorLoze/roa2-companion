@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-import { useSession } from '@/contexts';
-import { useGetEntityToken, useLoginWithEmail } from '@/hooks/data';
+import { useSession } from '../../../contexts/SessionContext/SessionContext';
+import { useGetEntityToken } from '../../data/useGetEntityToken/useGetEntityToken';
+import { useLoginWithEmail } from '../../data/useLoginWithEmail/useLoginWithEmail';
 
 export const useAuth = ({ enableAutoRefresh } = { enableAutoRefresh: false }) => {
   const {

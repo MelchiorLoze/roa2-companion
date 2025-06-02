@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react-native';
 
-import { useGetInventoryItems } from '@/hooks/data';
+import { useGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
 import { CurrencyId } from '@/types/currency';
 
 import { useCurrencyBalance } from './useCurrencyBalance';
 
-jest.mock('@/hooks/data');
+jest.mock('@/hooks/data/useGetInventoryItems/useGetInventoryItems');
 const useGetInventoryItemsMock = jest.mocked(useGetInventoryItems);
 
 describe('useCurrencyBalance', () => {

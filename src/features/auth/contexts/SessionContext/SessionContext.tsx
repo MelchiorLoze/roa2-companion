@@ -3,8 +3,9 @@ import { DateTime, Duration } from 'luxon';
 import type { PropsWithChildren } from 'react';
 import React, { createContext, useCallback, useContext } from 'react';
 
-import { useStorageState } from '@/hooks/core';
-import type { Session } from '@/types/session';
+import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
+
+import type { Session } from '../../types/session';
 
 const SESSION_STORAGE_KEY = 'session';
 const SESSION_TTL = 24; // hours

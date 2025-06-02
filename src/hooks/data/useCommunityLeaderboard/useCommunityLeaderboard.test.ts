@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import { XMLBuilder } from 'fast-xml-parser';
 import fetchMock from 'fetch-mock';
 
-import { TestQueryClientProvider } from '@/test-helpers';
+import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { useCommunityLeaderboard } from './useCommunityLeaderboard';
 

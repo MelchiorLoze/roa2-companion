@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { useCurrencyBalance } from '@/hooks/business';
+import { useCurrencyBalance } from '@/hooks/business/useCurrencyBalance/useCurrencyBalance';
 
 import { CurrenciesBalance } from './CurrenciesBalance';
 
-jest.mock('@/hooks/business');
+jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance');
 const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
 
 describe('CurrenciesBalance', () => {

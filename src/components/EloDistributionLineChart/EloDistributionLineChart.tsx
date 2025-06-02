@@ -2,7 +2,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 
-import { useLeaderboardStats } from '@/hooks/business';
+import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
 
 type Props = {
   userElo: number;

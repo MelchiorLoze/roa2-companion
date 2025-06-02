@@ -12,7 +12,7 @@ jest.mocked(useRouter).mockReturnValue({
   back: backMock,
 } as unknown as ReturnType<typeof useRouter>);
 
-jest.mock('@/hooks/business', () => ({
+jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance', () => ({
   useCurrencyBalance: jest.fn(() => ({
     coinsBalance: 0,
     bucksBalance: 0,

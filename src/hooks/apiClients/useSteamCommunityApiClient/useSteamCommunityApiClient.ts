@@ -1,6 +1,6 @@
 import { XMLParser } from 'fast-xml-parser';
 
-import { useHttpClient } from '@/hooks/core';
+import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
 
 export const STEAM_COMMUNITY_API_BASE_URL = 'https://steamcommunity.com';
 

@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { useSendAccountRecoveryEmail } from '@/hooks/data';
+import { Button } from '@/components/Button/Button';
+import { Dialog } from '@/components/Dialog/Dialog';
+import { Input } from '@/components/Input/Input';
+import { Spinner } from '@/components/Spinner/Spinner';
 
-import { Button } from '../Button/Button';
-import { Dialog } from '../Dialog/Dialog';
-import { Input } from '../Input/Input';
-import { Spinner } from '../Spinner/Spinner';
+import { useSendAccountRecoveryEmail } from '../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
 
 type Props = {
   email?: string;

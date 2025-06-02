@@ -3,8 +3,12 @@ import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Button, Disclaimer, Input, ResetPasswordDialog, Spinner } from '@/components';
-import { useAuth } from '@/hooks/business';
+import { Button } from '@/components/Button/Button';
+import { Disclaimer } from '@/components/Disclaimer/Disclaimer';
+import { Input } from '@/components/Input/Input';
+import { Spinner } from '@/components/Spinner/Spinner';
+import { ResetPasswordDialog } from '@/features/auth/components/ResetPasswordDialog/ResetPasswordDialog';
+import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');

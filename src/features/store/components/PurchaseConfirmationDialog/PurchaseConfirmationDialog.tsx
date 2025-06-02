@@ -1,7 +1,9 @@
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { Button, Dialog, Spinner } from '@/components';
+import { Button } from '@/components/Button/Button';
+import { Dialog } from '@/components/Dialog/Dialog';
+import { Spinner } from '@/components/Spinner/Spinner';
 import { CurrencyId } from '@/types/currency';
 import { CATEGORY_LABELS } from '@/types/item';
 

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { TITLE_ID } from '@/constants';
-import { useGameApiClient } from '@/hooks/apiClients';
+import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
 export const useSendAccountRecoveryEmail = () => {
   const apiClient = useGameApiClient();

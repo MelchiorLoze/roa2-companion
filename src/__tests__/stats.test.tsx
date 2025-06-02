@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react-native';
 
 import Stats from '@/app/(private)/stats';
-import { useLeaderboardStats, useUserStats } from '@/hooks/business';
+import { useLeaderboardStats } from '@/hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useUserStats } from '@/hooks/business/useUserStats/useUserStats';
 import { Character } from '@/types/character';
 import { Rank } from '@/types/rank';
 
-jest.mock('@/hooks/business');
+jest.mock('@/hooks/business/useUserStats/useUserStats');
 const useUserStatsMock = jest.mocked(useUserStats);
 const defaultUserStatsState: ReturnType<typeof useUserStats> = {
   stats: {
@@ -31,6 +32,7 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
   isLoading: false,
 };
 
+jest.mock('@/hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 useLeaderboardStatsMock.mockReturnValue({
   firstPlayerElo: 1000,

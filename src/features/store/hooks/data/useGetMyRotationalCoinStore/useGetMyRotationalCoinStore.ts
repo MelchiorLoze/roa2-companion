@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
 import { useEffect } from 'react';
 
-import { useGameApiClient } from '@/hooks/apiClients';
+import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 import type { ExecuteFunctionRequest, ExecuteFunctionResponse } from '@/types/executeFunction';
 import type { Item } from '@/types/item';
 

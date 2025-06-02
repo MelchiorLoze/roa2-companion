@@ -2,13 +2,13 @@ import { fireEvent, render, screen, within } from '@testing-library/react-native
 import { Redirect } from 'expo-router';
 
 import SignIn from '@/app/sign-in';
-import { useAuth } from '@/hooks/business';
-import { useSendAccountRecoveryEmail } from '@/hooks/data';
+import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
+import { useSendAccountRecoveryEmail } from '@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
 
 jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
 
-jest.mock('../hooks/data');
+jest.mock('@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
 const defaultSendRecoveryEmailState: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: jest.fn(),
@@ -17,7 +17,7 @@ const defaultSendRecoveryEmailState: ReturnType<typeof useSendAccountRecoveryEma
   isError: false,
 };
 
-jest.mock('../hooks/business');
+jest.mock('@/features/auth/hooks/business/useAuth/useAuth');
 const useAuthMock = jest.mocked(useAuth);
 const defaultAuthState: ReturnType<typeof useAuth> = {
   isLoggedIn: false,

@@ -1,8 +1,5 @@
 import { Category, type Item, Rarity } from '@/types/item';
 
-export { createItemDto } from './createItemDto';
-export { TestQueryClientProvider } from './TestQueryClientProvider';
-
 export const testItemList: Item[] = [
   {
     id: '1',

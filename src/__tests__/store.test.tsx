@@ -2,12 +2,12 @@ import { fireEvent, render, screen, within } from '@testing-library/react-native
 import { DateTime } from 'luxon';
 
 import Store from '@/app/(private)/store';
-import { useRotatingCoinShop } from '@/features/store';
-import { testItemList } from '@/test-helpers';
+import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
+import { testItemList } from '@/test-helpers/testItemList';
 
 jest.mock('expo-router');
 
-jest.mock('@/contexts', () => ({
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
@@ -19,10 +19,7 @@ jest.mock('@/features/store/hooks/data/usePurchaseInventoryItems/usePurchaseInve
   }),
 }));
 
-jest.mock<typeof import('@/features/store')>('@/features/store', () => ({
-  ...jest.requireActual('@/features/store'),
-  useRotatingCoinShop: jest.fn(),
-}));
+jest.mock('@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop');
 const useRotatingCoinShopMock = jest.mocked(useRotatingCoinShop);
 
 const renderComponent = () => {

@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { useSession } from '@/contexts';
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 
 import { GAME_API_BASE_URL, useGameApiClient } from './useGameApiClient';
 
-jest.mock('@/contexts');
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 const defaultSessionState: ReturnType<typeof useSession> = {
   entityToken: 'mock-token',
