@@ -13,7 +13,7 @@ import {
   RannoIcon,
   WrastorIcon,
   ZetterburnIcon,
-} from '@/assets/images';
+} from '@/assets/images/character';
 
 export enum Character {
   CLAIREN = 'Cla',

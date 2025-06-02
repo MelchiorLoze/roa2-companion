@@ -10,7 +10,7 @@ import {
   PlatinumIcon,
   SilverIcon,
   StoneIcon,
-} from '@/assets/images';
+} from '@/assets/images/rank';
 import { Interval } from '@/utils/Interval';
 
 export const MAX_AETHEREAN_PLAYERS = 100; // Maximum number of players in the Aetherean rank

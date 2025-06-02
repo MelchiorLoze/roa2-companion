@@ -4,8 +4,8 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { CoinsIcon } from '@/assets/images';
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
+import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/item';
 
 type Props = { item: Item; onPress: () => void };
@@ -30,7 +30,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
               />
               {item.coinPrice && (
                 <View style={styles.priceContainer}>
-                  <Image contentFit="contain" source={CoinsIcon} style={styles.currencyIcon} />
+                  <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
                   <Text style={[styles.price, pressed && styles.textPressed]}>{item.coinPrice}</Text>
                 </View>
               )}

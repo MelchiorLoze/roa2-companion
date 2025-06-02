@@ -1,6 +1,6 @@
 import type { ImageSource } from 'expo-image';
 
-import { BucksIcon, CoinsIcon, MedalsIcon } from '@/assets/images';
+import { BucksIcon, CoinsIcon, MedalsIcon } from '@/assets/images/currency';
 
 export const enum CurrencyId {
   COINS = 'b3f4a8f0-dd58-4e3f-ae0a-7a17418fc903',

@@ -1,6 +1,7 @@
 import type { ImageSource } from 'expo-image';
 
-import { CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '../assets/images';
+import { CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images/rarity';
+
 import type { CurrencyId } from './currency';
 
 export const enum Category {
