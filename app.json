@@ -25,7 +25,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/icon.png",
+          "image": "./src/assets/images/icon.png",
           "imageWidth": 200,
           "backgroundColor": "#190D45"
         }
@@ -33,7 +33,7 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts"]
+          "fonts": ["./src/assets/fonts"]
         }
       ],
       "expo-secure-store"
