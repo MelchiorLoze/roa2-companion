@@ -1,6 +1,6 @@
 {
   "name": "roa2-companion",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -21,13 +21,16 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "setupFilesAfterEnv": [
-      "./jest.setup.ts",
-      "./jest.mock.ts",
+    "setupFiles": [
+      "@shopify/react-native-skia/jestSetup.js",
       "react-native-unistyles/mocks",
-      "./unistyles.ts",
-      "@shopify/react-native-skia/jestSetup.js"
-    ]
+      "<rootDir>/src/unistyles.ts"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/jest.setup.ts",
+      "<rootDir>/src/jest.mock.ts"
+    ],
+    "clearMocks": true
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -67,6 +70,8 @@
     "@types/jest": "^29.5.14",
     "@types/luxon": "^3.4.2",
     "@types/react": "~18.3.12",
+    "@typescript-eslint/eslint-plugin": "^8.33.0",
+    "@typescript-eslint/parser": "^8.33.0",
     "eslint": "^8.57.0",
     "eslint-config-expo": "~8.0.1",
     "eslint-plugin-react": "^7.37.4",
@@ -80,6 +85,5 @@
     "prettier": "^3.5.3",
     "react-test-renderer": "18.3.1",
     "typescript": "^5.3.3"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }

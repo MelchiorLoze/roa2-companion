@@ -1,0 +1,697 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats matches the snapshot 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "gap": 16,
+      "padding": 16,
+    }
+  }
+  refreshControl={
+    <RefreshControlMock
+      onRefresh={[MockFunction]}
+      refreshing={false}
+    />
+  }
+>
+  <RCTRefreshControl />
+  <View>
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          4283136696,
+          0,
+        ]
+      }
+      endPoint={
+        [
+          1,
+          0,
+        ]
+      }
+      startPoint={
+        [
+          0.3333333333333333,
+          0,
+        ]
+      }
+      style={
+        {
+          "gap": 8,
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "FranklinGothicDemiCond-Italic",
+            "fontSize": 18,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Ranked
+      </Text>
+      <View>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          100
+           sets: 
+          75
+           W - 
+          25
+           L
+        </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Winrate: 
+          75.00
+          %
+        </Text>
+        <View>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "position": "absolute",
+                "right": 8,
+                "top": 8,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/assets/images/rank/gold.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+            <Text
+              style={
+                [
+                  {
+                    "color": "white",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                    "textTransform": "uppercase",
+                  },
+                  {
+                    "color": "#FFC64E",
+                  },
+                ]
+              }
+            >
+              925
+            </Text>
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              - #
+              123
+            </Text>
+          </View>
+          <View
+            testID="rank-distribution"
+          >
+            <
+              data={[]}
+              disablePress={true}
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              spacing={0}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
+            />
+          </View>
+          <View
+            style={
+              {
+                "position": "absolute",
+              }
+            }
+            testID="elo-distribution"
+          >
+            <
+              adjustToWidth={true}
+              data={[]}
+              dataPointsColor="transparent"
+              dataPointsRadius={2}
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              initialSpacing={0}
+              thickness={1}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
+            />
+          </View>
+        </View>
+      </View>
+    </ViewManagerAdapter_ExpoLinearGradient>
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          4283136696,
+          0,
+        ]
+      }
+      endPoint={
+        [
+          1,
+          0,
+        ]
+      }
+      startPoint={
+        [
+          0.3333333333333333,
+          0,
+        ]
+      }
+      style={
+        {
+          "gap": 8,
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "FranklinGothicDemiCond-Italic",
+            "fontSize": 18,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Global
+      </Text>
+      <View>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          500
+           games: 
+          300
+           W - 
+          200
+           L
+        </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Winrate: 
+          60.00
+          %
+        </Text>
+      </View>
+    </ViewManagerAdapter_ExpoLinearGradient>
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          4283136696,
+          0,
+        ]
+      }
+      endPoint={
+        [
+          1,
+          0,
+        ]
+      }
+      startPoint={
+        [
+          0.3333333333333333,
+          0,
+        ]
+      }
+      style={
+        {
+          "gap": 8,
+          "padding": 8,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 0.2,
+              }
+            }
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            Level
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            Games
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 0.2,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/assets/images/character/olympia.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+          </View>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            10
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 0.2,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/assets/images/character/clairen.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+          </View>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            5
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            50
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 0.2,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/assets/images/character/ranno.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+          </View>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            5
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            30
+          </Text>
+        </View>
+        <View
+          style={
+            {
+              "flexDirection": "row",
+              "justifyContent": "space-between",
+              "width": "100%",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flex": 0.2,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/assets/images/character/kragg.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+          </View>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            3
+          </Text>
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                },
+                {
+                  "flex": 0.4,
+                },
+              ]
+            }
+          >
+            20
+          </Text>
+        </View>
+      </View>
+    </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
+</RCTScrollView>
+`;

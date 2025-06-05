@@ -1,0 +1,1089 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Store matches the snapshot 1`] = `
+<View
+  style={
+    {
+      "flex": 1,
+      "gap": 16,
+      "padding": 16,
+    }
+  }
+>
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        0,
+        4278190080,
+      ]
+    }
+    endPoint={
+      [
+        1,
+        0,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "gap": 4,
+        "justifyContent": "flex-end",
+        "padding": 8,
+        "paddingRight": 12,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        {
+          "color": "white",
+          "fontFamily": "AgencyFB-Bold",
+          "fontSize": 18,
+          "textTransform": "uppercase",
+        }
+      }
+    >
+      Items refresh in:
+    </Text>
+    <View>
+      <Text
+        style={
+          [
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 18,
+              "textTransform": "uppercase",
+            },
+            {
+              "position": "absolute",
+              "right": 0,
+            },
+          ]
+        }
+      >
+        23
+        h 
+        59
+        m 
+        59
+        s
+      </Text>
+      <Text
+        style={
+          [
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 18,
+              "textTransform": "uppercase",
+            },
+            {
+              "color": "transparent",
+            },
+          ]
+        }
+      >
+        23
+        h 
+        59
+        m 00s
+      </Text>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "gap": 16,
+      }
+    }
+    data={
+      [
+        {
+          "buckPrice": 20,
+          "category": "icon",
+          "coinPrice": 2000,
+          "id": "1",
+          "name": "Item 1",
+          "rarity": "common",
+        },
+        {
+          "buckPrice": 500,
+          "category": "deatheffect",
+          "id": "2",
+          "name": "Item 2",
+          "rarity": "epic",
+        },
+        {
+          "category": "emote",
+          "coinPrice": 1500,
+          "id": "3",
+          "name": "Item 3",
+          "rarity": "rare",
+        },
+        {
+          "category": "skin",
+          "id": "4",
+          "name": "Item 4",
+          "rarity": "legendary",
+        },
+        {
+          "buckPrice": 2000,
+          "category": "stageskin",
+          "coinPrice": 200000,
+          "id": "5",
+          "name": "Item 5",
+          "rarity": "common",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "gap": 16,
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "flex": 0.5,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291481343,
+                  4285232860,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                  "padding": 2,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4279636041,
+                    4279043869,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "gap": 16,
+                    "justifyContent": "space-between",
+                    "padding": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "gap": 4,
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flex": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "textTransform": "uppercase",
+                        },
+                        false,
+                      ]
+                    }
+                  >
+                    Item 1
+                  </Text>
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="contain"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={16}
+                    marginTop={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/common.webp",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 16,
+                        "marginTop": 2,
+                        "width": 16,
+                      }
+                    }
+                    transition={null}
+                    width={16}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "gap": 4,
+                      }
+                    }
+                  >
+                    <ViewManagerAdapter_ExpoImage
+                      containerViewRef={"[React.ref]"}
+                      contentFit="contain"
+                      contentPosition={
+                        {
+                          "left": "50%",
+                          "top": "50%",
+                        }
+                      }
+                      height={20}
+                      nativeViewRef={"[React.ref]"}
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      onLoadStart={[Function]}
+                      onProgress={[Function]}
+                      placeholder={[]}
+                      source={
+                        [
+                          {
+                            "testUri": "../../../src/assets/images/currency/coins.png",
+                          },
+                        ]
+                      }
+                      style={
+                        {
+                          "height": 20,
+                          "width": 20,
+                        }
+                      }
+                      transition={null}
+                      width={20}
+                    />
+                    <Text
+                      style={
+                        [
+                          {
+                            "color": "white",
+                            "fontFamily": "AgencyFB-Bold",
+                            "fontSize": 14,
+                            "textTransform": "uppercase",
+                          },
+                          false,
+                        ]
+                      }
+                    >
+                      2000
+                    </Text>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "flex": 0.5,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291481343,
+                  4285232860,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                  "padding": 2,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4279636041,
+                    4279043869,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "gap": 16,
+                    "justifyContent": "space-between",
+                    "padding": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "gap": 4,
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flex": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "textTransform": "uppercase",
+                        },
+                        false,
+                      ]
+                    }
+                  >
+                    Item 2
+                  </Text>
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="contain"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={16}
+                    marginTop={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/epic.webp",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 16,
+                        "marginTop": 2,
+                        "width": 16,
+                      }
+                    }
+                    transition={null}
+                    width={16}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                />
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "gap": 16,
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "flex": 0.5,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291481343,
+                  4285232860,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                  "padding": 2,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4279636041,
+                    4279043869,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "gap": 16,
+                    "justifyContent": "space-between",
+                    "padding": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "gap": 4,
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flex": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "textTransform": "uppercase",
+                        },
+                        false,
+                      ]
+                    }
+                  >
+                    Item 3
+                  </Text>
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="contain"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={16}
+                    marginTop={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/rare.webp",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 16,
+                        "marginTop": 2,
+                        "width": 16,
+                      }
+                    }
+                    transition={null}
+                    width={16}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "gap": 4,
+                      }
+                    }
+                  >
+                    <ViewManagerAdapter_ExpoImage
+                      containerViewRef={"[React.ref]"}
+                      contentFit="contain"
+                      contentPosition={
+                        {
+                          "left": "50%",
+                          "top": "50%",
+                        }
+                      }
+                      height={20}
+                      nativeViewRef={"[React.ref]"}
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      onLoadStart={[Function]}
+                      onProgress={[Function]}
+                      placeholder={[]}
+                      source={
+                        [
+                          {
+                            "testUri": "../../../src/assets/images/currency/coins.png",
+                          },
+                        ]
+                      }
+                      style={
+                        {
+                          "height": 20,
+                          "width": 20,
+                        }
+                      }
+                      transition={null}
+                      width={20}
+                    />
+                    <Text
+                      style={
+                        [
+                          {
+                            "color": "white",
+                            "fontFamily": "AgencyFB-Bold",
+                            "fontSize": 14,
+                            "textTransform": "uppercase",
+                          },
+                          false,
+                        ]
+                      }
+                    >
+                      1500
+                    </Text>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "flex": 0.5,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291481343,
+                  4285232860,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                  "padding": 2,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4279636041,
+                    4279043869,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "gap": 16,
+                    "justifyContent": "space-between",
+                    "padding": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "gap": 4,
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flex": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "textTransform": "uppercase",
+                        },
+                        false,
+                      ]
+                    }
+                  >
+                    Item 4
+                  </Text>
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="contain"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={16}
+                    marginTop={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/legendary.webp",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 16,
+                        "marginTop": 2,
+                        "width": 16,
+                      }
+                    }
+                    transition={null}
+                    width={16}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                />
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
+      </View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            [
+              {
+                "flexDirection": "row",
+              },
+              {
+                "gap": 16,
+              },
+            ]
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              {
+                "flex": 0.5,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4291481343,
+                  4285232860,
+                ]
+              }
+              style={
+                {
+                  "flex": 1,
+                  "padding": 2,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoLinearGradient
+                colors={
+                  [
+                    4279636041,
+                    4279043869,
+                  ]
+                }
+                style={
+                  {
+                    "flex": 1,
+                    "gap": 16,
+                    "justifyContent": "space-between",
+                    "padding": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "gap": 4,
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flex": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "textTransform": "uppercase",
+                        },
+                        false,
+                      ]
+                    }
+                  >
+                    Item 5
+                  </Text>
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="contain"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={16}
+                    marginTop={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/common.webp",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 16,
+                        "marginTop": 2,
+                        "width": 16,
+                      }
+                    }
+                    transition={null}
+                    width={16}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "justifyContent": "space-between",
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                        "gap": 4,
+                      }
+                    }
+                  >
+                    <ViewManagerAdapter_ExpoImage
+                      containerViewRef={"[React.ref]"}
+                      contentFit="contain"
+                      contentPosition={
+                        {
+                          "left": "50%",
+                          "top": "50%",
+                        }
+                      }
+                      height={20}
+                      nativeViewRef={"[React.ref]"}
+                      onError={[Function]}
+                      onLoad={[Function]}
+                      onLoadStart={[Function]}
+                      onProgress={[Function]}
+                      placeholder={[]}
+                      source={
+                        [
+                          {
+                            "testUri": "../../../src/assets/images/currency/coins.png",
+                          },
+                        ]
+                      }
+                      style={
+                        {
+                          "height": 20,
+                          "width": 20,
+                        }
+                      }
+                      transition={null}
+                      width={20}
+                    />
+                    <Text
+                      style={
+                        [
+                          {
+                            "color": "white",
+                            "fontFamily": "AgencyFB-Bold",
+                            "fontSize": 14,
+                            "textTransform": "uppercase",
+                          },
+                          false,
+                        ]
+                      }
+                    >
+                      200000
+                    </Text>
+                  </View>
+                </View>
+              </ViewManagerAdapter_ExpoLinearGradient>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
