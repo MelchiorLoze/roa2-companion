@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 import { invalidateGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
 import { CurrencyId } from '@/types/currency';
-import type { Item } from '@/types/item';
+import { type Item } from '@/types/item';
 
 import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 

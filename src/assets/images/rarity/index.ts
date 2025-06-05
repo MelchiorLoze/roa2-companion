@@ -1,4 +1,4 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 
 export const CommonIcon: ImageSource = require('./common.webp');
 export const RareIcon: ImageSource = require('./rare.webp');

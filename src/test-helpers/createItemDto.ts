@@ -1,5 +1,5 @@
 import { CurrencyId } from '@/types/currency';
-import type { Category, ItemDto } from '@/types/item';
+import { type Category, type ItemDto } from '@/types/item';
 
 export const createItemDto = (id: string, category: Category, buckPrice: number) =>
   ({

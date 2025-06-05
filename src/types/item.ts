@@ -1,8 +1,8 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 
 import { CommonIcon, EpicIcon, LegendaryIcon, RareIcon } from '@/assets/images/rarity';
 
-import type { CurrencyId } from './currency';
+import { type CurrencyId } from './currency';
 
 export const enum Category {
   DEATHEFFECT = 'deatheffect',

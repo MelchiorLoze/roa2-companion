@@ -1,16 +1,15 @@
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, Text, useWindowDimensions, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { EloDistributionLineChart } from '@/components/EloDistributionLineChart/EloDistributionLineChart';
-import { RankDistributionBarChart } from '@/components/RankDistributionBarChart/RankDistributionBarChart';
 import { Spinner } from '@/components/Spinner/Spinner';
-import { useUserStats } from '@/hooks/business/useUserStats/useUserStats';
+import { EloDistributionLineChart } from '@/features/stats/components/EloDistributionLineChart/EloDistributionLineChart';
+import { RankDistributionBarChart } from '@/features/stats/components/RankDistributionBarChart/RankDistributionBarChart';
+import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
 import { CHARACTER_ICONS } from '@/types/character';
-import type { Rank } from '@/types/rank';
-import { RANK_ICONS } from '@/types/rank';
+import { type Rank, RANK_ICONS } from '@/types/rank';
 
 type SectionProps = { title?: string } & PropsWithChildren;
 

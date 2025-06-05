@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react-native';
 
 import { testItemList } from '@/test-helpers/testItemList';
-import type { Item } from '@/types/item';
+import { type Item } from '@/types/item';
 
 import { ItemList } from './ItemList';
 

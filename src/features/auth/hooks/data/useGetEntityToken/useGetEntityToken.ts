@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
-import type { Session } from '../../../types/session';
+import { type Session } from '../../../types/session';
 
 type GetEntityTokenResponse = {
   EntityToken: string;

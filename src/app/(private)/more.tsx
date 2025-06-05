@@ -1,6 +1,5 @@
 import { useRouter } from 'expo-router';
-import type { ListRenderItem } from 'react-native';
-import { FlatList, View } from 'react-native';
+import { FlatList, type ListRenderItem, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { ActionRow } from '@/components/ActionRow/ActionRow';

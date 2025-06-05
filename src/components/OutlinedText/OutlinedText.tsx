@@ -1,5 +1,16 @@
-import type { DataModule, SkParagraphStyle, SkTextStyle, SkTypefaceFontProvider } from '@shopify/react-native-skia';
-import { Canvas, Group, PaintStyle, Paragraph, Skia, TextAlign, useFonts } from '@shopify/react-native-skia';
+import {
+  Canvas,
+  type DataModule,
+  Group,
+  PaintStyle,
+  Paragraph,
+  Skia,
+  type SkParagraphStyle,
+  type SkTextStyle,
+  type SkTypefaceFontProvider,
+  TextAlign,
+  useFonts,
+} from '@shopify/react-native-skia';
 
 import { AgencyFBBold } from '@/assets/fonts';
 

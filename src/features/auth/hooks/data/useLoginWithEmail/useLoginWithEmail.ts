@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import { TITLE_ID } from '@/constants';
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
-import type { Session } from '../../../types/session';
+import { type Session } from '../../../types/session';
 
 type LoginWithEmailAddressRequest = {
   email: string;

@@ -1,4 +1,4 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 
 import {
   AethereanIcon,

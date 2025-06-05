@@ -1,4 +1,4 @@
-import type { FontSource } from 'expo-font';
+import { type FontSource } from 'expo-font';
 
 export const AgencyFBBlack: FontSource = require('./AgencyFB-Black.otf');
 export const AgencyFBBold: FontSource = require('./AgencyFB-Bold.ttf');

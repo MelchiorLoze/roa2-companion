@@ -1,4 +1,4 @@
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 

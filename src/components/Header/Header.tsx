@@ -3,8 +3,8 @@ import { useRouter } from 'expo-router';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { CurrenciesBalance } from '../CurrenciesBalance/CurrenciesBalance';
 import { Separator } from '../Separator/Separator';
+import { CurrenciesBalance } from './CurrenciesBalance/CurrenciesBalance';
 
 type Props = {
   title?: string;

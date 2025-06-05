@@ -1,12 +1,11 @@
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
-import type { PropsWithChildren } from 'react';
-import { useState } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 
 import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
-import type { Session } from '../../types/session';
+import { type Session } from '../../types/session';
 import { SessionProvider, useSession } from './SessionContext';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });

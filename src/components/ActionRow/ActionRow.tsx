@@ -1,8 +1,7 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import type { ExternalPathString } from 'expo-router';
-import { useRouter } from 'expo-router';
-import type { ComponentProps } from 'react';
+import { type ExternalPathString, useRouter } from 'expo-router';
+import { type ComponentProps } from 'react';
 import { Pressable, Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 

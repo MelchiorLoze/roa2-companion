@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
-import type { ComponentProps } from 'react';
+import { type ComponentProps } from 'react';
 
 import { ActionRow } from './ActionRow';
 

@@ -1,4 +1,4 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 
 export const StoneIcon: ImageSource = require('./stone.png');
 export const BronzeIcon: ImageSource = require('./bronze.png');

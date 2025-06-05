@@ -1,4 +1,4 @@
-import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { type NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
 import { StrictMode } from 'react';

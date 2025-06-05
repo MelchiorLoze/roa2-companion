@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import type { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
+import { type BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { Redirect, Tabs } from 'expo-router';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 

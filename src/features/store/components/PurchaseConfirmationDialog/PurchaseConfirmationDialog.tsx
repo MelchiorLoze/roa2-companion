@@ -8,7 +8,7 @@ import { CurrencyId } from '@/types/currency';
 import { CATEGORY_LABELS } from '@/types/item';
 
 import { usePurchaseInventoryItems } from '../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
-import type { CoinStoreItem } from '../../types/item';
+import { type CoinStoreItem } from '../../types/item';
 
 type Props = {
   item: CoinStoreItem;

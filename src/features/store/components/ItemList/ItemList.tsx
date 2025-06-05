@@ -1,9 +1,8 @@
 import { useCallback } from 'react';
-import type { ListRenderItem } from 'react-native';
-import { FlatList } from 'react-native';
+import { FlatList, type ListRenderItem } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import type { Item } from '@/types/item';
+import { type Item } from '@/types/item';
 
 import { ItemCard } from '../ItemCard/ItemCard';
 

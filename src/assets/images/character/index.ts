@@ -1,4 +1,4 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 
 export const ClairenIcon: ImageSource = require('./clairen.png');
 export const EtalusIcon: ImageSource = require('./etalus.png');

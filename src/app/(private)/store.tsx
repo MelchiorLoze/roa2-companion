@@ -9,7 +9,7 @@ import { ItemList } from '@/features/store/components/ItemList/ItemList';
 import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';
 import { TimeCountdown } from '@/features/store/components/TimeCountdown/TimeCountdown';
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
-import type { CoinStoreItem } from '@/features/store/types/item';
+import { type CoinStoreItem } from '@/features/store/types/item';
 
 export default function Store() {
   const { theme } = useUnistyles();

@@ -4,7 +4,7 @@ import { CurrencyId } from '@/types/currency';
 import { Category, Rarity } from '@/types/item';
 
 import { usePurchaseInventoryItems } from '../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
-import type { CoinStoreItem } from '../../types/item';
+import { type CoinStoreItem } from '../../types/item';
 import { PurchaseConfirmationDialog } from './PurchaseConfirmationDialog';
 
 jest.mock('../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems');
