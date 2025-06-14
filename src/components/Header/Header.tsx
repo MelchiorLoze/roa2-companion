@@ -24,7 +24,7 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => 
           {withBackNavigation && (
             <MaterialIcons.Button
               accessibilityLabel="Back"
-              backgroundColor={'transparent'}
+              backgroundColor="transparent"
               iconStyle={styles.backButtonIcon}
               name="arrow-back"
               onPress={router.back}
@@ -53,7 +53,7 @@ const styles = StyleSheet.create((theme) => ({
   bottomContainer: (withBackNavigation?: boolean) => ({
     flexDirection: 'row',
     alignItems: 'center',
-    padding: theme.spacing.m,
+    paddingVertical: withBackNavigation ? theme.spacing.s : theme.spacing.m,
     paddingHorizontal: withBackNavigation ? theme.spacing.s : theme.spacing.l,
     backgroundColor: theme.color.background,
   }),
@@ -61,7 +61,6 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: theme.spacing.s,
-    paddingVertical: theme.spacing.none,
   },
   backButtonIcon: {
     marginRight: 0,
