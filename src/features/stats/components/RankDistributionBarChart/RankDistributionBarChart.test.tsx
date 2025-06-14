@@ -33,7 +33,7 @@ describe('RankDistributionBarChart', () => {
 
     renderComponent();
 
-    screen.getByA11yHint('Loading...');
+    screen.getByTestId('spinner');
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 

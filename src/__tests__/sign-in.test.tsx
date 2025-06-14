@@ -74,7 +74,7 @@ describe('SignIn', () => {
 
     renderComponent();
 
-    screen.getByAccessibilityHint('Loading...');
+    screen.getByTestId('spinner');
     expect(screen.queryByText(screenTitle)).toBeNull();
   });
 

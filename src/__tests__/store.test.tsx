@@ -84,6 +84,6 @@ describe('Store', () => {
 
     renderComponent();
 
-    screen.getByAccessibilityHint('Loading...');
+    screen.getByTestId('spinner');
   });
 });

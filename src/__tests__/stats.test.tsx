@@ -71,6 +71,6 @@ describe('Stats', () => {
 
     renderComponent();
 
-    screen.getByAccessibilityHint('Loading...');
+    screen.getByTestId('spinner');
   });
 });

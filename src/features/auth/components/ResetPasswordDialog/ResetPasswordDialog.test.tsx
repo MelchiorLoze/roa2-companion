@@ -113,6 +113,6 @@ describe('ResetPasswordDialog', () => {
 
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    screen.getByAccessibilityHint('Loading...');
+    screen.getByTestId('spinner');
   });
 });

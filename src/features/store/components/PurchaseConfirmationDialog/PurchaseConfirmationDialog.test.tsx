@@ -90,7 +90,7 @@ describe('PurchaseConfirmationDialog', () => {
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByAccessibilityHint('Loading...');
+    screen.getByTestId('spinner');
   });
 
   it('shows error message when purchase fails', () => {
