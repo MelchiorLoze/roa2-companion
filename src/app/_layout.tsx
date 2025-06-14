@@ -25,7 +25,6 @@ export default function RootLayout() {
             screenOptions={{
               header: renderHeader,
               statusBarBackgroundColor: theme.color.highlight,
-              navigationBarColor: theme.color.background,
               contentStyle: { backgroundColor: theme.color.highlight },
             }}
           >

@@ -1,15 +1,13 @@
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { type PropsWithChildren } from 'react';
-import { RefreshControl, ScrollView, Text, useWindowDimensions, View } from 'react-native';
+import { RefreshControl, ScrollView, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
-import { EloDistributionLineChart } from '@/features/stats/components/EloDistributionLineChart/EloDistributionLineChart';
-import { RankDistributionBarChart } from '@/features/stats/components/RankDistributionBarChart/RankDistributionBarChart';
+import { RankedDistributionChart } from '@/features/stats/components/RankedDistributionChart/RankedDistributionChart';
 import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
 import { CHARACTER_ICONS } from '@/types/character';
-import { type Rank, RANK_ICONS } from '@/types/rank';
 
 type SectionProps = { title?: string } & PropsWithChildren;
 
@@ -26,8 +24,6 @@ const Section = ({ title, children }: SectionProps) => {
 
 export default function Stats() {
   const { stats, refresh, isLoading } = useUserStats();
-  const dimensions = useWindowDimensions();
-  const width = dimensions.width - 2 * 24;
 
   if (!stats || isLoading) return <Spinner />;
 
@@ -41,15 +37,7 @@ export default function Stats() {
           {stats.rankedSetCount} sets: {stats.rankedWinCount} W - {stats.rankedSetCount - stats.rankedWinCount} L
         </Text>
         <Text style={styles.label}>Winrate: {(stats.rankedWinRate ?? 0).toFixed(2)}%</Text>
-        <View>
-          <View style={styles.labelWithIconContainer}>
-            <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
-            <Text style={[styles.label, styles.eloLabel(stats.rank)]}>{stats.rankedElo}</Text>
-            <Text style={styles.label}>- #{stats.rankedPosition}</Text>
-          </View>
-          <RankDistributionBarChart width={width} />
-          <EloDistributionLineChart style={styles.lineChartContainer} userElo={stats.rankedElo} width={width} />
-        </View>
+        <RankedDistributionChart elo={stats.rankedElo} position={stats.rankedPosition} rank={stats.rank} />
       </Section>
 
       <Section title="Global">
@@ -102,20 +90,9 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
-  eloLabel: (rank: Rank) => ({
-    color: theme.color[rank],
-  }),
   icon: {
     width: 24,
     height: 24,
-  },
-  labelWithIconContainer: {
-    position: 'absolute',
-    top: theme.spacing.s,
-    right: theme.spacing.s,
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.xs,
   },
   tableRow: {
     width: '100%',
@@ -127,8 +104,5 @@ const styles = StyleSheet.create((theme) => ({
   },
   otherColumns: {
     flex: 2 / 5,
-  },
-  lineChartContainer: {
-    position: 'absolute',
   },
 }));
