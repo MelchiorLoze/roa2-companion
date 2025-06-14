@@ -2,10 +2,10 @@ import { type barDataItem, type lineDataItem } from 'react-native-gifted-charts'
 import { useUnistyles } from 'react-native-unistyles';
 import { type UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/types';
 
+import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 import { getRank, type LeaderboardEntry, MAX_AETHEREAN_PLAYERS, type Rank } from '@/types/rank';
 
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
-import { useCommunityLeaderboards } from '../../data/useCommunityLeaderboards/useCommunityLeaderboards';
 
 const DISTRIBUTION_PRECISION = 10;
 
@@ -58,10 +58,8 @@ const getEloDistribution = (
 };
 
 export const useLeaderboardStats = (userElo = 0) => {
-  const { leaderboards, isLoading: isLoadingLeaderboards } = useCommunityLeaderboards();
-  const { leaderboardEntries, isLoading: isLoadingLeaderboard } = useCommunityLeaderboard(
-    leaderboards.length ? leaderboards[leaderboards.length - 1].id : undefined,
-  );
+  const { leaderboardId } = useSeason();
+  const { leaderboardEntries, isLoading: isLoadingLeaderboard } = useCommunityLeaderboard(leaderboardId);
 
   const { theme } = useUnistyles();
 
@@ -76,6 +74,6 @@ export const useLeaderboardStats = (userElo = 0) => {
     lastAethereanElo,
     rankDistribution: getRankDistribution(leaderboardEntries, theme),
     eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo, userElo),
-    isLoading: isLoadingLeaderboards || isLoadingLeaderboard,
+    isLoading: isLoadingLeaderboard,
   };
 };

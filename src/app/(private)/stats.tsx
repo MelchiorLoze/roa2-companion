@@ -6,6 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
 import { RankedDistributionChart } from '@/features/stats/components/RankedDistributionChart/RankedDistributionChart';
+import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
 import { CHARACTER_ICONS } from '@/types/character';
 
@@ -23,6 +24,7 @@ const Section = ({ title, children }: SectionProps) => {
 };
 
 export default function Stats() {
+  const { seasonName } = useSeason();
   const { stats, refresh, isLoading } = useUserStats();
 
   if (!stats || isLoading) return <Spinner />;
@@ -32,7 +34,7 @@ export default function Stats() {
       contentContainerStyle={styles.container}
       refreshControl={<RefreshControl onRefresh={refresh} refreshing={isLoading} />}
     >
-      <Section title="Ranked">
+      <Section title={`Ranked - ${seasonName}`}>
         <Text style={styles.label}>
           {stats.rankedSetCount} sets: {stats.rankedWinCount} W - {stats.rankedSetCount - stats.rankedWinCount} L
         </Text>
@@ -42,7 +44,7 @@ export default function Stats() {
 
       <Section title="Global">
         <Text style={styles.label}>
-          {stats.globalMatchCount} games: {stats.globalWinCount} W - {stats.globalMatchCount - stats.globalWinCount} L
+          {stats.globalGameCount} games: {stats.globalWinCount} W - {stats.globalGameCount - stats.globalWinCount} L
         </Text>
         <Text style={styles.label}>Winrate: {(stats.globalWinRate ?? 0).toFixed(2)}%</Text>
       </Section>

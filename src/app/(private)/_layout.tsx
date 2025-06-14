@@ -6,6 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components/Header/Header';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
+import { SeasonProvider } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 
 const renderHeader = ({ options }: BottomTabHeaderProps) => <Header showCurrencies title={options.title} />;
 
@@ -22,38 +23,40 @@ export default function PrivateLayout() {
   }
 
   return (
-    <Tabs
-      screenOptions={{
-        header: renderHeader,
-        tabBarButton: renderTabBarButtonWithoutFeedback,
-        tabBarStyle: styles.container,
-        tabBarLabelStyle: styles.label,
-        tabBarActiveTintColor: theme.color.white,
-        sceneStyle: { backgroundColor: theme.color.highlight },
-      }}
-    >
-      <Tabs.Screen
-        name="store"
-        options={{
-          title: 'Rotating coin shop',
-          tabBarLabel: 'Store',
-          tabBarIcon: ({ color }) => <Ionicons color={color} name="cart-sharp" size={24} />,
+    <SeasonProvider>
+      <Tabs
+        screenOptions={{
+          header: renderHeader,
+          tabBarButton: renderTabBarButtonWithoutFeedback,
+          tabBarStyle: styles.container,
+          tabBarLabelStyle: styles.label,
+          tabBarActiveTintColor: theme.color.white,
+          sceneStyle: { backgroundColor: theme.color.highlight },
         }}
-      />
-      <Tabs.Screen
-        name="stats"
-        options={{
-          title: 'Stats',
-          tabBarIcon: ({ color }) => <Ionicons color={color} name="stats-chart-sharp" size={24} />,
-        }}
-      />
-      <Tabs.Screen
-        name="more"
-        options={{
-          tabBarIcon: ({ color }) => <Ionicons color={color} name="information-circle-sharp" size={24} />,
-        }}
-      />
-    </Tabs>
+      >
+        <Tabs.Screen
+          name="store"
+          options={{
+            title: 'Rotating coin shop',
+            tabBarLabel: 'Store',
+            tabBarIcon: ({ color }) => <Ionicons color={color} name="cart-sharp" size={24} />,
+          }}
+        />
+        <Tabs.Screen
+          name="stats"
+          options={{
+            title: 'Stats',
+            tabBarIcon: ({ color }) => <Ionicons color={color} name="stats-chart-sharp" size={24} />,
+          }}
+        />
+        <Tabs.Screen
+          name="more"
+          options={{
+            tabBarIcon: ({ color }) => <Ionicons color={color} name="information-circle-sharp" size={24} />,
+          }}
+        />
+      </Tabs>
+    </SeasonProvider>
   );
 }
 
