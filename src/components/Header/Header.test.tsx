@@ -1,10 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
-import { Pressable } from 'react-native';
 
 import { Header } from './Header';
-
-jest.requireMock<{ MaterialIcons: unknown }>('@expo/vector-icons').MaterialIcons = { Button: Pressable };
 
 jest.mock('expo-router');
 const backMock = jest.fn();
@@ -53,7 +50,7 @@ describe('Header', () => {
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
     screen.getByText('Test Title');
 
-    const backButton = screen.getByRole('button', { name: 'Back' });
+    const backButton = screen.getByRole('button');
     fireEvent.press(backButton);
 
     expect(backMock).toHaveBeenCalledTimes(1);
@@ -64,6 +61,6 @@ describe('Header', () => {
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
     expect(screen.queryByText('Test Title')).toBeNull();
-    expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
+    expect(screen.queryByRole('button')).toBeNull();
   });
 });

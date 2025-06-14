@@ -1,8 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
+import { IconButton } from '../IconButton/IconButton';
 import { Separator } from '../Separator/Separator';
 import { CurrenciesBalance } from './CurrenciesBalance/CurrenciesBalance';
 
@@ -22,15 +22,7 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => 
       {title && (
         <View style={styles.bottomContainer(withBackNavigation)}>
           {withBackNavigation && (
-            <MaterialIcons.Button
-              accessibilityLabel="Back"
-              backgroundColor="transparent"
-              iconStyle={styles.backButtonIcon}
-              name="arrow-back"
-              onPress={router.back}
-              role="button"
-              style={styles.backButton}
-            />
+            <IconButton iconName="arrow-back" onPress={router.back} size={24} style={styles.backButton} />
           )}
           <Text style={styles.title}>{title}</Text>
         </View>
@@ -58,13 +50,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.background,
   }),
   backButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
     padding: theme.spacing.s,
-  },
-  backButtonIcon: {
-    marginRight: 0,
-    fontSize: 24,
   },
   title: {
     width: '100%',
