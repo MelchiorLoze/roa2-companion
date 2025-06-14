@@ -1,12 +1,17 @@
 import { Ionicons } from '@expo/vector-icons';
-import { type BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
+import { type BottomTabBarButtonProps, type BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import { Redirect, Tabs } from 'expo-router';
+import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components/Header/Header';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
 const renderHeader = ({ options }: BottomTabHeaderProps) => <Header showCurrencies title={options.title} />;
+
+const renderTabBarButtonWithoutFeedback = (props: BottomTabBarButtonProps) => (
+  <Pressable {...props} android_ripple={undefined} ref={undefined} />
+);
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();
@@ -20,6 +25,7 @@ export default function PrivateLayout() {
     <Tabs
       screenOptions={{
         header: renderHeader,
+        tabBarButton: renderTabBarButtonWithoutFeedback,
         tabBarStyle: styles.container,
         tabBarLabelStyle: styles.label,
         tabBarActiveTintColor: theme.color.white,
