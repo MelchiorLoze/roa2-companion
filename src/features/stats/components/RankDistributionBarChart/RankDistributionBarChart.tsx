@@ -7,6 +7,12 @@ import { Rank, RANK_ELO_INTERVALS } from '@/types/rank';
 
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
 
+const formatNumber = (value: number) => {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
+  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`;
+  return value.toString();
+};
+
 // Caclulate the widths of the chart bars to be proportional to the elo intervals
 const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) => {
   const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
@@ -46,7 +52,7 @@ export const RankDistributionBarChart = ({ width }: Props) => {
         data={rankDistribution.reverse().map((item, index) => ({
           ...item,
           barWidth: barWidths[index] % 100,
-          topLabelComponent: () => <Text style={styles.topLabel}>{item.value}</Text>,
+          topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(item.value ?? 0)}</Text>,
         }))}
         disablePress
         disableScroll
