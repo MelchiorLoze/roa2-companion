@@ -2,9 +2,8 @@ import { type barDataItem, type lineDataItem } from 'react-native-gifted-charts'
 import { useUnistyles } from 'react-native-unistyles';
 import { type UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/types';
 
-import { getRank, type LeaderboardEntry, MAX_AETHEREAN_PLAYERS, type Rank } from '@/types/rank';
-
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
+import { getRank, type LeaderboardEntry, MAX_AETHEREAN_PLAYERS, type Rank } from '../../../types/rank';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
 
 const DISTRIBUTION_PRECISION = 10;

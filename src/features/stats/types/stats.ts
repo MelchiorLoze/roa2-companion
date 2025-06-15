@@ -46,12 +46,6 @@ export type PlayerPosition = {
   position: number;
 };
 
-export type UserStats = Record<StatisticName, number>;
+export type PlayerStatistics = Record<StatisticName, number>;
 
 export type UserData = { characterData: Record<Character, { lvl: number }> };
-
-export type CharacterStat = {
-  character: Character;
-  gameCount: number;
-  level: number;
-};

@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { STEAM_APP_ID } from '@/constants';
 import { useSteamCommunityApiClient } from '@/hooks/apiClients/useSteamCommunityApiClient/useSteamCommunityApiClient';
-import { type Leaderboard, type LeaderboardEntry } from '@/types/rank';
+
+import { type Leaderboard, type LeaderboardEntry } from '../../../types/rank';
 
 type CommunityLeaderboardResponse = {
   resultCount: number;

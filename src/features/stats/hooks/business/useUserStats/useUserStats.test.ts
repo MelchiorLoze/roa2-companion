@@ -4,7 +4,8 @@ import { act } from 'react';
 import { Character } from '@/types/character';
 
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
-import { type PlayerPosition, StatisticName, type UserData, type UserStats } from '../../../types/stats';
+import { Rank } from '../../../types/rank';
+import { type PlayerPosition, type PlayerStatistics, StatisticName, type UserData } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
@@ -75,7 +76,7 @@ describe('useUserStats', () => {
     useSeasonMock.mockReturnValue(defaultSeasonState);
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as UserStats,
+      statistics: {} as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -98,7 +99,7 @@ describe('useUserStats', () => {
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as UserStats,
+      statistics: {} as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: true,
       isError: false,
@@ -107,7 +108,9 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).toBeUndefined();
+    expect(result.current.globalStats).toBeUndefined();
+    expect(result.current.characterStats).toBeUndefined();
     expect(typeof result.current.refresh).toBe('function');
   });
 
@@ -122,7 +125,9 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).toBeUndefined();
+    expect(result.current.globalStats).toBeUndefined();
+    expect(result.current.characterStats).toBeUndefined();
     expect(typeof result.current.refresh).toBe('function');
   });
 
@@ -137,7 +142,9 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).toBeUndefined();
+    expect(result.current.globalStats).toBeUndefined();
+    expect(result.current.characterStats).toBeUndefined();
     expect(typeof result.current.refresh).toBe('function');
   });
 
@@ -152,7 +159,9 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).toBeUndefined();
+    expect(result.current.globalStats).toBeUndefined();
+    expect(result.current.characterStats).toBeUndefined();
   });
 
   it('returns nothing when player positions are not present', () => {
@@ -166,7 +175,9 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).toBeUndefined();
+    expect(result.current.globalStats).not.toBeUndefined();
+    expect(result.current.characterStats).not.toBeUndefined();
   });
 
   it('returns nothing when user data is not present', () => {
@@ -180,11 +191,13 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.rankedStats).not.toBeUndefined();
+    expect(result.current.globalStats).not.toBeUndefined();
+    expect(result.current.characterStats).toBeUndefined();
   });
 
   it('computes stats correctly from player statistics', () => {
-    const mockStatistics: Partial<UserStats> = {
+    const mockStatistics: Partial<PlayerStatistics> = {
       [StatisticName.RANKED_S1_ELO]: 815,
       [StatisticName.RANKED_S1_SETS]: 200,
       [StatisticName.RANKED_S1_WINS]: 22,
@@ -195,19 +208,23 @@ describe('useUserStats', () => {
       [StatisticName.BETA_WINS]: 120,
     };
 
-    const expectedStats = {
-      rankedPosition: 4404,
-      rankedElo: 915,
-      rankedSetCount: 100,
-      rankedWinCount: 60,
-      rankedWinRate: 60,
-      globalGameCount: 200,
-      globalWinCount: 120,
-      globalWinRate: 60,
+    const expectedRankedStats = {
+      position: 4404,
+      rank: Rank.GOLD,
+      elo: 915,
+      setCount: 100,
+      winCount: 60,
+      winRate: 60,
+    };
+
+    const expectedGlobalStats = {
+      gameCount: 200,
+      winCount: 120,
+      winRate: 60,
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: mockStatistics as UserStats,
+      statistics: mockStatistics as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -216,11 +233,12 @@ describe('useUserStats', () => {
     const { result } = renderUseUserStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toMatchObject(expectedStats);
+    expect(result.current.rankedStats).toMatchObject(expectedRankedStats);
+    expect(result.current.globalStats).toMatchObject(expectedGlobalStats);
   });
 
   it('handles zero matches played when calculating win rates', () => {
-    const mockStatistics: Partial<UserStats> = {
+    const mockStatistics: Partial<PlayerStatistics> = {
       [StatisticName.RANKED_S1_SETS]: 0,
       [StatisticName.RANKED_S1_WINS]: 0,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 0,
@@ -228,7 +246,7 @@ describe('useUserStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: mockStatistics as UserStats,
+      statistics: mockStatistics as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -236,8 +254,8 @@ describe('useUserStats', () => {
 
     const { result } = renderUseUserStats();
 
-    expect(result.current.stats?.rankedWinRate).toBe(0);
-    expect(result.current.stats?.globalWinRate).toBe(0);
+    expect(result.current.rankedStats?.winRate).toBe(0);
+    expect(result.current.globalStats?.winRate).toBe(0);
   });
 
   it('pass through the refetch function correctly', async () => {
@@ -276,11 +294,11 @@ describe('useUserStats', () => {
   });
 
   it('computes character stats for all characters', () => {
-    const mockStatistics: UserStats = characters.reduce((acc, character, index) => {
+    const mockStatistics: PlayerStatistics = characters.reduce((acc, character, index) => {
       const statKey = `${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName;
       acc[StatisticName[statKey]] = 10 + index * 5;
       return acc;
-    }, {} as UserStats);
+    }, {} as PlayerStatistics);
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
@@ -291,9 +309,9 @@ describe('useUserStats', () => {
 
     const { result } = renderUseUserStats();
 
-    expect(result.current.stats?.characterStats.length).toBe(characters.length);
+    expect(result.current.characterStats?.length).toBe(characters.length);
     characters.forEach((character, index) => {
-      const characterStat = result.current.stats?.characterStats.find((stat) => stat.character === character);
+      const characterStat = result.current.characterStats?.find((stat) => stat.character === character);
       expect(characterStat?.gameCount).toBe(10 + index * 5);
       expect(characterStat?.level).toBe(5 + index * 10);
     });

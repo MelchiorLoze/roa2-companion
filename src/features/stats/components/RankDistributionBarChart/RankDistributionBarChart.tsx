@@ -3,9 +3,9 @@ import { BarChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
-import { Rank, RANK_ELO_INTERVALS } from '@/types/rank';
 
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { Rank, RANK_ELO_INTERVALS } from '../../types/rank';
 
 const formatNumber = (value: number) => {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
