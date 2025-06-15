@@ -43,18 +43,150 @@ exports[`Stats matches the snapshot 1`] = `
         }
       }
     >
-      <Text
+      <View
         style={
           {
-            "color": "white",
-            "fontFamily": "FranklinGothicDemiCond-Italic",
-            "fontSize": 18,
-            "textTransform": "uppercase",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
           }
         }
       >
-        Ranked
-      </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 20,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          Ranked - 
+          Season 1
+        </Text>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": true,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "justifyContent": "center",
+                },
+                {
+                  "padding": 2,
+                },
+              ]
+            }
+          >
+            <
+              color="#AAAAAA"
+              name="arrow-back"
+              size={24}
+            />
+          </View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 20,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            S
+            1
+          </Text>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            role="button"
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "justifyContent": "center",
+                },
+                {
+                  "padding": 2,
+                },
+              ]
+            }
+          >
+            <
+              color="white"
+              name="arrow-forward"
+              size={24}
+            />
+          </View>
+        </View>
+      </View>
       <View>
         <Text
           style={
@@ -87,120 +219,120 @@ exports[`Stats matches the snapshot 1`] = `
           75.00
           %
         </Text>
-        <View>
-          <View
-            style={
+      </View>
+      <View>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
+              "position": "absolute",
+              "right": 8,
+              "top": 8,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
               {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "gap": 4,
-                "position": "absolute",
-                "right": 8,
-                "top": 8,
+                "left": "50%",
+                "top": "50%",
               }
             }
-          >
-            <ViewManagerAdapter_ExpoImage
-              containerViewRef={"[React.ref]"}
-              contentFit="contain"
-              contentPosition={
+            height={24}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
                 {
-                  "left": "50%",
-                  "top": "50%",
-                }
+                  "testUri": "../../../src/assets/images/rank/gold.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 24,
+                "width": 24,
               }
-              height={24}
-              nativeViewRef={"[React.ref]"}
-              onError={[Function]}
-              onLoad={[Function]}
-              onLoadStart={[Function]}
-              onProgress={[Function]}
-              placeholder={[]}
-              source={
-                [
-                  {
-                    "testUri": "../../../src/assets/images/rank/gold.png",
-                  },
-                ]
-              }
-              style={
-                {
-                  "height": 24,
-                  "width": 24,
-                }
-              }
-              transition={null}
-              width={24}
-            />
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  },
-                  {
-                    "color": "#FFC64E",
-                  },
-                ]
-              }
-            >
-              925
-            </Text>
-            <Text
-              style={
+            }
+            transition={null}
+            width={24}
+          />
+          <Text
+            style={
+              [
                 {
                   "color": "white",
                   "fontFamily": "FranklinGothicDemiCond-Regular",
                   "fontSize": 16,
                   "textTransform": "uppercase",
-                }
-              }
-            >
-              - #
-              123
-            </Text>
-          </View>
-          <View
-            testID="rank-distribution"
+                },
+                {
+                  "color": "#FFC64E",
+                },
+              ]
+            }
           >
-            <
-              data={[]}
-              disablePress={true}
-              disableScroll={true}
-              height={702}
-              hideAxesAndRules={true}
-              spacing={0}
-              width={702}
-              xAxisLabelsHeight={0}
-              yAxisLabelWidth={0}
-            />
-          </View>
-          <View
+            925
+          </Text>
+          <Text
             style={
               {
-                "position": "absolute",
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
               }
             }
-            testID="elo-distribution"
           >
-            <
-              adjustToWidth={true}
-              data={[]}
-              dataPointsColor="transparent"
-              dataPointsRadius={2}
-              disableScroll={true}
-              height={702}
-              hideAxesAndRules={true}
-              initialSpacing={0}
-              thickness={1}
-              width={702}
-              xAxisLabelsHeight={0}
-              yAxisLabelWidth={0}
-            />
-          </View>
+            - #
+            123
+          </Text>
+        </View>
+        <View
+          testID="rank-distribution"
+        >
+          <
+            data={[]}
+            disablePress={true}
+            disableScroll={true}
+            height={702}
+            hideAxesAndRules={true}
+            spacing={0}
+            width={702}
+            xAxisLabelsHeight={0}
+            yAxisLabelWidth={0}
+          />
+        </View>
+        <View
+          style={
+            {
+              "position": "absolute",
+            }
+          }
+          testID="elo-distribution"
+        >
+          <
+            adjustToWidth={true}
+            data={[]}
+            dataPointsColor="transparent"
+            dataPointsRadius={2}
+            disableScroll={true}
+            height={702}
+            hideAxesAndRules={true}
+            initialSpacing={0}
+            thickness={1}
+            width={702}
+            xAxisLabelsHeight={0}
+            yAxisLabelWidth={0}
+          />
         </View>
       </View>
     </ViewManagerAdapter_ExpoLinearGradient>
@@ -234,8 +366,8 @@ exports[`Stats matches the snapshot 1`] = `
         style={
           {
             "color": "white",
-            "fontFamily": "FranklinGothicDemiCond-Italic",
-            "fontSize": 18,
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 20,
             "textTransform": "uppercase",
           }
         }
@@ -302,12 +434,25 @@ exports[`Stats matches the snapshot 1`] = `
         }
       }
     >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 20,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Characters
+      </Text>
       <View>
         <View
           style={
             {
+              "borderBottomWidth": 1,
+              "borderColor": "#FFDF77",
               "flexDirection": "row",
-              "justifyContent": "space-between",
               "width": "100%",
             }
           }
@@ -315,7 +460,9 @@ exports[`Stats matches the snapshot 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
                 "flex": 0.2,
+                "justifyContent": "center",
               }
             }
           />
@@ -329,7 +476,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -346,7 +496,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -357,8 +510,9 @@ exports[`Stats matches the snapshot 1`] = `
         <View
           style={
             {
+              "borderBottomWidth": 1,
+              "borderColor": "#FFDF77",
               "flexDirection": "row",
-              "justifyContent": "space-between",
               "width": "100%",
             }
           }
@@ -366,7 +520,9 @@ exports[`Stats matches the snapshot 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
                 "flex": 0.2,
+                "justifyContent": "center",
               }
             }
           >
@@ -413,7 +569,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -430,7 +589,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -441,8 +603,9 @@ exports[`Stats matches the snapshot 1`] = `
         <View
           style={
             {
+              "borderBottomWidth": 1,
+              "borderColor": "#FFDF77",
               "flexDirection": "row",
-              "justifyContent": "space-between",
               "width": "100%",
             }
           }
@@ -450,7 +613,9 @@ exports[`Stats matches the snapshot 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
                 "flex": 0.2,
+                "justifyContent": "center",
               }
             }
           >
@@ -497,7 +662,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -514,7 +682,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -525,8 +696,9 @@ exports[`Stats matches the snapshot 1`] = `
         <View
           style={
             {
+              "borderBottomWidth": 1,
+              "borderColor": "#FFDF77",
               "flexDirection": "row",
-              "justifyContent": "space-between",
               "width": "100%",
             }
           }
@@ -534,7 +706,9 @@ exports[`Stats matches the snapshot 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
                 "flex": 0.2,
+                "justifyContent": "center",
               }
             }
           >
@@ -581,7 +755,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -598,7 +775,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -609,8 +789,9 @@ exports[`Stats matches the snapshot 1`] = `
         <View
           style={
             {
+              "borderBottomWidth": 0,
+              "borderColor": "#FFDF77",
               "flexDirection": "row",
-              "justifyContent": "space-between",
               "width": "100%",
             }
           }
@@ -618,7 +799,9 @@ exports[`Stats matches the snapshot 1`] = `
           <View
             style={
               {
+                "alignItems": "center",
                 "flex": 0.2,
+                "justifyContent": "center",
               }
             }
           >
@@ -665,7 +848,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }
@@ -682,7 +868,10 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
+                  "borderColor": "#FFDF77",
+                  "borderLeftWidth": 1,
                   "flex": 0.4,
+                  "paddingLeft": 8,
                 },
               ]
             }

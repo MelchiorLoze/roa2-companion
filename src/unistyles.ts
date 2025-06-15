@@ -8,6 +8,7 @@ const theme = {
     border: '#CACEFF',
     dark: '#161616',
     weak: '#676767',
+    disabled: '#AAAAAA',
     black: 'black',
     white: 'white',
     transparent: 'transparent',

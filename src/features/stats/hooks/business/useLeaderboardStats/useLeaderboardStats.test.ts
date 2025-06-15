@@ -1,19 +1,22 @@
 import { renderHook } from '@testing-library/react-native';
 
+import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
-import { useCommunityLeaderboards } from '../../data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { useLeaderboardStats } from './useLeaderboardStats';
 
-jest.mock('../../data/useCommunityLeaderboards/useCommunityLeaderboards');
-const useCommunityLeaderboardsMock = jest.mocked(useCommunityLeaderboards);
-const defaultCommunityLeaderboardsState: ReturnType<typeof useCommunityLeaderboards> = {
-  leaderboards: [
-    { id: 123, name: 'season_1', displayName: 'Season 1', entryCount: 100 },
-    { id: 456, name: 'season_2', displayName: 'Season 2', entryCount: 200 },
-    { id: 789, name: 'season_3', displayName: 'Season 3', entryCount: 300 },
-  ],
+jest.mock('../../../contexts/SeasonContext/SeasonContext');
+const useSeasonMock = jest.mocked(useSeason);
+const defaultSeasonState: ReturnType<typeof useSeason> = {
+  season: {
+    index: 1,
+    name: 'Season 1',
+    isFirst: true,
+    isLast: false,
+  },
+  leaderboardId: 789,
   isLoading: false,
-  isError: false,
+  setPreviousSeason: jest.fn(),
+  setNextSeason: jest.fn(),
 };
 
 jest.mock('../../data/useCommunityLeaderboard/useCommunityLeaderboard');
@@ -27,28 +30,26 @@ const defaultCommunityLeaderboardState: ReturnType<typeof useCommunityLeaderboar
 const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardStats>) => {
   const { result } = renderHook(() => useLeaderboardStats(...props));
 
-  expect(useCommunityLeaderboardsMock).toHaveBeenCalledTimes(1);
+  expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useCommunityLeaderboardMock).toHaveBeenCalledTimes(1);
+  expect(useCommunityLeaderboardMock).toHaveBeenCalledWith(789);
 
   return { result };
 };
 
 describe('useLeaderboardStats', () => {
   beforeEach(() => {
-    useCommunityLeaderboardsMock.mockReturnValue(defaultCommunityLeaderboardsState);
+    useSeasonMock.mockReturnValue(defaultSeasonState);
     useCommunityLeaderboardMock.mockReturnValue(defaultCommunityLeaderboardState);
   });
 
-  it('returns correct values when leaderboards are loading', () => {
-    useCommunityLeaderboardsMock.mockReturnValue({
-      ...defaultCommunityLeaderboardsState,
-      leaderboards: [],
+  it('returns correct values when season is loading', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonState,
       isLoading: true,
     });
 
     const { result } = renderUseLeaderboardStats(1000);
-
-    expect(useCommunityLeaderboardMock).toHaveBeenCalledWith(undefined);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.firstPlayerElo).toBe(0);
@@ -74,15 +75,9 @@ describe('useLeaderboardStats', () => {
     expect(result.current.eloDistribution).toEqual([{ value: 0, elo: 0 }]);
   });
 
-  it('fetches leaderboard from last leaderboards id', () => {
-    renderUseLeaderboardStats(1000);
-
-    expect(useCommunityLeaderboardMock).toHaveBeenCalledWith(789);
-  });
-
   it('matches snapshot for complete for leaderboard', () => {
     useCommunityLeaderboardMock.mockReturnValue({
-      ...defaultCommunityLeaderboardsState,
+      ...defaultCommunityLeaderboardState,
       leaderboardEntries: [
         // Aetherean
         { steamId: 1, position: 1, elo: 2162 },

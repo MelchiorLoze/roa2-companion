@@ -3,11 +3,27 @@ import { act } from 'react';
 
 import { Character } from '@/types/character';
 
+import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
 import { type PlayerPosition, StatisticName, type UserData, type UserStats } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 import { useUserStats } from './useUserStats';
+
+jest.mock('../../../contexts/SeasonContext/SeasonContext');
+const useSeasonMock = jest.mocked(useSeason);
+const defaultSeasonState = {
+  season: {
+    index: 2,
+    name: 'Season 2',
+    isFirst: false,
+    isLast: false,
+  },
+  leaderboardId: 789,
+  isLoading: false,
+  setPreviousSeason: jest.fn(),
+  setNextSeason: jest.fn(),
+};
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
@@ -42,8 +58,13 @@ const mockUserData: UserData = {
 const renderUseUserStats = () => {
   const { result } = renderHook(useUserStats);
 
+  expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
   expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledTimes(1);
+  expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledWith({
+    maxResultCount: 1,
+    statisticName: StatisticName.RANKED_S2_ELO,
+  });
   expect(useGetUserReadOnlyDataMock).toHaveBeenCalledTimes(1);
 
   return { result };
@@ -51,6 +72,8 @@ const renderUseUserStats = () => {
 
 describe('useUserStats', () => {
   beforeEach(() => {
+    useSeasonMock.mockReturnValue(defaultSeasonState);
+
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {} as UserStats,
       refetch: jest.fn(),
@@ -162,6 +185,9 @@ describe('useUserStats', () => {
 
   it('computes stats correctly from player statistics', () => {
     const mockStatistics: Partial<UserStats> = {
+      [StatisticName.RANKED_S1_ELO]: 815,
+      [StatisticName.RANKED_S1_SETS]: 200,
+      [StatisticName.RANKED_S1_WINS]: 22,
       [StatisticName.RANKED_S2_ELO]: 915,
       [StatisticName.RANKED_S2_SETS]: 100,
       [StatisticName.RANKED_S2_WINS]: 60,
@@ -175,7 +201,7 @@ describe('useUserStats', () => {
       rankedSetCount: 100,
       rankedWinCount: 60,
       rankedWinRate: 60,
-      globalMatchCount: 200,
+      globalGameCount: 200,
       globalWinCount: 120,
       globalWinRate: 60,
     };
@@ -271,5 +297,22 @@ describe('useUserStats', () => {
       expect(characterStat?.gameCount).toBe(10 + index * 5);
       expect(characterStat?.level).toBe(5 + index * 10);
     });
+  });
+
+  it('throws an error when there are no statisticts for selected season', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonState,
+      season: {
+        ...defaultSeasonState.season,
+        index: 42,
+      },
+    });
+
+    const originalError = console.error;
+    console.error = jest.fn();
+
+    expect(() => renderHook(useUserStats)).toThrow('Ranked stat name for ELO in season 42 does not exist.');
+
+    console.error = originalError;
   });
 });

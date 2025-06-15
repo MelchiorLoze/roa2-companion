@@ -10,9 +10,9 @@ export const useAuth = ({ enableAutoRefresh } = { enableAutoRefresh: false }) =>
     shouldRenew: shouldRenewSession,
     setSession,
     clearSession,
-    isLoading: isSessionLoading,
+    isLoading: isLoadingSession,
   } = useSession();
-  const { session, loginWithEmail, isLoading: isLoginLoading, isError } = useLoginWithEmail();
+  const { session, loginWithEmail, isLoading: isLoadingLogin, isError } = useLoginWithEmail();
   const { newSession, renew } = useGetEntityToken();
   const hasRenewedRef = useRef(false);
 
@@ -35,7 +35,7 @@ export const useAuth = ({ enableAutoRefresh } = { enableAutoRefresh: false }) =>
     isLoggedIn: isValid,
     login: loginWithEmail,
     logout: clearSession,
-    isLoading: isSessionLoading || isLoginLoading,
+    isLoading: isLoadingSession || isLoadingLogin,
     isError,
   };
 };
