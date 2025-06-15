@@ -6,6 +6,20 @@ import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUs
 import { Character } from '@/types/character';
 import { Rank } from '@/types/rank';
 
+jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext', () => ({
+  useSeason: jest.fn().mockReturnValue({
+    season: {
+      index: 1,
+      name: 'Season 1',
+      isFirst: true,
+      isLast: false,
+    },
+    leaderboardId: 789,
+    setPreviousSeason: jest.fn(),
+    setNextSeason: jest.fn(),
+  }),
+}));
+
 jest.mock('@/features/stats/hooks/business/useUserStats/useUserStats');
 const useUserStatsMock = jest.mocked(useUserStats);
 const defaultUserStatsState: ReturnType<typeof useUserStats> = {
@@ -17,7 +31,7 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
     rankedWinCount: 75,
     rankedWinRate: 75,
 
-    globalMatchCount: 500,
+    globalGameCount: 500,
     globalWinCount: 300,
     globalWinRate: 60,
 

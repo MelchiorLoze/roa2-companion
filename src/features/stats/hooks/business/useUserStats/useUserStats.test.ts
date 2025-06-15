@@ -9,6 +9,20 @@ import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGet
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 import { useUserStats } from './useUserStats';
 
+jest.mock('../../../contexts/SeasonContext/SeasonContext', () => ({
+  useSeason: jest.fn().mockReturnValue({
+    season: {
+      index: 1,
+      name: 'Season 1',
+      isFirst: true,
+      isLast: false,
+    },
+    leaderboardId: 789,
+    setPreviousSeason: jest.fn(),
+    setNextSeason: jest.fn(),
+  }),
+}));
+
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
 
@@ -162,9 +176,9 @@ describe('useUserStats', () => {
 
   it('computes stats correctly from player statistics', () => {
     const mockStatistics: Partial<UserStats> = {
-      [StatisticName.RANKED_S2_ELO]: 915,
-      [StatisticName.RANKED_S2_SETS]: 100,
-      [StatisticName.RANKED_S2_WINS]: 60,
+      [StatisticName.RANKED_S1_ELO]: 915,
+      [StatisticName.RANKED_S1_SETS]: 100,
+      [StatisticName.RANKED_S1_WINS]: 60,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 200,
       [StatisticName.BETA_WINS]: 120,
     };
@@ -175,7 +189,7 @@ describe('useUserStats', () => {
       rankedSetCount: 100,
       rankedWinCount: 60,
       rankedWinRate: 60,
-      globalMatchCount: 200,
+      globalGameCount: 200,
       globalWinCount: 120,
       globalWinRate: 60,
     };
