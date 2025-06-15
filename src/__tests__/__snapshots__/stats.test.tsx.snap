@@ -252,7 +252,7 @@ exports[`Stats matches the snapshot 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/rank/gold.png",
+                  "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
                 },
               ]
             }
@@ -267,23 +267,6 @@ exports[`Stats matches the snapshot 1`] = `
           />
           <Text
             style={
-              [
-                {
-                  "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
-                },
-                {
-                  "color": "#FFC64E",
-                },
-              ]
-            }
-          >
-            925
-          </Text>
-          <Text
-            style={
               {
                 "color": "white",
                 "fontFamily": "FranklinGothicDemiCond-Regular",
@@ -292,7 +275,16 @@ exports[`Stats matches the snapshot 1`] = `
               }
             }
           >
-            - #
+            <Text
+              style={
+                {
+                  "color": "#FFC64E",
+                }
+              }
+            >
+              925
+            </Text>
+             - #
             123
           </Text>
         </View>

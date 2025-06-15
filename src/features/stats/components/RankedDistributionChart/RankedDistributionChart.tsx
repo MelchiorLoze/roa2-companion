@@ -20,8 +20,9 @@ export const RankedDistributionChart = ({ rank, elo, position }: Props) => {
     <View>
       <View style={styles.labelWithIconContainer}>
         <Image contentFit="contain" source={RANK_ICONS[rank]} style={styles.icon} />
-        <Text style={[styles.label, styles.eloLabel(rank)]}>{elo}</Text>
-        <Text style={styles.label}>- #{position}</Text>
+        <Text style={styles.label}>
+          <Text style={styles.eloLabel(rank)}>{elo}</Text> - #{position}
+        </Text>
       </View>
       <RankDistributionBarChart width={width} />
       <EloDistributionLineChart style={styles.lineChartContainer} userElo={elo} width={width} />
