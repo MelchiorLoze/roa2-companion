@@ -42,7 +42,12 @@ export const RankDistributionBarChart = ({ width }: Props) => {
     isLoading: isLoadingLeaderboard,
   } = useLeaderboardStats();
 
-  if (isLoadingLeaderboard) return <Spinner />;
+  if (isLoadingLeaderboard)
+    return (
+      <View style={{ height: width }}>
+        <Spinner />
+      </View>
+    );
 
   const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
 
