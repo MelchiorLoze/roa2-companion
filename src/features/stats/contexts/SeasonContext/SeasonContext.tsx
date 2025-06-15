@@ -11,8 +11,7 @@ type SeasonState = {
     isLast: boolean;
   };
   leaderboardId?: number;
-  isMinSeason?: boolean;
-  isMaxSeason?: boolean;
+  isLoading: boolean;
   setPreviousSeason: () => void;
   setNextSeason: () => void;
 };
@@ -21,7 +20,7 @@ const SeasonContext = createContext<SeasonState | undefined>(undefined);
 
 export const SeasonProvider = ({ children }: PropsWithChildren) => {
   const [seasonIndex, setSeasonIndex] = useState(MAX_SEASON_INDEX);
-  const { leaderboards } = useCommunityLeaderboards();
+  const { leaderboards, isLoading } = useCommunityLeaderboards();
 
   const currentLeaderboard = leaderboards[seasonIndex - 1];
   const seasonName = currentLeaderboard?.displayName.replace(/leaderboard/i, '').trim() || `Season ${seasonIndex}`;
@@ -46,6 +45,7 @@ export const SeasonProvider = ({ children }: PropsWithChildren) => {
           isLast: isLastSeason,
         },
         leaderboardId: currentLeaderboard?.id,
+        isLoading,
         setPreviousSeason,
         setNextSeason,
       }}

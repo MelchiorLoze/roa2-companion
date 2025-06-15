@@ -58,7 +58,7 @@ const getEloDistribution = (
 };
 
 export const useLeaderboardStats = (userElo = 0) => {
-  const { leaderboardId } = useSeason();
+  const { leaderboardId, isLoading: isLoadingSeason } = useSeason();
   const { leaderboardEntries, isLoading: isLoadingLeaderboard } = useCommunityLeaderboard(leaderboardId);
 
   const { theme } = useUnistyles();
@@ -74,6 +74,6 @@ export const useLeaderboardStats = (userElo = 0) => {
     lastAethereanElo,
     rankDistribution: getRankDistribution(leaderboardEntries, theme),
     eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo, userElo),
-    isLoading: isLoadingLeaderboard,
+    isLoading: isLoadingSeason || isLoadingLeaderboard,
   };
 };

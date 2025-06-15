@@ -1,21 +1,23 @@
 import { renderHook } from '@testing-library/react-native';
 
+import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
 import { useLeaderboardStats } from './useLeaderboardStats';
 
-jest.mock('../../../contexts/SeasonContext/SeasonContext', () => ({
-  useSeason: jest.fn().mockReturnValue({
-    season: {
-      index: 1,
-      name: 'Season 1',
-      isFirst: true,
-      isLast: false,
-    },
-    leaderboardId: 789,
-    setPreviousSeason: jest.fn(),
-    setNextSeason: jest.fn(),
-  }),
-}));
+jest.mock('../../../contexts/SeasonContext/SeasonContext');
+const useSeasonMock = jest.mocked(useSeason);
+const defaultSeasonState: ReturnType<typeof useSeason> = {
+  season: {
+    index: 1,
+    name: 'Season 1',
+    isFirst: true,
+    isLast: false,
+  },
+  leaderboardId: 789,
+  isLoading: false,
+  setPreviousSeason: jest.fn(),
+  setNextSeason: jest.fn(),
+};
 
 jest.mock('../../data/useCommunityLeaderboard/useCommunityLeaderboard');
 const useCommunityLeaderboardMock = jest.mocked(useCommunityLeaderboard);
@@ -28,6 +30,7 @@ const defaultCommunityLeaderboardState: ReturnType<typeof useCommunityLeaderboar
 const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardStats>) => {
   const { result } = renderHook(() => useLeaderboardStats(...props));
 
+  expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useCommunityLeaderboardMock).toHaveBeenCalledTimes(1);
   expect(useCommunityLeaderboardMock).toHaveBeenCalledWith(789);
 
@@ -36,7 +39,24 @@ const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardSta
 
 describe('useLeaderboardStats', () => {
   beforeEach(() => {
+    useSeasonMock.mockReturnValue(defaultSeasonState);
     useCommunityLeaderboardMock.mockReturnValue(defaultCommunityLeaderboardState);
+  });
+
+  it('returns correct values when season is loading', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonState,
+      isLoading: true,
+    });
+
+    const { result } = renderUseLeaderboardStats(1000);
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.firstPlayerElo).toBe(0);
+    expect(result.current.lastPlayerElo).toBe(0);
+    expect(result.current.lastAethereanElo).toBe(0);
+    expect(result.current.rankDistribution).toEqual([]);
+    expect(result.current.eloDistribution).toEqual([{ value: 0, elo: 0 }]);
   });
 
   it('returns correct values when leaderboard entries are loading', () => {

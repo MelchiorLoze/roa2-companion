@@ -20,6 +20,7 @@ const defaultSeasonState = {
     isLast: false,
   },
   leaderboardId: 789,
+  isLoading: false,
   setPreviousSeason: jest.fn(),
   setNextSeason: jest.fn(),
 };

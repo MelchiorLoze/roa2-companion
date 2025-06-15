@@ -9,12 +9,12 @@ const sortItems = (items: Item[]) =>
   );
 
 export const useRotatingCoinShop = () => {
-  const { rotationalCoinStore, isLoading: isRotationalCoinStoreLoading } = useGetMyRotationalCoinStore();
-  const { items, isLoading: isGetItemsLoading } = useGetItems(rotationalCoinStore?.itemIds ?? []);
+  const { rotationalCoinStore, isLoading: isLoadingRotation } = useGetMyRotationalCoinStore();
+  const { items, isLoading: isLoadingItems } = useGetItems(rotationalCoinStore?.itemIds ?? []);
 
   return {
     items: sortItems(items),
     expirationDate: rotationalCoinStore?.expirationDate,
-    isLoading: isRotationalCoinStoreLoading || isGetItemsLoading,
+    isLoading: isLoadingRotation || isLoadingItems,
   };
 };

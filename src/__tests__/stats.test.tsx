@@ -15,6 +15,7 @@ jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext', () => ({
       isLast: false,
     },
     leaderboardId: 789,
+    isLoading: false,
     setPreviousSeason: jest.fn(),
     setNextSeason: jest.fn(),
   }),
