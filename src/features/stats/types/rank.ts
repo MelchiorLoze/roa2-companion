@@ -1,5 +1,7 @@
 import { type ImageSource } from 'expo-image';
 
+import { Interval } from '@/utils/Interval';
+
 import {
   AethereanIcon,
   BronzeIcon,
@@ -10,8 +12,7 @@ import {
   PlatinumIcon,
   SilverIcon,
   StoneIcon,
-} from '@/assets/images/rank';
-import { Interval } from '@/utils/Interval';
+} from '../assets/images/rank';
 
 export const MAX_AETHEREAN_PLAYERS = 100; // Maximum number of players in the Aetherean rank
 
