@@ -7,15 +7,16 @@ type Props = {
   iconName: ComponentProps<typeof MaterialIcons>['name'];
   size?: number;
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
   onPress: () => void;
 };
 
-export const IconButton = ({ iconName, size, style, onPress }: Props) => {
+export const IconButton = ({ iconName, size, style, disabled, onPress }: Props) => {
   const { theme } = useUnistyles();
 
   return (
-    <Pressable onPress={onPress} role="button" style={[styles.container, style]}>
-      <MaterialIcons color={theme.color.white} name={iconName} size={size} />
+    <Pressable disabled={disabled} onPress={onPress} role="button" style={[styles.container, style]}>
+      <MaterialIcons color={disabled ? theme.color.disabled : theme.color.white} name={iconName} size={size} />
     </Pressable>
   );
 };
