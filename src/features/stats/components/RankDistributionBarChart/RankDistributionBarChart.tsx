@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native';
+import type { barDataItem } from 'react-native-gifted-charts';
 import { BarChart } from 'react-native-gifted-charts';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -29,6 +30,13 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
   ].map((eloIntervalSize) => (eloIntervalSize / totalEloRange) * totalWidth);
 };
 
+const formatBarData = (rawData: barDataItem[], barWidths: number[]) =>
+  [...rawData].reverse().map((item, index) => ({
+    ...item,
+    barWidth: barWidths[index],
+    topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(item.value ?? 0)}</Text>,
+  }));
+
 type Props = {
   width: number;
 };
@@ -54,11 +62,7 @@ export const RankDistributionBarChart = ({ width }: Props) => {
   return (
     <View testID="rank-distribution">
       <BarChart
-        data={rankDistribution.reverse().map((item, index) => ({
-          ...item,
-          barWidth: barWidths[index] % 100,
-          topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(item.value ?? 0)}</Text>,
-        }))}
+        data={formatBarData(rankDistribution, barWidths)}
         disablePress
         disableScroll
         height={width}
