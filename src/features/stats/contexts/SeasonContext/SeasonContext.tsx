@@ -1,11 +1,10 @@
-import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
-import { useCurrentSeasonIndex } from '../../hooks/business/useCurrentSeasonIndex/useCurrentSeasonIndex';
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
+import { MAX_SEASON_INDEX } from '../../types/stats';
 
 type SeasonState = {
-  seasonIndex: number;
-  seasonName: string;
+  season: { index: number; name: string };
   leaderboardId?: number;
   setSeason: (index: number) => void;
 };
@@ -13,22 +12,16 @@ type SeasonState = {
 const SeasonContext = createContext<SeasonState | undefined>(undefined);
 
 export const SeasonProvider = ({ children }: PropsWithChildren) => {
-  const [seasonIndex, setSeasonIndex] = useState(1);
+  const [seasonIndex, setSeasonIndex] = useState(MAX_SEASON_INDEX);
   const { leaderboards } = useCommunityLeaderboards();
-  const { currentSeasonIndex } = useCurrentSeasonIndex();
 
   const currentLeaderboard = leaderboards[seasonIndex - 1];
-  const seasonName = currentLeaderboard?.displayName.replace(' Leaderboard', '') || `Season ${seasonIndex}`;
-
-  useEffect(() => {
-    if (currentSeasonIndex) setSeasonIndex(currentSeasonIndex);
-  }, [currentSeasonIndex]);
+  const seasonName = currentLeaderboard?.displayName.replace(/leaderboard/i, '').trim() || `Season ${seasonIndex}`;
 
   return (
     <SeasonContext.Provider
       value={{
-        seasonIndex,
-        seasonName,
+        season: { index: seasonIndex, name: seasonName },
         leaderboardId: currentLeaderboard?.id,
         setSeason: setSeasonIndex,
       }}

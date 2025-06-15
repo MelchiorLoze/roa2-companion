@@ -13,14 +13,19 @@ import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroun
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 
-const getRankedStats = (statistics: UserStats, userPosition: PlayerPosition, season: number) => {
+const getStatNameFromSeason = (stat: 'ELO' | 'SETS' | 'WINS', seasonIndex: number) => {
+  const key = `RANKED_S${seasonIndex}_${stat}` as keyof typeof StatisticName;
+
+  if (!(key in StatisticName)) throw new Error(`Ranked stat name for ${stat} in season ${seasonIndex} does not exist.`);
+
+  return StatisticName[key];
+};
+
+const getRankedStats = (rawStats: UserStats, userPosition: PlayerPosition, seasonIndex: number) => {
   const rankedPosition = userPosition.position;
-  const rankedElo =
-    statistics[StatisticName[`RANKED_S${season}_ELO` as keyof typeof StatisticName] as keyof typeof statistics];
-  const rankedSetCount =
-    statistics[StatisticName[`RANKED_S${season}_SETS` as keyof typeof StatisticName] as keyof typeof statistics];
-  const rankedWinCount =
-    statistics[StatisticName[`RANKED_S${season}_WINS` as keyof typeof StatisticName] as keyof typeof statistics];
+  const rankedElo = rawStats[getStatNameFromSeason('ELO', seasonIndex)];
+  const rankedSetCount = rawStats[getStatNameFromSeason('SETS', seasonIndex)];
+  const rankedWinCount = rawStats[getStatNameFromSeason('WINS', seasonIndex)];
   const rankedWinRate = rankedSetCount ? (rankedWinCount / rankedSetCount) * 100 : 0;
 
   return {
@@ -33,36 +38,36 @@ const getRankedStats = (statistics: UserStats, userPosition: PlayerPosition, sea
   };
 };
 
-const getGlobalStats = (statistics: UserStats) => {
-  const globalGameCount = statistics[StatisticName.TOTAL_SESSIONS_PLAYED];
-  const globalWinCount = statistics[StatisticName.BETA_WINS];
+const getGlobalStats = (rawStats: UserStats) => {
+  const globalGameCount = rawStats[StatisticName.TOTAL_SESSIONS_PLAYED];
+  const globalWinCount = rawStats[StatisticName.BETA_WINS];
   const globalWinRate = globalGameCount ? (globalWinCount / globalGameCount) * 100 : 0;
 
   return { globalGameCount, globalWinCount, globalWinRate };
 };
 
-const getCharacterStats = (statistics: UserStats, userReadOnlyData: UserData) => {
+const getCharacterStats = (rawStats: UserStats, userData: UserData) => {
   const characterStats: CharacterStat[] = Object.values(Character).map((character) => ({
     character,
-    gameCount: statistics[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
-    level: userReadOnlyData.characterData[character].lvl,
+    gameCount: rawStats[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
+    level: userData.characterData[character].lvl,
   }));
 
   return { characterStats };
 };
 
 export const useUserStats = () => {
-  const { seasonIndex } = useSeason();
-  const { statistics, refetch: refetchStatistics, isLoading: isStatisticsLoading } = useGetPlayerStatistics();
+  const { season } = useSeason();
+  const { statistics: rawStats, refetch: refetchStatistics, isLoading: isLoadingRawStats } = useGetPlayerStatistics();
   const {
     playerPositions: [userRankedPosition],
     refetch: refetchPlayerPositions,
-    isLoading: isPlayerPositionLoading,
+    isLoading: isLoadingPlayerPosition,
   } = useGetLeaderboardAroundPlayer({
     maxResultCount: 1,
-    statisticName: StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName],
+    statisticName: getStatNameFromSeason('ELO', season.index),
   });
-  const { userData, refetch: refetchUserData, isLoading: isUserDataLoading } = useGetUserReadOnlyData();
+  const { userData, refetch: refetchUserData, isLoading: isLoadingUserData } = useGetUserReadOnlyData();
 
   const refresh = () => {
     void refetchStatistics();
@@ -70,14 +75,14 @@ export const useUserStats = () => {
     void refetchUserData();
   };
 
-  const isLoading = isStatisticsLoading || isPlayerPositionLoading || isUserDataLoading;
+  const isLoading = isLoadingRawStats || isLoadingPlayerPosition || isLoadingUserData;
 
   const stats =
-    statistics && userRankedPosition && userData && !isLoading
+    rawStats && userRankedPosition && userData && !isLoading
       ? {
-          ...getRankedStats(statistics, userRankedPosition, seasonIndex),
-          ...getGlobalStats(statistics),
-          ...getCharacterStats(statistics, userData),
+          ...getRankedStats(rawStats, userRankedPosition, season.index),
+          ...getGlobalStats(rawStats),
+          ...getCharacterStats(rawStats, userData),
         }
       : undefined;
 
