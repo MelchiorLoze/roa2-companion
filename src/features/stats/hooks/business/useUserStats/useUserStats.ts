@@ -1,7 +1,7 @@
-import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 import { Character } from '@/types/character';
 import { getRank } from '@/types/rank';
 
+import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
 import {
   type CharacterStat,
   type PlayerPosition,

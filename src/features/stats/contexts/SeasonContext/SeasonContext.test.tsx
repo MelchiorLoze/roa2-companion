@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-native';
 import { type PropsWithChildren } from 'react';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
-import type { Leaderboard } from '@/types/rank';
+import { type Leaderboard } from '@/types/rank';
 
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/stats';
