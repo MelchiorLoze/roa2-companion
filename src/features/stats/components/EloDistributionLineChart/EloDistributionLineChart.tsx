@@ -1,7 +1,14 @@
 import { type StyleProp, View, type ViewStyle } from 'react-native';
-import { LineChart } from 'react-native-gifted-charts';
+import { LineChart, type lineDataItem } from 'react-native-gifted-charts';
 
-import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useEloDistribution } from '../../hooks/business/useEloDistribution/useEloDistribution';
+
+const formatLineData = (eloDistribution: Record<number, number>) =>
+  Object.values(eloDistribution).map(
+    (count): lineDataItem => ({
+      value: count,
+    }),
+  );
 
 type Props = {
   userElo: number;
@@ -10,17 +17,24 @@ type Props = {
 };
 
 export const EloDistributionLineChart = ({ userElo, width, style }: Props) => {
-  const { eloDistribution, isLoading: isLoadingLeaderboard } = useLeaderboardStats(userElo);
+  const { eloDistribution, roundElo, isLoading: isLoadingLeaderboard } = useEloDistribution();
 
   if (isLoadingLeaderboard) return null;
+
+  const userEloStep = roundElo(userElo);
+  const userEloStepIndex = Object.keys(eloDistribution).findIndex((elo) => Number(elo) === userEloStep);
+  const lineData = formatLineData(eloDistribution);
+  if (userEloStepIndex !== -1) {
+    lineData[userEloStepIndex].dataPointColor = 'red';
+    lineData[userEloStepIndex].dataPointRadius = 2;
+  }
 
   return (
     <View style={style} testID="elo-distribution">
       <LineChart
         adjustToWidth
-        data={eloDistribution}
+        data={lineData}
         dataPointsColor="transparent"
-        dataPointsRadius={2}
         disableScroll
         height={width}
         hideAxesAndRules

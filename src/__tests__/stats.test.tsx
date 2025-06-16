@@ -3,6 +3,7 @@ import { render } from '@testing-library/react-native';
 import Stats from '@/app/(private)/stats';
 import { useLeaderboardStats } from '@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
+import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
 import { Rank } from '@/features/stats/types/rank';
 import { Character } from '@/types/character';
 
@@ -50,11 +51,10 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
 jest.mock('@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 useLeaderboardStatsMock.mockReturnValue({
-  firstPlayerElo: 1000,
-  lastPlayerElo: -1000,
-  lastAethereanElo: 1800,
-  rankDistribution: [],
-  eloDistribution: [],
+  firstPlayerElo: 2162,
+  lastPlayerElo: -100,
+  lastAethereanElo: 1837,
+  leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
 });
 

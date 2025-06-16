@@ -1,11 +1,12 @@
 import { Text, View } from 'react-native';
-import type { barDataItem } from 'react-native-gifted-charts';
-import { BarChart } from 'react-native-gifted-charts';
-import { StyleSheet } from 'react-native-unistyles';
+import { BarChart, type barDataItem } from 'react-native-gifted-charts';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { type UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/types';
 
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useRankDistribution } from '../../hooks/business/useRankDistribution/useRankDistribution';
 import { Rank, RANK_ELO_INTERVALS } from '../../types/rank';
 
 const formatNumber = (value: number) => {
@@ -30,27 +31,26 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
   ].map((eloIntervalSize) => (eloIntervalSize / totalEloRange) * totalWidth);
 };
 
-const formatBarData = (rawData: barDataItem[], barWidths: number[]) =>
-  [...rawData].reverse().map((item, index) => ({
-    ...item,
-    barWidth: barWidths[index],
-    topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(item.value ?? 0)}</Text>,
-  }));
+const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: UnistylesTheme) =>
+  Object.entries(rawData).map(
+    ([rank, count], index): barDataItem => ({
+      value: count,
+      frontColor: theme.color[rank as Rank],
+      barWidth: barWidths[index],
+      topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(count)}</Text>,
+    }),
+  );
 
 type Props = {
   width: number;
 };
 
 export const RankDistributionBarChart = ({ width }: Props) => {
-  const {
-    firstPlayerElo,
-    lastPlayerElo,
-    lastAethereanElo,
-    rankDistribution,
-    isLoading: isLoadingLeaderboard,
-  } = useLeaderboardStats();
+  const { firstPlayerElo, lastPlayerElo, lastAethereanElo } = useLeaderboardStats();
+  const { rankDistribution, isLoading } = useRankDistribution();
+  const { theme } = useUnistyles();
 
-  if (isLoadingLeaderboard)
+  if (isLoading)
     return (
       <View style={{ height: width }}>
         <Spinner />
@@ -62,7 +62,7 @@ export const RankDistributionBarChart = ({ width }: Props) => {
   return (
     <View testID="rank-distribution">
       <BarChart
-        data={formatBarData(rankDistribution, barWidths)}
+        data={formatBarData(rankDistribution, barWidths, theme)}
         disablePress
         disableScroll
         height={width}

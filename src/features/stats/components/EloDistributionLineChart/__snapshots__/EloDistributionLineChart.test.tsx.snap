@@ -1,0 +1,368 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EloDistributionLineChart renders the chart when leaderboard stats are available 1`] = `
+<View
+  testID="elo-distribution"
+>
+  <
+    adjustToWidth={true}
+    data={
+      [
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "dataPointColor": "red",
+          "dataPointRadius": 2,
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 2,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 1,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+        {
+          "value": 0,
+        },
+      ]
+    }
+    dataPointsColor="transparent"
+    disableScroll={true}
+    height={300}
+    hideAxesAndRules={true}
+    initialSpacing={0}
+    thickness={1}
+    width={300}
+    xAxisLabelsHeight={0}
+    yAxisLabelWidth={0}
+  />
+</View>
+`;

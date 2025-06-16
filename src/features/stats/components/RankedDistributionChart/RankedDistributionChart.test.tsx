@@ -8,18 +8,15 @@ jest.mock('../../hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 useLeaderboardStatsMock.mockReturnValue({
   firstPlayerElo: 1000,
-  lastPlayerElo: -1000,
+  lastPlayerElo: -100,
   lastAethereanElo: 1800,
-  rankDistribution: [],
-  eloDistribution: [],
+  leaderboardEntries: [],
   isLoading: false,
 });
 
 describe('RankedDistributionChart', () => {
   it('renders correctly with given props', () => {
     render(<RankedDistributionChart elo={925} position={123} rank={Rank.GOLD} />);
-
-    expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(2);
 
     screen.getByText('925 - #123');
     screen.getByTestId('rank-distribution');

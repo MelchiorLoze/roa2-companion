@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react-native';
 
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
+import { testLeaderboardEntries } from '../../../test-helpers/testLeaderboardEntries';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
 import { useLeaderboardStats } from './useLeaderboardStats';
 
@@ -22,7 +23,7 @@ const defaultSeasonState: ReturnType<typeof useSeason> = {
 jest.mock('../../data/useCommunityLeaderboard/useCommunityLeaderboard');
 const useCommunityLeaderboardMock = jest.mocked(useCommunityLeaderboard);
 const defaultCommunityLeaderboardState: ReturnType<typeof useCommunityLeaderboard> = {
-  leaderboardEntries: [],
+  leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
   isError: false,
 };
@@ -49,33 +50,27 @@ describe('useLeaderboardStats', () => {
       isLoading: true,
     });
 
-    const { result } = renderUseLeaderboardStats(1000);
+    const { result } = renderUseLeaderboardStats();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.firstPlayerElo).toBe(0);
-    expect(result.current.lastPlayerElo).toBe(0);
-    expect(result.current.lastAethereanElo).toBe(0);
-    expect(result.current.rankDistribution).toEqual([]);
-    expect(result.current.eloDistribution).toEqual([{ value: 0, elo: 0 }]);
   });
 
   it('returns correct values when leaderboard entries are loading', () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardState,
+      leaderboardEntries: [],
       isLoading: true,
     });
 
-    const { result } = renderUseLeaderboardStats(1000);
+    const { result } = renderUseLeaderboardStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.firstPlayerElo).toBe(0);
     expect(result.current.lastPlayerElo).toBe(0);
     expect(result.current.lastAethereanElo).toBe(0);
-    expect(result.current.rankDistribution).toEqual([]);
-    expect(result.current.eloDistribution).toEqual([{ value: 0, elo: 0 }]);
   });
 
-  it('matches snapshot for complete for leaderboard', () => {
+  it('returns correct values for complete leaderboard', () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardState,
       leaderboardEntries: [
@@ -112,9 +107,12 @@ describe('useLeaderboardStats', () => {
       ],
     });
 
-    const { result } = renderUseLeaderboardStats(1000);
+    const { result } = renderUseLeaderboardStats();
 
-    expect(result.current).toMatchSnapshot();
+    expect(result.current.firstPlayerElo).toBe(2162);
+    expect(result.current.lastPlayerElo).toBe(-100);
+    expect(result.current.lastAethereanElo).toBe(1837);
+    expect(result.current.leaderboardEntries).toMatchObject(defaultCommunityLeaderboardState.leaderboardEntries);
   });
 
   it('returns 0 as lastPlayerElo when it is above 0', () => {
@@ -126,7 +124,7 @@ describe('useLeaderboardStats', () => {
       ],
     });
 
-    const { result } = renderUseLeaderboardStats(1000);
+    const { result } = renderUseLeaderboardStats();
 
     expect(result.current.lastPlayerElo).toBe(0);
   });

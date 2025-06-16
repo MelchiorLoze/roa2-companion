@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RankDistributionBarChart renders the chart when leaderboard stats are available 1`] = `
+<View
+  testID="rank-distribution"
+>
+  <
+    data={
+      [
+        {
+          "barWidth": 79.54043305346885,
+          "frontColor": "#7F7A66",
+          "topLabelComponent": [Function],
+          "value": 3,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#B87A2E",
+          "topLabelComponent": [Function],
+          "value": 2,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#C8C8D5",
+          "topLabelComponent": [Function],
+          "value": 2,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#FFC64E",
+          "topLabelComponent": [Function],
+          "value": 2,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#C3C4FF",
+          "topLabelComponent": [Function],
+          "value": 3,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#95DFEC",
+          "topLabelComponent": [Function],
+          "value": 1,
+        },
+        {
+          "barWidth": 26.513477684489615,
+          "frontColor": "#9CE7AC",
+          "topLabelComponent": [Function],
+          "value": 3,
+        },
+        {
+          "barWidth": 18.294299602297833,
+          "frontColor": "#FC7575",
+          "topLabelComponent": [Function],
+          "value": 1,
+        },
+        {
+          "barWidth": 43.08440123729562,
+          "frontColor": "#BD7CC5",
+          "topLabelComponent": [Function],
+          "value": 4,
+        },
+      ]
+    }
+    disablePress={true}
+    disableScroll={true}
+    height={300}
+    hideAxesAndRules={true}
+    spacing={0}
+    width={300}
+    xAxisLabelsHeight={0}
+    yAxisLabelWidth={0}
+  />
+</View>
+`;

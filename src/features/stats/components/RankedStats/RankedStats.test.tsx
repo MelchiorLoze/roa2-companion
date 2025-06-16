@@ -57,8 +57,7 @@ useLeaderboardStatsMock.mockReturnValue({
   firstPlayerElo: 1000,
   lastPlayerElo: -1000,
   lastAethereanElo: 1800,
-  rankDistribution: [],
-  eloDistribution: [],
+  leaderboardEntries: [],
   isLoading: false,
 });
 

@@ -1,23 +1,25 @@
 import { render, screen } from '@testing-library/react-native';
 
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { testLeaderboardEntries } from '../../test-helpers/testLeaderboardEntries';
 import { RankDistributionBarChart } from './RankDistributionBarChart';
 
 jest.mock('../../hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 const defaultLeaderboardStatsState = {
-  firstPlayerElo: 0,
-  lastPlayerElo: 0,
-  lastAethereanElo: 0,
-  rankDistribution: [],
-  eloDistribution: [],
+  firstPlayerElo: 2162,
+  lastPlayerElo: -100,
+  lastAethereanElo: 1837,
+  leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
 };
 
 const renderComponent = () => {
-  render(<RankDistributionBarChart width={300} />);
+  const result = render(<RankDistributionBarChart width={300} />);
 
-  expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(1);
+  expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(2);
+
+  return result;
 };
 
 describe('RankDistributionBarChart', () => {
@@ -38,8 +40,9 @@ describe('RankDistributionBarChart', () => {
   });
 
   it('renders the chart when leaderboard stats are available', () => {
-    renderComponent();
+    const tree = renderComponent();
 
     screen.getByTestId('rank-distribution');
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 });
