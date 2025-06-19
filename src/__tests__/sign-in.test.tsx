@@ -4,9 +4,13 @@ import { Redirect } from 'expo-router';
 import SignIn from '@/app/sign-in';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 import { useSendAccountRecoveryEmail } from '@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
+import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
+
+jest.mock('@/hooks/core/useKeyboard/useKeyboard');
+const useKeyboardMock = jest.mocked(useKeyboard);
 
 jest.mock('@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
@@ -40,6 +44,7 @@ const renderComponent = () => {
 
 describe('SignIn', () => {
   beforeEach(() => {
+    useKeyboardMock.mockReturnValue({ isKeyboardVisible: false });
     useAuthMock.mockReturnValue(defaultAuthState);
     useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendRecoveryEmailState);
   });
@@ -53,6 +58,7 @@ describe('SignIn', () => {
   it('renders correctly', () => {
     renderComponent();
 
+    screen.getByTestId('disclaimer');
     screen.getByText(screenTitle);
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
@@ -187,5 +193,13 @@ describe('SignIn', () => {
     fireEvent.press(closeButton);
 
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
+  });
+
+  it('hides the disclaimer when the keyboard is visible', () => {
+    useKeyboardMock.mockReturnValue({ isKeyboardVisible: true });
+
+    renderComponent();
+
+    expect(screen.queryByTestId('disclaimer')).toBeNull();
   });
 });

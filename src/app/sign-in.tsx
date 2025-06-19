@@ -9,12 +9,15 @@ import { Input } from '@/components/Input/Input';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { ResetPasswordDialog } from '@/features/auth/components/ResetPasswordDialog/ResetPasswordDialog';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
+import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
+
+  const { isKeyboardVisible } = useKeyboard();
 
   const { login, isLoggedIn, isLoading, isError } = useAuth();
 
@@ -47,7 +50,7 @@ export default function SignIn() {
   return (
     <>
       <View style={styles.container}>
-        <Disclaimer />
+        {!isKeyboardVisible && <Disclaimer />}
         <View style={styles.signInContainer}>
           <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
           <View style={styles.form}>

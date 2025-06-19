@@ -16,6 +16,7 @@ describe('Disclaimer', () => {
   it('renders correctly', () => {
     render(<Disclaimer />);
 
+    screen.getByTestId('disclaimer');
     screen.getByText(disclaimerText);
   });
 

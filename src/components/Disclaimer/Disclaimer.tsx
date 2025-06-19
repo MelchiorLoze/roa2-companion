@@ -7,7 +7,7 @@ export const Disclaimer = () => {
   const router = useRouter();
 
   return (
-    <TouchableWithoutFeedback onPress={() => router.navigate('/about')}>
+    <TouchableWithoutFeedback onPress={() => router.navigate('/about')} testID="disclaimer">
       <View style={styles.container}>
         <Ionicons name="information-circle-sharp" style={styles.icon} />
         <Text style={styles.body}>

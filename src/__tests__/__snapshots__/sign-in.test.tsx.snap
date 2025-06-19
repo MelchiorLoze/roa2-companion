@@ -35,6 +35,7 @@ exports[`SignIn matches the snapshot 1`] = `
         "gap": 8,
       }
     }
+    testID="disclaimer"
   >
     <
       name="information-circle-sharp"
