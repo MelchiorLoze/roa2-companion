@@ -1,5 +1,4 @@
 import { useFonts } from 'expo-font';
-import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 
 import {
@@ -9,10 +8,12 @@ import {
   FranklinGothicDemiCondRegular,
 } from '@/assets/fonts';
 
-void SplashScreen.preventAutoHideAsync();
+type Props = {
+  onLoaded?: () => void;
+};
 
-export const useAppFonts = () => {
-  const [loaded, error] = useFonts({
+export const useAppFonts = ({ onLoaded }: Props) => {
+  const [loaded] = useFonts({
     'AgencyFB-Black': AgencyFBBlack,
     'AgencyFB-Bold': AgencyFBBold,
     'FranklinGothicDemiCond-Italic': FranklinGothicDemiCondItalic,
@@ -20,8 +21,6 @@ export const useAppFonts = () => {
   });
 
   useEffect(() => {
-    if (loaded || error) {
-      void SplashScreen.hideAsync();
-    }
-  }, [loaded, error]);
+    if (loaded) onLoaded?.();
+  }, [loaded, onLoaded]);
 };

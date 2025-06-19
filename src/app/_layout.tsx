@@ -1,6 +1,6 @@
 import { type NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import { StrictMode } from 'react';
 import { useUnistyles } from 'react-native-unistyles';
 
@@ -10,10 +10,13 @@ import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
 
 const queryClient = new QueryClient();
 
+void SplashScreen.preventAutoHideAsync();
+const onFontLoaded = () => void SplashScreen.hideAsync();
+
 const renderHeader = ({ options }: NativeStackHeaderProps) => <Header title={options.title} withBackNavigation />;
 
 export default function RootLayout() {
-  useAppFonts();
+  useAppFonts({ onLoaded: onFontLoaded });
   const { theme } = useUnistyles();
 
   return (
