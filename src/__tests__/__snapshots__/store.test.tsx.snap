@@ -70,11 +70,11 @@ exports[`Store matches the snapshot 1`] = `
           ]
         }
       >
-        23
+        15
         h 
-        59
+        22
         m 
-        59
+        56
         s
       </Text>
       <Text
@@ -92,9 +92,9 @@ exports[`Store matches the snapshot 1`] = `
           ]
         }
       >
-        23
+        15
         h 
-        59
+        22
         m 00s
       </Text>
     </View>

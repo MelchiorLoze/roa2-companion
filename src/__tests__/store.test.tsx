@@ -40,9 +40,19 @@ describe('Store', () => {
   });
 
   it('matches the snapshot', () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('2024-08-24T10:00:00Z'));
+    useRotatingCoinShopMock.mockReturnValue({
+      items: testItemList,
+      expirationDate: DateTime.utc().plus({ hours: 15, minutes: 22, seconds: 56 }),
+      isLoading: false,
+    });
+
     const tree = renderComponent().toJSON();
 
     expect(tree).toMatchSnapshot();
+
+    jest.useRealTimers();
   });
 
   it('renders the items of the store', () => {
