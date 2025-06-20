@@ -1,7 +1,15 @@
 {
-  "name": "roa2-companion",
-  "main": "./src/index.ts",
   "version": "1.0.1",
+  "name": "roa2-companion",
+  "author": {
+    "name": "Melchior Lozé",
+    "email": "melchior.loze@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MelchiorLoze/roa2-companion"
+  },
+  "main": "./src/index.ts",
   "private": true,
   "scripts": {
     "start": "expo start",
