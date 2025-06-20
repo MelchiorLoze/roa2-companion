@@ -1,7 +1,7 @@
 import { type StyleProp, View, type ViewStyle } from 'react-native';
 import { LineChart, type lineDataItem } from 'react-native-gifted-charts';
 
-import { useEloDistribution } from '../../hooks/business/useEloDistribution/useEloDistribution';
+import { useEloDistribution } from '../../../hooks/business/useEloDistribution/useEloDistribution';
 
 const formatLineData = (eloDistribution: Record<number, number>) =>
   Object.values(eloDistribution).map(

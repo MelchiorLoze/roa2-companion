@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
-import { testLeaderboardEntries } from '../../test-helpers/testLeaderboardEntries';
+import { useLeaderboardStats } from '../../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { testLeaderboardEntries } from '../../../test-helpers/testLeaderboardEntries';
 import { RankDistributionBarChart } from './RankDistributionBarChart';
 
-jest.mock('../../hooks/business/useLeaderboardStats/useLeaderboardStats');
+jest.mock('../../../hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 const defaultLeaderboardStatsState = {
   firstPlayerElo: 2162,

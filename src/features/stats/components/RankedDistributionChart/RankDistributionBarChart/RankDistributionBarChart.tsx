@@ -5,9 +5,9 @@ import { type UnistylesTheme } from 'react-native-unistyles/lib/typescript/src/t
 
 import { Spinner } from '@/components/Spinner/Spinner';
 
-import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
-import { useRankDistribution } from '../../hooks/business/useRankDistribution/useRankDistribution';
-import { Rank, RANK_ELO_INTERVALS } from '../../types/rank';
+import { useLeaderboardStats } from '../../../hooks/business/useLeaderboardStats/useLeaderboardStats';
+import { useRankDistribution } from '../../../hooks/business/useRankDistribution/useRankDistribution';
+import { Rank, RANK_ELO_INTERVALS } from '../../../types/rank';
 
 const formatNumber = (value: number) => {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;

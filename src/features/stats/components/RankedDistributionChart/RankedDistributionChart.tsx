@@ -3,8 +3,8 @@ import { Text, useWindowDimensions, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
-import { EloDistributionLineChart } from '../EloDistributionLineChart/EloDistributionLineChart';
-import { RankDistributionBarChart } from '../RankDistributionBarChart/RankDistributionBarChart';
+import { EloDistributionLineChart } from './EloDistributionLineChart/EloDistributionLineChart';
+import { RankDistributionBarChart } from './RankDistributionBarChart/RankDistributionBarChart';
 
 type Props = {
   rank: Rank;
