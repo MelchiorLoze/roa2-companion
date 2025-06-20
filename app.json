@@ -13,6 +13,7 @@
       "bundleIdentifier": "com.cp0-mand4le.roa2companion"
     },
     "android": {
+      "versionCode": 2,
       "package": "com.cp0_mand4le.roa2companion"
     },
     "web": {
