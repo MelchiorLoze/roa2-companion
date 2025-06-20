@@ -1,5 +1,5 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { DateTime, Duration } from 'luxon';
+import { DateTime } from 'luxon';
 import React, { createContext, type PropsWithChildren, useCallback, useContext } from 'react';
 
 import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
@@ -7,14 +7,11 @@ import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
 import { type Session } from '../../types/session';
 
 const SESSION_STORAGE_KEY = 'session';
-const SESSION_TTL = 24; // hours
-const SESSION_RENEW_THRESHOLD = 1;
 
 type SessionState = {
   entityToken?: string;
   isValid: boolean;
   isLoading: boolean;
-  shouldRenew: boolean;
   setSession: (session: Session) => void;
   clearSession: () => void;
 };
@@ -33,16 +30,12 @@ const parseSession = (raw: unknown): Session => {
 };
 
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
-const shouldRenewSession = (session: Session): boolean =>
-  session.expirationDate.diffNow().as('millisecond') <
-  Duration.fromObject({ hours: SESSION_TTL - SESSION_RENEW_THRESHOLD }).as('millisecond');
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
   const queryClient = useQueryClient();
   const [[session, isLoading], setSession] = useStorageState<Session>(SESSION_STORAGE_KEY, parseSession);
 
   const isValid = Boolean(session && isSessionValid(session));
-  const shouldRenew = Boolean(session && isValid && shouldRenewSession(session));
 
   const setValidSession = useCallback(
     (session: Session) => {
@@ -61,7 +54,6 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
       value={{
         entityToken: session?.entityToken,
         isValid,
-        shouldRenew,
         setSession: setValidSession,
         clearSession,
         isLoading,

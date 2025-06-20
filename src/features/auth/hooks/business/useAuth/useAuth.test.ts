@@ -3,7 +3,6 @@ import { DateTime } from 'luxon';
 
 import { useSession } from '../../../contexts/SessionContext/SessionContext';
 import { type Session } from '../../../types/session';
-import { useGetEntityToken } from '../../data/useGetEntityToken/useGetEntityToken';
 import { useLoginWithEmail } from '../../data/useLoginWithEmail/useLoginWithEmail';
 import { useAuth } from './useAuth';
 
@@ -11,7 +10,6 @@ jest.mock('../../../contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 const defaultSessionState: ReturnType<typeof useSession> = {
   isValid: false,
-  shouldRenew: false,
   setSession: jest.fn(),
   clearSession: jest.fn(),
   isLoading: false,
@@ -26,24 +24,12 @@ const defaultLoginWithEmailState: ReturnType<typeof useLoginWithEmail> = {
   isError: false,
 };
 
-jest.mock('../../data/useGetEntityToken/useGetEntityToken');
-const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
-const defaultGetEntityTokenState: ReturnType<typeof useGetEntityToken> = {
-  newSession: undefined,
-  renew: jest.fn(),
-  isLoading: false,
-  isError: false,
-};
-
-const renderUseAuth = (props: Parameters<typeof useAuth>[0] = undefined) => {
-  return renderHook(() => useAuth(props));
-};
+const renderUseAuth = () => renderHook(useAuth);
 
 describe('useAuth hook', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue(defaultSessionState);
     useLoginWithEmailMock.mockReturnValue(defaultLoginWithEmailState);
-    useGetEntityTokenMock.mockReturnValue(defaultGetEntityTokenState);
   });
 
   it('returns correct initial state', () => {
@@ -125,45 +111,5 @@ describe('useAuth hook', () => {
     const { result } = renderUseAuth();
 
     expect(result.current.isError).toBe(true);
-  });
-
-  it('calls renew when shouldRenew is true and auto refresh is enabled', () => {
-    useSessionMock.mockReturnValue({
-      ...defaultSessionState,
-      shouldRenew: true,
-    });
-
-    renderUseAuth({ enableAutoRefresh: true });
-
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
-  });
-
-  it('does not call renew when shouldRenew is false', () => {
-    renderUseAuth({ enableAutoRefresh: true });
-
-    expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
-  });
-
-  it('does not call renew when auto refresh is disabled', () => {
-    useSessionMock.mockReturnValue({
-      ...defaultSessionState,
-      shouldRenew: true,
-    });
-
-    renderUseAuth();
-
-    expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
-  });
-
-  it('calls setSession when newSession is available', () => {
-    const newSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
-    useGetEntityTokenMock.mockReturnValue({
-      ...defaultGetEntityTokenState,
-      newSession,
-    });
-
-    renderUseAuth();
-
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
   });
 });

@@ -11,10 +11,9 @@ jest.mock('react-native', () => ({
 
 const addListenerMock = jest.mocked(Keyboard.addListener);
 const subscribtionRemoveMock = jest.fn();
-const subscriptionMock = {
+addListenerMock.mockReturnValue({
   remove: subscribtionRemoveMock,
-} as unknown as ReturnType<typeof Keyboard.addListener>;
-addListenerMock.mockReturnValue(subscriptionMock);
+} as unknown as ReturnType<typeof addListenerMock>);
 
 const getEventCallback = (eventName: 'keyboardDidShow' | 'keyboardDidHide') => () =>
   addListenerMock.mock.calls.find((call) => call[0] === eventName)?.[1]?.({} as unknown as KeyboardEvent);

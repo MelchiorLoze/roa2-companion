@@ -10,7 +10,6 @@ const useSessionMock = jest.mocked(useSession);
 const defaultSessionState: ReturnType<typeof useSession> = {
   entityToken: 'mock-token',
   isValid: true,
-  shouldRenew: false,
   setSession: jest.fn(),
   clearSession: jest.fn(),
   isLoading: false,

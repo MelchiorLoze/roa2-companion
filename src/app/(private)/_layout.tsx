@@ -6,6 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Header } from '@/components/Header/Header';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
+import { useAutomaticSessionRefresh } from '@/features/auth/hooks/business/useAutomaticSessionRefresh/useAutomaticSessionRefresh';
 import { SeasonProvider } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 
 const renderHeader = ({ options }: BottomTabHeaderProps) => <Header showCurrencies title={options.title} />;
@@ -16,7 +17,8 @@ const renderTabBarButtonWithoutFeedback = (props: BottomTabBarButtonProps) => (
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();
-  const { isLoggedIn } = useAuth({ enableAutoRefresh: true });
+  const { isLoggedIn } = useAuth();
+  useAutomaticSessionRefresh();
 
   if (!isLoggedIn) {
     return <Redirect href="/sign-in" />;
