@@ -7,6 +7,7 @@ exports[`Store matches the snapshot 1`] = `
       "flex": 1,
       "gap": 16,
       "padding": 16,
+      "paddingBottom": 0,
     }
   }
 >
@@ -103,6 +104,7 @@ exports[`Store matches the snapshot 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
+        "paddingBottom": 16,
       }
     }
     data={
@@ -158,6 +160,8 @@ exports[`Store matches the snapshot 1`] = `
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={0.0001}
+    showsHorizontalScrollIndicator={false}
+    showsVerticalScrollIndicator={false}
     stickyHeaderIndices={[]}
     viewabilityConfigCallbackPairs={[]}
   >

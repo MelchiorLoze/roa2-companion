@@ -1,7 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`About matches the snapshot 1`] = `
-[
+<View
+  style={
+    {
+      "backgroundColor": "#2B1F74",
+      "flex": 1,
+    }
+  }
+>
   <View
     style={
       {
@@ -32,7 +39,7 @@ exports[`About matches the snapshot 1`] = `
     >
       The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect nor transmit any personal information or data from users to any third party. Everything stays exclusively between your device and the official game servers.
     </Text>
-  </View>,
+  </View>
   <View
     style={
       {
@@ -40,7 +47,7 @@ exports[`About matches the snapshot 1`] = `
         "height": 1,
       }
     }
-  />,
+  />
   <View
     accessibilityState={
       {
@@ -143,7 +150,7 @@ exports[`About matches the snapshot 1`] = `
         }
       }
     />
-  </View>,
+  </View>
   <View
     style={
       {
@@ -151,6 +158,6 @@ exports[`About matches the snapshot 1`] = `
         "height": 1,
       }
     }
-  />,
-]
+  />
+</View>
 `;

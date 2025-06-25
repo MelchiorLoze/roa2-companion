@@ -20,6 +20,6 @@ describe('index', () => {
   it('redirects to sign-in page', () => {
     renderComponent();
 
-    expect(RedirectMock).toHaveBeenCalledWith({ href: '/sign-in' }, {});
+    expect(RedirectMock).toHaveBeenCalledWith({ href: '/sign-in' }, undefined);
   });
 });

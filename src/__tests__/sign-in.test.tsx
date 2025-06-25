@@ -93,7 +93,7 @@ describe('SignIn', () => {
     renderComponent();
 
     expect(RedirectMock).toHaveBeenCalledTimes(1);
-    expect(RedirectMock).toHaveBeenCalledWith({ href: '/store' }, {});
+    expect(RedirectMock).toHaveBeenCalledWith({ href: '/store' }, undefined);
     expect(screen.queryByText(screenTitle)).toBeNull();
   });
 
