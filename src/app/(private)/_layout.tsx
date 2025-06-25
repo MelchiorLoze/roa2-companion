@@ -63,9 +63,9 @@ export default function PrivateLayout() {
   );
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
-    height: 60,
+    height: 60 + runtime.insets.bottom,
     backgroundColor: theme.color.background,
     borderTopWidth: 2,
     borderColor: theme.color.accent,

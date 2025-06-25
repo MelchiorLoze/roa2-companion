@@ -6,7 +6,7 @@ import { Separator } from '@/components/Separator/Separator';
 
 export default function About() {
   return (
-    <>
+    <View style={styles.container}>
       <View style={styles.descriptionContainer}>
         <Text style={styles.paragraph}>
           This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any
@@ -28,11 +28,15 @@ export default function About() {
         url={new URL('https://github.com/MelchiorLoze/roa2-companion')}
       />
       <Separator />
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
+  container: {
+    flex: 1,
+    backgroundColor: theme.color.highlight,
+  },
   descriptionContainer: {
     gap: theme.spacing.xl,
     padding: theme.spacing.l,

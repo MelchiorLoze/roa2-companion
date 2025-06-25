@@ -14,7 +14,8 @@
     },
     "android": {
       "versionCode": 2,
-      "package": "com.cp0_mand4le.roa2companion"
+      "package": "com.cp0_mand4le.roa2companion",
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
@@ -37,7 +38,16 @@
           "fonts": ["./src/assets/fonts"]
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "react-native-edge-to-edge",
+        {
+          "android": {
+            "parentTheme": "Default",
+            "enforceNavigationBarContrast": false
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

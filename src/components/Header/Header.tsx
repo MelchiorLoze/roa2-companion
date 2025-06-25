@@ -31,9 +31,9 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => 
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   topSpacing: {
-    height: theme.spacing.s,
+    height: theme.spacing.s + runtime.insets.top,
     backgroundColor: theme.color.highlight,
   },
   topContainer: {
@@ -41,6 +41,8 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-around',
     alignItems: 'center',
     padding: theme.spacing.s,
+    paddingTop: theme.spacing.s + runtime.insets.top,
+    backgroundColor: theme.color.highlight,
   },
   bottomContainer: (withBackNavigation?: boolean) => ({
     flexDirection: 'row',
