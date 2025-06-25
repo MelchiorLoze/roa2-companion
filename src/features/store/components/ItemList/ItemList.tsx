@@ -18,18 +18,24 @@ export const ItemList = ({ items, onSelect }: Props) => {
 
   return (
     <FlatList
-      columnWrapperStyle={styles.container}
+      columnWrapperStyle={styles.lineContainer}
       contentContainerStyle={styles.container}
       data={items}
       keyExtractor={keyExtractor}
       numColumns={2}
       renderItem={renderItem}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
     />
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
+    gap: theme.spacing.l,
+    paddingBottom: theme.spacing.l,
+  },
+  lineContainer: {
     gap: theme.spacing.l,
   },
 }));

@@ -47,6 +47,7 @@ const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
     padding: theme.spacing.l,
+    paddingBottom: theme.spacing.none,
     gap: theme.spacing.l,
   },
   titleContainer: {
