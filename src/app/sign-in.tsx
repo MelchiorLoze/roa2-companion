@@ -1,6 +1,6 @@
 import { Redirect } from 'expo-router';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { Button } from '@/components/Button/Button';
@@ -26,6 +26,7 @@ export default function SignIn() {
   if (isLoggedIn) return <Redirect href="/store" />;
 
   const onForgotPassword = () => {
+    Keyboard.dismiss();
     setShowResetPasswordDialog(true);
     setIsInvalid(false);
   };
@@ -49,7 +50,7 @@ export default function SignIn() {
 
   return (
     <>
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding" style={styles.container}>
         {!isKeyboardVisible && <Disclaimer />}
         <View style={styles.signInContainer}>
           <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
@@ -70,7 +71,7 @@ export default function SignIn() {
           </View>
           <Button label="Login" onPress={onSubmit} />
         </View>
-      </View>
+      </KeyboardAvoidingView>
       {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
     </>
   );
