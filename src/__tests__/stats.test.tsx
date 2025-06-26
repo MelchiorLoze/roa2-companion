@@ -63,8 +63,12 @@ describe('Stats', () => {
     useUserStatsMock.mockReturnValue(defaultUserStatsState);
   });
 
-  it.skip('matches the snapshot', () => {
+  it('matches the snapshot', () => {
     const tree = render(<Stats />).toJSON();
+
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree.props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });

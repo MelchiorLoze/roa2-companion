@@ -19,6 +19,7 @@
     "reset": "expo prebuild --clean",
     "test": "jest --randomize",
     "test:dev": "jest --randomize --watchAll",
+    "test:update-snapshots": "jest --updateSnapshot",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --randomize",
     "format": "prettier --write .",

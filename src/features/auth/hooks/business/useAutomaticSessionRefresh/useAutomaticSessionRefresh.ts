@@ -22,7 +22,9 @@ export const useAutomaticSessionRefresh = () => {
     if (!hasRenewedRef.current && /^active|background$/.test(appState)) {
       renew();
       hasRenewedRef.current = true;
-      setTimeout(() => (hasRenewedRef.current = false), RENEWAL_THROTTLE);
+
+      const timeoutId = setTimeout(() => (hasRenewedRef.current = false), RENEWAL_THROTTLE);
+      return () => clearTimeout(timeoutId);
     }
   }, [appState, renew]);
 };

@@ -8,12 +8,6 @@ exports[`Stats matches the snapshot 1`] = `
       "padding": 16,
     }
   }
-  refreshControl={
-    <RefreshControlMock
-      onRefresh={[MockFunction]}
-      refreshing={false}
-    />
-  }
 >
   <RCTRefreshControl />
   <View>
