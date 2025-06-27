@@ -1,6 +1,7 @@
 {
   "version": "1.0.2",
   "name": "roa2-companion",
+  "private": true,
   "author": {
     "name": "Melchior Lozé",
     "email": "melchior.loze@gmail.com"
@@ -10,7 +11,6 @@
     "url": "https://github.com/MelchiorLoze/roa2-companion"
   },
   "main": "./src/index.ts",
-  "private": true,
   "scripts": {
     "start": "expo start",
     "start:clear": "expo start --clear",
@@ -63,14 +63,14 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.4",
+    "react-native-edge-to-edge": "1.6.0",
     "react-native-gifted-charts": "^1.4.61",
     "react-native-nitro-modules": "^0.26.2",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
-    "react-native-unistyles": "^3.0.0-rc.5",
-    "react-native-edge-to-edge": "1.6.0"
+    "react-native-unistyles": "^3.0.0-rc.5"
   },
   "devDependencies": {
     "@babel/core": "^7.27.4",
@@ -83,7 +83,7 @@
     "@types/react": "~19.0.10",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.30.0",
     "eslint-config-expo": "~9.2.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-native": "^5.0.0",
