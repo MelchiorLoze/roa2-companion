@@ -48,4 +48,4 @@ export type PlayerPosition = {
 
 export type PlayerStatistics = Record<StatisticName, number>;
 
-export type UserData = { characterData: Record<Character, { lvl: number }> };
+export type UserData = { characterData: Record<Character, { lvl: number } | undefined> };

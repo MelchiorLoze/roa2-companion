@@ -44,7 +44,7 @@ const getCharacterStats = (rawStats: PlayerStatistics, userData: UserData) =>
   Object.values(Character).map((character) => ({
     character,
     gameCount: rawStats[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
-    level: userData.characterData[character].lvl,
+    level: userData.characterData[character]?.lvl ?? 0,
   }));
 
 export const useUserStats = () => {
