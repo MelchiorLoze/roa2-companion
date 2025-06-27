@@ -1,5 +1,5 @@
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
-import { MAX_AETHEREAN_PLAYERS } from '../../../types/rank';
+import { MAX_AETHEREAN_PLAYERS, Rank, RANK_ELO_THRESHOLDS } from '../../../types/rank';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
 
 export const useLeaderboardStats = () => {
@@ -9,7 +9,9 @@ export const useLeaderboardStats = () => {
   const firstPlayerElo = leaderboardEntries[0]?.elo ?? 0;
   const lastPlayerElo = Math.min(0, leaderboardEntries[leaderboardEntries.length - 1]?.elo ?? 0);
   const lastAethereanElo =
-    leaderboardEntries.findLast((entry) => entry.elo > 1800 && entry.position < MAX_AETHEREAN_PLAYERS)?.elo ?? 0;
+    leaderboardEntries.findLast(
+      (entry) => entry.elo > RANK_ELO_THRESHOLDS[Rank.AETHEREAN] && entry.position < MAX_AETHEREAN_PLAYERS,
+    )?.elo ?? 0;
 
   return {
     firstPlayerElo,

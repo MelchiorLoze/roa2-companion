@@ -1,4 +1,4 @@
-import { type LeaderboardEntry, Rank } from '../../../types/rank';
+import { type LeaderboardEntry, Rank, RANK_ELO_THRESHOLDS } from '../../../types/rank';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
 function findFirstIndexWithElo(leaderboardEntries: LeaderboardEntry[], targetElo: number): number {
@@ -19,19 +19,9 @@ function findFirstIndexWithElo(leaderboardEntries: LeaderboardEntry[], targetElo
 
 function getRankDistribution(leaderboardEntries: LeaderboardEntry[]): Record<Rank, number> {
   if (!leaderboardEntries.length)
-    return {
-      [Rank.STONE]: 0,
-      [Rank.BRONZE]: 0,
-      [Rank.SILVER]: 0,
-      [Rank.GOLD]: 0,
-      [Rank.PLATINUM]: 0,
-      [Rank.DIAMOND]: 0,
-      [Rank.MASTER]: 0,
-      [Rank.GRANDMASTER]: 0,
-      [Rank.AETHEREAN]: 0,
-    };
+    return Object.fromEntries(Object.values(Rank).map((rank) => [rank, 0])) as Record<Rank, number>;
 
-  const boundaries = [1800, 1700, 1500, 1300, 1100, 900, 700, 500];
+  const boundaries = Object.values(RANK_ELO_THRESHOLDS).reverse();
   const indices = boundaries.map((elo) => findFirstIndexWithElo(leaderboardEntries, elo));
 
   return {

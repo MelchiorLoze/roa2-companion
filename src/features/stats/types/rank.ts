@@ -16,7 +16,7 @@ import {
 
 export const MAX_AETHEREAN_PLAYERS = 100; // Maximum number of players in the Aetherean rank
 
-export const enum Rank {
+export enum Rank {
   STONE = 'stone',
   BRONZE = 'bronze',
   SILVER = 'silver',
@@ -40,28 +40,28 @@ export const RANK_ICONS: Readonly<Record<Rank, ImageSource>> = Object.freeze({
   [Rank.AETHEREAN]: AethereanIcon,
 });
 
-enum RankThreshold {
-  STONE = -Infinity,
-  BRONZE = 500,
-  SILVER = 700,
-  GOLD = 900,
-  PLATINUM = 1100,
-  DIAMOND = 1300,
-  MASTER = 1500,
-  GRANDMASTER = 1700,
-  AETHEREAN = 1800,
-}
+export const RANK_ELO_THRESHOLDS: Readonly<Record<Rank, number>> = Object.freeze({
+  [Rank.STONE]: -Infinity,
+  [Rank.BRONZE]: 500,
+  [Rank.SILVER]: 700,
+  [Rank.GOLD]: 900,
+  [Rank.PLATINUM]: 1100,
+  [Rank.DIAMOND]: 1300,
+  [Rank.MASTER]: 1500,
+  [Rank.GRANDMASTER]: 1700,
+  [Rank.AETHEREAN]: 1800,
+});
 
 export const RANK_ELO_INTERVALS: Readonly<Record<Rank, Interval>> = Object.freeze({
-  [Rank.STONE]: new Interval(RankThreshold.STONE, RankThreshold.BRONZE - 1),
-  [Rank.BRONZE]: new Interval(RankThreshold.BRONZE, RankThreshold.SILVER - 1),
-  [Rank.SILVER]: new Interval(RankThreshold.SILVER, RankThreshold.GOLD - 1),
-  [Rank.GOLD]: new Interval(RankThreshold.GOLD, RankThreshold.PLATINUM - 1),
-  [Rank.PLATINUM]: new Interval(RankThreshold.PLATINUM, RankThreshold.DIAMOND - 1),
-  [Rank.DIAMOND]: new Interval(RankThreshold.DIAMOND, RankThreshold.MASTER - 1),
-  [Rank.MASTER]: new Interval(RankThreshold.MASTER, RankThreshold.GRANDMASTER - 1),
-  [Rank.GRANDMASTER]: new Interval(RankThreshold.GRANDMASTER, RankThreshold.AETHEREAN - 1),
-  [Rank.AETHEREAN]: new Interval(RankThreshold.AETHEREAN, Infinity),
+  [Rank.STONE]: new Interval(RANK_ELO_THRESHOLDS[Rank.STONE], RANK_ELO_THRESHOLDS[Rank.BRONZE] - 1),
+  [Rank.BRONZE]: new Interval(RANK_ELO_THRESHOLDS[Rank.BRONZE], RANK_ELO_THRESHOLDS[Rank.SILVER] - 1),
+  [Rank.SILVER]: new Interval(RANK_ELO_THRESHOLDS[Rank.SILVER], RANK_ELO_THRESHOLDS[Rank.GOLD] - 1),
+  [Rank.GOLD]: new Interval(RANK_ELO_THRESHOLDS[Rank.GOLD], RANK_ELO_THRESHOLDS[Rank.PLATINUM] - 1),
+  [Rank.PLATINUM]: new Interval(RANK_ELO_THRESHOLDS[Rank.PLATINUM], RANK_ELO_THRESHOLDS[Rank.DIAMOND] - 1),
+  [Rank.DIAMOND]: new Interval(RANK_ELO_THRESHOLDS[Rank.DIAMOND], RANK_ELO_THRESHOLDS[Rank.MASTER] - 1),
+  [Rank.MASTER]: new Interval(RANK_ELO_THRESHOLDS[Rank.MASTER], RANK_ELO_THRESHOLDS[Rank.GRANDMASTER] - 1),
+  [Rank.GRANDMASTER]: new Interval(RANK_ELO_THRESHOLDS[Rank.GRANDMASTER], RANK_ELO_THRESHOLDS[Rank.AETHEREAN] - 1),
+  [Rank.AETHEREAN]: new Interval(RANK_ELO_THRESHOLDS[Rank.AETHEREAN], Infinity),
 });
 
 export const getRank = (elo: number, leaderboardPosition: number) => {
