@@ -1,6 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import { useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -22,8 +21,6 @@ export default function Store() {
   };
 
   const closeDialog = () => setSelectedItem(null);
-
-  useFocusEffect(useCallback(closeDialog, []));
 
   if (isLoading) return <Spinner />;
 

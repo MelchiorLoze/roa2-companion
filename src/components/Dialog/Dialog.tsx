@@ -1,5 +1,5 @@
 import { type PropsWithChildren } from 'react';
-import { Pressable, View } from 'react-native';
+import { Modal, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 type Props = PropsWithChildren & {
@@ -7,30 +7,31 @@ type Props = PropsWithChildren & {
 };
 
 export const Dialog = ({ onClose, children }: Props) => (
-  <>
-    <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
-    <View style={styles.container} testID="dialog">
-      {children}
+  <Modal onRequestClose={onClose} statusBarTranslucent transparent>
+    <View style={styles.container}>
+      <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
+      <View style={styles.dialog} testID="dialog">
+        {children}
+      </View>
     </View>
-  </>
+  </Modal>
 );
 
 const styles = StyleSheet.create((theme) => ({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   overlay: {
     position: 'absolute',
-    top: 0,
-    left: 0,
     width: '100%',
     height: '100%',
     backgroundColor: theme.color.dark + 'AA',
   },
-  container: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
-    width: '75%',
+  dialog: {
     padding: theme.spacing.l,
+    margin: theme.spacing.xl,
     gap: theme.spacing.l,
     borderWidth: 2,
     borderColor: theme.color.accent,
