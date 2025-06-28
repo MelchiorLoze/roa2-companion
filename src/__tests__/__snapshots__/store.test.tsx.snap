@@ -160,7 +160,6 @@ exports[`Store matches the snapshot 1`] = `
     removeClippedSubviews={false}
     renderItem={[Function]}
     scrollEventThrottle={0.0001}
-    showsHorizontalScrollIndicator={false}
     showsVerticalScrollIndicator={false}
     stickyHeaderIndices={[]}
     viewabilityConfigCallbackPairs={[]}

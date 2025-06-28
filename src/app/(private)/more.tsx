@@ -1,5 +1,6 @@
 import { useRouter } from 'expo-router';
-import { FlatList, type ListRenderItem, View } from 'react-native';
+import { Fragment } from 'react';
+import { ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { ActionRow } from '@/components/ActionRow/ActionRow';
@@ -44,47 +45,40 @@ const externalLinks: ExternalLink[] = [
   },
 ];
 
-const keyExtractor = (item: ExternalLink) => item.label;
-
-const renderItem: ListRenderItem<ExternalLink> = ({ item }) => <ActionRow {...item} iconName="arrow-outward" />;
+const renderItem = (item: ExternalLink) => (
+  <Fragment key={item.label}>
+    <ActionRow {...item} iconName="arrow-outward" />
+    <Separator />
+  </Fragment>
+);
 
 export default function More() {
   const router = useRouter();
   const { logout } = useAuth();
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        ItemSeparatorComponent={Separator}
-        data={externalLinks}
-        keyExtractor={keyExtractor}
-        renderItem={renderItem}
-        style={styles.list}
-      />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <View>{externalLinks.map(renderItem)}</View>
 
-      <View>
-        <Separator />
-        <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
-        <Separator />
-      </View>
+        <View>
+          <Separator />
+          <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
+          <Separator />
+        </View>
 
-      <View>
-        <Separator />
-        <ActionRow iconName="logout" label="Log out" onPress={logout} />
-        <Separator />
+        <View>
+          <Separator />
+          <ActionRow iconName="logout" label="Log out" onPress={logout} />
+          <Separator />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    flex: 1,
     gap: theme.spacing.xl,
-  },
-  list: {
-    flexGrow: 0,
-    borderBottomWidth: 1,
-    borderColor: theme.color.border,
   },
 }));

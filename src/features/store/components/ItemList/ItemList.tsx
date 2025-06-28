@@ -24,7 +24,6 @@ export const ItemList = ({ items, onSelect }: Props) => {
       keyExtractor={keyExtractor}
       numColumns={2}
       renderItem={renderItem}
-      showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     />
   );
