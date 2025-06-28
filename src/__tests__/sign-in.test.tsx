@@ -31,7 +31,7 @@ const defaultAuthState: ReturnType<typeof useAuth> = {
   isError: false,
 };
 
-const screenTitle = 'Login to your ingame account';
+const screenTitle = 'Login to your in-game account';
 
 const renderComponent = () => {
   const result = render(<SignIn />);

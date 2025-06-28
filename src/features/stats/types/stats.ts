@@ -7,9 +7,9 @@ export const MAX_SEASON_INDEX = 2;
 
 export enum StatisticName {
   // Ranked
-  // The following numbers are counted in number of SETS (bo3)
   RANKED_SEASON_INDEX = 'Ranked_SeasonIndex',
 
+  // The following numbers are counted in number of SETS (bo3)
   RANKED_S1_ELO = 'Ranked_SeasonElo',
   RANKED_S1_SETS = 'Ranked_SeasonMatches',
   RANKED_S1_WINS = 'Ranked_SeasonWins',

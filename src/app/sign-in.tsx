@@ -53,7 +53,7 @@ export default function SignIn() {
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         {!isKeyboardVisible && <Disclaimer />}
         <View style={styles.signInContainer}>
-          <Text style={styles.title}>Login to your{'\n'}ingame account</Text>
+          <Text style={styles.title}>Login to your{'\n'}in-game account</Text>
           <View style={styles.form}>
             <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
             <Input

@@ -10,9 +10,9 @@ jest.mock('react-native', () => ({
 }));
 
 const addListenerMock = jest.mocked(Keyboard.addListener);
-const subscribtionRemoveMock = jest.fn();
+const subscriptionRemoveMock = jest.fn();
 addListenerMock.mockReturnValue({
-  remove: subscribtionRemoveMock,
+  remove: subscriptionRemoveMock,
 } as unknown as ReturnType<typeof addListenerMock>);
 
 const getEventCallback = (eventName: 'keyboardDidShow' | 'keyboardDidHide') => () =>
@@ -67,7 +67,7 @@ describe('useKeyboard', () => {
 
     unmount();
 
-    expect(subscribtionRemoveMock).toHaveBeenCalledTimes(2);
+    expect(subscriptionRemoveMock).toHaveBeenCalledTimes(2);
   });
 
   it('handles multiple show/hide events correctly', async () => {
