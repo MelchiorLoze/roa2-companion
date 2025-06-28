@@ -1,7 +1,7 @@
 import { type LeaderboardEntry, Rank, RANK_ELO_THRESHOLDS } from '../../../types/rank';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
-function findFirstIndexWithElo(leaderboardEntries: LeaderboardEntry[], targetElo: number): number {
+const findFirstIndexWithElo = (leaderboardEntries: LeaderboardEntry[], targetElo: number): number => {
   let left = 0;
   let right = leaderboardEntries.length;
 
@@ -15,9 +15,9 @@ function findFirstIndexWithElo(leaderboardEntries: LeaderboardEntry[], targetElo
   }
 
   return left;
-}
+};
 
-function getRankDistribution(leaderboardEntries: LeaderboardEntry[]): Record<Rank, number> {
+const getRankDistribution = (leaderboardEntries: LeaderboardEntry[]): Record<Rank, number> => {
   if (!leaderboardEntries.length)
     return Object.fromEntries(Object.values(Rank).map((rank) => [rank, 0])) as Record<Rank, number>;
 
@@ -35,7 +35,7 @@ function getRankDistribution(leaderboardEntries: LeaderboardEntry[]): Record<Ran
     [Rank.GRANDMASTER]: indices[1] - indices[0] + Math.max(0, indices[0] - 100), // 1700-1799 + excess above 1800
     [Rank.AETHEREAN]: Math.min(100, indices[0]), // Top 100 players above 1800
   };
-}
+};
 
 export const useRankDistribution = () => {
   const { leaderboardEntries, isLoading } = useLeaderboardStats();

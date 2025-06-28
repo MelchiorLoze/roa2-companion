@@ -4,14 +4,14 @@ import { Platform } from 'react-native';
 
 type UseStateHook<T> = [[T | null, boolean], (value: T | null) => void];
 
-function useAsyncState<T>(initialValue: [T | null, boolean] = [null, true]): UseStateHook<T> {
+const useAsyncState = <T>(initialValue: [T | null, boolean] = [null, true]): UseStateHook<T> => {
   return useReducer(
     (state: [T | null, boolean], action: T | null = null): [T | null, boolean] => [action, false],
     initialValue,
   ) as UseStateHook<T>;
-}
+};
 
-async function setStorageItemAsync(key: string, value: string | null) {
+const setStorageItemAsync = async (key: string, value: string | null) => {
   if (Platform.OS === 'web') {
     try {
       if (value === null) {
@@ -29,7 +29,7 @@ async function setStorageItemAsync(key: string, value: string | null) {
       await SecureStorage.setItemAsync(key, value);
     }
   }
-}
+};
 
 export function useStorageState<T>(key: string, converter?: (value: unknown) => T): UseStateHook<T> {
   const [state, setState] = useAsyncState<T>();
