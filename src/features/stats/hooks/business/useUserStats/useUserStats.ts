@@ -1,8 +1,8 @@
 import { Character } from '@/types/character';
 
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
-import { getRank } from '../../../types/rank';
 import { type PlayerPosition, type PlayerStatistics, StatisticName, type UserData } from '../../../types/stats';
+import { getRank } from '../../../utils/getRank';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';

@@ -15,9 +15,11 @@ jest.mock('@/hooks/core/useStorageState/useStorageState');
 const useStorageStateMock = jest.mocked(useStorageState);
 
 const mockSession = (session: Session | null) => {
-  useStorageStateMock.mockImplementation(() => {
-    const [state, setState] = useState<unknown>(session);
-    return [[state, false], setState];
+  useStorageStateMock.mockImplementation((_: string, converter) => {
+    const [state, setState] = useState<string | null>(session ? JSON.stringify(session) : null);
+    const parsedState: unknown = state ? JSON.parse(state) : null;
+    const setStateFromObject = (value: unknown) => setState(JSON.stringify(value));
+    return [[converter && parsedState ? converter(parsedState) : parsedState, false], setStateFromObject];
   });
 };
 
@@ -105,5 +107,11 @@ describe('useSession', () => {
 
     expect(result.current.isValid).toBe(true);
     expect(result.current.entityToken).toBe('validToken');
+  });
+
+  it('throws an error when the retrieved object is not a valid session', async () => {
+    mockSession('invalidSessionData' as unknown as Session);
+
+    expect(renderUseSession).toThrow('Invalid session data');
   });
 });

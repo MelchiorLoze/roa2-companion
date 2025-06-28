@@ -60,9 +60,6 @@ const renderUseStorageState = async (isMobileEnv = true, converter?: (raw: unkno
 
 describe('useStorageState', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    localStorageMock.clear();
-
     getItemAsyncMock.mockResolvedValue(null);
   });
 

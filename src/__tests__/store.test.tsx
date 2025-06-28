@@ -97,4 +97,19 @@ describe('Store', () => {
 
     screen.getByTestId('spinner');
   });
+
+  it('hides the confirmation dialog when the close button is pressed', () => {
+    renderComponent();
+
+    const itemCards = screen.getAllByRole('button');
+    fireEvent.press(itemCards[0]);
+
+    const dialog = screen.getByTestId('dialog');
+    expect(dialog).toBeTruthy();
+
+    const closeButton = within(dialog).getByRole('button', { name: 'Close' });
+    fireEvent.press(closeButton);
+
+    expect(screen.queryByTestId('dialog')).toBeNull();
+  });
 });
