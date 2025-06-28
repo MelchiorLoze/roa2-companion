@@ -272,33 +272,50 @@ exports[`SignIn matches the snapshot 1`] = `
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
       role="button"
-      style={
-        [
-          {
-            "backgroundColor": "#2B1F74",
-            "padding": 4,
-            "paddingHorizontal": 24,
-          },
-          false,
-        ]
-      }
     >
-      <Text
-        style={
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
           [
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            },
-            false,
+            4281146742,
+            4284183501,
           ]
         }
+        endPoint={
+          [
+            1,
+            0,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "padding": 4,
+            "paddingHorizontal": 24,
+          }
+        }
       >
-        Login
-      </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textAlign": "center",
+                "textTransform": "uppercase",
+              },
+              false,
+            ]
+          }
+        >
+          Login
+        </Text>
+      </ViewManagerAdapter_ExpoLinearGradient>
     </View>
   </View>
 </View>

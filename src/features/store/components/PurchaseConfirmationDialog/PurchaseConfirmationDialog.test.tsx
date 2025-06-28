@@ -35,9 +35,11 @@ describe('PurchaseConfirmationDialog', () => {
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledTimes(1);
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledWith({ onSuccess: expect.any(Function) });
 
-    screen.getByText('Are you sure you want to buy the ICON Test Icon for 100?');
-    screen.getByRole('button', { name: 'Yes' });
-    screen.getByRole('button', { name: 'No' });
+    screen.getByText('Test Icon');
+    screen.getByText('Are you sure you want to buy this icon for 100?');
+    screen.getByRole('button', { name: 'Close' });
+    screen.getByRole('button', { name: 'Confirm' });
+    screen.getByText("Purchases won't immediately reflect in currently opened game shop");
   });
 
   it('calls onClose when the overlay is pressed', () => {
@@ -53,8 +55,8 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    const noButton = screen.getByRole('button', { name: 'No' });
-    fireEvent.press(noButton);
+    const closeButton = screen.getByRole('button', { name: 'Close' });
+    fireEvent.press(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -69,8 +71,8 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    const yesButton = screen.getByRole('button', { name: 'Yes' });
-    fireEvent.press(yesButton);
+    const confirmButton = screen.getByRole('button', { name: 'Confirm' });
+    fireEvent.press(confirmButton);
 
     expect(mockPurchase).toHaveBeenCalledTimes(1);
     expect(mockPurchase).toHaveBeenCalledWith({
@@ -102,9 +104,11 @@ describe('PurchaseConfirmationDialog', () => {
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByText('An error occurred while trying to purchase the item. Do you have enought funds?');
-    screen.getByRole('button', { name: 'Retry' });
+    screen.getByText('Test Icon');
+    screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?');
     screen.getByRole('button', { name: 'Cancel' });
+    screen.getByRole('button', { name: 'Retry' });
+    screen.getByText("Purchases won't immediately reflect in currently opened game shop");
   });
 
   it('calls purchase when Retry button is pressed in error state', () => {

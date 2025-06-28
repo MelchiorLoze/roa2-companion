@@ -16,14 +16,14 @@ export const enum Category {
 }
 
 export const CATEGORY_LABELS: Readonly<Record<Category, string>> = Object.freeze({
-  [Category.DEATHEFFECT]: 'DEATH',
-  [Category.EMOTE]: 'EMOTE',
-  [Category.ICON]: 'ICON',
-  [Category.PALETTE]: 'PALETTE',
-  [Category.PLATFORM]: 'PLATFORM',
-  [Category.SKIN]: 'SKIN',
-  [Category.STAGESKIN]: 'STAGE SKIN',
-  [Category.TAUNT]: 'TAUNT',
+  [Category.DEATHEFFECT]: 'death',
+  [Category.EMOTE]: 'emote',
+  [Category.ICON]: 'icon',
+  [Category.PALETTE]: 'palette',
+  [Category.PLATFORM]: 'platform',
+  [Category.SKIN]: 'skin',
+  [Category.STAGESKIN]: 'stage skin',
+  [Category.TAUNT]: 'taunt',
 });
 
 export const enum RarityValue {

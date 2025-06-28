@@ -30,12 +30,11 @@ const Content = ({ item, onClose }: Props) => {
   if (isError) {
     return (
       <>
-        <Text style={styles.title}>
-          An error occurred while trying to purchase the item. Do you have enought funds?
-        </Text>
+        <Text style={styles.title}>{item.name}</Text>
+        <Text style={styles.body}>An error occurred while trying to purchase this item. Do you have enough funds?</Text>
         <View style={styles.buttonContainer}>
-          <Button label="Retry" onPress={handlePurchase} />
           <Button label="Cancel" onPress={onClose} />
+          <Button label="Retry" onPress={handlePurchase} />
         </View>
       </>
     );
@@ -43,12 +42,13 @@ const Content = ({ item, onClose }: Props) => {
 
   return (
     <>
-      <Text style={styles.title}>
-        Are you sure you want to buy the {CATEGORY_LABELS[item.category]} {item.name} for {item.coinPrice}?
+      <Text style={styles.title}>{item.name}</Text>
+      <Text style={styles.body}>
+        Are you sure you want to buy this {CATEGORY_LABELS[item.category]} for {item.coinPrice}?
       </Text>
       <View style={styles.buttonContainer}>
-        <Button label="Yes" onPress={handlePurchase} />
-        <Button label="No" onPress={onClose} />
+        <Button label="Close" onPress={onClose} />
+        <Button label="Confirm" onPress={handlePurchase} />
       </View>
     </>
   );
@@ -56,7 +56,7 @@ const Content = ({ item, onClose }: Props) => {
 
 export const PurchaseConfirmationDialog = ({ item, onClose }: Props) => {
   return (
-    <Dialog onClose={onClose}>
+    <Dialog alertText="Purchases won't immediately reflect in currently opened game shop" onClose={onClose}>
       <Content item={item} onClose={onClose} />
     </Dialog>
   );
@@ -65,9 +65,16 @@ export const PurchaseConfirmationDialog = ({ item, onClose }: Props) => {
 const styles = StyleSheet.create((theme) => ({
   title: {
     fontFamily: theme.font.secondary.bold,
-    fontSize: 18,
+    fontSize: 24,
     color: theme.color.white,
+    textAlign: 'center',
     textTransform: 'uppercase',
+  },
+  body: {
+    fontFamily: theme.font.primary.regular,
+    fontSize: 16,
+    color: theme.color.white,
+    textAlign: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',

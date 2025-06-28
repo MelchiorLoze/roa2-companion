@@ -36,7 +36,7 @@ describe('ItemCard', () => {
     renderComponent(item);
 
     screen.getByText(item.name);
-    screen.getByText(CATEGORY_LABELS[item.category]);
+    screen.getByText(CATEGORY_LABELS[item.category].toUpperCase());
     screen.getByText(item.coinPrice!.toString());
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
@@ -45,7 +45,7 @@ describe('ItemCard', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
     screen.getByText(item.name);
-    screen.getByText(CATEGORY_LABELS[item.category]);
+    screen.getByText(CATEGORY_LABELS[item.category].toUpperCase());
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 

@@ -29,11 +29,14 @@ const theme = {
     grandmaster: '#FC7575',
     aetherean: '#BD7CC5',
     // Gradients
+    alertGradient: ['#E3E2E4', '#7C7B87'] as [string, string],
     labelGradient: ['transparent', 'black'] as [string, string],
     cardGradient: (pressed?: boolean): [string, string] => (pressed ? ['#F2CF6C', '#CD8944'] : ['#161049', '#0D071D']),
     borderGradient: (pressed?: boolean): [string, string] =>
       pressed ? ['#CD8944', '#F2CF6C'] : ['#CACEFF', '#6B76DC'],
     statsGradient: ['#4B7AB8', 'transparent'] as [string, string],
+    buttonGradient: (pressed?: boolean): [string, string] =>
+      pressed ? ['#F1A544', '#FFFF8D'] : ['#2D1D76', '#5B73CD'],
   },
   spacing: {
     none: 0,

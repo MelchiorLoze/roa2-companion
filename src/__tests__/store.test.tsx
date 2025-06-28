@@ -67,9 +67,10 @@ describe('Store', () => {
     fireEvent.press(itemCards[0]);
     const withinDialog = within(screen.getByTestId('dialog'));
 
-    withinDialog.getByText('Are you sure you want to buy the ICON Item 1 for 2000?');
-    withinDialog.getByRole('button', { name: 'Yes' });
-    withinDialog.getByRole('button', { name: 'No' });
+    withinDialog.getByText(testItemList[0].name);
+    withinDialog.getByText('Are you sure you want to buy this icon for 2000?');
+    withinDialog.getByRole('button', { name: 'Close' });
+    withinDialog.getByRole('button', { name: 'Confirm' });
   });
 
   it('does not show the confirmation dialog when the selected item does not have a coin price', () => {

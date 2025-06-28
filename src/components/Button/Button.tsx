@@ -1,16 +1,26 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, Text } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 type Props = { label: string; onPress: () => void };
 
 export const Button = ({ label, onPress }: Props) => {
+  const { theme } = useUnistyles();
+
   return (
-    <Pressable
-      onPress={onPress}
-      role="button"
-      style={({ pressed }) => [styles.button, pressed && styles.buttonPressed]}
-    >
-      {({ pressed }) => <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>}
+    <Pressable onPress={onPress} role="button">
+      {({ pressed }) => (
+        <>
+          <LinearGradient
+            colors={theme.color.buttonGradient(pressed)}
+            end={[1, 0]}
+            start={[0, 0]}
+            style={styles.button}
+          >
+            <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
+          </LinearGradient>
+        </>
+      )}
     </Pressable>
   );
 };
@@ -19,10 +29,6 @@ const styles = StyleSheet.create((theme) => ({
   button: {
     padding: theme.spacing.xs,
     paddingHorizontal: theme.spacing.xl,
-    backgroundColor: theme.color.highlight,
-  },
-  buttonPressed: {
-    backgroundColor: theme.color.accent,
   },
   label: {
     fontFamily: theme.font.primary.regular,

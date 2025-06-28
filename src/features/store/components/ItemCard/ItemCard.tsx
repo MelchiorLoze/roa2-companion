@@ -26,7 +26,7 @@ export const ItemCard = ({ item, onPress }: Props) => {
               <OutlinedText
                 color={styles.category(item.rarity).color}
                 strokeWidth={2}
-                text={CATEGORY_LABELS[item.category]}
+                text={CATEGORY_LABELS[item.category].toUpperCase()}
               />
               {item.coinPrice && (
                 <View style={styles.priceContainer}>
