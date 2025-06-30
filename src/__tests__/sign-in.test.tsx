@@ -4,13 +4,9 @@ import { Redirect } from 'expo-router';
 import SignIn from '@/app/sign-in';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 import { useSendAccountRecoveryEmail } from '@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
-import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 jest.mock('expo-router');
 const RedirectMock = jest.mocked(Redirect);
-
-jest.mock('@/hooks/core/useKeyboard/useKeyboard');
-const useKeyboardMock = jest.mocked(useKeyboard);
 
 jest.mock('@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
@@ -44,15 +40,19 @@ const renderComponent = () => {
 
 describe('SignIn', () => {
   beforeEach(() => {
-    useKeyboardMock.mockReturnValue({ isKeyboardVisible: false });
     useAuthMock.mockReturnValue(defaultAuthState);
     useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendRecoveryEmailState);
   });
 
   it('matches the snapshot', () => {
-    const tree = renderComponent().toJSON();
+    const result = renderComponent();
 
-    expect(tree).toMatchSnapshot();
+    expect(result.toJSON()).toMatchSnapshot();
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+
+    expect(result.toJSON()).toMatchSnapshot();
   });
 
   it('renders correctly', () => {
@@ -193,13 +193,5 @@ describe('SignIn', () => {
     fireEvent.press(closeButton);
 
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
-  });
-
-  it('hides the disclaimer when the keyboard is visible', () => {
-    useKeyboardMock.mockReturnValue({ isKeyboardVisible: true });
-
-    renderComponent();
-
-    expect(screen.queryByTestId('disclaimer')).toBeNull();
   });
 });

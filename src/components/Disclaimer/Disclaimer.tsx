@@ -1,14 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { type StyleProp, Text, TouchableWithoutFeedback, View, type ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-export const Disclaimer = () => {
+type Props = {
+  style?: StyleProp<ViewStyle>;
+};
+
+export const Disclaimer = ({ style }: Props) => {
   const router = useRouter();
 
   return (
     <TouchableWithoutFeedback onPress={() => router.navigate('/about')} testID="disclaimer">
-      <View style={styles.container}>
+      <View style={[styles.container, style]}>
         <Ionicons name="information-circle-sharp" style={styles.icon} />
         <Text style={styles.body}>
           This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any

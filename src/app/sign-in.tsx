@@ -9,15 +9,12 @@ import { Input } from '@/components/Input/Input';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { ResetPasswordDialog } from '@/features/auth/components/ResetPasswordDialog/ResetPasswordDialog';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
-import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
-
-  const { isKeyboardVisible } = useKeyboard();
 
   const { login, isLoggedIn, isLoading, isError } = useAuth();
 
@@ -50,41 +47,37 @@ export default function SignIn() {
 
   return (
     <>
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        {!isKeyboardVisible && <Disclaimer />}
-        <View style={styles.signInContainer}>
-          <Text style={styles.title}>Login to your{'\n'}in-game account</Text>
-          <View style={styles.form}>
-            <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
-            <Input
-              autoComplete="current-password"
-              contextualCTA={{
-                label: 'Forgot your password?',
-                onPress: onForgotPassword,
-              }}
-              errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
-              hidden
-              onChange={setPassword}
-              placeholder="PASSWORD"
-              value={password}
-            />
-          </View>
-          <Button label="Login" onPress={onSubmit} />
+      <KeyboardAvoidingView behavior={showResetPasswordDialog ? undefined : 'padding'} style={styles.container}>
+        <Text style={styles.title}>Login to your{'\n'}in-game account</Text>
+        <View style={styles.form}>
+          <Input autoComplete="email" onChange={setEmail} placeholder="EMAIL" value={email} />
+          <Input
+            autoComplete="current-password"
+            contextualCTA={{
+              label: 'Forgot your password?',
+              onPress: onForgotPassword,
+            }}
+            errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
+            hidden
+            onChange={setPassword}
+            placeholder="PASSWORD"
+            value={password}
+          />
         </View>
+        <Button label="Login" onPress={onSubmit} />
+
+        <Disclaimer style={styles.disclaimer} />
       </KeyboardAvoidingView>
       {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
     </>
   );
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flex: 1,
-    padding: theme.spacing.l,
+    paddingHorizontal: theme.spacing.l,
     paddingVertical: theme.spacing.xl,
-  },
-  signInContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     gap: theme.spacing.xl,
@@ -99,6 +92,10 @@ const styles = StyleSheet.create((theme) => ({
   },
   form: {
     width: '100%',
-    gap: theme.spacing.l,
+    gap: theme.spacing.m,
+  },
+  disclaimer: {
+    position: 'absolute',
+    bottom: runtime.insets.bottom + theme.spacing.xl,
   },
 }));

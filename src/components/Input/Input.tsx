@@ -49,7 +49,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   input: {
     width: '100%',
-    height: 40,
+    height: 48,
     padding: theme.spacing.s,
     borderWidth: 1,
     borderColor: theme.color.accent,

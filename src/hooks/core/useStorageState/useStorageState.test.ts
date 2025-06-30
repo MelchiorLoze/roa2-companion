@@ -146,6 +146,10 @@ describe('useStorageState', () => {
       Object.defineProperty(global, 'localStorage', { value: localStorageMock, configurable: true });
     });
 
+    afterEach(() => {
+      localStorageMock.clear();
+    });
+
     it('initializes with loading state and null value', async () => {
       const { result } = await renderUseStorageState(false);
       const [[stateValue]] = result.current;

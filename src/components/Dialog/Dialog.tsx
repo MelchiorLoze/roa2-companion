@@ -10,15 +10,17 @@ type Props = PropsWithChildren & {
 };
 
 export const Dialog = ({ alertText, onClose, children }: Props) => (
-  <Modal onRequestClose={onClose} statusBarTranslucent transparent>
-    <View style={styles.container}>
-      <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
-      <View style={styles.dialog} testID="dialog">
-        {children}
-        {alertText && <Alert style={styles.alert} text={alertText} />}
+  <View>
+    <Modal animationType="fade" onRequestClose={onClose} statusBarTranslucent transparent>
+      <View style={styles.container}>
+        <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
+        <View style={styles.dialog} testID="dialog">
+          {children}
+          {alertText && <Alert style={styles.alert} text={alertText} />}
+        </View>
       </View>
-    </View>
-  </Modal>
+    </Modal>
+  </View>
 );
 
 const styles = StyleSheet.create((theme) => ({
