@@ -2,18 +2,18 @@
   "expo": {
     "name": "roa2-companion",
     "slug": "roa2-companion",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "roa2-companion",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
+    "backgroundColor": "#0E0B2A",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cp0-mand4le.roa2companion"
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "package": "com.cp0_mand4le.roa2companion",
       "edgeToEdgeEnabled": true
     },
