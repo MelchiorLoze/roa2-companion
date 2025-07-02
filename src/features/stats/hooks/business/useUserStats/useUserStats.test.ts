@@ -11,6 +11,13 @@ import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGet
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 import { useUserStats } from './useUserStats';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-return
+jest.mock('../../../types/stats', () => ({
+  ...jest.requireActual('../../../types/stats'),
+  MAX_SEASON_INDEX: 2,
+  MIN_SEASON_INDEX: 1,
+}));
+
 jest.mock('../../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
 const defaultSeasonState = {
@@ -202,8 +209,8 @@ describe('useUserStats', () => {
       [StatisticName.RANKED_S1_SETS]: 200,
       [StatisticName.RANKED_S1_WINS]: 22,
       [StatisticName.RANKED_S2_ELO]: 915,
-      [StatisticName.RANKED_S2_SETS]: 100,
-      [StatisticName.RANKED_S2_WINS]: 60,
+      [StatisticName.RANKED_SETS]: 100,
+      [StatisticName.RANKED_WINS]: 60,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 200,
       [StatisticName.BETA_WINS]: 120,
     };
@@ -212,15 +219,11 @@ describe('useUserStats', () => {
       position: 4404,
       rank: Rank.GOLD,
       elo: 915,
-      setCount: 100,
-      winCount: 60,
-      winRate: 60,
+      setStats: { setCount: 100, winCount: 60, winRate: 60 },
     };
 
     const expectedGlobalStats = {
-      gameCount: 200,
-      winCount: 120,
-      winRate: 60,
+      gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
@@ -254,8 +257,8 @@ describe('useUserStats', () => {
 
     const { result } = renderUseUserStats();
 
-    expect(result.current.rankedStats?.winRate).toBe(0);
-    expect(result.current.globalStats?.winRate).toBe(0);
+    expect(result.current.rankedStats?.setStats?.winRate).toBe(0);
+    expect(result.current.globalStats?.gameStats.winRate).toBe(0);
   });
 
   it('pass through the refetch function correctly', async () => {
@@ -315,22 +318,5 @@ describe('useUserStats', () => {
       expect(characterStat?.gameCount).toBe(10 + index * 5);
       expect(characterStat?.level).toBe(5 + index * 10);
     });
-  });
-
-  it('throws an error when there are no statisticts for selected season', () => {
-    useSeasonMock.mockReturnValue({
-      ...defaultSeasonState,
-      season: {
-        ...defaultSeasonState.season,
-        index: 42,
-      },
-    });
-
-    const originalError = console.error;
-    console.error = jest.fn();
-
-    expect(() => renderHook(useUserStats)).toThrow('Ranked stat name for ELO in season 42 does not exist.');
-
-    console.error = originalError;
   });
 });

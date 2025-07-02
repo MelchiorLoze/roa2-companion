@@ -3,7 +3,7 @@ import { type Character } from '@/types/character';
 // Cannot determine current season dynamically for now as ranked stats names
 // are inconsistent per season
 export const MIN_SEASON_INDEX = 1;
-export const MAX_SEASON_INDEX = 2;
+export const MAX_SEASON_INDEX = 3;
 
 export enum StatisticName {
   // Ranked
@@ -15,8 +15,10 @@ export enum StatisticName {
   RANKED_S1_WINS = 'Ranked_SeasonWins',
 
   RANKED_S2_ELO = 'Ranked_SeasonElo_2',
-  RANKED_S2_SETS = 'Ranked_Matches',
-  RANKED_S2_WINS = 'Ranked_Wins',
+  RANKED_S3_ELO = 'Ranked_SeasonElo_3',
+
+  RANKED_SETS = 'Ranked_Matches',
+  RANKED_WINS = 'Ranked_Wins',
 
   // General
   // The following numbers are counted in number of GAMES (bo1)

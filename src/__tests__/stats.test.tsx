@@ -29,14 +29,10 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
     elo: 925,
     position: 123,
     rank: Rank.GOLD,
-    setCount: 100,
-    winCount: 75,
-    winRate: 75,
+    setStats: { setCount: 100, winCount: 75, winRate: 75 },
   },
   globalStats: {
-    gameCount: 500,
-    winCount: 300,
-    winRate: 60,
+    gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
   },
   characterStats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },

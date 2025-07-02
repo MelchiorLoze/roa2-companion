@@ -31,6 +31,11 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   </TestQueryClientProvider>
 );
 
+jest.mock('../../types/stats', () => ({
+  MAX_SEASON_INDEX: 2,
+  MIN_SEASON_INDEX: 1,
+}));
+
 const renderUseSeason = () => {
   const { result } = renderHook(useSeason, { wrapper: Wrapper });
 

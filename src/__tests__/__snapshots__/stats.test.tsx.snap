@@ -181,49 +181,57 @@ exports[`Stats matches the snapshot 1`] = `
           </View>
         </View>
       </View>
-      <View>
-        <Text
-          style={
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
-            }
+      <View
+        style={
+          {
+            "alignItems": "flex-end",
+            "flexDirection": "row",
+            "justifyContent": "space-between",
           }
-        >
-          100
-           sets: 
-          75
-           W - 
-          25
-           L
-        </Text>
-        <Text
-          style={
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
+        }
+      >
+        <View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
             }
-          }
-        >
-          Winrate: 
-          75.00
-          %
-        </Text>
-      </View>
-      <View>
+          >
+            100
+             sets: 
+            75
+             W -
+             
+            25
+             L
+          </Text>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            Winrate: 
+            75.00
+            %
+          </Text>
+        </View>
         <View
           style={
             {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "gap": 4,
-              "position": "absolute",
-              "right": 8,
-              "top": 8,
+              "justifyContent": "flex-end",
             }
           }
         >
@@ -282,6 +290,8 @@ exports[`Stats matches the snapshot 1`] = `
             123
           </Text>
         </View>
+      </View>
+      <View>
         <View
           testID="rank-distribution"
         >
@@ -777,7 +787,8 @@ exports[`Stats matches the snapshot 1`] = `
           500
            games: 
           300
-           W - 
+           W -
+           
           200
            L
         </Text>

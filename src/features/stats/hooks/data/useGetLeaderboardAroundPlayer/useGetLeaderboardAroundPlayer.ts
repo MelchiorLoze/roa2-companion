@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
-import { type PlayerPosition, StatisticName } from '../../../types/stats';
+import type { StatisticName } from '../../../types/stats';
+import { type PlayerPosition } from '../../../types/stats';
 
 type GetLeaderboardAroundPlayerRequest = {
   maxResultCount: number;
@@ -17,12 +18,7 @@ type GetLeaderboardAroundPlayerResponse = {
   }[];
 };
 
-const defaultRequest: GetLeaderboardAroundPlayerRequest = {
-  maxResultCount: 100,
-  statisticName: StatisticName.RANKED_S2_ELO,
-};
-
-export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName } = defaultRequest) => {
+export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerRequest) => {
   const apiClient = useGameApiClient();
 
   const { data, refetch, isFetching, isPending, isError } = useQuery({

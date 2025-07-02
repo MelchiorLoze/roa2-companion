@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -6,6 +7,8 @@ import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
+import type { Rank } from '../../types/rank';
+import { RANK_ICONS } from '../../types/rank';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 
 export const RankedStats = () => {
@@ -37,14 +40,26 @@ export const RankedStats = () => {
         </View>
       </View>
 
-      <View>
-        <Text style={styles.label}>
-          {stats.setCount} sets: {stats.winCount} W - {stats.setCount - stats.winCount} L
-        </Text>
-        <Text style={styles.label}>Winrate: {(stats.winRate ?? 0).toFixed(2)}%</Text>
+      <View style={styles.statsContainer}>
+        {stats.setStats && (
+          <View>
+            <Text style={styles.label}>
+              {stats.setStats.setCount} sets: {stats.setStats.winCount} W -{' '}
+              {stats.setStats.setCount - stats.setStats.winCount} L
+            </Text>
+            <Text style={styles.label}>Winrate: {stats.setStats.winRate.toFixed(2)}%</Text>
+          </View>
+        )}
+
+        <View style={styles.positionContainer}>
+          <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
+          <Text style={styles.label}>
+            <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
+          </Text>
+        </View>
       </View>
 
-      <RankedDistributionChart elo={stats.elo} position={stats.position} rank={stats.rank} />
+      <RankedDistributionChart elo={stats.elo} />
     </>
   );
 };
@@ -67,10 +82,29 @@ const styles = StyleSheet.create((theme) => ({
   changeSeasonButton: {
     padding: theme.spacing.xxs,
   },
+  statsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+  },
   label: {
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
     color: theme.color.white,
     textTransform: 'uppercase',
+  },
+  positionContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    gap: theme.spacing.xs,
+  },
+  eloLabel: (rank: Rank) => ({
+    color: theme.color[rank],
+  }),
+  icon: {
+    width: 24,
+    height: 24,
   },
 }));

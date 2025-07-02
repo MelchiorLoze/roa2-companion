@@ -20,7 +20,14 @@ const mockResponse = {
   },
 };
 
-const renderUseGetLeaderboardAroundPlayer = async (args?: Parameters<typeof useGetLeaderboardAroundPlayer>[0]) => {
+const defaultRequest = {
+  maxResultCount: 100,
+  statisticName: StatisticName.RANKED_S2_ELO,
+};
+
+const renderUseGetLeaderboardAroundPlayer = async (
+  args: Parameters<typeof useGetLeaderboardAroundPlayer>[0] = defaultRequest,
+) => {
   const { result } = renderHook(() => useGetLeaderboardAroundPlayer(args), { wrapper: TestQueryClientProvider });
   expect(result.current.isLoading).toBe(true);
   expect(result.current.playerPositions).toEqual([]);
@@ -63,10 +70,10 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     const { result } = await renderUseGetLeaderboardAroundPlayer({
       maxResultCount: 50,
-      statisticName: StatisticName.RANKED_S2_WINS,
+      statisticName: StatisticName.RANKED_WINS,
     });
 
-    expect(result.current.playerPositions[0].statisticName).toBe(StatisticName.RANKED_S2_WINS);
+    expect(result.current.playerPositions[0].statisticName).toBe(StatisticName.RANKED_WINS);
     expect(result.current.isError).toBe(false);
   });
 
