@@ -25,6 +25,7 @@ export enum StatisticName {
   TOTAL_SESSIONS_PLAYED = 'TotalSessionsPlayed',
   BETA_WINS = 'Beta Wins',
 
+  ABS_MATCH_COUNT = 'Abs Match Count',
   CLA_MATCH_COUNT = 'Cla Match Count',
   ETA_MATCH_COUNT = 'Eta Match Count',
   FLE_MATCH_COUNT = 'Fle Match Count',

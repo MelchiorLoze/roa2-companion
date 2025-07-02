@@ -1,6 +1,7 @@
 import { type ImageSource } from 'expo-image';
 
 import {
+  AbsaIcon,
   ClairenIcon,
   EtalusIcon,
   FleetIcon,
@@ -16,6 +17,7 @@ import {
 } from '@/assets/images/character';
 
 export enum Character {
+  ABSA = 'Abs',
   CLAIREN = 'Cla',
   ETALUS = 'Eta',
   FLEET = 'Fle',
@@ -30,22 +32,8 @@ export enum Character {
   ZETTERBURN = 'Zet',
 }
 
-export const CHARACTER_NAMES: Readonly<Record<Character, string>> = Object.freeze({
-  [Character.CLAIREN]: 'Clairen',
-  [Character.ETALUS]: 'Etalus',
-  [Character.FLEET]: 'Fleet',
-  [Character.FORSBURN]: 'Forsburn',
-  [Character.KRAGG]: 'Kragg',
-  [Character.LOXODONT]: 'Loxodont',
-  [Character.MAYPUL]: 'Maypul',
-  [Character.OLYMPIA]: 'Olympia',
-  [Character.ORCANE]: 'Orcane',
-  [Character.RANNO]: 'Ranno',
-  [Character.WRASTOR]: 'Wrastor',
-  [Character.ZETTERBURN]: 'Zetterburn',
-});
-
 export const CHARACTER_ICONS: Readonly<Record<Character, ImageSource>> = Object.freeze({
+  [Character.ABSA]: AbsaIcon,
   [Character.CLAIREN]: ClairenIcon,
   [Character.ETALUS]: EtalusIcon,
   [Character.FLEET]: FleetIcon,

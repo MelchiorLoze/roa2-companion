@@ -1,5 +1,6 @@
 import { type ImageSource } from 'expo-image';
 
+export const AbsaIcon: ImageSource = require('./absa.png');
 export const ClairenIcon: ImageSource = require('./clairen.png');
 export const EtalusIcon: ImageSource = require('./etalus.png');
 export const ForsburnIcon: ImageSource = require('./forsburn.png');
