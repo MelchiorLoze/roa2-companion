@@ -2,36 +2,30 @@ import * as SecureStorage from 'expo-secure-store';
 import { useCallback, useEffect, useReducer } from 'react';
 import { Platform } from 'react-native';
 
-type UseStateHook<T> = [[T | null, boolean], (value: T | null) => void];
+type AsyncState<T> = [value: T | null, isLoading: boolean];
 
-const useAsyncState = <T>(initialValue: [T | null, boolean] = [null, true]): UseStateHook<T> => {
-  return useReducer(
-    (state: [T | null, boolean], action: T | null = null): [T | null, boolean] => [action, false],
-    initialValue,
-  ) as UseStateHook<T>;
+const useAsyncState = <T>(initialValue: AsyncState<T>[0] = null) => {
+  return useReducer<AsyncState<T>, [AsyncState<T>[0]]>(
+    (_, ...actions) => [actions[0] ?? null, false],
+    [initialValue, true],
+  );
 };
 
-const setStorageItemAsync = async (key: string, value: string | null) => {
+const setStorageItemAsync = async <T>(key: string, value: T | null) => {
   if (Platform.OS === 'web') {
     try {
-      if (value === null) {
-        localStorage.removeItem(key);
-      } else {
-        localStorage.setItem(key, value);
-      }
-    } catch (e) {
-      console.error('Local storage is unavailable:', e);
+      if (value === null) localStorage.removeItem(key);
+      else localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error('Local storage is unavailable:', error);
     }
   } else {
-    if (value == null) {
-      await SecureStorage.deleteItemAsync(key);
-    } else {
-      await SecureStorage.setItemAsync(key, value);
-    }
+    if (value == null) await SecureStorage.deleteItemAsync(key);
+    else await SecureStorage.setItemAsync(key, JSON.stringify(value));
   }
 };
 
-export function useStorageState<T>(key: string, converter?: (value: unknown) => T): UseStateHook<T> {
+export const useStorageState = <T>(key: string, converter?: (value: unknown) => T) => {
   const [state, setState] = useAsyncState<T>();
 
   const setStateFromString = useCallback(
@@ -65,10 +59,10 @@ export function useStorageState<T>(key: string, converter?: (value: unknown) => 
   const setValue = useCallback(
     (value: T | null) => {
       setState(value);
-      void setStorageItemAsync(key, value ? JSON.stringify(value) : null);
+      void setStorageItemAsync(key, value);
     },
     [key, setState],
   );
 
-  return [state, setValue];
-}
+  return [state, setValue] as const;
+};

@@ -2,8 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
-import type { StatisticName } from '../../../types/stats';
-import { type PlayerPosition } from '../../../types/stats';
+import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
 type GetLeaderboardAroundPlayerRequest = {
   maxResultCount: number;

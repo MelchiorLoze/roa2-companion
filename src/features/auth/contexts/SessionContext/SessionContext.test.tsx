@@ -12,14 +12,14 @@ const VALID_DATE = DateTime.utc().plus({ day: 1 });
 const EXPIRED_DATE = DateTime.utc().minus({ day: 1 });
 
 jest.mock('@/hooks/core/useStorageState/useStorageState');
-const useStorageStateMock = jest.mocked(useStorageState);
+const useStorageStateMock = jest.mocked(useStorageState<Session>);
 
 const mockSession = (session: Session | null) => {
-  useStorageStateMock.mockImplementation((_: string, converter) => {
+  useStorageStateMock.mockImplementation((_, converter) => {
     const [state, setState] = useState<string | null>(session ? JSON.stringify(session) : null);
     const parsedState: unknown = state ? JSON.parse(state) : null;
     const setStateFromObject = (value: unknown) => setState(JSON.stringify(value));
-    return [[converter && parsedState ? converter(parsedState) : parsedState, false], setStateFromObject];
+    return [[converter && parsedState ? converter(parsedState) : (parsedState as Session), false], setStateFromObject];
   });
 };
 

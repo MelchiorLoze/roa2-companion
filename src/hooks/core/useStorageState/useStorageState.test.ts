@@ -122,20 +122,17 @@ describe('useStorageState', () => {
       expect(deleteItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
     });
 
-    it('handles JSON parse errors gracefully', async () => {
-      getItemAsyncMock.mockResolvedValue('invalid-json');
+    it.each([
+      { mock: '"my-state-value"', expected: 'my-state-value' },
+      { mock: '123', expected: 123 },
+      { mock: 'true', expected: true },
+    ])('handles non-object state types normally', async (arg) => {
+      getItemAsyncMock.mockResolvedValue(arg.mock);
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+      const { result } = await renderUseStorageState();
+      const [[stateValue]] = result.current;
 
-      renderHook(() => useStorageState(TEST_KEY));
-
-      await act(async () => {
-        await Promise.resolve();
-      });
-
-      expect(consoleSpy).toHaveBeenCalled();
-
-      consoleSpy.mockRestore();
+      expect(stateValue).toEqual(arg.expected);
     });
   });
 
@@ -213,7 +210,8 @@ describe('useStorageState', () => {
 
       renderHook(() => useStorageState(TEST_KEY));
 
-      expect(consoleSpy).toHaveBeenCalledWith('Local storage is unavailable:', expect.any(Error));
+      expect(consoleSpy).toHaveBeenCalledTimes(1);
+      expect(consoleSpy).toHaveBeenCalledWith('Local storage is unavailable:', new Error('localStorage error'));
 
       consoleSpy.mockRestore();
     });

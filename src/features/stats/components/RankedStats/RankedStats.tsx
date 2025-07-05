@@ -7,8 +7,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
-import type { Rank } from '../../types/rank';
-import { RANK_ICONS } from '../../types/rank';
+import { type Rank, RANK_ICONS } from '../../types/rank';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 
 export const RankedStats = () => {
