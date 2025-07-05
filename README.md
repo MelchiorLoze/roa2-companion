@@ -1,6 +1,10 @@
-# Rivals of Aether II Companion
+![feature-graphic](https://github.com/user-attachments/assets/aafa30b9-17bb-47e1-8ca5-746d4caaebd0)
 
-App using the game's client API to provide useful information and tools for players on their mobile.
+This app uses the game's client API to provide useful information and tools for players on their mobile.
+Using the game's client API, this app provide useful information and tools for players on their mobile
+
+- It allows to access the in-game coin shop daily rotation, and purchase items anywhere and anytime
+- It allows to track the progression of the player across the different ranked seasons
 
 ## Get started
 
