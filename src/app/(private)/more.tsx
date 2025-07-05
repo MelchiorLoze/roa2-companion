@@ -24,10 +24,6 @@ const externalLinks: ExternalLink[] = [
     url: new URL('https://rivalsframedata.com/'),
   },
   {
-    label: 'Stage viewer',
-    url: new URL('https://clamtime.github.io/rivals2-stage-viewer/'),
-  },
-  {
     label: 'Elo History',
     url: new URL('https://scarekroow.com/roa2-ranked-stats.html'),
   },
