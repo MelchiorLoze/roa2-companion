@@ -10,7 +10,7 @@ const getEloDistribution = (
   firstPlayerElo: number,
   lastPlayerElo: number,
 ): Record<number, number> => {
-  if (!leaderboardEntries.length) return {};
+  if (!leaderboardEntries.length) return {} as const;
 
   const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
   const result = Array.from(
@@ -30,5 +30,5 @@ export const useEloDistribution = () => {
     eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),
     roundElo,
     isLoading,
-  };
+  } as const;
 };

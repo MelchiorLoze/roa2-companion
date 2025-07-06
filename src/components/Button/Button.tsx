@@ -4,7 +4,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 type Props = { label: string; onPress: () => void };
 
-export const Button = ({ label, onPress }: Props) => {
+export const Button = ({ label, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (

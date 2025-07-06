@@ -14,7 +14,7 @@ export const enum Currency {
   MEDALS = 'medals',
 }
 
-export const CURRENCY_ICONS: Readonly<Record<Currency, ImageSource>> = Object.freeze({
+export const CURRENCY_ICONS = Object.freeze<Record<Currency, ImageSource>>({
   [Currency.COINS]: CoinsIcon,
   [Currency.BUCKS]: BucksIcon,
   [Currency.MEDALS]: MedalsIcon,

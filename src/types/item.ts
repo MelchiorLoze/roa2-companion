@@ -15,7 +15,7 @@ export const enum Category {
   TAUNT = 'taunt',
 }
 
-export const CATEGORY_LABELS: Readonly<Record<Category, string>> = Object.freeze({
+export const CATEGORY_LABELS = Object.freeze<Record<Category, string>>({
   [Category.DEATHEFFECT]: 'death',
   [Category.EMOTE]: 'emote',
   [Category.ICON]: 'icon',
@@ -40,21 +40,21 @@ export const enum Rarity {
   LEGENDARY = 'legendary',
 }
 
-export const RARITY_VALUES_MAPPING: Readonly<Record<RarityValue, Rarity>> = Object.freeze({
+export const RARITY_VALUES_MAPPING = Object.freeze<Record<RarityValue, Rarity>>({
   [RarityValue.COMMON]: Rarity.COMMON,
   [RarityValue.RARE]: Rarity.RARE,
   [RarityValue.EPIC]: Rarity.EPIC,
   [RarityValue.LEGENDARY]: Rarity.LEGENDARY,
 });
 
-export const RARITY_ICONS: Readonly<Record<Rarity, ImageSource>> = Object.freeze({
+export const RARITY_ICONS = Object.freeze<Record<Rarity, ImageSource>>({
   [Rarity.COMMON]: CommonIcon,
   [Rarity.RARE]: RareIcon,
   [Rarity.EPIC]: EpicIcon,
   [Rarity.LEGENDARY]: LegendaryIcon,
 });
 
-export type ItemDto = {
+export type ItemDto = DeepReadonly<{
   Id: string;
   Title: { NEUTRAL: string };
   ContentType: Category;
@@ -69,13 +69,13 @@ export type ItemDto = {
   DisplayProperties: {
     rarity: RarityValue;
   };
-};
+}>;
 
-export type Item = {
+export type Item = Readonly<{
   id: string;
   name: string;
   category: Category;
   rarity: Rarity;
   coinPrice?: number;
   buckPrice?: number;
-};
+}>;

@@ -7,7 +7,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const Disclaimer = ({ style }: Props) => {
+export const Disclaimer = ({ style }: Readonly<Props>) => {
   const router = useRouter();
 
   return (

@@ -16,5 +16,5 @@ export const useCurrencyBalance = () => {
   const bucksBalance = getCurrencyBalance(CurrencyId.BUCKS, inventoryItems);
   const medalsBalance = getCurrencyBalance(CurrencyId.MEDALS, inventoryItems);
 
-  return { coinsBalance, bucksBalance, medalsBalance, isLoading, isError };
+  return { coinsBalance, bucksBalance, medalsBalance, isLoading, isError } as const;
 };

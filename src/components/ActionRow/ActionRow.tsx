@@ -21,7 +21,7 @@ type Props = {
   iconName: ComponentProps<typeof MaterialIcons>['name'];
 } & EitherLinkOrButton;
 
-export const ActionRow = ({ label, url, logo, iconName, onPress }: Props) => {
+export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Props>) => {
   const router = useRouter();
   const { theme } = useUnistyles();
 

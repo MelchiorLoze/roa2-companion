@@ -5,10 +5,10 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type Session } from '../../../types/session';
 
-type GetEntityTokenResponse = {
+type GetEntityTokenResponse = Readonly<{
   EntityToken: string;
   TokenExpiration: string;
-};
+}>;
 
 export const useGetEntityToken = () => {
   const apiClient = useGameApiClient();
@@ -28,5 +28,5 @@ export const useGetEntityToken = () => {
     renew: mutate,
     isLoading: isPending,
     isError,
-  };
+  } as const;
 };

@@ -16,7 +16,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const EloDistributionLineChart = ({ userElo, width, style }: Props) => {
+export const EloDistributionLineChart = ({ userElo, width, style }: Readonly<Props>) => {
   const { eloDistribution, roundElo, isLoading: isLoadingLeaderboard } = useEloDistribution();
 
   if (isLoadingLeaderboard) return null;

@@ -15,22 +15,19 @@ const fetchWrapper = async (
   });
 };
 
-type RequestOptions = {
+type RequestOptions = DeepReadonly<{
   params?: Record<string, string>;
   body?: object;
-};
+}>;
 
-export const useHttpClient = ({
-  baseUrl,
-  baseQueryParams,
-  headers,
-  handleResponse,
-}: {
+type Props = DeepReadonly<{
   baseUrl: string;
   baseQueryParams?: Record<string, string>;
   headers?: Record<string, string>;
   handleResponse: <T>(response: Response) => Promise<T>;
-}) => {
+}>;
+
+export const useHttpClient = ({ baseUrl, baseQueryParams, headers, handleResponse }: Readonly<Props>) => {
   const requester = async <T>(method: Method, path: string, params?: Record<string, string>, body?: object) => {
     const response = await fetchWrapper(baseUrl, path, {
       method,
@@ -47,5 +44,5 @@ export const useHttpClient = ({
       await requester<T>('GET', path, options.params),
     post: async <T>(path: string, options: RequestOptions = {}) =>
       await requester<T>('POST', path, options.params, options.body),
-  };
+  } as const;
 };

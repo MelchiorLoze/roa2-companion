@@ -7,13 +7,13 @@ import { ActionRow } from '@/components/ActionRow/ActionRow';
 import { Separator } from '@/components/Separator/Separator';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
-type ExternalLink = {
+type ExternalLink = Readonly<{
   label: string;
   url: URL;
   logo?: URL;
-};
+}>;
 
-const externalLinks: ExternalLink[] = [
+const externalLinks: readonly ExternalLink[] = [
   {
     label: 'Game wiki',
     url: new URL('https://dragdown.wiki/wiki/RoA2'),

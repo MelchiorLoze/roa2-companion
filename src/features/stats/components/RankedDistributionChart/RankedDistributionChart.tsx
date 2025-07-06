@@ -8,7 +8,7 @@ type Props = {
   elo: number;
 };
 
-export const RankedDistributionChart = ({ elo }: Props) => {
+export const RankedDistributionChart = ({ elo }: Readonly<Props>) => {
   const dimensions = useWindowDimensions();
   const width = dimensions.width - 2 * 24;
 

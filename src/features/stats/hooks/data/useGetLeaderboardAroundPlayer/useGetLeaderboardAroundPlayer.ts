@@ -4,18 +4,18 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
-type GetLeaderboardAroundPlayerRequest = {
+type GetLeaderboardAroundPlayerRequest = Readonly<{
   maxResultCount: number;
   statisticName: StatisticName;
-};
+}>;
 
-type GetLeaderboardAroundPlayerResponse = {
+type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
   Leaderboard: {
     DisplayName: string;
     StatValue: number;
     Position: number;
   }[];
-};
+}>;
 
 export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerRequest) => {
   const apiClient = useGameApiClient();
@@ -48,5 +48,5 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
     refetch,
     isLoading: isFetching || isPending,
     isError,
-  };
+  } as const;
 };

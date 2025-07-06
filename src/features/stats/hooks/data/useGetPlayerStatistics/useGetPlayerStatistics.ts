@@ -4,12 +4,12 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type PlayerStatistics, type StatisticName } from '../../../types/stats';
 
-type GetPlayerStatisticsResponse = {
+type GetPlayerStatisticsResponse = DeepReadonly<{
   Statistics: {
     StatisticName: StatisticName;
     Value: number;
   }[];
-};
+}>;
 
 export const useGetPlayerStatistics = () => {
   const apiClient = useGameApiClient();
@@ -31,5 +31,5 @@ export const useGetPlayerStatistics = () => {
     refetch,
     isLoading: isFetching || isPending,
     isError,
-  };
+  } as const;
 };

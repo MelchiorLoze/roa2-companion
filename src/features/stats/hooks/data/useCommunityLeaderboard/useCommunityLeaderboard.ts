@@ -5,7 +5,7 @@ import { useSteamCommunityApiClient } from '@/hooks/apiClients/useSteamCommunity
 
 import { type Leaderboard, type LeaderboardEntry } from '../../../types/rank';
 
-type CommunityLeaderboardResponse = {
+type CommunityLeaderboardResponse = DeepReadonly<{
   resultCount: number;
   totalLeaderboardEntries: number;
   entryStart: number;
@@ -17,7 +17,7 @@ type CommunityLeaderboardResponse = {
       rank: number;
     }[];
   };
-};
+}>;
 
 const queryFn = async (apiClient: ReturnType<typeof useSteamCommunityApiClient>, leaderboardId: Leaderboard['id']) => {
   let totalLeaderboardEntries = 0;
@@ -61,5 +61,5 @@ export const useCommunityLeaderboard = (leaderboardId: Leaderboard['id'] = -1) =
     leaderboardEntries: data ?? [],
     isLoading: isFetching,
     isError,
-  };
+  } as const;
 };

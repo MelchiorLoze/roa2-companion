@@ -5,16 +5,18 @@ import { type Item } from '@/types/item';
 
 const QUERY_KEY = ['inventoryItems'];
 
-type GetInventoryItemsResponse = {
+type GetInventoryItemsResponse = DeepReadonly<{
   Items: {
     Id: string;
     Amount: number;
   }[];
-};
+}>;
 
-type InventoryItem = Pick<Item, 'id'> & {
-  amount: number;
-};
+type InventoryItem = Readonly<
+  Pick<Item, 'id'> & {
+    amount: number;
+  }
+>;
 
 export const useGetInventoryItems = () => {
   const apiClient = useGameApiClient();
@@ -32,7 +34,7 @@ export const useGetInventoryItems = () => {
     gcTime: Infinity,
   });
 
-  return { inventoryItems: data ?? [], isLoading: isFetching || isPending, isError };
+  return { inventoryItems: data ?? [], isLoading: isFetching || isPending, isError } as const;
 };
 
 export const invalidateGetInventoryItems = (queryClient: QueryClient) => {

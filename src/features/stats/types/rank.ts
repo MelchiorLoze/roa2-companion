@@ -28,7 +28,7 @@ export enum Rank {
   AETHEREAN = 'aetherean',
 }
 
-export const RANK_ICONS: Readonly<Record<Rank, ImageSource>> = Object.freeze({
+export const RANK_ICONS = Object.freeze<Record<Rank, ImageSource>>({
   [Rank.STONE]: StoneIcon,
   [Rank.BRONZE]: BronzeIcon,
   [Rank.SILVER]: SilverIcon,
@@ -40,7 +40,7 @@ export const RANK_ICONS: Readonly<Record<Rank, ImageSource>> = Object.freeze({
   [Rank.AETHEREAN]: AethereanIcon,
 });
 
-export const RANK_ELO_THRESHOLDS: Readonly<Record<Rank, number>> = Object.freeze({
+export const RANK_ELO_THRESHOLDS = Object.freeze<Record<Rank, number>>({
   [Rank.STONE]: -Infinity,
   [Rank.BRONZE]: 500,
   [Rank.SILVER]: 700,
@@ -52,7 +52,7 @@ export const RANK_ELO_THRESHOLDS: Readonly<Record<Rank, number>> = Object.freeze
   [Rank.AETHEREAN]: 1800,
 });
 
-export const RANK_ELO_INTERVALS: Readonly<Record<Rank, Interval>> = Object.freeze({
+export const RANK_ELO_INTERVALS = Object.freeze<Record<Rank, Interval>>({
   [Rank.STONE]: new Interval(RANK_ELO_THRESHOLDS[Rank.STONE], RANK_ELO_THRESHOLDS[Rank.BRONZE] - 1),
   [Rank.BRONZE]: new Interval(RANK_ELO_THRESHOLDS[Rank.BRONZE], RANK_ELO_THRESHOLDS[Rank.SILVER] - 1),
   [Rank.SILVER]: new Interval(RANK_ELO_THRESHOLDS[Rank.SILVER], RANK_ELO_THRESHOLDS[Rank.GOLD] - 1),
@@ -64,15 +64,15 @@ export const RANK_ELO_INTERVALS: Readonly<Record<Rank, Interval>> = Object.freez
   [Rank.AETHEREAN]: new Interval(RANK_ELO_THRESHOLDS[Rank.AETHEREAN], Infinity),
 });
 
-export type Leaderboard = {
+export type Leaderboard = Readonly<{
   id: number;
   name: string;
   displayName: string;
   entryCount: number;
-};
+}>;
 
-export type LeaderboardEntry = {
+export type LeaderboardEntry = Readonly<{
   steamId: number;
   position: number;
   elo: number;
-};
+}>;

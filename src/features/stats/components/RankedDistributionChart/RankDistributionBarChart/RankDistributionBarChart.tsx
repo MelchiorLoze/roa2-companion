@@ -44,7 +44,7 @@ type Props = {
   width: number;
 };
 
-export const RankDistributionBarChart = ({ width }: Props) => {
+export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
   const { firstPlayerElo, lastPlayerElo, lastAethereanElo } = useLeaderboardStats();
   const { rankDistribution, isLoading } = useRankDistribution();
   const { theme } = useUnistyles();

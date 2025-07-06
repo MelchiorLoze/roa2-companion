@@ -6,17 +6,17 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type Session } from '../../../types/session';
 
-type LoginWithEmailAddressRequest = {
+type LoginWithEmailAddressRequest = Readonly<{
   email: string;
   password: string;
-};
+}>;
 
-type LoginWithEmailAddressResponse = {
+type LoginWithEmailAddressResponse = DeepReadonly<{
   EntityToken: {
     EntityToken: string;
     TokenExpiration: string;
   };
-};
+}>;
 
 export const useLoginWithEmail = () => {
   const apiClient = useGameApiClient();
@@ -42,5 +42,5 @@ export const useLoginWithEmail = () => {
     },
   });
 
-  return { session: data, loginWithEmail, isLoading: isPending, isError };
+  return { session: data, loginWithEmail, isLoading: isPending, isError } as const;
 };

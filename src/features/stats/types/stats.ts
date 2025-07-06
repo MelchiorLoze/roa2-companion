@@ -42,13 +42,15 @@ export enum StatisticName {
   RANDOM_MATCH_COUNT = 'Random Match Count',
 }
 
-export type PlayerPosition = {
+export type PlayerPosition = Readonly<{
   playerName: string;
   statisticName: StatisticName;
   statisticValue: number;
   position: number;
-};
+}>;
 
 export type PlayerStatistics = Record<StatisticName, number>;
 
-export type UserData = { characterData: Record<Character, { lvl: number } | undefined> };
+export type UserData = DeepReadonly<{
+  characterData: Record<Character, { lvl: number } | undefined>;
+}>;

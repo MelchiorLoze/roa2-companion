@@ -11,7 +11,7 @@ type Props = {
   currency: Currency;
 };
 
-export const CurrencyBalance = ({ balance, currency }: Props) => {
+export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
   const balanceDigitCount = balance.toString().length;
   const leadingZeros = '0'.repeat(MIN_DIGIT_COUNT - Math.min(MIN_DIGIT_COUNT, balanceDigitCount));
 

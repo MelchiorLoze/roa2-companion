@@ -47,7 +47,7 @@ const getRankedStats = (rawStats: PlayerStatistics, userPosition: PlayerPosition
     rank: getRank(elo, position),
     elo,
     setStats,
-  };
+  } as const;
 };
 
 const getGlobalStats = (rawStats: PlayerStatistics) => {
@@ -55,7 +55,7 @@ const getGlobalStats = (rawStats: PlayerStatistics) => {
   const winCount = rawStats[StatisticName.BETA_WINS];
   const winRate = gameCount ? (winCount / gameCount) * 100 : 0;
 
-  return { gameStats: { gameCount, winCount, winRate } };
+  return { gameStats: { gameCount, winCount, winRate } } as const;
 };
 
 const getCharacterStats = (rawStats: PlayerStatistics, userData: UserData) =>
@@ -97,5 +97,5 @@ export const useUserStats = () => {
   const globalStats = rawStats && !isLoading ? getGlobalStats(rawStats) : undefined;
   const characterStats = rawStats && userData && !isLoading ? getCharacterStats(rawStats, userData) : undefined;
 
-  return { rankedStats, globalStats, characterStats, refresh, isLoading };
+  return { rankedStats, globalStats, characterStats, refresh, isLoading } as const;
 };

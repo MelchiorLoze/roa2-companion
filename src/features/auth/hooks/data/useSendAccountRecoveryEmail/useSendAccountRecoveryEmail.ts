@@ -21,5 +21,5 @@ export const useSendAccountRecoveryEmail = () => {
     isLoading: isPending,
     isSuccess,
     isError,
-  };
+  } as const;
 };

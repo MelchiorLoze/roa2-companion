@@ -32,7 +32,7 @@ export enum Character {
   ZETTERBURN = 'Zet',
 }
 
-export const CHARACTER_ICONS: Readonly<Record<Character, ImageSource>> = Object.freeze({
+export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
   [Character.ABSA]: AbsaIcon,
   [Character.CLAIREN]: ClairenIcon,
   [Character.ETALUS]: EtalusIcon,

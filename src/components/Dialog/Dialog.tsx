@@ -9,7 +9,7 @@ type Props = PropsWithChildren & {
   onClose: () => void;
 };
 
-export const Dialog = ({ alertText, onClose, children }: Props) => (
+export const Dialog = ({ alertText, onClose, children }: Readonly<Props>) => (
   <View>
     <Modal animationType="fade" onRequestClose={onClose} statusBarTranslucent transparent>
       <View style={styles.container}>

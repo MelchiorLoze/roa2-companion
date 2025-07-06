@@ -59,7 +59,7 @@ const mockUserData: UserData = {
       acc[character] = { lvl: 5 + index * 10 };
       return acc;
     },
-    {} as UserData['characterData'],
+    {} as Record<Character, { lvl: number }>,
   ),
 };
 

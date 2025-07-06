@@ -14,7 +14,7 @@ type Props = {
   onClose: (email?: string) => void;
 };
 
-const Content = ({ email: propsEmail, onClose }: Props) => {
+const Content = ({ email: propsEmail, onClose }: Readonly<Props>) => {
   const [email, setEmail] = useState(propsEmail ?? '');
   const [isInvalid, setIsInvalid] = useState(false);
 
@@ -60,7 +60,7 @@ const Content = ({ email: propsEmail, onClose }: Props) => {
   );
 };
 
-export const ResetPasswordDialog = ({ email, onClose }: Props) => {
+export const ResetPasswordDialog = ({ email, onClose }: Readonly<Props>) => {
   return (
     <Dialog onClose={onClose}>
       <Content email={email} onClose={onClose} />

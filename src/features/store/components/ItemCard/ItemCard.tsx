@@ -10,7 +10,7 @@ import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/i
 
 type Props = { item: Item; onPress: () => void };
 
-export const ItemCard = ({ item, onPress }: Props) => {
+export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (

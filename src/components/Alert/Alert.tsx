@@ -8,7 +8,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const Alert = ({ text, style }: Props) => {
+export const Alert = ({ text, style }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (

@@ -44,6 +44,7 @@ module.exports = defineConfig([
       'react-native/sort-styles': 'off',
       'react/jsx-sort-props': 'warn',
       'react/react-in-jsx-scope': 'off',
+      'react/prefer-read-only-props': 'warn',
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/consistent-type-imports': 'warn',
       '@typescript-eslint/consistent-type-exports': 'warn',

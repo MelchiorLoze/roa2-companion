@@ -15,7 +15,15 @@ type Props = Pick<ComponentProps<typeof TextInput>, 'placeholder' | 'autoComplet
   contextualCTA?: ContextualCTA;
 };
 
-export const Input = ({ placeholder, autoComplete, value, hidden, onChange, errorMessage, contextualCTA }: Props) => {
+export const Input = ({
+  placeholder,
+  autoComplete,
+  value,
+  hidden,
+  onChange,
+  errorMessage,
+  contextualCTA,
+}: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (

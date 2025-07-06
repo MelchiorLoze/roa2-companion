@@ -5,14 +5,14 @@ import { useSteamCommunityApiClient } from '@/hooks/apiClients/useSteamCommunity
 
 import { type Leaderboard } from '../../../types/rank';
 
-type CommunityLeaderboardsResponse = {
+type CommunityLeaderboardsResponse = DeepReadonly<{
   leaderboard: {
     lbid: number;
     name: string;
     display_name: string;
     entries: number;
   }[];
-};
+}>;
 
 export const useCommunityLeaderboards = () => {
   const apiClient = useSteamCommunityApiClient();
@@ -35,5 +35,5 @@ export const useCommunityLeaderboards = () => {
     leaderboards: data ?? [],
     isLoading: isFetching || isPending,
     isError,
-  };
+  } as const;
 };

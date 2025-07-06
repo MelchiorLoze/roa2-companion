@@ -16,5 +16,5 @@ export const useRotatingCoinShop = () => {
     items: sortItems(items),
     expirationDate: rotationalCoinStore?.expirationDate,
     isLoading: isLoadingRotation || isLoadingItems,
-  };
+  } as const;
 };

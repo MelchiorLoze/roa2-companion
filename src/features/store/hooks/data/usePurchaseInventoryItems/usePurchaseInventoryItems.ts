@@ -7,12 +7,12 @@ import { type Item } from '@/types/item';
 
 import { invalidateGetMyRotationalCoinStore } from '../useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
-type ItemToPurchase = {
+type ItemToPurchase = DeepReadonly<{
   id: Item['id'];
   price: { value: number; currencyId: CurrencyId };
-};
+}>;
 
-type Props = { onSuccess?: () => void };
+type Props = Readonly<{ onSuccess?: () => void }>;
 
 export const usePurchaseInventoryItems = ({ onSuccess }: Props = {}) => {
   const apiClient = useGameApiClient();

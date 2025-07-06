@@ -34,7 +34,7 @@ const getRankDistribution = (leaderboardEntries: LeaderboardEntry[]): Record<Ran
     [Rank.MASTER]: indices[2] - indices[1],
     [Rank.GRANDMASTER]: indices[1] - indices[0] + Math.max(0, indices[0] - 100), // 1700-1799 + excess above 1800
     [Rank.AETHEREAN]: Math.min(100, indices[0]), // Top 100 players above 1800
-  };
+  } as const;
 };
 
 export const useRankDistribution = () => {
@@ -43,5 +43,5 @@ export const useRankDistribution = () => {
   return {
     rankDistribution: getRankDistribution(leaderboardEntries),
     isLoading,
-  };
+  } as const;
 };

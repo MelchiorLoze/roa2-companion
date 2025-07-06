@@ -9,7 +9,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-export const CurrenciesBalance = ({ style }: Props) => {
+export const CurrenciesBalance = ({ style }: Readonly<Props>) => {
   const { coinsBalance, bucksBalance, medalsBalance } = useCurrencyBalance();
 
   return (

@@ -10,7 +10,7 @@ const keyExtractor = (item: Item) => item.id;
 
 type Props = { items: Item[]; onSelect: (item: Item) => void };
 
-export const ItemList = ({ items, onSelect }: Props) => {
+export const ItemList = ({ items, onSelect }: Readonly<Props>) => {
   const renderItem = useCallback<ListRenderItem<Item>>(
     ({ item }) => <ItemCard item={item} onPress={() => onSelect(item)} />,
     [onSelect],

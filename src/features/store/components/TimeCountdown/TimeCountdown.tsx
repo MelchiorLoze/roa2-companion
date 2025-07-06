@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { type StyleProp, Text, type TextStyle, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-export const TimeCountdown = ({ date, style }: { date: DateTime; style?: StyleProp<TextStyle> }) => {
+type Props = { date: DateTime; style?: StyleProp<TextStyle> };
+
+export const TimeCountdown = ({ date, style }: Readonly<Props>) => {
   const [timeLeft, setTimeLeft] = useState<Duration>();
 
   useEffect(() => {

@@ -15,7 +15,7 @@ type Props = {
   onClose: () => void;
 };
 
-const Content = ({ item, onClose }: Props) => {
+const Content = ({ item, onClose }: Readonly<Props>) => {
   const { purchase, isLoading, isError } = usePurchaseInventoryItems({ onSuccess: onClose });
 
   const handlePurchase = () => {
@@ -54,7 +54,7 @@ const Content = ({ item, onClose }: Props) => {
   );
 };
 
-export const PurchaseConfirmationDialog = ({ item, onClose }: Props) => {
+export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) => {
   return (
     <Dialog alertText="Purchases won't immediately reflect in currently opened game shop" onClose={onClose}>
       <Content item={item} onClose={onClose} />

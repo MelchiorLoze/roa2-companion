@@ -4,13 +4,13 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type UserData } from '../../../types/stats';
 
-type GetUserReadOnlyDataResponse = {
+type GetUserReadOnlyDataResponse = DeepReadonly<{
   Data: {
     character_data: {
       Value: string;
     };
   };
-};
+}>;
 
 export const useGetUserReadOnlyData = () => {
   const apiClient = useGameApiClient();
@@ -28,5 +28,5 @@ export const useGetUserReadOnlyData = () => {
     refetch,
     isLoading: isFetching || isPending,
     isError,
-  };
+  } as const;
 };

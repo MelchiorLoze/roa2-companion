@@ -13,10 +13,10 @@ type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
   itemIds: Item['id'][];
 }>;
 
-type RotationalCoinStore = {
+type RotationalCoinStore = Readonly<{
   expirationDate: DateTime;
   itemIds: Item['id'][];
-};
+}>;
 
 export const useGetMyRotationalCoinStore = () => {
   const apiClient = useGameApiClient();

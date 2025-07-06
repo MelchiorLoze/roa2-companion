@@ -4,9 +4,9 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 import { type Item, type ItemDto } from '@/types/item';
 import { itemFromDto } from '@/utils/itemFromDto';
 
-type GetItemsResponse = {
+type GetItemsResponse = Readonly<{
   Items: ItemDto[];
-};
+}>;
 
 export const useGetItems = (itemIds: Item['id'][]) => {
   const apiClient = useGameApiClient();
@@ -24,5 +24,5 @@ export const useGetItems = (itemIds: Item['id'][]) => {
     items: data ?? [],
     isLoading: isFetching,
     isError,
-  };
+  } as const;
 };

@@ -8,11 +8,11 @@ import {
   FranklinGothicDemiCondRegular,
 } from '@/assets/fonts';
 
-type Props = {
+type Props = Readonly<{
   onLoaded?: () => void;
-};
+}>;
 
-export const useAppFonts = ({ onLoaded }: Props) => {
+export const useAppFonts = ({ onLoaded }: Readonly<Props>) => {
   const [loaded] = useFonts({
     'AgencyFB-Black': AgencyFBBlack,
     'AgencyFB-Bold': AgencyFBBold,

@@ -49,7 +49,7 @@ const getParagraph = (text: string, color: string, strokeWidth: number, fontMana
     paragraph,
     paragraphWidth: paragraphOutline.getLongestLine() + strokeWidth,
     paragraphHeight: paragraphOutline.getHeight(),
-  };
+  } as const;
 };
 
 type Props = {
@@ -58,7 +58,7 @@ type Props = {
   strokeWidth: number;
 };
 
-export const OutlinedText = ({ text, color, strokeWidth }: Props) => {
+export const OutlinedText = ({ text, color, strokeWidth }: Readonly<Props>) => {
   const fontMngr = useFonts({
     'AgencyFB-Bold': [AgencyFBBold as DataModule],
   });

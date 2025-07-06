@@ -8,7 +8,7 @@ type Props = {
   height?: number;
 };
 
-export const Separator = ({ variant = 'border', height = 1 }: Props) => {
+export const Separator = ({ variant = 'border', height = 1 }: Readonly<Props>) => {
   return <View style={styles.separator(variant, height)} />;
 };
 

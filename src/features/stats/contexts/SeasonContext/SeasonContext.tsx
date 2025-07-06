@@ -3,7 +3,7 @@ import { createContext, type PropsWithChildren, useContext, useState } from 'rea
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/stats';
 
-type SeasonState = {
+type SeasonState = DeepReadonly<{
   season: {
     index: number;
     name: string;
@@ -14,7 +14,7 @@ type SeasonState = {
   isLoading: boolean;
   setPreviousSeason: () => void;
   setNextSeason: () => void;
-};
+}>;
 
 const SeasonContext = createContext<SeasonState | undefined>(undefined);
 

@@ -11,7 +11,7 @@ type Props = {
   onPress: () => void;
 };
 
-export const IconButton = ({ iconName, size, style, disabled, onPress }: Props) => {
+export const IconButton = ({ iconName, size, style, disabled, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (

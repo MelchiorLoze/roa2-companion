@@ -19,5 +19,5 @@ export const useLeaderboardStats = () => {
     lastAethereanElo,
     leaderboardEntries,
     isLoading: isLoadingSeason || isLoadingLeaderboard,
-  };
+  } as const;
 };

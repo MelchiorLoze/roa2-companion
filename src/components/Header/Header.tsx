@@ -12,7 +12,7 @@ type Props = {
   withBackNavigation?: boolean;
 };
 
-export const Header = ({ title, showCurrencies, withBackNavigation }: Props) => {
+export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<Props>) => {
   const router = useRouter();
 
   return (

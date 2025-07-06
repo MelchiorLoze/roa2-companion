@@ -17,5 +17,5 @@ export const useAuth = () => {
     logout: clearSession,
     isLoading: isLoadingSession || isLoadingLogin,
     isError,
-  };
+  } as const;
 };
