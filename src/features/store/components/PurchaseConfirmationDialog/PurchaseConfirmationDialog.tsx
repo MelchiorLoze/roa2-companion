@@ -56,7 +56,7 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
 
 export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) => {
   return (
-    <Dialog alertText="Purchases won't immediately reflect in currently opened game shop" onClose={onClose}>
+    <Dialog alertText="If you have the game opened, don't try to buy the same item twice" onClose={onClose}>
       <Content item={item} onClose={onClose} />
     </Dialog>
   );
