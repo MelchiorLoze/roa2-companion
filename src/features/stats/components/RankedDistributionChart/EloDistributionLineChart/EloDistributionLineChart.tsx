@@ -11,7 +11,7 @@ const formatLineData = (eloDistribution: Record<number, number>) =>
   );
 
 type Props = {
-  userElo: number;
+  userElo?: number;
   width: number;
   style?: StyleProp<ViewStyle>;
 };
@@ -21,12 +21,15 @@ export const EloDistributionLineChart = ({ userElo, width, style }: Readonly<Pro
 
   if (isLoadingLeaderboard) return null;
 
-  const userEloStep = roundElo(userElo);
-  const userEloStepIndex = Object.keys(eloDistribution).findIndex((elo) => Number(elo) === userEloStep);
   const lineData = formatLineData(eloDistribution);
-  if (userEloStepIndex !== -1) {
-    lineData[userEloStepIndex].dataPointColor = 'red';
-    lineData[userEloStepIndex].dataPointRadius = 2;
+
+  if (userElo !== undefined) {
+    const userEloStep = roundElo(userElo);
+    const userEloStepIndex = Object.keys(eloDistribution).findIndex((elo) => Number(elo) === userEloStep);
+    if (userEloStepIndex !== -1) {
+      lineData[userEloStepIndex].dataPointColor = 'red';
+      lineData[userEloStepIndex].dataPointRadius = 2;
+    }
   }
 
   return (

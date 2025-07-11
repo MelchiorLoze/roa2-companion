@@ -1,8 +1,9 @@
 import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { IconButton } from '@/components/IconButton/IconButton';
+import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
@@ -11,6 +12,7 @@ import { type Rank, RANK_ICONS } from '../../types/rank';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 
 export const RankedStats = () => {
+  const { theme } = useUnistyles();
   const { season, setPreviousSeason, setNextSeason } = useSeason();
   const { rankedStats: stats, isLoading } = useUserStats();
 
@@ -50,12 +52,21 @@ export const RankedStats = () => {
           </View>
         )}
 
-        <View style={styles.positionContainer}>
-          <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
-          <Text style={styles.label}>
-            <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
-          </Text>
-        </View>
+        {stats.elo !== undefined && stats.rank ? (
+          <View style={styles.positionContainer}>
+            <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
+            <Text style={styles.label}>
+              <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
+            </Text>
+          </View>
+        ) : (
+          <OutlinedText
+            color={theme.color.white}
+            fontFamily={theme.font.secondary.black}
+            strokeWidth={3}
+            text="UNRANKED"
+          />
+        )}
       </View>
 
       <RankedDistributionChart elo={stats.elo} />

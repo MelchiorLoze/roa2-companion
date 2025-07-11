@@ -58,7 +58,7 @@ const theme = {
       black: 'AgencyFB-Black',
     },
   },
-};
+} as const;
 
 const appThemes = {
   default: theme,

@@ -14,6 +14,7 @@ import {
   StoneIcon,
 } from '../assets/images/rank';
 
+export const PLACEMENT_WIN_COUNT = 4;
 export const MAX_AETHEREAN_PLAYERS = 100; // Maximum number of players in the Aetherean rank
 
 export enum Rank {

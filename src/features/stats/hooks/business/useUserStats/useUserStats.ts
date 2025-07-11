@@ -38,13 +38,13 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, seasonIndex: number) =
 
 const getRankedStats = (rawStats: PlayerStatistics, userPosition: PlayerPosition, seasonIndex: number) => {
   const position = userPosition.position;
-  const elo = rawStats[getEloStatNameForSeason(seasonIndex)];
 
   const setStats = getSetStatsForSeason(rawStats, seasonIndex);
+  const elo = setStats && setStats.winCount < 4 ? undefined : rawStats[getEloStatNameForSeason(seasonIndex)];
 
   return {
     position,
-    rank: getRank(elo, position),
+    rank: elo ? getRank(elo, position) : undefined,
     elo,
     setStats,
   } as const;

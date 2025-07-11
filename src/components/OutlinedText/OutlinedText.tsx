@@ -12,9 +12,23 @@ import {
   useFonts,
 } from '@shopify/react-native-skia';
 
-import { AgencyFBBold } from '@/assets/fonts';
+import { AgencyFBBlack, AgencyFBBold } from '@/assets/fonts';
 
-const getParagraph = (text: string, color: string, strokeWidth: number, fontManager: SkTypefaceFontProvider) => {
+type ThemeFonts = Theme['font']['secondary'];
+type FontFamily = ThemeFonts[keyof ThemeFonts];
+
+const fonts: Record<FontFamily, [DataModule]> = {
+  'AgencyFB-Bold': [AgencyFBBold as DataModule],
+  'AgencyFB-Black': [AgencyFBBlack as DataModule],
+};
+
+const getParagraph = (
+  text: string,
+  fontFamily: FontFamily,
+  color: string,
+  strokeWidth: number,
+  fontProvider: SkTypefaceFontProvider,
+) => {
   const outlineForegroundPaint = Skia.Paint();
   outlineForegroundPaint.setStrokeWidth(strokeWidth);
   outlineForegroundPaint.setStyle(PaintStyle.Stroke);
@@ -27,22 +41,22 @@ const getParagraph = (text: string, color: string, strokeWidth: number, fontMana
 
   const textStyle: SkTextStyle = {
     fontSize: 18,
-    fontFamilies: ['AgencyFB-Bold'],
+    fontFamilies: [fontFamily],
   };
 
-  const paragraphOutline = Skia.ParagraphBuilder.Make(paragraphStyle, fontManager)
+  const paragraphOutline = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
     .pushStyle(textStyle, outlineForegroundPaint)
     .addText(text)
     .pop()
     .build();
 
-  const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontManager)
+  const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
     .pushStyle({ ...textStyle, color: Skia.Color(color) })
     .addText(text)
     .pop()
     .build();
 
-  paragraphOutline.layout(70);
+  paragraphOutline.layout(100);
 
   return {
     paragraphOutline,
@@ -54,22 +68,22 @@ const getParagraph = (text: string, color: string, strokeWidth: number, fontMana
 
 type Props = {
   text: string;
+  fontFamily: FontFamily;
   color: string;
   strokeWidth: number;
 };
 
-export const OutlinedText = ({ text, color, strokeWidth }: Readonly<Props>) => {
-  const fontMngr = useFonts({
-    'AgencyFB-Bold': [AgencyFBBold as DataModule],
-  });
+export const OutlinedText = ({ text, fontFamily, color, strokeWidth }: Readonly<Props>) => {
+  const fontProvider = useFonts(fonts);
 
-  if (!fontMngr) return null;
+  if (!fontProvider) return null;
 
   const { paragraphOutline, paragraph, paragraphWidth, paragraphHeight } = getParagraph(
     text,
+    fontFamily,
     color,
     strokeWidth,
-    fontMngr,
+    fontProvider,
   );
 
   return (

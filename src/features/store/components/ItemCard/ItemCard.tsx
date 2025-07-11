@@ -25,6 +25,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
             <View style={styles.info}>
               <OutlinedText
                 color={styles.category(item.rarity).color}
+                fontFamily={theme.font.secondary.bold}
                 strokeWidth={2}
                 text={CATEGORY_LABELS[item.category].toUpperCase()}
               />

@@ -319,4 +319,23 @@ describe('useUserStats', () => {
       expect(characterStat?.level).toBe(5 + index * 10);
     });
   });
+
+  it('returns undefined elo and rank when win count is less than 4', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      statistics: {
+        [StatisticName.RANKED_S2_ELO]: 925,
+        [StatisticName.RANKED_SETS]: 10,
+        [StatisticName.RANKED_WINS]: 3,
+      } as PlayerStatistics,
+      refetch: jest.fn(),
+      isLoading: false,
+      isError: false,
+    });
+
+    const { result } = renderUseUserStats();
+
+    expect(result.current.rankedStats).toBeDefined();
+    expect(result.current.rankedStats?.elo).toBeUndefined();
+    expect(result.current.rankedStats?.rank).toBeUndefined();
+  });
 });

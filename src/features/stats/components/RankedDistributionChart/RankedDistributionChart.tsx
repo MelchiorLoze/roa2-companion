@@ -5,7 +5,7 @@ import { EloDistributionLineChart } from './EloDistributionLineChart/EloDistribu
 import { RankDistributionBarChart } from './RankDistributionBarChart/RankDistributionBarChart';
 
 type Props = {
-  elo: number;
+  elo?: number;
 };
 
 export const RankedDistributionChart = ({ elo }: Readonly<Props>) => {

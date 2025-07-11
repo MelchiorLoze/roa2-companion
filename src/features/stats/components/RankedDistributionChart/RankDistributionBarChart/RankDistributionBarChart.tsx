@@ -1,6 +1,6 @@
 import { Text, View } from 'react-native';
 import { BarChart, type barDataItem } from 'react-native-gifted-charts';
-import { StyleSheet, type UnistylesThemes, useUnistyles } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
 
@@ -14,7 +14,7 @@ const formatNumber = (value: number) => {
   return value.toString();
 };
 
-// Caclulate the widths of the chart bars to be proportional to the elo intervals
+// Calculate the widths of the chart bars to be proportional to the elo intervals
 const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) => {
   const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
   return [
@@ -30,7 +30,7 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
   ].map((eloIntervalSize) => (eloIntervalSize / totalEloRange) * totalWidth);
 };
 
-const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: UnistylesThemes['default']) =>
+const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: Theme) =>
   Object.entries(rawData).map(
     ([rank, count], index): barDataItem => ({
       value: count,

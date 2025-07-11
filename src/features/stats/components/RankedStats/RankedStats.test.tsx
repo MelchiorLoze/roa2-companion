@@ -1,5 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
+import { Text } from 'react-native';
 
+import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Character } from '@/types/character';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
@@ -57,6 +59,9 @@ useLeaderboardStatsMock.mockReturnValue({
   isLoading: false,
 });
 
+jest.mock('@/components/OutlinedText/OutlinedText');
+jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
+
 const renderComponent = () => {
   render(<RankedStats />);
 
@@ -81,6 +86,7 @@ describe('RankedStats', () => {
     screen.getByText('Winrate: 75.00%');
 
     screen.getByText('925 - #123');
+    expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 
   it('does not allow to switch to previous session when already at the first', () => {
@@ -143,5 +149,37 @@ describe('RankedStats', () => {
     renderComponent();
 
     screen.getByTestId('spinner');
+  });
+
+  it('displays UNRANKED when elo is undefined', () => {
+    useUserStatsMock.mockReturnValue({
+      ...defaultUserStatsState,
+      rankedStats: {
+        ...defaultUserStatsState.rankedStats,
+        elo: undefined,
+        rank: undefined,
+      } as typeof defaultUserStatsState.rankedStats,
+    });
+
+    renderComponent();
+
+    screen.getByText('UNRANKED');
+    expect(screen.queryByText('925 - #123')).toBeNull();
+  });
+
+  it('does not display UNRANKED when elo is 0', () => {
+    useUserStatsMock.mockReturnValue({
+      ...defaultUserStatsState,
+      rankedStats: {
+        ...defaultUserStatsState.rankedStats,
+        elo: 0,
+        rank: Rank.STONE,
+      } as typeof defaultUserStatsState.rankedStats,
+    });
+
+    renderComponent();
+
+    screen.getByText('0 - #123');
+    expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 });
