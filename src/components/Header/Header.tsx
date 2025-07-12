@@ -1,6 +1,7 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { IconButton } from '../IconButton/IconButton';
 import { Separator } from '../Separator/Separator';
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<Props>) => {
+  const { theme } = useUnistyles();
   const router = useRouter();
 
   return (
@@ -20,12 +22,12 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<P
       {showCurrencies ? <CurrenciesBalance style={styles.topContainer} /> : <View style={styles.topSpacing} />}
       <Separator height={2} variant="accent" />
       {title && (
-        <View style={styles.bottomContainer(withBackNavigation)}>
+        <LinearGradient colors={theme.color.headerGradient} style={styles.bottomContainer(withBackNavigation)}>
           {withBackNavigation && (
             <IconButton iconName="arrow-back" onPress={router.back} size={24} style={styles.backButton} />
           )}
           <Text style={styles.title}>{title}</Text>
-        </View>
+        </LinearGradient>
       )}
     </>
   );
@@ -49,7 +51,6 @@ const styles = StyleSheet.create((theme, runtime) => ({
     alignItems: 'center',
     paddingVertical: withBackNavigation ? theme.spacing.s : theme.spacing.m,
     paddingHorizontal: withBackNavigation ? theme.spacing.s : theme.spacing.l,
-    backgroundColor: theme.color.background,
   }),
   backButton: {
     padding: theme.spacing.s,

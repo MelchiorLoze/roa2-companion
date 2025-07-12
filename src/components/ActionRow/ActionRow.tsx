@@ -1,5 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { type ExternalPathString, useRouter } from 'expo-router';
 import { type ComponentProps } from 'react';
 import { Pressable, Text } from 'react-native';
@@ -29,10 +30,14 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
     <Pressable
       onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress?.())}
       role={url ? 'link' : 'button'}
-      style={({ pressed }) => [styles.container, pressed && styles.containerPressed]}
     >
       {({ pressed }) => (
-        <>
+        <LinearGradient
+          colors={theme.color.arrowButtonGradient(pressed)}
+          end={[1, 0]}
+          start={[0, 0]}
+          style={styles.container}
+        >
           {logo && <Image contentFit="contain" source={logo.toString()} style={styles.logo} />}
           <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
           <MaterialIcons
@@ -41,7 +46,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
             size={20}
             style={styles.icon}
           />
-        </>
+        </LinearGradient>
       )}
     </Pressable>
   );

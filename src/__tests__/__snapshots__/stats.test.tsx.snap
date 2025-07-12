@@ -851,7 +851,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -876,7 +876,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -896,7 +896,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -911,7 +911,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -969,7 +969,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -989,7 +989,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1004,7 +1004,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1062,7 +1062,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1082,7 +1082,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1097,7 +1097,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1155,7 +1155,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1175,7 +1175,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1190,7 +1190,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 0,
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1248,7 +1248,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,
@@ -1268,7 +1268,7 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderLeftWidth": 1,
                   "flex": 0.4,
                   "paddingLeft": 8,

@@ -61,7 +61,7 @@ exports[`SignIn matches the snapshot 1`] = `
         style={
           {
             "backgroundColor": "#161616",
-            "borderColor": "#FFDF77",
+            "borderColor": "#FEDD84",
             "borderWidth": 1,
             "color": "white",
             "height": 48,
@@ -100,7 +100,7 @@ exports[`SignIn matches the snapshot 1`] = `
         style={
           {
             "backgroundColor": "#161616",
-            "borderColor": "#FFDF77",
+            "borderColor": "#FEDD84",
             "borderWidth": 1,
             "color": "white",
             "height": 48,
@@ -376,7 +376,7 @@ exports[`SignIn matches the snapshot 2`] = `
           style={
             {
               "backgroundColor": "#161616",
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "borderWidth": 1,
               "color": "white",
               "height": 48,
@@ -415,7 +415,7 @@ exports[`SignIn matches the snapshot 2`] = `
           style={
             {
               "backgroundColor": "#161616",
-              "borderColor": "#FFDF77",
+              "borderColor": "#FEDD84",
               "borderWidth": 1,
               "color": "white",
               "height": 48,
@@ -693,8 +693,8 @@ exports[`SignIn matches the snapshot 2`] = `
         <View
           style={
             {
-              "backgroundColor": "#0E0B2A",
-              "borderColor": "#FFDF77",
+              "backgroundColor": "#0B0825",
+              "borderColor": "#FEDD84",
               "borderWidth": 2,
               "gap": 16,
               "padding": 16,
@@ -731,7 +731,7 @@ exports[`SignIn matches the snapshot 2`] = `
               style={
                 {
                   "backgroundColor": "#161616",
-                  "borderColor": "#FFDF77",
+                  "borderColor": "#FEDD84",
                   "borderWidth": 1,
                   "color": "white",
                   "height": 48,

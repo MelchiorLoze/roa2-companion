@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
@@ -26,15 +26,15 @@ export default function Store() {
 
   return (
     <>
-      <View style={styles.container}>
+      <LinearGradient colors={theme.color.storeGradient} style={styles.container}>
         {expirationDate && (
-          <LinearGradient colors={theme.color.labelGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
+          <LinearGradient colors={theme.color.blackGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
             <Text style={styles.title}>Items refresh in:</Text>
             <TimeCountdown date={expirationDate} style={styles.title} />
           </LinearGradient>
         )}
         <ItemList items={items} onSelect={openDialog} />
-      </View>
+      </LinearGradient>
       {selectedItem && <PurchaseConfirmationDialog item={selectedItem} onClose={closeDialog} />}
     </>
   );

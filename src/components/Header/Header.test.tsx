@@ -63,4 +63,10 @@ describe('Header', () => {
     expect(screen.queryByText('Test Title')).toBeNull();
     expect(screen.queryByRole('button')).toBeNull();
   });
+
+  it('matches the snapshot', () => {
+    const tree = render(<Header showCurrencies title="Test title" withBackNavigation />).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

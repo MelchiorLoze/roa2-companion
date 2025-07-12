@@ -33,7 +33,7 @@ export default function PrivateLayout() {
           tabBarStyle: styles.container,
           tabBarLabelStyle: styles.label,
           tabBarActiveTintColor: theme.color.white,
-          tabBarInactiveTintColor: theme.color.disabled,
+          tabBarInactiveTintColor: theme.color.inactive,
           sceneStyle: { backgroundColor: theme.color.highlight },
         }}
       >

@@ -33,7 +33,7 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.xs,
   },
   leadingZeros: {
-    color: theme.color.background,
+    color: theme.color.darkBlue,
   },
   label: {
     fontFamily: theme.font.secondary.black,

@@ -2,12 +2,14 @@ import { StyleSheet } from 'react-native-unistyles';
 
 const theme = {
   color: {
-    background: '#0E0B2A',
+    background: '#0B0825',
+    darkBlue: '#070032',
     highlight: '#2B1F74',
-    accent: '#FFDF77',
+    accent: '#FEDD84',
     border: '#CACEFF',
     dark: '#161616',
     weak: '#676767',
+    inactive: '#5A5C95',
     disabled: '#AAAAAA',
     black: 'black',
     white: 'white',
@@ -29,15 +31,19 @@ const theme = {
     grandmaster: '#FC7575',
     aetherean: '#BD7CC5',
     // Gradients
+    headerGradient: ['#05011A', '#261D43'] as const,
     alertGradient: ['#E3E2E4', '#7C7B87'] as const,
-    labelGradient: ['transparent', 'black'] as const,
+    blackGradient: ['transparent', 'black'] as const,
+    storeGradient: ['#4F38D4', '#251A5E'] as const,
     statsGradient: ['#4B7AB8', 'transparent'] as const,
     cardGradient: (pressed?: boolean) =>
-      pressed ? (['#F2CF6C', '#CD8944'] as const) : (['#161049', '#0D071D'] as const),
+      pressed ? (['#FFFF8D', '#F1A544'] as const) : (['#161049', '#0D071D'] as const),
     borderGradient: (pressed?: boolean) =>
-      pressed ? (['#CD8944', '#F2CF6C'] as const) : (['#CACEFF', '#6B76DC'] as const),
+      pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#CACEFF', '#6B76DC'] as const),
     buttonGradient: (pressed?: boolean) =>
       pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#2D1D76', '#5B73CD'] as const),
+    arrowButtonGradient: (pressed?: boolean) =>
+      pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#0B0825', '#0B0825'] as const),
   },
   spacing: {
     none: 0,

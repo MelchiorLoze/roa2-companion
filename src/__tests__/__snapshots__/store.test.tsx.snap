@@ -1,7 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Store matches the snapshot 1`] = `
-<View
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4283381972,
+      4280621662,
+    ]
+  }
   style={
     {
       "flex": 1,
@@ -1088,5 +1094,5 @@ exports[`Store matches the snapshot 1`] = `
       </View>
     </View>
   </RCTScrollView>
-</View>
+</ViewManagerAdapter_ExpoLinearGradient>
 `;
