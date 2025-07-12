@@ -15,13 +15,9 @@ type ExternalLink = Readonly<{
 
 const externalLinks: readonly ExternalLink[] = [
   {
-    label: 'Game wiki',
+    label: 'Dragdown Wiki',
     url: new URL('https://dragdown.wiki/wiki/RoA2'),
     logo: new URL('https://dragdown.wiki/favicon.ico'),
-  },
-  {
-    label: 'Frame data',
-    url: new URL('https://rivalsframedata.com/'),
   },
   {
     label: 'Elo History',
