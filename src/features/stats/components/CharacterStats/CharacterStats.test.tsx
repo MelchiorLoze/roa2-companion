@@ -16,6 +16,7 @@ const defaultUserCharacterStatsState: ReturnType<typeof useUserCharacterStats> =
   ],
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 };
 
 const renderComponent = () => {

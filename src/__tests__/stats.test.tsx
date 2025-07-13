@@ -35,6 +35,7 @@ useUserRankedStatsMock.mockReturnValue({
   },
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 });
 
 jest.mock('@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats');
@@ -45,6 +46,7 @@ useUserGlobalStatsMock.mockReturnValue({
   },
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 });
 
 jest.mock('@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats');
@@ -58,6 +60,7 @@ useUserCharacterStatsMock.mockReturnValue({
   ],
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 });
 
 jest.mock('@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats');

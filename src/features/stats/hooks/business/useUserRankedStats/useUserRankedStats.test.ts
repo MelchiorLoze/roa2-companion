@@ -66,6 +66,7 @@ describe('useUserRankedStats', () => {
       statistics: {} as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -73,23 +74,25 @@ describe('useUserRankedStats', () => {
       playerPositions: mockedPlayerPositions,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
   });
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as PlayerStatistics,
+      statistics: undefined,
       refetch: jest.fn(),
       isLoading: true,
+      isRefetching: false,
       isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
+    expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
-    expect(typeof result.current.refresh).toBe('function');
   });
 
   it('returns loading state when player positions are loading', () => {
@@ -97,14 +100,47 @@ describe('useUserRankedStats', () => {
       playerPositions: [],
       refetch: jest.fn(),
       isLoading: true,
+      isRefetching: false,
       isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
+    expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
-    expect(typeof result.current.refresh).toBe('function');
+  });
+
+  it('returns refetching state when statistics are being refetched', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      statistics: {} as PlayerStatistics,
+      refetch: jest.fn(),
+      isLoading: false,
+      isRefetching: true,
+      isError: false,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isRefreshing).toBe(true);
+    expect(result.current.stats).toBeDefined();
+  });
+
+  it('returns refetching state when player positions are being refetched', () => {
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      playerPositions: mockedPlayerPositions,
+      refetch: jest.fn(),
+      isLoading: false,
+      isRefetching: true,
+      isError: false,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isRefreshing).toBe(true);
+    expect(result.current.stats).toBeDefined();
   });
 
   it('returns nothing when statistics are not present', () => {
@@ -112,6 +148,7 @@ describe('useUserRankedStats', () => {
       statistics: undefined,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -126,6 +163,7 @@ describe('useUserRankedStats', () => {
       playerPositions: [],
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -156,6 +194,7 @@ describe('useUserRankedStats', () => {
       statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -175,6 +214,7 @@ describe('useUserRankedStats', () => {
       statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -191,6 +231,7 @@ describe('useUserRankedStats', () => {
       statistics: undefined,
       refetch: mockRefetchStatistics,
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -198,6 +239,7 @@ describe('useUserRankedStats', () => {
       playerPositions: mockedPlayerPositions,
       refetch: mockRefetchPlayerPositions,
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -218,6 +260,7 @@ describe('useUserRankedStats', () => {
       } as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 

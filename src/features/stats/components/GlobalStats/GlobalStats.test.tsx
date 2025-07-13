@@ -11,6 +11,7 @@ const defaultUserGlobalStatsState: ReturnType<typeof useUserGlobalStats> = {
   },
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 };
 
 const renderComponent = () => {

@@ -14,7 +14,7 @@ type GetPlayerStatisticsResponse = DeepReadonly<{
 export const useGetPlayerStatistics = () => {
   const apiClient = useGameApiClient();
 
-  const { data, refetch, isFetching, isPending, isError } = useQuery({
+  const { data, refetch, isPending, isRefetching, isError } = useQuery({
     queryKey: ['playerStatistics'],
     queryFn: () => apiClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
     select: (data) =>
@@ -29,7 +29,8 @@ export const useGetPlayerStatistics = () => {
   return {
     statistics: data,
     refetch,
-    isLoading: isFetching || isPending,
+    isLoading: isPending,
+    isRefetching,
     isError,
   } as const;
 };

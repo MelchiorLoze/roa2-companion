@@ -16,8 +16,14 @@ export const useUserCharacterStats = () => {
     statistics: rawStats,
     refetch: refetchPlayerStatistics,
     isLoading: isLoadingRawStats,
+    isRefetching: isRefetchingRawStats,
   } = useGetPlayerStatistics();
-  const { userData, refetch: refetchUserData, isLoading: isLoadingUserData } = useGetUserReadOnlyData();
+  const {
+    userData,
+    refetch: refetchUserData,
+    isLoading: isLoadingUserData,
+    isRefetching: isRefetchingUserData,
+  } = useGetUserReadOnlyData();
 
   const refresh = () => {
     void refetchPlayerStatistics();
@@ -25,8 +31,9 @@ export const useUserCharacterStats = () => {
   };
 
   const isLoading = isLoadingRawStats || isLoadingUserData;
+  const isRefreshing = isRefetchingRawStats || isRefetchingUserData;
 
-  const stats = rawStats && userData && !isLoading ? getCharacterStats(rawStats, userData) : undefined;
+  const stats = rawStats && userData ? getCharacterStats(rawStats, userData) : undefined;
 
-  return { stats, refresh, isLoading } as const;
+  return { stats, refresh, isLoading, isRefreshing } as const;
 };

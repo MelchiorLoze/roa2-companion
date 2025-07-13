@@ -37,6 +37,7 @@ const defaultUserRankedStatsState: ReturnType<typeof useUserRankedStats> = {
   },
   refresh: jest.fn(),
   isLoading: false,
+  isRefreshing: false,
 };
 
 jest.mock('../../hooks/business/useLeaderboardStats/useLeaderboardStats');

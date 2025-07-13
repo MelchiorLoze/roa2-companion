@@ -21,23 +21,41 @@ describe('useUserGlobalStats', () => {
       statistics: {} as PlayerStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
   });
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as PlayerStatistics,
+      statistics: undefined,
       refetch: jest.fn(),
       isLoading: true,
+      isRefetching: false,
       isError: false,
     });
 
     const { result } = renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(true);
+    expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
-    expect(typeof result.current.refresh).toBe('function');
+  });
+
+  it('returns refetching state when statistics are being refetched', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      statistics: {} as PlayerStatistics,
+      refetch: jest.fn(),
+      isLoading: false,
+      isRefetching: true,
+      isError: false,
+    });
+
+    const { result } = renderUseUserGlobalStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isRefreshing).toBe(true);
+    expect(result.current.stats).toBeDefined();
   });
 
   it('returns nothing when statistics are not present', () => {
@@ -45,6 +63,7 @@ describe('useUserGlobalStats', () => {
       statistics: undefined,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -68,6 +87,7 @@ describe('useUserGlobalStats', () => {
       statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -87,6 +107,7 @@ describe('useUserGlobalStats', () => {
       statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 
@@ -102,6 +123,7 @@ describe('useUserGlobalStats', () => {
       statistics: undefined,
       refetch: mockRefetchStatistics,
       isLoading: false,
+      isRefetching: false,
       isError: false,
     });
 

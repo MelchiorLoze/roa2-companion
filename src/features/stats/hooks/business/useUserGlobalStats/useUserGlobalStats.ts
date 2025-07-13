@@ -10,14 +10,12 @@ const getGlobalStats = (rawStats: PlayerStatistics) => {
 };
 
 export const useUserGlobalStats = () => {
-  const {
-    statistics: rawStats,
-    refetch: refetchPlayerStatistics,
-    isLoading: isLoadingRawStats,
-  } = useGetPlayerStatistics();
+  const { statistics: rawStats, refetch, isLoading, isRefetching } = useGetPlayerStatistics();
 
-  const refresh = () => void refetchPlayerStatistics();
-  const stats = rawStats && !isLoadingRawStats ? getGlobalStats(rawStats) : undefined;
-
-  return { stats, refresh, isLoading: isLoadingRawStats } as const;
+  return {
+    stats: rawStats ? getGlobalStats(rawStats) : undefined,
+    refresh: () => void refetch(),
+    isLoading,
+    isRefreshing: isRefetching,
+  } as const;
 };

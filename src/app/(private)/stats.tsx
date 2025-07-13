@@ -21,9 +21,9 @@ const Section = ({ children }: PropsWithChildren) => {
 };
 
 export default function Stats() {
-  const { refresh: refreshRankedStats } = useUserRankedStats();
-  const { refresh: refreshGlobalStats } = useUserGlobalStats();
-  const { refresh: refreshCharacterStats } = useUserCharacterStats();
+  const { refresh: refreshRankedStats, isRefreshing: isRefreshingRankedStats } = useUserRankedStats();
+  const { refresh: refreshGlobalStats, isRefreshing: isRefreshingGlobalStats } = useUserGlobalStats();
+  const { refresh: refreshCharacterStats, isRefreshing: isRefreshingCharacterStats } = useUserCharacterStats();
 
   const refresh = () => {
     refreshRankedStats();
@@ -34,7 +34,12 @@ export default function Stats() {
   return (
     <ScrollView
       contentContainerStyle={styles.container}
-      refreshControl={<RefreshControl onRefresh={refresh} refreshing={false} />}
+      refreshControl={
+        <RefreshControl
+          onRefresh={refresh}
+          refreshing={isRefreshingRankedStats || isRefreshingGlobalStats || isRefreshingCharacterStats}
+        />
+      }
     >
       <Section>
         <RankedStats />

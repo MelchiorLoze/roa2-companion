@@ -52,11 +52,13 @@ export const useUserRankedStats = () => {
     statistics: rawStats,
     refetch: refetchPlayerStatistics,
     isLoading: isLoadingRawStats,
+    isRefetching: isRefetchingRawStats,
   } = useGetPlayerStatistics();
   const {
     playerPositions: [userRankedPosition],
     refetch: refetchPlayerPosition,
     isLoading: isLoadingPlayerPosition,
+    isRefetching: isRefetchingPlayerPosition,
   } = useGetLeaderboardAroundPlayer({
     maxResultCount: 1,
     statisticName: getEloStatNameForSeason(season.index),
@@ -68,11 +70,12 @@ export const useUserRankedStats = () => {
   };
 
   const isLoading = isLoadingRawStats || isLoadingPlayerPosition;
+  const isRefreshing = isRefetchingRawStats || isRefetchingPlayerPosition;
 
   const stats =
     rawStats && userRankedPosition && !isLoading
       ? getRankedStats(rawStats, userRankedPosition, season.index)
       : undefined;
 
-  return { stats, refresh, isLoading } as const;
+  return { stats, refresh, isLoading, isRefreshing } as const;
 };
