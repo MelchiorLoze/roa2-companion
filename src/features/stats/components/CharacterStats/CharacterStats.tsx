@@ -5,10 +5,10 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { CHARACTER_ICONS } from '@/types/character';
 
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
+import { useUserCharacterStats } from '../../hooks/business/useUserCharacterStats/useUserCharacterStats';
 
 export const CharacterStats = () => {
-  const { characterStats: stats, isLoading } = useUserStats();
+  const { stats, isLoading } = useUserCharacterStats();
 
   if (!stats || isLoading) return <Spinner />;
 

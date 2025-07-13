@@ -1,22 +1,14 @@
 import { render, screen } from '@testing-library/react-native';
 
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
-import { Rank } from '../../types/rank';
+import { useUserGlobalStats } from '../../hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { GlobalStats } from './GlobalStats';
 
-jest.mock('../../hooks/business/useUserStats/useUserStats');
-const useUserStatsMock = jest.mocked(useUserStats);
-const defaultUserStatsState: ReturnType<typeof useUserStats> = {
-  rankedStats: {
-    elo: 100,
-    position: 100,
-    rank: Rank.STONE,
-    setStats: { setCount: 100, winCount: 100, winRate: 100 },
-  },
-  globalStats: {
+jest.mock('../../hooks/business/useUserGlobalStats/useUserGlobalStats');
+const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
+const defaultUserGlobalStatsState: ReturnType<typeof useUserGlobalStats> = {
+  stats: {
     gameStats: { gameCount: 420, winCount: 358, winRate: 85.238095 },
   },
-  characterStats: [],
   refresh: jest.fn(),
   isLoading: false,
 };
@@ -24,12 +16,12 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
 const renderComponent = () => {
   render(<GlobalStats />);
 
-  expect(useUserStatsMock).toHaveBeenCalledTimes(1);
+  expect(useUserGlobalStatsMock).toHaveBeenCalledTimes(1);
 };
 
 describe('GlobalStats', () => {
   beforeEach(() => {
-    useUserStatsMock.mockReturnValue(defaultUserStatsState);
+    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsState);
   });
 
   it('renders global stats with correct values', () => {
@@ -41,8 +33,8 @@ describe('GlobalStats', () => {
   });
 
   it('displays loading spinner when stats are loading', () => {
-    useUserStatsMock.mockReturnValue({
-      ...defaultUserStatsState,
+    useUserGlobalStatsMock.mockReturnValue({
+      ...defaultUserGlobalStatsState,
       isLoading: true,
     });
 

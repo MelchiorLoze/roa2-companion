@@ -3,10 +3,10 @@ import { StyleSheet } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
 
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
+import { useUserGlobalStats } from '../../hooks/business/useUserGlobalStats/useUserGlobalStats';
 
 export const GlobalStats = () => {
-  const { globalStats: stats, isLoading } = useUserStats();
+  const { stats, isLoading } = useUserGlobalStats();
 
   if (!stats || isLoading) return <Spinner />;
 

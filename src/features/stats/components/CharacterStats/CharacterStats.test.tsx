@@ -2,23 +2,13 @@ import { render, screen } from '@testing-library/react-native';
 
 import { Character } from '@/types/character';
 
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
-import { Rank } from '../../types/rank';
+import { useUserCharacterStats } from '../../hooks/business/useUserCharacterStats/useUserCharacterStats';
 import { CharacterStats } from './CharacterStats';
 
-jest.mock('../../hooks/business/useUserStats/useUserStats');
-const useUserStatsMock = jest.mocked(useUserStats);
-const defaultUserStatsState: ReturnType<typeof useUserStats> = {
-  rankedStats: {
-    elo: 925,
-    position: 123,
-    rank: Rank.GOLD,
-    setStats: { setCount: 100, winCount: 75, winRate: 75 },
-  },
-  globalStats: {
-    gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
-  },
-  characterStats: [
+jest.mock('../../hooks/business/useUserCharacterStats/useUserCharacterStats');
+const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
+const defaultUserCharacterStatsState: ReturnType<typeof useUserCharacterStats> = {
+  stats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },
     { character: Character.CLAIREN, gameCount: 50, level: 5 },
     { character: Character.OLYMPIA, gameCount: 10, level: 10 },
@@ -31,12 +21,12 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
 const renderComponent = () => {
   render(<CharacterStats />);
 
-  expect(useUserStatsMock).toHaveBeenCalledTimes(1);
+  expect(useUserCharacterStatsMock).toHaveBeenCalledTimes(1);
 };
 
 describe('CharacterStats', () => {
   beforeEach(() => {
-    useUserStatsMock.mockReturnValue(defaultUserStatsState);
+    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsState);
   });
 
   it('renders correctly', () => {
@@ -48,8 +38,8 @@ describe('CharacterStats', () => {
   });
 
   it('displays loading spinner when stats are loading', () => {
-    useUserStatsMock.mockReturnValue({
-      ...defaultUserStatsState,
+    useUserCharacterStatsMock.mockReturnValue({
+      ...defaultUserCharacterStatsState,
       isLoading: true,
     });
 

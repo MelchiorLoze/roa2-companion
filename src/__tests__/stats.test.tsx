@@ -2,7 +2,9 @@ import { render } from '@testing-library/react-native';
 
 import Stats from '@/app/(private)/stats';
 import { useLeaderboardStats } from '@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats';
-import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
+import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats';
+import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
+import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
 import { Rank } from '@/features/stats/types/rank';
 import { Character } from '@/types/character';
@@ -22,19 +24,33 @@ jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext', () => ({
   }),
 }));
 
-jest.mock('@/features/stats/hooks/business/useUserStats/useUserStats');
-const useUserStatsMock = jest.mocked(useUserStats);
-const defaultUserStatsState: ReturnType<typeof useUserStats> = {
-  rankedStats: {
+jest.mock('@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats');
+const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
+useUserRankedStatsMock.mockReturnValue({
+  stats: {
     elo: 925,
     position: 123,
     rank: Rank.GOLD,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
   },
-  globalStats: {
+  refresh: jest.fn(),
+  isLoading: false,
+});
+
+jest.mock('@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats');
+const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
+useUserGlobalStatsMock.mockReturnValue({
+  stats: {
     gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
   },
-  characterStats: [
+  refresh: jest.fn(),
+  isLoading: false,
+});
+
+jest.mock('@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats');
+const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
+useUserCharacterStatsMock.mockReturnValue({
+  stats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },
     { character: Character.CLAIREN, gameCount: 50, level: 5 },
     { character: Character.OLYMPIA, gameCount: 10, level: 10 },
@@ -42,7 +58,7 @@ const defaultUserStatsState: ReturnType<typeof useUserStats> = {
   ],
   refresh: jest.fn(),
   isLoading: false,
-};
+});
 
 jest.mock('@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
@@ -55,10 +71,6 @@ useLeaderboardStatsMock.mockReturnValue({
 });
 
 describe('Stats', () => {
-  beforeEach(() => {
-    useUserStatsMock.mockReturnValue(defaultUserStatsState);
-  });
-
   it('matches the snapshot', () => {
     const tree = render(<Stats />).toJSON();
 

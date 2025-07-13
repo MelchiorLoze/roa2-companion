@@ -6,7 +6,9 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { CharacterStats } from '@/features/stats/components/CharacterStats/CharacterStats';
 import { GlobalStats } from '@/features/stats/components/GlobalStats/GlobalStats';
 import { RankedStats } from '@/features/stats/components/RankedStats/RankedStats';
-import { useUserStats } from '@/features/stats/hooks/business/useUserStats/useUserStats';
+import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats';
+import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
+import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 
 const Section = ({ children }: PropsWithChildren) => {
   const { theme } = useUnistyles();
@@ -19,7 +21,15 @@ const Section = ({ children }: PropsWithChildren) => {
 };
 
 export default function Stats() {
-  const { refresh } = useUserStats();
+  const { refresh: refreshRankedStats } = useUserRankedStats();
+  const { refresh: refreshGlobalStats } = useUserGlobalStats();
+  const { refresh: refreshCharacterStats } = useUserCharacterStats();
+
+  const refresh = () => {
+    refreshRankedStats();
+    refreshGlobalStats();
+    refreshCharacterStats();
+  };
 
   return (
     <ScrollView

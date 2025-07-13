@@ -7,14 +7,14 @@ import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
+import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
 import { type Rank, RANK_ICONS } from '../../types/rank';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 
 export const RankedStats = () => {
   const { theme } = useUnistyles();
   const { season, setPreviousSeason, setNextSeason } = useSeason();
-  const { rankedStats: stats, isLoading } = useUserStats();
+  const { stats, isLoading } = useUserRankedStats();
 
   if (!stats || isLoading) return <Spinner />;
 

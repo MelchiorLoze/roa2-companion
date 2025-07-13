@@ -2,11 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
-import { Character } from '@/types/character';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
-import { useUserStats } from '../../hooks/business/useUserStats/useUserStats';
+import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
 import { Rank } from '../../types/rank';
 import { RankedStats } from './RankedStats';
 
@@ -27,24 +26,15 @@ const defaultSeasonState: ReturnType<typeof useSeason> = {
   setNextSeason: setNextSeasonMock,
 };
 
-jest.mock('../../hooks/business/useUserStats/useUserStats');
-const useUserStatsMock = jest.mocked(useUserStats);
-const defaultUserStatsState: ReturnType<typeof useUserStats> = {
-  rankedStats: {
+jest.mock('../../hooks/business/useUserRankedStats/useUserRankedStats');
+const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
+const defaultUserRankedStatsState: ReturnType<typeof useUserRankedStats> = {
+  stats: {
     elo: 925,
     position: 123,
     rank: Rank.GOLD,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
   },
-  globalStats: {
-    gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
-  },
-  characterStats: [
-    { character: Character.KRAGG, gameCount: 20, level: 3 },
-    { character: Character.CLAIREN, gameCount: 50, level: 5 },
-    { character: Character.OLYMPIA, gameCount: 10, level: 10 },
-    { character: Character.RANNO, gameCount: 30, level: 5 },
-  ],
   refresh: jest.fn(),
   isLoading: false,
 };
@@ -66,13 +56,13 @@ const renderComponent = () => {
   render(<RankedStats />);
 
   expect(useSeasonMock).toHaveBeenCalledTimes(1);
-  expect(useUserStatsMock).toHaveBeenCalledTimes(1);
+  expect(useUserRankedStatsMock).toHaveBeenCalledTimes(1);
 };
 
 describe('RankedStats', () => {
   beforeEach(() => {
     useSeasonMock.mockReturnValue(defaultSeasonState);
-    useUserStatsMock.mockReturnValue(defaultUserStatsState);
+    useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsState);
   });
 
   it('renders correctly', () => {
@@ -141,8 +131,8 @@ describe('RankedStats', () => {
   });
 
   it('displays loading spinner when stats are loading', () => {
-    useUserStatsMock.mockReturnValue({
-      ...defaultUserStatsState,
+    useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsState,
       isLoading: true,
     });
 
@@ -152,13 +142,13 @@ describe('RankedStats', () => {
   });
 
   it('displays UNRANKED when elo is undefined', () => {
-    useUserStatsMock.mockReturnValue({
-      ...defaultUserStatsState,
-      rankedStats: {
-        ...defaultUserStatsState.rankedStats,
+    useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsState,
+      stats: {
+        ...defaultUserRankedStatsState.stats,
         elo: undefined,
         rank: undefined,
-      } as typeof defaultUserStatsState.rankedStats,
+      } as typeof defaultUserRankedStatsState.stats,
     });
 
     renderComponent();
@@ -168,13 +158,13 @@ describe('RankedStats', () => {
   });
 
   it('does not display UNRANKED when elo is 0', () => {
-    useUserStatsMock.mockReturnValue({
-      ...defaultUserStatsState,
-      rankedStats: {
-        ...defaultUserStatsState.rankedStats,
+    useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsState,
+      stats: {
+        ...defaultUserRankedStatsState.stats,
         elo: 0,
         rank: Rank.STONE,
-      } as typeof defaultUserStatsState.rankedStats,
+      } as typeof defaultUserRankedStatsState.stats,
     });
 
     renderComponent();
