@@ -204,7 +204,7 @@ describe('useUserStats', () => {
   });
 
   it('computes stats correctly from player statistics', () => {
-    const mockStatistics: Partial<PlayerStatistics> = {
+    const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_S1_ELO]: 815,
       [StatisticName.RANKED_S1_SETS]: 200,
       [StatisticName.RANKED_S1_WINS]: 22,
@@ -227,7 +227,7 @@ describe('useUserStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: mockStatistics as PlayerStatistics,
+      statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -241,7 +241,7 @@ describe('useUserStats', () => {
   });
 
   it('handles zero matches played when calculating win rates', () => {
-    const mockStatistics: Partial<PlayerStatistics> = {
+    const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_S1_SETS]: 0,
       [StatisticName.RANKED_S1_WINS]: 0,
       [StatisticName.TOTAL_SESSIONS_PLAYED]: 0,
@@ -249,7 +249,7 @@ describe('useUserStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: mockStatistics as PlayerStatistics,
+      statistics: mockStatistics,
       refetch: jest.fn(),
       isLoading: false,
       isError: false,
@@ -302,6 +302,7 @@ describe('useUserStats', () => {
       acc[StatisticName[statKey]] = 10 + index * 5;
       return acc;
     }, {} as PlayerStatistics);
+    mockStatistics[StatisticName.ABS_MATCH_COUNT] = undefined;
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
@@ -315,7 +316,7 @@ describe('useUserStats', () => {
     expect(result.current.characterStats?.length).toBe(characters.length);
     characters.forEach((character, index) => {
       const characterStat = result.current.characterStats?.find((stat) => stat.character === character);
-      expect(characterStat?.gameCount).toBe(10 + index * 5);
+      expect(characterStat?.gameCount).toBe(character === Character.ABSA ? 0 : 10 + index * 5);
       expect(characterStat?.level).toBe(5 + index * 10);
     });
   });

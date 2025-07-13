@@ -49,7 +49,7 @@ export type PlayerPosition = Readonly<{
   position: number;
 }>;
 
-export type PlayerStatistics = Record<StatisticName, number>;
+export type PlayerStatistics = Partial<Record<StatisticName, number>>;
 
 export type UserData = DeepReadonly<{
   characterData: Record<Character, { lvl: number } | undefined>;

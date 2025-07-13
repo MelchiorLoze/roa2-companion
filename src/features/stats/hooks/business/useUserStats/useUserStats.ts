@@ -21,14 +21,14 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, seasonIndex: number) =
   if (seasonIndex !== MIN_SEASON_INDEX && seasonIndex !== MAX_SEASON_INDEX) return undefined;
 
   const result = {
-    setCount: rawStats[StatisticName.RANKED_SETS],
-    winCount: rawStats[StatisticName.RANKED_WINS],
+    setCount: rawStats[StatisticName.RANKED_SETS] ?? 0,
+    winCount: rawStats[StatisticName.RANKED_WINS] ?? 0,
     winRate: 0,
   };
 
   if (seasonIndex === MIN_SEASON_INDEX) {
-    result.setCount = rawStats[StatisticName.RANKED_S1_SETS];
-    result.winCount = rawStats[StatisticName.RANKED_S1_WINS];
+    result.setCount = rawStats[StatisticName.RANKED_S1_SETS] ?? 0;
+    result.winCount = rawStats[StatisticName.RANKED_S1_WINS] ?? 0;
   }
 
   result.winRate = result.setCount ? (result.winCount / result.setCount) * 100 : 0;
@@ -51,8 +51,8 @@ const getRankedStats = (rawStats: PlayerStatistics, userPosition: PlayerPosition
 };
 
 const getGlobalStats = (rawStats: PlayerStatistics) => {
-  const gameCount = rawStats[StatisticName.TOTAL_SESSIONS_PLAYED];
-  const winCount = rawStats[StatisticName.BETA_WINS];
+  const gameCount = rawStats[StatisticName.TOTAL_SESSIONS_PLAYED] ?? 0;
+  const winCount = rawStats[StatisticName.BETA_WINS] ?? 0;
   const winRate = gameCount ? (winCount / gameCount) * 100 : 0;
 
   return { gameStats: { gameCount, winCount, winRate } } as const;
@@ -61,7 +61,7 @@ const getGlobalStats = (rawStats: PlayerStatistics) => {
 const getCharacterStats = (rawStats: PlayerStatistics, userData: UserData) =>
   Object.values(Character).map((character) => ({
     character,
-    gameCount: rawStats[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]],
+    gameCount: rawStats[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]] ?? 0,
     level: userData.characterData[character]?.lvl ?? 0,
   }));
 
