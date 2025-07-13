@@ -20,17 +20,15 @@ type CommunityLeaderboardResponse = DeepReadonly<{
 }>;
 
 const queryFn = async (apiClient: ReturnType<typeof useSteamCommunityApiClient>, leaderboardId: Leaderboard['id']) => {
-  let totalLeaderboardEntries = 0;
-  const leaderboardEntries: LeaderboardEntry[] = [];
   let entryStart = 0;
+  let response: CommunityLeaderboardResponse;
+  const leaderboardEntries: LeaderboardEntry[] = [];
 
   do {
-    const response = await apiClient.get<CommunityLeaderboardResponse>(
+    response = await apiClient.get<CommunityLeaderboardResponse>(
       `/stats/${STEAM_APP_ID}/leaderboards/${leaderboardId}`,
       { params: { start: entryStart.toString() } },
     );
-
-    if (!totalLeaderboardEntries) totalLeaderboardEntries = response.totalLeaderboardEntries;
 
     leaderboardEntries.push(
       ...response.entries.entry.map((entry) => ({
@@ -41,7 +39,7 @@ const queryFn = async (apiClient: ReturnType<typeof useSteamCommunityApiClient>,
     );
 
     entryStart = response.entryEnd + 1;
-  } while (leaderboardEntries.length < totalLeaderboardEntries);
+  } while (leaderboardEntries.length < response.totalLeaderboardEntries);
 
   return leaderboardEntries;
 };
