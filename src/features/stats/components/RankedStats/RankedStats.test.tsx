@@ -31,8 +31,9 @@ const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
 const defaultUserRankedStatsState: ReturnType<typeof useUserRankedStats> = {
   stats: {
     elo: 925,
-    position: 123,
     rank: Rank.GOLD,
+    position: 123,
+    playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
   },
   refresh: jest.fn(),
@@ -73,10 +74,12 @@ describe('RankedStats', () => {
     screen.getByText('S5');
     expect(screen.getAllByRole('button')).toHaveLength(2); // Previous and Next season buttons
 
-    screen.getByText('100 sets: 75 W - 25 L');
+    screen.getByText('100 sets');
+    screen.getByText('75 W - 25 L');
     screen.getByText('Winrate: 75.00%');
 
     screen.getByText('925 - #123');
+    screen.getByText('Top 12.30%');
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 
@@ -156,6 +159,7 @@ describe('RankedStats', () => {
 
     screen.getByText('UNRANKED');
     expect(screen.queryByText('925 - #123')).toBeNull();
+    expect(screen.queryByText('Top 12.30%')).toBeNull();
   });
 
   it('does not display UNRANKED when elo is 0', () => {
@@ -171,6 +175,7 @@ describe('RankedStats', () => {
     renderComponent();
 
     screen.getByText('0 - #123');
+    screen.getByText('Top 12.30%');
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 });

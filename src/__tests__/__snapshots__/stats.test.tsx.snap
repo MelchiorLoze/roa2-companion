@@ -202,10 +202,20 @@ exports[`Stats matches the snapshot 1`] = `
             }
           >
             100
-             sets: 
+             sets
+          </Text>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
             75
-             W -
-             
+             W - 
             25
              L
           </Text>
@@ -227,46 +237,75 @@ exports[`Stats matches the snapshot 1`] = `
         <View
           style={
             {
-              "alignItems": "center",
+              "alignItems": "flex-end",
               "flex": 1,
-              "flexDirection": "row",
-              "gap": 4,
-              "justifyContent": "flex-end",
             }
           }
         >
-          <ViewManagerAdapter_ExpoImage
-            containerViewRef={"[React.ref]"}
-            contentFit="contain"
-            contentPosition={
-              {
-                "left": "50%",
-                "top": "50%",
-              }
-            }
-            height={24}
-            nativeViewRef={"[React.ref]"}
-            onError={[Function]}
-            onLoad={[Function]}
-            onLoadStart={[Function]}
-            onProgress={[Function]}
-            placeholder={[]}
-            source={
-              [
-                {
-                  "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
-                },
-              ]
-            }
+          <View
             style={
               {
-                "height": 24,
-                "width": 24,
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
               }
             }
-            transition={null}
-            width={24}
-          />
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              transition={null}
+              width={24}
+            />
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFC64E",
+                  }
+                }
+              >
+                925
+              </Text>
+               - #
+              123
+            </Text>
+          </View>
           <Text
             style={
               {
@@ -277,17 +316,9 @@ exports[`Stats matches the snapshot 1`] = `
               }
             }
           >
-            <Text
-              style={
-                {
-                  "color": "#FFC64E",
-                }
-              }
-            >
-              925
-            </Text>
-             - #
-            123
+            Top 
+            12.30
+            %
           </Text>
         </View>
       </View>
@@ -785,10 +816,20 @@ exports[`Stats matches the snapshot 1`] = `
           }
         >
           500
-           games: 
+           games
+        </Text>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
           300
-           W -
-           
+           W - 
           200
            L
         </Text>

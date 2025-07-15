@@ -1,22 +1,24 @@
 import { act, renderHook } from '@testing-library/react-native';
 
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
+import { testLeaderboardEntries } from '../../../test-helpers/testLeaderboardEntries';
 import { Rank } from '../../../types/rank';
-import { type PlayerPosition, type PlayerStatistics, StatisticName } from '../../../types/stats';
+import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 import { useUserRankedStats } from './useUserRankedStats';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
 jest.mock('../../../types/stats', () => ({
   ...jest.requireActual('../../../types/stats'),
-  MAX_SEASON_INDEX: 2,
   MIN_SEASON_INDEX: 1,
+  MAX_SEASON_INDEX: 2,
 }));
 
 jest.mock('../../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
-const defaultSeasonState = {
+const defaultSeasonState: ReturnType<typeof useSeason> = {
   season: {
     index: 2,
     name: 'Season 2',
@@ -31,18 +33,44 @@ const defaultSeasonState = {
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
+const defaultPlayerStatisticsState: ReturnType<typeof useGetPlayerStatistics> = {
+  statistics: {
+    [StatisticName.RANKED_S2_ELO]: 925,
+    [StatisticName.RANKED_SETS]: 100,
+    [StatisticName.RANKED_WINS]: 75,
+  },
+  refetch: jest.fn(),
+  isLoading: false,
+  isRefetching: false,
+  isError: false,
+};
 
 jest.mock('../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
 const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPlayer);
+const defaultLeaderboardAroundPlayerState: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
+  playerPositions: [
+    {
+      playerName: 'Player1',
+      statisticName: StatisticName.RANKED_S2_ELO,
+      statisticValue: 916,
+      position: 4404,
+    },
+  ],
+  refetch: jest.fn(),
+  isLoading: false,
+  isRefetching: false,
+  isError: false,
+};
 
-const mockedPlayerPositions: PlayerPosition[] = [
-  {
-    playerName: 'Player1',
-    statisticName: StatisticName.RANKED_S2_ELO,
-    statisticValue: 916,
-    position: 4404,
-  },
-];
+jest.mock('../../business/useLeaderboardStats/useLeaderboardStats');
+const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
+const defaultLeaderboardStatsMock: ReturnType<typeof useLeaderboardStats> = {
+  firstPlayerElo: 2162,
+  lastPlayerElo: -100,
+  lastAethereanElo: 1837,
+  leaderboardEntries: testLeaderboardEntries,
+  isLoading: false,
+};
 
 const renderUseUserRankedStats = () => {
   const { result } = renderHook(useUserRankedStats);
@@ -54,6 +82,7 @@ const renderUseUserRankedStats = () => {
     maxResultCount: 1,
     statisticName: StatisticName.RANKED_S2_ELO,
   });
+  expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(1);
 
   return { result };
 };
@@ -61,54 +90,49 @@ const renderUseUserRankedStats = () => {
 describe('useUserRankedStats', () => {
   beforeEach(() => {
     useSeasonMock.mockReturnValue(defaultSeasonState);
-
-    useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as PlayerStatistics,
-      refetch: jest.fn(),
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
-    });
-
-    useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: mockedPlayerPositions,
-      refetch: jest.fn(),
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
-    });
+    useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsState);
+    useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerState);
+    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsMock);
   });
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsState,
       statistics: undefined,
-      refetch: jest.fn(),
       isLoading: true,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.stats).toEqual({
+      elo: undefined,
+      rank: undefined,
+      position: 4404,
+      playerCount: 21,
+      setStats: undefined,
+    });
   });
 
-  it('returns loading state when player positions are loading', () => {
+  it('returns loading state when leaderboard data is loading', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      ...defaultLeaderboardAroundPlayerState,
       playerPositions: [],
-      refetch: jest.fn(),
       isLoading: true,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.stats).toEqual({
+      elo: 925,
+      rank: undefined,
+      position: undefined,
+      playerCount: 21,
+      setStats: { setCount: 100, winCount: 75, winRate: 75 },
+    });
   });
 
   it('returns refetching state when statistics are being refetched', () => {
@@ -124,53 +148,18 @@ describe('useUserRankedStats', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats).toBeDefined();
   });
 
-  it('returns refetching state when player positions are being refetched', () => {
+  it('returns refetching state when leaderboard data is being refetched', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: mockedPlayerPositions,
-      refetch: jest.fn(),
-      isLoading: false,
+      ...defaultLeaderboardAroundPlayerState,
       isRefetching: true,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats).toBeDefined();
-  });
-
-  it('returns nothing when statistics are not present', () => {
-    useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: undefined,
-      refetch: jest.fn(),
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
-    });
-
-    const { result } = renderUseUserRankedStats();
-
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
-  });
-
-  it('returns nothing when player positions are not present', () => {
-    useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: [],
-      refetch: jest.fn(),
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
-    });
-
-    const { result } = renderUseUserRankedStats();
-
-    expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
   });
 
   it('computes ranked stats correctly from player statistics', () => {
@@ -181,13 +170,6 @@ describe('useUserRankedStats', () => {
       [StatisticName.RANKED_S2_ELO]: 915,
       [StatisticName.RANKED_SETS]: 100,
       [StatisticName.RANKED_WINS]: 60,
-    };
-
-    const expectedRankedStats = {
-      position: 4404,
-      rank: Rank.GOLD,
-      elo: 915,
-      setStats: { setCount: 100, winCount: 60, winRate: 60 },
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
@@ -201,7 +183,13 @@ describe('useUserRankedStats', () => {
     const { result } = renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toMatchObject(expectedRankedStats);
+    expect(result.current.stats).toEqual({
+      elo: 915,
+      rank: Rank.GOLD,
+      position: 4404,
+      playerCount: 21,
+      setStats: { setCount: 100, winCount: 60, winRate: 60 },
+    });
   });
 
   it('handles zero matches played when calculating win rates', () => {
@@ -223,21 +211,12 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats?.setStats?.winRate).toBe(0);
   });
 
-  it('pass through the refetch function correctly', async () => {
+  it('passes through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
-    const mockRefetchPlayerPositions = jest.fn();
 
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: undefined,
       refetch: mockRefetchStatistics,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
-    });
-
-    useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: mockedPlayerPositions,
-      refetch: mockRefetchPlayerPositions,
       isLoading: false,
       isRefetching: false,
       isError: false,
@@ -248,7 +227,6 @@ describe('useUserRankedStats', () => {
     await act(async () => result.current.refresh());
 
     expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
-    expect(mockRefetchPlayerPositions).toHaveBeenCalledTimes(1);
   });
 
   it('returns undefined elo and rank when win count is less than 4', () => {

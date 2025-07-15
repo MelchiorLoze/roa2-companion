@@ -44,20 +44,25 @@ export const RankedStats = () => {
       <View style={styles.statsContainer}>
         {stats.setStats && (
           <View>
+            <Text style={styles.label}>{stats.setStats.setCount} sets</Text>
             <Text style={styles.label}>
-              {stats.setStats.setCount} sets: {stats.setStats.winCount} W -{' '}
-              {stats.setStats.setCount - stats.setStats.winCount} L
+              {stats.setStats.winCount} W - {stats.setStats.setCount - stats.setStats.winCount} L
             </Text>
             <Text style={styles.label}>Winrate: {stats.setStats.winRate.toFixed(2)}%</Text>
           </View>
         )}
 
         {stats.elo !== undefined && stats.rank ? (
-          <View style={styles.positionContainer}>
-            <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
-            <Text style={styles.label}>
-              <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
-            </Text>
+          <View style={styles.eloStatsContainer}>
+            <View style={styles.rankContainer}>
+              <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
+              <Text style={styles.label}>
+                <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
+              </Text>
+            </View>
+            {stats.playerCount && (
+              <Text style={styles.label}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
+            )}
           </View>
         ) : (
           <OutlinedText
@@ -103,11 +108,13 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
-  positionContainer: {
+  eloStatsContainer: {
     flex: 1,
+    alignItems: 'flex-end',
+  },
+  rankContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-end',
     gap: theme.spacing.xs,
   },
   eloLabel: (rank: Rank) => ({

@@ -147,7 +147,7 @@ describe('useUserCharacterStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('pass through the refetch function correctly', async () => {
+  it('passes through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
     const mockRefetchUserData = jest.fn();
 

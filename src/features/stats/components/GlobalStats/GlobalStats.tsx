@@ -15,9 +15,9 @@ export const GlobalStats = () => {
       <Text style={styles.title}>Global</Text>
 
       <View>
+        <Text style={styles.label}>{stats.gameStats.gameCount} games</Text>
         <Text style={styles.label}>
-          {stats.gameStats.gameCount} games: {stats.gameStats.winCount} W -{' '}
-          {stats.gameStats.gameCount - stats.gameStats.winCount} L
+          {stats.gameStats.winCount} W - {stats.gameStats.gameCount - stats.gameStats.winCount} L
         </Text>
         <Text style={styles.label}>Winrate: {(stats.gameStats.winRate ?? 0).toFixed(2)}%</Text>
       </View>

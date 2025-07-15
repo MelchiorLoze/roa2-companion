@@ -29,7 +29,8 @@ describe('GlobalStats', () => {
     renderComponent();
 
     screen.getByText('Global');
-    screen.getByText('420 games: 358 W - 62 L');
+    screen.getByText('420 games');
+    screen.getByText('358 W - 62 L');
     screen.getByText('Winrate: 85.24%');
   });
 

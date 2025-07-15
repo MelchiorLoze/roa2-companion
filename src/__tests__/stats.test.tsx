@@ -29,8 +29,9 @@ const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
 useUserRankedStatsMock.mockReturnValue({
   stats: {
     elo: 925,
-    position: 123,
     rank: Rank.GOLD,
+    position: 123,
+    playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
   },
   refresh: jest.fn(),

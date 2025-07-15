@@ -112,7 +112,7 @@ describe('useLeaderboardStats', () => {
     expect(result.current.firstPlayerElo).toBe(2162);
     expect(result.current.lastPlayerElo).toBe(-100);
     expect(result.current.lastAethereanElo).toBe(1837);
-    expect(result.current.leaderboardEntries).toMatchObject(defaultCommunityLeaderboardState.leaderboardEntries);
+    expect(result.current.leaderboardEntries).toEqual(defaultCommunityLeaderboardState.leaderboardEntries);
   });
 
   it('returns 0 as lastPlayerElo when it is above 0', () => {

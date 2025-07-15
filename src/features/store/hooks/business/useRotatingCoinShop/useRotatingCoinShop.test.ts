@@ -71,7 +71,7 @@ describe('useRotatingCoinShop', () => {
     expect(result.current.expirationDate).toEqual(VALID_DATE);
   });
 
-  it('pass correct itemIds to useGetItems', () => {
+  it('passes correct itemIds to useGetItems', () => {
     const itemIds = ['1', '2', '3'];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({

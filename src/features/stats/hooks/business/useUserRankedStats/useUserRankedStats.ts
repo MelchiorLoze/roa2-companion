@@ -1,20 +1,15 @@
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
-import {
-  MAX_SEASON_INDEX,
-  MIN_SEASON_INDEX,
-  type PlayerPosition,
-  type PlayerStatistics,
-  StatisticName,
-} from '../../../types/stats';
+import { MAX_SEASON_INDEX, MIN_SEASON_INDEX, type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { getRank } from '../../../utils/getRank';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
+import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
 const getEloStatNameForSeason = (seasonIndex: number) =>
   StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName];
 
-const getSetStatsForSeason = (rawStats: PlayerStatistics, seasonIndex: number) => {
-  if (seasonIndex !== MIN_SEASON_INDEX && seasonIndex !== MAX_SEASON_INDEX) return undefined;
+const getSetStatsForSeason = (rawStats: PlayerStatistics | undefined, seasonIndex: number) => {
+  if (!rawStats || (seasonIndex !== MIN_SEASON_INDEX && seasonIndex !== MAX_SEASON_INDEX)) return undefined;
 
   const result = {
     setCount: rawStats[StatisticName.RANKED_SETS] ?? 0,
@@ -30,20 +25,6 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, seasonIndex: number) =
   result.winRate = result.setCount ? (result.winCount / result.setCount) * 100 : 0;
 
   return result;
-};
-
-const getRankedStats = (rawStats: PlayerStatistics, userPosition: PlayerPosition, seasonIndex: number) => {
-  const position = userPosition.position;
-
-  const setStats = getSetStatsForSeason(rawStats, seasonIndex);
-  const elo = setStats && setStats.winCount < 4 ? undefined : rawStats[getEloStatNameForSeason(seasonIndex)];
-
-  return {
-    position,
-    rank: elo ? getRank(elo, position) : undefined,
-    elo,
-    setStats,
-  } as const;
 };
 
 export const useUserRankedStats = () => {
@@ -63,6 +44,7 @@ export const useUserRankedStats = () => {
     maxResultCount: 1,
     statisticName: getEloStatNameForSeason(season.index),
   });
+  const { leaderboardEntries } = useLeaderboardStats();
 
   const refresh = () => {
     void refetchPlayerStatistics();
@@ -72,10 +54,21 @@ export const useUserRankedStats = () => {
   const isLoading = isLoadingRawStats || isLoadingPlayerPosition;
   const isRefreshing = isRefetchingRawStats || isRefetchingPlayerPosition;
 
-  const stats =
-    rawStats && userRankedPosition && !isLoading
-      ? getRankedStats(rawStats, userRankedPosition, season.index)
-      : undefined;
+  const setStats = getSetStatsForSeason(rawStats, season.index);
+  const elo =
+    !rawStats || (setStats && setStats.winCount < 4) ? undefined : rawStats[getEloStatNameForSeason(season.index)];
+  const rank = elo != null && userRankedPosition ? getRank(elo, userRankedPosition.position) : undefined;
 
-  return { stats, refresh, isLoading, isRefreshing } as const;
+  return {
+    stats: {
+      elo,
+      rank,
+      position: userRankedPosition?.position,
+      playerCount: leaderboardEntries.length,
+      setStats,
+    },
+    refresh,
+    isLoading,
+    isRefreshing,
+  } as const;
 };

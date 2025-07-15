@@ -79,10 +79,6 @@ describe('useUserGlobalStats', () => {
       [StatisticName.BETA_WINS]: 120,
     };
 
-    const expectedGlobalStats = {
-      gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
-    };
-
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
       refetch: jest.fn(),
@@ -94,7 +90,9 @@ describe('useUserGlobalStats', () => {
     const { result } = renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toMatchObject(expectedGlobalStats);
+    expect(result.current.stats).toEqual({
+      gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
+    });
   });
 
   it('handles zero matches played when calculating win rates', () => {
@@ -116,7 +114,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats?.gameStats.winRate).toBe(0);
   });
 
-  it('pass through the refetch function correctly', async () => {
+  it('passes through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
 
     useGetPlayerStatisticsMock.mockReturnValue({
