@@ -1,4 +1,4 @@
-![feature-graphic](https://github.com/user-attachments/assets/aafa30b9-17bb-47e1-8ca5-746d4caaebd0)
+![feature-graphic](https://github.com/user-attachments/assets/c4db1ebb-2e22-41c9-83ea-43a7c58a21df)
 
 This app uses the game's client API to provide useful information and tools for players on their mobile.
 Using the game's client API, this app provide useful information and tools for players on their mobile
