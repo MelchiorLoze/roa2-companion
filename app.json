@@ -1,19 +1,19 @@
 {
   "expo": {
-    "name": "roa2-companion",
+    "name": "Rivals of Aether II Companion",
     "slug": "roa2-companion",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "roa2-companion",
     "userInterfaceStyle": "automatic",
-    "backgroundColor": "#0E0B2A",
+    "backgroundColor": "#0B0825",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cp0-mand4le.roa2companion"
     },
     "android": {
-      "versionCode": 5,
+      "versionCode": 6,
       "package": "com.cp0_mand4le.roa2companion",
       "edgeToEdgeEnabled": true
     },
