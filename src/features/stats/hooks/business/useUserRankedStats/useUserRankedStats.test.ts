@@ -229,10 +229,9 @@ describe('useUserRankedStats', () => {
     expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
   });
 
-  it('returns undefined elo and rank when win count is less than 4', () => {
+  it('returns undefined elo and rank when elo stat is not present', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {
-        [StatisticName.RANKED_S2_ELO]: 925,
         [StatisticName.RANKED_SETS]: 10,
         [StatisticName.RANKED_WINS]: 3,
       } as PlayerStatistics,

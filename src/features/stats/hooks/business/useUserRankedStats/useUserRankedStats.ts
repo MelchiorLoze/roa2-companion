@@ -55,8 +55,7 @@ export const useUserRankedStats = () => {
   const isRefreshing = isRefetchingRawStats || isRefetchingPlayerPosition;
 
   const setStats = getSetStatsForSeason(rawStats, season.index);
-  const elo =
-    !rawStats || (setStats && setStats.winCount < 4) ? undefined : rawStats[getEloStatNameForSeason(season.index)];
+  const elo = rawStats?.[getEloStatNameForSeason(season.index)];
   const rank = elo != null && userRankedPosition ? getRank(elo, userRankedPosition.position) : undefined;
 
   return {
