@@ -8,4 +8,4 @@ export const FrameLegendaryBack: ImageSource = require('./frame_epic_back.png');
 export const FrameCommonFront: ImageSource = require('./frame_common_front.png');
 export const FrameRareFront: ImageSource = require('./frame_rare_front.png');
 export const FrameEpicFront: ImageSource = require('./frame_epic_front.png');
-export const FrameLegendaryFront: ImageSource = require('./frame_epic_front.png'); // TODO: Add legendary front frame
+export const FrameLegendaryFront: ImageSource = require('./frame_legendary_front.png');
