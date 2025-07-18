@@ -6,7 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
-import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/item';
+import { CATEGORY_LABELS, type Item, type Rarity } from '@/types/item';
 
 import { ItemImage } from '../ItemImage/ItemImage';
 
@@ -20,8 +20,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
       {({ pressed }) => (
         <LinearGradient colors={theme.color.borderGradient(pressed)} style={styles.borderGradient}>
           <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
-            <ItemImage friendlyId={item.friendlyId} />
-            <Image contentFit="contain" source={RARITY_ICONS[item.rarity]} style={styles.rarityIcon} />
+            <ItemImage item={item} />
 
             <View style={styles.infoContainer}>
               <Text style={[styles.title, pressed && styles.textPressed]}>{item.name}</Text>
@@ -72,13 +71,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  rarityIcon: {
-    position: 'absolute',
-    top: theme.spacing.m,
-    right: theme.spacing.m,
-    width: 20,
-    height: 20,
   },
   info: {
     flexDirection: 'row',
