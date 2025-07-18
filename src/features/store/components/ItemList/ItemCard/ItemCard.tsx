@@ -8,6 +8,8 @@ import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item, type Rarity, RARITY_ICONS } from '@/types/item';
 
+import { ItemImage } from '../ItemImage/ItemImage';
+
 type Props = { item: Item; onPress: () => void };
 
 export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
@@ -18,23 +20,26 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
       {({ pressed }) => (
         <LinearGradient colors={theme.color.borderGradient(pressed)} style={styles.borderGradient}>
           <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
-            <View style={styles.titleContainer}>
+            <ItemImage friendlyId={item.friendlyId} />
+            <Image contentFit="contain" source={RARITY_ICONS[item.rarity]} style={styles.rarityIcon} />
+
+            <View style={styles.infoContainer}>
               <Text style={[styles.title, pressed && styles.textPressed]}>{item.name}</Text>
-              <Image contentFit="contain" source={RARITY_ICONS[item.rarity]} style={styles.rarityIcon} />
-            </View>
-            <View style={styles.info}>
-              <OutlinedText
-                color={styles.category(item.rarity).color}
-                fontFamily={theme.font.secondary.bold}
-                strokeWidth={2}
-                text={CATEGORY_LABELS[item.category].toUpperCase()}
-              />
-              {item.coinPrice && (
-                <View style={styles.priceContainer}>
-                  <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
-                  <Text style={[styles.price, pressed && styles.textPressed]}>{item.coinPrice}</Text>
-                </View>
-              )}
+
+              <View style={styles.info}>
+                <OutlinedText
+                  color={styles.category(item.rarity).color}
+                  fontFamily={theme.font.secondary.bold}
+                  strokeWidth={2}
+                  text={CATEGORY_LABELS[item.category].toUpperCase()}
+                />
+                {item.coinPrice && (
+                  <View style={styles.priceContainer}>
+                    <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
+                    <Text style={[styles.price, pressed && styles.textPressed]}>{item.coinPrice}</Text>
+                  </View>
+                )}
+              </View>
             </View>
           </LinearGradient>
         </LinearGradient>
@@ -53,14 +58,13 @@ const styles = StyleSheet.create((theme) => ({
   },
   gradient: {
     flex: 1,
-    justifyContent: 'space-between',
     padding: theme.spacing.s,
-    gap: theme.spacing.l,
+    gap: theme.spacing.s,
   },
-  titleContainer: {
-    flexDirection: 'row',
+  infoContainer: {
+    flex: 1,
+    gap: theme.spacing.l,
     justifyContent: 'space-between',
-    gap: theme.spacing.xs,
   },
   title: {
     flex: 1,
@@ -70,9 +74,11 @@ const styles = StyleSheet.create((theme) => ({
     textTransform: 'uppercase',
   },
   rarityIcon: {
-    width: 16,
-    height: 16,
-    marginTop: theme.spacing.xxs,
+    position: 'absolute',
+    top: theme.spacing.m,
+    right: theme.spacing.m,
+    width: 20,
+    height: 20,
   },
   info: {
     flexDirection: 'row',

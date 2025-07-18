@@ -56,6 +56,7 @@ export const RARITY_ICONS = Object.freeze<Record<Rarity, ImageSource>>({
 
 export type ItemDto = DeepReadonly<{
   Id: string;
+  FriendlyId: string;
   Title: { NEUTRAL: string };
   ContentType: Category;
   PriceOptions?: {
@@ -73,6 +74,7 @@ export type ItemDto = DeepReadonly<{
 
 export type Item = Readonly<{
   id: string;
+  friendlyId: string;
   name: string;
   category: Category;
   rarity: Rarity;
