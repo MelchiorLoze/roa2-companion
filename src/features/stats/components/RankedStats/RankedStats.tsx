@@ -12,9 +12,9 @@ import { type Rank, RANK_ICONS } from '../../types/rank';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 
 export const RankedStats = () => {
-  const { theme } = useUnistyles();
   const { season, setPreviousSeason, setNextSeason } = useSeason();
   const { stats, isLoading } = useUserRankedStats();
+  const { theme } = useUnistyles();
 
   if (!stats || isLoading) return <Spinner />;
 
@@ -60,7 +60,7 @@ export const RankedStats = () => {
                 <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
               </Text>
             </View>
-            {stats.playerCount && (
+            {Boolean(stats.playerCount) && (
               <Text style={styles.label}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
             )}
           </View>
