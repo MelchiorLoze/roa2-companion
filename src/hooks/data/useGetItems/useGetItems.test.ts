@@ -57,8 +57,24 @@ describe('useGetItems', () => {
       const { result } = await renderUseGetItems(['1', '2']);
 
       expect(result.current.items).toEqual([
-        { id: '1', name: 'Item 1', category: Category.SKIN, rarity: Rarity.COMMON, buckPrice: 500, coinPrice: 50000 },
-        { id: '2', name: 'Item 2', category: Category.ICON, rarity: Rarity.COMMON, buckPrice: 20, coinPrice: 2000 },
+        {
+          id: '1',
+          friendlyId: 'skin_item_1',
+          name: 'Item 1',
+          category: Category.SKIN,
+          rarity: Rarity.COMMON,
+          buckPrice: 500,
+          coinPrice: 50000,
+        },
+        {
+          id: '2',
+          friendlyId: 'icon_item_2',
+          name: 'Item 2',
+          category: Category.ICON,
+          rarity: Rarity.COMMON,
+          buckPrice: 20,
+          coinPrice: 2000,
+        },
       ]);
       expect(result.current.isError).toBe(false);
     });

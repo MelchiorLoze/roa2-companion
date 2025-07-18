@@ -87,17 +87,73 @@ describe('useRotatingCoinShop', () => {
 
   it('returns sorted items when data is loaded', () => {
     const mockItems: Item[] = [
-      { id: '1', name: 'Item B', coinPrice: 20, category: Category.ICON, rarity: Rarity.LEGENDARY },
-      { id: '2', name: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },
-      { id: '3', name: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
-      { id: '4', name: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
+      {
+        id: '1',
+        friendlyId: 'Icon_item_b',
+        name: 'Item B',
+        coinPrice: 20,
+        category: Category.ICON,
+        rarity: Rarity.LEGENDARY,
+      },
+      {
+        id: '2',
+        friendlyId: 'Icon_item_a',
+        name: 'Item A',
+        coinPrice: 10,
+        category: Category.ICON,
+        rarity: Rarity.COMMON,
+      },
+      {
+        id: '3',
+        friendlyId: 'DeathEffect_item_c',
+        name: 'Item C',
+        coinPrice: 10,
+        category: Category.DEATHEFFECT,
+        rarity: Rarity.EPIC,
+      },
+      {
+        id: '4',
+        friendlyId: 'DeathEffect_item_d',
+        name: 'Item D',
+        coinPrice: undefined,
+        category: Category.DEATHEFFECT,
+        rarity: Rarity.RARE,
+      },
     ];
 
     const expectedSortedItems: Item[] = [
-      { id: '4', name: 'Item D', coinPrice: undefined, category: Category.DEATHEFFECT, rarity: Rarity.RARE },
-      { id: '3', name: 'Item C', coinPrice: 10, category: Category.DEATHEFFECT, rarity: Rarity.EPIC },
-      { id: '2', name: 'Item A', coinPrice: 10, category: Category.ICON, rarity: Rarity.COMMON },
-      { id: '1', name: 'Item B', coinPrice: 20, category: Category.ICON, rarity: Rarity.LEGENDARY },
+      {
+        id: '4',
+        friendlyId: 'DeathEffect_item_d',
+        name: 'Item D',
+        coinPrice: undefined,
+        category: Category.DEATHEFFECT,
+        rarity: Rarity.RARE,
+      },
+      {
+        id: '3',
+        friendlyId: 'DeathEffect_item_c',
+        name: 'Item C',
+        coinPrice: 10,
+        category: Category.DEATHEFFECT,
+        rarity: Rarity.EPIC,
+      },
+      {
+        id: '2',
+        friendlyId: 'Icon_item_a',
+        name: 'Item A',
+        coinPrice: 10,
+        category: Category.ICON,
+        rarity: Rarity.COMMON,
+      },
+      {
+        id: '1',
+        friendlyId: 'Icon_item_b',
+        name: 'Item B',
+        coinPrice: 20,
+        category: Category.ICON,
+        rarity: Rarity.LEGENDARY,
+      },
     ];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({

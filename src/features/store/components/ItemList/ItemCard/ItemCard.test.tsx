@@ -11,6 +11,7 @@ jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
 const item: Item = {
   id: '1',
+  friendlyId: 'DeathEffect_item_1',
   name: 'Item Title',
   rarity: Rarity.COMMON,
   category: Category.DEATHEFFECT,
