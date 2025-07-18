@@ -1244,7 +1244,7 @@ exports[`Store matches the snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame_legendary_front.png",
                         },
                       ]
                     }
