@@ -20,13 +20,13 @@ export const useCommunityLeaderboards = () => {
   const { data, isFetching, isPending, isError } = useQuery({
     queryKey: ['communityLeaderboards'],
     queryFn: () => apiClient.get<CommunityLeaderboardsResponse>(`/stats/${STEAM_APP_ID}/leaderboards`),
-    select: (data) =>
+    select: (data): Leaderboard[] =>
       data.leaderboard.map((leaderboard) => ({
         id: leaderboard.lbid,
         name: leaderboard.name,
         displayName: leaderboard.display_name,
         entryCount: leaderboard.entries,
-      })) as Leaderboard[],
+      })),
     staleTime: Infinity,
     gcTime: Infinity,
   });

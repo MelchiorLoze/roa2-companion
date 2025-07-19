@@ -31,14 +31,12 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
 };
 
 const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: Theme) =>
-  Object.entries(rawData).map(
-    ([rank, count], index): barDataItem => ({
-      value: count,
-      frontColor: theme.color[rank as Rank],
-      barWidth: barWidths[index],
-      topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(count)}</Text>,
-    }),
-  );
+  Object.entries(rawData).map<barDataItem>(([rank, count], index) => ({
+    value: count,
+    frontColor: theme.color[rank as Rank],
+    barWidth: barWidths[index],
+    topLabelComponent: () => <Text style={styles.topLabel}>{formatNumber(count)}</Text>,
+  }));
 
 type Props = {
   width: number;

@@ -15,7 +15,7 @@ type GetMyRotationalCoinStoreResponse = ExecuteFunctionResponse<{
 
 type RotationalCoinStore = Readonly<{
   expirationDate: DateTime;
-  itemIds: Item['id'][];
+  itemIds: readonly Item['id'][];
 }>;
 
 export const useGetMyRotationalCoinStore = () => {
@@ -30,11 +30,10 @@ export const useGetMyRotationalCoinStore = () => {
           FunctionName: 'GetMyRotationalCoinStore',
         } as ExecuteFunctionRequest,
       }),
-    select: ({ FunctionResult: result }) =>
-      ({
-        itemIds: result.itemIds,
-        expirationDate: DateTime.fromISO(result.expirationDateTime, { zone: 'utc' }),
-      }) as RotationalCoinStore,
+    select: ({ FunctionResult: result }): RotationalCoinStore => ({
+      itemIds: result.itemIds,
+      expirationDate: DateTime.fromISO(result.expirationDateTime, { zone: 'utc' }),
+    }),
     gcTime: Infinity,
     staleTime: Infinity,
   });

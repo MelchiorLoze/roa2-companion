@@ -10,13 +10,13 @@ const getEloDistribution = (
   firstPlayerElo: number,
   lastPlayerElo: number,
 ): Record<number, number> => {
-  if (!leaderboardEntries.length) return {} as const;
+  if (!leaderboardEntries.length) return {};
 
   const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
   const result = Array.from(
     { length: Math.ceil(totalEloRange / DISTRIBUTION_PRECISION) },
     (_, i) => i * DISTRIBUTION_PRECISION + roundElo(lastPlayerElo),
-  ).reduce((acc, elo) => ({ ...acc, [elo]: 0 }), {} as Record<number, number>);
+  ).reduce<Record<number, number>>((acc, elo) => ({ ...acc, [elo]: 0 }), {});
 
   leaderboardEntries.forEach((entry) => result[roundElo(entry.elo)]++);
 

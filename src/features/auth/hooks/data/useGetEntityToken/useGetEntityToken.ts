@@ -14,12 +14,12 @@ export const useGetEntityToken = () => {
   const apiClient = useGameApiClient();
 
   const { data, mutate, isPending, isError } = useMutation({
-    mutationFn: async () => {
+    mutationFn: async (): Promise<Session> => {
       const data = await apiClient.post<GetEntityTokenResponse>('/Authentication/GetEntityToken');
       return {
         entityToken: data.EntityToken,
         expirationDate: DateTime.fromISO(data.TokenExpiration, { zone: 'utc' }),
-      } as Session;
+      };
     },
   });
 

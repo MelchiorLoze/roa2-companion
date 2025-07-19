@@ -17,11 +17,11 @@ export const useGetPlayerStatistics = () => {
   const { data, refetch, isPending, isRefetching, isError } = useQuery({
     queryKey: ['playerStatistics'],
     queryFn: () => apiClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
-    select: (data) =>
-      data.Statistics.reduce((acc, { StatisticName, Value }) => {
+    select: (data): PlayerStatistics =>
+      data.Statistics.reduce<PlayerStatistics>((acc, { StatisticName, Value }) => {
         acc[StatisticName] = Value;
         return acc;
-      }, {} as PlayerStatistics),
+      }, {}),
     staleTime: Infinity,
     gcTime: Infinity,
   });
