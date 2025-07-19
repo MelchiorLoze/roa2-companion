@@ -119,6 +119,7 @@ exports[`Store matches the snapshot 1`] = `
           "buckPrice": 20,
           "category": "icon",
           "coinPrice": 2000,
+          "friendlyId": "Icon_item_1",
           "id": "1",
           "name": "Item 1",
           "rarity": "common",
@@ -126,6 +127,7 @@ exports[`Store matches the snapshot 1`] = `
         {
           "buckPrice": 500,
           "category": "deatheffect",
+          "friendlyId": "DeathEffect_item_2",
           "id": "2",
           "name": "Item 2",
           "rarity": "epic",
@@ -133,12 +135,14 @@ exports[`Store matches the snapshot 1`] = `
         {
           "category": "emote",
           "coinPrice": 1500,
+          "friendlyId": "Emote_item_3",
           "id": "3",
           "name": "Item 3",
           "rarity": "rare",
         },
         {
           "category": "skin",
+          "friendlyId": "Skin_item_4",
           "id": "4",
           "name": "Item 4",
           "rarity": "legendary",
@@ -147,6 +151,7 @@ exports[`Store matches the snapshot 1`] = `
           "buckPrice": 2000,
           "category": "stageskin",
           "coinPrice": 200000,
+          "friendlyId": "StageSkin_item_5",
           "id": "5",
           "name": "Item 5",
           "rarity": "common",
@@ -249,8 +254,7 @@ exports[`Store matches the snapshot 1`] = `
                 style={
                   {
                     "flex": 1,
-                    "gap": 16,
-                    "justifyContent": "space-between",
+                    "gap": 8,
                     "padding": 8,
                   }
                 }
@@ -258,8 +262,157 @@ exports[`Store matches the snapshot 1`] = `
                 <View
                   style={
                     {
-                      "flexDirection": "row",
-                      "gap": 4,
+                      "aspectRatio": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <skImage
+                      fit="contain"
+                      height={0}
+                      image={null}
+                      sampling={
+                        {
+                          "filter": 0,
+                        }
+                      }
+                      width={0}
+                      x={0}
+                      y={0}
+                    />
+                  </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={18}
+                    left={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/category/icon.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 18,
+                        "left": 2,
+                        "position": "absolute",
+                        "top": 2,
+                        "width": 18,
+                      }
+                    }
+                    top={2}
+                    transition={null}
+                    width={18}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flex": 1,
+                      "gap": 16,
                       "justifyContent": "space-between",
                     }
                   }
@@ -280,105 +433,71 @@ exports[`Store matches the snapshot 1`] = `
                   >
                     Item 1
                   </Text>
-                  <ViewManagerAdapter_ExpoImage
-                    containerViewRef={"[React.ref]"}
-                    contentFit="contain"
-                    contentPosition={
-                      {
-                        "left": "50%",
-                        "top": "50%",
-                      }
-                    }
-                    height={16}
-                    marginTop={2}
-                    nativeViewRef={"[React.ref]"}
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    onLoadStart={[Function]}
-                    onProgress={[Function]}
-                    placeholder={[]}
-                    source={
-                      [
-                        {
-                          "testUri": "../../../src/assets/images/rarity/common.webp",
-                        },
-                      ]
-                    }
-                    style={
-                      {
-                        "height": 16,
-                        "marginTop": 2,
-                        "width": 16,
-                      }
-                    }
-                    transition={null}
-                    width={16}
-                  />
-                </View>
-                <View
-                  style={
-                    {
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                    }
-                  }
-                >
                   <View
                     style={
                       {
-                        "alignItems": "center",
                         "flexDirection": "row",
-                        "gap": 4,
+                        "justifyContent": "space-between",
                       }
                     }
                   >
-                    <ViewManagerAdapter_ExpoImage
-                      containerViewRef={"[React.ref]"}
-                      contentFit="contain"
-                      contentPosition={
-                        {
-                          "left": "50%",
-                          "top": "50%",
-                        }
-                      }
-                      height={20}
-                      nativeViewRef={"[React.ref]"}
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      onLoadStart={[Function]}
-                      onProgress={[Function]}
-                      placeholder={[]}
-                      source={
-                        [
-                          {
-                            "testUri": "../../../src/assets/images/currency/coins.png",
-                          },
-                        ]
-                      }
+                    <View
                       style={
                         {
-                          "height": 20,
-                          "width": 20,
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "gap": 4,
                         }
-                      }
-                      transition={null}
-                      width={20}
-                    />
-                    <Text
-                      style={
-                        [
-                          {
-                            "color": "white",
-                            "fontFamily": "AgencyFB-Bold",
-                            "fontSize": 14,
-                            "textTransform": "uppercase",
-                          },
-                          false,
-                        ]
                       }
                     >
-                      2000
-                    </Text>
+                      <ViewManagerAdapter_ExpoImage
+                        containerViewRef={"[React.ref]"}
+                        contentFit="contain"
+                        contentPosition={
+                          {
+                            "left": "50%",
+                            "top": "50%",
+                          }
+                        }
+                        height={20}
+                        nativeViewRef={"[React.ref]"}
+                        onError={[Function]}
+                        onLoad={[Function]}
+                        onLoadStart={[Function]}
+                        onProgress={[Function]}
+                        placeholder={[]}
+                        source={
+                          [
+                            {
+                              "testUri": "../../../src/assets/images/currency/coins.png",
+                            },
+                          ]
+                        }
+                        style={
+                          {
+                            "height": 20,
+                            "width": 20,
+                          }
+                        }
+                        transition={null}
+                        width={20}
+                      />
+                      <Text
+                        style={
+                          [
+                            {
+                              "color": "white",
+                              "fontFamily": "AgencyFB-Bold",
+                              "fontSize": 14,
+                              "textTransform": "uppercase",
+                            },
+                            false,
+                          ]
+                        }
+                      >
+                        2000
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
@@ -445,8 +564,7 @@ exports[`Store matches the snapshot 1`] = `
                 style={
                   {
                     "flex": 1,
-                    "gap": 16,
-                    "justifyContent": "space-between",
+                    "gap": 8,
                     "padding": 8,
                   }
                 }
@@ -454,8 +572,157 @@ exports[`Store matches the snapshot 1`] = `
                 <View
                   style={
                     {
-                      "flexDirection": "row",
-                      "gap": 4,
+                      "aspectRatio": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <skImage
+                      fit="contain"
+                      height={0}
+                      image={null}
+                      sampling={
+                        {
+                          "filter": 0,
+                        }
+                      }
+                      width={0}
+                      x={0}
+                      y={0}
+                    />
+                  </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_epic_front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={18}
+                    left={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/category/deatheffect.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 18,
+                        "left": 2,
+                        "position": "absolute",
+                        "top": 2,
+                        "width": 18,
+                      }
+                    }
+                    top={2}
+                    transition={null}
+                    width={18}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flex": 1,
+                      "gap": 16,
                       "justifyContent": "space-between",
                     }
                   }
@@ -476,49 +743,15 @@ exports[`Store matches the snapshot 1`] = `
                   >
                     Item 2
                   </Text>
-                  <ViewManagerAdapter_ExpoImage
-                    containerViewRef={"[React.ref]"}
-                    contentFit="contain"
-                    contentPosition={
-                      {
-                        "left": "50%",
-                        "top": "50%",
-                      }
-                    }
-                    height={16}
-                    marginTop={2}
-                    nativeViewRef={"[React.ref]"}
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    onLoadStart={[Function]}
-                    onProgress={[Function]}
-                    placeholder={[]}
-                    source={
-                      [
-                        {
-                          "testUri": "../../../src/assets/images/rarity/epic.webp",
-                        },
-                      ]
-                    }
+                  <View
                     style={
                       {
-                        "height": 16,
-                        "marginTop": 2,
-                        "width": 16,
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
                       }
                     }
-                    transition={null}
-                    width={16}
                   />
                 </View>
-                <View
-                  style={
-                    {
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                    }
-                  }
-                />
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
           </View>
@@ -602,8 +835,7 @@ exports[`Store matches the snapshot 1`] = `
                 style={
                   {
                     "flex": 1,
-                    "gap": 16,
-                    "justifyContent": "space-between",
+                    "gap": 8,
                     "padding": 8,
                   }
                 }
@@ -611,8 +843,157 @@ exports[`Store matches the snapshot 1`] = `
                 <View
                   style={
                     {
-                      "flexDirection": "row",
-                      "gap": 4,
+                      "aspectRatio": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_rare_back.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <skImage
+                      fit="contain"
+                      height={0}
+                      image={null}
+                      sampling={
+                        {
+                          "filter": 0,
+                        }
+                      }
+                      width={0}
+                      x={0}
+                      y={0}
+                    />
+                  </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_rare_front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={18}
+                    left={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/category/emote.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 18,
+                        "left": 2,
+                        "position": "absolute",
+                        "top": 2,
+                        "width": 18,
+                      }
+                    }
+                    top={2}
+                    transition={null}
+                    width={18}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flex": 1,
+                      "gap": 16,
                       "justifyContent": "space-between",
                     }
                   }
@@ -633,105 +1014,71 @@ exports[`Store matches the snapshot 1`] = `
                   >
                     Item 3
                   </Text>
-                  <ViewManagerAdapter_ExpoImage
-                    containerViewRef={"[React.ref]"}
-                    contentFit="contain"
-                    contentPosition={
-                      {
-                        "left": "50%",
-                        "top": "50%",
-                      }
-                    }
-                    height={16}
-                    marginTop={2}
-                    nativeViewRef={"[React.ref]"}
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    onLoadStart={[Function]}
-                    onProgress={[Function]}
-                    placeholder={[]}
-                    source={
-                      [
-                        {
-                          "testUri": "../../../src/assets/images/rarity/rare.webp",
-                        },
-                      ]
-                    }
-                    style={
-                      {
-                        "height": 16,
-                        "marginTop": 2,
-                        "width": 16,
-                      }
-                    }
-                    transition={null}
-                    width={16}
-                  />
-                </View>
-                <View
-                  style={
-                    {
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                    }
-                  }
-                >
                   <View
                     style={
                       {
-                        "alignItems": "center",
                         "flexDirection": "row",
-                        "gap": 4,
+                        "justifyContent": "space-between",
                       }
                     }
                   >
-                    <ViewManagerAdapter_ExpoImage
-                      containerViewRef={"[React.ref]"}
-                      contentFit="contain"
-                      contentPosition={
-                        {
-                          "left": "50%",
-                          "top": "50%",
-                        }
-                      }
-                      height={20}
-                      nativeViewRef={"[React.ref]"}
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      onLoadStart={[Function]}
-                      onProgress={[Function]}
-                      placeholder={[]}
-                      source={
-                        [
-                          {
-                            "testUri": "../../../src/assets/images/currency/coins.png",
-                          },
-                        ]
-                      }
+                    <View
                       style={
                         {
-                          "height": 20,
-                          "width": 20,
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "gap": 4,
                         }
-                      }
-                      transition={null}
-                      width={20}
-                    />
-                    <Text
-                      style={
-                        [
-                          {
-                            "color": "white",
-                            "fontFamily": "AgencyFB-Bold",
-                            "fontSize": 14,
-                            "textTransform": "uppercase",
-                          },
-                          false,
-                        ]
                       }
                     >
-                      1500
-                    </Text>
+                      <ViewManagerAdapter_ExpoImage
+                        containerViewRef={"[React.ref]"}
+                        contentFit="contain"
+                        contentPosition={
+                          {
+                            "left": "50%",
+                            "top": "50%",
+                          }
+                        }
+                        height={20}
+                        nativeViewRef={"[React.ref]"}
+                        onError={[Function]}
+                        onLoad={[Function]}
+                        onLoadStart={[Function]}
+                        onProgress={[Function]}
+                        placeholder={[]}
+                        source={
+                          [
+                            {
+                              "testUri": "../../../src/assets/images/currency/coins.png",
+                            },
+                          ]
+                        }
+                        style={
+                          {
+                            "height": 20,
+                            "width": 20,
+                          }
+                        }
+                        transition={null}
+                        width={20}
+                      />
+                      <Text
+                        style={
+                          [
+                            {
+                              "color": "white",
+                              "fontFamily": "AgencyFB-Bold",
+                              "fontSize": 14,
+                              "textTransform": "uppercase",
+                            },
+                            false,
+                          ]
+                        }
+                      >
+                        1500
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
@@ -798,8 +1145,7 @@ exports[`Store matches the snapshot 1`] = `
                 style={
                   {
                     "flex": 1,
-                    "gap": 16,
-                    "justifyContent": "space-between",
+                    "gap": 8,
                     "padding": 8,
                   }
                 }
@@ -807,8 +1153,157 @@ exports[`Store matches the snapshot 1`] = `
                 <View
                   style={
                     {
-                      "flexDirection": "row",
-                      "gap": 4,
+                      "aspectRatio": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <skImage
+                      fit="contain"
+                      height={0}
+                      image={null}
+                      sampling={
+                        {
+                          "filter": 0,
+                        }
+                      }
+                      width={0}
+                      x={0}
+                      y={0}
+                    />
+                  </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_legendary_front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={18}
+                    left={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/category/skin.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 18,
+                        "left": 2,
+                        "position": "absolute",
+                        "top": 2,
+                        "width": 18,
+                      }
+                    }
+                    top={2}
+                    transition={null}
+                    width={18}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flex": 1,
+                      "gap": 16,
                       "justifyContent": "space-between",
                     }
                   }
@@ -829,49 +1324,15 @@ exports[`Store matches the snapshot 1`] = `
                   >
                     Item 4
                   </Text>
-                  <ViewManagerAdapter_ExpoImage
-                    containerViewRef={"[React.ref]"}
-                    contentFit="contain"
-                    contentPosition={
-                      {
-                        "left": "50%",
-                        "top": "50%",
-                      }
-                    }
-                    height={16}
-                    marginTop={2}
-                    nativeViewRef={"[React.ref]"}
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    onLoadStart={[Function]}
-                    onProgress={[Function]}
-                    placeholder={[]}
-                    source={
-                      [
-                        {
-                          "testUri": "../../../src/assets/images/rarity/legendary.webp",
-                        },
-                      ]
-                    }
+                  <View
                     style={
                       {
-                        "height": 16,
-                        "marginTop": 2,
-                        "width": 16,
+                        "flexDirection": "row",
+                        "justifyContent": "space-between",
                       }
                     }
-                    transition={null}
-                    width={16}
                   />
                 </View>
-                <View
-                  style={
-                    {
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                    }
-                  }
-                />
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
           </View>
@@ -955,8 +1416,7 @@ exports[`Store matches the snapshot 1`] = `
                 style={
                   {
                     "flex": 1,
-                    "gap": 16,
-                    "justifyContent": "space-between",
+                    "gap": 8,
                     "padding": 8,
                   }
                 }
@@ -964,8 +1424,157 @@ exports[`Store matches the snapshot 1`] = `
                 <View
                   style={
                     {
-                      "flexDirection": "row",
-                      "gap": 4,
+                      "aspectRatio": 1,
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <View
+                    onLayout={[Function]}
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <skImage
+                      fit="contain"
+                      height={0}
+                      image={null}
+                      sampling={
+                        {
+                          "filter": 0,
+                        }
+                      }
+                      width={0}
+                      x={0}
+                      y={0}
+                    />
+                  </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    height={18}
+                    left={2}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/category/stageskin.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "height": 18,
+                        "left": 2,
+                        "position": "absolute",
+                        "top": 2,
+                        "width": 18,
+                      }
+                    }
+                    top={2}
+                    transition={null}
+                    width={18}
+                  />
+                </View>
+                <View
+                  style={
+                    {
+                      "flex": 1,
+                      "gap": 16,
                       "justifyContent": "space-between",
                     }
                   }
@@ -986,105 +1595,71 @@ exports[`Store matches the snapshot 1`] = `
                   >
                     Item 5
                   </Text>
-                  <ViewManagerAdapter_ExpoImage
-                    containerViewRef={"[React.ref]"}
-                    contentFit="contain"
-                    contentPosition={
-                      {
-                        "left": "50%",
-                        "top": "50%",
-                      }
-                    }
-                    height={16}
-                    marginTop={2}
-                    nativeViewRef={"[React.ref]"}
-                    onError={[Function]}
-                    onLoad={[Function]}
-                    onLoadStart={[Function]}
-                    onProgress={[Function]}
-                    placeholder={[]}
-                    source={
-                      [
-                        {
-                          "testUri": "../../../src/assets/images/rarity/common.webp",
-                        },
-                      ]
-                    }
-                    style={
-                      {
-                        "height": 16,
-                        "marginTop": 2,
-                        "width": 16,
-                      }
-                    }
-                    transition={null}
-                    width={16}
-                  />
-                </View>
-                <View
-                  style={
-                    {
-                      "flexDirection": "row",
-                      "justifyContent": "space-between",
-                    }
-                  }
-                >
                   <View
                     style={
                       {
-                        "alignItems": "center",
                         "flexDirection": "row",
-                        "gap": 4,
+                        "justifyContent": "space-between",
                       }
                     }
                   >
-                    <ViewManagerAdapter_ExpoImage
-                      containerViewRef={"[React.ref]"}
-                      contentFit="contain"
-                      contentPosition={
-                        {
-                          "left": "50%",
-                          "top": "50%",
-                        }
-                      }
-                      height={20}
-                      nativeViewRef={"[React.ref]"}
-                      onError={[Function]}
-                      onLoad={[Function]}
-                      onLoadStart={[Function]}
-                      onProgress={[Function]}
-                      placeholder={[]}
-                      source={
-                        [
-                          {
-                            "testUri": "../../../src/assets/images/currency/coins.png",
-                          },
-                        ]
-                      }
+                    <View
                       style={
                         {
-                          "height": 20,
-                          "width": 20,
+                          "alignItems": "center",
+                          "flexDirection": "row",
+                          "gap": 4,
                         }
-                      }
-                      transition={null}
-                      width={20}
-                    />
-                    <Text
-                      style={
-                        [
-                          {
-                            "color": "white",
-                            "fontFamily": "AgencyFB-Bold",
-                            "fontSize": 14,
-                            "textTransform": "uppercase",
-                          },
-                          false,
-                        ]
                       }
                     >
-                      200000
-                    </Text>
+                      <ViewManagerAdapter_ExpoImage
+                        containerViewRef={"[React.ref]"}
+                        contentFit="contain"
+                        contentPosition={
+                          {
+                            "left": "50%",
+                            "top": "50%",
+                          }
+                        }
+                        height={20}
+                        nativeViewRef={"[React.ref]"}
+                        onError={[Function]}
+                        onLoad={[Function]}
+                        onLoadStart={[Function]}
+                        onProgress={[Function]}
+                        placeholder={[]}
+                        source={
+                          [
+                            {
+                              "testUri": "../../../src/assets/images/currency/coins.png",
+                            },
+                          ]
+                        }
+                        style={
+                          {
+                            "height": 20,
+                            "width": 20,
+                          }
+                        }
+                        transition={null}
+                        width={20}
+                      />
+                      <Text
+                        style={
+                          [
+                            {
+                              "color": "white",
+                              "fontFamily": "AgencyFB-Bold",
+                              "fontSize": 14,
+                              "textTransform": "uppercase",
+                            },
+                            false,
+                          ]
+                        }
+                      >
+                        200000
+                      </Text>
+                    </View>
                   </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>

@@ -4,6 +4,7 @@ import { type Category, type ItemDto } from '@/types/item';
 export const createItemDto = (id: string, category: Category, buckPrice: number) =>
   ({
     Id: id,
+    FriendlyId: `${category}_item_${id}`,
     Title: { NEUTRAL: `Item ${id}` },
     ContentType: category,
     PriceOptions: {

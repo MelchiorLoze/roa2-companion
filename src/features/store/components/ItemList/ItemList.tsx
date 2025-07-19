@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native-unistyles';
 
 import { type Item } from '@/types/item';
 
-import { ItemCard } from '../ItemCard/ItemCard';
+import { ItemCard } from './ItemCard/ItemCard';
 
 const keyExtractor = (item: Item) => item.id;
 

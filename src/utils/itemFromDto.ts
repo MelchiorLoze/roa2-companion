@@ -8,6 +8,7 @@ const getPriceValueFromItemDto = (item: ItemDto, currencyId: CurrencyId) => {
 export const itemFromDto = (item: ItemDto) =>
   ({
     id: item.Id,
+    friendlyId: item.FriendlyId,
     name: item.Title.NEUTRAL,
     category: item.ContentType,
     coinPrice: getPriceValueFromItemDto(item, CurrencyId.COINS),
