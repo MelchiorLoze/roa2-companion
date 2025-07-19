@@ -8,7 +8,7 @@ type GetItemsResponse = Readonly<{
   Items: ItemDto[];
 }>;
 
-export const useGetItems = (itemIds: Item['id'][]) => {
+export const useGetItems = (itemIds: readonly Item['id'][]) => {
   const apiClient = useGameApiClient();
 
   const { data, isFetching, isError } = useQuery({

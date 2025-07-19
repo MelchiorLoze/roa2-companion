@@ -29,16 +29,13 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
           StatisticName: statisticName,
         },
       }),
-    select: (data) =>
-      data.Leaderboard.map(
-        ({ DisplayName, StatValue, Position }) =>
-          ({
-            playerName: DisplayName,
-            statisticName: statisticName,
-            statisticValue: StatValue,
-            position: Position,
-          }) as PlayerPosition,
-      ),
+    select: (data): PlayerPosition[] =>
+      data.Leaderboard.map(({ DisplayName, StatValue, Position }) => ({
+        playerName: DisplayName,
+        statisticName: statisticName,
+        statisticValue: StatValue,
+        position: Position,
+      })),
     staleTime: Infinity,
     gcTime: Infinity,
   });

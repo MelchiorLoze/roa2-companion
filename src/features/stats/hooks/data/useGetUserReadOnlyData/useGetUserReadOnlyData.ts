@@ -18,7 +18,7 @@ export const useGetUserReadOnlyData = () => {
   const { data, refetch, isPending, isRefetching, isError } = useQuery({
     queryKey: ['userReadOnlyData'],
     queryFn: () => apiClient.post<GetUserReadOnlyDataResponse>('/Client/GetUserReadOnlyData'),
-    select: (data) => ({ characterData: JSON.parse(data.Data.character_data.Value) }) as UserData,
+    select: (data): UserData => ({ characterData: JSON.parse(data.Data.character_data.Value) }),
     staleTime: Infinity,
     gcTime: Infinity,
   });

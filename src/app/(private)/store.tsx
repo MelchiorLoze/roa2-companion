@@ -9,6 +9,7 @@ import { PurchaseConfirmationDialog } from '@/features/store/components/Purchase
 import { TimeCountdown } from '@/features/store/components/TimeCountdown/TimeCountdown';
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
 import { type CoinStoreItem } from '@/features/store/types/item';
+import { type Item } from '@/types/item';
 
 export default function Store() {
   const { theme } = useUnistyles();
@@ -16,7 +17,7 @@ export default function Store() {
   const [selectedItem, setSelectedItem] = useState<CoinStoreItem | null>(null);
   const { items, expirationDate, isLoading } = useRotatingCoinShop();
 
-  const openDialog = (item: (typeof items)[0]) => {
+  const openDialog = (item: Item) => {
     if (item.coinPrice) setSelectedItem(item as CoinStoreItem);
   };
 

@@ -26,7 +26,7 @@ export const useLoginWithEmail = () => {
     isError,
     isPending,
   } = useMutation({
-    mutationFn: async ({ email, password }: LoginWithEmailAddressRequest) => {
+    mutationFn: async ({ email, password }: LoginWithEmailAddressRequest): Promise<Session> => {
       const data = await apiClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {
         body: {
           TitleId: TITLE_ID,
@@ -38,7 +38,7 @@ export const useLoginWithEmail = () => {
       return {
         entityToken: result.EntityToken,
         expirationDate: DateTime.fromISO(result.TokenExpiration, { zone: 'utc' }),
-      } as Session;
+      };
     },
   });
 

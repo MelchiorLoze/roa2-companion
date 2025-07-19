@@ -29,7 +29,7 @@ export const useGetInventoryItems = () => {
           Count: 10000,
         },
       }),
-    select: (data) => data.Items.map((item) => ({ id: item.Id, amount: item.Amount }) as InventoryItem),
+    select: (data): InventoryItem[] => data.Items.map((item) => ({ id: item.Id, amount: item.Amount })),
     staleTime: Infinity,
     gcTime: Infinity,
   });

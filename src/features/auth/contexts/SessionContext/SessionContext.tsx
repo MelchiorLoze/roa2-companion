@@ -26,7 +26,7 @@ const parseSession = (raw: unknown): Session => {
   return {
     entityToken: rawSession.entityToken,
     expirationDate: DateTime.fromISO(rawSession.expirationDate, { zone: 'utc' }),
-  } as const;
+  };
 };
 
 const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
