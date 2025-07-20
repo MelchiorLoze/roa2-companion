@@ -1,13 +1,11 @@
-import { Canvas, FilterMode, Image as SkiaImage, useImage } from '@shopify/react-native-skia';
+import { Canvas, FilterMode, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
 import { type LayoutChangeEvent, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
+import { useItemImage } from '@/hooks/business/useItemImage/useItemImage';
 import { CATEGORY_ICONS, type Item, RARITY_BACK_FRAMES, RARITY_FRONT_FRAMES } from '@/types/item';
-
-const imagePath = (friendlyId: string) =>
-  `https://res.cloudinary.com/dicl8zovu/image/upload/v1752789274/${friendlyId}.png`;
 
 type Props = {
   item: Pick<Item, 'friendlyId' | 'category' | 'rarity'>;
@@ -15,7 +13,7 @@ type Props = {
 
 export const ItemImage = ({ item }: Readonly<Props>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
-  const image = useImage(imagePath(item.friendlyId));
+  const image = useItemImage(item);
 
   const filter = image && image.width() > 256 ? FilterMode.Linear : FilterMode.Nearest;
 

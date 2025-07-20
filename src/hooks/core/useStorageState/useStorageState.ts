@@ -47,8 +47,8 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
         if (typeof localStorage !== 'undefined') {
           setStateFromString(localStorage.getItem(key));
         }
-      } catch (e) {
-        console.error('Local storage is unavailable:', e);
+      } catch (error) {
+        console.error('Local storage is unavailable:', error);
       }
     } else {
       SecureStorage.getItemAsync(key).then(setStateFromString).catch(console.error);
