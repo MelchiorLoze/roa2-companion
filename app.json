@@ -15,7 +15,11 @@
     "android": {
       "versionCode": 8,
       "package": "com.cp0_mand4le.roa2companion",
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#0B0825"
+      }
     },
     "web": {
       "bundler": "metro",
