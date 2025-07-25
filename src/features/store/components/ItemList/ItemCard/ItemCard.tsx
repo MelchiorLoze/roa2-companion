@@ -50,6 +50,15 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1 / 2,
+    boxShadow: [
+      {
+        color: theme.color.black,
+        offsetX: 0,
+        offsetY: 0,
+        blurRadius: 5,
+        spreadDistance: 0,
+      },
+    ],
   },
   borderGradient: {
     flex: 1,

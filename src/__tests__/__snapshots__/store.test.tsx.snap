@@ -110,6 +110,7 @@ exports[`Store matches the snapshot 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
+        "padding": 8,
         "paddingBottom": 16,
       }
     }
@@ -173,6 +174,11 @@ exports[`Store matches the snapshot 1`] = `
     scrollEventThrottle={0.0001}
     showsVerticalScrollIndicator={false}
     stickyHeaderIndices={[]}
+    style={
+      {
+        "marginHorizontal": -8,
+      }
+    }
     viewabilityConfigCallbackPairs={[]}
   >
     <View>
@@ -226,6 +232,15 @@ exports[`Store matches the snapshot 1`] = `
             role="button"
             style={
               {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
                 "flex": 0.5,
               }
             }
@@ -536,6 +551,15 @@ exports[`Store matches the snapshot 1`] = `
             role="button"
             style={
               {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
                 "flex": 0.5,
               }
             }
@@ -807,6 +831,15 @@ exports[`Store matches the snapshot 1`] = `
             role="button"
             style={
               {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
                 "flex": 0.5,
               }
             }
@@ -1117,6 +1150,15 @@ exports[`Store matches the snapshot 1`] = `
             role="button"
             style={
               {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
                 "flex": 0.5,
               }
             }
@@ -1388,6 +1430,15 @@ exports[`Store matches the snapshot 1`] = `
             role="button"
             style={
               {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
                 "flex": 0.5,
               }
             }
