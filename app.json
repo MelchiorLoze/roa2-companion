@@ -21,6 +21,14 @@
         "backgroundColor": "#0B0825"
       }
     },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#00000000"
+    },
+    "androidNavigationBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#00000000"
+    },
     "web": {
       "bundler": "metro",
       "output": "static",
