@@ -23,16 +23,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Cache Expo prebuild
-        uses: actions/cache@v4
-        with:
-          path: |
-            android
-            ios
-          key: expo-prebuild-${{ runner.os }}-${{ hashFiles('package.json', 'app.json', 'expo-env.d.ts') }}
-          restore-keys: |
-            expo-prebuild-${{ runner.os }}-
-
       - name: Expo prebuild
         run: npx expo prebuild
 
@@ -41,17 +31,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            android/.gradle
-          key: gradle-${{ runner.os }}-${{ hashFiles('android/gradle.properties', 'android/**/build.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
 
       - name: Build with Gradle
         working-directory: android
