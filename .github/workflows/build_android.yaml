@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -30,9 +31,18 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
-          cache-dependency-path: android/gradle.properties
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            android/.gradle
+          key: gradle-${{ runner.os }}-${{ hashFiles('android/gradle.properties', 'android/**/build.gradle*', 'android/gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
 
       - name: Build with Gradle
         working-directory: android
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --build-cache --parallel --daemon
