@@ -38,6 +38,10 @@ coverage/
 # typescript
 *.tsbuildinfo
 
+# IDE
+.idea/
+.vscode/
+
 app-example
 *.zip
 *.apk
