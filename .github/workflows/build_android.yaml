@@ -25,18 +25,18 @@ jobs:
       - name: Scaffold expo project
         run: npx expo prebuild --clean
 
-      - name: Move to android directory
-        run: cd android
-
-      - name: set up JDK 17
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
+          cache-dependency-path: android/gradle.properties
 
       - name: Grant execute permission for gradlew
+        working-directory: android
         run: chmod +x gradlew
 
       - name: Build with Gradle
+        working-directory: android
         run: ./gradlew build
