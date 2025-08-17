@@ -23,8 +23,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Scaffold expo project
-        run: npx expo prebuild --clean
+      - name: Cache Expo prebuild
+        uses: actions/cache@v4
+        with:
+          path: |
+            android
+            ios
+          key: expo-prebuild-${{ runner.os }}-${{ hashFiles('package.json', 'app.json', 'expo-env.d.ts') }}
+          restore-keys: |
+            expo-prebuild-${{ runner.os }}-
+
+      - name: Expo prebuild
+        run: npx expo prebuild
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -45,4 +55,4 @@ jobs:
 
       - name: Build with Gradle
         working-directory: android
-        run: ./gradlew assembleRelease --build-cache --parallel --daemon
+        run: ./gradlew assembleRelease
