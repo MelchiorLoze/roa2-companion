@@ -10,8 +10,8 @@
     "type": "git",
     "url": "https://github.com/MelchiorLoze/roa2-companion"
   },
-  "exports": "./src/index.ts",
   "type": "module",
+  "main": "./src/index.ts",
   "scripts": {
     "start": "expo start",
     "start:clear": "expo start --clear",
