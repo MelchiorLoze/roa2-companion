@@ -32,6 +32,31 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Cache Android build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            android/.gradle
+            android/build
+            android/app/build
+          key: ${{ runner.os }}-android-build-${{ hashFiles('android/**/*.gradle*', 'android/gradle-wrapper.properties', 'package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-android-build-
+
+      - name: Make gradlew executable
+        working-directory: android
+        run: chmod +x ./gradlew
+
       - name: Build with Gradle
         working-directory: android
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleRelease --build-cache --parallel --daemon
