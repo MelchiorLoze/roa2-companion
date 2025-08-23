@@ -5,6 +5,12 @@ import { type Item } from '@/types/item';
 
 import { ItemList } from './ItemList';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
+  ref: null,
+  size: { width: 0, height: 0 },
+});
+
 const onSelectMock = jest.fn();
 
 const renderComponent = (items: Item[]) => {

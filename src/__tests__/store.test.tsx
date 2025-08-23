@@ -7,6 +7,12 @@ import { testItemList } from '@/test-helpers/testItemList';
 
 jest.mock('expo-router');
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
+  ref: null,
+  size: { width: 0, height: 0 },
+});
+
 jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));

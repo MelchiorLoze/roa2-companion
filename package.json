@@ -30,6 +30,9 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg|@shopify/react-native-skia)/"
+    ],
     "setupFiles": [
       "@shopify/react-native-skia/jestSetup.js",
       "react-native-unistyles/mocks",
@@ -46,18 +49,19 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
-    "@shopify/react-native-skia": "2.1.1",
+    "@shopify/react-native-skia": "^2.2.4",
     "@tanstack/react-query": "^5.83.0",
-    "expo": "53.0.20",
+    "expo": "53.0.22",
+    "expo-constants": "~17.1.7",
     "expo-font": "~13.3.1",
     "expo-image": "~2.4.0",
     "expo-linear-gradient": "~14.1.5",
     "expo-linking": "~7.1.6",
-    "expo-router": "~5.1.2",
-    "expo-secure-store": "~14.2.3",
+    "expo-router": "~5.1.5",
+    "expo-secure-store": "~14.2.4",
     "expo-splash-screen": "^0.30.10",
     "expo-status-bar": "~2.2.3",
-    "expo-system-ui": "~5.0.10",
+    "expo-system-ui": "~5.0.11",
     "fast-xml-parser": "^5.2.5",
     "luxon": "^3.7.1",
     "react": "19.0.0",
@@ -65,12 +69,12 @@
     "react-native": "0.79.5",
     "react-native-edge-to-edge": "1.6.0",
     "react-native-gifted-charts": "^1.4.62",
-    "react-native-nitro-modules": "^0.26.3",
+    "react-native-nitro-modules": "^0.28.0",
     "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
-    "react-native-unistyles": "^3.0.3",
+    "react-native-unistyles": "^3.0.10",
     "type-fest": "^4.41.0"
   },
   "devDependencies": {
@@ -94,10 +98,10 @@
     "expo-dev-client": "~5.2.3",
     "fetch-mock": "^12.5.3",
     "jest": "^29.7.0",
-    "jest-expo": "~53.0.8",
+    "jest-expo": "~53.0.10",
     "jest-fail-on-console": "^3.3.1",
     "prettier": "^3.6.2",
     "react-test-renderer": "19.0.0",
-    "typescript": "^5.8.3"
+    "typescript": "~5.8.3"
   }
 }
