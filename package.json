@@ -10,7 +10,8 @@
     "type": "git",
     "url": "https://github.com/MelchiorLoze/roa2-companion"
   },
-  "main": "./src/index.ts",
+  "exports": "./src/index.ts",
+  "type": "module",
   "scripts": {
     "start": "expo start",
     "start:clear": "expo start --clear",
@@ -80,7 +81,7 @@
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.30.1",
+    "@eslint/js": "^9.34.0",
     "@react-native-community/cli": "^17.0.0",
     "@tanstack/eslint-plugin-query": "^5.81.2",
     "@testing-library/react-native": "^13.2.0",
