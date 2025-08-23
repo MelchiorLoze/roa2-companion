@@ -1,7 +1,7 @@
-import { Canvas, FilterMode, Image as SkiaImage } from '@shopify/react-native-skia';
+import { Canvas, FilterMode, Image as SkiaImage, useCanvasSize } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
-import React, { useState } from 'react';
-import { type LayoutChangeEvent, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { useItemImage } from '@/hooks/business/useItemImage/useItemImage';
@@ -12,21 +12,23 @@ type Props = {
 };
 
 export const ItemImage = ({ item }: Readonly<Props>) => {
-  const [size, setSize] = useState({ width: 0, height: 0 });
+  const { ref: canvasRef, size: canvasSize } = useCanvasSize();
   const image = useItemImage(item);
 
   const filter = image && image.width() > 256 ? FilterMode.Linear : FilterMode.Nearest;
 
-  const onLayout = (event: LayoutChangeEvent) => {
-    const { width, height } = event.nativeEvent.layout;
-    setSize({ width, height });
-  };
-
   return (
     <View style={styles.image}>
       <Image source={RARITY_BACK_FRAMES[item.rarity]} style={styles.layer} />
-      <Canvas onLayout={onLayout} style={styles.layer}>
-        <SkiaImage height={size.height} image={image} sampling={{ filter }} width={size.width} x={0} y={0} />
+      <Canvas ref={canvasRef} style={styles.layer}>
+        <SkiaImage
+          height={canvasSize.height}
+          image={image}
+          sampling={{ filter }}
+          width={canvasSize.width}
+          x={0}
+          y={0}
+        />
       </Canvas>
       <Image source={RARITY_FRONT_FRAMES[item.rarity]} style={styles.layer} />
       <Image source={CATEGORY_ICONS[item.category]} style={styles.categoryIcon} />

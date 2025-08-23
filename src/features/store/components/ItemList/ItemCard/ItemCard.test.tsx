@@ -6,6 +6,12 @@ import { Category, CATEGORY_LABELS, type Item, Rarity } from '@/types/item';
 
 import { ItemCard } from './ItemCard';
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
+  ref: null,
+  size: { width: 0, height: 0 },
+});
+
 jest.mock('@/components/OutlinedText/OutlinedText');
 jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 

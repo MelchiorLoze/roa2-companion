@@ -321,7 +321,6 @@ exports[`Store matches the snapshot 1`] = `
                     transition={null}
                   />
                   <View
-                    onLayout={[Function]}
                     style={
                       {
                         "bottom": 0,
@@ -640,7 +639,6 @@ exports[`Store matches the snapshot 1`] = `
                     transition={null}
                   />
                   <View
-                    onLayout={[Function]}
                     style={
                       {
                         "bottom": 0,
@@ -920,7 +918,6 @@ exports[`Store matches the snapshot 1`] = `
                     transition={null}
                   />
                   <View
-                    onLayout={[Function]}
                     style={
                       {
                         "bottom": 0,
@@ -1239,7 +1236,6 @@ exports[`Store matches the snapshot 1`] = `
                     transition={null}
                   />
                   <View
-                    onLayout={[Function]}
                     style={
                       {
                         "bottom": 0,
@@ -1519,7 +1515,6 @@ exports[`Store matches the snapshot 1`] = `
                     transition={null}
                   />
                   <View
-                    onLayout={[Function]}
                     style={
                       {
                         "bottom": 0,
