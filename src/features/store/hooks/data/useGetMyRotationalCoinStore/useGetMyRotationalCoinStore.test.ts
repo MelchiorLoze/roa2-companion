@@ -36,7 +36,7 @@ describe('useGetMyRotationalCoinStore', () => {
         body: {
           data: {
             FunctionResult: {
-              itemIds: ['1', '2'],
+              itemIds: [null, '1', null, '2', null],
               expirationDateTime: VALID_DATE.toISO(),
             },
           },
