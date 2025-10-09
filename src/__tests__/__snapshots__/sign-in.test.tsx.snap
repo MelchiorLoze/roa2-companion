@@ -635,11 +635,9 @@ exports[`SignIn matches the snapshot 2`] = `
   <View>
     <Modal
       animationType="fade"
-      hardwareAccelerated={false}
       onRequestClose={[Function]}
       statusBarTranslucent={true}
       transparent={true}
-      visible={true}
     >
       <View
         style={

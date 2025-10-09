@@ -101,7 +101,7 @@ exports[`Stats matches the snapshot 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "transparent",
+                  "backgroundColor": "#FFFFFF00",
                   "justifyContent": "center",
                 },
                 {
@@ -164,7 +164,7 @@ exports[`Stats matches the snapshot 1`] = `
               [
                 {
                   "alignItems": "center",
-                  "backgroundColor": "transparent",
+                  "backgroundColor": "#FFFFFF00",
                   "justifyContent": "center",
                 },
                 {

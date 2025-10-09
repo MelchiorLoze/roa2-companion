@@ -13,7 +13,7 @@ const theme = {
     disabled: '#AAAAAA',
     black: 'black',
     white: 'white',
-    transparent: 'transparent',
+    transparent: '#FFFFFF00',
     error: 'crimson',
     // Rarity colors
     common: '#D3D5E4',
