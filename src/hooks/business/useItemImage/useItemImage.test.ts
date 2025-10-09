@@ -235,9 +235,12 @@ describe('useItemImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result, rerender } = renderHook(({ itemMock }) => useItemImage(itemMock), {
-        initialProps: { itemMock: itemMock },
-      });
+      const { result, rerender } = renderHook<ReturnType<typeof useItemImage>, { itemMock: typeof itemMock }>(
+        ({ itemMock }) => useItemImage(itemMock),
+        {
+          initialProps: { itemMock },
+        },
+      );
 
       // Wait for the first image to load
       await waitFor(() => expect(result.current).toBe(skImageMock));
