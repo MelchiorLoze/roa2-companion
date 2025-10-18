@@ -10,9 +10,11 @@ export const tournamentFromDto = (dto: TournamentDto): Tournament => {
     state: dto.state as TournamentState,
     startAt: DateTime.fromISO(dto.startAt, { zone: 'utc' }),
     endAt: DateTime.fromISO(dto.endAt, { zone: 'utc' }),
-    events: dto.events.map((event) => ({
-      ...event,
-      startAt: DateTime.fromISO(event.startAt, { zone: 'utc' }),
-    })),
+    events: dto.events
+      .map((event) => ({
+        ...event,
+        startAt: DateTime.fromISO(event.startAt, { zone: 'utc' }),
+      }))
+      .sort((a, b) => b.numEntrants - a.numEntrants),
   };
 };

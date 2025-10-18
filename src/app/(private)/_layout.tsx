@@ -55,7 +55,8 @@ export default function PrivateLayout() {
         <Tabs.Screen
           name="e-sport"
           options={{
-            title: 'E-Sport',
+            title: 'Tournaments',
+            tabBarLabel: 'E-Sport',
             tabBarIcon: ({ color }) => <Ionicons color={color} name="trophy-sharp" size={24} />,
           }}
         />
