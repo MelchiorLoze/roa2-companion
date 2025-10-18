@@ -24,7 +24,7 @@ type EventDto = Readonly<{
 export type Tournament = Readonly<{
   id: number;
   name: string;
-  slug: string;
+  url: URL;
   imageUrl?: URL;
   countryCode?: string;
   isOnline: boolean;

@@ -7,11 +7,11 @@ import { TournamentCard } from '../TournamentCard/TournamentCard';
 const keyExtractor = (item: Tournament) => item.id.toString();
 const renderItem = ({ item }: { item: Tournament }) => <TournamentCard tournament={item} />;
 
-type Props = Readonly<{
+type Props = {
   tournaments: Tournament[];
-}>;
+};
 
-export const TournamentList = ({ tournaments }: Props) => {
+export const TournamentList = ({ tournaments }: Readonly<Props>) => {
   return (
     <FlatList
       contentContainerStyle={styles.container}

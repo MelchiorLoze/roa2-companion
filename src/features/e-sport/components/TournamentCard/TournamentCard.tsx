@@ -12,23 +12,17 @@ import { Separator } from '@/components/Separator/Separator';
 import type { Tournament } from '../../types/tournament';
 import { TournamentStateTag } from './TournamentStateTag';
 
-const START_GG_BASE_URL = 'https://www.start.gg';
-
-const tournamentUrl = (tournament: Tournament): ExternalPathString =>
-  new URL(tournament.slug, START_GG_BASE_URL).toString() as ExternalPathString;
-
-type Props = Readonly<{
+type Props = {
   tournament: Tournament;
-}>;
+};
 
-export const TournamentCard = ({ tournament }: Props) => {
+export const TournamentCard = ({ tournament }: Readonly<Props>) => {
   const router = useRouter();
 
-  const url = tournamentUrl(tournament);
   const flagIcon = tournament.countryCode ? getUnicodeFlagIcon(tournament.countryCode) : null;
 
   return (
-    <Pressable onPress={() => router.push(url)} style={styles.container}>
+    <Pressable onPress={() => router.push(tournament.url.toString() as ExternalPathString)} style={styles.container}>
       <View style={styles.header}>
         {tournament.imageUrl && <Image source={tournament.imageUrl.toString()} style={styles.image} />}
         <View style={styles.headerText}>
