@@ -1,5 +1,6 @@
 import { type ImageSource } from 'expo-image';
 
+export const CriticalHitIcon: ImageSource = require('./criticalhit.png');
 export const DeatheffectIcon: ImageSource = require('./deatheffect.png');
 export const EmoteIcon: ImageSource = require('./emote.png');
 export const IconIcon: ImageSource = require('./icon.png');
