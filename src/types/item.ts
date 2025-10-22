@@ -1,6 +1,7 @@
 import { type ImageSource } from 'expo-image';
 
 import {
+  CriticalHitIcon,
   DeatheffectIcon,
   EmoteIcon,
   IconIcon,
@@ -24,6 +25,7 @@ import {
 import { type CurrencyId } from './currency';
 
 export const enum Category {
+  CRITICAL_HIT = 'criticalhit',
   DEATHEFFECT = 'deatheffect',
   EMOTE = 'emote',
   ICON = 'icon',
@@ -35,6 +37,7 @@ export const enum Category {
 }
 
 export const CATEGORY_LABELS = Object.freeze<Record<Category, string>>({
+  [Category.CRITICAL_HIT]: 'critical hit',
   [Category.DEATHEFFECT]: 'death',
   [Category.EMOTE]: 'emote',
   [Category.ICON]: 'icon',
@@ -46,6 +49,7 @@ export const CATEGORY_LABELS = Object.freeze<Record<Category, string>>({
 });
 
 export const CATEGORY_ICONS = Object.freeze<Record<Category, ImageSource>>({
+  [Category.CRITICAL_HIT]: CriticalHitIcon,
   [Category.DEATHEFFECT]: DeatheffectIcon,
   [Category.EMOTE]: EmoteIcon,
   [Category.ICON]: IconIcon,
