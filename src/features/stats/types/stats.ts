@@ -25,12 +25,20 @@ export enum StatisticName {
   RANKED_WINS = 'Ranked_Wins',
 
   /*
+   * CREWS STATS
+   * The following numbers are counted in number of SETS (bo3)
+   */
+
+  CREWS_ELO = 'Crews_Elo',
+  CREWS_SETS = 'Crews_Matches',
+
+  /*
    * GENERAL STATS
    * The following numbers are counted in number of GAMES (bo1)
    */
 
-  TOTAL_SESSIONS_PLAYED = 'TotalSessionsPlayed',
-  BETA_WINS = 'Beta Wins',
+  TOTAL_GAMES = 'TotalSessionsPlayed',
+  TOTAL_WINS = 'Beta Wins',
 
   ABS_MATCH_COUNT = 'Abs Match Count',
   CLA_MATCH_COUNT = 'Cla Match Count',

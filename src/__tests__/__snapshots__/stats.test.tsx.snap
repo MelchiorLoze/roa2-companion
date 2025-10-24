@@ -802,6 +802,121 @@ exports[`Stats matches the snapshot 1`] = `
           }
         }
       >
+        Crews
+      </Text>
+      <View
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "textTransform": "uppercase",
+            }
+          }
+        >
+          50
+           sets
+        </Text>
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={24}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "testUri": "../../../src/features/stats/assets/images/crews/crews_icon.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 24,
+                "width": 24,
+              }
+            }
+            transition={null}
+            width={24}
+          />
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            1500
+          </Text>
+        </View>
+      </View>
+    </ViewManagerAdapter_ExpoLinearGradient>
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          4283136696,
+          0,
+        ]
+      }
+      endPoint={
+        [
+          1,
+          0,
+        ]
+      }
+      startPoint={
+        [
+          0.3333333333333333,
+          0,
+        ]
+      }
+      style={
+        {
+          "gap": 8,
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 20,
+            "textTransform": "uppercase",
+          }
+        }
+      >
         Global
       </Text>
       <View>

@@ -2,8 +2,8 @@ import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
 const getGlobalStats = (rawStats: PlayerStatistics) => {
-  const gameCount = rawStats[StatisticName.TOTAL_SESSIONS_PLAYED] ?? 0;
-  const winCount = rawStats[StatisticName.BETA_WINS] ?? 0;
+  const gameCount = rawStats[StatisticName.TOTAL_GAMES] ?? 0;
+  const winCount = rawStats[StatisticName.TOTAL_WINS] ?? 0;
   const winRate = gameCount ? (winCount / gameCount) * 100 : 0;
 
   return { gameStats: { gameCount, winCount, winRate } } as const;
