@@ -2,20 +2,20 @@ import { act, renderHook } from '@testing-library/react-native';
 
 import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
-import { useUserGlobalStats } from './useUserGlobalStats';
+import { useUserCrewsStats } from './useUserCrewsStats';
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
 
-const renderUseUserGlobalStats = () => {
-  const { result } = renderHook(useUserGlobalStats);
+const renderUseUserCrewsStats = () => {
+  const { result } = renderHook(useUserCrewsStats);
 
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
 
   return { result };
 };
 
-describe('useUserGlobalStats', () => {
+describe('useUserCrewsStats', () => {
   beforeEach(() => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: {} as PlayerStatistics,
@@ -35,7 +35,7 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
@@ -51,7 +51,7 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
@@ -67,16 +67,16 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('computes global stats correctly from player statistics', () => {
+  it('computes crews stats correctly from player statistics', () => {
     const mockStatistics: PlayerStatistics = {
-      [StatisticName.TOTAL_GAMES]: 200,
-      [StatisticName.TOTAL_WINS]: 120,
+      [StatisticName.CREWS_ELO]: 11500,
+      [StatisticName.CREWS_SETS]: 50,
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
@@ -87,18 +87,18 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
-      gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
+      elo: 1500,
+      setStats: { setCount: 50 },
     });
   });
 
-  it('handles zero matches played when calculating win rates', () => {
+  it('handles missing elo stat by defaulting to 1000', () => {
     const mockStatistics: PlayerStatistics = {
-      [StatisticName.TOTAL_GAMES]: 0,
-      [StatisticName.TOTAL_WINS]: 0,
+      [StatisticName.CREWS_SETS]: 25,
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
@@ -109,9 +109,29 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
-    expect(result.current.stats?.gameStats.winRate).toBe(0);
+    expect(result.current.stats?.elo).toBe(1000);
+    expect(result.current.stats?.setStats.setCount).toBe(25);
+  });
+
+  it('handles missing set count by defaulting to 0', () => {
+    const mockStatistics: PlayerStatistics = {
+      [StatisticName.CREWS_ELO]: 12000,
+    };
+
+    useGetPlayerStatisticsMock.mockReturnValue({
+      statistics: mockStatistics,
+      refetch: jest.fn(),
+      isLoading: false,
+      isRefetching: false,
+      isError: false,
+    });
+
+    const { result } = renderUseUserCrewsStats();
+
+    expect(result.current.stats?.elo).toBe(2000);
+    expect(result.current.stats?.setStats.setCount).toBe(0);
   });
 
   it('passes through the refetch function correctly', async () => {
@@ -125,7 +145,7 @@ describe('useUserGlobalStats', () => {
       isError: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = renderUseUserCrewsStats();
 
     await act(async () => result.current.refresh());
 

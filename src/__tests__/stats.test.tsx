@@ -3,6 +3,7 @@ import { render } from '@testing-library/react-native';
 import Stats from '@/app/(private)/stats';
 import { useLeaderboardStats } from '@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats';
+import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
@@ -33,6 +34,18 @@ useUserRankedStatsMock.mockReturnValue({
     position: 123,
     playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
+  },
+  refresh: jest.fn(),
+  isLoading: false,
+  isRefreshing: false,
+});
+
+jest.mock('@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats');
+const useUserCrewsStatsMock = jest.mocked(useUserCrewsStats);
+useUserCrewsStatsMock.mockReturnValue({
+  stats: {
+    elo: 1500,
+    setStats: { setCount: 50 },
   },
   refresh: jest.fn(),
   isLoading: false,
