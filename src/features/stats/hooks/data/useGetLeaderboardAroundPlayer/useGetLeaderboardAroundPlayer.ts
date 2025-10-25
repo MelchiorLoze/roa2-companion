@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
+import { Category } from '@/types/item';
+import { imageUrlFromFriendlyId } from '@/utils/imageUrlFromFriendlyId';
 
 import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
@@ -43,7 +45,7 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
         position: Position,
         profile: {
           playerName: Profile.DisplayName,
-          avatarFriendlyId: Profile.AvatarUrl,
+          avatarUrl: imageUrlFromFriendlyId(Category.ICON, Profile.AvatarUrl),
         },
       })),
     staleTime: Infinity,

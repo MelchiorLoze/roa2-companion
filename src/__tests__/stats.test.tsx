@@ -31,9 +31,11 @@ useUserRankedStatsMock.mockReturnValue({
   stats: {
     elo: 925,
     rank: Rank.GOLD,
+    bestWinStreak: 15,
     position: 123,
     playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
+    profile: { playerName: 'TestPlayer', avatarUrl: new URL('https://www.example.com/avatars/testplayer.png') },
   },
   refresh: jest.fn(),
   isLoading: false,

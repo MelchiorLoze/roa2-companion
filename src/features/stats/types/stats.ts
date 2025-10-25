@@ -1,10 +1,5 @@
 import { type Character } from '@/types/character';
 
-// Cannot determine current season dynamically for now as ranked stats names
-// are inconsistent per season
-export const MIN_SEASON_INDEX = 1;
-export const MAX_SEASON_INDEX = 4;
-
 export enum StatisticName {
   /*
    * RANKED STATS
@@ -65,7 +60,7 @@ export type PlayerPosition = Readonly<{
   position: number;
   profile: {
     playerName: string;
-    avatarFriendlyId: string;
+    avatarUrl: URL;
   };
 }>;
 

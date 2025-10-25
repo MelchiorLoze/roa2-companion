@@ -1,21 +1,18 @@
-import { Canvas, FilterMode, Image as SkiaImage, useCanvasSize } from '@shopify/react-native-skia';
+import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
 import React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { useItemImage } from '@/hooks/business/useItemImage/useItemImage';
+import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
 import { CATEGORY_ICONS, type Item, RARITY_BACK_FRAMES, RARITY_FRONT_FRAMES } from '@/types/item';
 
 type Props = {
-  item: Pick<Item, 'friendlyId' | 'category' | 'rarity'>;
+  item: Pick<Item, 'imageUrl' | 'category' | 'rarity'>;
 };
 
 export const ItemImage = ({ item }: Readonly<Props>) => {
-  const { ref: canvasRef, size: canvasSize } = useCanvasSize();
-  const image = useItemImage(item);
-
-  const filter = image && image.width() > 256 ? FilterMode.Linear : FilterMode.Nearest;
+  const { image, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(item.imageUrl);
 
   return (
     <View style={styles.image}>
@@ -24,7 +21,7 @@ export const ItemImage = ({ item }: Readonly<Props>) => {
         <SkiaImage
           height={canvasSize.height}
           image={image}
-          sampling={{ filter }}
+          sampling={{ filter: canvasFilter }}
           width={canvasSize.width}
           x={0}
           y={0}

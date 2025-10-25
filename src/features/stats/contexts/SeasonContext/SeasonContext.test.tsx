@@ -5,7 +5,7 @@ import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider'
 
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { type Leaderboard } from '../../types/rank';
-import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/stats';
+import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/season';
 import { SeasonProvider, useSeason } from './SeasonContext';
 
 jest.mock('../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards');
@@ -31,7 +31,7 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   </TestQueryClientProvider>
 );
 
-jest.mock('../../types/stats', () => ({
+jest.mock('../../types/season', () => ({
   MAX_SEASON_INDEX: 2,
   MIN_SEASON_INDEX: 1,
 }));

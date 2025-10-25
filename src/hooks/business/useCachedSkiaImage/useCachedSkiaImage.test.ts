@@ -2,9 +2,7 @@ import { type SkData, Skia, type SkImage } from '@shopify/react-native-skia';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import { Image } from 'expo-image';
 
-import { Category, type Item } from '@/types/item';
-
-import { useItemImage } from './useItemImage';
+import { useCachedSkiaImage } from './useCachedSkiaImage';
 
 jest.mock('@shopify/react-native-skia', () => ({
   Skia: {
@@ -14,6 +12,14 @@ jest.mock('@shopify/react-native-skia', () => ({
     Image: {
       MakeImageFromEncoded: jest.fn(),
     },
+  },
+  useCanvasSize: () => ({
+    ref: null,
+    size: { width: 0, height: 0 },
+  }),
+  FilterMode: {
+    Nearest: 0,
+    Linear: 1,
   },
 }));
 const SkiaMock = jest.mocked(Skia);
@@ -31,30 +37,25 @@ const ImageMock = jest.mocked(Image);
 const getCachePathAsyncMock = ImageMock.getCachePathAsync;
 const prefetchMock = ImageMock.prefetch;
 
-const itemMock: Pick<Item, 'friendlyId' | 'category'> = {
-  friendlyId: 'test-item-123',
-  category: Category.SKIN,
-};
+const urlMock = new URL('https://www.example.com/skin/test-item-123.png');
 const cachePathMock = '/cache/path/test-item-123.png';
 const skDataMock = {} as SkData;
-const skImageMock = {} as SkImage;
+const skImageMock = { width: () => 300 } as SkImage;
 
-describe('useItemImage', () => {
+describe('useCachedSkiaImage', () => {
   describe('when image is already cached', () => {
     it('returns the cached image without prefetching', async () => {
       getCachePathAsyncMock.mockResolvedValue(cachePathMock);
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
-      await waitFor(() => expect(result.current).toBe(skImageMock));
+      await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
-      expect(getCachePathAsyncMock).toHaveBeenCalledWith(
-        'https://d1gftqja5mgfxj.cloudfront.net/skin/test-item-123.png',
-      );
+      expect(getCachePathAsyncMock).toHaveBeenCalledWith('https://www.example.com/skin/test-item-123.png');
       expect(prefetchMock).not.toHaveBeenCalled();
       expect(fromURIMock).toHaveBeenCalledWith('file:///cache/path/test-item-123.png');
       expect(makeImageFromEncodedMock).toHaveBeenCalledWith(skDataMock);
@@ -70,14 +71,14 @@ describe('useItemImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
-      await waitFor(() => expect(result.current).toBe(skImageMock));
+      await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
       expect(getCachePathAsyncMock).toHaveBeenCalledTimes(2);
-      expect(prefetchMock).toHaveBeenCalledWith('https://d1gftqja5mgfxj.cloudfront.net/skin/test-item-123.png');
+      expect(prefetchMock).toHaveBeenCalledWith('https://www.example.com/skin/test-item-123.png');
       expect(fromURIMock).toHaveBeenCalledWith('file:///cache/path/test-item-123.png');
       expect(makeImageFromEncodedMock).toHaveBeenCalledWith(skDataMock);
     });
@@ -86,16 +87,44 @@ describe('useItemImage', () => {
       getCachePathAsyncMock.mockResolvedValue(null);
       prefetchMock.mockResolvedValue(true);
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
       await waitFor(() => expect(getCachePathAsyncMock).toHaveBeenCalledTimes(2));
 
-      expect(result.current).toBe(null);
-      expect(prefetchMock).toHaveBeenCalledWith('https://d1gftqja5mgfxj.cloudfront.net/skin/test-item-123.png');
+      expect(result.current.image).toBe(null);
+      expect(prefetchMock).toHaveBeenCalledWith('https://www.example.com/skin/test-item-123.png');
       expect(fromURIMock).not.toHaveBeenCalled();
       expect(makeImageFromEncodedMock).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('canvas filter mode', () => {
+    it('uses Nearest filter for pixel art images', async () => {
+      getCachePathAsyncMock.mockResolvedValue(cachePathMock);
+      fromURIMock.mockResolvedValue(skDataMock);
+      const pixelArtImageMock = { width: () => 100 } as SkImage;
+      makeImageFromEncodedMock.mockReturnValue(pixelArtImageMock);
+
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+
+      await waitFor(() => expect(result.current.image).toBe(pixelArtImageMock));
+
+      expect(result.current.canvasFilter).toBe(0); // FilterMode.Nearest
+    });
+
+    it('uses Linear filter for larger images', async () => {
+      getCachePathAsyncMock.mockResolvedValue(cachePathMock);
+      fromURIMock.mockResolvedValue(skDataMock);
+      const largerImageMock = { width: () => 1500 } as SkImage;
+      makeImageFromEncodedMock.mockReturnValue(largerImageMock);
+
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+
+      await waitFor(() => expect(result.current.image).toBe(largerImageMock));
+
+      expect(result.current.canvasFilter).toBe(1); // FilterMode.Linear
     });
   });
 
@@ -106,18 +135,18 @@ describe('useItemImage', () => {
       console.error = consoleErrorMock;
       getCachePathAsyncMock.mockRejectedValue(new Error('Cache path error'));
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
       await waitFor(() =>
         expect(consoleErrorMock).toHaveBeenCalledWith(
-          "Couldn't load or process image 'test-item-123':",
+          "Couldn't load or process image from 'https://www.example.com/skin/test-item-123.png':",
           expect.any(Error),
         ),
       );
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
       console.error = originalConsoleError;
     });
 
@@ -129,18 +158,18 @@ describe('useItemImage', () => {
       getCachePathAsyncMock.mockResolvedValue(null);
       prefetchMock.mockRejectedValue(new Error('Prefetch error'));
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
       await waitFor(() =>
         expect(consoleErrorMock).toHaveBeenCalledWith(
-          "Couldn't load or process image 'test-item-123':",
+          "Couldn't load or process image from 'https://www.example.com/skin/test-item-123.png':",
           expect.any(Error),
         ),
       );
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
       console.error = originalConsoleError;
     });
 
@@ -151,18 +180,18 @@ describe('useItemImage', () => {
       getCachePathAsyncMock.mockResolvedValue(cachePathMock);
       fromURIMock.mockRejectedValue(new Error('Skia data error'));
 
-      const { result } = renderHook(() => useItemImage(itemMock));
+      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
 
       await waitFor(() =>
         expect(consoleErrorMock).toHaveBeenCalledWith(
-          "Couldn't load or process image 'test-item-123':",
+          "Couldn't load or process image from 'https://www.example.com/skin/test-item-123.png':",
           expect.any(Error),
         ),
       );
 
-      expect(result.current).toBe(null);
+      expect(result.current.image).toBe(null);
       console.error = originalConsoleError;
     });
   });
@@ -173,15 +202,15 @@ describe('useItemImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result: result1 } = renderHook(() => useItemImage(itemMock));
-      const { result: result2 } = renderHook(() => useItemImage(itemMock));
+      const { result: result1 } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result: result2 } = renderHook(() => useCachedSkiaImage(urlMock));
 
-      expect(result1.current).toBe(null);
-      expect(result2.current).toBe(null);
+      expect(result1.current.image).toBe(null);
+      expect(result2.current.image).toBe(null);
 
       await waitFor(() => {
-        expect(result1.current).toBe(skImageMock);
-        expect(result2.current).toBe(skImageMock);
+        expect(result1.current.image).toBe(skImageMock);
+        expect(result2.current.image).toBe(skImageMock);
       });
 
       // Should only call getCachePathAsync once due to deduplication
@@ -191,65 +220,53 @@ describe('useItemImage', () => {
     });
 
     it('makes separate requests for different friendlyIds', async () => {
-      const otherItemMock: Pick<Item, 'friendlyId' | 'category'> = {
-        friendlyId: 'test-item-456',
-        category: Category.ICON,
-      };
+      const otherUrlMock = new URL('https://www.example.com/icon/test-item-456.png');
       const otherCachePathMock = '/cache/path/test-item-456.png';
-      const otherSkImageMock = {} as SkImage;
+      const otherSkImageMock = { width: () => 300 } as SkImage;
 
       getCachePathAsyncMock.mockResolvedValueOnce(cachePathMock).mockResolvedValueOnce(otherCachePathMock);
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result: result1 } = renderHook(() => useItemImage(itemMock));
-      const { result: result2 } = renderHook(() => useItemImage(otherItemMock));
+      const { result: result1 } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result: result2 } = renderHook(() => useCachedSkiaImage(otherUrlMock));
 
       await waitFor(() => {
-        expect(result1.current).toBe(skImageMock);
-        expect(result2.current).toBe(otherSkImageMock);
+        expect(result1.current.image).toBe(skImageMock);
+        expect(result2.current.image).toBe(otherSkImageMock);
       });
 
       expect(getCachePathAsyncMock).toHaveBeenCalledTimes(2);
-      expect(getCachePathAsyncMock).toHaveBeenNthCalledWith(
-        1,
-        'https://d1gftqja5mgfxj.cloudfront.net/skin/test-item-123.png',
-      );
-      expect(getCachePathAsyncMock).toHaveBeenNthCalledWith(
-        2,
-        'https://d1gftqja5mgfxj.cloudfront.net/icon/test-item-456.png',
-      );
+      expect(getCachePathAsyncMock).toHaveBeenNthCalledWith(1, 'https://www.example.com/skin/test-item-123.png');
+      expect(getCachePathAsyncMock).toHaveBeenNthCalledWith(2, 'https://www.example.com/icon/test-item-456.png');
     });
   });
 
   describe('when friendlyId changes', () => {
     it('fetches the new image and updates the result', async () => {
-      const otherItemMock: Pick<Item, 'friendlyId' | 'category'> = {
-        friendlyId: 'test-item-789',
-        category: Category.ICON,
-      };
+      const otherUrlMock = new URL('https://www.example.com/icon/test-item-789.png');
       const otherCachePathMock = '/cache/path/test-item-789.png';
-      const otherSkImageMock = {} as SkImage;
+      const otherSkImageMock = { width: () => 300 } as SkImage;
 
       getCachePathAsyncMock.mockResolvedValueOnce(cachePathMock).mockResolvedValueOnce(otherCachePathMock);
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result, rerender } = renderHook<ReturnType<typeof useItemImage>, { itemMock: typeof itemMock }>(
-        ({ itemMock }) => useItemImage(itemMock),
+      const { result, rerender } = renderHook<ReturnType<typeof useCachedSkiaImage>, { urlMock: typeof urlMock }>(
+        ({ urlMock }) => useCachedSkiaImage(urlMock),
         {
-          initialProps: { itemMock },
+          initialProps: { urlMock },
         },
       );
 
       // Wait for the first image to load
-      await waitFor(() => expect(result.current).toBe(skImageMock));
+      await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
       // Change the friendlyId
-      rerender({ itemMock: otherItemMock });
+      rerender({ urlMock: otherUrlMock });
 
       // Should eventually get the second image
-      await waitFor(() => expect(result.current).toBe(otherSkImageMock));
+      await waitFor(() => expect(result.current.image).toBe(otherSkImageMock));
 
       expect(getCachePathAsyncMock).toHaveBeenCalledTimes(2);
       expect(makeImageFromEncodedMock).toHaveBeenCalledTimes(2);

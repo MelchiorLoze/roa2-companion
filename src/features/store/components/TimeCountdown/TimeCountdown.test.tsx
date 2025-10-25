@@ -41,7 +41,7 @@ describe('TimeCountdown', () => {
 
     // Should have both the actual countdown and width placeholder
     screen.getByText('01h 30m 45s');
-    screen.getByText('01h 30m 00s');
+    screen.getByText('01h 30m 88s');
   });
 
   it('handles large time differences correctly', () => {

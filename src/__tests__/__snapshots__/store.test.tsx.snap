@@ -102,7 +102,7 @@ exports[`Store matches the snapshot 1`] = `
         15
         h 
         22
-        m 00s
+        m 88s
       </Text>
     </View>
   </ViewManagerAdapter_ExpoLinearGradient>
@@ -120,31 +120,31 @@ exports[`Store matches the snapshot 1`] = `
           "buckPrice": 20,
           "category": "icon",
           "coinPrice": 2000,
-          "friendlyId": "Icon_item_1",
           "id": "1",
+          "imageUrl": "https://www.example.com/icon/Icon_item_1.png",
           "name": "Item 1",
           "rarity": "common",
         },
         {
           "buckPrice": 500,
           "category": "deatheffect",
-          "friendlyId": "DeathEffect_item_2",
           "id": "2",
+          "imageUrl": "https://www.example.com/deatheffect/Deatheffect_item_2.png",
           "name": "Item 2",
           "rarity": "epic",
         },
         {
           "category": "emote",
           "coinPrice": 1500,
-          "friendlyId": "Emote_item_3",
           "id": "3",
+          "imageUrl": "https://www.example.com/emote/Emote_item_3.png",
           "name": "Item 3",
           "rarity": "rare",
         },
         {
           "category": "skin",
-          "friendlyId": "Skin_item_4",
           "id": "4",
+          "imageUrl": "https://www.example.com/skin/Skin_item_4.png",
           "name": "Item 4",
           "rarity": "legendary",
         },
@@ -152,8 +152,8 @@ exports[`Store matches the snapshot 1`] = `
           "buckPrice": 2000,
           "category": "stageskin",
           "coinPrice": 200000,
-          "friendlyId": "StageSkin_item_5",
           "id": "5",
+          "imageUrl": "https://www.example.com/stageskin/StageSkin_item_5.png",
           "name": "Item 5",
           "rarity": "common",
         },

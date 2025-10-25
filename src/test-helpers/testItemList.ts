@@ -3,7 +3,7 @@ import { Category, type Item, Rarity } from '@/types/item';
 export const testItemList: Item[] = [
   {
     id: '1',
-    friendlyId: 'Icon_item_1',
+    imageUrl: new URL('https://www.example.com/icon/Icon_item_1.png'),
     name: 'Item 1',
     rarity: Rarity.COMMON,
     category: Category.ICON,
@@ -12,7 +12,7 @@ export const testItemList: Item[] = [
   },
   {
     id: '2',
-    friendlyId: 'DeathEffect_item_2',
+    imageUrl: new URL('https://www.example.com/deatheffect/Deatheffect_item_2.png'),
     name: 'Item 2',
     rarity: Rarity.EPIC,
     category: Category.DEATHEFFECT,
@@ -20,7 +20,7 @@ export const testItemList: Item[] = [
   },
   {
     id: '3',
-    friendlyId: 'Emote_item_3',
+    imageUrl: new URL('https://www.example.com/emote/Emote_item_3.png'),
     name: 'Item 3',
     rarity: Rarity.RARE,
     category: Category.EMOTE,
@@ -28,14 +28,14 @@ export const testItemList: Item[] = [
   },
   {
     id: '4',
-    friendlyId: 'Skin_item_4',
+    imageUrl: new URL('https://www.example.com/skin/Skin_item_4.png'),
     name: 'Item 4',
     rarity: Rarity.LEGENDARY,
     category: Category.SKIN,
   },
   {
     id: '5',
-    friendlyId: 'StageSkin_item_5',
+    imageUrl: new URL('https://www.example.com/stageskin/StageSkin_item_5.png'),
     name: 'Item 5',
     rarity: Rarity.COMMON,
     category: Category.STAGESKIN,

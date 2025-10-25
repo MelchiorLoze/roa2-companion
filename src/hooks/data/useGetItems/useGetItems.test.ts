@@ -59,7 +59,7 @@ describe('useGetItems', () => {
       expect(result.current.items).toEqual([
         {
           id: '1',
-          friendlyId: 'skin_item_1',
+          imageUrl: new URL('https://www.example.com/icon/icon_item_1.png'),
           name: 'Item 1',
           category: Category.SKIN,
           rarity: Rarity.COMMON,
@@ -68,7 +68,7 @@ describe('useGetItems', () => {
         },
         {
           id: '2',
-          friendlyId: 'icon_item_2',
+          imageUrl: new URL('https://www.example.com/icon/icon_item_2.png'),
           name: 'Item 2',
           category: Category.ICON,
           rarity: Rarity.COMMON,

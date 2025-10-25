@@ -25,7 +25,7 @@ export const TimeCountdown = ({ date, style }: Readonly<Props>) => {
 
   /*
    * As the countdown is aligned on the right and the digits characters are not the same width,
-   * we need to add a transparent placeholder with the widest character (0) to prevent the
+   * we need to add a transparent placeholder with the widest character (8) to prevent the
    * whole text from jumping every second.
    */
   return (
@@ -34,7 +34,7 @@ export const TimeCountdown = ({ date, style }: Readonly<Props>) => {
         {hours}h {minutes}m {seconds}s
       </Text>
       <Text style={[style, styles.widthPlaceholder]}>
-        {hours}h {minutes}m 00s
+        {hours}h {minutes}m 88s
       </Text>
     </View>
   );

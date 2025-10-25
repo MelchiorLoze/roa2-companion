@@ -1,30 +1,25 @@
-import { Canvas, FilterMode, Image as SkiaImage, useCanvasSize } from '@shopify/react-native-skia';
+import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
-import { useItemImage } from '@/hooks/business/useItemImage/useItemImage';
-import { Category } from '@/types/item';
+import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
 type Props = {
   position: number;
-  avatarFriendlyId: string;
+  avatarUrl: URL;
   playerName: string;
   elo?: number;
   rank?: Rank;
 };
 
-export const RankStatRow = ({ position, avatarFriendlyId, playerName, elo, rank }: Readonly<Props>) => {
+export const RankStatRow = ({ position, avatarUrl, playerName, elo, rank }: Readonly<Props>) => {
   const { theme } = useUnistyles();
-  const { ref: canvasRef, size: canvasSize } = useCanvasSize();
-
-  const avatarImage = useItemImage({ friendlyId: avatarFriendlyId, category: Category.ICON });
-
-  const filter = avatarImage && avatarImage.width() > 256 ? FilterMode.Linear : FilterMode.Nearest;
+  const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
   return (
     <View style={styles.container}>
@@ -49,7 +44,7 @@ export const RankStatRow = ({ position, avatarFriendlyId, playerName, elo, rank 
           <SkiaImage
             height={canvasSize.height}
             image={avatarImage}
-            sampling={{ filter }}
+            sampling={{ filter: canvasFilter }}
             width={canvasSize.width}
             x={0}
             y={0}

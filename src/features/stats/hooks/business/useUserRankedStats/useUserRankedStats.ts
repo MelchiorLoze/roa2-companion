@@ -1,5 +1,6 @@
+import type { Season } from '../../../../stats/types/season';
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
-import { MAX_SEASON_INDEX, MIN_SEASON_INDEX, type PlayerStatistics, StatisticName } from '../../../types/stats';
+import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { getRank } from '../../../utils/getRank';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
@@ -8,17 +9,16 @@ import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats'
 const getEloStatNameForSeason = (seasonIndex: number) =>
   StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName];
 
-const getSetStatsForSeason = (rawStats: PlayerStatistics | undefined, seasonIndex: number) => {
-  if (!rawStats || (seasonIndex !== MIN_SEASON_INDEX && seasonIndex !== MAX_SEASON_INDEX)) return undefined;
+const getSetStatsForSeason = (rawStats: PlayerStatistics | undefined, season: Season) => {
+  if (!rawStats || (!season.isFirst && !season.isLast)) return undefined;
 
   const result = {
     setCount: rawStats[StatisticName.RANKED_SETS] ?? 0,
     winCount: rawStats[StatisticName.RANKED_WINS] ?? 0,
     winRate: 0,
-    bestWinStreak: rawStats[StatisticName.RANKED_BEST_WIN_STREAK] ?? 0,
   };
 
-  if (seasonIndex === MIN_SEASON_INDEX) {
+  if (season.isFirst) {
     result.setCount = rawStats[StatisticName.RANKED_S1_SETS] ?? 0;
     result.winCount = rawStats[StatisticName.RANKED_S1_WINS] ?? 0;
   }
@@ -55,14 +55,16 @@ export const useUserRankedStats = () => {
   const isLoading = isLoadingRawStats || isLoadingPlayerPosition;
   const isRefreshing = isRefetchingRawStats || isRefetchingPlayerPosition;
 
-  const setStats = getSetStatsForSeason(rawStats, season.index);
+  const setStats = getSetStatsForSeason(rawStats, season);
   const elo = rawStats?.[getEloStatNameForSeason(season.index)];
   const rank = elo != null && userRankedPosition ? getRank(elo, userRankedPosition.position) : undefined;
+  const bestWinStreak = rawStats ? (rawStats[StatisticName.RANKED_BEST_WIN_STREAK] ?? 0) : undefined;
 
   return {
     stats: {
       elo,
       rank,
+      bestWinStreak,
       position: userRankedPosition?.position,
       profile: userRankedPosition?.profile,
       playerCount: leaderboardEntries.length,

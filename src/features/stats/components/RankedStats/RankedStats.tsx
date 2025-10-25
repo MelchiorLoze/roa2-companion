@@ -40,23 +40,27 @@ export const RankedStats = () => {
       </View>
 
       <RankStatRow
-        avatarFriendlyId={stats.profile.avatarFriendlyId}
+        avatarUrl={stats.profile.avatarUrl}
         elo={stats.elo}
         playerName={stats.profile.playerName}
         position={stats.position}
         rank={stats.rank}
       />
 
-      {stats.setStats && (
+      {stats.bestWinStreak !== undefined && (
         <View style={styles.setStatsContainer}>
-          <StatRow label="Ranked wins" value={stats.setStats?.winCount} />
-          <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
-          <StatRow label="Ranked win rate" value={stats.setStats?.winRate.toFixed(2) + '%'} />
-          <StatRow label="Best win streak" value={stats.setStats?.bestWinStreak} />
+          {stats.setStats && (
+            <>
+              <StatRow label="Ranked wins" value={stats.setStats?.winCount} />
+              <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
+              <StatRow label="Ranked win rate" value={stats.setStats?.winRate.toFixed(2) + '%'} />
+            </>
+          )}
+          <StatRow label="Best win streak" value={stats.bestWinStreak} />
         </View>
       )}
 
-      {stats.playerCount && (
+      {Boolean(stats.playerCount) && (
         <Text style={styles.percentageLabel}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
       )}
 
