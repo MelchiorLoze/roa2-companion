@@ -15,6 +15,7 @@ const mockLeaderboards: Leaderboard[] = [
   { id: 111, displayName: 'Ranked Lite Leaderboard', name: 'Season 1', entryCount: 100 },
   { id: 222, displayName: 'Leaderboard Spring 2025', name: 'Season 2', entryCount: 200 },
   { id: 333, displayName: 'Summer 2025', name: 'Season 3', entryCount: 300 },
+  { id: 444, displayName: 'Fall 2025', name: 'Season 4', entryCount: 400 },
 ];
 
 const mockCommunityLeaderboards = (leaderboards = mockLeaderboards) => {
@@ -32,7 +33,7 @@ const Wrapper = ({ children }: PropsWithChildren) => (
 );
 
 jest.mock('../../types/season', () => ({
-  MAX_SEASON_INDEX: 2,
+  MAX_SEASON_INDEX: 4,
   MIN_SEASON_INDEX: 1,
 }));
 
@@ -67,8 +68,8 @@ describe('useSeason', () => {
   it('displays correct season name from leaderboard', () => {
     const { result } = renderUseSeason();
 
-    expect(result.current.season.name).toBe('Spring 2025');
-    expect(result.current.leaderboardId).toBe(222);
+    expect(result.current.season.name).toBe('Fall 2025');
+    expect(result.current.leaderboardId).toBe(444);
   });
 
   it('falls back to default season name when leaderboard is not available', () => {
@@ -86,22 +87,31 @@ describe('useSeason', () => {
     act(() => result.current.setPreviousSeason());
 
     expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 1);
-    expect(result.current.season.name).toBe('Ranked Lite');
+    expect(result.current.season.name).toBe('Summer 2025');
     expect(result.current.season.isLast).toBe(false);
-    expect(result.current.season.isFirst).toBe(true);
-    expect(result.current.leaderboardId).toBe(111);
+    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.leaderboardId).toBe(333);
   });
 
   it('allows navigation to next season', () => {
     const { result } = renderUseSeason();
 
     act(() => result.current.setPreviousSeason());
-    act(() => result.current.setNextSeason());
+    act(() => result.current.setPreviousSeason());
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX);
-    expect(result.current.season.isLast).toBe(true);
+    expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 2);
+    expect(result.current.season.name).toBe('Spring 2025');
+    expect(result.current.season.isLast).toBe(false);
     expect(result.current.season.isFirst).toBe(false);
     expect(result.current.leaderboardId).toBe(222);
+
+    act(() => result.current.setNextSeason());
+
+    expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 1);
+    expect(result.current.season.name).toBe('Summer 2025');
+    expect(result.current.season.isLast).toBe(false);
+    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.leaderboardId).toBe(333);
   });
 
   it('does not navigate before first season', () => {
@@ -116,6 +126,8 @@ describe('useSeason', () => {
 
     expect(result.current.season.index).toBe(MIN_SEASON_INDEX);
     expect(result.current.season.isFirst).toBe(true);
+    expect(result.current.season.isLast).toBe(false);
+    expect(result.current.leaderboardId).toBe(111);
 
     // Try to go before first season
     act(() => result.current.setPreviousSeason());
