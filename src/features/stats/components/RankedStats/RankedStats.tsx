@@ -1,22 +1,20 @@
-import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { IconButton } from '@/components/IconButton/IconButton';
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
-import { type Rank, RANK_ICONS } from '../../types/rank';
+import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
+import { StatRow } from '../StatRow/StatRow';
 
 export const RankedStats = () => {
   const { season, setPreviousSeason, setNextSeason } = useSeason();
   const { stats, isLoading } = useUserRankedStats();
-  const { theme } = useUnistyles();
 
-  if (!stats || isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -41,40 +39,33 @@ export const RankedStats = () => {
         </View>
       </View>
 
-      <View style={styles.statsContainer}>
-        {stats.setStats && (
-          <View>
-            <Text style={styles.label}>{stats.setStats.setCount} sets</Text>
-            <Text style={styles.label}>
-              {stats.setStats.winCount} W - {stats.setStats.setCount - stats.setStats.winCount} L
-            </Text>
-            <Text style={styles.label}>Winrate: {stats.setStats.winRate.toFixed(2)}%</Text>
-          </View>
-        )}
+      <LeaderboardPositionRow
+        avatarUrl={stats.profile.avatarUrl}
+        elo={stats.elo}
+        playerName={stats.profile.playerName}
+        position={stats.position}
+        rank={stats.rank}
+      />
 
-        {stats.elo !== undefined && stats.rank ? (
-          <View style={styles.eloStatsContainer}>
-            <View style={styles.rankContainer}>
-              <Image contentFit="contain" source={RANK_ICONS[stats.rank]} style={styles.icon} />
-              <Text style={styles.label}>
-                <Text style={styles.eloLabel(stats.rank)}>{stats.elo}</Text> - #{stats.position}
-              </Text>
-            </View>
-            {Boolean(stats.playerCount) && (
-              <Text style={styles.label}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
-            )}
-          </View>
-        ) : (
-          <OutlinedText
-            color={theme.color.white}
-            fontFamily={theme.font.secondary.black}
-            strokeWidth={3}
-            text="UNRANKED"
-          />
+      <View>
+        <RankedDistributionChart elo={stats.elo} />
+        {stats.elo !== undefined && stats.rank && Boolean(stats.playerCount) && (
+          <Text style={styles.percentageLabel}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
         )}
       </View>
 
-      <RankedDistributionChart elo={stats.elo} />
+      {stats.bestWinStreak !== undefined && (
+        <View style={styles.setStatsContainer}>
+          {stats.setStats && (
+            <>
+              <StatRow label="Ranked wins" value={stats.setStats?.winCount} />
+              <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
+              <StatRow label="Ranked win rate" value={stats.setStats?.winRate.toFixed(2) + '%'} />
+            </>
+          )}
+          <StatRow label="Best win streak" value={stats.bestWinStreak} />
+        </View>
+      )}
     </>
   );
 };
@@ -97,31 +88,16 @@ const styles = StyleSheet.create((theme) => ({
   changeSeasonButton: {
     padding: theme.spacing.xxs,
   },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
+  setStatsContainer: {
+    gap: theme.spacing.s,
   },
-  label: {
+  percentageLabel: {
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  eloStatsContainer: {
-    flex: 1,
-    alignItems: 'flex-end',
-  },
-  rankContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.xs,
-  },
-  eloLabel: (rank: Rank) => ({
-    color: theme.color[rank],
-  }),
-  icon: {
-    width: 24,
-    height: 24,
+    position: 'absolute',
+    right: 0,
+    top: 0,
   },
 }));

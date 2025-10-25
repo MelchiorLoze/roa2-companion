@@ -89,7 +89,7 @@ describe('useRotatingCoinShop', () => {
     const mockItems: Item[] = [
       {
         id: '1',
-        friendlyId: 'Icon_item_b',
+        imageUrl: new URL('https://www.example.com/items/Icon_item_b.png'),
         name: 'Item B',
         coinPrice: 20,
         category: Category.ICON,
@@ -97,7 +97,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '2',
-        friendlyId: 'Icon_item_a',
+        imageUrl: new URL('https://www.example.com/items/Icon_item_a.png'),
         name: 'Item A',
         coinPrice: 10,
         category: Category.ICON,
@@ -105,7 +105,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '3',
-        friendlyId: 'DeathEffect_item_c',
+        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_c.png'),
         name: 'Item C',
         coinPrice: 10,
         category: Category.DEATHEFFECT,
@@ -113,7 +113,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '4',
-        friendlyId: 'DeathEffect_item_d',
+        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_d.png'),
         name: 'Item D',
         coinPrice: undefined,
         category: Category.DEATHEFFECT,
@@ -124,7 +124,7 @@ describe('useRotatingCoinShop', () => {
     const expectedSortedItems: Item[] = [
       {
         id: '4',
-        friendlyId: 'DeathEffect_item_d',
+        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_d.png'),
         name: 'Item D',
         coinPrice: undefined,
         category: Category.DEATHEFFECT,
@@ -132,7 +132,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '3',
-        friendlyId: 'DeathEffect_item_c',
+        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_c.png'),
         name: 'Item C',
         coinPrice: 10,
         category: Category.DEATHEFFECT,
@@ -140,7 +140,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '2',
-        friendlyId: 'Icon_item_a',
+        imageUrl: new URL('https://www.example.com/items/Icon_item_a.png'),
         name: 'Item A',
         coinPrice: 10,
         category: Category.ICON,
@@ -148,7 +148,7 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '1',
-        friendlyId: 'Icon_item_b',
+        imageUrl: new URL('https://www.example.com/items/Icon_item_b.png'),
         name: 'Item B',
         coinPrice: 20,
         category: Category.ICON,

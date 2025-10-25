@@ -82,7 +82,7 @@ const styles = StyleSheet.create((theme) => ({
   contextualCTALabel: {
     fontFamily: theme.font.primary.italic,
     fontSize: 14,
-    color: theme.color.border,
+    color: theme.color.borderLight,
     textAlign: 'right',
     textDecorationLine: 'underline',
   },

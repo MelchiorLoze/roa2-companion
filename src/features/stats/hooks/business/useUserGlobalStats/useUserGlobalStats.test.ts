@@ -39,7 +39,7 @@ describe('useUserGlobalStats', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.stats.gameStats).toBeUndefined();
   });
 
   it('returns refetching state when statistics are being refetched', () => {
@@ -55,7 +55,7 @@ describe('useUserGlobalStats', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats).toBeDefined();
+    expect(result.current.stats.gameStats).toBeDefined();
   });
 
   it('returns nothing when statistics are not present', () => {
@@ -70,7 +70,7 @@ describe('useUserGlobalStats', () => {
     const { result } = renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.stats.gameStats).toBeUndefined();
   });
 
   it('computes global stats correctly from player statistics', () => {
@@ -111,7 +111,7 @@ describe('useUserGlobalStats', () => {
 
     const { result } = renderUseUserGlobalStats();
 
-    expect(result.current.stats?.gameStats.winRate).toBe(0);
+    expect(result.current.stats.gameStats?.winRate).toBe(0);
   });
 
   it('passes through the refetch function correctly', async () => {

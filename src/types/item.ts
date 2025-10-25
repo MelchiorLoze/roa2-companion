@@ -115,7 +115,7 @@ export type ItemDto = DeepReadonly<{
 
 export type Item = Readonly<{
   id: string;
-  friendlyId: string;
+  imageUrl: URL;
   name: string;
   category: Category;
   rarity: Rarity;

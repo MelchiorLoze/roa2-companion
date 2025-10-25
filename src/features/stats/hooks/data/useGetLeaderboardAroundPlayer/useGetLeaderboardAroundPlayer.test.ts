@@ -13,9 +13,21 @@ jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
 const mockResponse = {
   data: {
     Leaderboard: [
-      { DisplayName: 'Player1', StatValue: 2500, Position: 1 },
-      { DisplayName: 'Player2', StatValue: 2400, Position: 2 },
-      { DisplayName: 'Player3', StatValue: 2300, Position: 3 },
+      {
+        StatValue: 2500,
+        Position: 1,
+        Profile: { DisplayName: 'Player1', AvatarUrl: 'https://www.example.com/avatars/player1.png' },
+      },
+      {
+        StatValue: 2400,
+        Position: 2,
+        Profile: { DisplayName: 'Player2', AvatarUrl: 'https://www.example.com/avatars/player2.png' },
+      },
+      {
+        StatValue: 2300,
+        Position: 3,
+        Profile: { DisplayName: 'Player3', AvatarUrl: 'https://www.example.com/avatars/player3.png' },
+      },
     ],
   },
 };
@@ -44,22 +56,31 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     expect(result.current.playerPositions).toEqual([
       {
-        playerName: 'Player1',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2500,
         position: 1,
+        profile: {
+          playerName: 'Player1',
+          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player1.png'),
+        },
       },
       {
-        playerName: 'Player2',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2400,
         position: 2,
+        profile: {
+          playerName: 'Player2',
+          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player2.png'),
+        },
       },
       {
-        playerName: 'Player3',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2300,
         position: 3,
+        profile: {
+          playerName: 'Player3',
+          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player3.png'),
+        },
       },
     ]);
     expect(result.current.isError).toBe(false);
@@ -94,8 +115,16 @@ describe('useGetLeaderboardAroundPlayer', () => {
     fetchMock.postOnce('*', {
       data: {
         Leaderboard: [
-          { DisplayName: 'NewPlayer1', StatValue: 2600, Position: 1 },
-          { DisplayName: 'NewPlayer2', StatValue: 2550, Position: 2 },
+          {
+            StatValue: 2600,
+            Position: 1,
+            Profile: { DisplayName: 'NewPlayer1', AvatarUrl: 'https://www.example.com/avatars/newplayer1.png' },
+          },
+          {
+            StatValue: 2550,
+            Position: 2,
+            Profile: { DisplayName: 'NewPlayer2', AvatarUrl: 'https://www.example.com/avatars/newplayer2.png' },
+          },
         ],
       },
     });
@@ -105,16 +134,22 @@ describe('useGetLeaderboardAroundPlayer', () => {
     await waitFor(() => expect(result.current.playerPositions).toHaveLength(2));
     expect(result.current.playerPositions).toEqual([
       {
-        playerName: 'NewPlayer1',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2600,
         position: 1,
+        profile: {
+          playerName: 'NewPlayer1',
+          avatarUrl: new URL('https://www.example.com/avatars/newplayer1.png'),
+        },
       },
       {
-        playerName: 'NewPlayer2',
         statisticName: StatisticName.RANKED_S2_ELO,
         statisticValue: 2550,
         position: 2,
+        profile: {
+          playerName: 'NewPlayer2',
+          avatarUrl: new URL('https://www.example.com/avatars/newplayer2.png'),
+        },
       },
     ]);
     expect(result.current.isError).toBe(false);

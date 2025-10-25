@@ -34,12 +34,13 @@
     "transformIgnorePatterns": [
       "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg|@shopify/react-native-skia)/"
     ],
+    "testEnvironment": "@shopify/react-native-skia/jestEnv.js",
     "setupFiles": [
-      "@shopify/react-native-skia/jestSetup.js",
       "react-native-unistyles/mocks",
       "<rootDir>/src/unistyles.ts"
     ],
     "setupFilesAfterEnv": [
+      "@shopify/react-native-skia/jestSetup.js",
       "<rootDir>/src/jest.setup.ts",
       "<rootDir>/src/jest.mock.ts"
     ],
@@ -50,7 +51,7 @@
     "@react-navigation/bottom-tabs": "^7.3.10",
     "@react-navigation/native": "^7.1.6",
     "@react-navigation/native-stack": "^7.3.10",
-    "@shopify/react-native-skia": "2.2.12",
+    "@shopify/react-native-skia": "2.2.21",
     "@tanstack/react-query": "^5.83.0",
     "expo": "^54.0.13",
     "expo-constants": "~18.0.9",

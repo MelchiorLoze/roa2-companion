@@ -70,6 +70,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   section: {
     padding: theme.spacing.s,
-    gap: theme.spacing.s,
+    gap: theme.spacing.l,
   },
 }));

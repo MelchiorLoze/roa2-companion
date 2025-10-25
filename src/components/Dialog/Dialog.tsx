@@ -33,7 +33,7 @@ const styles = StyleSheet.create((theme) => ({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    backgroundColor: theme.color.dark + 'AA',
+    backgroundColor: theme.color.translucentDark,
   },
   dialog: {
     width: '85%',

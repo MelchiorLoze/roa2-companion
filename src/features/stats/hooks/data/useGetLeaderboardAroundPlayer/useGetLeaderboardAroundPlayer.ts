@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
+import { Category } from '@/types/item';
+import { imageUrlFromFriendlyId } from '@/utils/imageUrlFromFriendlyId';
 
 import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
@@ -11,9 +13,12 @@ type GetLeaderboardAroundPlayerRequest = Readonly<{
 
 type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
   Leaderboard: {
-    DisplayName: string;
     StatValue: number;
     Position: number;
+    Profile: {
+      DisplayName: string;
+      AvatarUrl: string;
+    };
   }[];
 }>;
 
@@ -25,16 +30,23 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
     queryFn: () =>
       apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
         body: {
-          MaxResultCount: maxResultCount,
           StatisticName: statisticName,
+          MaxResultsCount: maxResultCount,
+          ProfileConstraints: {
+            ShowDisplayName: true,
+            ShowAvatarUrl: true,
+          },
         },
       }),
     select: (data): PlayerPosition[] =>
-      data.Leaderboard.map(({ DisplayName, StatValue, Position }) => ({
-        playerName: DisplayName,
+      data.Leaderboard.map(({ StatValue, Position, Profile }) => ({
         statisticName: statisticName,
         statisticValue: StatValue,
         position: Position,
+        profile: {
+          playerName: Profile.DisplayName,
+          avatarUrl: imageUrlFromFriendlyId(Category.ICON, Profile.AvatarUrl),
+        },
       })),
     staleTime: Infinity,
     gcTime: Infinity,

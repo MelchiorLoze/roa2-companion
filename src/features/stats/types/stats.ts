@@ -1,10 +1,5 @@
 import { type Character } from '@/types/character';
 
-// Cannot determine current season dynamically for now as ranked stats names
-// are inconsistent per season
-export const MIN_SEASON_INDEX = 1;
-export const MAX_SEASON_INDEX = 4;
-
 export enum StatisticName {
   /*
    * RANKED STATS
@@ -23,6 +18,7 @@ export enum StatisticName {
 
   RANKED_SETS = 'Ranked_Matches',
   RANKED_WINS = 'Ranked_Wins',
+  RANKED_BEST_WIN_STREAK = 'Ranked_PeakWinStreak',
 
   /*
    * CREWS STATS
@@ -45,6 +41,7 @@ export enum StatisticName {
   ETA_MATCH_COUNT = 'Eta Match Count',
   FLE_MATCH_COUNT = 'Fle Match Count',
   FOR_MATCH_COUNT = 'For Match Count',
+  GAL_MATCH_COUNT = 'Gal Match Count',
   KRA_MATCH_COUNT = 'Kra Match Count',
   LOX_MATCH_COUNT = 'Lox Match Count',
   MAY_MATCH_COUNT = 'May Match Count',
@@ -58,10 +55,13 @@ export enum StatisticName {
 }
 
 export type PlayerPosition = Readonly<{
-  playerName: string;
   statisticName: StatisticName;
   statisticValue: number;
   position: number;
+  profile: {
+    playerName: string;
+    avatarUrl: URL;
+  };
 }>;
 
 export type PlayerStatistics = Partial<Record<StatisticName, number>>;
