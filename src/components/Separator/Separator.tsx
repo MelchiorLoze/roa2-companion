@@ -1,14 +1,14 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-type Variant = 'border' | 'accent';
+type Variant = 'borderLight' | 'accent';
 
 type Props = {
   variant?: Variant;
   height?: number;
 };
 
-export const Separator = ({ variant = 'border', height = 1 }: Readonly<Props>) => {
+export const Separator = ({ variant = 'borderLight', height = 1 }: Readonly<Props>) => {
   return <View style={styles.separator(variant, height)} />;
 };
 

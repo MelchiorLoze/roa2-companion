@@ -38,8 +38,8 @@ const styles = StyleSheet.create((theme) => ({
   },
   labelContainer: {
     width: '60%',
-    padding: theme.spacing.s,
-    paddingHorizontal: theme.spacing.xl,
+    padding: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.l,
   },
   label: {
     fontFamily: theme.font.primary.regular,
@@ -53,8 +53,8 @@ const styles = StyleSheet.create((theme) => ({
   },
   valueContainer: {
     flex: 1,
-    padding: theme.spacing.s,
-    paddingHorizontal: theme.spacing.xl,
+    padding: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.l,
   },
   value: {
     fontFamily: theme.font.primary.regular,
