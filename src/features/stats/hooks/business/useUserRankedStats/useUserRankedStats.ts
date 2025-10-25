@@ -1,5 +1,5 @@
-import type { Season } from '../../../../stats/types/season';
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
+import { type Season } from '../../../types/season';
 import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { getRank } from '../../../utils/getRank';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';

@@ -1,5 +1,4 @@
-import type { CanvasRef, SkSize } from '@shopify/react-native-skia';
-import { FilterMode, Skia, type SkImage, useCanvasSize } from '@shopify/react-native-skia';
+import { type CanvasRef, FilterMode, Skia, type SkImage, type SkSize, useCanvasSize } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
 import { useEffect, useState } from 'react';
 

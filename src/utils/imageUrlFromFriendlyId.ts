@@ -1,4 +1,4 @@
-import type { Category } from '@/types/item';
+import { type Category } from '@/types/item';
 
 const CDN_BASE_URL = 'https://d1gftqja5mgfxj.cloudfront.net';
 

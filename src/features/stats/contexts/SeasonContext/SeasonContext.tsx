@@ -1,8 +1,7 @@
 import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
-import type { Season } from '../../types/season';
-import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/season';
+import { MAX_SEASON_INDEX, MIN_SEASON_INDEX, type Season } from '../../types/season';
 
 const isFirstSeason = (index: number) => index === MIN_SEASON_INDEX;
 const isLastSeason = (index: number) => index === MAX_SEASON_INDEX;
