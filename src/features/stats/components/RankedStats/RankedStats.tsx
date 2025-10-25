@@ -47,6 +47,13 @@ export const RankedStats = () => {
         rank={stats.rank}
       />
 
+      <View>
+        <RankedDistributionChart elo={stats.elo} />
+        {Boolean(stats.playerCount) && (
+          <Text style={styles.percentageLabel}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
+        )}
+      </View>
+
       {stats.bestWinStreak !== undefined && (
         <View style={styles.setStatsContainer}>
           {stats.setStats && (
@@ -59,17 +66,11 @@ export const RankedStats = () => {
           <StatRow label="Best win streak" value={stats.bestWinStreak} />
         </View>
       )}
-
-      {Boolean(stats.playerCount) && (
-        <Text style={styles.percentageLabel}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
-      )}
-
-      <RankedDistributionChart elo={stats.elo} />
     </>
   );
 };
 
-const styles = StyleSheet.create((theme, runtime) => ({
+const styles = StyleSheet.create((theme) => ({
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -96,7 +97,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
     position: 'absolute',
-    right: theme.spacing.s,
-    bottom: runtime.screen.width - 2 * theme.spacing.xl,
+    right: 0,
+    top: 0,
   },
 }));

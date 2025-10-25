@@ -59,7 +59,7 @@ const styles = StyleSheet.create((theme) => ({
     width: '100%',
     flexDirection: 'row',
     borderBottomWidth: isLast ? 0 : 1,
-    borderColor: theme.color.accent,
+    borderColor: theme.color.stat,
   }),
   firstColumn: {
     flex: 1 / 5,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create((theme) => ({
   otherColumns: {
     flex: 2 / 5,
     paddingLeft: theme.spacing.s,
-    borderLeftWidth: 1,
-    borderColor: theme.color.accent,
+    borderLeftWidth: 2,
+    borderColor: theme.color.stat,
   },
 }));

@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useUserGlobalStats } from '../../hooks/business/useUserGlobalStats/useUserGlobalStats';
+import { StatRow } from '../StatRow/StatRow';
 
 export const GlobalStats = () => {
   const { stats, isLoading } = useUserGlobalStats();
@@ -14,13 +15,13 @@ export const GlobalStats = () => {
     <>
       <Text style={styles.title}>Global</Text>
 
-      <View>
-        <Text style={styles.label}>{stats.gameStats.gameCount} games</Text>
-        <Text style={styles.label}>
-          {stats.gameStats.winCount} W - {stats.gameStats.gameCount - stats.gameStats.winCount} L
-        </Text>
-        <Text style={styles.label}>Winrate: {(stats.gameStats.winRate ?? 0).toFixed(2)}%</Text>
-      </View>
+      {stats.gameStats && (
+        <View style={styles.gameStatsContainer}>
+          <StatRow label="Global wins" value={stats.gameStats?.winCount} />
+          <StatRow label="Global losses" value={stats.gameStats.gameCount - stats.gameStats.winCount} />
+          <StatRow label="Global win rate" value={stats.gameStats?.winRate.toFixed(2) + '%'} />
+        </View>
+      )}
     </>
   );
 };
@@ -32,10 +33,7 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color.white,
     textTransform: 'uppercase',
   },
-  label: {
-    fontFamily: theme.font.primary.regular,
-    fontSize: 16,
-    color: theme.color.white,
-    textTransform: 'uppercase',
+  gameStatsContainer: {
+    gap: theme.spacing.s,
   },
 }));

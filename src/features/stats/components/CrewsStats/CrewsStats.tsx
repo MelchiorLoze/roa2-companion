@@ -6,6 +6,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 
 import { CrewsIcon } from '../../assets/images/crews';
 import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUserCrewsStats';
+import { StatRow } from '../StatRow/StatRow';
 
 export const CrewsStats = () => {
   const { stats, isLoading } = useUserCrewsStats();
@@ -16,13 +17,16 @@ export const CrewsStats = () => {
     <>
       <Text style={styles.title}>Crews</Text>
 
-      <View style={styles.infoContainer}>
-        <Text style={styles.label}>{stats.setStats.setCount} sets</Text>
-        <View style={styles.eloContainer}>
-          <Image source={CrewsIcon} style={styles.icon} />
-          <Text style={styles.label}>{stats.elo}</Text>
-        </View>
+      <View style={styles.eloContainer}>
+        <Image source={CrewsIcon} style={styles.icon} />
+        <Text style={styles.label}>{stats.elo}</Text>
       </View>
+
+      {stats.setStats && (
+        <View style={styles.setStatsContainer}>
+          <StatRow label="Crews sets" value={stats.setStats?.setCount} />
+        </View>
+      )}
     </>
   );
 };
@@ -33,10 +37,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 20,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  infoContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
   },
   label: {
     fontFamily: theme.font.primary.regular,
@@ -52,5 +52,8 @@ const styles = StyleSheet.create((theme) => ({
   icon: {
     width: 24,
     height: 24,
+  },
+  setStatsContainer: {
+    gap: theme.spacing.s,
   },
 }));
