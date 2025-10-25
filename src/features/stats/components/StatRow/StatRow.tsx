@@ -28,10 +28,10 @@ const styles = StyleSheet.create((theme) => ({
     flexDirection: 'row',
     boxShadow: [
       {
-        color: theme.color.black,
+        color: theme.color.translucentDark,
         offsetX: 0,
         offsetY: 2,
-        blurRadius: 6,
+        blurRadius: 5,
         spreadDistance: 0,
       },
     ],

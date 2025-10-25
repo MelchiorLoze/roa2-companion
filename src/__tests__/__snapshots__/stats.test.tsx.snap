@@ -186,8 +186,8 @@ exports[`Stats matches the snapshot 1`] = `
           {
             "boxShadow": [
               {
-                "blurRadius": 6,
-                "color": "black",
+                "blurRadius": 5,
+                "color": "#161616AA",
                 "offsetX": 0,
                 "offsetY": 2,
                 "spreadDistance": 0,
@@ -883,8 +883,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -987,8 +987,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1091,8 +1091,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1195,8 +1195,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1339,8 +1339,8 @@ exports[`Stats matches the snapshot 1`] = `
           {
             "boxShadow": [
               {
-                "blurRadius": 6,
-                "color": "black",
+                "blurRadius": 5,
+                "color": "#161616AA",
                 "offsetX": 0,
                 "offsetY": 2,
                 "spreadDistance": 0,
@@ -1574,8 +1574,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1725,8 +1725,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1829,8 +1829,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,
@@ -1933,8 +1933,8 @@ exports[`Stats matches the snapshot 1`] = `
             {
               "boxShadow": [
                 {
-                  "blurRadius": 6,
-                  "color": "black",
+                  "blurRadius": 5,
+                  "color": "#161616AA",
                   "offsetX": 0,
                   "offsetY": 2,
                   "spreadDistance": 0,

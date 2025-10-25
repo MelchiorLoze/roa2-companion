@@ -17,6 +17,8 @@ const theme = {
     black: 'black',
     white: 'white',
     transparent: '#FFFFFF00',
+    translucentBlack: '#000000AA',
+    translucentDark: '#161616AA',
     error: 'crimson',
     // Rarity colors
     common: '#D3D5E4',
