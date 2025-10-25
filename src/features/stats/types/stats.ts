@@ -23,6 +23,7 @@ export enum StatisticName {
 
   RANKED_SETS = 'Ranked_Matches',
   RANKED_WINS = 'Ranked_Wins',
+  RANKED_BEST_WIN_STREAK = 'Ranked_PeakWinStreak',
 
   /*
    * CREWS STATS
@@ -58,10 +59,13 @@ export enum StatisticName {
 }
 
 export type PlayerPosition = Readonly<{
-  playerName: string;
   statisticName: StatisticName;
   statisticValue: number;
   position: number;
+  profile: {
+    playerName: string;
+    avatarFriendlyId: string;
+  };
 }>;
 
 export type PlayerStatistics = Partial<Record<StatisticName, number>>;

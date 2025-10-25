@@ -11,9 +11,12 @@ type GetLeaderboardAroundPlayerRequest = Readonly<{
 
 type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
   Leaderboard: {
-    DisplayName: string;
     StatValue: number;
     Position: number;
+    Profile: {
+      DisplayName: string;
+      AvatarUrl: string;
+    };
   }[];
 }>;
 
@@ -25,16 +28,23 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
     queryFn: () =>
       apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
         body: {
-          MaxResultCount: maxResultCount,
           StatisticName: statisticName,
+          MaxResultsCount: maxResultCount,
+          ProfileConstraints: {
+            ShowDisplayName: true,
+            ShowAvatarUrl: true,
+          },
         },
       }),
     select: (data): PlayerPosition[] =>
-      data.Leaderboard.map(({ DisplayName, StatValue, Position }) => ({
-        playerName: DisplayName,
+      data.Leaderboard.map(({ StatValue, Position, Profile }) => ({
         statisticName: statisticName,
         statisticValue: StatValue,
         position: Position,
+        profile: {
+          playerName: Profile.DisplayName,
+          avatarFriendlyId: Profile.AvatarUrl,
+        },
       })),
     staleTime: Infinity,
     gcTime: Infinity,

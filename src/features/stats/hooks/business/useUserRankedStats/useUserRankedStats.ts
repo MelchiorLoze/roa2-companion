@@ -15,6 +15,7 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics | undefined, seasonInde
     setCount: rawStats[StatisticName.RANKED_SETS] ?? 0,
     winCount: rawStats[StatisticName.RANKED_WINS] ?? 0,
     winRate: 0,
+    bestWinStreak: rawStats[StatisticName.RANKED_BEST_WIN_STREAK] ?? 0,
   };
 
   if (seasonIndex === MIN_SEASON_INDEX) {
@@ -63,6 +64,7 @@ export const useUserRankedStats = () => {
       elo,
       rank,
       position: userRankedPosition?.position,
+      profile: userRankedPosition?.profile,
       playerCount: leaderboardEntries.length,
       setStats,
     },

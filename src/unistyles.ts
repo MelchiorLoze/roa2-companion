@@ -9,6 +9,7 @@ const theme = {
     border: '#CACEFF',
     dark: '#161616',
     weak: '#676767',
+    stat: '#FFBC51',
     inactive: '#5A5C95',
     disabled: '#AAAAAA',
     black: 'black',
@@ -36,6 +37,8 @@ const theme = {
     blackGradient: ['transparent', 'black'] as const,
     storeGradient: ['#4F38D4', '#251A5E'] as const,
     statsGradient: ['#4B7AB8', 'transparent'] as const,
+    statLabelGradient: ['#191256', '#3420AA'] as const,
+    statValueGradient: ['#1C1561', '#1F176A'] as const,
     cardGradient: (pressed?: boolean) =>
       pressed ? (['#FFFF8D', '#F1A544'] as const) : (['#161049', '#0D071D'] as const),
     borderGradient: (pressed?: boolean) =>
