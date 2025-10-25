@@ -6,15 +6,15 @@ import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
+import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
-import { RankStatRow } from '../RankStatRow/RankStatRow';
 import { StatRow } from '../StatRow/StatRow';
 
 export const RankedStats = () => {
   const { season, setPreviousSeason, setNextSeason } = useSeason();
   const { stats, isLoading } = useUserRankedStats();
 
-  if (!stats || isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     <>
@@ -39,7 +39,7 @@ export const RankedStats = () => {
         </View>
       </View>
 
-      <RankStatRow
+      <LeaderboardPositionRow
         avatarUrl={stats.profile.avatarUrl}
         elo={stats.elo}
         playerName={stats.profile.playerName}
@@ -49,7 +49,7 @@ export const RankedStats = () => {
 
       <View>
         <RankedDistributionChart elo={stats.elo} />
-        {Boolean(stats.playerCount) && (
+        {stats.elo !== undefined && stats.rank && Boolean(stats.playerCount) && (
           <Text style={styles.percentageLabel}>Top {((stats.position / stats.playerCount) * 100).toFixed(2)}%</Text>
         )}
       </View>

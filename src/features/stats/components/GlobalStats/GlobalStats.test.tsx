@@ -29,9 +29,15 @@ describe('GlobalStats', () => {
     renderComponent();
 
     screen.getByText('Global');
-    screen.getByText('420 games');
-    screen.getByText('358 W - 62 L');
-    screen.getByText('Winrate: 85.24%');
+
+    screen.getByText('Global wins');
+    screen.getByText('358');
+
+    screen.getByText('Global losses');
+    screen.getByText('62');
+
+    screen.getByText('Global win rate');
+    screen.getByText('85.24%');
   });
 
   it('displays loading spinner when stats are loading', () => {

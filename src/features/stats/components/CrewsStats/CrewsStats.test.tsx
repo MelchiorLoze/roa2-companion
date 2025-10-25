@@ -9,6 +9,11 @@ const defaultUserCrewsStatsState: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
+    position: 4404,
+    profile: {
+      playerName: 'Player1',
+      avatarUrl: new URL('https://www.example.com/icon/player1.png'),
+    },
   },
   refresh: jest.fn(),
   isLoading: false,
@@ -29,9 +34,12 @@ describe('CrewsStats', () => {
   it('renders crews stats with correct values', () => {
     renderComponent();
 
-    screen.getByText('Crews');
-    screen.getByText('50 sets');
+    screen.getByText('4404');
+    screen.getByText('Player1');
     screen.getByText('1500');
+
+    screen.getByText('Crews sets');
+    screen.getByText('50');
   });
 
   it('displays loading spinner when stats are loading', () => {
@@ -48,7 +56,7 @@ describe('CrewsStats', () => {
   it('displays loading spinner when stats are undefined', () => {
     useUserCrewsStatsMock.mockReturnValue({
       ...defaultUserCrewsStatsState,
-      stats: undefined,
+      isLoading: true,
     });
 
     renderComponent();

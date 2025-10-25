@@ -35,6 +35,11 @@ const defaultUserRankedStatsState: ReturnType<typeof useUserRankedStats> = {
     position: 123,
     playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
+    bestWinStreak: 20,
+    profile: {
+      playerName: 'Player1',
+      avatarUrl: new URL('https://www.example.com/icon/player1.png'),
+    },
   },
   refresh: jest.fn(),
   isLoading: false,
@@ -74,13 +79,24 @@ describe('RankedStats', () => {
     screen.getByText('S5');
     expect(screen.getAllByRole('button')).toHaveLength(2); // Previous and Next season buttons
 
-    screen.getByText('100 sets');
-    screen.getByText('75 W - 25 L');
-    screen.getByText('Winrate: 75.00%');
-
-    screen.getByText('925 - #123');
-    screen.getByText('Top 12.30%');
+    screen.getByText('123');
+    screen.getByText('Player1');
+    screen.getByText('925');
     expect(screen.queryByText('UNRANKED')).toBeNull();
+
+    screen.getByText('Ranked wins');
+    screen.getByText('75');
+
+    screen.getByText('Ranked losses');
+    screen.getByText('25');
+
+    screen.getByText('Ranked win rate');
+    screen.getByText('75.00%');
+
+    screen.getByText('Best win streak');
+    screen.getByText('20');
+
+    screen.getByText('Top 12.30%');
   });
 
   it('does not allow to switch to previous session when already at the first', () => {
@@ -157,8 +173,9 @@ describe('RankedStats', () => {
 
     renderComponent();
 
+    screen.getByText('123');
+    screen.getByText('Player1');
     screen.getByText('UNRANKED');
-    expect(screen.queryByText('925 - #123')).toBeNull();
     expect(screen.queryByText('Top 12.30%')).toBeNull();
   });
 
@@ -174,7 +191,9 @@ describe('RankedStats', () => {
 
     renderComponent();
 
-    screen.getByText('0 - #123');
+    screen.getByText('123');
+    screen.getByText('Player1');
+    screen.getByText('0');
     screen.getByText('Top 12.30%');
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });

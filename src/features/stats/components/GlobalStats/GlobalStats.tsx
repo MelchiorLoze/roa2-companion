@@ -9,7 +9,7 @@ import { StatRow } from '../StatRow/StatRow';
 export const GlobalStats = () => {
   const { stats, isLoading } = useUserGlobalStats();
 
-  if (!stats || isLoading) return <Spinner />;
+  if (isLoading) return <Spinner />;
 
   return (
     <>

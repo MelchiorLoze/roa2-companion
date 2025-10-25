@@ -48,6 +48,8 @@ useUserCrewsStatsMock.mockReturnValue({
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
+    position: 45,
+    profile: { playerName: 'Player1', avatarUrl: new URL('https://www.example.com/avatars/player1.png') },
   },
   refresh: jest.fn(),
   isLoading: false,

@@ -1,5 +1,5 @@
 import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
-import { Image } from 'expo-image';
+import { Image, type ImageSource } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -15,9 +15,10 @@ type Props = {
   playerName: string;
   elo?: number;
   rank?: Rank;
+  rankIcon?: ImageSource;
 };
 
-export const RankStatRow = ({ position, avatarUrl, playerName, elo, rank }: Readonly<Props>) => {
+export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, rank, rankIcon }: Readonly<Props>) => {
   const { theme } = useUnistyles();
   const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
@@ -62,20 +63,18 @@ export const RankStatRow = ({ position, avatarUrl, playerName, elo, rank }: Read
         start={[0, 0]}
         style={styles.labelContainer}
       >
-        {elo !== undefined && rank ? (
+        {elo !== undefined && (rank || rankIcon) ? (
           <>
-            <Image contentFit="contain" source={RANK_ICONS[rank]} style={styles.rankIcon} />
-            <Text style={styles.value}>{elo}</Text>
+            <Image contentFit="contain" source={rank ? RANK_ICONS[rank] : rankIcon} style={styles.rankIcon} />
+            <Text style={styles.eloLabel(rank)}>{elo}</Text>
           </>
         ) : (
-          <>
-            <OutlinedText
-              color={theme.color.white}
-              fontFamily={theme.font.secondary.black}
-              strokeWidth={3}
-              text="UNRANKED"
-            />
-          </>
+          <OutlinedText
+            color={theme.color.white}
+            fontFamily={theme.font.secondary.black}
+            strokeWidth={3}
+            text="UNRANKED"
+          />
         )}
       </LinearGradient>
     </View>
@@ -128,11 +127,11 @@ const styles = StyleSheet.create((theme) => ({
     width: 32,
     height: 32,
   },
-  value: {
+  eloLabel: (rank?: Rank) => ({
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
-    color: theme.color.stat,
-  },
+    color: rank ? theme.color[rank] : theme.color.white,
+  }),
   rankIcon: {
     width: 24,
     height: 24,

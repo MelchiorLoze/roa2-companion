@@ -32,7 +32,7 @@ exports[`Stats matches the snapshot 1`] = `
       }
       style={
         {
-          "gap": 8,
+          "gap": 16,
           "padding": 8,
         }
       }
@@ -184,105 +184,743 @@ exports[`Stats matches the snapshot 1`] = `
       <View
         style={
           {
-            "alignItems": "flex-end",
+            "boxShadow": [
+              {
+                "blurRadius": 6,
+                "color": "black",
+                "offsetX": 0,
+                "offsetY": 2,
+                "spreadDistance": 0,
+              },
+            ],
             "flexDirection": "row",
-            "justifyContent": "space-between",
           }
         }
       >
-        <View>
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            100
-             sets
-          </Text>
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            75
-             W - 
-            25
-             L
-          </Text>
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            Winrate: 
-            75.00
-            %
-          </Text>
-        </View>
         <View
           style={
             {
-              "alignItems": "flex-end",
-              "flex": 1,
+              "backgroundColor": "#4838A9",
+              "width": 8,
             }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279833174,
+              4280752771,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
+              "padding": 4,
+              "paddingHorizontal": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "flexShrink": 1,
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            123
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <View
+          style={
+            {
+              "backgroundColor": "#A9AFFF",
+              "width": 4,
+            }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279898970,
+              4281606314,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "padding": 4,
+                "paddingHorizontal": 8,
+              },
+              {
+                "flexShrink": 1,
+              },
+            ]
           }
         >
           <View
             style={
               {
-                "alignItems": "center",
-                "flexDirection": "row",
-                "gap": 4,
+                "height": 32,
+                "width": 32,
               }
             }
           >
-            <ViewManagerAdapter_ExpoImage
-              containerViewRef={"[React.ref]"}
-              contentFit="contain"
-              contentPosition={
+            <skImage
+              fit="contain"
+              height={0}
+              image={null}
+              sampling={
                 {
-                  "left": "50%",
-                  "top": "50%",
+                  "filter": 0,
                 }
               }
-              height={24}
-              nativeViewRef={"[React.ref]"}
-              onError={[Function]}
-              onLoad={[Function]}
-              onLoadStart={[Function]}
-              onProgress={[Function]}
-              placeholder={[]}
-              source={
+              width={0}
+              x={0}
+              y={0}
+            />
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              {
+                "color": "white",
+                "flexShrink": 1,
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            TestPlayer
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <View
+          style={
+            {
+              "backgroundColor": "#FFC64E",
+              "width": 4,
+            }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279504710,
+              4280227689,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
+              "padding": 4,
+              "paddingHorizontal": 8,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={24}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 24,
+                "width": 24,
+              }
+            }
+            transition={null}
+            width={24}
+          />
+          <Text
+            style={
+              {
+                "color": "#FFC64E",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+              }
+            }
+          >
+            925
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View>
+        <View>
+          <View
+            testID="rank-distribution"
+          >
+            <
+              data={
                 [
                   {
-                    "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
+                    "barWidth": 186.1246133451171,
+                    "frontColor": "#7F7A66",
+                    "topLabelComponent": [Function],
+                    "value": 3,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#B87A2E",
+                    "topLabelComponent": [Function],
+                    "value": 2,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#C8C8D5",
+                    "topLabelComponent": [Function],
+                    "value": 2,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#FFC64E",
+                    "topLabelComponent": [Function],
+                    "value": 2,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#C3C4FF",
+                    "topLabelComponent": [Function],
+                    "value": 3,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#95DFEC",
+                    "topLabelComponent": [Function],
+                    "value": 1,
+                  },
+                  {
+                    "barWidth": 62.0415377817057,
+                    "frontColor": "#9CE7AC",
+                    "topLabelComponent": [Function],
+                    "value": 3,
+                  },
+                  {
+                    "barWidth": 42.80866106937693,
+                    "frontColor": "#FC7575",
+                    "topLabelComponent": [Function],
+                    "value": 1,
+                  },
+                  {
+                    "barWidth": 100.81749889527177,
+                    "frontColor": "#BD7CC5",
+                    "topLabelComponent": [Function],
+                    "value": 4,
                   },
                 ]
               }
-              style={
-                {
-                  "height": 24,
-                  "width": 24,
-                }
-              }
-              transition={null}
-              width={24}
+              disablePress={true}
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              spacing={0}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
             />
+          </View>
+          <View
+            style={
+              {
+                "position": "absolute",
+              }
+            }
+            testID="elo-distribution"
+          >
+            <
+              adjustToWidth={true}
+              data={
+                [
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "dataPointColor": "red",
+                    "dataPointRadius": 2,
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 2,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 1,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                  {
+                    "value": 0,
+                  },
+                ]
+              }
+              dataPointsColor="transparent"
+              disableScroll={true}
+              height={702}
+              hideAxesAndRules={true}
+              initialSpacing={0}
+              thickness={1}
+              width={702}
+              xAxisLabelsHeight={0}
+              yAxisLabelWidth={0}
+            />
+          </View>
+        </View>
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 16,
+              "position": "absolute",
+              "right": 0,
+              "textTransform": "uppercase",
+              "top": 0,
+            }
+          }
+        >
+          Top 
+          12.30
+          %
+        </Text>
+      </View>
+      <View
+        style={
+          {
+            "gap": 8,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
             <Text
               style={
                 {
@@ -293,476 +931,368 @@ exports[`Stats matches the snapshot 1`] = `
                 }
               }
             >
-              <Text
-                style={
-                  {
-                    "color": "#FFC64E",
-                  }
-                }
-              >
-                925
-              </Text>
-               - #
-              123
+              Ranked wins
             </Text>
-          </View>
-          <Text
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
             style={
               {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textTransform": "uppercase",
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
               }
             }
           >
-            Top 
-            12.30
-            %
-          </Text>
-        </View>
-      </View>
-      <View>
-        <View
-          testID="rank-distribution"
-        >
-          <
-            data={
-              [
+            <Text
+              style={
                 {
-                  "barWidth": 186.1246133451171,
-                  "frontColor": "#7F7A66",
-                  "topLabelComponent": [Function],
-                  "value": 3,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#B87A2E",
-                  "topLabelComponent": [Function],
-                  "value": 2,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#C8C8D5",
-                  "topLabelComponent": [Function],
-                  "value": 2,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#FFC64E",
-                  "topLabelComponent": [Function],
-                  "value": 2,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#C3C4FF",
-                  "topLabelComponent": [Function],
-                  "value": 3,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#95DFEC",
-                  "topLabelComponent": [Function],
-                  "value": 1,
-                },
-                {
-                  "barWidth": 62.0415377817057,
-                  "frontColor": "#9CE7AC",
-                  "topLabelComponent": [Function],
-                  "value": 3,
-                },
-                {
-                  "barWidth": 42.80866106937693,
-                  "frontColor": "#FC7575",
-                  "topLabelComponent": [Function],
-                  "value": 1,
-                },
-                {
-                  "barWidth": 100.81749889527177,
-                  "frontColor": "#BD7CC5",
-                  "topLabelComponent": [Function],
-                  "value": 4,
-                },
-              ]
-            }
-            disablePress={true}
-            disableScroll={true}
-            height={702}
-            hideAxesAndRules={true}
-            spacing={0}
-            width={702}
-            xAxisLabelsHeight={0}
-            yAxisLabelWidth={0}
-          />
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              75
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
         </View>
         <View
           style={
             {
-              "position": "absolute",
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
             }
           }
-          testID="elo-distribution"
         >
-          <
-            adjustToWidth={true}
-            data={
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
               [
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "dataPointColor": "red",
-                  "dataPointRadius": 2,
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 2,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 1,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
-                {
-                  "value": 0,
-                },
+                4279833174,
+                4281606314,
               ]
             }
-            dataPointsColor="transparent"
-            disableScroll={true}
-            height={702}
-            hideAxesAndRules={true}
-            initialSpacing={0}
-            thickness={1}
-            width={702}
-            xAxisLabelsHeight={0}
-            yAxisLabelWidth={0}
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Ranked losses
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
           />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              25
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+        <View
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Ranked win rate
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              75.00%
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+        <View
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Best win streak
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              15
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
         </View>
       </View>
     </ViewManagerAdapter_ExpoLinearGradient>
@@ -787,7 +1317,7 @@ exports[`Stats matches the snapshot 1`] = `
       }
       style={
         {
-          "gap": 8,
+          "gap": 16,
           "padding": 8,
         }
       }
@@ -807,36 +1337,189 @@ exports[`Stats matches the snapshot 1`] = `
       <View
         style={
           {
+            "boxShadow": [
+              {
+                "blurRadius": 6,
+                "color": "black",
+                "offsetX": 0,
+                "offsetY": 2,
+                "spreadDistance": 0,
+              },
+            ],
             "flexDirection": "row",
-            "justifyContent": "space-between",
           }
         }
       >
-        <Text
+        <View
           style={
             {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
+              "backgroundColor": "#4838A9",
+              "width": 8,
             }
           }
-        >
-          50
-           sets
-        </Text>
-        <View
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279833174,
+              4280752771,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
           style={
             {
               "alignItems": "center",
               "flexDirection": "row",
               "gap": 4,
+              "padding": 4,
+              "paddingHorizontal": 8,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "flexShrink": 1,
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            45
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <View
+          style={
+            {
+              "backgroundColor": "#A9AFFF",
+              "width": 4,
+            }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279898970,
+              4281606314,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            [
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "padding": 4,
+                "paddingHorizontal": 8,
+              },
+              {
+                "flexShrink": 1,
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              {
+                "height": 32,
+                "width": 32,
+              }
+            }
+          >
+            <skImage
+              fit="contain"
+              height={0}
+              image={null}
+              sampling={
+                {
+                  "filter": 0,
+                }
+              }
+              width={0}
+              x={0}
+              y={0}
+            />
+          </View>
+          <Text
+            numberOfLines={1}
+            style={
+              {
+                "color": "white",
+                "flexShrink": 1,
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "textTransform": "uppercase",
+              }
+            }
+          >
+            Player1
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <View
+          style={
+            {
+              "backgroundColor": "#A9AFFF",
+              "width": 4,
+            }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279504710,
+              4280227689,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "gap": 4,
+              "padding": 4,
+              "paddingHorizontal": 8,
             }
           }
         >
           <ViewManagerAdapter_ExpoImage
             containerViewRef={"[React.ref]"}
-            contentFit="cover"
+            contentFit="contain"
             contentPosition={
               {
                 "left": "50%",
@@ -872,12 +1555,123 @@ exports[`Stats matches the snapshot 1`] = `
                 "color": "white",
                 "fontFamily": "FranklinGothicDemiCond-Regular",
                 "fontSize": 16,
-                "textTransform": "uppercase",
               }
             }
           >
             1500
           </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "gap": 8,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Crews sets
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              50
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
         </View>
       </View>
     </ViewManagerAdapter_ExpoLinearGradient>
@@ -902,7 +1696,7 @@ exports[`Stats matches the snapshot 1`] = `
       }
       style={
         {
-          "gap": 8,
+          "gap": 16,
           "padding": 8,
         }
       }
@@ -919,49 +1713,325 @@ exports[`Stats matches the snapshot 1`] = `
       >
         Global
       </Text>
-      <View>
-        <Text
+      <View
+        style={
+          {
+            "gap": 8,
+          }
+        }
+      >
+        <View
           style={
             {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
             }
           }
         >
-          500
-           games
-        </Text>
-        <Text
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Global wins
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              300
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+        <View
           style={
             {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
             }
           }
         >
-          300
-           W - 
-          200
-           L
-        </Text>
-        <Text
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Global losses
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              200
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+        <View
           style={
             {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textTransform": "uppercase",
+              "boxShadow": [
+                {
+                  "blurRadius": 6,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
             }
           }
         >
-          Winrate: 
-          60.00
-          %
-        </Text>
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4281606314,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 4,
+                "paddingHorizontal": 16,
+                "width": "60%",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Global win rate
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFBC51",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4280030561,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flex": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "#FFBC51",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              60.00%
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </ViewManagerAdapter_ExpoLinearGradient>
     <ViewManagerAdapter_ExpoLinearGradient
@@ -985,7 +2055,7 @@ exports[`Stats matches the snapshot 1`] = `
       }
       style={
         {
-          "gap": 8,
+          "gap": 16,
           "padding": 8,
         }
       }
@@ -1007,7 +2077,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FEDD84",
+              "borderColor": "#FFBC51",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1032,8 +2102,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1052,8 +2122,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1067,7 +2137,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FEDD84",
+              "borderColor": "#FFBC51",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1125,8 +2195,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1145,8 +2215,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1160,7 +2230,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FEDD84",
+              "borderColor": "#FFBC51",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1218,8 +2288,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1238,8 +2308,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1253,7 +2323,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 1,
-              "borderColor": "#FEDD84",
+              "borderColor": "#FFBC51",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1311,8 +2381,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1331,8 +2401,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1346,7 +2416,7 @@ exports[`Stats matches the snapshot 1`] = `
           style={
             {
               "borderBottomWidth": 0,
-              "borderColor": "#FEDD84",
+              "borderColor": "#FFBC51",
               "flexDirection": "row",
               "width": "100%",
             }
@@ -1404,8 +2474,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },
@@ -1424,8 +2494,8 @@ exports[`Stats matches the snapshot 1`] = `
                   "textTransform": "uppercase",
                 },
                 {
-                  "borderColor": "#FEDD84",
-                  "borderLeftWidth": 1,
+                  "borderColor": "#FFBC51",
+                  "borderLeftWidth": 2,
                   "flex": 0.4,
                   "paddingLeft": 8,
                 },

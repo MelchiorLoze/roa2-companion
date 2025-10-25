@@ -17,7 +17,7 @@ const defaultPurchaseState: ReturnType<typeof usePurchaseInventoryItems> = {
 
 const mockItem: CoinStoreItem = {
   id: '321',
-  friendlyId: 'Icon_item_321',
+  imageUrl: new URL('https://www.example.com/items/Icon_item_321.png'),
   name: 'Test Icon',
   category: Category.ICON,
   rarity: Rarity.COMMON,
