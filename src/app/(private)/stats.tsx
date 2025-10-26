@@ -12,11 +12,20 @@ import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsS
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 
-const Section = ({ children }: PropsWithChildren) => {
+type Props = {
+  withTitle?: boolean;
+} & PropsWithChildren;
+
+const Section = ({ withTitle = false, children }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient colors={theme.color.statsGradient} end={[1, 0]} start={[1 / 3, 0]} style={styles.section}>
+    <LinearGradient
+      colors={theme.color.statsGradient}
+      end={[1, 0]}
+      start={[1 / 3, 0]}
+      style={[styles.section, withTitle && styles.sectionWithTitle]}
+    >
       {children}
     </LinearGradient>
   );
@@ -47,10 +56,10 @@ export default function Stats() {
         />
       }
     >
-      <Section>
+      <Section withTitle>
         <RankedStats />
       </Section>
-      <Section>
+      <Section withTitle>
         <CrewsStats />
       </Section>
       <Section>
@@ -71,5 +80,8 @@ const styles = StyleSheet.create((theme) => ({
   section: {
     padding: theme.spacing.s,
     gap: theme.spacing.l,
+  },
+  sectionWithTitle: {
+    marginTop: theme.spacing.m,
   },
 }));

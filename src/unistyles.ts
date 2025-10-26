@@ -19,7 +19,7 @@ const theme = {
     transparent: '#FFFFFF00',
     translucentBlack: '#000000AA',
     translucentDark: '#161616AA',
-    error: 'crimson',
+    error: '#BA1A27',
     // Rarity colors
     common: '#D3D5E4',
     rare: '#447CF1',
@@ -54,6 +54,10 @@ const theme = {
       pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#2D1D76', '#5B73CD'] as const),
     arrowButtonGradient: (pressed?: boolean) =>
       pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#0B0825', '#0B0825'] as const),
+    seasonTitleWrapperGradient: (crews = false) =>
+      crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const),
+    seasonTitleGradient: (crews = false) =>
+      crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const),
   },
   spacing: {
     none: 0,
