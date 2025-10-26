@@ -451,7 +451,7 @@ exports[`Stats matches the snapshot 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/features/stats/assets/images/rank/gold.png",
+                  "testUri": "../../../src/features/stats/assets/images/rank/gold_icon.png",
                 },
               ]
             }
