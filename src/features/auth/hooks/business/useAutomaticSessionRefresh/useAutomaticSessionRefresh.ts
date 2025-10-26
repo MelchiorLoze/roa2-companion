@@ -10,13 +10,9 @@ const RENEWAL_THROTTLE = Duration.fromObject({ minutes: 30 }).as('milliseconds')
 
 export const useAutomaticSessionRefresh = (): void => {
   const { setSession } = useSession();
-  const { newSession, renew } = useGetEntityToken();
+  const { renew } = useGetEntityToken({ onSuccess: setSession });
   const appState = useAppState();
   const hasRenewedRef = useRef(false);
-
-  useEffect(() => {
-    if (newSession) setSession(newSession);
-  }, [newSession, setSession]);
 
   useEffect(() => {
     if (!hasRenewedRef.current && /^active|background$/.test(appState)) {

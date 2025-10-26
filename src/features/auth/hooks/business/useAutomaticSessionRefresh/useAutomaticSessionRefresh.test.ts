@@ -20,11 +20,16 @@ const defaultSessionState: ReturnType<typeof useSession> = {
   isLoading: false,
 };
 
+const newSession: Session = {
+  entityToken: 'mock-token',
+  expirationDate: DateTime.utc().plus({ day: 1 }),
+};
+const renewMock = jest.fn();
+
 jest.mock('../../data/useGetEntityToken/useGetEntityToken');
 const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
 const defaultGetEntityTokenState: ReturnType<typeof useGetEntityToken> = {
-  newSession: undefined,
-  renew: jest.fn(),
+  renew: renewMock,
   isLoading: false,
   isError: false,
 };
@@ -34,30 +39,11 @@ const renderUseAutomaticSessionRefresh = () => renderHook(useAutomaticSessionRef
 describe('useAutomaticSessionRefresh hook', () => {
   beforeEach(() => {
     useSessionMock.mockReturnValue(defaultSessionState);
-    useGetEntityTokenMock.mockReturnValue(defaultGetEntityTokenState);
-    useAppStateMock.mockReturnValue('unknown');
-  });
-
-  it('calls setSession when newSession is available', () => {
-    const newSession: Session = {
-      entityToken: 'mock-token',
-      expirationDate: DateTime.utc().plus({ day: 1 }),
-    };
-
-    useGetEntityTokenMock.mockReturnValue({
+    useGetEntityTokenMock.mockImplementation(({ onSuccess }) => ({
       ...defaultGetEntityTokenState,
-      newSession,
-    });
-
-    renderUseAutomaticSessionRefresh();
-
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
-  });
-
-  it('does not call setSession when newSession is undefined', () => {
-    renderUseAutomaticSessionRefresh();
-
-    expect(defaultSessionState.setSession).not.toHaveBeenCalled();
+      renew: renewMock.mockImplementation(() => onSuccess?.(newSession)),
+    }));
+    useAppStateMock.mockReturnValue('inactive');
   });
 
   it('calls renew when app state is active', () => {
@@ -65,7 +51,8 @@ describe('useAutomaticSessionRefresh hook', () => {
 
     renderUseAutomaticSessionRefresh();
 
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
+    expect(renewMock).toHaveBeenCalledTimes(1);
+    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
   });
 
   it('calls renew when app state is background', () => {
@@ -73,7 +60,8 @@ describe('useAutomaticSessionRefresh hook', () => {
 
     renderUseAutomaticSessionRefresh();
 
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
+    expect(renewMock).toHaveBeenCalledTimes(1);
+    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
   });
 
   it('does not call renew when app state is inactive', () => {
@@ -81,7 +69,8 @@ describe('useAutomaticSessionRefresh hook', () => {
 
     renderUseAutomaticSessionRefresh();
 
-    expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
+    expect(renewMock).not.toHaveBeenCalled();
+    expect(defaultSessionState.setSession).not.toHaveBeenCalled();
   });
 
   it('throttles renewal calls within 30 minutes', () => {
@@ -89,13 +78,15 @@ describe('useAutomaticSessionRefresh hook', () => {
 
     const { rerender } = renderUseAutomaticSessionRefresh();
 
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
+    expect(renewMock).toHaveBeenCalledTimes(1);
+    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
     jest.clearAllMocks();
 
     useAppStateMock.mockReturnValue('background');
     rerender(undefined);
 
-    expect(defaultGetEntityTokenState.renew).not.toHaveBeenCalled();
+    expect(renewMock).not.toHaveBeenCalled();
+    expect(defaultSessionState.setSession).not.toHaveBeenCalled();
   });
 
   it('allows renewal after throttle period expires', () => {
@@ -104,15 +95,26 @@ describe('useAutomaticSessionRefresh hook', () => {
 
     const { rerender } = renderUseAutomaticSessionRefresh();
 
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
+    expect(renewMock).toHaveBeenCalledTimes(1);
+    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
     jest.clearAllMocks();
 
     jest.advanceTimersByTime(Duration.fromObject({ minutes: 30 }).as('milliseconds'));
 
+    const otherSession: Session = {
+      entityToken: 'other-mock-token',
+      expirationDate: DateTime.utc().plus({ day: 2 }),
+    };
+    useGetEntityTokenMock.mockImplementation(({ onSuccess }) => ({
+      ...defaultGetEntityTokenState,
+      renew: renewMock.mockImplementation(() => onSuccess?.(otherSession)),
+    }));
+
     useAppStateMock.mockReturnValue('background');
     rerender(undefined);
 
-    expect(defaultGetEntityTokenState.renew).toHaveBeenCalledTimes(1);
+    expect(renewMock).toHaveBeenCalledTimes(1);
+    expect(defaultSessionState.setSession).toHaveBeenCalledWith(otherSession);
     jest.useRealTimers();
   });
 });

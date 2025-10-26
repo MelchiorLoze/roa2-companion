@@ -10,10 +10,14 @@ type GetEntityTokenResponse = Readonly<{
   TokenExpiration: string;
 }>;
 
-export const useGetEntityToken = () => {
+type Props = {
+  onSuccess?: (session: Session) => void;
+};
+
+export const useGetEntityToken = ({ onSuccess }: Readonly<Props>) => {
   const apiClient = useGameApiClient();
 
-  const { data, mutate, isPending, isError } = useMutation({
+  const { mutate, isPending, isError } = useMutation({
     mutationFn: async (): Promise<Session> => {
       const data = await apiClient.post<GetEntityTokenResponse>('/Authentication/GetEntityToken');
       return {
@@ -21,10 +25,10 @@ export const useGetEntityToken = () => {
         expirationDate: DateTime.fromISO(data.TokenExpiration, { zone: 'utc' }),
       };
     },
+    onSuccess: (newSession) => onSuccess?.(newSession),
   });
 
   return {
-    newSession: data,
     renew: mutate,
     isLoading: isPending,
     isError,
