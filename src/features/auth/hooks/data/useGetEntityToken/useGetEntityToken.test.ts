@@ -12,23 +12,29 @@ jest.mock('../../../contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
 
+const onSuccessMock = jest.fn();
+
 const renderUseGetEntityToken = async () => {
-  const { result } = renderHook(useGetEntityToken, { wrapper: TestQueryClientProvider });
+  const { result } = renderHook(() => useGetEntityToken({ onSuccess: onSuccessMock }), {
+    wrapper: TestQueryClientProvider,
+  });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
 };
 
 describe('useGetEntityToken', () => {
-  it('returns initial state with undefined newSession', async () => {
+  it('returns initial state', async () => {
     const { result } = await renderUseGetEntityToken();
 
-    expect(result.current.newSession).toBeUndefined();
     expect(typeof result.current.renew).toBe('function');
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(false);
+    expect(onSuccessMock).not.toHaveBeenCalled();
   });
 
   describe('when the request succeeds', () => {
-    it('returns the new session', async () => {
+    it('calls onSuccess with the new session', async () => {
       const mockEntityToken = 'mock-token';
 
       fetchMock.postOnce('*', {
@@ -44,9 +50,11 @@ describe('useGetEntityToken', () => {
         result.current.renew();
       });
 
-      await waitFor(() => expect(result.current.newSession).toBeDefined());
-      expect(result.current.newSession?.entityToken).toBe(mockEntityToken);
-      expect(result.current.newSession?.expirationDate).toEqual(VALID_DATE);
+      await waitFor(() => expect(onSuccessMock).toHaveBeenCalledTimes(1));
+      expect(onSuccessMock).toHaveBeenCalledWith({
+        entityToken: mockEntityToken,
+        expirationDate: VALID_DATE,
+      });
       expect(result.current.isLoading).toBe(false);
       expect(result.current.isError).toBe(false);
     });
@@ -59,7 +67,7 @@ describe('useGetEntityToken', () => {
       });
     });
 
-    it('returns nothing', async () => {
+    it('does not call onSuccess', async () => {
       const { result } = await renderUseGetEntityToken();
 
       await act(async () => {
@@ -68,7 +76,7 @@ describe('useGetEntityToken', () => {
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);
-      expect(result.current.newSession).toBeUndefined();
+      expect(onSuccessMock).not.toHaveBeenCalled();
     });
   });
 });
