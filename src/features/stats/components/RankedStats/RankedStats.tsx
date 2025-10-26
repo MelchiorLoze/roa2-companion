@@ -8,6 +8,7 @@ import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
+import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
 
 export const RankedStats = () => {
@@ -18,25 +19,24 @@ export const RankedStats = () => {
 
   return (
     <>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Ranked - {season.name}</Text>
-        <View style={styles.changeSeasonContainer}>
-          <IconButton
-            disabled={season.isFirst}
-            iconName="arrow-back"
-            onPress={setPreviousSeason}
-            size={24}
-            style={styles.changeSeasonButton}
-          />
-          <Text style={styles.title}>S{season.index}</Text>
-          <IconButton
-            disabled={season.isLast}
-            iconName="arrow-forward"
-            onPress={setNextSeason}
-            size={24}
-            style={styles.changeSeasonButton}
-          />
-        </View>
+      <SeasonTitle seasonName={`Ranked - ${season.name}`} variant="ranked" />
+
+      <View style={styles.changeSeasonContainer}>
+        <IconButton
+          disabled={season.isFirst}
+          iconName="arrow-back"
+          onPress={setPreviousSeason}
+          size={24}
+          style={styles.changeSeasonButton}
+        />
+        <Text style={styles.seasonLabel}>S{season.index}</Text>
+        <IconButton
+          disabled={season.isLast}
+          iconName="arrow-forward"
+          onPress={setNextSeason}
+          size={24}
+          style={styles.changeSeasonButton}
+        />
       </View>
 
       <LeaderboardPositionRow
@@ -71,19 +71,16 @@ export const RankedStats = () => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  titleContainer: {
+  changeSeasonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
-  title: {
+  seasonLabel: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 20,
     color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  changeSeasonContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   changeSeasonButton: {
     padding: theme.spacing.xxs,

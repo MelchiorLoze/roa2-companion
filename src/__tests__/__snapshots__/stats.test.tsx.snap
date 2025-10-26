@@ -31,20 +31,160 @@ exports[`Stats matches the snapshot 1`] = `
         ]
       }
       style={
-        {
-          "gap": 16,
-          "padding": 8,
-        }
+        [
+          {
+            "gap": 16,
+            "padding": 8,
+          },
+          {
+            "marginTop": 12,
+          },
+        ]
       }
     >
       <View
         style={
           {
-            "flexDirection": "row",
-            "justifyContent": "space-between",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "transform": [
+              {
+                "translateX": -8,
+              },
+              {
+                "translateY": -16,
+              },
+            ],
           }
         }
       >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4292756532,
+              16777215,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4285862190,
+                4290386471,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flexShrink": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 22,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Ranked - Season 1
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": true,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="button"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF00",
+                "justifyContent": "center",
+              },
+              {
+                "padding": 2,
+              },
+            ]
+          }
+        >
+          <
+            color="#AAAAAA"
+            name="arrow-back"
+            size={24}
+          />
+        </View>
         <Text
           style={
             {
@@ -55,130 +195,58 @@ exports[`Stats matches the snapshot 1`] = `
             }
           }
         >
-          Ranked - 
-          Season 1
+          S
+          1
         </Text>
         <View
-          style={
+          accessibilityState={
             {
-              "alignItems": "center",
-              "flexDirection": "row",
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": false,
+              "expanded": undefined,
+              "selected": undefined,
             }
           }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          role="button"
+          style={
+            [
+              {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF00",
+                "justifyContent": "center",
+              },
+              {
+                "padding": 2,
+              },
+            ]
+          }
         >
-          <View
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": true,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            role="button"
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF00",
-                  "justifyContent": "center",
-                },
-                {
-                  "padding": 2,
-                },
-              ]
-            }
-          >
-            <
-              color="#AAAAAA"
-              name="arrow-back"
-              size={24}
-            />
-          </View>
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 20,
-                "textTransform": "uppercase",
-              }
-            }
-          >
-            S
-            1
-          </Text>
-          <View
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": false,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            role="button"
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF00",
-                  "justifyContent": "center",
-                },
-                {
-                  "padding": 2,
-                },
-              ]
-            }
-          >
-            <
-              color="white"
-              name="arrow-forward"
-              size={24}
-            />
-          </View>
+          <
+            color="white"
+            name="arrow-forward"
+            size={24}
+          />
         </View>
       </View>
       <View
@@ -1316,24 +1384,108 @@ exports[`Stats matches the snapshot 1`] = `
         ]
       }
       style={
-        {
-          "gap": 16,
-          "padding": 8,
-        }
+        [
+          {
+            "gap": 16,
+            "padding": 8,
+          },
+          {
+            "marginTop": 12,
+          },
+        ]
       }
     >
-      <Text
+      <View
         style={
           {
-            "color": "white",
-            "fontFamily": "AgencyFB-Bold",
-            "fontSize": 20,
-            "textTransform": "uppercase",
+            "left": 0,
+            "position": "absolute",
+            "top": 0,
+            "transform": [
+              {
+                "translateX": -8,
+              },
+              {
+                "translateY": -16,
+              },
+            ],
           }
         }
       >
-        Crews
-      </Text>
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4284330190,
+              16777215,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "paddingVertical": 8,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4281353840,
+                4282202512,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "flexShrink": 1,
+                "padding": 4,
+                "paddingHorizontal": 16,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 22,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Crews - Season 1
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "height": 28,
+          }
+        }
+      />
       <View
         style={
           {
@@ -1695,10 +1847,13 @@ exports[`Stats matches the snapshot 1`] = `
         ]
       }
       style={
-        {
-          "gap": 16,
-          "padding": 8,
-        }
+        [
+          {
+            "gap": 16,
+            "padding": 8,
+          },
+          false,
+        ]
       }
     >
       <Text
@@ -2054,10 +2209,13 @@ exports[`Stats matches the snapshot 1`] = `
         ]
       }
       style={
-        {
-          "gap": 16,
-          "padding": 8,
-        }
+        [
+          {
+            "gap": 16,
+            "padding": 8,
+          },
+          false,
+        ]
       }
     >
       <Text

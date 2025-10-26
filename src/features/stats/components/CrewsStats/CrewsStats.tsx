@@ -1,31 +1,34 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { CrewsIcon } from '../../assets/images/crews';
+import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
+import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
 
 export const CrewsStats = () => {
+  const { season } = useSeason();
   const { stats, isLoading } = useUserCrewsStats();
 
   if (isLoading) return <Spinner />;
 
   return (
     <>
-      <Text style={styles.title}>Crews</Text>
+      <SeasonTitle seasonName={`Crews - ${season.name}`} variant="crews" />
 
-      {stats.position !== undefined && stats.profile && (
-        <LeaderboardPositionRow
-          avatarUrl={stats.profile.avatarUrl}
-          elo={stats.elo}
-          playerName={stats.profile.playerName}
-          position={stats.position}
-          rankIcon={CrewsIcon}
-        />
-      )}
+      <View style={styles.titlePadding} />
+
+      <LeaderboardPositionRow
+        avatarUrl={stats.profile.avatarUrl}
+        elo={stats.elo}
+        playerName={stats.profile.playerName}
+        position={stats.position}
+        rankIcon={CrewsIcon}
+      />
 
       {stats.setStats && (
         <View style={styles.setStatsContainer}>
@@ -37,11 +40,8 @@ export const CrewsStats = () => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  title: {
-    fontFamily: theme.font.secondary.bold,
-    fontSize: 20,
-    color: theme.color.white,
-    textTransform: 'uppercase',
+  titlePadding: {
+    height: 28,
   },
   setStatsContainer: {
     gap: theme.spacing.s,
