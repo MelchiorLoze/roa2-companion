@@ -19,7 +19,10 @@ type CommunityLeaderboardResponse = DeepReadonly<{
   };
 }>;
 
-const queryFn = async (apiClient: ReturnType<typeof useSteamCommunityApiClient>, leaderboardId: Leaderboard['id']) => {
+const queryFn = async (
+  apiClient: ReturnType<typeof useSteamCommunityApiClient>,
+  leaderboardId: Leaderboard['id'],
+): Promise<LeaderboardEntry[]> => {
   let entryStart = 0;
   let response: CommunityLeaderboardResponse;
   const leaderboardEntries: LeaderboardEntry[] = [];

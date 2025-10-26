@@ -12,9 +12,9 @@ type ItemToPurchase = DeepReadonly<{
   price: { value: number; currencyId: CurrencyId };
 }>;
 
-type Props = Readonly<{ onSuccess?: () => void }>;
+type Props = { onSuccess?: () => void };
 
-export const usePurchaseInventoryItems = ({ onSuccess }: Props = {}) => {
+export const usePurchaseInventoryItems = ({ onSuccess }: Readonly<Props> = {}) => {
   const apiClient = useGameApiClient();
   const queryClient = useQueryClient();
 
@@ -42,5 +42,5 @@ export const usePurchaseInventoryItems = ({ onSuccess }: Props = {}) => {
     },
   });
 
-  return { purchase: mutate, isLoading: isPending, isError };
+  return { purchase: mutate, isLoading: isPending, isError } as const;
 };

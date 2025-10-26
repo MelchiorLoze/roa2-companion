@@ -11,7 +11,7 @@ import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
 const queryClient = new QueryClient();
 
 void SplashScreen.preventAutoHideAsync();
-const onFontLoaded = () => void SplashScreen.hideAsync();
+const onFontLoaded = (): void => void SplashScreen.hideAsync();
 
 const renderHeader = ({ options }: NativeStackHeaderProps) => <Header title={options.title} withBackNavigation />;
 

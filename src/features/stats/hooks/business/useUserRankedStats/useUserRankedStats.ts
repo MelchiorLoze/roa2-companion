@@ -6,7 +6,7 @@ import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroun
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
-const getEloStatNameForSeason = (seasonIndex: number) =>
+const getEloStatNameForSeason = (seasonIndex: number): StatisticName =>
   StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName];
 
 const getSetStatsForSeason = (rawStats: PlayerStatistics | undefined, season: Season) => {

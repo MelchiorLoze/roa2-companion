@@ -1,4 +1,4 @@
-import { type CanvasRef, FilterMode, Skia, type SkImage, type SkSize, useCanvasSize } from '@shopify/react-native-skia';
+import { FilterMode, Skia, type SkImage, useCanvasSize } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
 import { useEffect, useState } from 'react';
 
@@ -28,14 +28,7 @@ const retrieveOrFetchImage = async (url: URL): Promise<SkImage | null> => {
   return null;
 };
 
-type UseCachedSkiaImageResult = {
-  image: SkImage | null;
-  canvasRef: React.RefObject<CanvasRef | null>;
-  canvasSize: SkSize;
-  canvasFilter: FilterMode;
-};
-
-export const useCachedSkiaImage = (url: URL): UseCachedSkiaImageResult => {
+export const useCachedSkiaImage = (url: URL) => {
   const { ref: canvasRef, size: canvasSize } = useCanvasSize();
   const [image, setImage] = useState<SkImage | null>(null);
 
@@ -55,5 +48,5 @@ export const useCachedSkiaImage = (url: URL): UseCachedSkiaImageResult => {
     void imagePromise.then(setImage);
   }, [url]);
 
-  return { image, canvasRef, canvasSize, canvasFilter };
+  return { image, canvasRef, canvasSize, canvasFilter } as const;
 };

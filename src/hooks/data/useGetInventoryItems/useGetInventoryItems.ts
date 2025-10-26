@@ -37,6 +37,6 @@ export const useGetInventoryItems = () => {
   return { inventoryItems: data ?? [], isLoading: isFetching || isPending, isError } as const;
 };
 
-export const invalidateGetInventoryItems = (queryClient: QueryClient) => {
+export const invalidateGetInventoryItems = (queryClient: QueryClient): void => {
   void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };

@@ -8,7 +8,7 @@ import { useGetEntityToken } from '../../data/useGetEntityToken/useGetEntityToke
 
 const RENEWAL_THROTTLE = Duration.fromObject({ minutes: 30 }).as('milliseconds');
 
-export const useAutomaticSessionRefresh = () => {
+export const useAutomaticSessionRefresh = (): void => {
   const { setSession } = useSession();
   const { newSession, renew } = useGetEntityToken();
   const appState = useAppState();

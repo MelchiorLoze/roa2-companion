@@ -6,7 +6,7 @@ import { type Item } from '@/types/item';
 
 import { ItemCard } from './ItemCard/ItemCard';
 
-const keyExtractor = (item: Item) => item.id;
+const keyExtractor = (item: Item): string => item.id;
 
 type Props = { items: Item[]; onSelect: (item: Item) => void };
 

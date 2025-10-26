@@ -3,7 +3,7 @@ import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats'
 
 const DISTRIBUTION_PRECISION = 20;
 
-const roundElo = (elo: number) => Math.floor(elo / DISTRIBUTION_PRECISION) * DISTRIBUTION_PRECISION;
+const roundElo = (elo: number): number => Math.floor(elo / DISTRIBUTION_PRECISION) * DISTRIBUTION_PRECISION;
 
 const getEloDistribution = (
   leaderboardEntries: LeaderboardEntry[],

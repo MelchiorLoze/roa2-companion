@@ -1,10 +1,10 @@
 import { TITLE_ID } from '@/constants';
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
-import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
+import { type HttpClient, useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
 
 export const GAME_API_BASE_URL = `https://${TITLE_ID}.playfabapi.com`;
 
-export const useGameApiClient = () => {
+export const useGameApiClient = (): HttpClient => {
   const { entityToken, isValid: isLoggedIn, clearSession } = useSession();
 
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
