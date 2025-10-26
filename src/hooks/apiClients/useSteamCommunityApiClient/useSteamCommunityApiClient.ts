@@ -1,10 +1,10 @@
 import { XMLParser } from 'fast-xml-parser';
 
-import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
+import { type HttpClient, useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
 
 export const STEAM_COMMUNITY_API_BASE_URL = 'https://steamcommunity.com';
 
-export const useSteamCommunityApiClient = () => {
+export const useSteamCommunityApiClient = (): HttpClient => {
   const handleResponse = async <T>(response: Response) => {
     if (!response.ok) throw new Error('Request failed');
 

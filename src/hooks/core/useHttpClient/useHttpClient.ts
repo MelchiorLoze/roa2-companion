@@ -46,3 +46,5 @@ export const useHttpClient = ({ baseUrl, baseQueryParams, headers, handleRespons
       await requester<T>('POST', path, options.params, options.body),
   } as const;
 };
+
+export type HttpClient = ReturnType<typeof useHttpClient>;

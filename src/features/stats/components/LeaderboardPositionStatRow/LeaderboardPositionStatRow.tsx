@@ -9,14 +9,15 @@ import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCache
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
+// Either rank or rankIcon or neither, but not both
+type RankOrIcon = { rank?: Rank; rankIcon?: never } | { rank?: never; rankIcon?: ImageSource };
+
 type Props = {
   position: number;
   avatarUrl: URL;
   playerName: string;
   elo?: number;
-  rank?: Rank;
-  rankIcon?: ImageSource;
-};
+} & RankOrIcon;
 
 export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, rank, rankIcon }: Readonly<Props>) => {
   const { theme } = useUnistyles();

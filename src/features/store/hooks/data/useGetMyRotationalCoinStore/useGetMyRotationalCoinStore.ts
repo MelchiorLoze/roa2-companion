@@ -52,6 +52,6 @@ export const useGetMyRotationalCoinStore = () => {
   return { rotationalCoinStore: data, isLoading: isFetching || isPending, isError };
 };
 
-export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient) => {
+export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient): void => {
   void queryClient.invalidateQueries({ queryKey: QUERY_KEY });
 };

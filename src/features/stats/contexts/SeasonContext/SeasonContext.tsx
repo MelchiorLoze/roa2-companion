@@ -56,7 +56,7 @@ export const SeasonProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useSeason = () => {
+export const useSeason = (): SeasonState => {
   const context = useContext(SeasonContext);
   if (!context) {
     throw new Error('useSeason must be used within a SeasonProvider');

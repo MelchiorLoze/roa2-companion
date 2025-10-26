@@ -8,13 +8,13 @@ import { type Session } from '../../types/session';
 
 const SESSION_STORAGE_KEY = 'session';
 
-type SessionState = {
+type SessionState = Readonly<{
   entityToken?: string;
   isValid: boolean;
   isLoading: boolean;
   setSession: (session: Session) => void;
   clearSession: () => void;
-};
+}>;
 
 const SessionContext = createContext<SessionState | undefined>(undefined);
 
@@ -64,7 +64,7 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const useSession = () => {
+export const useSession = (): SessionState => {
   const context = useContext(SessionContext);
   if (!context) {
     throw new Error('useSession must be used within a SessionProvider');
