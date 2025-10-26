@@ -42,5 +42,5 @@ export const usePurchaseInventoryItems = ({ onSuccess }: Readonly<Props> = {}) =
     },
   });
 
-  return { purchase: mutate, isLoading: isPending, isError };
+  return { purchase: mutate, isLoading: isPending, isError } as const;
 };
