@@ -3,7 +3,7 @@ import { type Item } from '@/types/item';
 
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
-const sortItems = (items: Item[]) =>
+const sortItems = (items: Item[]): Item[] =>
   items.sort(
     (itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0) || itemA.category.localeCompare(itemB.category),
   );

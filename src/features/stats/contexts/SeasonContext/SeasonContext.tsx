@@ -3,8 +3,8 @@ import { createContext, type PropsWithChildren, useContext, useState } from 'rea
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { MAX_SEASON_INDEX, MIN_SEASON_INDEX, type Season } from '../../types/season';
 
-const isFirstSeason = (index: number) => index === MIN_SEASON_INDEX;
-const isLastSeason = (index: number) => index === MAX_SEASON_INDEX;
+const isFirstSeason = (index: number): boolean => index === MIN_SEASON_INDEX;
+const isLastSeason = (index: number): boolean => index === MAX_SEASON_INDEX;
 
 type SeasonState = DeepReadonly<{
   season: Season;

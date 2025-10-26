@@ -8,14 +8,19 @@ import { useLeaderboardStats } from '../../../hooks/business/useLeaderboardStats
 import { useRankDistribution } from '../../../hooks/business/useRankDistribution/useRankDistribution';
 import { Rank, RANK_ELO_INTERVALS } from '../../../types/rank';
 
-const formatNumber = (value: number) => {
+const formatNumber = (value: number): string => {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `${(value / 1_000).toFixed(1)}K`;
   return value.toString();
 };
 
 // Calculate the widths of the chart bars to be proportional to the elo intervals
-const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethereanElo: number, totalWidth: number) => {
+const getBarWidths = (
+  firstPlayerElo: number,
+  lastPlayerElo: number,
+  lastAethereanElo: number,
+  totalWidth: number,
+): number[] => {
   const totalEloRange = firstPlayerElo - lastPlayerElo + 1;
   return [
     RANK_ELO_INTERVALS[Rank.STONE].max - lastPlayerElo + 1, // Assuming there could be players below 0 elo
@@ -30,8 +35,8 @@ const getBarWidths = (firstPlayerElo: number, lastPlayerElo: number, lastAethere
   ].map((eloIntervalSize) => (eloIntervalSize / totalEloRange) * totalWidth);
 };
 
-const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: Theme) =>
-  Object.entries(rawData).map<barDataItem>(([rank, count], index) => ({
+const formatBarData = (rawData: Record<Rank, number>, barWidths: number[], theme: Theme): barDataItem[] =>
+  Object.entries(rawData).map(([rank, count], index) => ({
     value: count,
     frontColor: theme.color[rank as Rank],
     barWidth: barWidths[index],

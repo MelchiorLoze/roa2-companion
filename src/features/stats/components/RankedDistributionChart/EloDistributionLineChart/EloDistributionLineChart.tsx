@@ -3,12 +3,8 @@ import { LineChart, type lineDataItem } from 'react-native-gifted-charts';
 
 import { useEloDistribution } from '../../../hooks/business/useEloDistribution/useEloDistribution';
 
-const formatLineData = (eloDistribution: Record<number, number>) =>
-  Object.values(eloDistribution).map(
-    (count): lineDataItem => ({
-      value: count,
-    }),
-  );
+const formatLineData = (eloDistribution: Record<number, number>): lineDataItem[] =>
+  Object.values(eloDistribution).map((count) => ({ value: count }));
 
 type Props = {
   userElo?: number;
