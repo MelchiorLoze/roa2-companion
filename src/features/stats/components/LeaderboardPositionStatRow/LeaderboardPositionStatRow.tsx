@@ -122,6 +122,7 @@ const styles = StyleSheet.create((theme) => ({
     textTransform: 'uppercase',
   },
   profileContainer: {
+    flex: 1,
     flexShrink: 1,
   },
   playerIcon: {
