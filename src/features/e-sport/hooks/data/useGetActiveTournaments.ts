@@ -9,12 +9,12 @@ type GetTournamentsResponse = {
   content: TournamentDto[];
 };
 
-export const useGetTournaments = () => {
+export const useGetActiveTournaments = () => {
   const apiClient = useCompanionApiClient();
 
-  const { data, isFetching, isError } = useQuery({
-    queryKey: ['tournaments'],
-    queryFn: () => apiClient.get<GetTournamentsResponse>('/api/v1/tournaments'),
+  const { data, isFetching, isError, error, refetch, isRefetching } = useQuery({
+    queryKey: ['tournaments', 'active'],
+    queryFn: () => apiClient.get<GetTournamentsResponse>('/api/v1/tournaments/active?size=100'),
     select: (response) => response.content.map((dto) => tournamentFromDto(dto)),
     staleTime: Infinity,
     gcTime: Infinity,
@@ -24,5 +24,8 @@ export const useGetTournaments = () => {
     tournaments: data ?? [],
     isLoading: isFetching,
     isError,
+    error,
+    refetch,
+    isRefetching,
   };
 };

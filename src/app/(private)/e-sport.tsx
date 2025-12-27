@@ -1,11 +1,13 @@
 import { Spinner } from '@/components/Spinner/Spinner';
 import { TournamentList } from '@/features/e-sport/components/TournamentList/TournamentList';
-import { useGetTournaments } from '@/features/e-sport/hooks/data/useGetTournaments';
+import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetActiveTournaments';
 
 export default function ESport() {
-  const { tournaments, isLoading } = useGetTournaments();
+  const { tournaments, isLoading, isError, error, refetch, isRefetching } = useGetActiveTournaments();
 
   if (isLoading) return <Spinner />;
 
-  return <TournamentList tournaments={tournaments} />;
+  if (isError) throw error;
+
+  return <TournamentList isRefreshing={isRefetching} onRefresh={() => void refetch()} tournaments={tournaments} />;
 }

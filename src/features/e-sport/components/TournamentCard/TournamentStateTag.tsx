@@ -5,26 +5,34 @@ import { TournamentState } from '../../types/tournament';
 
 type Props = {
   tournamentState: TournamentState;
+  pressed?: boolean;
 };
 
-export const TournamentStateTag = ({ tournamentState }: Readonly<Props>) => {
+export const TournamentStateTag = ({ tournamentState, pressed = false }: Readonly<Props>) => {
   return (
-    <View style={styles.container(tournamentState)}>
-      <Text style={styles.text(tournamentState)}>{tournamentState}</Text>
+    <View style={styles.container(tournamentState, pressed)}>
+      <Text style={styles.text(tournamentState, pressed)}>{tournamentState}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
-  container: (tournamentState: TournamentState) => ({
+  container: (tournamentState: TournamentState, pressed: boolean) => ({
     paddingHorizontal: theme.spacing.xxs,
-    backgroundColor: tournamentState === TournamentState.UPCOMING ? 'lightblue' : 'lightgreen',
-    borderWidth: 1,
-    borderColor: tournamentState === TournamentState.UPCOMING ? 'darkblue' : 'darkgreen',
+    borderWidth: 1.3,
+    borderColor: pressed
+      ? theme.color.black
+      : tournamentState === TournamentState.UPCOMING
+        ? theme.color.borderLight
+        : theme.color.accent,
     justifyContent: 'center',
   }),
-  text: (tournamentState: TournamentState) => ({
-    color: tournamentState === TournamentState.UPCOMING ? 'darkblue' : 'darkgreen',
+  text: (tournamentState: TournamentState, pressed: boolean) => ({
+    color: pressed
+      ? theme.color.black
+      : tournamentState === TournamentState.UPCOMING
+        ? theme.color.borderLight
+        : theme.color.accent,
     fontFamily: theme.font.secondary.bold,
     fontSize: 12,
     lineHeight: 10,
