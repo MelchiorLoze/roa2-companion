@@ -1,7 +1,8 @@
-import { FlatList, RefreshControl } from 'react-native';
+import { type ComponentProps } from 'react';
+import { FlatList } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import type { Tournament } from '../../types/tournament';
+import { type Tournament } from '../../types/tournament';
 import { TournamentCard } from '../TournamentCard/TournamentCard';
 
 const keyExtractor = (item: Tournament) => item.id.toString();
@@ -9,17 +10,16 @@ const renderItem = ({ item }: { item: Tournament }) => <TournamentCard tournamen
 
 type Props = {
   tournaments: Tournament[];
-  isRefreshing: boolean;
-  onRefresh: () => void;
+  refreshControl: ComponentProps<typeof FlatList>['refreshControl'];
 };
 
-export const TournamentList = ({ tournaments, isRefreshing, onRefresh }: Readonly<Props>) => {
+export const TournamentList = ({ tournaments, refreshControl }: Readonly<Props>) => {
   return (
     <FlatList
       contentContainerStyle={styles.container}
       data={tournaments}
       keyExtractor={keyExtractor}
-      refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}
+      refreshControl={refreshControl}
       renderItem={renderItem}
     />
   );
