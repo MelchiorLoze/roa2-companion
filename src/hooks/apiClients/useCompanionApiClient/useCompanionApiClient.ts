@@ -1,6 +1,6 @@
 import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
 
-export const SERVER_BASE_URL = 'http://192.168.1.214:8080';
+export const SERVER_BASE_URL = 'https://api.roa2-companion.app';
 
 export const useCompanionApiClient = () => {
   const headers: Record<string, string> = {};

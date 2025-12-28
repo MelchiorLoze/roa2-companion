@@ -3,7 +3,7 @@ import { type DateTime } from 'luxon';
 export type TournamentDto = Readonly<{
   id: number;
   name: string;
-  slug: string;
+  url: string;
   imageUrl: string | null;
   countryCode: string | null;
   isOnline: boolean;
