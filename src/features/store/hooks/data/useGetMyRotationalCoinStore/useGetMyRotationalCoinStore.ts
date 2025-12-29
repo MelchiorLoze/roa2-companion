@@ -22,7 +22,7 @@ export const useGetMyRotationalCoinStore = () => {
   const apiClient = useGameApiClient();
   const queryClient = useQueryClient();
 
-  const { data, isFetching, isPending, isError } = useQuery({
+  const { data, isPending, isFetching, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
       apiClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
@@ -49,7 +49,7 @@ export const useGetMyRotationalCoinStore = () => {
     return () => clearTimeout(timeout);
   }, [data, queryClient]);
 
-  return { rotationalCoinStore: data, isLoading: isFetching || isPending, isError } as const;
+  return { rotationalCoinStore: data, isLoading: isPending || isFetching, isError } as const;
 };
 
 export const invalidateGetMyRotationalCoinStore = (queryClient: QueryClient): void => {

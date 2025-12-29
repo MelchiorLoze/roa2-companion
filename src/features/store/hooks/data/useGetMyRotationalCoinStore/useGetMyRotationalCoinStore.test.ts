@@ -1,16 +1,37 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 import { DateTime } from 'luxon';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
-import { useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
+import { invalidateGetMyRotationalCoinStore, useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
 jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
   useSession: jest.fn().mockReturnValue({}),
 }));
+
+const mockSuccessfulResponse = ({ itemIds = [null, '1', null, '2', null], expirationDate = VALID_DATE } = {}) => {
+  fetchMock.postOnce('*', {
+    status: 200,
+    body: {
+      data: {
+        FunctionResult: {
+          itemIds,
+          expirationDateTime: expirationDate.toISO(),
+        },
+      },
+    },
+  });
+};
+
+const mockFailedResponse = () => {
+  fetchMock.postOnce('*', {
+    status: 400,
+  });
+};
 
 const renderUseGetMyRotationalCoinStore = async () => {
   const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
@@ -29,19 +50,35 @@ describe('useGetMyRotationalCoinStore', () => {
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
+  it('returns loading state when the request is fetching after being invalidated', async () => {
+    const firstResult = { itemIds: ['1', '2'], expirationDate: VALID_DATE };
+    const secondResult = { itemIds: ['3', '4'], expirationDate: VALID_DATE.plus({ day: 1 }) };
+    mockSuccessfulResponse(firstResult);
+
+    const queryClient = new QueryClient();
+
+    const { result, rerender } = renderHook(useGetMyRotationalCoinStore, {
+      wrapper: ({ children }) => QueryClientProvider({ client: queryClient, children }),
+    });
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    expect(result.current.rotationalCoinStore).toEqual(firstResult);
+
+    mockSuccessfulResponse(secondResult);
+    invalidateGetMyRotationalCoinStore(queryClient);
+    rerender(undefined);
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.rotationalCoinStore).toEqual(firstResult);
+    expect(result.current.isError).toBe(false);
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    expect(result.current.rotationalCoinStore).toEqual(secondResult);
+  });
+
   describe('when the request succeeds', () => {
     beforeEach(() => {
-      fetchMock.postOnce('*', {
-        status: 200,
-        body: {
-          data: {
-            FunctionResult: {
-              itemIds: [null, '1', null, '2', null],
-              expirationDateTime: VALID_DATE.toISO(),
-            },
-          },
-        },
-      });
+      mockSuccessfulResponse();
     });
 
     it('returns the rotational coin store', async () => {
@@ -57,9 +94,7 @@ describe('useGetMyRotationalCoinStore', () => {
 
   describe('when the request fails', () => {
     beforeEach(() => {
-      fetchMock.postOnce('*', {
-        status: 400,
-      });
+      mockFailedResponse();
     });
 
     it('returns nothing', async () => {

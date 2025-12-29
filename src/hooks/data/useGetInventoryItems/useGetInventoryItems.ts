@@ -21,7 +21,7 @@ type InventoryItem = Readonly<
 export const useGetInventoryItems = () => {
   const apiClient = useGameApiClient();
 
-  const { data, isFetching, isPending, isError } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
       apiClient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
@@ -34,7 +34,7 @@ export const useGetInventoryItems = () => {
     gcTime: Infinity,
   });
 
-  return { inventoryItems: data ?? [], isLoading: isFetching || isPending, isError } as const;
+  return { inventoryItems: data ?? [], isLoading: isPending, isError } as const;
 };
 
 export const invalidateGetInventoryItems = (queryClient: QueryClient): void => {

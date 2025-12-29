@@ -49,18 +49,19 @@ const queryFn = async (
 
 export const useCommunityLeaderboard = (leaderboardId: Leaderboard['id'] = -1) => {
   const apiClient = useSteamCommunityApiClient();
+  const enabled = leaderboardId !== -1;
 
-  const { data, isFetching, isError } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: ['communityLeaderboard', leaderboardId],
     queryFn: () => queryFn(apiClient, leaderboardId),
-    enabled: leaderboardId !== -1,
+    enabled,
     staleTime: Infinity,
     gcTime: Infinity,
   });
 
   return {
     leaderboardEntries: data ?? [],
-    isLoading: isFetching,
+    isLoading: enabled && isPending,
     isError,
   } as const;
 };
