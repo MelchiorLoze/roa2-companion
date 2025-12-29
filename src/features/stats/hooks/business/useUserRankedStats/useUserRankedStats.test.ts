@@ -11,7 +11,7 @@ import { useUserRankedStats } from './useUserRankedStats';
 
 jest.mock('../../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
-const defaultSeasonState: ReturnType<typeof useSeason> = {
+const defaultSeasonValue: ReturnType<typeof useSeason> = {
   season: {
     index: 4,
     name: 'Season 4',
@@ -26,7 +26,7 @@ const defaultSeasonState: ReturnType<typeof useSeason> = {
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
-const defaultPlayerStatisticsState: ReturnType<typeof useGetPlayerStatistics> = {
+const defaultPlayerStatisticsValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
     [StatisticName.RANKED_S4_ELO]: 950,
     [StatisticName.RANKED_SETS]: 100,
@@ -41,7 +41,7 @@ const defaultPlayerStatisticsState: ReturnType<typeof useGetPlayerStatistics> = 
 
 jest.mock('../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
 const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPlayer);
-const defaultLeaderboardAroundPlayerState: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
+const defaultLeaderboardAroundPlayerValue: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
   playerPositions: [
     {
       statisticName: StatisticName.RANKED_S2_ELO,
@@ -98,15 +98,15 @@ const renderUseUserRankedStats = (seasonEloStatName = StatisticName.RANKED_S4_EL
 
 describe('useUserRankedStats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonState);
-    useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsState);
-    useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerState);
+    useSeasonMock.mockReturnValue(defaultSeasonValue);
+    useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsValue);
+    useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerValue);
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsMock);
   });
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      ...defaultPlayerStatisticsState,
+      ...defaultPlayerStatisticsValue,
       statistics: undefined,
       isLoading: true,
     });
@@ -131,7 +131,7 @@ describe('useUserRankedStats', () => {
 
   it('returns loading state when leaderboard data is loading', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      ...defaultLeaderboardAroundPlayerState,
+      ...defaultLeaderboardAroundPlayerValue,
       playerPositions: [],
       isLoading: true,
     });
@@ -168,7 +168,7 @@ describe('useUserRankedStats', () => {
 
   it('returns refetching state when leaderboard data is being refetched', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      ...defaultLeaderboardAroundPlayerState,
+      ...defaultLeaderboardAroundPlayerValue,
       isRefetching: true,
     });
 
@@ -206,7 +206,7 @@ describe('useUserRankedStats', () => {
 
   it('computes ranked stats correctly from player stats for first season', () => {
     useSeasonMock.mockReturnValue({
-      ...defaultSeasonState,
+      ...defaultSeasonValue,
       season: {
         index: 1,
         name: 'Season 1',
@@ -242,7 +242,7 @@ describe('useUserRankedStats', () => {
 
   it('computes ranked stats correctly from player stats for neither first nor last season', () => {
     useSeasonMock.mockReturnValue({
-      ...defaultSeasonState,
+      ...defaultSeasonValue,
       season: {
         index: 2,
         name: 'Season 2',

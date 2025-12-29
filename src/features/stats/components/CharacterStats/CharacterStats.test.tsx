@@ -7,7 +7,7 @@ import { CharacterStats } from './CharacterStats';
 
 jest.mock('../../hooks/business/useUserCharacterStats/useUserCharacterStats');
 const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
-const defaultUserCharacterStatsState: ReturnType<typeof useUserCharacterStats> = {
+const defaultUserCharacterStatsValue: ReturnType<typeof useUserCharacterStats> = {
   stats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },
     { character: Character.CLAIREN, gameCount: 50, level: 5 },
@@ -27,7 +27,7 @@ const renderComponent = () => {
 
 describe('CharacterStats', () => {
   beforeEach(() => {
-    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsState);
+    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsValue);
   });
 
   it('renders correctly', () => {
@@ -40,7 +40,7 @@ describe('CharacterStats', () => {
 
   it('displays loading spinner when stats are loading', () => {
     useUserCharacterStatsMock.mockReturnValue({
-      ...defaultUserCharacterStatsState,
+      ...defaultUserCharacterStatsValue,
       isLoading: true,
     });
 

@@ -9,7 +9,7 @@ import { PurchaseConfirmationDialog } from './PurchaseConfirmationDialog';
 
 jest.mock('../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems');
 const usePurchaseInventoryItemsMock = jest.mocked(usePurchaseInventoryItems);
-const defaultPurchaseState: ReturnType<typeof usePurchaseInventoryItems> = {
+const defaultPurchaseValue: ReturnType<typeof usePurchaseInventoryItems> = {
   purchase: jest.fn(),
   isLoading: false,
   isError: false,
@@ -27,7 +27,7 @@ const mockItem: CoinStoreItem = {
 
 describe('PurchaseConfirmationDialog', () => {
   beforeEach(() => {
-    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseState);
+    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseValue);
   });
 
   it('renders correctly', () => {
@@ -65,7 +65,7 @@ describe('PurchaseConfirmationDialog', () => {
   it('calls purchase when Yes button is pressed', () => {
     const mockPurchase = jest.fn();
     usePurchaseInventoryItemsMock.mockImplementation((props) => ({
-      ...defaultPurchaseState,
+      ...defaultPurchaseValue,
       purchase: mockPurchase.mockImplementation(props?.onSuccess),
     }));
 
@@ -86,7 +86,7 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('shows loading spinner when purchasing', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseValue.purchase,
       isLoading: true,
       isError: false,
     });
@@ -98,7 +98,7 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('shows error message when purchase fails', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseValue.purchase,
       isLoading: false,
       isError: true,
     });
@@ -114,7 +114,7 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('calls purchase when Retry button is pressed in error state', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseValue.purchase,
       isLoading: false,
       isError: true,
     });
@@ -124,8 +124,8 @@ describe('PurchaseConfirmationDialog', () => {
     const retryButton = screen.getByRole('button', { name: 'Retry' });
     fireEvent.press(retryButton);
 
-    expect(defaultPurchaseState.purchase).toHaveBeenCalledTimes(1);
-    expect(defaultPurchaseState.purchase).toHaveBeenCalledWith({
+    expect(defaultPurchaseValue.purchase).toHaveBeenCalledTimes(1);
+    expect(defaultPurchaseValue.purchase).toHaveBeenCalledWith({
       id: mockItem.id,
       price: { value: mockItem.coinPrice, currencyId: CurrencyId.COINS },
     });
@@ -133,7 +133,7 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('calls onClose when Cancel button is pressed in error state', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseValue.purchase,
       isLoading: false,
       isError: true,
     });

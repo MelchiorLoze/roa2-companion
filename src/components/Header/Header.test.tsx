@@ -1,25 +1,35 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
+import { useCurrencyBalance } from '@/hooks/business/useCurrencyBalance/useCurrencyBalance';
+
 import { Header } from './Header';
 
 jest.mock('expo-router');
-const backMock = jest.fn();
-jest.mocked(useRouter).mockReturnValue({
-  back: backMock,
-} as unknown as ReturnType<typeof useRouter>);
+jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance');
 
-jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance', () => ({
-  useCurrencyBalance: jest.fn(() => ({
-    coinsBalance: 0,
-    bucksBalance: 0,
-    medalsBalance: 0,
-    isLoading: false,
-    isError: false,
-  })),
-}));
+const useRouterMock = jest.mocked(useRouter);
+const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
+
+const backMock = jest.fn();
+
+const defaultCurrencyBalanceValue: ReturnType<typeof useCurrencyBalance> = {
+  coinsBalance: 0,
+  bucksBalance: 0,
+  medalsBalance: 0,
+  isLoading: false,
+  isError: false,
+};
 
 describe('Header', () => {
+  beforeEach(() => {
+    useRouterMock.mockReturnValue({
+      back: backMock,
+    } as unknown as ReturnType<typeof useRouter>);
+
+    useCurrencyBalanceMock.mockReturnValue(defaultCurrencyBalanceValue);
+  });
+
   it('renders without crashing when no props are provided', () => {
     render(<Header />);
 

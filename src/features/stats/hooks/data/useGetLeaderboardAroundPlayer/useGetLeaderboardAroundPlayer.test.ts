@@ -1,14 +1,15 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from './useGetLeaderboardAroundPlayer';
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const mockResponse = {
   data: {
@@ -49,7 +50,11 @@ const renderUseGetLeaderboardAroundPlayer = async (
 };
 
 describe('useGetLeaderboardAroundPlayer', () => {
-  it('fetches and transform leaderboard data with default params', async () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
+  it('returns nothing when the request is loading', async () => {
     fetchMock.postOnce('*', mockResponse);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();

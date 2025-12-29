@@ -4,14 +4,14 @@ import { DateTime } from 'luxon';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
+import { useSession } from '../../../contexts/SessionContext/SessionContext';
 import { useGetEntityToken } from './useGetEntityToken';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
-jest.mock('../../../contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('../../../contexts/SessionContext/SessionContext');
 
+const useSessionMock = jest.mocked(useSession);
 const onSuccessMock = jest.fn();
 
 const renderUseGetEntityToken = async () => {
@@ -24,6 +24,10 @@ const renderUseGetEntityToken = async () => {
 };
 
 describe('useGetEntityToken', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   it('returns initial state', async () => {
     const { result } = await renderUseGetEntityToken();
 

@@ -7,17 +7,19 @@ import { useLoginWithEmail } from '../../data/useLoginWithEmail/useLoginWithEmai
 import { useAuth } from './useAuth';
 
 jest.mock('../../../contexts/SessionContext/SessionContext');
+jest.mock('../../data/useLoginWithEmail/useLoginWithEmail');
+
 const useSessionMock = jest.mocked(useSession);
-const defaultSessionState: ReturnType<typeof useSession> = {
+const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
+
+const defaultSessionValue: ReturnType<typeof useSession> = {
   isValid: false,
   setSession: jest.fn(),
   clearSession: jest.fn(),
   isLoading: false,
 };
 
-jest.mock('../../data/useLoginWithEmail/useLoginWithEmail');
-const useLoginWithEmailMock = jest.mocked(useLoginWithEmail);
-const defaultLoginWithEmailState: ReturnType<typeof useLoginWithEmail> = {
+const defaultLoginWithEmailValue: ReturnType<typeof useLoginWithEmail> = {
   session: undefined,
   loginWithEmail: jest.fn(),
   isLoading: false,
@@ -28,8 +30,8 @@ const renderUseAuth = () => renderHook(useAuth);
 
 describe('useAuth hook', () => {
   beforeEach(() => {
-    useSessionMock.mockReturnValue(defaultSessionState);
-    useLoginWithEmailMock.mockReturnValue(defaultLoginWithEmailState);
+    useSessionMock.mockReturnValue(defaultSessionValue);
+    useLoginWithEmailMock.mockReturnValue(defaultLoginWithEmailValue);
   });
 
   it('returns correct initial state', () => {
@@ -45,13 +47,13 @@ describe('useAuth hook', () => {
   it('calls setSession when login data is available', () => {
     const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useLoginWithEmailMock.mockReturnValue({
-      ...defaultLoginWithEmailState,
+      ...defaultLoginWithEmailValue,
       session: loginSession,
     });
 
     renderUseAuth();
 
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(loginSession);
+    expect(defaultSessionValue.setSession).toHaveBeenCalledWith(loginSession);
   });
 
   it('updates isLoggedIn when session becomes valid', () => {
@@ -59,7 +61,7 @@ describe('useAuth hook', () => {
     expect(result.current.isLoggedIn).toBe(false);
 
     useSessionMock.mockReturnValue({
-      ...defaultSessionState,
+      ...defaultSessionValue,
       isValid: true,
     });
 
@@ -70,19 +72,19 @@ describe('useAuth hook', () => {
 
   it('clears the session when calling logout', () => {
     useSessionMock.mockReturnValue({
-      ...defaultSessionState,
+      ...defaultSessionValue,
       isValid: true,
     });
 
     const { result } = renderUseAuth();
     act(result.current.logout);
 
-    expect(defaultSessionState.clearSession).toHaveBeenCalledTimes(1);
+    expect(defaultSessionValue.clearSession).toHaveBeenCalledTimes(1);
   });
 
   it('sets isLoading to true when session is loading', () => {
     useSessionMock.mockReturnValue({
-      ...defaultSessionState,
+      ...defaultSessionValue,
       isLoading: true,
     });
 
@@ -93,7 +95,7 @@ describe('useAuth hook', () => {
 
   it('sets isLoading to true when login is loading', () => {
     useLoginWithEmailMock.mockReturnValue({
-      ...defaultLoginWithEmailState,
+      ...defaultLoginWithEmailValue,
       isLoading: true,
     });
 
@@ -104,7 +106,7 @@ describe('useAuth hook', () => {
 
   it('exposes login error state', () => {
     useLoginWithEmailMock.mockReturnValue({
-      ...defaultLoginWithEmailState,
+      ...defaultLoginWithEmailValue,
       isError: true,
     });
 

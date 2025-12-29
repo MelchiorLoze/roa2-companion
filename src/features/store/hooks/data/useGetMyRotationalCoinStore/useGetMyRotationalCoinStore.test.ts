@@ -3,15 +3,16 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 import { DateTime } from 'luxon';
 
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { invalidateGetMyRotationalCoinStore, useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const mockSuccessfulResponse = ({ itemIds = [null, '1', null, '2', null], expirationDate = VALID_DATE } = {}) => {
   fetchMock.postOnce('*', {
@@ -41,6 +42,10 @@ const renderUseGetMyRotationalCoinStore = async () => {
 };
 
 describe('useGetMyRotationalCoinStore', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   it('returns nothing when the request is loading', async () => {
     const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
 

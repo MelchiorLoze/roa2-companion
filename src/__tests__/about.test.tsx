@@ -2,14 +2,10 @@ import { render } from '@testing-library/react-native';
 
 import About from '@/app/about';
 
-const renderComponent = () => {
-  return render(<About />);
-};
-
 describe('About', () => {
-  it('matches the snapshot', () => {
-    const tree = renderComponent().toJSON();
+  it('matches snapshot', () => {
+    const { toJSON } = render(<About />);
 
-    expect(tree).toMatchSnapshot();
+    expect(toJSON()).toMatchSnapshot();
   });
 });

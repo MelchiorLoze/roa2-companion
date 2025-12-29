@@ -6,7 +6,7 @@ import { CrewsStats } from './CrewsStats';
 
 jest.mock('../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
-const defaultSeasonState: ReturnType<typeof useSeason> = {
+const defaultSeasonValue: ReturnType<typeof useSeason> = {
   season: {
     index: 5,
     name: 'Season 5',
@@ -21,7 +21,7 @@ const defaultSeasonState: ReturnType<typeof useSeason> = {
 
 jest.mock('../../hooks/business/useUserCrewsStats/useUserCrewsStats');
 const useUserCrewsStatsMock = jest.mocked(useUserCrewsStats);
-const defaultUserCrewsStatsState: ReturnType<typeof useUserCrewsStats> = {
+const defaultUserCrewsStatsValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
@@ -44,8 +44,8 @@ const renderComponent = () => {
 
 describe('CrewsStats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonState);
-    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsState);
+    useSeasonMock.mockReturnValue(defaultSeasonValue);
+    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsValue);
   });
 
   it('renders crews stats with correct values', () => {
@@ -63,7 +63,7 @@ describe('CrewsStats', () => {
 
   it('displays loading spinner when stats are loading', () => {
     useUserCrewsStatsMock.mockReturnValue({
-      ...defaultUserCrewsStatsState,
+      ...defaultUserCrewsStatsValue,
       isLoading: true,
     });
 
@@ -74,7 +74,7 @@ describe('CrewsStats', () => {
 
   it('displays loading spinner when stats are undefined', () => {
     useUserCrewsStatsMock.mockReturnValue({
-      ...defaultUserCrewsStatsState,
+      ...defaultUserCrewsStatsValue,
       isLoading: true,
     });
 

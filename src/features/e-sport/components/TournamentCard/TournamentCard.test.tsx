@@ -45,7 +45,6 @@ describe('TournamentCard', () => {
     useRouterMock.mockReturnValue({
       push: pushMock,
     } as unknown as ReturnType<typeof useRouter>);
-    jest.clearAllMocks();
   });
 
   it('renders tournament information correctly', () => {
