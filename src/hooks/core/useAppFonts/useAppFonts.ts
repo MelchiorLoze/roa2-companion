@@ -8,7 +8,9 @@ import {
   FranklinGothicDemiCondRegular,
 } from '@/assets/fonts';
 
-type Props = { onLoaded?: () => void };
+type Props = {
+  onLoaded?: () => void;
+};
 
 export const useAppFonts = ({ onLoaded }: Readonly<Props>): void => {
   const [loaded] = useFonts({

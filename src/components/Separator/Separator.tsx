@@ -1,20 +1,33 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-type Variant = 'borderLight' | 'accent';
+type Variant = 'borderLight' | 'accent' | 'gradient';
 
 type Props = {
   variant?: Variant;
+  pressed?: boolean;
   height?: number;
 };
 
-export const Separator = ({ variant = 'borderLight', height = 1 }: Readonly<Props>) => {
+export const Separator = ({ variant = 'borderLight', pressed = false, height = 1 }: Readonly<Props>) => {
+  const { theme } = useUnistyles();
+  if (variant === 'gradient') {
+    return (
+      <LinearGradient
+        colors={theme.color.borderGradient(pressed)}
+        end={[1, 0]}
+        start={[0, 0]}
+        style={styles.separator(variant, height)}
+      />
+    );
+  }
   return <View style={styles.separator(variant, height)} />;
 };
 
 const styles = StyleSheet.create((theme) => ({
   separator: (variant: Variant, height: number) => ({
     height,
-    backgroundColor: theme.color[variant],
+    backgroundColor: variant !== 'gradient' ? theme.color[variant] : 'transparent',
   }),
 }));
