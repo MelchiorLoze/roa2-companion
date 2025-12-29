@@ -9,9 +9,9 @@ const RedirectMock = jest.mocked(Redirect);
 
 describe('Index', () => {
   it('matches snapshot', () => {
-    const { toJSON } = render(<Index />);
+    const tree = render(<Index />).toJSON();
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('redirects to sign-in page', () => {

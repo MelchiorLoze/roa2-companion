@@ -31,9 +31,9 @@ describe('More', () => {
   });
 
   it('matches snapshot', () => {
-    const { toJSON } = render(<More />);
+    const tree = render(<More />).toJSON();
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders the list of external links', () => {

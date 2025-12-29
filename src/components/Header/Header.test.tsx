@@ -41,7 +41,7 @@ describe('Header', () => {
   it('renders with currencies balance', () => {
     render(<Header showCurrencies />);
 
-    screen.getByTestId('currencies-balance');
+    expect(screen.getByTestId('currencies-balance')).toBeTruthy();
     expect(screen.queryByText('Test Title')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
@@ -50,7 +50,7 @@ describe('Header', () => {
     render(<Header title="Test Title" />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
-    screen.getByText('Test Title');
+    expect(screen.getByText('Test Title')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
 
@@ -58,7 +58,7 @@ describe('Header', () => {
     render(<Header title="Test Title" withBackNavigation />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
-    screen.getByText('Test Title');
+    expect(screen.getByText('Test Title')).toBeTruthy();
 
     const backButton = screen.getByRole('button');
     fireEvent.press(backButton);

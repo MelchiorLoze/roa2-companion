@@ -20,9 +20,9 @@ describe('CurrenciesBalance', () => {
     render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
-    screen.getByText('00208092');
-    screen.getByText('00002850');
-    screen.getByText('00000013');
+    expect(screen.getByText('00208092')).toBeTruthy();
+    expect(screen.getByText('00002850')).toBeTruthy();
+    expect(screen.getByText('00000013')).toBeTruthy();
   });
 
   it('renders correctly when the balances are loading', () => {

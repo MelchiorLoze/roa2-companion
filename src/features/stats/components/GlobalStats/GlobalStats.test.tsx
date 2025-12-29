@@ -28,16 +28,16 @@ describe('GlobalStats', () => {
   it('renders global stats with correct values', () => {
     renderComponent();
 
-    screen.getByText('Global');
+    expect(screen.getByText('Global')).toBeTruthy();
 
-    screen.getByText('Global wins');
-    screen.getByText('358');
+    expect(screen.getByText('Global wins')).toBeTruthy();
+    expect(screen.getByText('358')).toBeTruthy();
 
-    screen.getByText('Global losses');
-    screen.getByText('62');
+    expect(screen.getByText('Global losses')).toBeTruthy();
+    expect(screen.getByText('62')).toBeTruthy();
 
-    screen.getByText('Global win rate');
-    screen.getByText('85.24%');
+    expect(screen.getByText('Global win rate')).toBeTruthy();
+    expect(screen.getByText('85.24%')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
@@ -48,6 +48,6 @@ describe('GlobalStats', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

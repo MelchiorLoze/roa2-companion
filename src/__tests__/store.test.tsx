@@ -62,9 +62,9 @@ describe('Store', () => {
       expirationDate: DateTime.utc().plus({ hours: 15, minutes: 22, seconds: 56 }),
     });
 
-    const { toJSON } = render(<Store />);
+    const tree = render(<Store />).toJSON();
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders the items of the store', () => {

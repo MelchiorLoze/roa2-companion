@@ -28,7 +28,7 @@ describe('ResetPasswordDialog', () => {
     const emailInput = screen.getByPlaceholderText('EMAIL');
     expect(emailInput).toHaveDisplayValue('');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
-    screen.getByRole('button', { name: 'Reset password' });
+    expect(screen.getByRole('button', { name: 'Reset password' })).toBeTruthy();
   });
 
   it('renders correctly when an email is provided', () => {
@@ -52,7 +52,7 @@ describe('ResetPasswordDialog', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
     fireEvent.press(submitButton);
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     fireEvent.changeText(emailInput, 'kragg@example.com');
@@ -70,7 +70,7 @@ describe('ResetPasswordDialog', () => {
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
     fireEvent.press(submitButton);
 
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
     expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).not.toHaveBeenCalled();
   });
 
@@ -84,7 +84,7 @@ describe('ResetPasswordDialog', () => {
 
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
   });
 
   it('shows success message when email is sent', () => {
@@ -100,7 +100,7 @@ describe('ResetPasswordDialog', () => {
     screen.getByText(
       'Check your inbox, an email sent to kragg@example.com to reset your password! (you may have to wait a couple of minutes until you receive it)',
     );
-    screen.getByRole('button', { name: 'Ok' });
+    expect(screen.getByRole('button', { name: 'Ok' })).toBeTruthy();
   });
 
   it('shows loading spinner when sending email', () => {
@@ -113,6 +113,6 @@ describe('ResetPasswordDialog', () => {
 
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

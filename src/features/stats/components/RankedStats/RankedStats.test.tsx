@@ -75,28 +75,28 @@ describe('RankedStats', () => {
   it('renders correctly', () => {
     renderComponent();
 
-    screen.getByText('Ranked - Season 5');
-    screen.getByText('S5');
+    expect(screen.getByText('Ranked - Season 5')).toBeTruthy();
+    expect(screen.getByText('S5')).toBeTruthy();
     expect(screen.getAllByRole('button')).toHaveLength(2); // Previous and Next season buttons
 
-    screen.getByText('123');
-    screen.getByText('Player1');
-    screen.getByText('925');
+    expect(screen.getByText('123')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('925')).toBeTruthy();
     expect(screen.queryByText('UNRANKED')).toBeNull();
 
-    screen.getByText('Ranked wins');
-    screen.getByText('75');
+    expect(screen.getByText('Ranked wins')).toBeTruthy();
+    expect(screen.getByText('75')).toBeTruthy();
 
-    screen.getByText('Ranked losses');
-    screen.getByText('25');
+    expect(screen.getByText('Ranked losses')).toBeTruthy();
+    expect(screen.getByText('25')).toBeTruthy();
 
-    screen.getByText('Ranked win rate');
-    screen.getByText('75.00%');
+    expect(screen.getByText('Ranked win rate')).toBeTruthy();
+    expect(screen.getByText('75.00%')).toBeTruthy();
 
-    screen.getByText('Best win streak');
-    screen.getByText('20');
+    expect(screen.getByText('Best win streak')).toBeTruthy();
+    expect(screen.getByText('20')).toBeTruthy();
 
-    screen.getByText('Top 12.30%');
+    expect(screen.getByText('Top 12.30%')).toBeTruthy();
   });
 
   it('does not allow to switch to previous session when already at the first', () => {
@@ -158,7 +158,7 @@ describe('RankedStats', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('displays UNRANKED when elo is undefined', () => {
@@ -173,9 +173,9 @@ describe('RankedStats', () => {
 
     renderComponent();
 
-    screen.getByText('123');
-    screen.getByText('Player1');
-    screen.getByText('UNRANKED');
+    expect(screen.getByText('123')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('UNRANKED')).toBeTruthy();
     expect(screen.queryByText('Top 12.30%')).toBeNull();
   });
 
@@ -191,10 +191,10 @@ describe('RankedStats', () => {
 
     renderComponent();
 
-    screen.getByText('123');
-    screen.getByText('Player1');
-    screen.getByText('0');
-    screen.getByText('Top 12.30%');
+    expect(screen.getByText('123')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('0')).toBeTruthy();
+    expect(screen.getByText('Top 12.30%')).toBeTruthy();
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 });

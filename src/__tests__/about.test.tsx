@@ -4,8 +4,8 @@ import About from '@/app/about';
 
 describe('About', () => {
   it('matches snapshot', () => {
-    const { toJSON } = render(<About />);
+    const tree = render(<About />).toJSON();
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });

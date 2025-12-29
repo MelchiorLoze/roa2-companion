@@ -36,11 +36,11 @@ describe('PurchaseConfirmationDialog', () => {
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledTimes(1);
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledWith({ onSuccess: expect.any(Function) });
 
-    screen.getByText('Test Icon');
-    screen.getByText('Are you sure you want to buy this icon for 100?');
-    screen.getByRole('button', { name: 'Close' });
-    screen.getByRole('button', { name: 'Confirm' });
-    screen.getByText("If you have the game opened, don't try to buy the same item twice");
+    expect(screen.getByText('Test Icon')).toBeTruthy();
+    expect(screen.getByText('Are you sure you want to buy this icon for 100?')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Close' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Confirm' })).toBeTruthy();
+    expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
   it('calls onClose when the overlay is pressed', () => {
@@ -93,7 +93,7 @@ describe('PurchaseConfirmationDialog', () => {
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('shows error message when purchase fails', () => {
@@ -105,11 +105,13 @@ describe('PurchaseConfirmationDialog', () => {
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByText('Test Icon');
-    screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?');
-    screen.getByRole('button', { name: 'Cancel' });
-    screen.getByRole('button', { name: 'Retry' });
-    screen.getByText("If you have the game opened, don't try to buy the same item twice");
+    expect(screen.getByText('Test Icon')).toBeTruthy();
+    expect(
+      screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?'),
+    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Cancel' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeTruthy();
+    expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
   it('calls purchase when Retry button is pressed in error state', () => {

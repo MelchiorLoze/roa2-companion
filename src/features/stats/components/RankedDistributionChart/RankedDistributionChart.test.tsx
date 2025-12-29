@@ -17,7 +17,7 @@ describe('RankedDistributionChart', () => {
   it('renders correctly with given props', () => {
     render(<RankedDistributionChart elo={925} />);
 
-    screen.getByTestId('rank-distribution');
-    screen.getByTestId('elo-distribution');
+    expect(screen.getByTestId('rank-distribution')).toBeTruthy();
+    expect(screen.getByTestId('elo-distribution')).toBeTruthy();
   });
 });

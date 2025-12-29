@@ -39,9 +39,9 @@ describe('EloDistributionLineChart', () => {
   });
 
   it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent();
+    const tree = renderComponent().toJSON();
 
-    screen.getByTestId('elo-distribution');
-    expect(tree.toJSON()).toMatchSnapshot();
+    expect(screen.getByTestId('elo-distribution')).toBeTruthy();
+    expect(tree).toMatchSnapshot();
   });
 });

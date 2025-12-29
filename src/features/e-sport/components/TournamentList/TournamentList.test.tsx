@@ -63,13 +63,13 @@ describe('TournamentList', () => {
   it('renders single tournament correctly', () => {
     renderComponent([mockTournament1]);
 
-    screen.getByText('Test Tournament 1');
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
   });
 
   it('renders multiple tournaments correctly', () => {
     renderComponent([mockTournament1, mockTournament2]);
 
-    screen.getByText('Test Tournament 1');
-    screen.getByText('Test Tournament 2');
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
+    expect(screen.getByText('Test Tournament 2')).toBeTruthy();
   });
 });

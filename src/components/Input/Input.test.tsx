@@ -42,7 +42,7 @@ describe('Input', () => {
       />,
     );
 
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
   });
 
   it('displays contextual CTA when provided', () => {

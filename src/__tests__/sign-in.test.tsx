@@ -40,18 +40,19 @@ describe('SignIn', () => {
   });
 
   it('matches snapshot', () => {
-    const { toJSON } = render(<SignIn />);
+    const tree = render(<SignIn />).toJSON();
 
-    expect(toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 
   it('matches snapshot with password reset dialog open', () => {
-    const { toJSON } = render(<SignIn />);
+    const result = render(<SignIn />);
 
     const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
     fireEvent.press(forgotPasswordButton);
 
-    expect(toJSON()).toMatchSnapshot();
+    const tree = result.toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   it('renders correctly', () => {

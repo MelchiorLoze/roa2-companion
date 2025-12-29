@@ -42,17 +42,17 @@ describe('ItemCard', () => {
   it('renders correctly', () => {
     renderComponent(item);
 
-    screen.getByText(item.name);
-    screen.getByText(CATEGORY_LABELS[item.category].toUpperCase());
-    screen.getByText(item.coinPrice!.toString());
+    expect(screen.getByText(item.name)).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[item.category].toUpperCase())).toBeTruthy();
+    expect(screen.getByText(item.coinPrice!.toString())).toBeTruthy();
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 
   it('renders correctly when coinPrice is not defined', () => {
     renderComponent({ ...item, coinPrice: undefined });
 
-    screen.getByText(item.name);
-    screen.getByText(CATEGORY_LABELS[item.category].toUpperCase());
+    expect(screen.getByText(item.name)).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[item.category].toUpperCase())).toBeTruthy();
     expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
   });
 

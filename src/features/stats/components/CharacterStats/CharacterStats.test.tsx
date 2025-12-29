@@ -33,9 +33,9 @@ describe('CharacterStats', () => {
   it('renders correctly', () => {
     renderComponent();
 
-    screen.getByText('Characters');
-    screen.getByText('Level');
-    screen.getByText('Games');
+    expect(screen.getByText('Characters')).toBeTruthy();
+    expect(screen.getByText('Level')).toBeTruthy();
+    expect(screen.getByText('Games')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
@@ -46,6 +46,6 @@ describe('CharacterStats', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

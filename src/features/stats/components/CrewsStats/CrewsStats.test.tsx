@@ -51,14 +51,14 @@ describe('CrewsStats', () => {
   it('renders crews stats with correct values', () => {
     renderComponent();
 
-    screen.getByText('Crews - Season 5');
+    expect(screen.getByText('Crews - Season 5')).toBeTruthy();
 
-    screen.getByText('4404');
-    screen.getByText('Player1');
-    screen.getByText('1500');
+    expect(screen.getByText('4404')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('1500')).toBeTruthy();
 
-    screen.getByText('Crews sets');
-    screen.getByText('50');
+    expect(screen.getByText('Crews sets')).toBeTruthy();
+    expect(screen.getByText('50')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
@@ -69,7 +69,7 @@ describe('CrewsStats', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are undefined', () => {
@@ -80,6 +80,6 @@ describe('CrewsStats', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

@@ -22,9 +22,9 @@ describe('LeaderboardPositionStatRow', () => {
       />,
     );
 
-    screen.getByText('123');
-    screen.getByText('Test Player');
-    screen.getByText('1200');
+    expect(screen.getByText('123')).toBeTruthy();
+    expect(screen.getByText('Test Player')).toBeTruthy();
+    expect(screen.getByText('1200')).toBeTruthy();
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 
@@ -37,9 +37,9 @@ describe('LeaderboardPositionStatRow', () => {
       />,
     );
 
-    screen.getByText('1');
-    screen.getByText('Test Player');
-    screen.getByText('UNRANKED');
+    expect(screen.getByText('1')).toBeTruthy();
+    expect(screen.getByText('Test Player')).toBeTruthy();
+    expect(screen.getByText('UNRANKED')).toBeTruthy();
   });
 
   it('renders correctly without rank if the rankIcon is provided', () => {
@@ -53,9 +53,9 @@ describe('LeaderboardPositionStatRow', () => {
       />,
     );
 
-    screen.getByText('1');
-    screen.getByText('Test Player');
-    screen.getByText('1500');
+    expect(screen.getByText('1')).toBeTruthy();
+    expect(screen.getByText('Test Player')).toBeTruthy();
+    expect(screen.getByText('1500')).toBeTruthy();
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 });

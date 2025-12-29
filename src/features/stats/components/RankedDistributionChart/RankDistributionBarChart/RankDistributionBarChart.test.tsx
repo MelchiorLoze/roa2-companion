@@ -35,14 +35,14 @@ describe('RankDistributionBarChart', () => {
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 
   it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent();
+    const tree = renderComponent().toJSON();
 
-    screen.getByTestId('rank-distribution');
-    expect(tree.toJSON()).toMatchSnapshot();
+    expect(screen.getByTestId('rank-distribution')).toBeTruthy();
+    expect(tree).toMatchSnapshot();
   });
 });

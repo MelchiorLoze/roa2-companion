@@ -8,6 +8,6 @@ describe('SeasonTitle', () => {
 
     render(<SeasonTitle seasonName={seasonName} variant="ranked" />);
 
-    screen.getByText(seasonName);
+    expect(screen.getByText(seasonName)).toBeTruthy();
   });
 });
