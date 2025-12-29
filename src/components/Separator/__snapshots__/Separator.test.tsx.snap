@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Separator renders correctly when pressed 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4294026564,
+      4294967181,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      0,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
+    ]
+  }
+  style={
+    {
+      "backgroundColor": "transparent",
+      "height": 1,
+    }
+  }
+/>
+`;
+
+exports[`Separator renders correctly with accent variant 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#FEDD84",
+      "height": 1,
+    }
+  }
+/>
+`;
+
+exports[`Separator renders correctly with borderLight variant 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#CACEFF",
+      "height": 1,
+    }
+  }
+/>
+`;
+
+exports[`Separator renders correctly with custom height 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#CACEFF",
+      "height": 5,
+    }
+  }
+/>
+`;
+
+exports[`Separator renders correctly with default props 1`] = `
+<View
+  style={
+    {
+      "backgroundColor": "#CACEFF",
+      "height": 1,
+    }
+  }
+/>
+`;
+
+exports[`Separator renders correctly with gradient variant 1`] = `
+<ViewManagerAdapter_ExpoLinearGradient
+  colors={
+    [
+      4291481343,
+      4285232860,
+    ]
+  }
+  endPoint={
+    [
+      1,
+      0,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
+    ]
+  }
+  style={
+    {
+      "backgroundColor": "transparent",
+      "height": 1,
+    }
+  }
+/>
+`;
