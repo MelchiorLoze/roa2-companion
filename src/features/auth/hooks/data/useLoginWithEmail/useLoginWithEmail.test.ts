@@ -52,7 +52,7 @@ describe('useLoginWithEmail', () => {
 
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
-      await waitFor(() => expect(result.current.session).toBeDefined());
+      await waitFor(() => expect(result.current.session).toBeTruthy());
       expect(result.current.session?.entityToken).toBe('token');
       expect(result.current.session?.expirationDate).toEqual(VALID_DATE);
       expect(result.current.isLoading).toBe(false);

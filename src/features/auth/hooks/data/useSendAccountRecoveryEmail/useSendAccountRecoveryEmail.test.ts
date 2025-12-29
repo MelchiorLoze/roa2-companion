@@ -25,7 +25,7 @@ describe('usePurchaseInventoryItems', () => {
   it('returns the mutation function', async () => {
     const { result } = await renderUseSendAccountRecoveryEmail();
 
-    expect(result.current.sendRecoveryEmail).toBeDefined();
+    expect(result.current.sendRecoveryEmail).toBeTruthy();
     expect(result.current.isError).toBe(false);
   });
 

@@ -327,7 +327,7 @@ describe('useUserRankedStats', () => {
 
     const { result } = renderUseUserRankedStats();
 
-    expect(result.current.stats).toBeDefined();
+    expect(result.current.stats).toBeTruthy();
     expect(result.current.stats?.elo).toBeUndefined();
     expect(result.current.stats?.rank).toBeUndefined();
   });

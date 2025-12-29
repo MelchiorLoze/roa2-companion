@@ -32,7 +32,7 @@ describe('usePurchaseInventoryItems', () => {
   it('returns the mutation function when logged in', async () => {
     const { result } = await renderUsePurchaseInventoryItems();
 
-    expect(result.current.purchase).toBeDefined();
+    expect(result.current.purchase).toBeTruthy();
     expect(result.current.isError).toBe(false);
     expect(invalidateGetInventoryItemsMock).toHaveBeenCalledTimes(0);
     expect(invalidateGetMyRotationalCoinStoreMock).toHaveBeenCalledTimes(0);

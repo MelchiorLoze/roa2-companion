@@ -55,7 +55,7 @@ describe('useUserGlobalStats', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats.gameStats).toBeDefined();
+    expect(result.current.stats.gameStats).toBeTruthy();
   });
 
   it('returns nothing when statistics are not present', () => {

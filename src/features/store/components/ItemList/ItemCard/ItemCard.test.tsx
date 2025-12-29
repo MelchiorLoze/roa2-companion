@@ -35,8 +35,8 @@ const renderComponent = (item: Item) => {
 
 describe('ItemCard', () => {
   beforeEach(() => {
-    expect(item.coinPrice).toBeDefined();
-    expect(item.buckPrice).toBeDefined();
+    expect(item.coinPrice).toBeTruthy();
+    expect(item.buckPrice).toBeTruthy();
   });
 
   it('renders correctly', () => {
