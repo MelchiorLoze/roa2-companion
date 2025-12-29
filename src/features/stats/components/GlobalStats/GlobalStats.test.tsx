@@ -5,7 +5,7 @@ import { GlobalStats } from './GlobalStats';
 
 jest.mock('../../hooks/business/useUserGlobalStats/useUserGlobalStats');
 const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
-const defaultUserGlobalStatsState: ReturnType<typeof useUserGlobalStats> = {
+const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> = {
   stats: {
     gameStats: { gameCount: 420, winCount: 358, winRate: 85.238095 },
   },
@@ -22,32 +22,32 @@ const renderComponent = () => {
 
 describe('GlobalStats', () => {
   beforeEach(() => {
-    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsState);
+    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
   });
 
   it('renders global stats with correct values', () => {
     renderComponent();
 
-    screen.getByText('Global');
+    expect(screen.getByText('Global')).toBeTruthy();
 
-    screen.getByText('Global wins');
-    screen.getByText('358');
+    expect(screen.getByText('Global wins')).toBeTruthy();
+    expect(screen.getByText('358')).toBeTruthy();
 
-    screen.getByText('Global losses');
-    screen.getByText('62');
+    expect(screen.getByText('Global losses')).toBeTruthy();
+    expect(screen.getByText('62')).toBeTruthy();
 
-    screen.getByText('Global win rate');
-    screen.getByText('85.24%');
+    expect(screen.getByText('Global win rate')).toBeTruthy();
+    expect(screen.getByText('85.24%')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
     useUserGlobalStatsMock.mockReturnValue({
-      ...defaultUserGlobalStatsState,
+      ...defaultUserGlobalStatsReturnValue,
       isLoading: true,
     });
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

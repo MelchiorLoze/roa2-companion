@@ -6,6 +6,7 @@ import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetAct
 import { TournamentState } from '@/features/e-sport/types/tournament';
 
 jest.mock('@/features/e-sport/hooks/data/useGetActiveTournaments');
+
 const useGetActiveTournamentsMock = jest.mocked(useGetActiveTournaments);
 
 const mockTournament = {
@@ -29,68 +30,55 @@ const mockTournament = {
   ],
 };
 
-const renderComponent = () => {
-  return render(<ESport />);
+const defaultGetActiveTournamentsReturnValue: ReturnType<typeof useGetActiveTournaments> = {
+  tournaments: [],
+  isLoading: false,
+  isError: false,
+  refetch: jest.fn(),
+  isRefetching: false,
 };
 
 describe('ESport', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    useGetActiveTournamentsMock.mockReturnValue(defaultGetActiveTournamentsReturnValue);
   });
 
   it('shows spinner when loading', () => {
     useGetActiveTournamentsMock.mockReturnValue({
-      tournaments: [],
+      ...defaultGetActiveTournamentsReturnValue,
       isLoading: true,
-      isError: false,
-      refetch: jest.fn(),
-      isRefetching: false,
     });
 
-    renderComponent();
+    render(<ESport />);
 
-    expect(screen.getByTestId('spinner')).toBeDefined();
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('shows error message when request fails', () => {
     useGetActiveTournamentsMock.mockReturnValue({
-      tournaments: [],
-      isLoading: false,
+      ...defaultGetActiveTournamentsReturnValue,
       isError: true,
-      refetch: jest.fn(),
-      isRefetching: false,
     });
 
-    renderComponent();
+    render(<ESport />);
 
-    screen.getByText('An error occurred while loading tournaments. Please try again later.');
+    expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
   it('shows empty state when no tournaments available', () => {
-    useGetActiveTournamentsMock.mockReturnValue({
-      tournaments: [],
-      isLoading: false,
-      isError: false,
-      refetch: jest.fn(),
-      isRefetching: false,
-    });
+    render(<ESport />);
 
-    renderComponent();
-
-    screen.getByText('No active tournaments at the moment. Please check back later.');
+    expect(screen.getByText('No active tournaments at the moment. Please check back later.')).toBeTruthy();
   });
 
   it('shows tournament list when tournaments are available', () => {
     useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultGetActiveTournamentsReturnValue,
       tournaments: [mockTournament],
-      isLoading: false,
-      isError: false,
-      refetch: jest.fn(),
-      isRefetching: false,
     });
 
-    renderComponent();
+    render(<ESport />);
 
-    screen.getByText('Test Tournament');
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
   });
 });

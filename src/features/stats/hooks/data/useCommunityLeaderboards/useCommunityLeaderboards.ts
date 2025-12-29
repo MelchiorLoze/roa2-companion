@@ -17,7 +17,7 @@ type CommunityLeaderboardsResponse = DeepReadonly<{
 export const useCommunityLeaderboards = () => {
   const apiClient = useSteamCommunityApiClient();
 
-  const { data, isFetching, isPending, isError } = useQuery({
+  const { data, isPending, isError } = useQuery({
     queryKey: ['communityLeaderboards'],
     queryFn: () => apiClient.get<CommunityLeaderboardsResponse>(`/stats/${STEAM_APP_ID}/leaderboards`),
     select: (data): Leaderboard[] =>
@@ -33,7 +33,7 @@ export const useCommunityLeaderboards = () => {
 
   return {
     leaderboards: data ?? [],
-    isLoading: isFetching || isPending,
+    isLoading: isPending,
     isError,
   } as const;
 };

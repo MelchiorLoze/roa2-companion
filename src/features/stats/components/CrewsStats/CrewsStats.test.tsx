@@ -6,7 +6,7 @@ import { CrewsStats } from './CrewsStats';
 
 jest.mock('../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
-const defaultSeasonState: ReturnType<typeof useSeason> = {
+const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   season: {
     index: 5,
     name: 'Season 5',
@@ -21,7 +21,7 @@ const defaultSeasonState: ReturnType<typeof useSeason> = {
 
 jest.mock('../../hooks/business/useUserCrewsStats/useUserCrewsStats');
 const useUserCrewsStatsMock = jest.mocked(useUserCrewsStats);
-const defaultUserCrewsStatsState: ReturnType<typeof useUserCrewsStats> = {
+const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
@@ -44,42 +44,42 @@ const renderComponent = () => {
 
 describe('CrewsStats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonState);
-    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsState);
+    useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
+    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsReturnValue);
   });
 
   it('renders crews stats with correct values', () => {
     renderComponent();
 
-    screen.getByText('Crews - Season 5');
+    expect(screen.getByText('Crews - Season 5')).toBeTruthy();
 
-    screen.getByText('4404');
-    screen.getByText('Player1');
-    screen.getByText('1500');
+    expect(screen.getByText('4404')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('1500')).toBeTruthy();
 
-    screen.getByText('Crews sets');
-    screen.getByText('50');
+    expect(screen.getByText('Crews sets')).toBeTruthy();
+    expect(screen.getByText('50')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
     useUserCrewsStatsMock.mockReturnValue({
-      ...defaultUserCrewsStatsState,
+      ...defaultUserCrewsStatsReturnValue,
       isLoading: true,
     });
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are undefined', () => {
     useUserCrewsStatsMock.mockReturnValue({
-      ...defaultUserCrewsStatsState,
+      ...defaultUserCrewsStatsReturnValue,
       isLoading: true,
     });
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

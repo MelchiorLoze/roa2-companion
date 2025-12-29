@@ -2,10 +2,15 @@ import { fireEvent, render, screen, within } from '@testing-library/react-native
 import { DateTime } from 'luxon';
 
 import Store from '@/app/(private)/store';
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
+import { usePurchaseInventoryItems } from '@/features/store/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { testItemList } from '@/test-helpers/testItemList';
 
 jest.mock('expo-router');
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+jest.mock('@/features/store/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems');
+jest.mock('@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop');
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
@@ -13,79 +18,80 @@ jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
   size: { width: 0, height: 0 },
 });
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
-
-jest.mock('@/features/store/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems', () => ({
-  usePurchaseInventoryItems: () => ({
-    purchase: jest.fn(),
-    isLoading: false,
-    isError: false,
-  }),
-}));
-
-jest.mock('@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop');
+const useSessionMock = jest.mocked(useSession);
+const usePurchaseInventoryItemsMock = jest.mocked(usePurchaseInventoryItems);
 const useRotatingCoinShopMock = jest.mocked(useRotatingCoinShop);
 
-const renderComponent = () => {
-  const result = render(<Store />);
+const purchaseMock = jest.fn();
 
-  expect(useRotatingCoinShopMock).toHaveBeenCalledTimes(1);
+const defaultSessionReturnValue: ReturnType<typeof useSession> = {
+  isValid: false,
+  setSession: jest.fn(),
+  clearSession: jest.fn(),
+  isLoading: false,
+};
 
-  return result;
+const defaultPurchaseInventoryItemsReturnValue: ReturnType<typeof usePurchaseInventoryItems> = {
+  purchase: purchaseMock,
+  isLoading: false,
+  isError: false,
+};
+
+const defaultRotatingCoinShopReturnValue: ReturnType<typeof useRotatingCoinShop> = {
+  items: testItemList,
+  expirationDate: DateTime.utc().plus({ day: 1 }),
+  isLoading: false,
 };
 
 describe('Store', () => {
   beforeEach(() => {
-    useRotatingCoinShopMock.mockReturnValue({
-      items: testItemList,
-      expirationDate: DateTime.utc().plus({ day: 1 }),
-      isLoading: false,
-    });
+    useSessionMock.mockReturnValue(defaultSessionReturnValue);
+    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseInventoryItemsReturnValue);
+    useRotatingCoinShopMock.mockReturnValue(defaultRotatingCoinShopReturnValue);
   });
 
-  it('matches the snapshot', () => {
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date('2024-08-24T10:00:00Z'));
-    useRotatingCoinShopMock.mockReturnValue({
-      items: testItemList,
-      expirationDate: DateTime.utc().plus({ hours: 15, minutes: 22, seconds: 56 }),
-      isLoading: false,
-    });
-
-    const tree = renderComponent().toJSON();
-
-    expect(tree).toMatchSnapshot();
-
+  afterEach(() => {
     jest.useRealTimers();
   });
 
-  it('renders the items of the store', () => {
-    renderComponent();
+  it('matches snapshot', () => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('2024-08-24T10:00:00Z'));
+    useRotatingCoinShopMock.mockReturnValue({
+      ...defaultRotatingCoinShopReturnValue,
+      expirationDate: DateTime.utc().plus({ hours: 15, minutes: 22, seconds: 56 }),
+    });
 
-    screen.getByText('Items refresh in:');
+    const tree = render(<Store />).toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders the items of the store', () => {
+    render(<Store />);
+
+    expect(screen.getByText('Items refresh in:')).toBeTruthy();
     const itemCards = screen.getAllByRole('button');
     expect(itemCards).toHaveLength(testItemList.length);
-    within(itemCards[0]).getByText(testItemList[0].name);
-    within(itemCards[1]).getByText(testItemList[1].name);
+    expect(within(itemCards[0]).getByText(testItemList[0].name)).toBeTruthy();
+    expect(within(itemCards[1]).getByText(testItemList[1].name)).toBeTruthy();
 
     fireEvent.press(itemCards[0]);
     const withinDialog = within(screen.getByTestId('dialog'));
 
-    withinDialog.getByText(testItemList[0].name);
-    withinDialog.getByText('Are you sure you want to buy this icon for 2000?');
-    withinDialog.getByRole('button', { name: 'Close' });
-    withinDialog.getByRole('button', { name: 'Confirm' });
+    expect(withinDialog.getByText(testItemList[0].name)).toBeTruthy();
+    expect(withinDialog.getByText('Are you sure you want to buy this icon for 2000?')).toBeTruthy();
+    expect(withinDialog.getByRole('button', { name: 'Close' })).toBeTruthy();
+    expect(withinDialog.getByRole('button', { name: 'Confirm' })).toBeTruthy();
   });
 
   it('does not show the confirmation dialog when the selected item does not have a coin price', () => {
     expect(testItemList[1].coinPrice).toBeUndefined();
 
-    renderComponent();
+    render(<Store />);
 
     const itemCards = screen.getAllByRole('button');
-    within(itemCards[1]).getByText(testItemList[1].name);
+    expect(within(itemCards[1]).getByText(testItemList[1].name)).toBeTruthy();
 
     fireEvent.press(itemCards[1]);
 
@@ -94,18 +100,19 @@ describe('Store', () => {
 
   it('displays a spinner when the store items are loading', () => {
     useRotatingCoinShopMock.mockReturnValue({
+      ...defaultRotatingCoinShopReturnValue,
       items: [],
       expirationDate: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    render(<Store />);
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('hides the confirmation dialog when the close button is pressed', () => {
-    renderComponent();
+    render(<Store />);
 
     const itemCards = screen.getAllByRole('button');
     fireEvent.press(itemCards[0]);

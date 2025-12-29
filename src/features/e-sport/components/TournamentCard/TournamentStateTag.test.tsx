@@ -11,25 +11,25 @@ describe('TournamentStateTag', () => {
   it('renders UPCOMING state correctly', () => {
     renderComponent(TournamentState.UPCOMING);
 
-    screen.getByText('UPCOMING');
+    expect(screen.getByText('UPCOMING')).toBeTruthy();
   });
 
   it('renders ONGOING state correctly', () => {
     renderComponent(TournamentState.ONGOING);
 
-    screen.getByText('ONGOING');
+    expect(screen.getByText('ONGOING')).toBeTruthy();
   });
 
   it('renders COMPLETED state correctly', () => {
     renderComponent(TournamentState.COMPLETED);
 
-    screen.getByText('COMPLETED');
+    expect(screen.getByText('COMPLETED')).toBeTruthy();
   });
 
   it('renders correctly when pressed', () => {
     renderComponent(TournamentState.ONGOING, true);
 
-    screen.getByText('ONGOING');
+    expect(screen.getByText('ONGOING')).toBeTruthy();
   });
 
   it('matches snapshot for UPCOMING state', () => {

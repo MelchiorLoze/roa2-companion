@@ -23,7 +23,7 @@ describe('TimeCountdown', () => {
 
     renderComponent(futureDate);
 
-    screen.getByText('02h 30m 45s');
+    expect(screen.getByText('02h 30m 45s')).toBeTruthy();
   });
 
   it('renders countdown with zero hours correctly', () => {
@@ -31,7 +31,7 @@ describe('TimeCountdown', () => {
 
     renderComponent(futureDate);
 
-    screen.getByText('00h 45m 20s');
+    expect(screen.getByText('00h 45m 20s')).toBeTruthy();
   });
 
   it('renders consistent width placeholder', () => {
@@ -40,8 +40,8 @@ describe('TimeCountdown', () => {
     renderComponent(futureDate);
 
     // Should have both the actual countdown and width placeholder
-    screen.getByText('01h 30m 45s');
-    screen.getByText('01h 30m 88s');
+    expect(screen.getByText('01h 30m 45s')).toBeTruthy();
+    expect(screen.getByText('01h 30m 88s')).toBeTruthy();
   });
 
   it('handles large time differences correctly', () => {
@@ -49,7 +49,7 @@ describe('TimeCountdown', () => {
 
     renderComponent(farFutureDate);
 
-    screen.getByText('25h 30m 45s');
+    expect(screen.getByText('25h 30m 45s')).toBeTruthy();
   });
 
   it('cleans up interval on unmount', () => {

@@ -1,15 +1,16 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { createItemDto } from '@/test-helpers/createItemDto';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Category, type Item, Rarity } from '@/types/item';
 
 import { useGetItems } from './useGetItems';
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetItems = async (itemIds: Item['id'][]) => {
   const { result } = renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
@@ -19,6 +20,10 @@ const renderUseGetItems = async (itemIds: Item['id'][]) => {
 };
 
 describe('useGetItems', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   describe('returns empty array', () => {
     it('when the request is loading', async () => {
       const { result } = renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });

@@ -1,13 +1,14 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { useGetInventoryItems } from './useGetInventoryItems';
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetInventoryItems = async () => {
   const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
@@ -17,7 +18,11 @@ const renderUseGetInventoryItems = async () => {
 };
 
 describe('useGetInventoryItems', () => {
-  it('returns empty array when the request is loading', async () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
+  it('returns nothing when the request is loading', async () => {
     const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);

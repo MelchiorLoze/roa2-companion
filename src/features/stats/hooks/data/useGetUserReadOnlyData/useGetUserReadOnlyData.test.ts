@@ -1,14 +1,15 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Character } from '@/types/character';
 
 import { useGetUserReadOnlyData } from './useGetUserReadOnlyData';
 
-jest.mock('@/features/auth/contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetUserReadOnlyData = async () => {
   const { result } = renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
@@ -18,6 +19,10 @@ const renderUseGetUserReadOnlyData = async () => {
 };
 
 describe('useGetUserReadOnlyData', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   it('returns nothing when the request is loading', async () => {
     const { result } = renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
 

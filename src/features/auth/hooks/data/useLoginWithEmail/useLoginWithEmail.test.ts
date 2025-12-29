@@ -4,13 +4,14 @@ import { DateTime } from 'luxon';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
+import { useSession } from '../../../contexts/SessionContext/SessionContext';
 import { useLoginWithEmail } from './useLoginWithEmail';
 
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
-jest.mock('../../../contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('../../../contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseLoginWithEmail = async () => {
   const { result } = renderHook(useLoginWithEmail, { wrapper: TestQueryClientProvider });
@@ -20,6 +21,10 @@ const renderUseLoginWithEmail = async () => {
 };
 
 describe('useLoginWithEmail', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   it('returns default values correctly', async () => {
     const { result } = await renderUseLoginWithEmail();
 
@@ -47,7 +52,7 @@ describe('useLoginWithEmail', () => {
 
       await act(async () => result.current.loginWithEmail({ email: 'john.doe@email.com', password: 'password' }));
 
-      await waitFor(() => expect(result.current.session).toBeDefined());
+      await waitFor(() => expect(result.current.session).toBeTruthy());
       expect(result.current.session?.entityToken).toBe('token');
       expect(result.current.session?.expirationDate).toEqual(VALID_DATE);
       expect(result.current.isLoading).toBe(false);

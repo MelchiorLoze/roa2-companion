@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SignIn matches the snapshot 1`] = `
+exports[`SignIn matches snapshot 1`] = `
 <View
   onLayout={[Function]}
   style={
@@ -319,7 +319,7 @@ exports[`SignIn matches the snapshot 1`] = `
 </View>
 `;
 
-exports[`SignIn matches the snapshot 2`] = `
+exports[`SignIn matches snapshot with password reset dialog open 1`] = `
 [
   <View
     onLayout={[Function]}

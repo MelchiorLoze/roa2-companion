@@ -25,7 +25,12 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
     });
   };
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <View style={styles.spinner}>
+        <Spinner />
+      </View>
+    );
 
   if (isError) {
     return (
@@ -63,6 +68,9 @@ export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) =
 };
 
 const styles = StyleSheet.create((theme) => ({
+  spinner: {
+    paddingVertical: theme.spacing.xl,
+  },
   title: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 24,

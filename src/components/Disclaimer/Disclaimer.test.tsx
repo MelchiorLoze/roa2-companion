@@ -16,8 +16,8 @@ describe('Disclaimer', () => {
   it('renders correctly', () => {
     render(<Disclaimer />);
 
-    screen.getByTestId('disclaimer');
-    screen.getByText(disclaimerText);
+    expect(screen.getByTestId('disclaimer')).toBeTruthy();
+    expect(screen.getByText(disclaimerText)).toBeTruthy();
   });
 
   it('navigates to /about on press', () => {

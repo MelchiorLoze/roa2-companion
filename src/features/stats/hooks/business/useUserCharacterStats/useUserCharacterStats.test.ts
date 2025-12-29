@@ -98,7 +98,7 @@ describe('useUserCharacterStats', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats).toBeDefined();
+    expect(result.current.stats).toBeTruthy();
   });
 
   it('returns refetching state when user data is being refetched', () => {
@@ -114,7 +114,7 @@ describe('useUserCharacterStats', () => {
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
-    expect(result.current.stats).toBeDefined();
+    expect(result.current.stats).toBeTruthy();
   });
 
   it('returns nothing when statistics are not present', () => {

@@ -6,7 +6,7 @@ import { EloDistributionLineChart } from './EloDistributionLineChart';
 
 jest.mock('../../../hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
-const defaultLeaderboardStatsState = {
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
   firstPlayerElo: 2162,
   lastPlayerElo: -100,
   lastAethereanElo: 1837,
@@ -24,12 +24,12 @@ const renderComponent = () => {
 
 describe('EloDistributionLineChart', () => {
   beforeEach(() => {
-    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsState);
+    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
   it('does not render when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
-      ...defaultLeaderboardStatsState,
+      ...defaultLeaderboardStatsReturnValue,
       isLoading: true,
     });
 
@@ -39,9 +39,9 @@ describe('EloDistributionLineChart', () => {
   });
 
   it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent();
+    const tree = renderComponent().toJSON();
 
-    screen.getByTestId('elo-distribution');
-    expect(tree.toJSON()).toMatchSnapshot();
+    expect(screen.getByTestId('elo-distribution')).toBeTruthy();
+    expect(tree).toMatchSnapshot();
   });
 });

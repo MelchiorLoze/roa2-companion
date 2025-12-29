@@ -3,11 +3,12 @@ import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
+import { useSession } from '../../../contexts/SessionContext/SessionContext';
 import { useSendAccountRecoveryEmail } from './useSendAccountRecoveryEmail';
 
-jest.mock('../../../contexts/SessionContext/SessionContext', () => ({
-  useSession: jest.fn().mockReturnValue({}),
-}));
+jest.mock('../../../contexts/SessionContext/SessionContext');
+
+const useSessionMock = jest.mocked(useSession);
 
 const renderUseSendAccountRecoveryEmail = async () => {
   const { result } = renderHook(useSendAccountRecoveryEmail, { wrapper: TestQueryClientProvider });
@@ -17,10 +18,14 @@ const renderUseSendAccountRecoveryEmail = async () => {
 };
 
 describe('usePurchaseInventoryItems', () => {
+  beforeEach(() => {
+    useSessionMock.mockReturnValue({} as ReturnType<typeof useSession>);
+  });
+
   it('returns the mutation function', async () => {
     const { result } = await renderUseSendAccountRecoveryEmail();
 
-    expect(result.current.sendRecoveryEmail).toBeDefined();
+    expect(result.current.sendRecoveryEmail).toBeTruthy();
     expect(result.current.isError).toBe(false);
   });
 

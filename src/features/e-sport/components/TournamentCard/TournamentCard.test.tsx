@@ -6,7 +6,9 @@ import { type Tournament, TournamentState } from '../../types/tournament';
 import { TournamentCard } from './TournamentCard';
 
 jest.mock('expo-router');
+
 const useRouterMock = jest.mocked(useRouter);
+
 const pushMock = jest.fn();
 
 const mockTournament: Tournament = {
@@ -45,14 +47,13 @@ describe('TournamentCard', () => {
     useRouterMock.mockReturnValue({
       push: pushMock,
     } as unknown as ReturnType<typeof useRouter>);
-    jest.clearAllMocks();
   });
 
   it('renders tournament information correctly', () => {
     renderComponent(mockTournament);
 
-    screen.getByText('Test Tournament');
-    screen.getByText(/100 attendees/);
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
+    expect(screen.getByText(/100 attendees/)).toBeTruthy();
   });
 
   it('displays date range for same day', () => {
@@ -64,7 +65,7 @@ describe('TournamentCard', () => {
 
     renderComponent(sameDayTournament);
 
-    screen.getByText('Jan 10, 2025');
+    expect(screen.getByText('Jan 10, 2025')).toBeTruthy();
   });
 
   it('displays date range for same month', () => {
@@ -76,7 +77,7 @@ describe('TournamentCard', () => {
 
     renderComponent(sameMonthTournament);
 
-    screen.getByText('Jan 10-15, 2025');
+    expect(screen.getByText('Jan 10-15, 2025')).toBeTruthy();
   });
 
   it('displays date range for different months', () => {
@@ -88,13 +89,13 @@ describe('TournamentCard', () => {
 
     renderComponent(diffMonthTournament);
 
-    screen.getByText('Jan 30 - Feb 05, 2025');
+    expect(screen.getByText('Jan 30 - Feb 05, 2025')).toBeTruthy();
   });
 
   it('displays wifi icon for online tournaments', () => {
     renderComponent(mockTournament);
 
-    screen.getByText('Test Tournament');
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
     // WiFi icon is present in the component when isOnline is true
   });
 
@@ -102,14 +103,14 @@ describe('TournamentCard', () => {
     const offlineTournament = { ...mockTournament, isOnline: false };
     renderComponent(offlineTournament);
 
-    screen.getByText('Test Tournament');
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
     // WiFi icon is not present when isOnline is false
   });
 
   it('displays country flag when countryCode is provided', () => {
     renderComponent(mockTournament);
 
-    screen.getByText(/🇺🇸/);
+    expect(screen.getByText(/🇺🇸/)).toBeTruthy();
   });
 
   it('does not display country flag when countryCode is not provided', () => {
@@ -122,7 +123,7 @@ describe('TournamentCard', () => {
   it('displays tournament image when imageUrl is provided', () => {
     renderComponent(mockTournament);
 
-    screen.getByText('Test Tournament');
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
     // Image is rendered when imageUrl is provided
   });
 
@@ -130,17 +131,17 @@ describe('TournamentCard', () => {
     const noImageTournament = { ...mockTournament, imageUrl: undefined };
     renderComponent(noImageTournament);
 
-    screen.getByText('Test Tournament');
+    expect(screen.getByText('Test Tournament')).toBeTruthy();
     // Image is not rendered when imageUrl is not provided
   });
 
   it('displays all events', () => {
     renderComponent(mockTournament);
 
-    screen.getByText('Event 1');
-    screen.getByText('Jan 02 - 50 entrants');
-    screen.getByText('Event 2');
-    screen.getByText('Jan 03 - 30 entrants');
+    expect(screen.getByText('Event 1')).toBeTruthy();
+    expect(screen.getByText('Jan 02 - 50 entrants')).toBeTruthy();
+    expect(screen.getByText('Event 2')).toBeTruthy();
+    expect(screen.getByText('Jan 03 - 30 entrants')).toBeTruthy();
   });
 
   it('navigates to tournament URL when pressed', () => {

@@ -7,7 +7,7 @@ import { CharacterStats } from './CharacterStats';
 
 jest.mock('../../hooks/business/useUserCharacterStats/useUserCharacterStats');
 const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
-const defaultUserCharacterStatsState: ReturnType<typeof useUserCharacterStats> = {
+const defaultUserCharacterStatsReturnValue: ReturnType<typeof useUserCharacterStats> = {
   stats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },
     { character: Character.CLAIREN, gameCount: 50, level: 5 },
@@ -27,25 +27,25 @@ const renderComponent = () => {
 
 describe('CharacterStats', () => {
   beforeEach(() => {
-    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsState);
+    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsReturnValue);
   });
 
   it('renders correctly', () => {
     renderComponent();
 
-    screen.getByText('Characters');
-    screen.getByText('Level');
-    screen.getByText('Games');
+    expect(screen.getByText('Characters')).toBeTruthy();
+    expect(screen.getByText('Level')).toBeTruthy();
+    expect(screen.getByText('Games')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
     useUserCharacterStatsMock.mockReturnValue({
-      ...defaultUserCharacterStatsState,
+      ...defaultUserCharacterStatsReturnValue,
       isLoading: true,
     });
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

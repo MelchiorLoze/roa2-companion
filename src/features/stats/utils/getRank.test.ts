@@ -2,7 +2,7 @@ import { Rank } from '../types/rank';
 import { getRank } from './getRank';
 
 describe('getRank', () => {
-  it('should return the correct rank for a given elo and leaderboard position', () => {
+  it('returns the correct rank for a given elo and leaderboard position', () => {
     expect(getRank(-100, 50)).toBe(Rank.STONE);
     expect(getRank(0, 50)).toBe(Rank.STONE);
     expect(getRank(499, 50)).toBe(Rank.STONE);

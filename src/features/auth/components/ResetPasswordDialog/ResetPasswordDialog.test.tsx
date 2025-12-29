@@ -5,7 +5,7 @@ import { ResetPasswordDialog } from './ResetPasswordDialog';
 
 jest.mock('../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
-const defaultSendAccountRecoveryEmailState: ReturnType<typeof useSendAccountRecoveryEmail> = {
+const defaultSendAccountRecoveryEmailReturnValue: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: jest.fn(),
   isLoading: false,
   isSuccess: false,
@@ -14,7 +14,7 @@ const defaultSendAccountRecoveryEmailState: ReturnType<typeof useSendAccountReco
 
 describe('ResetPasswordDialog', () => {
   beforeEach(() => {
-    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailState);
+    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailReturnValue);
   });
 
   it('renders correctly', () => {
@@ -28,7 +28,7 @@ describe('ResetPasswordDialog', () => {
     const emailInput = screen.getByPlaceholderText('EMAIL');
     expect(emailInput).toHaveDisplayValue('');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
-    screen.getByRole('button', { name: 'Reset password' });
+    expect(screen.getByRole('button', { name: 'Reset password' })).toBeTruthy();
   });
 
   it('renders correctly when an email is provided', () => {
@@ -52,15 +52,15 @@ describe('ResetPasswordDialog', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
     fireEvent.press(submitButton);
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     fireEvent.changeText(emailInput, 'kragg@example.com');
     fireEvent.press(submitButton);
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
 
-    expect(defaultSendAccountRecoveryEmailState.sendRecoveryEmail).toHaveBeenCalledTimes(1);
-    expect(defaultSendAccountRecoveryEmailState.sendRecoveryEmail).toHaveBeenCalledWith('kragg@example.com');
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledTimes(1);
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledWith('kragg@example.com');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
   });
 
@@ -70,13 +70,13 @@ describe('ResetPasswordDialog', () => {
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
     fireEvent.press(submitButton);
 
-    screen.getByText('Please provide a valid email');
-    expect(defaultSendAccountRecoveryEmailState.sendRecoveryEmail).not.toHaveBeenCalled();
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).not.toHaveBeenCalled();
   });
 
   it('shows error message when email is not sent', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailState.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
       isSuccess: false,
       isError: true,
@@ -84,12 +84,12 @@ describe('ResetPasswordDialog', () => {
 
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    screen.getByText('Please provide a valid email');
+    expect(screen.getByText('Please provide a valid email')).toBeTruthy();
   });
 
   it('shows success message when email is sent', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailState.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
       isSuccess: true,
       isError: false,
@@ -100,12 +100,12 @@ describe('ResetPasswordDialog', () => {
     screen.getByText(
       'Check your inbox, an email sent to kragg@example.com to reset your password! (you may have to wait a couple of minutes until you receive it)',
     );
-    screen.getByRole('button', { name: 'Ok' });
+    expect(screen.getByRole('button', { name: 'Ok' })).toBeTruthy();
   });
 
   it('shows loading spinner when sending email', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailState.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: true,
       isSuccess: false,
       isError: false,
@@ -113,6 +113,6 @@ describe('ResetPasswordDialog', () => {
 
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 });

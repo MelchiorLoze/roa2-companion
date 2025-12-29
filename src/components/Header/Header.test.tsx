@@ -1,25 +1,35 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
+import { useCurrencyBalance } from '@/hooks/business/useCurrencyBalance/useCurrencyBalance';
+
 import { Header } from './Header';
 
 jest.mock('expo-router');
-const backMock = jest.fn();
-jest.mocked(useRouter).mockReturnValue({
-  back: backMock,
-} as unknown as ReturnType<typeof useRouter>);
+jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance');
 
-jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance', () => ({
-  useCurrencyBalance: jest.fn(() => ({
-    coinsBalance: 0,
-    bucksBalance: 0,
-    medalsBalance: 0,
-    isLoading: false,
-    isError: false,
-  })),
-}));
+const useRouterMock = jest.mocked(useRouter);
+const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
+
+const backMock = jest.fn();
+
+const defaultCurrencyBalanceReturnValue: ReturnType<typeof useCurrencyBalance> = {
+  coinsBalance: 0,
+  bucksBalance: 0,
+  medalsBalance: 0,
+  isLoading: false,
+  isError: false,
+};
 
 describe('Header', () => {
+  beforeEach(() => {
+    useRouterMock.mockReturnValue({
+      back: backMock,
+    } as unknown as ReturnType<typeof useRouter>);
+
+    useCurrencyBalanceMock.mockReturnValue(defaultCurrencyBalanceReturnValue);
+  });
+
   it('renders without crashing when no props are provided', () => {
     render(<Header />);
 
@@ -31,7 +41,7 @@ describe('Header', () => {
   it('renders with currencies balance', () => {
     render(<Header showCurrencies />);
 
-    screen.getByTestId('currencies-balance');
+    expect(screen.getByTestId('currencies-balance')).toBeTruthy();
     expect(screen.queryByText('Test Title')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
@@ -40,7 +50,7 @@ describe('Header', () => {
     render(<Header title="Test Title" />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
-    screen.getByText('Test Title');
+    expect(screen.getByText('Test Title')).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Back' })).toBeNull();
   });
 
@@ -48,7 +58,7 @@ describe('Header', () => {
     render(<Header title="Test Title" withBackNavigation />);
 
     expect(screen.queryByTestId('currencies-balance')).toBeNull();
-    screen.getByText('Test Title');
+    expect(screen.getByText('Test Title')).toBeTruthy();
 
     const backButton = screen.getByRole('button');
     fireEvent.press(backButton);

@@ -6,6 +6,6 @@ describe('Alert', () => {
   it('renders correctly', () => {
     render(<Alert text="Test Alert" />);
 
-    screen.getByText('Test Alert');
+    expect(screen.getByText('Test Alert')).toBeTruthy();
   });
 });

@@ -11,8 +11,8 @@ describe('Dialog', () => {
       </Dialog>,
     );
 
-    screen.getByText('Dialog Content');
-    screen.getByTestId('overlay');
+    expect(screen.getByText('Dialog Content')).toBeTruthy();
+    expect(screen.getByTestId('overlay')).toBeTruthy();
   });
 
   it('calls onClose when overlay is pressed', () => {

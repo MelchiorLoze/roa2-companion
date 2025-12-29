@@ -9,7 +9,7 @@ import { PurchaseConfirmationDialog } from './PurchaseConfirmationDialog';
 
 jest.mock('../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems');
 const usePurchaseInventoryItemsMock = jest.mocked(usePurchaseInventoryItems);
-const defaultPurchaseState: ReturnType<typeof usePurchaseInventoryItems> = {
+const defaultPurchaseReturnValue: ReturnType<typeof usePurchaseInventoryItems> = {
   purchase: jest.fn(),
   isLoading: false,
   isError: false,
@@ -27,7 +27,7 @@ const mockItem: CoinStoreItem = {
 
 describe('PurchaseConfirmationDialog', () => {
   beforeEach(() => {
-    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseState);
+    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseReturnValue);
   });
 
   it('renders correctly', () => {
@@ -36,11 +36,11 @@ describe('PurchaseConfirmationDialog', () => {
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledTimes(1);
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledWith({ onSuccess: expect.any(Function) });
 
-    screen.getByText('Test Icon');
-    screen.getByText('Are you sure you want to buy this icon for 100?');
-    screen.getByRole('button', { name: 'Close' });
-    screen.getByRole('button', { name: 'Confirm' });
-    screen.getByText("If you have the game opened, don't try to buy the same item twice");
+    expect(screen.getByText('Test Icon')).toBeTruthy();
+    expect(screen.getByText('Are you sure you want to buy this icon for 100?')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Close' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Confirm' })).toBeTruthy();
+    expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
   it('calls onClose when the overlay is pressed', () => {
@@ -65,7 +65,7 @@ describe('PurchaseConfirmationDialog', () => {
   it('calls purchase when Yes button is pressed', () => {
     const mockPurchase = jest.fn();
     usePurchaseInventoryItemsMock.mockImplementation((props) => ({
-      ...defaultPurchaseState,
+      ...defaultPurchaseReturnValue,
       purchase: mockPurchase.mockImplementation(props?.onSuccess),
     }));
 
@@ -86,35 +86,37 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('shows loading spinner when purchasing', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseReturnValue.purchase,
       isLoading: true,
       isError: false,
     });
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
   it('shows error message when purchase fails', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
       isError: true,
     });
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    screen.getByText('Test Icon');
-    screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?');
-    screen.getByRole('button', { name: 'Cancel' });
-    screen.getByRole('button', { name: 'Retry' });
-    screen.getByText("If you have the game opened, don't try to buy the same item twice");
+    expect(screen.getByText('Test Icon')).toBeTruthy();
+    expect(
+      screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?'),
+    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Cancel' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Retry' })).toBeTruthy();
+    expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
   it('calls purchase when Retry button is pressed in error state', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
       isError: true,
     });
@@ -124,8 +126,8 @@ describe('PurchaseConfirmationDialog', () => {
     const retryButton = screen.getByRole('button', { name: 'Retry' });
     fireEvent.press(retryButton);
 
-    expect(defaultPurchaseState.purchase).toHaveBeenCalledTimes(1);
-    expect(defaultPurchaseState.purchase).toHaveBeenCalledWith({
+    expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledTimes(1);
+    expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledWith({
       id: mockItem.id,
       price: { value: mockItem.coinPrice, currencyId: CurrencyId.COINS },
     });
@@ -133,7 +135,7 @@ describe('PurchaseConfirmationDialog', () => {
 
   it('calls onClose when Cancel button is pressed in error state', () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
-      purchase: defaultPurchaseState.purchase,
+      purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
       isError: true,
     });

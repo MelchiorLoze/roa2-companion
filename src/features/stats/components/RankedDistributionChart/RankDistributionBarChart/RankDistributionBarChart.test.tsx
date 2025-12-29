@@ -6,7 +6,7 @@ import { RankDistributionBarChart } from './RankDistributionBarChart';
 
 jest.mock('../../../hooks/business/useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
-const defaultLeaderboardStatsState = {
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
   firstPlayerElo: 2162,
   lastPlayerElo: -100,
   lastAethereanElo: 1837,
@@ -24,25 +24,25 @@ const renderComponent = () => {
 
 describe('RankDistributionBarChart', () => {
   beforeEach(() => {
-    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsState);
+    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
   it('renders loading state when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
-      ...defaultLeaderboardStatsState,
+      ...defaultLeaderboardStatsReturnValue,
       isLoading: true,
     });
 
     renderComponent();
 
-    screen.getByTestId('spinner');
+    expect(screen.getByTestId('spinner')).toBeTruthy();
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 
   it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent();
+    const tree = renderComponent().toJSON();
 
-    screen.getByTestId('rank-distribution');
-    expect(tree.toJSON()).toMatchSnapshot();
+    expect(screen.getByTestId('rank-distribution')).toBeTruthy();
+    expect(tree).toMatchSnapshot();
   });
 });

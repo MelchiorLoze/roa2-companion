@@ -13,7 +13,7 @@ const useAppStateMock = jest.mocked(useAppState);
 
 jest.mock('../../../contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
-const defaultSessionState: ReturnType<typeof useSession> = {
+const defaultSessionReturnValue: ReturnType<typeof useSession> = {
   isValid: false,
   setSession: jest.fn(),
   clearSession: jest.fn(),
@@ -28,7 +28,7 @@ const renewMock = jest.fn();
 
 jest.mock('../../data/useGetEntityToken/useGetEntityToken');
 const useGetEntityTokenMock = jest.mocked(useGetEntityToken);
-const defaultGetEntityTokenState: ReturnType<typeof useGetEntityToken> = {
+const defaultGetEntityTokenReturnValue: ReturnType<typeof useGetEntityToken> = {
   renew: renewMock,
   isLoading: false,
   isError: false,
@@ -38,9 +38,9 @@ const renderUseAutomaticSessionRefresh = () => renderHook(useAutomaticSessionRef
 
 describe('useAutomaticSessionRefresh hook', () => {
   beforeEach(() => {
-    useSessionMock.mockReturnValue(defaultSessionState);
+    useSessionMock.mockReturnValue(defaultSessionReturnValue);
     useGetEntityTokenMock.mockImplementation(({ onSuccess }) => ({
-      ...defaultGetEntityTokenState,
+      ...defaultGetEntityTokenReturnValue,
       renew: renewMock.mockImplementation(() => onSuccess?.(newSession)),
     }));
     useAppStateMock.mockReturnValue('inactive');
@@ -52,7 +52,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     renderUseAutomaticSessionRefresh();
 
     expect(renewMock).toHaveBeenCalledTimes(1);
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
+    expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(newSession);
   });
 
   it('calls renew when app state is background', () => {
@@ -61,7 +61,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     renderUseAutomaticSessionRefresh();
 
     expect(renewMock).toHaveBeenCalledTimes(1);
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
+    expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(newSession);
   });
 
   it('does not call renew when app state is inactive', () => {
@@ -70,7 +70,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     renderUseAutomaticSessionRefresh();
 
     expect(renewMock).not.toHaveBeenCalled();
-    expect(defaultSessionState.setSession).not.toHaveBeenCalled();
+    expect(defaultSessionReturnValue.setSession).not.toHaveBeenCalled();
   });
 
   it('throttles renewal calls within 30 minutes', () => {
@@ -79,14 +79,14 @@ describe('useAutomaticSessionRefresh hook', () => {
     const { rerender } = renderUseAutomaticSessionRefresh();
 
     expect(renewMock).toHaveBeenCalledTimes(1);
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
+    expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(newSession);
     jest.clearAllMocks();
 
     useAppStateMock.mockReturnValue('background');
     rerender(undefined);
 
     expect(renewMock).not.toHaveBeenCalled();
-    expect(defaultSessionState.setSession).not.toHaveBeenCalled();
+    expect(defaultSessionReturnValue.setSession).not.toHaveBeenCalled();
   });
 
   it('allows renewal after throttle period expires', () => {
@@ -96,7 +96,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     const { rerender } = renderUseAutomaticSessionRefresh();
 
     expect(renewMock).toHaveBeenCalledTimes(1);
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(newSession);
+    expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(newSession);
     jest.clearAllMocks();
 
     jest.advanceTimersByTime(Duration.fromObject({ minutes: 30 }).as('milliseconds'));
@@ -106,7 +106,7 @@ describe('useAutomaticSessionRefresh hook', () => {
       expirationDate: DateTime.utc().plus({ day: 2 }),
     };
     useGetEntityTokenMock.mockImplementation(({ onSuccess }) => ({
-      ...defaultGetEntityTokenState,
+      ...defaultGetEntityTokenReturnValue,
       renew: renewMock.mockImplementation(() => onSuccess?.(otherSession)),
     }));
 
@@ -114,7 +114,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     rerender(undefined);
 
     expect(renewMock).toHaveBeenCalledTimes(1);
-    expect(defaultSessionState.setSession).toHaveBeenCalledWith(otherSession);
+    expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(otherSession);
     jest.useRealTimers();
   });
 });
