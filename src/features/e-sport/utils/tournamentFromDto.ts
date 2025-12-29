@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
 
-import { type Tournament, type TournamentDto, type TournamentState } from '../types/tournament';
+import { type Tournament, type TournamentDto } from '../types/tournament';
 
 export const tournamentFromDto = (dto: TournamentDto): Tournament => {
   return {
@@ -8,7 +8,6 @@ export const tournamentFromDto = (dto: TournamentDto): Tournament => {
     url: new URL(dto.url),
     imageUrl: dto.imageUrl ? new URL(dto.imageUrl) : undefined,
     countryCode: dto.countryCode ?? undefined,
-    state: dto.state as TournamentState,
     startAt: DateTime.fromISO(dto.startAt, { zone: 'utc' }),
     endAt: DateTime.fromISO(dto.endAt, { zone: 'utc' }),
     events: dto.events

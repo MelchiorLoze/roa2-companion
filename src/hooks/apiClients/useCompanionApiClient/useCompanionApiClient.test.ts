@@ -1,7 +1,9 @@
 import { renderHook } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
-import { SERVER_BASE_URL, useCompanionApiClient } from './useCompanionApiClient';
+import { COMPANION_API_BASE_URL } from '@/constants';
+
+import { useCompanionApiClient } from './useCompanionApiClient';
 
 type TestData = {
   id: number;
@@ -16,7 +18,7 @@ const renderUseCompanionApiClient = () => {
 
 describe('useCompanionApiClient', () => {
   it('makes GET requests with correct headers', async () => {
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data`, responseDataMock, {
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, responseDataMock, {
       matcherFunction: ({ options }) => {
         const headers = options.headers as Record<string, string>;
         return !headers['x-entitytoken'];
@@ -32,7 +34,7 @@ describe('useCompanionApiClient', () => {
   it('handles successful GET responses', async () => {
     const { result } = renderUseCompanionApiClient();
 
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data`, responseDataMock);
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, responseDataMock);
 
     const response = await result.current.get('/api/data');
     expect(response).toEqual({ id: 1, name: 'test' });
@@ -41,7 +43,7 @@ describe('useCompanionApiClient', () => {
   it('handles successful GET responses with query params', async () => {
     const { result } = renderUseCompanionApiClient();
 
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data?size=100&minEntrants=16`, responseDataMock);
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data?size=100&minEntrants=16`, responseDataMock);
 
     const response = await result.current.get('/api/data', {
       params: { size: '100', minEntrants: '16' },
@@ -52,7 +54,7 @@ describe('useCompanionApiClient', () => {
   it('throws error on failed GET responses', async () => {
     const { result } = renderUseCompanionApiClient();
 
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data`, {
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, {
       status: 500,
       body: { error: 'Server Error' },
     });
@@ -63,7 +65,7 @@ describe('useCompanionApiClient', () => {
   it('throws error on 404 responses', async () => {
     const { result } = renderUseCompanionApiClient();
 
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data`, {
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, {
       status: 404,
       body: { error: 'Not Found' },
     });
@@ -74,7 +76,7 @@ describe('useCompanionApiClient', () => {
   it('handles typed responses correctly', async () => {
     const { result } = renderUseCompanionApiClient();
 
-    fetchMock.getOnce(`${SERVER_BASE_URL}/api/data`, responseDataMock);
+    fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, responseDataMock);
 
     const response = await result.current.get<TestData>('/api/data');
 

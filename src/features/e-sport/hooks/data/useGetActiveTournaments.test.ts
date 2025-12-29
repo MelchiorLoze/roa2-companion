@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
-import { type TournamentDto } from '../../types/tournament';
+import { type TournamentDto, TournamentState } from '../../types/tournament';
 import { useGetActiveTournaments } from './useGetActiveTournaments';
 
 const mockTournamentDto: TournamentDto = {
@@ -14,7 +14,7 @@ const mockTournamentDto: TournamentDto = {
   countryCode: 'US',
   isOnline: true,
   numAttendees: 100,
-  state: 'ONGOING',
+  state: TournamentState.ONGOING,
   startAt: '2025-01-01T00:00:00Z',
   endAt: '2025-01-05T23:59:59Z',
   events: [

@@ -1,6 +1,5 @@
+import { COMPANION_API_BASE_URL } from '@/constants';
 import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
-
-export const SERVER_BASE_URL = 'https://api.roa2-companion.app';
 
 export const useCompanionApiClient = () => {
   const headers: Record<string, string> = {};
@@ -15,5 +14,5 @@ export const useCompanionApiClient = () => {
     return data as T;
   };
 
-  return useHttpClient({ baseUrl: SERVER_BASE_URL, headers, handleResponse });
+  return useHttpClient({ baseUrl: COMPANION_API_BASE_URL, headers, handleResponse });
 };

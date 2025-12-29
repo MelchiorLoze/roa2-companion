@@ -8,7 +8,7 @@ export type TournamentDto = Readonly<{
   countryCode: string | null;
   isOnline: boolean;
   numAttendees: number;
-  state: string;
+  state: TournamentState;
   startAt: string;
   endAt: string;
   events: EventDto[];

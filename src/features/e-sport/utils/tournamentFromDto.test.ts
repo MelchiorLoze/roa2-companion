@@ -12,7 +12,7 @@ describe('tournamentFromDto', () => {
     countryCode: 'US',
     isOnline: true,
     numAttendees: 100,
-    state: 'ONGOING',
+    state: TournamentState.ONGOING,
     startAt: '2025-01-01T00:00:00Z',
     endAt: '2025-01-05T23:59:59Z',
     events: [
@@ -115,7 +115,7 @@ describe('tournamentFromDto', () => {
   it('handles UPCOMING state', () => {
     const upcomingDto: TournamentDto = {
       ...mockTournamentDto,
-      state: 'UPCOMING',
+      state: TournamentState.UPCOMING,
     };
 
     const tournament = tournamentFromDto(upcomingDto);
@@ -126,7 +126,7 @@ describe('tournamentFromDto', () => {
   it('handles COMPLETED state', () => {
     const completedDto: TournamentDto = {
       ...mockTournamentDto,
-      state: 'COMPLETED',
+      state: TournamentState.COMPLETED,
     };
 
     const tournament = tournamentFromDto(completedDto);
