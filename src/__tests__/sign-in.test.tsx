@@ -16,14 +16,14 @@ const useAuthMock = jest.mocked(useAuth);
 const loginMock = jest.fn();
 const sendRecoveryEmailMock = jest.fn();
 
-const defaultSendAccountRecoveryEmailValue: ReturnType<typeof useSendAccountRecoveryEmail> = {
+const defaultSendAccountRecoveryEmailReturnValue: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: sendRecoveryEmailMock,
   isLoading: false,
   isSuccess: false,
   isError: false,
 };
 
-const defaultAuthValue: ReturnType<typeof useAuth> = {
+const defaultAuthReturnValue: ReturnType<typeof useAuth> = {
   isLoggedIn: false,
   login: loginMock,
   logout: jest.fn(),
@@ -35,8 +35,8 @@ const SCREEN_TITLE = 'Login to your in-game account';
 
 describe('SignIn', () => {
   beforeEach(() => {
-    useAuthMock.mockReturnValue(defaultAuthValue);
-    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailValue);
+    useAuthMock.mockReturnValue(defaultAuthReturnValue);
+    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailReturnValue);
   });
 
   it('matches snapshot', () => {
@@ -72,7 +72,7 @@ describe('SignIn', () => {
 
   it('renders loading state', () => {
     useAuthMock.mockReturnValue({
-      ...defaultAuthValue,
+      ...defaultAuthReturnValue,
       isLoading: true,
     });
 
@@ -84,7 +84,7 @@ describe('SignIn', () => {
 
   it('redirects to store when already logged in', () => {
     useAuthMock.mockReturnValue({
-      ...defaultAuthValue,
+      ...defaultAuthReturnValue,
       isLoggedIn: true,
     });
 
@@ -107,7 +107,7 @@ describe('SignIn', () => {
 
   it('shows error message when login fails', () => {
     useAuthMock.mockReturnValue({
-      ...defaultAuthValue,
+      ...defaultAuthReturnValue,
       isError: true,
     });
 
@@ -184,7 +184,7 @@ describe('SignIn', () => {
     fireEvent.press(resetPasswordButton);
 
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      ...defaultSendAccountRecoveryEmailValue,
+      ...defaultSendAccountRecoveryEmailReturnValue,
       isSuccess: true,
     });
     rerender(<SignIn />);

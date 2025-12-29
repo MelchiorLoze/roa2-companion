@@ -7,7 +7,7 @@ import { useRankDistribution } from './useRankDistribution';
 
 jest.mock('../useLeaderboardStats/useLeaderboardStats');
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
-const defaultLeaderboardStatsValue = {
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
   firstPlayerElo: 2162,
   lastPlayerElo: -100,
   lastAethereanElo: 1837,
@@ -25,12 +25,12 @@ const renderUseRankDistribution = () => {
 
 describe('useRankDistribution', () => {
   beforeEach(() => {
-    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsValue);
+    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
   it('returns correct values when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
-      ...defaultLeaderboardStatsValue,
+      ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: 0,
       lastPlayerElo: 0,
       lastAethereanElo: 0,

@@ -24,20 +24,20 @@ const useRotatingCoinShopMock = jest.mocked(useRotatingCoinShop);
 
 const purchaseMock = jest.fn();
 
-const defaultSessionValue: ReturnType<typeof useSession> = {
+const defaultSessionReturnValue: ReturnType<typeof useSession> = {
   isValid: false,
   setSession: jest.fn(),
   clearSession: jest.fn(),
   isLoading: false,
 };
 
-const defaultPurchaseInventoryItemsValue: ReturnType<typeof usePurchaseInventoryItems> = {
+const defaultPurchaseInventoryItemsReturnValue: ReturnType<typeof usePurchaseInventoryItems> = {
   purchase: purchaseMock,
   isLoading: false,
   isError: false,
 };
 
-const defaultRotatingCoinShopValue: ReturnType<typeof useRotatingCoinShop> = {
+const defaultRotatingCoinShopReturnValue: ReturnType<typeof useRotatingCoinShop> = {
   items: testItemList,
   expirationDate: DateTime.utc().plus({ day: 1 }),
   isLoading: false,
@@ -45,9 +45,9 @@ const defaultRotatingCoinShopValue: ReturnType<typeof useRotatingCoinShop> = {
 
 describe('Store', () => {
   beforeEach(() => {
-    useSessionMock.mockReturnValue(defaultSessionValue);
-    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseInventoryItemsValue);
-    useRotatingCoinShopMock.mockReturnValue(defaultRotatingCoinShopValue);
+    useSessionMock.mockReturnValue(defaultSessionReturnValue);
+    usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseInventoryItemsReturnValue);
+    useRotatingCoinShopMock.mockReturnValue(defaultRotatingCoinShopReturnValue);
   });
 
   afterEach(() => {
@@ -58,7 +58,7 @@ describe('Store', () => {
     jest.useFakeTimers();
     jest.setSystemTime(new Date('2024-08-24T10:00:00Z'));
     useRotatingCoinShopMock.mockReturnValue({
-      ...defaultRotatingCoinShopValue,
+      ...defaultRotatingCoinShopReturnValue,
       expirationDate: DateTime.utc().plus({ hours: 15, minutes: 22, seconds: 56 }),
     });
 
@@ -100,7 +100,7 @@ describe('Store', () => {
 
   it('displays a spinner when the store items are loading', () => {
     useRotatingCoinShopMock.mockReturnValue({
-      ...defaultRotatingCoinShopValue,
+      ...defaultRotatingCoinShopReturnValue,
       items: [],
       expirationDate: undefined,
       isLoading: true,

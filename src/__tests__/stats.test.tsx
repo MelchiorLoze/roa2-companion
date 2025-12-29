@@ -25,7 +25,7 @@ const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
 const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 
-const defaultSeasonValue: ReturnType<typeof useSeason> = {
+const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   season: {
     index: 1,
     name: 'Season 1',
@@ -38,7 +38,7 @@ const defaultSeasonValue: ReturnType<typeof useSeason> = {
   setNextSeason: jest.fn(),
 };
 
-const defaultUserRankedStatsValue: ReturnType<typeof useUserRankedStats> = {
+const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> = {
   stats: {
     elo: 925,
     rank: Rank.GOLD,
@@ -53,7 +53,7 @@ const defaultUserRankedStatsValue: ReturnType<typeof useUserRankedStats> = {
   isRefreshing: false,
 };
 
-const defaultUserCrewsStatsValue: ReturnType<typeof useUserCrewsStats> = {
+const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
@@ -65,7 +65,7 @@ const defaultUserCrewsStatsValue: ReturnType<typeof useUserCrewsStats> = {
   isRefreshing: false,
 };
 
-const defaultUserGlobalStatsValue: ReturnType<typeof useUserGlobalStats> = {
+const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> = {
   stats: {
     gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
   },
@@ -74,7 +74,7 @@ const defaultUserGlobalStatsValue: ReturnType<typeof useUserGlobalStats> = {
   isRefreshing: false,
 };
 
-const defaultUserCharacterStatsValue: ReturnType<typeof useUserCharacterStats> = {
+const defaultUserCharacterStatsReturnValue: ReturnType<typeof useUserCharacterStats> = {
   stats: [
     { character: Character.KRAGG, gameCount: 20, level: 3 },
     { character: Character.CLAIREN, gameCount: 50, level: 5 },
@@ -86,7 +86,7 @@ const defaultUserCharacterStatsValue: ReturnType<typeof useUserCharacterStats> =
   isRefreshing: false,
 };
 
-const defaultLeaderboardStatsValue: ReturnType<typeof useLeaderboardStats> = {
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
   firstPlayerElo: 2162,
   lastPlayerElo: -100,
   lastAethereanElo: 1837,
@@ -96,12 +96,12 @@ const defaultLeaderboardStatsValue: ReturnType<typeof useLeaderboardStats> = {
 
 describe('Stats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonValue);
-    useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsValue);
-    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsValue);
-    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsValue);
-    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsValue);
-    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsValue);
+    useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
+    useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsReturnValue);
+    useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsReturnValue);
+    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
+    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsReturnValue);
+    useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
   it('matches snapshot', () => {

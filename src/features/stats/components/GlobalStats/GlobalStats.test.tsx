@@ -5,7 +5,7 @@ import { GlobalStats } from './GlobalStats';
 
 jest.mock('../../hooks/business/useUserGlobalStats/useUserGlobalStats');
 const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
-const defaultUserGlobalStatsValue: ReturnType<typeof useUserGlobalStats> = {
+const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> = {
   stats: {
     gameStats: { gameCount: 420, winCount: 358, winRate: 85.238095 },
   },
@@ -22,7 +22,7 @@ const renderComponent = () => {
 
 describe('GlobalStats', () => {
   beforeEach(() => {
-    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsValue);
+    useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
   });
 
   it('renders global stats with correct values', () => {
@@ -42,7 +42,7 @@ describe('GlobalStats', () => {
 
   it('displays loading spinner when stats are loading', () => {
     useUserGlobalStatsMock.mockReturnValue({
-      ...defaultUserGlobalStatsValue,
+      ...defaultUserGlobalStatsReturnValue,
       isLoading: true,
     });
 

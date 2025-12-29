@@ -13,7 +13,7 @@ const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
 
 const backMock = jest.fn();
 
-const defaultCurrencyBalanceValue: ReturnType<typeof useCurrencyBalance> = {
+const defaultCurrencyBalanceReturnValue: ReturnType<typeof useCurrencyBalance> = {
   coinsBalance: 0,
   bucksBalance: 0,
   medalsBalance: 0,
@@ -27,7 +27,7 @@ describe('Header', () => {
       back: backMock,
     } as unknown as ReturnType<typeof useRouter>);
 
-    useCurrencyBalanceMock.mockReturnValue(defaultCurrencyBalanceValue);
+    useCurrencyBalanceMock.mockReturnValue(defaultCurrencyBalanceReturnValue);
   });
 
   it('renders without crashing when no props are provided', () => {

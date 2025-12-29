@@ -13,7 +13,7 @@ jest.mock('../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
 const setPreviousSeasonMock = jest.fn();
 const setNextSeasonMock = jest.fn();
-const defaultSeasonValue: ReturnType<typeof useSeason> = {
+const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   season: {
     index: 5,
     name: 'Season 5',
@@ -68,7 +68,7 @@ const renderComponent = () => {
 
 describe('RankedStats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonValue);
+    useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
     useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsState);
   });
 
@@ -101,9 +101,9 @@ describe('RankedStats', () => {
 
   it('does not allow to switch to previous session when already at the first', () => {
     useSeasonMock.mockReturnValue({
-      ...defaultSeasonValue,
+      ...defaultSeasonReturnValue,
       season: {
-        ...defaultSeasonValue.season,
+        ...defaultSeasonReturnValue.season,
         isFirst: true,
         isLast: false,
       },
@@ -119,9 +119,9 @@ describe('RankedStats', () => {
 
   it('does not allow to switch to next session when already at the last', () => {
     useSeasonMock.mockReturnValue({
-      ...defaultSeasonValue,
+      ...defaultSeasonReturnValue,
       season: {
-        ...defaultSeasonValue.season,
+        ...defaultSeasonReturnValue.season,
         isFirst: false,
         isLast: true,
       },

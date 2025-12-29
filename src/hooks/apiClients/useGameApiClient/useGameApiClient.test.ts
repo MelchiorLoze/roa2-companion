@@ -7,7 +7,7 @@ import { GAME_API_BASE_URL, useGameApiClient } from './useGameApiClient';
 
 jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
-const defaultSessionValue: ReturnType<typeof useSession> = {
+const defaultSessionReturnValue: ReturnType<typeof useSession> = {
   entityToken: 'mock-token',
   isValid: true,
   setSession: jest.fn(),
@@ -27,7 +27,7 @@ const renderUseGameApiClient = () => {
 
 describe('useGameApiClient', () => {
   beforeEach(() => {
-    useSessionMock.mockReturnValue(defaultSessionValue);
+    useSessionMock.mockReturnValue(defaultSessionReturnValue);
   });
 
   it('adds auth headers when logged in', async () => {
@@ -46,7 +46,7 @@ describe('useGameApiClient', () => {
 
   it('does not add auth headers when not logged in', async () => {
     useSessionMock.mockReturnValue({
-      ...defaultSessionValue,
+      ...defaultSessionReturnValue,
       entityToken: undefined,
       isValid: false,
     });
@@ -91,7 +91,7 @@ describe('useGameApiClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Unauthorized');
-    expect(defaultSessionValue.clearSession).toHaveBeenCalledTimes(1);
+    expect(defaultSessionReturnValue.clearSession).toHaveBeenCalledTimes(1);
   });
 
   it('throws error on other failed responses', async () => {
@@ -103,7 +103,7 @@ describe('useGameApiClient', () => {
     });
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
-    expect(defaultSessionValue.clearSession).not.toHaveBeenCalled();
+    expect(defaultSessionReturnValue.clearSession).not.toHaveBeenCalled();
   });
 
   it('handles typed responses correctly', async () => {

@@ -13,7 +13,7 @@ const useAuthMock = jest.mocked(useAuth);
 const navigateMock = jest.fn();
 const logoutMock = jest.fn();
 
-const defaultAuthValue: ReturnType<typeof useAuth> = {
+const defaultAuthReturnValue: ReturnType<typeof useAuth> = {
   isLoggedIn: true,
   login: jest.fn(),
   logout: logoutMock,
@@ -27,7 +27,7 @@ describe('More', () => {
       navigate: navigateMock,
     } as unknown as ReturnType<typeof useRouter>);
 
-    useAuthMock.mockReturnValue(defaultAuthValue);
+    useAuthMock.mockReturnValue(defaultAuthReturnValue);
   });
 
   it('matches snapshot', () => {

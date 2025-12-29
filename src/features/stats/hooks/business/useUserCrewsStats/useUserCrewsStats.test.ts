@@ -7,7 +7,7 @@ import { useUserCrewsStats } from './useUserCrewsStats';
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
-const defaultPlayerStatisticsValue: ReturnType<typeof useGetPlayerStatistics> = {
+const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
     [StatisticName.CREWS_ELO]: 10950,
     [StatisticName.CREWS_SETS]: 30,
@@ -20,7 +20,7 @@ const defaultPlayerStatisticsValue: ReturnType<typeof useGetPlayerStatistics> = 
 
 jest.mock('../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
 const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPlayer);
-const defaultLeaderboardAroundPlayerValue: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
+const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
   playerPositions: [
     {
       statisticName: StatisticName.CREWS_ELO,
@@ -48,8 +48,8 @@ const renderUseUserCrewsStats = () => {
 
 describe('useUserCrewsStats', () => {
   beforeEach(() => {
-    useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsValue);
-    useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerValue);
+    useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsReturnValue);
+    useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerReturnValue);
   });
 
   it('returns loading state when statistics are loading', () => {

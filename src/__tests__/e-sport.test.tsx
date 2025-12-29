@@ -30,7 +30,7 @@ const mockTournament = {
   ],
 };
 
-const defaultGetActiveTournamentsValue: ReturnType<typeof useGetActiveTournaments> = {
+const defaultGetActiveTournamentsReturnValue: ReturnType<typeof useGetActiveTournaments> = {
   tournaments: [],
   isLoading: false,
   isError: false,
@@ -40,12 +40,12 @@ const defaultGetActiveTournamentsValue: ReturnType<typeof useGetActiveTournament
 
 describe('ESport', () => {
   beforeEach(() => {
-    useGetActiveTournamentsMock.mockReturnValue(defaultGetActiveTournamentsValue);
+    useGetActiveTournamentsMock.mockReturnValue(defaultGetActiveTournamentsReturnValue);
   });
 
   it('shows spinner when loading', () => {
     useGetActiveTournamentsMock.mockReturnValue({
-      ...defaultGetActiveTournamentsValue,
+      ...defaultGetActiveTournamentsReturnValue,
       isLoading: true,
     });
 
@@ -56,7 +56,7 @@ describe('ESport', () => {
 
   it('shows error message when request fails', () => {
     useGetActiveTournamentsMock.mockReturnValue({
-      ...defaultGetActiveTournamentsValue,
+      ...defaultGetActiveTournamentsReturnValue,
       isError: true,
     });
 
@@ -73,7 +73,7 @@ describe('ESport', () => {
 
   it('shows tournament list when tournaments are available', () => {
     useGetActiveTournamentsMock.mockReturnValue({
-      ...defaultGetActiveTournamentsValue,
+      ...defaultGetActiveTournamentsReturnValue,
       tournaments: [mockTournament],
     });
 

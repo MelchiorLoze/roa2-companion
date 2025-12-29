@@ -5,7 +5,7 @@ import { ResetPasswordDialog } from './ResetPasswordDialog';
 
 jest.mock('../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
-const defaultSendAccountRecoveryEmailValue: ReturnType<typeof useSendAccountRecoveryEmail> = {
+const defaultSendAccountRecoveryEmailReturnValue: ReturnType<typeof useSendAccountRecoveryEmail> = {
   sendRecoveryEmail: jest.fn(),
   isLoading: false,
   isSuccess: false,
@@ -14,7 +14,7 @@ const defaultSendAccountRecoveryEmailValue: ReturnType<typeof useSendAccountReco
 
 describe('ResetPasswordDialog', () => {
   beforeEach(() => {
-    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailValue);
+    useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailReturnValue);
   });
 
   it('renders correctly', () => {
@@ -59,8 +59,8 @@ describe('ResetPasswordDialog', () => {
     fireEvent.press(submitButton);
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
 
-    expect(defaultSendAccountRecoveryEmailValue.sendRecoveryEmail).toHaveBeenCalledTimes(1);
-    expect(defaultSendAccountRecoveryEmailValue.sendRecoveryEmail).toHaveBeenCalledWith('kragg@example.com');
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledTimes(1);
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledWith('kragg@example.com');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
   });
 
@@ -71,12 +71,12 @@ describe('ResetPasswordDialog', () => {
     fireEvent.press(submitButton);
 
     screen.getByText('Please provide a valid email');
-    expect(defaultSendAccountRecoveryEmailValue.sendRecoveryEmail).not.toHaveBeenCalled();
+    expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).not.toHaveBeenCalled();
   });
 
   it('shows error message when email is not sent', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailValue.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
       isSuccess: false,
       isError: true,
@@ -89,7 +89,7 @@ describe('ResetPasswordDialog', () => {
 
   it('shows success message when email is sent', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailValue.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
       isSuccess: true,
       isError: false,
@@ -105,7 +105,7 @@ describe('ResetPasswordDialog', () => {
 
   it('shows loading spinner when sending email', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
-      sendRecoveryEmail: defaultSendAccountRecoveryEmailValue.sendRecoveryEmail,
+      sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: true,
       isSuccess: false,
       isError: false,

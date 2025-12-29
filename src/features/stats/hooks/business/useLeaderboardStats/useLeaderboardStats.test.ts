@@ -7,7 +7,7 @@ import { useLeaderboardStats } from './useLeaderboardStats';
 
 jest.mock('../../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
-const defaultSeasonValue: ReturnType<typeof useSeason> = {
+const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   season: {
     index: 1,
     name: 'Season 1',
@@ -22,7 +22,7 @@ const defaultSeasonValue: ReturnType<typeof useSeason> = {
 
 jest.mock('../../data/useCommunityLeaderboard/useCommunityLeaderboard');
 const useCommunityLeaderboardMock = jest.mocked(useCommunityLeaderboard);
-const defaultCommunityLeaderboardValue: ReturnType<typeof useCommunityLeaderboard> = {
+const defaultCommunityLeaderboardReturnValue: ReturnType<typeof useCommunityLeaderboard> = {
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
   isError: false,
@@ -40,13 +40,13 @@ const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardSta
 
 describe('useLeaderboardStats', () => {
   beforeEach(() => {
-    useSeasonMock.mockReturnValue(defaultSeasonValue);
-    useCommunityLeaderboardMock.mockReturnValue(defaultCommunityLeaderboardValue);
+    useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
+    useCommunityLeaderboardMock.mockReturnValue(defaultCommunityLeaderboardReturnValue);
   });
 
   it('returns correct values when season is loading', () => {
     useSeasonMock.mockReturnValue({
-      ...defaultSeasonValue,
+      ...defaultSeasonReturnValue,
       isLoading: true,
     });
 
@@ -57,7 +57,7 @@ describe('useLeaderboardStats', () => {
 
   it('returns correct values when leaderboard entries are loading', () => {
     useCommunityLeaderboardMock.mockReturnValue({
-      ...defaultCommunityLeaderboardValue,
+      ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [],
       isLoading: true,
     });
@@ -72,7 +72,7 @@ describe('useLeaderboardStats', () => {
 
   it('returns correct values for complete leaderboard', () => {
     useCommunityLeaderboardMock.mockReturnValue({
-      ...defaultCommunityLeaderboardValue,
+      ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [
         // Aetherean
         { steamId: 1, position: 1, elo: 2162 },
@@ -112,12 +112,12 @@ describe('useLeaderboardStats', () => {
     expect(result.current.firstPlayerElo).toBe(2162);
     expect(result.current.lastPlayerElo).toBe(-100);
     expect(result.current.lastAethereanElo).toBe(1837);
-    expect(result.current.leaderboardEntries).toEqual(defaultCommunityLeaderboardValue.leaderboardEntries);
+    expect(result.current.leaderboardEntries).toEqual(defaultCommunityLeaderboardReturnValue.leaderboardEntries);
   });
 
   it('returns 0 as lastPlayerElo when it is above 0', () => {
     useCommunityLeaderboardMock.mockReturnValue({
-      ...defaultCommunityLeaderboardValue,
+      ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [
         { steamId: 1, position: 1, elo: 1000 },
         { steamId: 2, position: 2, elo: 50 },
