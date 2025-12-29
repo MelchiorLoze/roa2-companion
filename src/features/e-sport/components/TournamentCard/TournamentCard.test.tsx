@@ -18,8 +18,8 @@ const mockTournament: Tournament = {
   isOnline: true,
   numAttendees: 100,
   state: TournamentState.ONGOING,
-  startAt: DateTime.fromISO('2025-01-01T00:00:00Z'),
-  endAt: DateTime.fromISO('2025-01-05T23:59:59Z'),
+  startAt: DateTime.fromISO('2025-01-01T10:30:00Z'),
+  endAt: DateTime.fromISO('2025-01-05T10:30:00Z'),
   events: [
     {
       id: 1,
@@ -59,36 +59,36 @@ describe('TournamentCard', () => {
     const sameDayTournament = {
       ...mockTournament,
       startAt: DateTime.fromISO('2025-01-10T10:00:00Z'),
-      endAt: DateTime.fromISO('2025-01-10T23:59:59Z'),
+      endAt: DateTime.fromISO('2025-01-10T18:30:00Z'),
     };
 
     renderComponent(sameDayTournament);
 
-    screen.getByText('Jan 10-11, 2025');
+    screen.getByText('Jan 10, 2025');
   });
 
   it('displays date range for same month', () => {
     const sameMonthTournament = {
       ...mockTournament,
-      startAt: DateTime.fromISO('2025-01-10T00:00:00Z'),
-      endAt: DateTime.fromISO('2025-01-15T23:59:59Z'),
+      startAt: DateTime.fromISO('2025-01-10T10:30:00Z'),
+      endAt: DateTime.fromISO('2025-01-15T10:30:00Z'),
     };
 
     renderComponent(sameMonthTournament);
 
-    screen.getByText('Jan 10-16, 2025');
+    screen.getByText('Jan 10-15, 2025');
   });
 
   it('displays date range for different months', () => {
     const diffMonthTournament = {
       ...mockTournament,
-      startAt: DateTime.fromISO('2025-01-30T00:00:00Z'),
-      endAt: DateTime.fromISO('2025-02-05T23:59:59Z'),
+      startAt: DateTime.fromISO('2025-01-30T10:30:00Z'),
+      endAt: DateTime.fromISO('2025-02-05T10:30:00Z'),
     };
 
     renderComponent(diffMonthTournament);
 
-    screen.getByText('Jan 30 - Feb 06, 2025');
+    screen.getByText('Jan 30 - Feb 05, 2025');
   });
 
   it('displays wifi icon for online tournaments', () => {
