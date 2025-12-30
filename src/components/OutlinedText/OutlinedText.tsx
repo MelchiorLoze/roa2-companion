@@ -1,5 +1,6 @@
 import {
   Canvas,
+  type Color,
   type DataModule,
   Group,
   PaintStyle,
@@ -17,20 +18,21 @@ import { AgencyFBBlack, AgencyFBBold } from '@/assets/fonts';
 type ThemeFonts = Theme['font']['secondary'];
 type FontFamily = ThemeFonts[keyof ThemeFonts];
 
+type OutlinedTextStyle = {
+  fontSize: number;
+  fontFamily: FontFamily;
+  color: Color;
+  strokeWidth: number;
+};
+
 const fonts: Record<FontFamily, [DataModule]> = {
   'AgencyFB-Bold': [AgencyFBBold as DataModule],
   'AgencyFB-Black': [AgencyFBBlack as DataModule],
 };
 
-const getParagraph = (
-  text: string,
-  fontFamily: FontFamily,
-  color: string,
-  strokeWidth: number,
-  fontProvider: SkTypefaceFontProvider,
-) => {
+const getParagraph = (text: string, style: OutlinedTextStyle, fontProvider: SkTypefaceFontProvider) => {
   const outlineForegroundPaint = Skia.Paint();
-  outlineForegroundPaint.setStrokeWidth(strokeWidth);
+  outlineForegroundPaint.setStrokeWidth(style.strokeWidth);
   outlineForegroundPaint.setStyle(PaintStyle.Stroke);
   outlineForegroundPaint.setColor(Skia.Color('black'));
 
@@ -40,8 +42,8 @@ const getParagraph = (
   };
 
   const textStyle: SkTextStyle = {
-    fontSize: 18,
-    fontFamilies: [fontFamily],
+    fontSize: style.fontSize,
+    fontFamilies: [style.fontFamily],
   };
 
   const paragraphOutline = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
@@ -51,7 +53,7 @@ const getParagraph = (
     .build();
 
   const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
-    .pushStyle({ ...textStyle, color: Skia.Color(color) })
+    .pushStyle({ ...textStyle, color: Skia.Color(style.color) })
     .addText(text)
     .pop()
     .build();
@@ -61,30 +63,22 @@ const getParagraph = (
   return {
     paragraphOutline,
     paragraph,
-    paragraphWidth: paragraphOutline.getLongestLine() + strokeWidth,
+    paragraphWidth: paragraphOutline.getLongestLine() + style.strokeWidth,
     paragraphHeight: paragraphOutline.getHeight(),
   } as const;
 };
 
 type Props = {
   text: string;
-  fontFamily: FontFamily;
-  color: string;
-  strokeWidth: number;
+  style: OutlinedTextStyle;
 };
 
-export const OutlinedText = ({ text, fontFamily, color, strokeWidth }: Readonly<Props>) => {
+export const OutlinedText = ({ text, style }: Readonly<Props>) => {
   const fontProvider = useFonts(fonts);
 
   if (!fontProvider) return null;
 
-  const { paragraphOutline, paragraph, paragraphWidth, paragraphHeight } = getParagraph(
-    text,
-    fontFamily,
-    color,
-    strokeWidth,
-    fontProvider,
-  );
+  const { paragraphOutline, paragraph, paragraphWidth, paragraphHeight } = getParagraph(text, style, fontProvider);
 
   return (
     <Canvas style={{ height: paragraphHeight, width: paragraphWidth }}>

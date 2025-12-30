@@ -455,6 +455,9 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text>
+                      ICON
+                    </Text>
                     <View
                       style={
                         {
@@ -772,7 +775,11 @@ exports[`Store matches snapshot 1`] = `
                         "justifyContent": "space-between",
                       }
                     }
-                  />
+                  >
+                    <Text>
+                      DEATH
+                    </Text>
+                  </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
@@ -1052,6 +1059,9 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text>
+                      EMOTE
+                    </Text>
                     <View
                       style={
                         {
@@ -1369,7 +1379,11 @@ exports[`Store matches snapshot 1`] = `
                         "justifyContent": "space-between",
                       }
                     }
-                  />
+                  >
+                    <Text>
+                      SKIN
+                    </Text>
+                  </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
@@ -1649,6 +1663,9 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text>
+                      STAGE SKIN
+                    </Text>
                     <View
                       style={
                         {

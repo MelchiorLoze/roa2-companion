@@ -6,11 +6,11 @@ import { type ExternalPathString, useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Separator } from '@/components/Separator/Separator';
 
-import { type Tournament } from '../../types/tournament';
+import { type Tournament, type TournamentState } from '../../types/tournament';
 import { formatDateRange } from '../../utils/formatDateRange';
-import { TournamentStateTag } from './TournamentStateTag';
 
 type Props = {
   tournament: Tournament;
@@ -47,12 +47,12 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                   <MaterialIcons name="arrow-outward" style={styles.redirectIcon(pressed)} />
                 </View>
 
-                <View style={styles.dateInfo}>
-                  <TournamentStateTag pressed={pressed} tournamentState={tournament.state} />
+                <View style={[styles.info, styles.dateInfo]}>
+                  <OutlinedText style={styles.state(tournament.state)} text={tournament.state} />
                   <Text style={styles.text(pressed)}>{formatDateRange(tournament.startAt, tournament.endAt)}</Text>
                 </View>
 
-                <View style={styles.otherInfo}>
+                <View style={styles.info}>
                   {tournament.isOnline && (
                     <>
                       <MaterialIcons name="wifi" style={styles.wifiIcon(pressed)} />
@@ -141,14 +141,19 @@ const styles = StyleSheet.create((theme) => ({
     color: pressed ? theme.color.black : theme.color.white,
     fontSize: 24,
   }),
-  dateInfo: {
-    flexDirection: 'row',
-    gap: theme.spacing.xs,
-  },
-  otherInfo: {
+  info: {
     flexDirection: 'row',
     alignItems: 'center',
   },
+  dateInfo: {
+    gap: theme.spacing.xs,
+  },
+  state: (tournamentState: TournamentState) => ({
+    fontSize: 14,
+    fontFamily: theme.font.secondary.bold,
+    strokeWidth: 2,
+    color: theme.color[tournamentState.toString().toLowerCase() as 'upcoming' | 'ongoing' | 'completed'],
+  }),
   wifiIcon: (pressed?: boolean) => ({
     color: pressed ? theme.color.black : theme.color.white,
     fontSize: 18,

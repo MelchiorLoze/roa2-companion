@@ -1,7 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
-import { Text } from 'react-native';
-
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
@@ -55,9 +52,6 @@ useLeaderboardStatsMock.mockReturnValue({
   leaderboardEntries: [],
   isLoading: false,
 });
-
-jest.mock('@/components/OutlinedText/OutlinedText');
-jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
 const renderComponent = () => {
   render(<RankedStats />);

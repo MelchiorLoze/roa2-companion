@@ -27,9 +27,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
 
               <View style={styles.info}>
                 <OutlinedText
-                  color={styles.category(item.rarity).color}
-                  fontFamily={theme.font.secondary.bold}
-                  strokeWidth={2}
+                  style={styles.category(item.rarity)}
                   text={CATEGORY_LABELS[item.category].toUpperCase()}
                 />
                 {item.coinPrice && (
@@ -86,7 +84,10 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-between',
   },
   category: (rarity: Rarity) => ({
+    fontSize: 18,
+    fontFamily: theme.font.secondary.bold,
     color: theme.color[rarity],
+    strokeWidth: 2,
   }),
   priceContainer: {
     flexDirection: 'row',
