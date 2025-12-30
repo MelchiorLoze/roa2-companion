@@ -12,13 +12,13 @@ exports[`ESport matches snapshot 1`] = `
     [
       {
         "countryCode": "US",
-        "endAt": "2025-01-05T19:00:00.000+01:00",
+        "endAt": "2025-01-05T18:00:00.000Z",
         "events": [
           {
             "id": 1,
             "name": "Event 1",
             "numEntrants": 50,
-            "startAt": "2025-01-05T11:00:00.000+01:00",
+            "startAt": "2025-01-05T10:00:00.000Z",
           },
         ],
         "id": 1,
@@ -26,19 +26,19 @@ exports[`ESport matches snapshot 1`] = `
         "isOnline": true,
         "name": "Test Tournament 1",
         "numAttendees": 100,
-        "startAt": "2025-01-05T10:00:00.000+01:00",
+        "startAt": "2025-01-05T09:00:00.000Z",
         "state": "ongoing",
         "url": "https://example.com/tournament/1",
       },
       {
         "countryCode": "FR",
-        "endAt": "2025-02-05T19:00:00.000+01:00",
+        "endAt": "2025-02-05T18:00:00.000Z",
         "events": [
           {
             "id": 2,
             "name": "Event 2",
             "numEntrants": 100,
-            "startAt": "2025-02-02T11:00:00.000+01:00",
+            "startAt": "2025-02-02T10:00:00.000Z",
           },
         ],
         "id": 2,
@@ -46,25 +46,25 @@ exports[`ESport matches snapshot 1`] = `
         "isOnline": false,
         "name": "Test Tournament 2",
         "numAttendees": 200,
-        "startAt": "2025-02-01T10:00:00.000+01:00",
+        "startAt": "2025-02-01T09:00:00.000Z",
         "state": "upcoming",
         "url": "https://example.com/tournament/2",
       },
       {
         "countryCode": undefined,
-        "endAt": "2025-04-03T13:15:00.000+02:00",
+        "endAt": "2025-04-03T11:15:00.000Z",
         "events": [
           {
             "id": 1,
             "name": "Event 1",
             "numEntrants": 50,
-            "startAt": "2025-03-30T10:30:00.000+02:00",
+            "startAt": "2025-03-30T08:30:00.000Z",
           },
           {
             "id": 2,
             "name": "Event 2",
             "numEntrants": 100,
-            "startAt": "2025-04-02T13:15:00.000+02:00",
+            "startAt": "2025-04-02T11:15:00.000Z",
           },
         ],
         "id": 3,
@@ -72,7 +72,7 @@ exports[`ESport matches snapshot 1`] = `
         "isOnline": true,
         "name": "Test Tournament 3",
         "numAttendees": 10,
-        "startAt": "2025-03-28T09:30:00.000+01:00",
+        "startAt": "2025-03-28T08:30:00.000Z",
         "state": "completed",
         "url": "https://example.com/tournament/3",
       },

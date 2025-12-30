@@ -20,20 +20,20 @@ const mockTournament: Tournament = {
   isOnline: true,
   numAttendees: 100,
   state: TournamentState.ONGOING,
-  startAt: DateTime.fromISO('2025-01-01T10:30:00Z'),
-  endAt: DateTime.fromISO('2025-01-05T10:30:00Z'),
+  startAt: DateTime.fromISO('2025-01-01T10:30:00Z', { zone: 'utc' }),
+  endAt: DateTime.fromISO('2025-01-05T10:30:00Z', { zone: 'utc' }),
   events: [
     {
       id: 1,
       name: 'Event 1',
       numEntrants: 50,
-      startAt: DateTime.fromISO('2025-01-02T10:00:00Z'),
+      startAt: DateTime.fromISO('2025-01-02T10:00:00Z', { zone: 'utc' }),
     },
     {
       id: 2,
       name: 'Event 2',
       numEntrants: 30,
-      startAt: DateTime.fromISO('2025-01-03T10:00:00Z'),
+      startAt: DateTime.fromISO('2025-01-03T10:00:00Z', { zone: 'utc' }),
     },
   ],
 };
@@ -59,8 +59,8 @@ describe('TournamentCard', () => {
   it('displays date range for same day', () => {
     const sameDayTournament = {
       ...mockTournament,
-      startAt: DateTime.fromISO('2025-01-10T10:00:00Z'),
-      endAt: DateTime.fromISO('2025-01-10T18:30:00Z'),
+      startAt: DateTime.fromISO('2025-01-10T10:00:00Z', { zone: 'utc' }),
+      endAt: DateTime.fromISO('2025-01-10T18:30:00Z', { zone: 'utc' }),
     };
 
     renderComponent(sameDayTournament);
@@ -71,8 +71,8 @@ describe('TournamentCard', () => {
   it('displays date range for same month', () => {
     const sameMonthTournament = {
       ...mockTournament,
-      startAt: DateTime.fromISO('2025-01-10T10:30:00Z'),
-      endAt: DateTime.fromISO('2025-01-15T10:30:00Z'),
+      startAt: DateTime.fromISO('2025-01-10T10:30:00Z', { zone: 'utc' }),
+      endAt: DateTime.fromISO('2025-01-15T10:30:00Z', { zone: 'utc' }),
     };
 
     renderComponent(sameMonthTournament);
@@ -83,8 +83,8 @@ describe('TournamentCard', () => {
   it('displays date range for different months', () => {
     const diffMonthTournament = {
       ...mockTournament,
-      startAt: DateTime.fromISO('2025-01-30T10:30:00Z'),
-      endAt: DateTime.fromISO('2025-02-05T10:30:00Z'),
+      startAt: DateTime.fromISO('2025-01-30T10:30:00Z', { zone: 'utc' }),
+      endAt: DateTime.fromISO('2025-02-05T10:30:00Z', { zone: 'utc' }),
     };
 
     renderComponent(diffMonthTournament);
