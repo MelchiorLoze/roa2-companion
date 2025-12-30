@@ -1,0 +1,1242 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ESport matches snapshot 1`] = `
+<RCTScrollView
+  contentContainerStyle={
+    {
+      "gap": 16,
+      "padding": 16,
+    }
+  }
+  data={
+    [
+      {
+        "countryCode": "US",
+        "endAt": "2025-01-05T18:00:00.000Z",
+        "events": [
+          {
+            "id": 1,
+            "name": "Event 1",
+            "numEntrants": 50,
+            "startAt": "2025-01-05T10:00:00.000Z",
+          },
+        ],
+        "id": 1,
+        "imageUrl": "https://example.com/image1.png",
+        "isOnline": true,
+        "name": "Test Tournament 1",
+        "numAttendees": 100,
+        "startAt": "2025-01-05T09:00:00.000Z",
+        "state": "ongoing",
+        "url": "https://example.com/tournament/1",
+      },
+      {
+        "countryCode": "FR",
+        "endAt": "2025-02-05T18:00:00.000Z",
+        "events": [
+          {
+            "id": 2,
+            "name": "Event 2",
+            "numEntrants": 100,
+            "startAt": "2025-02-02T10:00:00.000Z",
+          },
+        ],
+        "id": 2,
+        "imageUrl": "https://example.com/image2.png",
+        "isOnline": false,
+        "name": "Test Tournament 2",
+        "numAttendees": 200,
+        "startAt": "2025-02-01T09:00:00.000Z",
+        "state": "upcoming",
+        "url": "https://example.com/tournament/2",
+      },
+      {
+        "countryCode": undefined,
+        "endAt": "2025-04-03T11:15:00.000Z",
+        "events": [
+          {
+            "id": 1,
+            "name": "Event 1",
+            "numEntrants": 50,
+            "startAt": "2025-03-30T08:30:00.000Z",
+          },
+          {
+            "id": 2,
+            "name": "Event 2",
+            "numEntrants": 100,
+            "startAt": "2025-04-02T11:15:00.000Z",
+          },
+        ],
+        "id": 3,
+        "imageUrl": "https://example.com/image3.png",
+        "isOnline": true,
+        "name": "Test Tournament 3",
+        "numAttendees": 10,
+        "startAt": "2025-03-28T08:30:00.000Z",
+        "state": "completed",
+        "url": "https://example.com/tournament/3",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <RCTRefreshControl />
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4291481343,
+              4285232860,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 5,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flex": 1,
+              "padding": 2,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279636041,
+                4279043869,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "paddingBottom": 8,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
+                containerViewRef={"[React.ref]"}
+                contentFit="cover"
+                contentPosition={
+                  {
+                    "left": "50%",
+                    "top": "50%",
+                  }
+                }
+                height="auto"
+                nativeViewRef={"[React.ref]"}
+                onError={[Function]}
+                onLoad={[Function]}
+                onLoadStart={[Function]}
+                onProgress={[Function]}
+                placeholder={[]}
+                source={
+                  [
+                    {
+                      "uri": "https://example.com/image1.png",
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "height": "auto",
+                  }
+                }
+                transition={null}
+              />
+              <View
+                style={
+                  {
+                    "flexShrink": 1,
+                    "gap": 4,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "flexShrink": 1,
+                      "gap": 8,
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Regular",
+                          "fontSize": 18,
+                        },
+                      ]
+                    }
+                  >
+                    Test Tournament 1
+                  </Text>
+                  <
+                    name="arrow-outward"
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 24,
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      },
+                      {
+                        "gap": 4,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "#FEDD84",
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 16,
+                        "strokeWidth": 2,
+                      }
+                    }
+                  >
+                    ONGOING
+                  </Text>
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Jan 05, 2025
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <
+                    name="wifi"
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingBottom": 2,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    🇺🇸 - 
+                    100
+                     attendees
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "gap": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "gap": 4,
+                  }
+                }
+              >
+                <ViewManagerAdapter_ExpoLinearGradient
+                  colors={
+                    [
+                      4291481343,
+                      4285232860,
+                    ]
+                  }
+                  endPoint={
+                    [
+                      1,
+                      0,
+                    ]
+                  }
+                  startPoint={
+                    [
+                      0,
+                      0,
+                    ]
+                  }
+                  style={
+                    {
+                      "backgroundColor": "transparent",
+                      "height": 1,
+                    }
+                  }
+                />
+                <View>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Italic",
+                        },
+                      ]
+                    }
+                  >
+                    Event 1
+                  </Text>
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontSize": 12,
+                        },
+                      ]
+                    }
+                  >
+                    Jan 05
+                     - 
+                    50
+                     entrants
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4291481343,
+              4285232860,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 5,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flex": 1,
+              "padding": 2,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279636041,
+                4279043869,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "paddingBottom": 8,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
+                containerViewRef={"[React.ref]"}
+                contentFit="cover"
+                contentPosition={
+                  {
+                    "left": "50%",
+                    "top": "50%",
+                  }
+                }
+                height="auto"
+                nativeViewRef={"[React.ref]"}
+                onError={[Function]}
+                onLoad={[Function]}
+                onLoadStart={[Function]}
+                onProgress={[Function]}
+                placeholder={[]}
+                source={
+                  [
+                    {
+                      "uri": "https://example.com/image2.png",
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "height": "auto",
+                  }
+                }
+                transition={null}
+              />
+              <View
+                style={
+                  {
+                    "flexShrink": 1,
+                    "gap": 4,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "flexShrink": 1,
+                      "gap": 8,
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Regular",
+                          "fontSize": 18,
+                        },
+                      ]
+                    }
+                  >
+                    Test Tournament 2
+                  </Text>
+                  <
+                    name="arrow-outward"
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 24,
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      },
+                      {
+                        "gap": 4,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "#CACEFF",
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 16,
+                        "strokeWidth": 2,
+                      }
+                    }
+                  >
+                    UPCOMING
+                  </Text>
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Feb 01-05, 2025
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    🇫🇷 - 
+                    200
+                     attendees
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "gap": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "gap": 4,
+                  }
+                }
+              >
+                <ViewManagerAdapter_ExpoLinearGradient
+                  colors={
+                    [
+                      4291481343,
+                      4285232860,
+                    ]
+                  }
+                  endPoint={
+                    [
+                      1,
+                      0,
+                    ]
+                  }
+                  startPoint={
+                    [
+                      0,
+                      0,
+                    ]
+                  }
+                  style={
+                    {
+                      "backgroundColor": "transparent",
+                      "height": 1,
+                    }
+                  }
+                />
+                <View>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Italic",
+                        },
+                      ]
+                    }
+                  >
+                    Event 2
+                  </Text>
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontSize": 12,
+                        },
+                      ]
+                    }
+                  >
+                    Feb 02
+                     - 
+                    100
+                     entrants
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4291481343,
+              4285232860,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 5,
+                  "color": "black",
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flex": 1,
+              "padding": 2,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279636041,
+                4279043869,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "flexDirection": "row",
+                  "gap": 8,
+                  "paddingBottom": 8,
+                }
+              }
+            >
+              <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
+                containerViewRef={"[React.ref]"}
+                contentFit="cover"
+                contentPosition={
+                  {
+                    "left": "50%",
+                    "top": "50%",
+                  }
+                }
+                height="auto"
+                nativeViewRef={"[React.ref]"}
+                onError={[Function]}
+                onLoad={[Function]}
+                onLoadStart={[Function]}
+                onProgress={[Function]}
+                placeholder={[]}
+                source={
+                  [
+                    {
+                      "uri": "https://example.com/image3.png",
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "height": "auto",
+                  }
+                }
+                transition={null}
+              />
+              <View
+                style={
+                  {
+                    "flexShrink": 1,
+                    "gap": 4,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "flexDirection": "row",
+                      "flexShrink": 1,
+                      "gap": 8,
+                      "justifyContent": "space-between",
+                      "width": "100%",
+                    }
+                  }
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Regular",
+                          "fontSize": 18,
+                        },
+                      ]
+                    }
+                  >
+                    Test Tournament 3
+                  </Text>
+                  <
+                    name="arrow-outward"
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 24,
+                      }
+                    }
+                  />
+                </View>
+                <View
+                  style={
+                    [
+                      {
+                        "alignItems": "center",
+                        "flexDirection": "row",
+                      },
+                      {
+                        "gap": 4,
+                      },
+                    ]
+                  }
+                >
+                  <Text
+                    style={
+                      {
+                        "color": "#FC7575",
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 16,
+                        "strokeWidth": 2,
+                      }
+                    }
+                  >
+                    COMPLETED
+                  </Text>
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    Mar 28 - Apr 03, 2025
+                  </Text>
+                </View>
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "flexDirection": "row",
+                    }
+                  }
+                >
+                  <
+                    name="wifi"
+                    style={
+                      {
+                        "color": "white",
+                        "fontSize": 18,
+                        "paddingBottom": 2,
+                      }
+                    }
+                  />
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                     - 
+                  </Text>
+                  <Text
+                    style={
+                      {
+                        "color": "white",
+                        "flexShrink": 1,
+                        "fontFamily": "AgencyFB-Bold",
+                        "fontSize": 14,
+                        "textTransform": "uppercase",
+                      }
+                    }
+                  >
+                    10
+                     attendees
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "gap": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "gap": 4,
+                  }
+                }
+              >
+                <ViewManagerAdapter_ExpoLinearGradient
+                  colors={
+                    [
+                      4291481343,
+                      4285232860,
+                    ]
+                  }
+                  endPoint={
+                    [
+                      1,
+                      0,
+                    ]
+                  }
+                  startPoint={
+                    [
+                      0,
+                      0,
+                    ]
+                  }
+                  style={
+                    {
+                      "backgroundColor": "transparent",
+                      "height": 1,
+                    }
+                  }
+                />
+                <View>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Italic",
+                        },
+                      ]
+                    }
+                  >
+                    Event 1
+                  </Text>
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontSize": 12,
+                        },
+                      ]
+                    }
+                  >
+                    Mar 30
+                     - 
+                    50
+                     entrants
+                  </Text>
+                </View>
+              </View>
+              <View
+                style={
+                  {
+                    "gap": 4,
+                  }
+                }
+              >
+                <ViewManagerAdapter_ExpoLinearGradient
+                  colors={
+                    [
+                      4291481343,
+                      4285232860,
+                    ]
+                  }
+                  endPoint={
+                    [
+                      1,
+                      0,
+                    ]
+                  }
+                  startPoint={
+                    [
+                      0,
+                      0,
+                    ]
+                  }
+                  style={
+                    {
+                      "backgroundColor": "transparent",
+                      "height": 1,
+                    }
+                  }
+                />
+                <View>
+                  <Text
+                    numberOfLines={1}
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontFamily": "FranklinGothicDemiCond-Italic",
+                        },
+                      ]
+                    }
+                  >
+                    Event 2
+                  </Text>
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "white",
+                          "flexShrink": 1,
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textTransform": "uppercase",
+                        },
+                        {
+                          "fontSize": 12,
+                        },
+                      ]
+                    }
+                  >
+                    Apr 02
+                     - 
+                    100
+                     entrants
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

@@ -455,6 +455,18 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text
+                      style={
+                        {
+                          "color": "#D3D5E4",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
+                      ICON
+                    </Text>
                     <View
                       style={
                         {
@@ -772,7 +784,20 @@ exports[`Store matches snapshot 1`] = `
                         "justifyContent": "space-between",
                       }
                     }
-                  />
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#C161E5",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
+                      DEATH
+                    </Text>
+                  </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
@@ -1052,6 +1077,18 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text
+                      style={
+                        {
+                          "color": "#447CF1",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
+                      EMOTE
+                    </Text>
                     <View
                       style={
                         {
@@ -1369,7 +1406,20 @@ exports[`Store matches snapshot 1`] = `
                         "justifyContent": "space-between",
                       }
                     }
-                  />
+                  >
+                    <Text
+                      style={
+                        {
+                          "color": "#EFDB77",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
+                      SKIN
+                    </Text>
+                  </View>
                 </View>
               </ViewManagerAdapter_ExpoLinearGradient>
             </ViewManagerAdapter_ExpoLinearGradient>
@@ -1649,6 +1699,18 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
+                    <Text
+                      style={
+                        {
+                          "color": "#D3D5E4",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 16,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
+                      STAGE SKIN
+                    </Text>
                     <View
                       style={
                         {

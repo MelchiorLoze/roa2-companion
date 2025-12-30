@@ -1,14 +1,8 @@
 import { render, screen } from '@testing-library/react-native';
-import { Text } from 'react-native';
-
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 
 import { CrewsIcon } from '../../assets/images/crews';
 import { Rank } from '../../types/rank';
 import { LeaderboardPositionRow } from './LeaderboardPositionStatRow';
-
-jest.mock('@/components/OutlinedText/OutlinedText');
-jest.mocked(OutlinedText).mockImplementation(({ text }) => <Text>{text}</Text>);
 
 describe('LeaderboardPositionStatRow', () => {
   it('renders correctly', () => {

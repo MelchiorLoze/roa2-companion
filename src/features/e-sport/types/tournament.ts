@@ -43,7 +43,7 @@ export type Event = Readonly<{
 }>;
 
 export enum TournamentState {
-  UPCOMING = 'UPCOMING',
-  ONGOING = 'ONGOING',
-  COMPLETED = 'COMPLETED',
+  UPCOMING = 'upcoming',
+  ONGOING = 'ongoing',
+  COMPLETED = 'completed',
 }

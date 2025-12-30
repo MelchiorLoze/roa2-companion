@@ -105,8 +105,7 @@ describe('Stats', () => {
   });
 
   it('matches snapshot', () => {
-    const { toJSON } = render(<Stats />);
-    const tree = toJSON();
+    const tree = render(<Stats />).toJSON();
 
     // Remove circular references for snapshot testing
     // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access

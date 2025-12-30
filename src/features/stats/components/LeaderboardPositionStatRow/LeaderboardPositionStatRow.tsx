@@ -70,12 +70,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
             <Text style={styles.eloLabel(rank)}>{elo}</Text>
           </>
         ) : (
-          <OutlinedText
-            color={theme.color.white}
-            fontFamily={theme.font.secondary.black}
-            strokeWidth={3}
-            text="UNRANKED"
-          />
+          <OutlinedText style={styles.unrankedLabel} text="UNRANKED" />
         )}
       </LinearGradient>
     </View>
@@ -129,13 +124,19 @@ const styles = StyleSheet.create((theme) => ({
     width: 32,
     height: 32,
   },
+  rankIcon: {
+    width: 24,
+    height: 24,
+  },
   eloLabel: (rank?: Rank) => ({
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
     color: rank ? theme.color[rank] : theme.color.white,
   }),
-  rankIcon: {
-    width: 24,
-    height: 24,
+  unrankedLabel: {
+    fontFamily: theme.font.secondary.black,
+    fontSize: 16,
+    color: theme.color.white,
+    strokeWidth: 3,
   },
 }));
