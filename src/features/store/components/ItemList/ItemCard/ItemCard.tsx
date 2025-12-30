@@ -84,7 +84,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'space-between',
   },
   category: (rarity: Rarity) => ({
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: theme.font.secondary.bold,
     color: theme.color[rarity],
     strokeWidth: 2,

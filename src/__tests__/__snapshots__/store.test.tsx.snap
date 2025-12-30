@@ -460,7 +460,7 @@ exports[`Store matches snapshot 1`] = `
                         {
                           "color": "#D3D5E4",
                           "fontFamily": "AgencyFB-Bold",
-                          "fontSize": 18,
+                          "fontSize": 16,
                           "strokeWidth": 2,
                         }
                       }
@@ -790,7 +790,7 @@ exports[`Store matches snapshot 1`] = `
                         {
                           "color": "#C161E5",
                           "fontFamily": "AgencyFB-Bold",
-                          "fontSize": 18,
+                          "fontSize": 16,
                           "strokeWidth": 2,
                         }
                       }
@@ -1082,7 +1082,7 @@ exports[`Store matches snapshot 1`] = `
                         {
                           "color": "#447CF1",
                           "fontFamily": "AgencyFB-Bold",
-                          "fontSize": 18,
+                          "fontSize": 16,
                           "strokeWidth": 2,
                         }
                       }
@@ -1412,7 +1412,7 @@ exports[`Store matches snapshot 1`] = `
                         {
                           "color": "#EFDB77",
                           "fontFamily": "AgencyFB-Bold",
-                          "fontSize": 18,
+                          "fontSize": 16,
                           "strokeWidth": 2,
                         }
                       }
@@ -1704,7 +1704,7 @@ exports[`Store matches snapshot 1`] = `
                         {
                           "color": "#D3D5E4",
                           "fontFamily": "AgencyFB-Bold",
-                          "fontSize": 18,
+                          "fontSize": 16,
                           "strokeWidth": 2,
                         }
                       }

@@ -135,7 +135,7 @@ const styles = StyleSheet.create((theme) => ({
   }),
   unrankedLabel: {
     fontFamily: theme.font.secondary.black,
-    fontSize: 18,
+    fontSize: 16,
     color: theme.color.white,
     strokeWidth: 3,
   },

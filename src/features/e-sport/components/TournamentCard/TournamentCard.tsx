@@ -48,7 +48,7 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                 </View>
 
                 <View style={[styles.info, styles.dateInfo]}>
-                  <OutlinedText style={styles.state(tournament.state)} text={tournament.state} />
+                  <OutlinedText style={styles.state(tournament.state)} text={tournament.state.toUpperCase()} />
                   <Text style={styles.text(pressed)}>{formatDateRange(tournament.startAt, tournament.endAt)}</Text>
                 </View>
 
@@ -134,7 +134,7 @@ const styles = StyleSheet.create((theme) => ({
     textTransform: 'uppercase',
   }),
   title: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: theme.font.primary.regular,
   },
   redirectIcon: (pressed?: boolean) => ({
@@ -149,7 +149,7 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.xs,
   },
   state: (tournamentState: TournamentState) => ({
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: theme.font.secondary.bold,
     strokeWidth: 2,
     color: theme.color[tournamentState],

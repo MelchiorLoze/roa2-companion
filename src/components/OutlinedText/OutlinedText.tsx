@@ -12,6 +12,7 @@ import {
   TextAlign,
   useFonts,
 } from '@shopify/react-native-skia';
+import { useWindowDimensions } from 'react-native';
 
 import { AgencyFBBlack, AgencyFBBold } from '@/assets/fonts';
 
@@ -74,11 +75,16 @@ type Props = {
 };
 
 export const OutlinedText = ({ text, style }: Readonly<Props>) => {
+  const { fontScale } = useWindowDimensions();
   const fontProvider = useFonts(fonts);
 
   if (!fontProvider) return null;
 
-  const { paragraphOutline, paragraph, paragraphWidth, paragraphHeight } = getParagraph(text, style, fontProvider);
+  const { paragraphOutline, paragraph, paragraphWidth, paragraphHeight } = getParagraph(
+    text,
+    { ...style, fontSize: style.fontSize * fontScale, strokeWidth: style.strokeWidth * fontScale },
+    fontProvider,
+  );
 
   return (
     <Canvas style={{ height: paragraphHeight, width: paragraphWidth }}>
