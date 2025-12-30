@@ -1,10 +1,12 @@
-![feature-graphic](https://github.com/user-attachments/assets/a15c664f-ce34-492a-8374-ab08db26a20a)
+![feature-graphic](https://github.com/user-attachments/assets/a44dba1e-4eec-4f21-a74a-33bf0d967b68)
 
-This app uses the game's client API to provide useful information and tools for players on their mobile.
-Using the game's client API, this app provide useful information and tools for players on their mobile
+Using the game's client API, this app provide useful information and tools for players on their mobile.
 
-- It allows to access the in-game coin shop daily rotation, and purchase items anywhere and anytime
-- It allows to track the progression of the player across the different ranked seasons
+Key features:
+
+- access the in-game coin shop daily rotation, and purchase items anywhere and anytime
+- track the progression of the player across the different ranked seasons
+- retrieve the list of ongoing and upcoming start.gg tournaments
 
 ## Get started
 
