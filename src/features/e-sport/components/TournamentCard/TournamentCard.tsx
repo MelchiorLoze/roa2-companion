@@ -152,7 +152,7 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 14,
     fontFamily: theme.font.secondary.bold,
     strokeWidth: 2,
-    color: theme.color[tournamentState.toString().toLowerCase() as 'upcoming' | 'ongoing' | 'completed'],
+    color: theme.color[tournamentState],
   }),
   wifiIcon: (pressed?: boolean) => ({
     color: pressed ? theme.color.black : theme.color.white,
