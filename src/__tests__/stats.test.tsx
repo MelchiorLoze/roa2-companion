@@ -113,4 +113,46 @@ describe('Stats', () => {
 
     expect(tree).toMatchSnapshot();
   });
+
+  it('matches snapshot when the player is unranked', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonReturnValue,
+      season: {
+        index: 2,
+        name: 'Season 2',
+        isFirst: false,
+        isLast: false,
+      },
+      leaderboardId: 987,
+    });
+    useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsReturnValue,
+      stats: {
+        elo: undefined,
+        rank: undefined,
+        bestWinStreak: 0,
+        position: 12300,
+        playerCount: 20000,
+        setStats: { setCount: 0, winCount: 0, winRate: 0 },
+        profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
+      },
+    });
+    useUserCrewsStatsMock.mockReturnValue({
+      ...defaultUserCrewsStatsReturnValue,
+      stats: {
+        elo: undefined,
+        setStats: { setCount: 0 },
+        position: 0,
+        profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
+      },
+    });
+
+    const tree = render(<Stats />).toJSON();
+
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree.props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
+  });
 });
