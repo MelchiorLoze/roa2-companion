@@ -1,6 +1,6 @@
 import fetchMock from 'fetch-mock';
 import { createElement } from 'react';
-import { Text } from 'react-native';
+import { Text, type TextStyle } from 'react-native';
 
 import { OutlinedText } from './components/OutlinedText/OutlinedText';
 
@@ -15,7 +15,9 @@ jest.mock('react-native-gifted-charts', () => ({
 }));
 
 jest.mock('@/components/OutlinedText/OutlinedText');
-jest.mocked(OutlinedText).mockImplementation(({ text }) => createElement(Text, null, text));
+jest
+  .mocked(OutlinedText)
+  .mockImplementation(({ text, style }) => createElement(Text, { style: style as TextStyle }, text));
 
 fetchMock.mockGlobal();
 

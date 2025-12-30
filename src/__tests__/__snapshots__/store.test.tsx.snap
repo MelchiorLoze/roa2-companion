@@ -455,7 +455,16 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
-                    <Text>
+                    <Text
+                      style={
+                        {
+                          "color": "#D3D5E4",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 18,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
                       ICON
                     </Text>
                     <View
@@ -776,7 +785,16 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
-                    <Text>
+                    <Text
+                      style={
+                        {
+                          "color": "#C161E5",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 18,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
                       DEATH
                     </Text>
                   </View>
@@ -1059,7 +1077,16 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
-                    <Text>
+                    <Text
+                      style={
+                        {
+                          "color": "#447CF1",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 18,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
                       EMOTE
                     </Text>
                     <View
@@ -1380,7 +1407,16 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
-                    <Text>
+                    <Text
+                      style={
+                        {
+                          "color": "#EFDB77",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 18,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
                       SKIN
                     </Text>
                   </View>
@@ -1663,7 +1699,16 @@ exports[`Store matches snapshot 1`] = `
                       }
                     }
                   >
-                    <Text>
+                    <Text
+                      style={
+                        {
+                          "color": "#D3D5E4",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 18,
+                          "strokeWidth": 2,
+                        }
+                      }
+                    >
                       STAGE SKIN
                     </Text>
                     <View
