@@ -9,7 +9,7 @@ import { Input } from '@/components/Input/Input';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { ResetPasswordDialog } from '@/features/auth/components/ResetPasswordDialog/ResetPasswordDialog';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
-import { useKeyboardState } from '@/hooks/core/useKeyboardState/useKeyboardState';
+import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -17,7 +17,7 @@ export default function SignIn() {
   const [isInvalid, setIsInvalid] = useState(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
 
-  const { isKeyboardVisible } = useKeyboardState();
+  const { isVisible: isKeyboardVisible } = useKeyboard();
 
   const { login, isLoggedIn, isLoading, isError } = useAuth();
 

@@ -2,7 +2,7 @@ import { type PropsWithChildren } from 'react';
 import { Keyboard, KeyboardAvoidingView, Modal, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { useKeyboardState } from '@/hooks/core/useKeyboardState/useKeyboardState';
+import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 import { Alert } from '../Alert/Alert';
 
@@ -12,7 +12,7 @@ type Props = PropsWithChildren & {
 };
 
 export const Dialog = ({ alertText, onClose, children }: Readonly<Props>) => {
-  const { isKeyboardVisible } = useKeyboardState();
+  const { isVisible: isKeyboardVisible } = useKeyboard();
 
   const onPressOutside = () => {
     // Do not call isKeyboardVisible in callback to avoid unnecessary re-renders
