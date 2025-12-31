@@ -29,11 +29,6 @@ const renderComponent = (item: Item) => {
 };
 
 describe('ItemCard', () => {
-  beforeEach(() => {
-    expect(item.coinPrice).toBeTruthy();
-    expect(item.buckPrice).toBeTruthy();
-  });
-
   it('renders correctly', () => {
     renderComponent(item);
 

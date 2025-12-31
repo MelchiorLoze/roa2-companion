@@ -23,7 +23,7 @@ jest.mock('@shopify/react-native-skia', () => ({
   },
 }));
 const SkiaMock = jest.mocked(Skia);
-// eslint-disable-next-line @typescript-eslint/unbound-method
+// eslint-disable-next-line jest/unbound-method
 const fromURIMock = SkiaMock.Data.fromURI;
 const makeImageFromEncodedMock = SkiaMock.Image.MakeImageFromEncoded;
 
