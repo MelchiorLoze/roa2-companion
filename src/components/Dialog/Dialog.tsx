@@ -1,6 +1,8 @@
 import { type PropsWithChildren } from 'react';
-import { Modal, Pressable, View } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Modal, Pressable, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
+
+import { useKeyboardState } from '@/hooks/core/useKeyboardState/useKeyboardState';
 
 import { Alert } from '../Alert/Alert';
 
@@ -9,19 +11,29 @@ type Props = PropsWithChildren & {
   onClose: () => void;
 };
 
-export const Dialog = ({ alertText, onClose, children }: Readonly<Props>) => (
-  <View>
-    <Modal animationType="fade" onRequestClose={onClose} statusBarTranslucent transparent>
-      <View style={styles.container}>
-        <Pressable onPress={onClose} style={styles.overlay} testID="overlay" />
-        <View style={styles.dialog} testID="dialog">
-          {children}
-          {alertText && <Alert style={styles.alert} text={alertText} />}
-        </View>
-      </View>
-    </Modal>
-  </View>
-);
+export const Dialog = ({ alertText, onClose, children }: Readonly<Props>) => {
+  const { isKeyboardVisible } = useKeyboardState();
+
+  const onPressOutside = () => {
+    // Do not call isKeyboardVisible in callback to avoid unnecessary re-renders
+    if (Keyboard.isVisible()) Keyboard.dismiss();
+    else onClose();
+  };
+
+  return (
+    <View>
+      <Modal animationType="fade" onRequestClose={onClose} statusBarTranslucent transparent>
+        <KeyboardAvoidingView behavior="height" enabled={isKeyboardVisible} style={styles.container}>
+          <Pressable onPress={onPressOutside} style={styles.overlay} testID="overlay" />
+          <View style={styles.dialog} testID="dialog">
+            {children}
+            {alertText && <Alert style={styles.alert} text={alertText} />}
+          </View>
+        </KeyboardAvoidingView>
+      </Modal>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create((theme) => ({
   container: {
