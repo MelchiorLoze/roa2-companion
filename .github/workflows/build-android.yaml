@@ -3,8 +3,14 @@ name: Build Android
 on:
   push:
     branches: [main]
+    paths:
+      - package-lock.json
+      - app.json
   pull_request:
     branches: [main]
+    paths:
+      - package-lock.json
+      - app.json
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -37,6 +43,11 @@ jobs:
           distribution: temurin
           cache: gradle
 
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: false
+
       - name: Build with Gradle
         working-directory: android
-        run: ./gradlew assembleRelease --build-cache --parallel --daemon
+        run: ./gradlew assembleRelease --no-daemon --parallel --build-cache --stacktrace
