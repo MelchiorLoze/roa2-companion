@@ -10,7 +10,6 @@ jest.mock('react-native', () => ({
   },
 }));
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 const addEventListenerMock = jest.mocked(AppState.addEventListener);
 const subscriptionRemoveMock = jest.fn();
 addEventListenerMock.mockReturnValue({

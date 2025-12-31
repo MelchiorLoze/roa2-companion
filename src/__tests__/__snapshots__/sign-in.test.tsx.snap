@@ -6,12 +6,10 @@ exports[`SignIn matches snapshot 1`] = `
   style={
     [
       {
-        "alignItems": "center",
         "flex": 1,
-        "gap": 24,
         "justifyContent": "center",
-        "paddingHorizontal": 16,
-        "paddingVertical": 24,
+        "marginBottom": 0,
+        "padding": 16,
       },
       {
         "paddingBottom": 0,
@@ -19,318 +17,12 @@ exports[`SignIn matches snapshot 1`] = `
     ]
   }
 >
-  <Text
-    style={
-      {
-        "color": "white",
-        "fontFamily": "FranklinGothicDemiCond-Italic",
-        "fontSize": 24,
-        "textAlign": "center",
-        "textTransform": "uppercase",
-        "width": "100%",
-      }
-    }
-  >
-    Login to your
-    
-
-    in-game account
-  </Text>
   <View
-    style={
-      {
-        "gap": 12,
-        "width": "100%",
-      }
-    }
-  >
-    <View
-      style={
-        {
-          "gap": 8,
-        }
-      }
-    >
-      <TextInput
-        autoCapitalize="none"
-        autoComplete="email"
-        cursorColor="white"
-        onChangeText={[Function]}
-        placeholder="EMAIL"
-        placeholderTextColor="#676767"
-        style={
-          {
-            "backgroundColor": "#161616",
-            "borderColor": "#FEDD84",
-            "borderWidth": 1,
-            "color": "white",
-            "height": 48,
-            "padding": 8,
-            "width": "100%",
-          }
-        }
-        value=""
-      />
-      <View
-        style={
-          {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "width": "100%",
-          }
-        }
-      />
-    </View>
-    <View
-      style={
-        {
-          "gap": 8,
-        }
-      }
-    >
-      <TextInput
-        autoCapitalize="none"
-        autoComplete="current-password"
-        cursorColor="white"
-        onChangeText={[Function]}
-        placeholder="PASSWORD"
-        placeholderTextColor="#676767"
-        secureTextEntry={true}
-        style={
-          {
-            "backgroundColor": "#161616",
-            "borderColor": "#FEDD84",
-            "borderWidth": 1,
-            "color": "white",
-            "height": 48,
-            "padding": 8,
-            "width": "100%",
-          }
-        }
-        value=""
-      />
-      <View
-        style={
-          {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "width": "100%",
-          }
-        }
-      >
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="button"
-          style={
-            {
-              "flex": 1,
-              "padding": 4,
-            }
-          }
-        >
-          <Text
-            style={
-              {
-                "color": "#CACEFF",
-                "fontFamily": "FranklinGothicDemiCond-Italic",
-                "fontSize": 14,
-                "textAlign": "right",
-                "textDecorationLine": "underline",
-              }
-            }
-          >
-            Forgot your password?
-          </Text>
-        </View>
-      </View>
-    </View>
-  </View>
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
-      }
-    }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    role="button"
-  >
-    <ViewManagerAdapter_ExpoLinearGradient
-      colors={
-        [
-          4281146742,
-          4284183501,
-        ]
-      }
-      endPoint={
-        [
-          1,
-          0,
-        ]
-      }
-      startPoint={
-        [
-          0,
-          0,
-        ]
-      }
-      style={
-        {
-          "padding": 4,
-          "paddingHorizontal": 24,
-        }
-      }
-    >
-      <Text
-        style={
-          [
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            },
-            false,
-          ]
-        }
-      >
-        Login
-      </Text>
-    </ViewManagerAdapter_ExpoLinearGradient>
-  </View>
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
-      }
-    }
-    accessible={true}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    style={
-      [
-        {
-          "flexDirection": "row",
-          "gap": 8,
-        },
-        {
-          "bottom": 24,
-          "position": "absolute",
-        },
-      ]
-    }
-    testID="disclaimer"
-  >
-    <
-      name="information-circle-sharp"
-      style={
-        {
-          "color": "#C8C8D5",
-          "fontSize": 24,
-        }
-      }
-    />
-    <Text
-      style={
-        {
-          "color": "#C8C8D5",
-          "flexShrink": 1,
-          "fontFamily": "FranklinGothicDemiCond-Italic",
-          "fontSize": 14,
-        }
-      }
-    >
-      This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. The app works directly between your device and the official game servers, with no third parties involved in transferring or processing your data. 
-      <Text
-        style={
-          {
-            "color": "white",
-            "textDecorationLine": "underline",
-          }
-        }
-      >
-        Learn more...
-      </Text>
-    </Text>
-  </View>
-</View>
-`;
-
-exports[`SignIn matches snapshot with password reset dialog open 1`] = `
-[
-  <View
-    onLayout={[Function]}
     style={
       {
         "alignItems": "center",
-        "flex": 1,
         "gap": 24,
         "justifyContent": "center",
-        "paddingHorizontal": 16,
-        "paddingVertical": 24,
       }
     }
   >
@@ -362,7 +54,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
       <View
         style={
           {
-            "gap": 8,
+            "gap": 4,
           }
         }
       >
@@ -379,28 +71,17 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               "borderColor": "#FEDD84",
               "borderWidth": 1,
               "color": "white",
-              "height": 48,
               "padding": 8,
               "width": "100%",
             }
           }
           value=""
         />
-        <View
-          style={
-            {
-              "alignItems": "center",
-              "flexDirection": "row",
-              "justifyContent": "space-between",
-              "width": "100%",
-            }
-          }
-        />
       </View>
       <View
         style={
           {
-            "gap": 8,
+            "gap": 4,
           }
         }
       >
@@ -418,7 +99,6 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               "borderColor": "#FEDD84",
               "borderWidth": 1,
               "color": "white",
-              "height": 48,
               "padding": 8,
               "width": "100%",
             }
@@ -566,6 +246,324 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         </Text>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
+  </View>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      [
+        {
+          "flexDirection": "row",
+          "gap": 8,
+        },
+        {
+          "bottom": 16,
+          "left": 16,
+          "position": "absolute",
+        },
+      ]
+    }
+    testID="disclaimer"
+  >
+    <
+      name="information-circle-sharp"
+      style={
+        {
+          "color": "#C8C8D5",
+          "fontSize": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        {
+          "color": "#C8C8D5",
+          "flexShrink": 1,
+          "fontFamily": "FranklinGothicDemiCond-Italic",
+          "fontSize": 14,
+        }
+      }
+    >
+      This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. The app works directly between your device and the official game servers, with no third parties involved in transferring or processing your data. 
+      <Text
+        style={
+          {
+            "color": "white",
+            "textDecorationLine": "underline",
+          }
+        }
+      >
+        Learn more...
+      </Text>
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`SignIn matches snapshot with password reset dialog open 1`] = `
+[
+  <View
+    onLayout={[Function]}
+    style={
+      [
+        {
+          "flex": 1,
+          "justifyContent": "center",
+          "marginBottom": 0,
+          "padding": 16,
+        },
+        {
+          "paddingBottom": 0,
+        },
+      ]
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "gap": 24,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "FranklinGothicDemiCond-Italic",
+            "fontSize": 24,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+            "width": "100%",
+          }
+        }
+      >
+        Login to your
+        
+
+        in-game account
+      </Text>
+      <View
+        style={
+          {
+            "gap": 12,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "gap": 4,
+            }
+          }
+        >
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="email"
+            cursorColor="white"
+            onChangeText={[Function]}
+            placeholder="EMAIL"
+            placeholderTextColor="#676767"
+            style={
+              {
+                "backgroundColor": "#161616",
+                "borderColor": "#FEDD84",
+                "borderWidth": 1,
+                "color": "white",
+                "padding": 8,
+                "width": "100%",
+              }
+            }
+            value=""
+          />
+        </View>
+        <View
+          style={
+            {
+              "gap": 4,
+            }
+          }
+        >
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="current-password"
+            cursorColor="white"
+            onChangeText={[Function]}
+            placeholder="PASSWORD"
+            placeholderTextColor="#676767"
+            secureTextEntry={true}
+            style={
+              {
+                "backgroundColor": "#161616",
+                "borderColor": "#FEDD84",
+                "borderWidth": 1,
+                "color": "white",
+                "padding": 8,
+                "width": "100%",
+              }
+            }
+            value=""
+          />
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              role="button"
+              style={
+                {
+                  "flex": 1,
+                  "padding": 4,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#CACEFF",
+                    "fontFamily": "FranklinGothicDemiCond-Italic",
+                    "fontSize": 14,
+                    "textAlign": "right",
+                    "textDecorationLine": "underline",
+                  }
+                }
+              >
+                Forgot your password?
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4281146742,
+              4284183501,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "padding": 4,
+              "paddingHorizontal": 24,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textAlign": "center",
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Login
+          </Text>
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+    </View>
     <View
       accessibilityState={
         {
@@ -592,7 +590,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             "gap": 8,
           },
           {
-            "bottom": 24,
+            "bottom": 16,
+            "left": 16,
             "position": "absolute",
           },
         ]
@@ -640,6 +639,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
       transparent={true}
     >
       <View
+        onLayout={[Function]}
         style={
           {
             "alignItems": "center",
@@ -715,7 +715,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
           <View
             style={
               {
-                "gap": 8,
+                "gap": 4,
               }
             }
           >
@@ -732,22 +732,11 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
                   "borderColor": "#FEDD84",
                   "borderWidth": 1,
                   "color": "white",
-                  "height": 48,
                   "padding": 8,
                   "width": "100%",
                 }
               }
               value=""
-            />
-            <View
-              style={
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
-                  "width": "100%",
-                }
-              }
             />
           </View>
           <View
