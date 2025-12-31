@@ -60,6 +60,7 @@
     "expo-image": "~3.0.11",
     "expo-linear-gradient": "~15.0.8",
     "expo-linking": "~8.0.11",
+    "expo-navigation-bar": "~5.0.10",
     "expo-router": "~6.0.21",
     "expo-secure-store": "~15.0.8",
     "expo-splash-screen": "~31.0.13",
@@ -70,7 +71,6 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
-    "react-native-edge-to-edge": "1.6.0",
     "react-native-gifted-charts": "^1.4.62",
     "react-native-nitro-modules": "0.31.10",
     "react-native-reanimated": "~4.1.1",
@@ -111,5 +111,6 @@
   },
   "overrides": {
     "react-router-dom-webpack": "19.1.0"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -67,8 +67,8 @@ export default function SignIn() {
         <Button label="Login" onPress={onSubmit} />
 
         <Disclaimer style={styles.disclaimer} />
+        {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
       </KeyboardAvoidingView>
-      {showResetPasswordDialog && <ResetPasswordDialog email={email} onClose={onCloseResetPasswordDialog} />}
     </>
   );
 }
@@ -76,8 +76,8 @@ export default function SignIn() {
 const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flex: 1,
-    paddingHorizontal: theme.spacing.l,
-    paddingVertical: theme.spacing.xl,
+    padding: theme.spacing.l,
+    marginBottom: runtime.insets.bottom,
     justifyContent: 'center',
     alignItems: 'center',
     gap: theme.spacing.xl,
@@ -96,6 +96,6 @@ const styles = StyleSheet.create((theme, runtime) => ({
   },
   disclaimer: {
     position: 'absolute',
-    bottom: runtime.insets.bottom + theme.spacing.xl,
+    bottom: theme.spacing.l,
   },
 }));
