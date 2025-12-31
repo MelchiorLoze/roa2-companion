@@ -39,25 +39,26 @@ export const Input = ({
         style={styles.input}
         value={value}
       />
-      <View style={styles.footer}>
-        {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
-        {contextualCTA && (
-          <Pressable onPress={contextualCTA.onPress} role="button" style={styles.contextualCTA}>
-            <Text style={styles.contextualCTALabel}>{contextualCTA.label}</Text>
-          </Pressable>
-        )}
-      </View>
+      {(errorMessage ?? contextualCTA) && (
+        <View style={styles.footer}>
+          {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
+          {contextualCTA && (
+            <Pressable onPress={contextualCTA.onPress} role="button" style={styles.contextualCTA}>
+              <Text style={styles.contextualCTALabel}>{contextualCTA.label}</Text>
+            </Pressable>
+          )}
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    gap: theme.spacing.s,
+    gap: theme.spacing.xs,
   },
   input: {
     width: '100%',
-    height: 48,
     padding: theme.spacing.s,
     borderWidth: 1,
     borderColor: theme.color.accent,

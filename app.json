@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "roa2-companion",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "backgroundColor": "#0B0825",
     "ios": {
       "supportsTablet": true,
@@ -21,13 +21,8 @@
         "backgroundColor": "#0B0825"
       }
     },
-    "androidStatusBar": {
-      "barStyle": "light-content",
-      "translucent": true
-    },
     "androidNavigationBar": {
-      "barStyle": "light-content",
-      "backgroundColor": "#00000000"
+      "enforceContrast": false
     },
     "web": {
       "bundler": "metro",
@@ -50,16 +45,7 @@
           "fonts": ["./src/assets/fonts"]
         }
       ],
-      "expo-secure-store",
-      [
-        "react-native-edge-to-edge",
-        {
-          "android": {
-            "parentTheme": "Default",
-            "enforceNavigationBarContrast": false
-          }
-        }
-      ]
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

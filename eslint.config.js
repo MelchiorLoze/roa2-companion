@@ -2,6 +2,7 @@ import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import jest from 'eslint-plugin-jest';
 import react from 'eslint-plugin-react';
 import reactNative from 'eslint-plugin-react-native';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
@@ -65,6 +66,7 @@ export default defineConfig([
         },
       ],
       '@typescript-eslint/require-await': 'off',
+      '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
 
       'simple-import-sort/exports': 'warn',
       'simple-import-sort/imports': 'warn',
@@ -85,5 +87,14 @@ export default defineConfig([
       ],
     },
   },
-  globalIgnores(['dist/*', '**/*.js', '**/*.cjs']),
+  {
+    files: ['**/*.test.*'],
+    plugins: { jest },
+    extends: compat.extends('plugin:jest/recommended'),
+    rules: {
+      '@typescript-eslint/unbound-method': 'off',
+      'jest/unbound-method': 'error',
+    },
+  },
+  globalIgnores(['dist/*', '**/*.js', '**/*.cjs', '**/*.snap']),
 ]);
