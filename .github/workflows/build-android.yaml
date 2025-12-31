@@ -23,6 +23,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if build is needed
+        id: check
+        run: |
+          if git diff --name-only ${{ github.event.pull_request.base.sha || 'HEAD^' }} HEAD | grep -E '^(package-lock\.json|app\.json)$'; then
+            echo "Build is needed, proceeding..."
+          else
+            echo "::notice::No Android build-affecting changes detected, skipping build"
+            exit 0
+          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@v6
