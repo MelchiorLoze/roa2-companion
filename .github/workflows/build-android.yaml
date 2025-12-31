@@ -17,8 +17,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  check:
+    name: Check if build needed
+    runs-on: ubuntu-latest
+    outputs:
+      needed: ${{ steps.check.outputs.needed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check if build is needed
+        id: check
+        run: |
+          if git diff --name-only ${{ github.event.pull_request.base.sha || 'HEAD^' }} HEAD | grep -E '^(package-lock\.json|app\.json)$'; then
+            echo "needed=true" >> $GITHUB_OUTPUT
+            echo "Build is needed"
+          else
+            echo "needed=false" >> $GITHUB_OUTPUT
+            echo "::notice::No Android build-affecting changes detected"
+          fi
+
   build-android:
     name: Build Android APK
+    needs: check
+    if: needs.check.outputs.needed == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
