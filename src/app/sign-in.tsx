@@ -26,6 +26,7 @@ export default function SignIn() {
   if (isLoggedIn) return <Redirect href="/store" />;
 
   const onForgotPassword = () => {
+    // Do not call isKeyboardVisible in callback to avoid unnecessary re-renders
     if (Keyboard.isVisible()) Keyboard.dismiss();
     setShowResetPasswordDialog(true);
     setIsInvalid(false);
