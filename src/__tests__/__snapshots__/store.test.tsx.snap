@@ -43,7 +43,7 @@ exports[`Store matches snapshot 1`] = `
         "gap": 4,
         "justifyContent": "flex-end",
         "padding": 8,
-        "paddingRight": 12,
+        "paddingHorizontal": 12,
         "width": "100%",
       }
     }

@@ -12,7 +12,8 @@ const theme = {
     dark: '#161616',
     weak: '#676767',
     stat: '#FFBC51',
-    inactive: '#5A5C95',
+    inactive: '#5a5c95ff',
+    inactiveLight: '#888BE0',
     disabled: '#AAAAAA',
     upcoming: '#CACEFF',
     ongoing: '#FEDD84',
@@ -57,10 +58,17 @@ const theme = {
       pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#2D1D76', '#5B73CD'] as const),
     arrowButtonGradient: (pressed?: boolean) =>
       pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#0B0825', '#0B0825'] as const),
+    tabGradient: (selected: boolean) =>
+      selected ? (['#342F94', '#69506A'] as const) : (['#342F94', 'transparent'] as const),
+    tabUnderlineGradient: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,
     seasonTitleWrapperGradient: (crews = false) =>
       crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const),
     seasonTitleGradient: (crews = false) =>
       crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const),
+  },
+  gradient: {
+    horizontal: { start: { x: 0, y: 0 }, end: { x: 1, y: 0 } },
+    vertical: { start: { x: 0, y: 0 }, end: { x: 0, y: 1 } },
   },
   spacing: {
     none: 0,
