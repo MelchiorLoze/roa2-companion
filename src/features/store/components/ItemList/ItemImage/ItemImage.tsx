@@ -1,6 +1,5 @@
 import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image } from 'expo-image';
-import React from 'react';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
