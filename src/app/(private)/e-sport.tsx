@@ -12,21 +12,17 @@ import { type Tournament } from '@/features/e-sport/types/tournament';
 type Props = {
   refreshControl: ComponentProps<typeof ScrollView>['refreshControl'];
   tournaments: Tournament[];
+  isLoading: boolean;
   isError: boolean;
 };
 
-const Content = ({ refreshControl, tournaments, isError }: Readonly<Props>) => {
-  if (isError)
+const Content = ({ refreshControl, tournaments, isLoading, isError }: Readonly<Props>) => {
+  if (isLoading) return <Spinner />;
+
+  if (isError || tournaments.length === 0)
     return (
       <ScrollView refreshControl={refreshControl}>
         <Alert text="An error occurred while loading tournaments. Please try again later." />
-      </ScrollView>
-    );
-
-  if (tournaments.length === 0)
-    return (
-      <ScrollView refreshControl={refreshControl}>
-        <Alert text="No active tournaments at the moment. Please check back later." />
       </ScrollView>
     );
 
@@ -36,8 +32,6 @@ const Content = ({ refreshControl, tournaments, isError }: Readonly<Props>) => {
 export default function ESport() {
   const { tournaments, isLoading, isRefreshing, isError, selectedTab, selectActiveTab, selectPastTab, refresh } =
     useTournamentsTab();
-
-  if (isLoading) return <Spinner />;
 
   const refreshControl = <RefreshControl onRefresh={refresh} refreshing={isRefreshing} />;
 
@@ -50,7 +44,13 @@ export default function ESport() {
           { title: 'past', onPress: selectPastTab },
         ]}
       />
-      <Content isError={isError} key={selectedTab} refreshControl={refreshControl} tournaments={tournaments} />
+      <Content
+        isError={isError}
+        isLoading={isLoading}
+        key={selectedTab}
+        refreshControl={refreshControl}
+        tournaments={tournaments}
+      />
     </View>
   );
 }

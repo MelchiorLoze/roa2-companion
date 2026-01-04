@@ -16,7 +16,7 @@ type Props = {
 export const TournamentList = ({ tournaments, refreshControl }: Readonly<Props>) => {
   return (
     <FlatList
-      contentContainerStyle={styles.subContainer}
+      contentContainerStyle={styles.container}
       data={tournaments}
       keyExtractor={keyExtractor}
       refreshControl={refreshControl}
@@ -26,7 +26,7 @@ export const TournamentList = ({ tournaments, refreshControl }: Readonly<Props>)
 };
 
 const styles = StyleSheet.create((theme) => ({
-  subContainer: {
+  container: {
     padding: theme.spacing.l,
     gap: theme.spacing.l,
   },

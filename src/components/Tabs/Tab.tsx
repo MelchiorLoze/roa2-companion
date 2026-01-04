@@ -12,7 +12,7 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <Pressable onPress={onPress} style={styles.container}>
+    <Pressable disabled={selected} onPress={onPress} style={styles.container}>
       <LinearGradient {...theme.gradient.vertical} colors={theme.color.tabGradient(selected)} style={styles.inner}>
         <Text style={styles.label(selected)}>{title}</Text>
       </LinearGradient>
