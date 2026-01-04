@@ -3,7 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
-import { type TournamentDto, TournamentState } from '../../types/tournament';
+import { type TournamentDto, TournamentState } from '../../../types/tournament';
 import { useGetActiveTournaments } from './useGetActiveTournaments';
 
 const mockTournamentDto: TournamentDto = {

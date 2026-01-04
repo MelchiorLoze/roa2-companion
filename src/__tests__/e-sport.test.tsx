@@ -2,10 +2,10 @@ import { render, screen } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import ESport from '@/app/(private)/e-sport';
-import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetActiveTournaments';
+import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments';
 import { type Tournament, TournamentState } from '@/features/e-sport/types/tournament';
 
-jest.mock('@/features/e-sport/hooks/data/useGetActiveTournaments');
+jest.mock('@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments');
 
 const useGetActiveTournamentsMock = jest.mocked(useGetActiveTournaments);
 

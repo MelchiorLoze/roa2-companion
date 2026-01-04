@@ -54,7 +54,7 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
     width: '100%',
     padding: theme.spacing.s,
-    paddingRight: theme.spacing.m,
+    paddingHorizontal: theme.spacing.m,
     gap: theme.spacing.xs,
   },
   title: {

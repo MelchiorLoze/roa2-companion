@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useCompanionApiClient } from '@/hooks/apiClients/useCompanionApiClient/useCompanionApiClient';
 
-import { type TournamentDto } from '../../types/tournament';
-import { tournamentFromDto } from '../../utils/tournamentFromDto';
+import { type TournamentDto } from '../../../types/tournament';
+import { tournamentFromDto } from '../../../utils/tournamentFromDto';
 
 type GetActiveTournamentsResponse = {
   content: TournamentDto[];
@@ -16,7 +16,7 @@ export const useGetActiveTournaments = () => {
     queryKey: ['tournaments', 'active'],
     queryFn: () =>
       apiClient.get<GetActiveTournamentsResponse>('/v1/tournaments/active', {
-        params: { size: '100', minEntrants: '16' },
+        params: { size: '20', minEntrants: '16' },
       }),
     select: (response) => response.content.map((dto) => tournamentFromDto(dto)),
     staleTime: Infinity,
