@@ -15,6 +15,7 @@ export enum StatisticName {
   RANKED_S2_ELO = 'Ranked_SeasonEloPure_2',
   RANKED_S3_ELO = 'Ranked_SeasonEloPure_3',
   RANKED_S4_ELO = 'Ranked_SeasonEloPure_4',
+  RANKED_S5_ELO = 'Ranked_SeasonEloPure_5',
 
   RANKED_SETS = 'Ranked_Matches',
   RANKED_WINS = 'Ranked_Wins',
@@ -43,6 +44,7 @@ export enum StatisticName {
   FOR_MATCH_COUNT = 'For Match Count',
   GAL_MATCH_COUNT = 'Gal Match Count',
   KRA_MATCH_COUNT = 'Kra Match Count',
+  LAR_MATCH_COUNT = 'Lar Match Count',
   LOX_MATCH_COUNT = 'Lox Match Count',
   MAY_MATCH_COUNT = 'May Match Count',
   OLY_MATCH_COUNT = 'Oly Match Count',

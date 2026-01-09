@@ -8,10 +8,12 @@ import {
   ForsburnIcon,
   GalvanIcon,
   KraggIcon,
+  LaReinaIcon,
   LoxodontIcon,
   MaypulIcon,
   OlympiaIcon,
   OrcaneIcon,
+  RandomIcon,
   RannoIcon,
   WrastorIcon,
   ZetterburnIcon,
@@ -25,6 +27,7 @@ export enum Character {
   FORSBURN = 'For',
   GALVAN = 'Gal',
   KRAGG = 'Kra',
+  LAREINA = 'Lar',
   LOXODONT = 'Lox',
   MAYPUL = 'May',
   OLYMPIA = 'Oly',
@@ -32,6 +35,7 @@ export enum Character {
   RANNO = 'Ran',
   WRASTOR = 'Wra',
   ZETTERBURN = 'Zet',
+  RANDOM = 'Random',
 }
 
 export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
@@ -42,6 +46,7 @@ export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
   [Character.FORSBURN]: ForsburnIcon,
   [Character.GALVAN]: GalvanIcon,
   [Character.KRAGG]: KraggIcon,
+  [Character.LAREINA]: LaReinaIcon,
   [Character.LOXODONT]: LoxodontIcon,
   [Character.MAYPUL]: MaypulIcon,
   [Character.OLYMPIA]: OlympiaIcon,
@@ -49,4 +54,5 @@ export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
   [Character.RANNO]: RannoIcon,
   [Character.WRASTOR]: WrastorIcon,
   [Character.ZETTERBURN]: ZetterburnIcon,
+  [Character.RANDOM]: RandomIcon,
 });
