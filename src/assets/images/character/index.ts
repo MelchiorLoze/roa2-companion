@@ -15,3 +15,5 @@ export const OrcaneIcon: ImageSource = require('./orcane.png');
 export const RannoIcon: ImageSource = require('./ranno.png');
 export const WrastorIcon: ImageSource = require('./wrastor.png');
 export const ZetterburnIcon: ImageSource = require('./zetterburn.png');
+
+export const RandomIcon: ImageSource = require('./random.png');

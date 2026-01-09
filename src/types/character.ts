@@ -13,6 +13,7 @@ import {
   MaypulIcon,
   OlympiaIcon,
   OrcaneIcon,
+  RandomIcon,
   RannoIcon,
   WrastorIcon,
   ZetterburnIcon,
@@ -34,6 +35,7 @@ export enum Character {
   RANNO = 'Ran',
   WRASTOR = 'Wra',
   ZETTERBURN = 'Zet',
+  RANDOM = 'Random',
 }
 
 export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
@@ -52,4 +54,5 @@ export const CHARACTER_ICONS = Object.freeze<Record<Character, ImageSource>>({
   [Character.RANNO]: RannoIcon,
   [Character.WRASTOR]: WrastorIcon,
   [Character.ZETTERBURN]: ZetterburnIcon,
+  [Character.RANDOM]: RandomIcon,
 });
