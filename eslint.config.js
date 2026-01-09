@@ -1,40 +1,52 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
+import expoConfig from 'eslint-config-expo/flat.js';
 import jest from 'eslint-plugin-jest';
 import react from 'eslint-plugin-react';
-import reactNative from 'eslint-plugin-react-native';
+import reactCompiler from 'eslint-plugin-react-compiler';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import { defineConfig, globalIgnores } from 'eslint/config';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const { configs } = js;
-
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: configs.recommended,
-  allConfig: configs.all,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
-export default defineConfig([
+export default [
+  // Global ignores - must be first
   {
-    extends: compat.extends(
-      'expo',
-      'plugin:react-native/all',
-      'plugin:react/recommended',
-      'plugin:@typescript-eslint/recommended-type-checked',
-      'plugin:@typescript-eslint/stylistic-type-checked',
-    ),
+    ignores: ['dist/*', '**/*.js', '**/*.cjs', '**/*.snap', 'node_modules/*', 'android/*', 'ios/*'],
+  },
 
+  // Base configs
+  js.configs.recommended,
+  ...expoConfig,
+
+  // React Native config (using compat for old-style config)
+  ...compat.extends('plugin:react-native/all'),
+
+  // React Compiler config
+  reactCompiler.configs.recommended,
+
+  // React configs
+  react.configs.flat.recommended,
+  react.configs.flat['jsx-runtime'],
+
+  // TypeScript configs
+  ...compat.extends(
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:@typescript-eslint/stylistic-type-checked',
+  ),
+
+  // Main configuration
+  {
     plugins: {
-      'react-native': reactNative,
-      react,
-      '@typescript-eslint': typescriptEslint,
       'simple-import-sort': simpleImportSort,
     },
 
@@ -42,16 +54,20 @@ export default defineConfig([
       parser: tsParser,
       parserOptions: {
         projectService: true,
+        tsconfigRootDir: __dirname,
       },
     },
 
     rules: {
+      // React Native
       'react-native/sort-styles': 'off',
 
+      // React
       'react/jsx-sort-props': 'warn',
       'react/react-in-jsx-scope': 'off',
       'react/prefer-read-only-props': 'warn',
 
+      // TypeScript
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/consistent-type-exports': 'warn',
       '@typescript-eslint/consistent-type-imports': 'warn',
@@ -68,9 +84,11 @@ export default defineConfig([
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
 
+      // Import sorting
       'simple-import-sort/exports': 'warn',
       'simple-import-sort/imports': 'warn',
 
+      // Import restrictions
       'import/no-restricted-paths': [
         'warn',
         {
@@ -87,14 +105,15 @@ export default defineConfig([
       ],
     },
   },
+
+  // Test file specific configuration
   {
-    files: ['**/*.test.*'],
+    files: ['**/*.test.*', '**/__tests__/**'],
     plugins: { jest },
-    extends: compat.extends('plugin:jest/recommended'),
+    ...compat.extends('plugin:jest/recommended')[0],
     rules: {
       '@typescript-eslint/unbound-method': 'off',
       'jest/unbound-method': 'error',
     },
   },
-  globalIgnores(['dist/*', '**/*.js', '**/*.cjs', '**/*.snap']),
-]);
+];
