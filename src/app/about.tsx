@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { GitHubIcon } from '@/assets/images/link';
+import { GitHubIcon, KoFiIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
 import { Separator } from '@/components/Separator/Separator';
 
@@ -27,6 +27,13 @@ export default function About() {
         label="GitHub"
         logo={GitHubIcon}
         url={new URL('https://github.com/MelchiorLoze/roa2-companion')}
+      />
+      <Separator />
+      <ActionRow
+        iconName="arrow-outward"
+        label="Support the project"
+        logo={KoFiIcon}
+        url={new URL('https://ko-fi.com/roa2companion')}
       />
       <Separator />
     </View>
