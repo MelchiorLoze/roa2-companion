@@ -252,6 +252,18 @@ exports[`Store matches snapshot 1`] = `
                   4285232860,
                 ]
               }
+              endPoint={
+                [
+                  0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
                   "flex": 1,
@@ -264,6 +276,18 @@ exports[`Store matches snapshot 1`] = `
                   [
                     4279636041,
                     4279043869,
+                  ]
+                }
+                endPoint={
+                  [
+                    0,
+                    1,
+                  ]
+                }
+                startPoint={
+                  [
+                    0,
+                    0,
                   ]
                 }
                 style={
@@ -582,6 +606,18 @@ exports[`Store matches snapshot 1`] = `
                   4285232860,
                 ]
               }
+              endPoint={
+                [
+                  0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
                   "flex": 1,
@@ -594,6 +630,18 @@ exports[`Store matches snapshot 1`] = `
                   [
                     4279636041,
                     4279043869,
+                  ]
+                }
+                endPoint={
+                  [
+                    0,
+                    1,
+                  ]
+                }
+                startPoint={
+                  [
+                    0,
+                    0,
                   ]
                 }
                 style={
@@ -874,6 +922,18 @@ exports[`Store matches snapshot 1`] = `
                   4285232860,
                 ]
               }
+              endPoint={
+                [
+                  0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
                   "flex": 1,
@@ -886,6 +946,18 @@ exports[`Store matches snapshot 1`] = `
                   [
                     4279636041,
                     4279043869,
+                  ]
+                }
+                endPoint={
+                  [
+                    0,
+                    1,
+                  ]
+                }
+                startPoint={
+                  [
+                    0,
+                    0,
                   ]
                 }
                 style={
@@ -1204,6 +1276,18 @@ exports[`Store matches snapshot 1`] = `
                   4285232860,
                 ]
               }
+              endPoint={
+                [
+                  0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
                   "flex": 1,
@@ -1216,6 +1300,18 @@ exports[`Store matches snapshot 1`] = `
                   [
                     4279636041,
                     4279043869,
+                  ]
+                }
+                endPoint={
+                  [
+                    0,
+                    1,
+                  ]
+                }
+                startPoint={
+                  [
+                    0,
+                    0,
                   ]
                 }
                 style={
@@ -1496,6 +1592,18 @@ exports[`Store matches snapshot 1`] = `
                   4285232860,
                 ]
               }
+              endPoint={
+                [
+                  0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
                   "flex": 1,
@@ -1508,6 +1616,18 @@ exports[`Store matches snapshot 1`] = `
                   [
                     4279636041,
                     4279043869,
+                  ]
+                }
+                endPoint={
+                  [
+                    0,
+                    1,
+                  ]
+                }
+                startPoint={
+                  [
+                    0,
+                    0,
                   ]
                 }
                 style={

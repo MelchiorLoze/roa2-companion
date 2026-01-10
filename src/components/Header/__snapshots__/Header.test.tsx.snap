@@ -217,6 +217,18 @@ exports[`Header matches the snapshot 1`] = `
         4280687939,
       ]
     }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
     style={
       {
         "alignItems": "center",

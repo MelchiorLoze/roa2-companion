@@ -22,7 +22,11 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<P
       {showCurrencies ? <CurrenciesBalance style={styles.topContainer} /> : <View style={styles.topSpacing} />}
       <Separator height={2} variant="accent" />
       {title && (
-        <LinearGradient colors={theme.color.headerGradient} style={styles.bottomContainer(withBackNavigation)}>
+        <LinearGradient
+          {...theme.gradient.vertical}
+          colors={theme.color.headerGradient}
+          style={styles.bottomContainer(withBackNavigation)}
+        >
           {withBackNavigation && (
             <IconButton iconName="arrow-back" onPress={router.back} size={24} style={styles.backButton} />
           )}

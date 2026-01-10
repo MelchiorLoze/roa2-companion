@@ -17,8 +17,16 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   return (
     <Pressable onPress={onPress} role="button" style={styles.container}>
       {({ pressed }) => (
-        <LinearGradient colors={theme.color.borderGradient(pressed)} style={styles.borderGradient}>
-          <LinearGradient colors={theme.color.cardGradient(pressed)} style={styles.gradient}>
+        <LinearGradient
+          {...theme.gradient.vertical}
+          colors={theme.color.borderGradient(pressed)}
+          style={styles.borderGradient}
+        >
+          <LinearGradient
+            {...theme.gradient.vertical}
+            colors={theme.color.cardGradient(pressed)}
+            style={styles.gradient}
+          >
             <ItemImage item={item} />
 
             <View style={styles.infoContainer}>

@@ -29,7 +29,11 @@ export default function Store() {
     <>
       <LinearGradient colors={theme.color.storeGradient} style={styles.container}>
         {expirationDate && (
-          <LinearGradient colors={theme.color.blackGradient} end={[1, 0]} start={[0, 0]} style={styles.titleContainer}>
+          <LinearGradient
+            {...theme.gradient.horizontal}
+            colors={theme.color.blackGradient}
+            style={styles.titleContainer}
+          >
             <Text style={styles.title}>Items refresh in:</Text>
             <TimeCountdown date={expirationDate} style={styles.title} />
           </LinearGradient>

@@ -12,9 +12,8 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
       {({ pressed }) => (
         <>
           <LinearGradient
+            {...theme.gradient.horizontal}
             colors={theme.color.buttonGradient(pressed)}
-            end={[1, 0]}
-            start={[0, 0]}
             style={styles.button}
           >
             <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>

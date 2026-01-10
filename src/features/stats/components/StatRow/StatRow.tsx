@@ -12,11 +12,19 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient colors={theme.color.statLabelGradient} end={[1, 0]} start={[0, 0]} style={styles.labelContainer}>
+      <LinearGradient
+        {...theme.gradient.horizontal}
+        colors={theme.color.statLabelGradient}
+        style={styles.labelContainer}
+      >
         <Text style={styles.label}>{label}</Text>
       </LinearGradient>
       <View style={styles.separator} />
-      <LinearGradient colors={theme.color.statValueGradient} end={[1, 0]} start={[0, 0]} style={styles.valueContainer}>
+      <LinearGradient
+        {...theme.gradient.horizontal}
+        colors={theme.color.statValueGradient}
+        style={styles.valueContainer}
+      >
         <Text style={styles.value}>{value}</Text>
       </LinearGradient>
     </View>

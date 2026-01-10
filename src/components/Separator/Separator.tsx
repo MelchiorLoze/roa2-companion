@@ -12,12 +12,12 @@ type Props = {
 
 export const Separator = ({ variant = 'borderLight', pressed = false, height = 1 }: Readonly<Props>) => {
   const { theme } = useUnistyles();
+
   if (variant === 'gradient') {
     return (
       <LinearGradient
+        {...theme.gradient.horizontal}
         colors={theme.color.borderGradient(pressed)}
-        end={[1, 0]}
-        start={[0, 0]}
         style={styles.separator(variant, height)}
       />
     );

@@ -22,6 +22,7 @@ const Section = ({ withTitle = false, children }: Readonly<Props>) => {
   return (
     <LinearGradient
       colors={theme.color.statsGradient}
+      // horizontal gradient from left (1/3) to right (1)
       end={[1, 0]}
       start={[1 / 3, 0]}
       style={[styles.section, withTitle && styles.sectionWithTitle]}
