@@ -170,6 +170,14 @@ exports[`About matches snapshot 1`] = `
     </ViewManagerAdapter_ExpoLinearGradient>
   </View>
   <View
+    style={
+      {
+        "backgroundColor": "#CACEFF",
+        "height": 1,
+      }
+    }
+  />
+  <View
     accessibilityState={
       {
         "busy": undefined,
