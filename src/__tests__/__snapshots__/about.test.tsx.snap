@@ -170,6 +170,127 @@ exports[`About matches snapshot 1`] = `
     </ViewManagerAdapter_ExpoLinearGradient>
   </View>
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    role="link"
+  >
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          4278913061,
+          4278913061,
+        ]
+      }
+      endPoint={
+        [
+          1,
+          0,
+        ]
+      }
+      startPoint={
+        [
+          0,
+          0,
+        ]
+      }
+      style={
+        {
+          "alignItems": "center",
+          "backgroundColor": "#0B0825",
+          "flexDirection": "row",
+          "gap": 8,
+          "padding": 12,
+          "paddingHorizontal": 16,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="contain"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={20}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        source={
+          [
+            {
+              "testUri": "../../../src/assets/images/link/ko-fi.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 20,
+            "width": 20,
+          }
+        }
+        transition={null}
+        width={20}
+      />
+      <Text
+        style={
+          [
+            {
+              "color": "white",
+              "fontFamily": "FranklinGothicDemiCond-Regular",
+              "fontSize": 18,
+              "textTransform": "uppercase",
+            },
+            false,
+          ]
+        }
+      >
+        Support the project
+      </Text>
+      <
+        color="white"
+        name="arrow-outward"
+        size={20}
+        style={
+          {
+            "marginLeft": "auto",
+          }
+        }
+      />
+    </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
+  <View
     style={
       {
         "backgroundColor": "#CACEFF",
