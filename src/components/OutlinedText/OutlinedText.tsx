@@ -10,6 +10,7 @@ import {
   type SkTextStyle,
   type SkTypefaceFontProvider,
   TextAlign,
+  TextHeightBehavior,
   useFonts,
 } from '@shopify/react-native-skia';
 import { useWindowDimensions } from 'react-native';
@@ -39,6 +40,7 @@ const getParagraph = (text: string, style: OutlinedTextStyle, fontProvider: SkTy
 
   const paragraphStyle: SkParagraphStyle = {
     textAlign: TextAlign.Center,
+    textHeightBehavior: TextHeightBehavior.DisableLastDescent,
     maxLines: 1,
   };
 
@@ -59,7 +61,7 @@ const getParagraph = (text: string, style: OutlinedTextStyle, fontProvider: SkTy
     .pop()
     .build();
 
-  paragraphOutline.layout(100);
+  paragraphOutline.layout(Number.MAX_SAFE_INTEGER);
 
   return {
     paragraphOutline,

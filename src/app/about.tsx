@@ -1,6 +1,7 @@
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
+import { GitHubIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
 import { Separator } from '@/components/Separator/Separator';
 
@@ -24,7 +25,7 @@ export default function About() {
       <ActionRow
         iconName="arrow-outward"
         label="GitHub"
-        logo={new URL('https://github.githubassets.com/favicons/favicon-dark.png')}
+        logo={GitHubIcon}
         url={new URL('https://github.com/MelchiorLoze/roa2-companion')}
       />
       <Separator />

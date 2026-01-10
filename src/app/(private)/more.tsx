@@ -1,8 +1,10 @@
+import type { ImageSource } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Fragment } from 'react';
 import { ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
+import { DiscordIcon, DragdownIcon, RedditIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
 import { Separator } from '@/components/Separator/Separator';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
@@ -10,14 +12,14 @@ import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 type ExternalLink = Readonly<{
   label: string;
   url: URL;
-  logo?: URL;
+  logo?: ImageSource;
 }>;
 
 const externalLinks: readonly ExternalLink[] = [
   {
     label: 'Dragdown Wiki',
     url: new URL('https://dragdown.wiki/wiki/RoA2'),
-    logo: new URL('https://dragdown.wiki/favicon.ico'),
+    logo: DragdownIcon,
   },
   {
     label: 'Elo History',
@@ -26,14 +28,12 @@ const externalLinks: readonly ExternalLink[] = [
   {
     label: 'Game Reddit',
     url: new URL('https://www.reddit.com/r/RivalsOfAether/'),
-    logo: new URL('https://www.redditstatic.com/shreddit/assets/favicon/64x64.png'),
+    logo: RedditIcon,
   },
   {
     label: 'Game Discord',
     url: new URL('https://discord.gg/roa'),
-    logo: new URL(
-      'https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/62fddf0fde45a8baedcc7ee5_847541504914fd33810e70a0ea73177e%20(2)-1.png',
-    ),
+    logo: DiscordIcon,
   },
 ];
 

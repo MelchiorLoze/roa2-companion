@@ -147,6 +147,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   dateInfo: {
     gap: theme.spacing.xs,
+    alignItems: 'flex-end',
   },
   state: (tournamentState: TournamentState) => ({
     fontSize: 16,

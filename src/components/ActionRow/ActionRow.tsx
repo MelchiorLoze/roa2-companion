@@ -1,4 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
+import type { ImageSource } from 'expo-image';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { type ExternalPathString, useRouter } from 'expo-router';
@@ -18,7 +19,7 @@ type EitherLinkOrButton =
 
 type Props = {
   label: string;
-  logo?: URL;
+  logo?: ImageSource;
   iconName: ComponentProps<typeof MaterialIcons>['name'];
 } & EitherLinkOrButton;
 
@@ -38,7 +39,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
           start={[0, 0]}
           style={styles.container}
         >
-          {logo && <Image contentFit="contain" source={logo.toString()} style={styles.logo} />}
+          {logo && <Image contentFit="contain" source={logo} style={styles.logo} />}
           <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
           <MaterialIcons
             color={pressed ? theme.color.black : theme.color.white}

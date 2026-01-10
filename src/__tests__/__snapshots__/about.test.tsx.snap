@@ -129,7 +129,7 @@ exports[`About matches snapshot 1`] = `
         source={
           [
             {
-              "uri": "https://github.githubassets.com/favicons/favicon-dark.png",
+              "testUri": "../../../src/assets/images/link/github.png",
             },
           ]
         }
