@@ -13,7 +13,7 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.statLabelGradient}
         style={styles.labelContainer}
       >
@@ -21,7 +21,7 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
       </LinearGradient>
       <View style={styles.separator} />
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.statValueGradient}
         style={styles.valueContainer}
       >

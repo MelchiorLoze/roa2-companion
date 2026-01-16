@@ -23,7 +23,7 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<P
       <Separator height={2} variant="accent" />
       {title && (
         <LinearGradient
-          {...theme.gradient.vertical}
+          {...theme.color.gradient.properties({ direction: 'vertical' })}
           colors={theme.color.headerGradient}
           style={styles.bottomContainer(withBackNavigation)}
         >

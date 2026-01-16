@@ -12,7 +12,11 @@ export const Alert = ({ text, style }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient {...theme.gradient.vertical} colors={theme.color.alertGradient} style={[styles.container, style]}>
+    <LinearGradient
+      {...theme.color.gradient.properties({ direction: 'vertical' })}
+      colors={theme.color.alertGradient}
+      style={[styles.container, style]}
+    >
       <Ionicons name="alert-circle-sharp" style={styles.icon} />
       <Text style={styles.text}>{text}</Text>
     </LinearGradient>

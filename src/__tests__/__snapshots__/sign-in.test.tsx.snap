@@ -6,6 +6,7 @@ exports[`SignIn matches snapshot 1`] = `
   style={
     [
       {
+        "backgroundColor": "#0B0825",
         "flex": 1,
         "justifyContent": "center",
         "marginBottom": 0,
@@ -205,8 +206,8 @@ exports[`SignIn matches snapshot 1`] = `
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
-            4281146742,
-            4284183501,
+            4281147004,
+            4284183767,
           ]
         }
         endPoint={
@@ -323,6 +324,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
     style={
       [
         {
+          "backgroundColor": "#0B0825",
           "flex": 1,
           "justifyContent": "center",
           "marginBottom": 0,
@@ -522,8 +524,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4281146742,
-              4284183501,
+              4281147004,
+              4284183767,
             ]
           }
           endPoint={
@@ -774,8 +776,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             <ViewManagerAdapter_ExpoLinearGradient
               colors={
                 [
-                  4281146742,
-                  4284183501,
+                  4281147004,
+                  4284183767,
                 ]
               }
               endPoint={

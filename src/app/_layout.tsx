@@ -5,7 +5,7 @@ import * as NavigationBar from 'expo-navigation-bar';
 import { SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StrictMode, useEffect } from 'react';
-import { useUnistyles } from 'react-native-unistyles';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { AppBackground } from '@/assets/images';
 import { Header } from '@/components/Header/Header';
@@ -33,7 +33,7 @@ export default function RootLayout() {
           {/* Ensure content is drawn under the status bar */}
           <StatusBar backgroundColor="transparent" style="light" translucent />
 
-          <ImageBackground source={AppBackground} style={{ flex: 1 }}>
+          <ImageBackground source={AppBackground} style={styles.backgroundImage}>
             <Stack
               initialRouteName="sign-in"
               screenOptions={{
@@ -52,3 +52,9 @@ export default function RootLayout() {
     </StrictMode>
   );
 }
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+  },
+});

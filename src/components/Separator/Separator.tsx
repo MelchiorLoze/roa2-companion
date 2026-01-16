@@ -16,7 +16,7 @@ export const Separator = ({ variant = 'borderLight', pressed = false, height = 1
   if (variant === 'gradient') {
     return (
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.borderGradient(pressed)}
         style={styles.separator(variant, height)}
       />

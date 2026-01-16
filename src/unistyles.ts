@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native-unistyles';
 
+type GradientProperties = {
+  direction: 'horizontal' | 'vertical';
+  start?: number;
+  end?: number;
+};
+
 const theme = {
   color: {
     background: '#0B0825',
@@ -44,7 +50,6 @@ const theme = {
     alertGradient: ['#E3E2E4', '#7C7B87'] as const,
     blackGradient: ['transparent', 'black'] as const,
     storeGradient: ['#4F38D4BF', '#251A5EBF'] as const,
-    statsGradient: ['#4B7AB8', 'transparent'] as const,
     rankStatPositionGradient: ['#191256', '#271A83'] as const,
     rankStatProfileGradient: ['#1A135A', '#3420AA'] as const,
     rankStatRankGradient: ['#140F46', '#1F1769'] as const,
@@ -65,10 +70,17 @@ const theme = {
       crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const),
     seasonTitleGradient: (crews = false) =>
       crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const),
-  },
-  gradient: {
-    horizontal: { start: { x: 0, y: 0 }, end: { x: 1, y: 0 } },
-    vertical: { start: { x: 0, y: 0 }, end: { x: 0, y: 1 } },
+    gradient: {
+      properties: ({ direction, start = 0, end = 1 }: GradientProperties) =>
+        direction === 'horizontal'
+          ? ({ start: { x: start, y: 0 }, end: { x: end, y: 0 } } as const)
+          : ({ start: { x: 0, y: start }, end: { x: 0, y: end } } as const),
+      stats: {
+        // Values found from game mod kit LeaderboardBgCurve color curve
+        colors: ['#3960B0', '#63A5EC', '#63A5EC', '#385E8649', '#385E8600'] as const,
+        times: [-0.025, 0.027, 0.207, 0.78, 1.093] as const,
+      },
+    },
   },
   spacing: {
     none: 0,

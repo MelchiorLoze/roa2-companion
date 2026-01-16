@@ -34,7 +34,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
     >
       {({ pressed }) => (
         <LinearGradient
-          {...theme.gradient.horizontal}
+          {...theme.color.gradient.properties({ direction: 'horizontal' })}
           colors={theme.color.arrowButtonGradient(pressed)}
           style={styles.container}
         >

@@ -27,7 +27,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
     <View style={styles.container}>
       <View style={styles.firstSeparator} />
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.rankStatPositionGradient}
         style={styles.labelContainer}
       >
@@ -36,7 +36,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
       <View style={styles.secondSeparator} />
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.rankStatProfileGradient}
         style={[styles.labelContainer, styles.profileContainer]}
       >
@@ -57,7 +57,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
       <View style={styles.thirdSeparator(rank)} />
       <LinearGradient
-        {...theme.gradient.horizontal}
+        {...theme.color.gradient.properties({ direction: 'horizontal' })}
         colors={theme.color.rankStatRankGradient}
         style={styles.labelContainer}
       >

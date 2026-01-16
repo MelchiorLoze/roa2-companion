@@ -4,8 +4,8 @@ exports[`Separator renders correctly when pressed 1`] = `
 <ViewManagerAdapter_ExpoLinearGradient
   colors={
     [
-      4294026564,
-      4294967181,
+      4294027079,
+      4294825581,
     ]
   }
   endPoint={
@@ -78,7 +78,7 @@ exports[`Separator renders correctly with gradient variant 1`] = `
   colors={
     [
       4291481343,
-      4285232860,
+      4285232859,
     ]
   }
   endPoint={

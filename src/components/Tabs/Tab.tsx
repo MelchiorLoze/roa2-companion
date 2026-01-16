@@ -13,12 +13,16 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
 
   return (
     <Pressable disabled={selected} onPress={onPress} style={styles.container}>
-      <LinearGradient {...theme.gradient.vertical} colors={theme.color.tabGradient(selected)} style={styles.inner}>
+      <LinearGradient
+        {...theme.color.gradient.properties({ direction: 'vertical' })}
+        colors={theme.color.tabGradient(selected)}
+        style={styles.inner}
+      >
         <Text style={styles.label(selected)}>{title}</Text>
       </LinearGradient>
       {selected && (
         <LinearGradient
-          {...theme.gradient.horizontal}
+          {...theme.color.gradient.properties({ direction: 'horizontal' })}
           colors={theme.color.tabUnderlineGradient}
           locations={[0, 1 / 3, 2 / 3, 1]}
           style={styles.underline}

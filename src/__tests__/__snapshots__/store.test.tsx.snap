@@ -4,8 +4,20 @@ exports[`Store matches snapshot 1`] = `
 <ViewManagerAdapter_ExpoLinearGradient
   colors={
     [
-      4283381972,
-      4280621662,
+      3209640148,
+      3206879838,
+    ]
+  }
+  endPoint={
+    [
+      0,
+      1,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
     ]
   }
   style={
@@ -249,7 +261,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -603,7 +615,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -919,7 +931,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -1273,7 +1285,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -1352,7 +1364,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame_legendary_back.png",
                         },
                       ]
                     }
@@ -1589,7 +1601,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={

@@ -11,6 +11,7 @@ import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCh
 import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
+import { gradientLocationsFromTimes } from '@/utils/gradientLocationsFromTimes';
 
 type Props = {
   withTitle?: boolean;
@@ -19,12 +20,13 @@ type Props = {
 const Section = ({ withTitle = false, children }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
+  const { start, end, locations } = gradientLocationsFromTimes(theme.color.gradient.stats.times);
+
   return (
     <LinearGradient
-      colors={theme.color.statsGradient}
-      // horizontal gradient from left (1/3) to right (1)
-      end={[1, 0]}
-      start={[1 / 3, 0]}
+      {...theme.color.gradient.properties({ direction: 'horizontal', start, end })}
+      colors={theme.color.gradient.stats.colors}
+      locations={locations}
       style={[styles.section, withTitle && styles.sectionWithTitle]}
     >
       {children}

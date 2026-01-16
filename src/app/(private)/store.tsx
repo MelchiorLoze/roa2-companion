@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import type { PropsWithChildren } from 'react';
 import { useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
@@ -10,6 +11,20 @@ import { TimeCountdown } from '@/features/store/components/TimeCountdown/TimeCou
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
 import { type CoinStoreItem } from '@/features/store/types/item';
 import { type Item } from '@/types/item';
+
+const GradientWrapper = ({ children }: PropsWithChildren) => {
+  const { theme } = useUnistyles();
+
+  return (
+    <LinearGradient
+      {...theme.color.gradient.properties({ direction: 'vertical' })}
+      colors={theme.color.storeGradient}
+      style={styles.container}
+    >
+      {children}
+    </LinearGradient>
+  );
+};
 
 export default function Store() {
   const { theme } = useUnistyles();
@@ -23,14 +38,19 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <GradientWrapper>
+        <Spinner />
+      </GradientWrapper>
+    );
 
   return (
     <>
-      <LinearGradient colors={theme.color.storeGradient} style={styles.container}>
+      <GradientWrapper>
         {expirationDate && (
           <LinearGradient
-            {...theme.gradient.horizontal}
+            {...theme.color.gradient.properties({ direction: 'horizontal' })}
             colors={theme.color.blackGradient}
             style={styles.titleContainer}
           >
@@ -39,7 +59,7 @@ export default function Store() {
           </LinearGradient>
         )}
         <ItemList items={items} onSelect={openDialog} />
-      </LinearGradient>
+      </GradientWrapper>
       {selectedItem && <PurchaseConfirmationDialog item={selectedItem} onClose={closeDialog} />}
     </>
   );

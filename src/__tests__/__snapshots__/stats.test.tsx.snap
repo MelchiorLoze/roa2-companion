@@ -14,19 +14,31 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -1368,19 +1380,31 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -1832,19 +1856,31 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -2194,19 +2230,31 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -2685,19 +2733,31 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -3989,19 +4049,31 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -4422,19 +4494,31 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
@@ -4784,19 +4868,31 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4283136696,
-          0,
+          4281950384,
+          4284720620,
+          4284720620,
+          1228430982,
+          3694214,
         ]
       }
       endPoint={
         [
-          1,
+          1.093,
           0,
+        ]
+      }
+      locations={
+        [
+          0,
+          0.04651162790697675,
+          0.2075134168157424,
+          0.7200357781753132,
+          1,
         ]
       }
       startPoint={
         [
-          0.3333333333333333,
+          -0.025,
           0,
         ]
       }
