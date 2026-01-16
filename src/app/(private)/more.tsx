@@ -49,21 +49,19 @@ export default function More() {
   const { logout } = useAuth();
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <View>{externalLinks.map(renderItem)}</View>
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+      <View>{externalLinks.map(renderItem)}</View>
 
-        <View>
-          <Separator />
-          <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
-          <Separator />
-        </View>
+      <View>
+        <Separator />
+        <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
+        <Separator />
+      </View>
 
-        <View>
-          <Separator />
-          <ActionRow iconName="logout" label="Log out" onPress={logout} />
-          <Separator />
-        </View>
+      <View>
+        <Separator />
+        <ActionRow iconName="logout" label="Log out" onPress={logout} />
+        <Separator />
       </View>
     </ScrollView>
   );
@@ -71,6 +69,8 @@ export default function More() {
 
 const styles = StyleSheet.create((theme) => ({
   container: {
+    flex: 1,
     gap: theme.spacing.xl,
+    backgroundColor: theme.color.highlight,
   },
 }));

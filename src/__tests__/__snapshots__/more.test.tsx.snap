@@ -2,716 +2,715 @@
 
 exports[`More matches snapshot 1`] = `
 <RCTScrollView
+  contentContainerStyle={
+    {
+      "backgroundColor": "#2B1F74",
+      "flex": 1,
+      "gap": 24,
+    }
+  }
   showsVerticalScrollIndicator={false}
 >
   <View>
-    <View
-      style={
-        {
-          "gap": 24,
+    <View>
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
         }
-      }
-    >
-      <View>
-        <View
-          accessibilityState={
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="link"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
             {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
             }
           }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="link"
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279043869,
-                4279636041,
-              ]
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
             }
-            endPoint={
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
               [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
+                {
+                  "testUri": "../../../src/assets/images/link/dragdown.png",
+                },
               ]
             }
             style={
               {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
+                "height": 20,
+                "width": 20,
               }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
             }
           >
-            <ViewManagerAdapter_ExpoImage
-              containerViewRef={"[React.ref]"}
-              contentFit="contain"
-              contentPosition={
-                {
-                  "left": "50%",
-                  "top": "50%",
-                }
-              }
-              height={20}
-              nativeViewRef={"[React.ref]"}
-              onError={[Function]}
-              onLoad={[Function]}
-              onLoadStart={[Function]}
-              onProgress={[Function]}
-              placeholder={[]}
-              source={
-                [
-                  {
-                    "testUri": "../../../src/assets/images/link/dragdown.png",
-                  },
-                ]
-              }
-              style={
-                {
-                  "height": 20,
-                  "width": 20,
-                }
-              }
-              transition={null}
-              width={20}
-            />
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
-              }
-            >
-              Dragdown Wiki
-            </Text>
-            <
-              color="white"
-              name="arrow-outward"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
-            }
-          }
-        />
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="link"
-        >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279043869,
-                4279636041,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+            Dragdown Wiki
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
             style={
               {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
+                "marginLeft": "auto",
               }
             }
-          >
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
-              }
-            >
-              Elo History
-            </Text>
-            <
-              color="white"
-              name="arrow-outward"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
-            }
-          }
-        />
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="link"
-        >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279043869,
-                4279636041,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoImage
-              containerViewRef={"[React.ref]"}
-              contentFit="contain"
-              contentPosition={
-                {
-                  "left": "50%",
-                  "top": "50%",
-                }
-              }
-              height={20}
-              nativeViewRef={"[React.ref]"}
-              onError={[Function]}
-              onLoad={[Function]}
-              onLoadStart={[Function]}
-              onProgress={[Function]}
-              placeholder={[]}
-              source={
-                [
-                  {
-                    "testUri": "../../../src/assets/images/link/reddit.png",
-                  },
-                ]
-              }
-              style={
-                {
-                  "height": 20,
-                  "width": 20,
-                }
-              }
-              transition={null}
-              width={20}
-            />
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
-              }
-            >
-              Game Reddit
-            </Text>
-            <
-              color="white"
-              name="arrow-outward"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
-            }
-          }
-        />
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="link"
-        >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279043869,
-                4279636041,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoImage
-              containerViewRef={"[React.ref]"}
-              contentFit="contain"
-              contentPosition={
-                {
-                  "left": "50%",
-                  "top": "50%",
-                }
-              }
-              height={20}
-              nativeViewRef={"[React.ref]"}
-              onError={[Function]}
-              onLoad={[Function]}
-              onLoadStart={[Function]}
-              onProgress={[Function]}
-              placeholder={[]}
-              source={
-                [
-                  {
-                    "testUri": "../../../src/assets/images/link/discord.png",
-                  },
-                ]
-              }
-              style={
-                {
-                  "height": 20,
-                  "width": 20,
-                }
-              }
-              transition={null}
-              width={20}
-            />
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
-              }
-            >
-              Game Discord
-            </Text>
-            <
-              color="white"
-              name="arrow-outward"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
-            }
-          }
-        />
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
       </View>
-      <View>
-        <View
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="link"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
           style={
             {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
             }
           }
-        />
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="button"
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
+          <Text
+            style={
               [
-                4279043869,
-                4279636041,
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
               ]
             }
-            endPoint={
-              [
-                1,
-                0,
-              ]
+          >
+            Elo History
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
             }
-            startPoint={
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="link"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
               [
-                0,
-                0,
+                {
+                  "testUri": "../../../src/assets/images/link/reddit.png",
+                },
               ]
             }
             style={
               {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
+                "height": 20,
+                "width": 20,
               }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
             }
           >
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
+            Game Reddit
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
               }
-            >
-              About this app
-            </Text>
-            <
-              color="white"
-              name="arrow-forward"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
-          style={
-            {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
             }
-          }
-        />
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
       </View>
-      <View>
-        <View
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="link"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
           style={
             {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
             }
           }
-        />
-        <View
-          accessibilityState={
-            {
-              "busy": undefined,
-              "checked": undefined,
-              "disabled": undefined,
-              "expanded": undefined,
-              "selected": undefined,
-            }
-          }
-          accessibilityValue={
-            {
-              "max": undefined,
-              "min": undefined,
-              "now": undefined,
-              "text": undefined,
-            }
-          }
-          accessible={true}
-          collapsable={false}
-          focusable={true}
-          onBlur={[Function]}
-          onClick={[Function]}
-          onFocus={[Function]}
-          onResponderGrant={[Function]}
-          onResponderMove={[Function]}
-          onResponderRelease={[Function]}
-          onResponderTerminate={[Function]}
-          onResponderTerminationRequest={[Function]}
-          onStartShouldSetResponder={[Function]}
-          role="button"
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279043869,
-                4279636041,
-              ]
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="contain"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
             }
-            endPoint={
+            height={20}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
               [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
+                {
+                  "testUri": "../../../src/assets/images/link/discord.png",
+                },
               ]
             }
             style={
               {
-                "alignItems": "center",
-                "backgroundColor": "#0B0825",
-                "flexDirection": "row",
-                "gap": 8,
-                "padding": 12,
-                "paddingHorizontal": 16,
+                "height": 20,
+                "width": 20,
               }
+            }
+            transition={null}
+            width={20}
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
             }
           >
-            <Text
-              style={
-                [
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 18,
-                    "textTransform": "uppercase",
-                  },
-                  false,
-                ]
+            Game Discord
+          </Text>
+          <
+            color="white"
+            name="arrow-outward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
               }
-            >
-              Log out
-            </Text>
-            <
-              color="white"
-              name="logout"
-              size={20}
-              style={
-                {
-                  "marginLeft": "auto",
-                }
-              }
-            />
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </View>
-        <View
+            }
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+    </View>
+    <View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
           style={
             {
-              "backgroundColor": "#CACEFF",
-              "height": 1,
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
             }
           }
-        />
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            About this app
+          </Text>
+          <
+            color="white"
+            name="arrow-forward"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
       </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+    </View>
+    <View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        role="button"
+      >
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279043869,
+              4279636041,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#0B0825",
+              "flexDirection": "row",
+              "gap": 8,
+              "padding": 12,
+              "paddingHorizontal": 16,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 18,
+                  "textTransform": "uppercase",
+                },
+                false,
+              ]
+            }
+          >
+            Log out
+          </Text>
+          <
+            color="white"
+            name="logout"
+            size={20}
+            style={
+              {
+                "marginLeft": "auto",
+              }
+            }
+          />
+        </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
+      <View
+        style={
+          {
+            "backgroundColor": "#CACEFF",
+            "height": 1,
+          }
+        }
+      />
     </View>
   </View>
 </RCTScrollView>
