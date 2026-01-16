@@ -54,8 +54,8 @@ exports[`ESport matches snapshot with tournaments 1`] = `
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
-            4281610132,
-            4285091946,
+            3861914241,
+            3861255013,
           ]
         }
         endPoint={
@@ -93,10 +93,39 @@ exports[`ESport matches snapshot with tournaments 1`] = `
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
-            4285091946,
-            4294043866,
-            4294043866,
-            4285091946,
+            14277081,
+            1308283240,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            14277081,
+            3019889550,
+            3019889550,
+            14277081,
           ]
         }
         endPoint={
@@ -108,8 +137,8 @@ exports[`ESport matches snapshot with tournaments 1`] = `
         locations={
           [
             0,
-            0.3333333333333333,
-            0.6666666666666666,
+            0.3,
+            0.7,
             1,
           ]
         }
@@ -123,8 +152,48 @@ exports[`ESport matches snapshot with tournaments 1`] = `
           {
             "bottom": 0,
             "height": 2,
+            "left": 0,
             "position": "absolute",
-            "width": "100%",
+            "right": 0,
+          }
+        }
+      />
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            14277081,
+            3019898879,
+            3019898879,
+            14277081,
+          ]
+        }
+        endPoint={
+          [
+            1,
+            0,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.3,
+            0.7,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "bottom": 0,
+            "height": 2,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
           }
         }
       />
@@ -168,8 +237,8 @@ exports[`ESport matches snapshot with tournaments 1`] = `
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
-            4281610132,
-            3420052,
+            3861914241,
+            3861255013,
           ]
         }
         endPoint={
@@ -193,7 +262,7 @@ exports[`ESport matches snapshot with tournaments 1`] = `
         <Text
           style={
             {
-              "color": "#888BE0",
+              "color": "#5F46C2",
               "fontFamily": "FranklinGothicDemiCond-Regular",
               "fontSize": 16,
               "textAlign": "center",

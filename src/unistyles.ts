@@ -18,8 +18,8 @@ const theme = {
     dark: '#161616',
     weak: '#676767',
     stat: '#FFBC51',
-    inactive: '#5a5c95ff',
-    inactiveLight: '#888BE0',
+    inactive: '#5A5C95',
+    inactiveLight: '#5F46C2',
     disabled: '#AAAAAA',
     upcoming: '#CACEFF',
     ongoing: '#FEDD84',
@@ -55,7 +55,8 @@ const theme = {
         colors: ['#00000000', '#000000FF'] as const,
       },
       header: {
-        colors: ['#05011A', '#261D43'] as const,
+        colors: ['#130F2C00', '#AB91E833'] as const,
+        background: '#05011A',
       },
       button: {
         colors: (pressed?: boolean) =>
@@ -74,11 +75,21 @@ const theme = {
           pressed ? (['#F1A747', '#FDD66D'] as const) : (['#CACEFF', '#6B76DB'] as const),
       },
       tab: {
-        colors: (selected: boolean) =>
-          selected ? (['#342F94', '#69506A'] as const) : (['#342F94', '#342F9400'] as const),
+        colors: ['#302281E6', '#261365E6'] as const,
       },
-      tabUnderline: {
-        colors: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,
+      tabSelectedOverlay: {
+        // Rivals of Aether II Mod Kit - NavBarButtonOpenCurve
+        colors: ['#D9D9D900', '#FAD1684D'] as const,
+      },
+      tabSelectedGoldAccent: {
+        // Rivals of Aether II Mod Kit - NavBarButtonOpenAccentCurve
+        colors: ['#D9D9D900', '#FFDB8EB3', '#FFDB8EB3', '#D9D9D900'] as const,
+        times: [0, 0.3, 0.7, 1] as const,
+      },
+      tabSelectedWhiteAccent: {
+        // Rivals of Aether II Mod Kit - NavBarButtonOpenAccentWhiteCurve
+        colors: ['#D9D9D900', '#FFFFFFB3', '#FFFFFFB3', '#D9D9D900'] as const,
+        times: [0, 0.3, 0.7, 1] as const,
       },
       alert: {
         colors: ['#E3E2E4', '#7C7B87'] as const,
@@ -87,7 +98,7 @@ const theme = {
         colors: ['#4F38D4BF', '#251A5EBF'] as const,
       },
       stats: {
-        // Values found from game mod kit LeaderboardBgCurve color curve
+        // Rivals of Aether II Mod Kit - LeaderboardBgCurve
         colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'] as const,
         times: [-0.025, 0.027, 0.207, 0.78, 1.093] as const,
       },

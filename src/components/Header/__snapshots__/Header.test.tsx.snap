@@ -213,8 +213,8 @@ exports[`Header matches the snapshot 1`] = `
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
-        4278518042,
-        4280687939,
+        1249068,
+        866882024,
       ]
     }
     endPoint={
@@ -232,6 +232,7 @@ exports[`Header matches the snapshot 1`] = `
     style={
       {
         "alignItems": "center",
+        "backgroundColor": "#05011A",
         "flexDirection": "row",
         "paddingHorizontal": 8,
         "paddingVertical": 8,

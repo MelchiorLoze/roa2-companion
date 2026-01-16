@@ -15,18 +15,31 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
     <Pressable disabled={selected} onPress={onPress} style={styles.container}>
       <LinearGradient
         {...theme.color.gradient.coordinates({ direction: 'vertical' })}
-        colors={theme.color.gradient.tab.colors(selected)}
+        colors={theme.color.gradient.tab.colors}
         style={styles.inner}
       >
         <Text style={styles.label(selected)}>{title}</Text>
       </LinearGradient>
       {selected && (
-        <LinearGradient
-          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-          colors={theme.color.gradient.tabUnderline.colors}
-          locations={[0, 1 / 3, 2 / 3, 1]}
-          style={styles.underline}
-        />
+        <>
+          <LinearGradient
+            {...theme.color.gradient.coordinates({ direction: 'vertical' })}
+            colors={theme.color.gradient.tabSelectedOverlay.colors}
+            style={styles.selectedOverlay}
+          />
+          <LinearGradient
+            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+            colors={theme.color.gradient.tabSelectedGoldAccent.colors}
+            locations={theme.color.gradient.tabSelectedGoldAccent.times}
+            style={styles.underline}
+          />
+          <LinearGradient
+            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+            colors={theme.color.gradient.tabSelectedWhiteAccent.colors}
+            locations={theme.color.gradient.tabSelectedWhiteAccent.times}
+            style={styles.underline}
+          />
+        </>
       )}
     </Pressable>
   );
@@ -46,10 +59,18 @@ const styles = StyleSheet.create((theme) => ({
     color: selected ? theme.color.accent : theme.color.inactiveLight,
     textTransform: 'uppercase',
   }),
+  selectedOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
   underline: {
     position: 'absolute',
     height: 2,
-    width: '100%',
+    right: 0,
     bottom: 0,
+    left: 0,
   },
 }));

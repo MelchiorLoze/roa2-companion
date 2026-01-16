@@ -55,6 +55,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     alignItems: 'center',
     paddingVertical: withBackNavigation ? theme.spacing.s : theme.spacing.m,
     paddingHorizontal: withBackNavigation ? theme.spacing.s : theme.spacing.l,
+    backgroundColor: theme.color.gradient.header.background,
   }),
   backButton: {
     padding: theme.spacing.s,
