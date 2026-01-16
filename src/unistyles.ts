@@ -118,10 +118,16 @@ const theme = {
         colors: ['#1C1561', '#1F176A'] as const,
       },
       seasonTitleWrapper: {
-        colors: (crews = false) => (crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const)),
+        colors: (crews = false) =>
+          crews ? (['#65CADAFF', '#65CADA00'] as const) : (['#FF5039FF', '#FF503900'] as const),
       },
-      seasonTitle: {
-        colors: (crews = false) => (crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const)),
+      seasonTitleLeftToRight: {
+        colors: (crews = false) =>
+          crews ? (['#293B61FF', '#293B6100'] as const) : (['#610B2EFF', '#610B2E00'] as const),
+      },
+      seasonTitleRightToLeft: {
+        colors: (crews = false) =>
+          crews ? (['#3D399000', '#3D3990FF'] as const) : (['#BA1A2700', '#BA1A27FF'] as const),
       },
     },
   },

@@ -85,6 +85,6 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.l,
   },
   sectionWithTitle: {
-    marginTop: theme.spacing.m,
+    marginTop: theme.spacing.xl,
   },
 }));

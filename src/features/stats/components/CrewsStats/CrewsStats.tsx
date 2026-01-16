@@ -41,7 +41,7 @@ export const CrewsStats = () => {
 
 const styles = StyleSheet.create((theme) => ({
   titlePadding: {
-    height: 28,
+    height: theme.spacing.l,
   },
   setStatsContainer: {
     gap: theme.spacing.s,

@@ -49,7 +49,7 @@ exports[`Stats matches snapshot 1`] = `
             "padding": 8,
           },
           {
-            "marginTop": 12,
+            "marginTop": 24,
           },
         ]
       }
@@ -65,7 +65,7 @@ exports[`Stats matches snapshot 1`] = `
                 "translateX": -8,
               },
               {
-                "translateY": -16,
+                "translateY": "-50%",
               },
             ],
           }
@@ -74,13 +74,13 @@ exports[`Stats matches snapshot 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4292756532,
-              16777215,
+              4294922297,
+              16732217,
             ]
           }
           endPoint={
             [
-              1,
+              0.8,
               0,
             ]
           }
@@ -99,7 +99,36 @@ exports[`Stats matches snapshot 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             colors={
               [
-                4285862190,
+                4284549934,
+                6359854,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                12196391,
                 4290386471,
               ]
             }
@@ -117,25 +146,28 @@ exports[`Stats matches snapshot 1`] = `
             }
             style={
               {
-                "flexShrink": 1,
-                "padding": 4,
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
                 "paddingHorizontal": 16,
+                "paddingVertical": 4,
+                "textTransform": "uppercase",
               }
             }
           >
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Ranked - Season 1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            Ranked - Season 1
+          </Text>
         </ViewManagerAdapter_ExpoLinearGradient>
       </View>
       <View
@@ -1415,7 +1447,7 @@ exports[`Stats matches snapshot 1`] = `
             "padding": 8,
           },
           {
-            "marginTop": 12,
+            "marginTop": 24,
           },
         ]
       }
@@ -1431,7 +1463,7 @@ exports[`Stats matches snapshot 1`] = `
                 "translateX": -8,
               },
               {
-                "translateY": -16,
+                "translateY": "-50%",
               },
             ],
           }
@@ -1440,13 +1472,13 @@ exports[`Stats matches snapshot 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4284330190,
-              16777215,
+              4284861146,
+              6671066,
             ]
           }
           endPoint={
             [
-              1,
+              0.8,
               0,
             ]
           }
@@ -1465,7 +1497,36 @@ exports[`Stats matches snapshot 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             colors={
               [
-                4281353840,
+                4280892257,
+                2702177,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4012432,
                 4282202512,
               ]
             }
@@ -1483,31 +1544,34 @@ exports[`Stats matches snapshot 1`] = `
             }
             style={
               {
-                "flexShrink": 1,
-                "padding": 4,
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
                 "paddingHorizontal": 16,
+                "paddingVertical": 4,
+                "textTransform": "uppercase",
               }
             }
           >
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Crews - Season 1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            Crews - Season 1
+          </Text>
         </ViewManagerAdapter_ExpoLinearGradient>
       </View>
       <View
         style={
           {
-            "height": 28,
+            "height": 16,
           }
         }
       />
@@ -2768,7 +2832,7 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
             "padding": 8,
           },
           {
-            "marginTop": 12,
+            "marginTop": 24,
           },
         ]
       }
@@ -2784,7 +2848,7 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
                 "translateX": -8,
               },
               {
-                "translateY": -16,
+                "translateY": "-50%",
               },
             ],
           }
@@ -2793,13 +2857,13 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4292756532,
-              16777215,
+              4294922297,
+              16732217,
             ]
           }
           endPoint={
             [
-              1,
+              0.8,
               0,
             ]
           }
@@ -2818,7 +2882,36 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             colors={
               [
-                4285862190,
+                4284549934,
+                6359854,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                12196391,
                 4290386471,
               ]
             }
@@ -2836,25 +2929,28 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
             }
             style={
               {
-                "flexShrink": 1,
-                "padding": 4,
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
                 "paddingHorizontal": 16,
+                "paddingVertical": 4,
+                "textTransform": "uppercase",
               }
             }
           >
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Ranked - Season 2
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            Ranked - Season 2
+          </Text>
         </ViewManagerAdapter_ExpoLinearGradient>
       </View>
       <View
@@ -4084,7 +4180,7 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
             "padding": 8,
           },
           {
-            "marginTop": 12,
+            "marginTop": 24,
           },
         ]
       }
@@ -4100,7 +4196,7 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
                 "translateX": -8,
               },
               {
-                "translateY": -16,
+                "translateY": "-50%",
               },
             ],
           }
@@ -4109,13 +4205,13 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4284330190,
-              16777215,
+              4284861146,
+              6671066,
             ]
           }
           endPoint={
             [
-              1,
+              0.8,
               0,
             ]
           }
@@ -4134,7 +4230,36 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
           <ViewManagerAdapter_ExpoLinearGradient
             colors={
               [
-                4281353840,
+                4280892257,
+                2702177,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4012432,
                 4282202512,
               ]
             }
@@ -4152,31 +4277,34 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
             }
             style={
               {
-                "flexShrink": 1,
-                "padding": 4,
+                "bottom": "20%",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": "20%",
+              }
+            }
+          />
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
                 "paddingHorizontal": 16,
+                "paddingVertical": 4,
+                "textTransform": "uppercase",
               }
             }
           >
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Crews - Season 2
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            Crews - Season 2
+          </Text>
         </ViewManagerAdapter_ExpoLinearGradient>
       </View>
       <View
         style={
           {
-            "height": 28,
+            "height": 16,
           }
         }
       />
