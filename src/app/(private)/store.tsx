@@ -16,8 +16,8 @@ const GradientWrapper = ({ children }: PropsWithChildren) => {
 
   return (
     <LinearGradient
-      {...theme.color.gradient.properties({ direction: 'vertical' })}
-      colors={theme.color.storeGradient}
+      {...theme.color.gradient.coordinates({ direction: 'vertical' })}
+      colors={theme.color.gradient.store.colors}
       style={styles.container}
     >
       {children}
@@ -49,8 +49,8 @@ export default function Store() {
       <GradientWrapper>
         {expirationDate && (
           <LinearGradient
-            {...theme.color.gradient.properties({ direction: 'horizontal' })}
-            colors={theme.color.blackGradient}
+            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+            colors={theme.color.gradient.black.colors}
             style={styles.titleContainer}
           >
             <Text style={styles.title}>Items refresh in:</Text>

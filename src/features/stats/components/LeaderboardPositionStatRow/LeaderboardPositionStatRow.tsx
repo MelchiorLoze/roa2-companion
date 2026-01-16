@@ -27,8 +27,8 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
     <View style={styles.container}>
       <View style={styles.firstSeparator} />
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.rankStatPositionGradient}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.rankStatPosition.colors}
         style={styles.labelContainer}
       >
         <Text style={styles.label}>{position}</Text>
@@ -36,8 +36,8 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
       <View style={styles.secondSeparator} />
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.rankStatProfileGradient}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.rankStatProfile.colors}
         style={[styles.labelContainer, styles.profileContainer]}
       >
         <Canvas ref={canvasRef} style={styles.playerIcon}>
@@ -57,8 +57,8 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
       <View style={styles.thirdSeparator(rank)} />
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.rankStatRankGradient}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.rankStatRank.colors}
         style={styles.labelContainer}
       >
         {elo !== undefined && (rank || rankIcon) ? (

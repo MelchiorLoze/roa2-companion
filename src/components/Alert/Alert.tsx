@@ -13,8 +13,8 @@ export const Alert = ({ text, style }: Readonly<Props>) => {
 
   return (
     <LinearGradient
-      {...theme.color.gradient.properties({ direction: 'vertical' })}
-      colors={theme.color.alertGradient}
+      {...theme.color.gradient.coordinates({ direction: 'vertical' })}
+      colors={theme.color.gradient.alert.colors}
       style={[styles.container, style]}
     >
       <Ionicons name="alert-circle-sharp" style={styles.icon} />

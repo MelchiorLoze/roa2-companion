@@ -14,10 +14,10 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -1380,10 +1380,10 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -1856,10 +1856,10 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -2230,10 +2230,10 @@ exports[`Stats matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -2733,10 +2733,10 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -4049,10 +4049,10 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -4494,10 +4494,10 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }
@@ -4868,10 +4868,10 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4281950384,
-          4284720620,
-          4284720620,
-          1228430982,
+          3006881968,
+          3009652204,
+          3009652204,
+          859332230,
           3694214,
         ]
       }

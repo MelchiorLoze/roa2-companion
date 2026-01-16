@@ -13,16 +13,16 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.statLabelGradient}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.statLabel.colors}
         style={styles.labelContainer}
       >
         <Text style={styles.label}>{label}</Text>
       </LinearGradient>
       <View style={styles.separator} />
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.statValueGradient}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.statValue.colors}
         style={styles.valueContainer}
       >
         <Text style={styles.value}>{value}</Text>

@@ -24,7 +24,7 @@ const Section = ({ withTitle = false, children }: Readonly<Props>) => {
 
   return (
     <LinearGradient
-      {...theme.color.gradient.properties({ direction: 'horizontal', start, end })}
+      {...theme.color.gradient.coordinates({ direction: 'horizontal', start, end })}
       colors={theme.color.gradient.stats.colors}
       locations={locations}
       style={[styles.section, withTitle && styles.sectionWithTitle]}

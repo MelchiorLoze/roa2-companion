@@ -26,13 +26,13 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
     <Pressable onPress={() => router.push(tournament.url.toString() as ExternalPathString)}>
       {({ pressed }) => (
         <LinearGradient
-          {...theme.color.gradient.properties({ direction: 'horizontal' })}
-          colors={theme.color.borderGradient(pressed)}
+          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+          colors={theme.color.gradient.border.colors(pressed)}
           style={styles.borderGradient}
         >
           <LinearGradient
-            {...theme.color.gradient.properties({ direction: 'horizontal' })}
-            colors={theme.color.cardGradient(pressed)}
+            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+            colors={theme.color.gradient.card.colors(pressed)}
             style={styles.container}
           >
             <View style={styles.header}>

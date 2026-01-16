@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native-unistyles';
 
-type GradientProperties = {
+type CoordinatesProps = {
   direction: 'horizontal' | 'vertical';
   start?: number;
   end?: number;
@@ -46,39 +46,71 @@ const theme = {
     grandmaster: '#FC7575',
     aetherean: '#BD7CC5',
     // Gradients
-    headerGradient: ['#05011A', '#261D43'] as const,
-    alertGradient: ['#E3E2E4', '#7C7B87'] as const,
-    blackGradient: ['transparent', 'black'] as const,
-    storeGradient: ['#4F38D4BF', '#251A5EBF'] as const,
-    rankStatPositionGradient: ['#191256', '#271A83'] as const,
-    rankStatProfileGradient: ['#1A135A', '#3420AA'] as const,
-    rankStatRankGradient: ['#140F46', '#1F1769'] as const,
-    statLabelGradient: ['#191256', '#3420AA'] as const,
-    statValueGradient: ['#1C1561', '#1F176A'] as const,
-    cardGradient: (pressed?: boolean) =>
-      pressed ? (['#FDD66D', '#F1A747'] as const) : (['#161049', '#0D071D'] as const),
-    borderGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#CACEFF', '#6B76DB'] as const),
-    buttonGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#2D1E7C', '#5B74D7'] as const),
-    arrowButtonGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#0D071D', '#161049'] as const),
-    tabGradient: (selected: boolean) =>
-      selected ? (['#342F94', '#69506A'] as const) : (['#342F94', 'transparent'] as const),
-    tabUnderlineGradient: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,
-    seasonTitleWrapperGradient: (crews = false) =>
-      crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const),
-    seasonTitleGradient: (crews = false) =>
-      crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const),
     gradient: {
-      properties: ({ direction, start = 0, end = 1 }: GradientProperties) =>
+      coordinates: ({ direction, start = 0, end = 1 }: CoordinatesProps) =>
         direction === 'horizontal'
           ? ({ start: { x: start, y: 0 }, end: { x: end, y: 0 } } as const)
           : ({ start: { x: 0, y: start }, end: { x: 0, y: end } } as const),
+      black: {
+        colors: ['#00000000', '#000000FF'] as const,
+      },
+      header: {
+        colors: ['#05011A', '#261D43'] as const,
+      },
+      button: {
+        colors: (pressed?: boolean) =>
+          pressed ? (['#F1A747', '#FDD66D'] as const) : (['#2D1E7C', '#5B74D7'] as const),
+      },
+      arrowButton: {
+        colors: (pressed?: boolean) =>
+          pressed ? (['#F1A747', '#FDD66D'] as const) : (['#0D071D', '#161049'] as const),
+      },
+      card: {
+        colors: (pressed?: boolean) =>
+          pressed ? (['#FDD66D', '#F1A747'] as const) : (['#161049', '#0D071D'] as const),
+      },
+      border: {
+        colors: (pressed?: boolean) =>
+          pressed ? (['#F1A747', '#FDD66D'] as const) : (['#CACEFF', '#6B76DB'] as const),
+      },
+      tab: {
+        colors: (selected: boolean) =>
+          selected ? (['#342F94', '#69506A'] as const) : (['#342F94', '#342F9400'] as const),
+      },
+      tabUnderline: {
+        colors: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,
+      },
+      alert: {
+        colors: ['#E3E2E4', '#7C7B87'] as const,
+      },
+      store: {
+        colors: ['#4F38D4BF', '#251A5EBF'] as const,
+      },
       stats: {
         // Values found from game mod kit LeaderboardBgCurve color curve
-        colors: ['#3960B0', '#63A5EC', '#63A5EC', '#385E8649', '#385E8600'] as const,
+        colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'] as const,
         times: [-0.025, 0.027, 0.207, 0.78, 1.093] as const,
+      },
+      rankStatPosition: {
+        colors: ['#191256', '#271A83'] as const,
+      },
+      rankStatProfile: {
+        colors: ['#1A135A', '#3420AA'] as const,
+      },
+      rankStatRank: {
+        colors: ['#140F46', '#1F1769'] as const,
+      },
+      statLabel: {
+        colors: ['#191256', '#3420AA'] as const,
+      },
+      statValue: {
+        colors: ['#1C1561', '#1F176A'] as const,
+      },
+      seasonTitleWrapper: {
+        colors: (crews = false) => (crews ? (['#5DB0CE', '#FFFFFF00'] as const) : (['#DE4434', '#FFFFFF00'] as const)),
+      },
+      seasonTitle: {
+        colors: (crews = false) => (crews ? (['#304670', '#3D3990'] as const) : (['#75112E', '#BA1A27'] as const)),
       },
     },
   },

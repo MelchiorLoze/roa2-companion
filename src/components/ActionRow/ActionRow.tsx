@@ -33,8 +33,8 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
     >
       {({ pressed }) => (
         <LinearGradient
-          {...theme.color.gradient.properties({ direction: 'horizontal' })}
-          colors={theme.color.arrowButtonGradient(pressed)}
+          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+          colors={theme.color.gradient.arrowButton.colors(pressed)}
           style={styles.container}
         >
           {logo && <Image contentFit="contain" source={logo} style={styles.logo} />}

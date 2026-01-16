@@ -13,13 +13,13 @@ export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.color.gradient.properties({ direction: 'horizontal' })}
-        colors={theme.color.seasonTitleWrapperGradient(variant === 'crews')}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+        colors={theme.color.gradient.seasonTitleWrapper.colors(variant === 'crews')}
         style={styles.wrapper}
       >
         <LinearGradient
-          {...theme.color.gradient.properties({ direction: 'horizontal' })}
-          colors={theme.color.seasonTitleGradient(variant === 'crews')}
+          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+          colors={theme.color.gradient.seasonTitle.colors(variant === 'crews')}
           style={styles.titleContainer}
         >
           <Text style={styles.title}>{seasonName}</Text>
