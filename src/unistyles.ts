@@ -43,7 +43,7 @@ const theme = {
     headerGradient: ['#05011A', '#261D43'] as const,
     alertGradient: ['#E3E2E4', '#7C7B87'] as const,
     blackGradient: ['transparent', 'black'] as const,
-    storeGradient: ['#4F38D4', '#251A5E'] as const,
+    storeGradient: ['#4F38D4BF', '#251A5EBF'] as const,
     statsGradient: ['#4B7AB8', 'transparent'] as const,
     rankStatPositionGradient: ['#191256', '#271A83'] as const,
     rankStatProfileGradient: ['#1A135A', '#3420AA'] as const,
@@ -51,13 +51,13 @@ const theme = {
     statLabelGradient: ['#191256', '#3420AA'] as const,
     statValueGradient: ['#1C1561', '#1F176A'] as const,
     cardGradient: (pressed?: boolean) =>
-      pressed ? (['#FFFF8D', '#F1A544'] as const) : (['#161049', '#0D071D'] as const),
+      pressed ? (['#FDD66D', '#F1A747'] as const) : (['#161049', '#0D071D'] as const),
     borderGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#CACEFF', '#6B76DC'] as const),
+      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#CACEFF', '#6B76DB'] as const),
     buttonGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#2D1D76', '#5B73CD'] as const),
+      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#2D1E7C', '#5B74D7'] as const),
     arrowButtonGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A544', '#FFFF8D'] as const) : (['#0B0825', '#0B0825'] as const),
+      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#0B0825', '#0B0825'] as const),
     tabGradient: (selected: boolean) =>
       selected ? (['#342F94', '#69506A'] as const) : (['#342F94', 'transparent'] as const),
     tabUnderlineGradient: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,
