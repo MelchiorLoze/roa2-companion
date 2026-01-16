@@ -62,7 +62,7 @@ const theme = {
     buttonGradient: (pressed?: boolean) =>
       pressed ? (['#F1A747', '#FDD66D'] as const) : (['#2D1E7C', '#5B74D7'] as const),
     arrowButtonGradient: (pressed?: boolean) =>
-      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#0B0825', '#0B0825'] as const),
+      pressed ? (['#F1A747', '#FDD66D'] as const) : (['#0D071D', '#161049'] as const),
     tabGradient: (selected: boolean) =>
       selected ? (['#342F94', '#69506A'] as const) : (['#342F94', 'transparent'] as const),
     tabUnderlineGradient: ['#69506A', '#F1E8DA', '#F1E8DA', '#69506A'] as const,

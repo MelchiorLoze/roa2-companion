@@ -1,6 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import type { ImageSource } from 'expo-image';
-import { Image } from 'expo-image';
+import { Image, type ImageSource } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { type ExternalPathString, useRouter } from 'expo-router';
 import { type ComponentProps } from 'react';

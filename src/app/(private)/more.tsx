@@ -1,4 +1,4 @@
-import type { ImageSource } from 'expo-image';
+import { type ImageSource } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { Fragment } from 'react';
 import { ScrollView, View } from 'react-native';

@@ -1,6 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import type { PropsWithChildren } from 'react';
-import { useState } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
