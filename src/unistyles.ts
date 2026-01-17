@@ -52,10 +52,10 @@ const theme = {
           ? ({ start: { x: start, y: 0 }, end: { x: end, y: 0 } } as const)
           : ({ start: { x: 0, y: start }, end: { x: 0, y: end } } as const),
       black: {
-        colors: ['#00000000', '#000000FF'] as const,
+        colors: ['#00000000', '#000000FF'],
       },
       header: {
-        colors: ['#130F2C00', '#AB91E833'] as const,
+        colors: ['#130F2C00', '#AB91E833'],
         background: '#05011A',
       },
       button: {
@@ -75,47 +75,46 @@ const theme = {
           pressed ? (['#F1A747', '#FDD66D'] as const) : (['#CACEFF', '#6B76DB'] as const),
       },
       tab: {
-        colors: ['#302281E6', '#261365E6'] as const,
+        colors: ['#302281E6', '#261365E6'],
       },
       tabSelectedOverlay: {
         // Rivals of Aether II Mod Kit - NavBarButtonOpenCurve
-        colors: ['#D9D9D900', '#FAD1684D'] as const,
+        colors: ['#D9D9D900', '#FAD1684D'],
       },
       tabSelectedGoldAccent: {
         // Rivals of Aether II Mod Kit - NavBarButtonOpenAccentCurve
-        colors: ['#D9D9D900', '#FFDB8EB3', '#FFDB8EB3', '#D9D9D900'] as const,
-        times: [0, 0.3, 0.7, 1] as const,
+        colors: ['#D9D9D900', '#FFDB8EB3', '#FFDB8EB3', '#D9D9D900'],
+        times: [0, 0.3, 0.7, 1],
       },
       tabSelectedWhiteAccent: {
         // Rivals of Aether II Mod Kit - NavBarButtonOpenAccentWhiteCurve
-        colors: ['#D9D9D900', '#FFFFFFB3', '#FFFFFFB3', '#D9D9D900'] as const,
-        times: [0, 0.3, 0.7, 1] as const,
+        colors: ['#D9D9D900', '#FFFFFFB3', '#FFFFFFB3', '#D9D9D900'],
+        times: [0, 0.3, 0.7, 1],
       },
       alert: {
-        colors: ['#E3E2E4', '#7C7B87'] as const,
+        // TODO: Verify colors
+        colors: ['#E3E2E4', '#7C7B87'],
       },
       store: {
-        colors: ['#4F38D4BF', '#251A5EBF'] as const,
+        colors: ['#4F38D4BF', '#251A5EBF'],
       },
       stats: {
         // Rivals of Aether II Mod Kit - LeaderboardBgCurve
-        colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'] as const,
-        times: [-0.025, 0.027, 0.207, 0.78, 1.093] as const,
+        colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'],
+        times: [-0.025, 0.027, 0.207, 0.78, 1.093],
       },
-      rankStatPosition: {
-        colors: ['#191256', '#271A83'] as const,
+      statRowBackground: {
+        colors: ['#191256', '#1F176A'],
       },
-      rankStatProfile: {
-        colors: ['#1A135A', '#3420AA'] as const,
+      statRowOverlay: {
+        colors: ['#1C156100', '#3420ABFF'],
       },
-      rankStatRank: {
-        colors: ['#140F46', '#1F1769'] as const,
+      statPositionOverlay: {
+        colors: ['#1C156100', '#3420AB83'],
       },
-      statLabel: {
-        colors: ['#191256', '#3420AA'] as const,
-      },
-      statValue: {
-        colors: ['#1C1561', '#1F176A'] as const,
+      statRankOverlay: {
+        colors: ['#000000FF', '#00000000'],
+        times: [-0.693334, 0.306666],
       },
       seasonTitleWrapper: {
         colors: (crews = false) =>

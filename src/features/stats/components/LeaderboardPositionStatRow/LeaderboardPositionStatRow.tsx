@@ -6,6 +6,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
+import { gradientLocationsFromTimes } from '@/utils/gradientLocationsFromTimes';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
@@ -23,12 +24,20 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
   const { theme } = useUnistyles();
   const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
+  const { locations: rankOverlayLocations, ...rankOverlayCoordinates } = gradientLocationsFromTimes(
+    theme.color.gradient.statRankOverlay.times,
+  );
+
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      style={styles.container}
+      {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
+      colors={theme.color.gradient.statRowBackground.colors}
+    >
       <View style={styles.firstSeparator} />
       <LinearGradient
         {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.rankStatPosition.colors}
+        colors={theme.color.gradient.statPositionOverlay.colors}
         style={styles.labelContainer}
       >
         <Text style={styles.label}>{position}</Text>
@@ -37,7 +46,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
       <View style={styles.secondSeparator} />
       <LinearGradient
         {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.rankStatProfile.colors}
+        colors={theme.color.gradient.statRowOverlay.colors}
         style={[styles.labelContainer, styles.profileContainer]}
       >
         <Canvas ref={canvasRef} style={styles.playerIcon}>
@@ -57,8 +66,9 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
       <View style={styles.thirdSeparator(rank)} />
       <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.rankStatRank.colors}
+        {...theme.color.gradient.coordinates({ direction: 'horizontal', ...rankOverlayCoordinates })}
+        colors={theme.color.gradient.statRankOverlay.colors}
+        locations={rankOverlayLocations}
         style={styles.labelContainer}
       >
         {elo !== undefined && (rank || rankIcon) ? (
@@ -70,7 +80,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
           <OutlinedText style={styles.unrankedLabel} text="UNRANKED" />
         )}
       </LinearGradient>
-    </View>
+    </LinearGradient>
   );
 };
 
