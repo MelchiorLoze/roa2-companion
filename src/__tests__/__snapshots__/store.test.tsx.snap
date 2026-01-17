@@ -347,7 +347,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-back.png",
                         },
                       ]
                     }
@@ -410,7 +410,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
                         },
                       ]
                     }
@@ -701,7 +701,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-epic-back.png",
                         },
                       ]
                     }
@@ -764,7 +764,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-epic-front.png",
                         },
                       ]
                     }
@@ -1017,7 +1017,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_rare_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-rare-back.png",
                         },
                       ]
                     }
@@ -1080,7 +1080,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_rare_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-rare-front.png",
                         },
                       ]
                     }
@@ -1371,7 +1371,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_legendary_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-legendary-back.png",
                         },
                       ]
                     }
@@ -1434,7 +1434,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_legendary_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-legendary-front.png",
                         },
                       ]
                     }
@@ -1687,7 +1687,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-back.png",
                         },
                       ]
                     }
@@ -1750,7 +1750,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
                         },
                       ]
                     }
