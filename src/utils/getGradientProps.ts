@@ -1,4 +1,4 @@
-import type { ColorValue } from 'react-native';
+import { type ColorValue } from 'react-native';
 
 export type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
