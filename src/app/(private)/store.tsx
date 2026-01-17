@@ -1,8 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { type PropsWithChildren, useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { ItemList } from '@/features/store/components/ItemList/ItemList';
 import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';
@@ -15,11 +15,7 @@ const GradientWrapper = ({ children }: PropsWithChildren) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient
-      {...theme.color.gradient.coordinates({ direction: 'vertical' })}
-      colors={theme.color.gradient.store.colors}
-      style={styles.container}
-    >
+    <LinearGradient {...theme.color.gradient.store} style={styles.container} vertical>
       {children}
     </LinearGradient>
   );
@@ -48,13 +44,9 @@ export default function Store() {
     <>
       <GradientWrapper>
         {expirationDate && (
-          <LinearGradient
-            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-            colors={theme.color.gradient.black.colors}
-            style={styles.titleContainer}
-          >
-            <Text style={styles.title}>Items refresh in:</Text>
-            <TimeCountdown date={expirationDate} style={styles.title} />
+          <LinearGradient {...theme.color.gradient.storeCountdown} horizontal style={styles.timerContainer}>
+            <Text style={styles.timer}>Items refresh in:</Text>
+            <TimeCountdown date={expirationDate} style={styles.timer} />
           </LinearGradient>
         )}
         <ItemList items={items} onSelect={openDialog} />
@@ -71,16 +63,17 @@ const styles = StyleSheet.create((theme) => ({
     paddingBottom: theme.spacing.none,
     gap: theme.spacing.l,
   },
-  titleContainer: {
+  timerContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: '100%',
+    alignSelf: 'flex-end',
+    minWidth: '90%',
     padding: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     gap: theme.spacing.xs,
   },
-  title: {
+  timer: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 18,
     color: theme.color.white,

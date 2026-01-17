@@ -206,8 +206,8 @@ exports[`SignIn matches snapshot 1`] = `
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
-            4281147004,
-            4284183767,
+            4281147000,
+            4284184016,
           ]
         }
         endPoint={
@@ -216,9 +216,15 @@ exports[`SignIn matches snapshot 1`] = `
             0,
           ]
         }
-        startPoint={
+        locations={
           [
             0,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0.006,
             0,
           ]
         }
@@ -524,8 +530,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         <ViewManagerAdapter_ExpoLinearGradient
           colors={
             [
-              4281147004,
-              4284183767,
+              4281147000,
+              4284184016,
             ]
           }
           endPoint={
@@ -534,9 +540,15 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               0,
             ]
           }
-          startPoint={
+          locations={
             [
               0,
+              1,
+            ]
+          }
+          startPoint={
+            [
+              0.006,
               0,
             ]
           }
@@ -776,8 +788,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             <ViewManagerAdapter_ExpoLinearGradient
               colors={
                 [
-                  4281147004,
-                  4284183767,
+                  4281147000,
+                  4284184016,
                 ]
               }
               endPoint={
@@ -786,9 +798,15 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
                   0,
                 ]
               }
-              startPoint={
+              locations={
                 [
                   0,
+                  1,
+                ]
+              }
+              startPoint={
+                [
+                  0.006,
                   0,
                 ]
               }

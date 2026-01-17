@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   seasonName: string;
@@ -13,18 +14,18 @@ export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal', end: 0.8 })}
-        colors={theme.color.gradient.seasonTitleWrapper.colors(variant === 'crews')}
+        {...theme.color.gradient.seasonTitleWrapper(variant === 'crews')}
+        horizontal
         style={styles.wrapper}
       >
         <LinearGradient
-          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-          colors={theme.color.gradient.seasonTitleLeftToRight.colors(variant === 'crews')}
+          {...theme.color.gradient.seasonTitleLeftToRight(variant === 'crews')}
+          horizontal
           style={styles.titleBackground}
         />
         <LinearGradient
-          {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-          colors={theme.color.gradient.seasonTitleRightToLeft.colors(variant === 'crews')}
+          {...theme.color.gradient.seasonTitleRightToLeft(variant === 'crews')}
+          horizontal
           style={styles.titleBackground}
         />
         <Text style={styles.title}>{seasonName}</Text>

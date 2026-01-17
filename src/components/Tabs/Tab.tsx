@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '../LinearGradient/LinearGradient';
 
 type Props = {
   title: string;
@@ -13,32 +14,14 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
 
   return (
     <Pressable disabled={selected} onPress={onPress} style={styles.container}>
-      <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'vertical' })}
-        colors={theme.color.gradient.tab.colors}
-        style={styles.inner}
-      >
+      <LinearGradient {...theme.color.gradient.tab} style={styles.inner} vertical>
         <Text style={styles.label(selected)}>{title}</Text>
       </LinearGradient>
       {selected && (
         <>
-          <LinearGradient
-            {...theme.color.gradient.coordinates({ direction: 'vertical' })}
-            colors={theme.color.gradient.tabSelectedOverlay.colors}
-            style={styles.selectedOverlay}
-          />
-          <LinearGradient
-            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-            colors={theme.color.gradient.tabSelectedGoldAccent.colors}
-            locations={theme.color.gradient.tabSelectedGoldAccent.times}
-            style={styles.underline}
-          />
-          <LinearGradient
-            {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-            colors={theme.color.gradient.tabSelectedWhiteAccent.colors}
-            locations={theme.color.gradient.tabSelectedWhiteAccent.times}
-            style={styles.underline}
-          />
+          <LinearGradient {...theme.color.gradient.tabSelectedOverlay} style={styles.selectedOverlay} vertical />
+          <LinearGradient {...theme.color.gradient.tabSelectedGoldAccent} horizontal style={styles.underline} />
+          <LinearGradient {...theme.color.gradient.tabSelectedWhiteAccent} horizontal style={styles.underline} />
         </>
       )}
     </Pressable>

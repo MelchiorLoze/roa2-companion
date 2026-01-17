@@ -605,12 +605,11 @@ exports[`ESport matches snapshot with tournaments 1`] = `
                     }
                   >
                     <
-                      name="wifi"
+                      name="language"
                       style={
                         {
                           "color": "white",
-                          "fontSize": 18,
-                          "paddingBottom": 2,
+                          "fontSize": 20,
                         }
                       }
                     />
@@ -1310,12 +1309,11 @@ exports[`ESport matches snapshot with tournaments 1`] = `
                     }
                   >
                     <
-                      name="wifi"
+                      name="language"
                       style={
                         {
                           "color": "white",
-                          "fontSize": 18,
-                          "paddingBottom": 2,
+                          "fontSize": 20,
                         }
                       }
                     />

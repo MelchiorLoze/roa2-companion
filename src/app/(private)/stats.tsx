@@ -1,8 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { type PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { CharacterStats } from '@/features/stats/components/CharacterStats/CharacterStats';
 import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';
 import { GlobalStats } from '@/features/stats/components/GlobalStats/GlobalStats';
@@ -11,7 +11,6 @@ import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCh
 import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
-import { gradientLocationsFromTimes } from '@/utils/gradientLocationsFromTimes';
 
 type Props = {
   withTitle?: boolean;
@@ -20,13 +19,10 @@ type Props = {
 const Section = ({ withTitle = false, children }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
-  const { start, end, locations } = gradientLocationsFromTimes(theme.color.gradient.stats.times);
-
   return (
     <LinearGradient
-      {...theme.color.gradient.coordinates({ direction: 'horizontal', start, end })}
-      colors={theme.color.gradient.stats.colors}
-      locations={locations}
+      {...theme.color.gradient.statSection}
+      horizontal
       style={[styles.section, withTitle && styles.sectionWithTitle]}
     >
       {children}

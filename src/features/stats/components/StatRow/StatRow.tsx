@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   label: string;
@@ -11,14 +12,10 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient
-      {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-      colors={theme.color.gradient.statRowBackground.colors}
-      style={styles.container}
-    >
+    <LinearGradient {...theme.color.gradient.statRow} horizontal style={styles.container}>
       <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.statRowOverlay.colors}
+        {...theme.color.gradient.statRowOverlay}
+        horizontal
         style={[styles.subContainer, styles.labelContainer]}
       >
         <Text style={styles.label}>{label}</Text>

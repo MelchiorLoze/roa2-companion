@@ -1,12 +1,11 @@
 import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image, type ImageSource } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
-import { gradientLocationsFromTimes } from '@/utils/gradientLocationsFromTimes';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
@@ -24,29 +23,17 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
   const { theme } = useUnistyles();
   const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
-  const { locations: rankOverlayLocations, ...rankOverlayCoordinates } = gradientLocationsFromTimes(
-    theme.color.gradient.statRankOverlay.times,
-  );
-
   return (
-    <LinearGradient
-      style={styles.container}
-      {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-      colors={theme.color.gradient.statRowBackground.colors}
-    >
+    <LinearGradient {...theme.color.gradient.statRow} horizontal style={styles.container}>
       <View style={styles.firstSeparator} />
-      <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.statPositionOverlay.colors}
-        style={styles.labelContainer}
-      >
+      <LinearGradient {...theme.color.gradient.statPositionOverlay} horizontal style={styles.labelContainer}>
         <Text style={styles.label}>{position}</Text>
       </LinearGradient>
 
       <View style={styles.secondSeparator} />
       <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal' })}
-        colors={theme.color.gradient.statRowOverlay.colors}
+        {...theme.color.gradient.statRowOverlay}
+        horizontal
         style={[styles.labelContainer, styles.profileContainer]}
       >
         <Canvas ref={canvasRef} style={styles.playerIcon}>
@@ -65,12 +52,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
       </LinearGradient>
 
       <View style={styles.thirdSeparator(rank)} />
-      <LinearGradient
-        {...theme.color.gradient.coordinates({ direction: 'horizontal', ...rankOverlayCoordinates })}
-        colors={theme.color.gradient.statRankOverlay.colors}
-        locations={rankOverlayLocations}
-        style={styles.labelContainer}
-      >
+      <LinearGradient {...theme.color.gradient.statRankOverlay} horizontal style={styles.labelContainer}>
         {elo !== undefined && (rank || rankIcon) ? (
           <>
             <Image contentFit="contain" source={rank ? RANK_ICONS[rank] : rankIcon} style={styles.rankIcon} />

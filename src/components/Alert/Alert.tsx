@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { type StyleProp, Text, type ViewStyle } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   text: string;
@@ -12,11 +13,7 @@ export const Alert = ({ text, style }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <LinearGradient
-      {...theme.color.gradient.coordinates({ direction: 'vertical' })}
-      colors={theme.color.gradient.alert.colors}
-      style={[styles.container, style]}
-    >
+    <LinearGradient {...theme.color.gradient.alert} style={[styles.container, style]} vertical>
       <Ionicons name="alert-circle-sharp" style={styles.icon} />
       <Text style={styles.text}>{text}</Text>
     </LinearGradient>

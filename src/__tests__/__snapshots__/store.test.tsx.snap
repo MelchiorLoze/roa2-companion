@@ -38,8 +38,14 @@ exports[`Store matches snapshot 1`] = `
     }
     endPoint={
       [
-        1,
+        0.6,
         0,
+      ]
+    }
+    locations={
+      [
+        0,
+        1,
       ]
     }
     startPoint={
@@ -51,12 +57,13 @@ exports[`Store matches snapshot 1`] = `
     style={
       {
         "alignItems": "center",
+        "alignSelf": "flex-end",
         "flexDirection": "row",
         "gap": 4,
         "justifyContent": "flex-end",
+        "minWidth": "90%",
         "padding": 8,
         "paddingHorizontal": 12,
-        "width": "100%",
       }
     }
   >

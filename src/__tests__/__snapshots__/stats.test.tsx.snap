@@ -84,6 +84,12 @@ exports[`Stats matches snapshot 1`] = `
               0,
             ]
           }
+          locations={
+            [
+              0,
+              1,
+            ]
+          }
           startPoint={
             [
               0,
@@ -1538,6 +1544,12 @@ exports[`Stats matches snapshot 1`] = `
               0,
             ]
           }
+          locations={
+            [
+              0,
+              1,
+            ]
+          }
           startPoint={
             [
               0,
@@ -2979,6 +2991,12 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
               0,
             ]
           }
+          locations={
+            [
+              0,
+              1,
+            ]
+          }
           startPoint={
             [
               0,
@@ -4381,6 +4399,12 @@ exports[`Stats matches snapshot when the player is unranked 1`] = `
             [
               0.8,
               0,
+            ]
+          }
+          locations={
+            [
+              0,
+              1,
             ]
           }
           startPoint={
