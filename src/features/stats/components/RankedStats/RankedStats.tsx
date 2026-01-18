@@ -10,16 +10,17 @@ import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/Leaderboar
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
+import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const RankedStats = () => {
   const { season, setPreviousSeason, setNextSeason } = useSeason();
-  const { stats, isLoading } = useUserRankedStats();
+  const { stats, isLoading, refresh, isRefreshing } = useUserRankedStats();
 
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      <SeasonTitle seasonName={`Ranked - ${season.name}`} variant="ranked" />
+    <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
+      <SeasonTitle seasonName={season.name} variant="ranked" />
 
       <View style={styles.changeSeasonContainer}>
         <IconButton
@@ -66,7 +67,7 @@ export const RankedStats = () => {
           <StatRow label="Best win streak" value={stats.bestWinStreak} />
         </View>
       )}
-    </>
+    </StatsTabContentWrapper>
   );
 };
 

@@ -9,16 +9,17 @@ import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUse
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
+import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const CrewsStats = () => {
   const { season } = useSeason();
-  const { stats, isLoading } = useUserCrewsStats();
+  const { stats, isLoading, refresh, isRefreshing } = useUserCrewsStats();
 
   if (isLoading) return <Spinner />;
 
   return (
-    <>
-      <SeasonTitle seasonName={`Crews - ${season.name}`} variant="crews" />
+    <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
+      <SeasonTitle seasonName={season.name} variant="crews" />
 
       <View style={styles.titlePadding} />
 
@@ -35,7 +36,7 @@ export const CrewsStats = () => {
           <StatRow label="Crews sets" value={stats.setStats?.setCount} />
         </View>
       )}
-    </>
+    </StatsTabContentWrapper>
   );
 };
 
