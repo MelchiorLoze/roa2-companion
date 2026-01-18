@@ -1,7 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 import { IconButton } from '../IconButton/IconButton';
 import { Separator } from '../Separator/Separator';
@@ -23,9 +24,9 @@ export const Header = ({ title, showCurrencies, withBackNavigation }: Readonly<P
       <Separator height={2} variant="accent" />
       {title && (
         <LinearGradient
-          {...theme.gradient.vertical}
-          colors={theme.color.headerGradient}
+          {...theme.color.gradient.headerOverlay}
           style={styles.bottomContainer(withBackNavigation)}
+          vertical
         >
           {withBackNavigation && (
             <IconButton iconName="arrow-back" onPress={router.back} size={24} style={styles.backButton} />
@@ -55,6 +56,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     alignItems: 'center',
     paddingVertical: withBackNavigation ? theme.spacing.s : theme.spacing.m,
     paddingHorizontal: withBackNavigation ? theme.spacing.s : theme.spacing.l,
+    backgroundColor: theme.color.headerBackground,
   }),
   backButton: {
     padding: theme.spacing.s,

@@ -1,8 +1,8 @@
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item, type Rarity } from '@/types/item';
@@ -17,16 +17,8 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   return (
     <Pressable onPress={onPress} role="button" style={styles.container}>
       {({ pressed }) => (
-        <LinearGradient
-          {...theme.gradient.vertical}
-          colors={theme.color.borderGradient(pressed)}
-          style={styles.borderGradient}
-        >
-          <LinearGradient
-            {...theme.gradient.vertical}
-            colors={theme.color.cardGradient(pressed)}
-            style={styles.gradient}
-          >
+        <LinearGradient {...theme.color.gradient.border(pressed)} style={styles.borderGradient} vertical>
+          <LinearGradient {...theme.color.gradient.card(pressed)} style={styles.gradient} vertical>
             <ItemImage item={item} />
 
             <View style={styles.infoContainer}>

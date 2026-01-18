@@ -86,6 +86,7 @@ export default function SignIn() {
 const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flex: 1,
+    backgroundColor: theme.color.background,
     padding: theme.spacing.l,
     marginBottom: runtime.insets.bottom,
     justifyContent: 'center',

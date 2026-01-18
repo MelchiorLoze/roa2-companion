@@ -1,11 +1,11 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import type { ImageSource } from 'expo-image';
-import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
+import { Image, type ImageSource } from 'expo-image';
 import { type ExternalPathString, useRouter } from 'expo-router';
 import { type ComponentProps } from 'react';
 import { Pressable, Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type EitherLinkOrButton =
   | {
@@ -33,11 +33,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
       role={url ? 'link' : 'button'}
     >
       {({ pressed }) => (
-        <LinearGradient
-          {...theme.gradient.horizontal}
-          colors={theme.color.arrowButtonGradient(pressed)}
-          style={styles.container}
-        >
+        <LinearGradient {...theme.color.gradient.arrowButton(pressed)} horizontal style={styles.container}>
           {logo && <Image contentFit="contain" source={logo} style={styles.logo} />}
           <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
           <MaterialIcons

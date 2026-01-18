@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   label: string;
@@ -11,23 +12,19 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <View style={styles.container}>
+    <LinearGradient {...theme.color.gradient.statRow} horizontal style={styles.container}>
       <LinearGradient
-        {...theme.gradient.horizontal}
-        colors={theme.color.statLabelGradient}
-        style={styles.labelContainer}
+        {...theme.color.gradient.statRowOverlay}
+        horizontal
+        style={[styles.subContainer, styles.labelContainer]}
       >
         <Text style={styles.label}>{label}</Text>
       </LinearGradient>
       <View style={styles.separator} />
-      <LinearGradient
-        {...theme.gradient.horizontal}
-        colors={theme.color.statValueGradient}
-        style={styles.valueContainer}
-      >
+      <View style={[styles.subContainer, styles.valueContainer]}>
         <Text style={styles.value}>{value}</Text>
-      </LinearGradient>
-    </View>
+      </View>
+    </LinearGradient>
   );
 };
 
@@ -44,10 +41,12 @@ const styles = StyleSheet.create((theme) => ({
       },
     ],
   },
+  subContainer: {
+    padding: theme.spacing.s,
+    paddingHorizontal: theme.spacing.l,
+  },
   labelContainer: {
     width: '60%',
-    padding: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.l,
   },
   label: {
     fontFamily: theme.font.primary.regular,
@@ -61,8 +60,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   valueContainer: {
     flex: 1,
-    padding: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.l,
   },
   value: {
     fontFamily: theme.font.primary.regular,

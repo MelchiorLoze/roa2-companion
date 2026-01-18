@@ -4,8 +4,20 @@ exports[`Store matches snapshot 1`] = `
 <ViewManagerAdapter_ExpoLinearGradient
   colors={
     [
-      4283381972,
-      4280621662,
+      3209640148,
+      3206879838,
+    ]
+  }
+  endPoint={
+    [
+      0,
+      1,
+    ]
+  }
+  startPoint={
+    [
+      0,
+      0,
     ]
   }
   style={
@@ -26,8 +38,14 @@ exports[`Store matches snapshot 1`] = `
     }
     endPoint={
       [
-        1,
+        0.6,
         0,
+      ]
+    }
+    locations={
+      [
+        0,
+        1,
       ]
     }
     startPoint={
@@ -39,12 +57,13 @@ exports[`Store matches snapshot 1`] = `
     style={
       {
         "alignItems": "center",
+        "alignSelf": "flex-end",
         "flexDirection": "row",
         "gap": 4,
         "justifyContent": "flex-end",
+        "minWidth": "90%",
         "padding": 8,
         "paddingHorizontal": 12,
-        "width": "100%",
       }
     }
   >
@@ -249,7 +268,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -328,7 +347,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-back.png",
                         },
                       ]
                     }
@@ -391,7 +410,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
                         },
                       ]
                     }
@@ -603,7 +622,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -682,7 +701,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-epic-back.png",
                         },
                       ]
                     }
@@ -745,7 +764,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-epic-front.png",
                         },
                       ]
                     }
@@ -919,7 +938,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -998,7 +1017,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_rare_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-rare-back.png",
                         },
                       ]
                     }
@@ -1061,7 +1080,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_rare_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-rare-front.png",
                         },
                       ]
                     }
@@ -1273,7 +1292,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -1352,7 +1371,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_epic_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-legendary-back.png",
                         },
                       ]
                     }
@@ -1415,7 +1434,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_legendary_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-legendary-front.png",
                         },
                       ]
                     }
@@ -1589,7 +1608,7 @@ exports[`Store matches snapshot 1`] = `
               colors={
                 [
                   4291481343,
-                  4285232860,
+                  4285232859,
                 ]
               }
               endPoint={
@@ -1668,7 +1687,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_back.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-back.png",
                         },
                       ]
                     }
@@ -1731,7 +1750,7 @@ exports[`Store matches snapshot 1`] = `
                     source={
                       [
                         {
-                          "testUri": "../../../src/assets/images/rarity/frame_common_front.png",
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
                         },
                       ]
                     }

@@ -1,11 +1,11 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import getUnicodeFlagIcon from 'country-flag-icons/unicode';
 import { Image } from 'expo-image';
-import { LinearGradient } from 'expo-linear-gradient';
 import { type ExternalPathString, useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Separator } from '@/components/Separator/Separator';
 
@@ -25,16 +25,8 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
   return (
     <Pressable onPress={() => router.push(tournament.url.toString() as ExternalPathString)}>
       {({ pressed }) => (
-        <LinearGradient
-          {...theme.gradient.horizontal}
-          colors={theme.color.borderGradient(pressed)}
-          style={styles.borderGradient}
-        >
-          <LinearGradient
-            {...theme.gradient.horizontal}
-            colors={theme.color.cardGradient(pressed)}
-            style={styles.container}
-          >
+        <LinearGradient {...theme.color.gradient.border(pressed)} horizontal style={styles.borderGradient}>
+          <LinearGradient {...theme.color.gradient.card(pressed)} horizontal style={styles.container}>
             <View style={styles.header}>
               {tournament.imageUrl && <Image source={tournament.imageUrl.toString()} style={styles.image} />}
               <View style={styles.headerText}>
@@ -53,7 +45,7 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                 <View style={styles.info}>
                   {tournament.isOnline && (
                     <>
-                      <MaterialIcons name="wifi" style={styles.wifiIcon(pressed)} />
+                      <MaterialIcons name="language" style={styles.onlineIcon(pressed)} />
                       <Text style={styles.text(pressed)}>{' - '}</Text>
                     </>
                   )}
@@ -153,10 +145,9 @@ const styles = StyleSheet.create((theme) => ({
     strokeWidth: 2,
     color: theme.color[tournamentState],
   }),
-  wifiIcon: (pressed?: boolean) => ({
+  onlineIcon: (pressed?: boolean) => ({
     color: pressed ? theme.color.black : theme.color.white,
-    fontSize: 18,
-    paddingBottom: theme.spacing.xxs,
+    fontSize: 20,
   }),
   events: {
     width: '100%',

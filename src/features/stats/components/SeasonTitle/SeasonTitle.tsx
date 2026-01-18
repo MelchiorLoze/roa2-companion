@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   seasonName: string;
@@ -13,17 +14,21 @@ export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.gradient.horizontal}
-        colors={theme.color.seasonTitleWrapperGradient(variant === 'crews')}
+        {...theme.color.gradient.seasonTitleWrapper(variant === 'crews')}
+        horizontal
         style={styles.wrapper}
       >
         <LinearGradient
-          {...theme.gradient.horizontal}
-          colors={theme.color.seasonTitleGradient(variant === 'crews')}
-          style={styles.titleContainer}
-        >
-          <Text style={styles.title}>{seasonName}</Text>
-        </LinearGradient>
+          {...theme.color.gradient.seasonTitleLeftToRight(variant === 'crews')}
+          horizontal
+          style={styles.titleBackground}
+        />
+        <LinearGradient
+          {...theme.color.gradient.seasonTitleRightToLeft(variant === 'crews')}
+          horizontal
+          style={styles.titleBackground}
+        />
+        <Text style={styles.title}>{seasonName}</Text>
       </LinearGradient>
     </View>
   );
@@ -34,20 +39,24 @@ const styles = StyleSheet.create((theme) => ({
     position: 'absolute',
     top: 0,
     left: 0,
-    transform: [{ translateX: -theme.spacing.s }, { translateY: -theme.spacing.l }],
+    transform: [{ translateX: -theme.spacing.s }, { translateY: '-50%' }],
   },
   wrapper: {
     paddingVertical: theme.spacing.s,
   },
-  titleContainer: {
-    flexShrink: 1,
-    padding: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.l,
+  titleBackground: {
+    position: 'absolute',
+    top: '20%',
+    bottom: '20%',
+    left: 0,
+    right: 0,
   },
   title: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 22,
     color: theme.color.white,
     textTransform: 'uppercase',
+    paddingVertical: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.l,
   },
 }));

@@ -1,8 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { type PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { CharacterStats } from '@/features/stats/components/CharacterStats/CharacterStats';
 import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';
 import { GlobalStats } from '@/features/stats/components/GlobalStats/GlobalStats';
@@ -21,10 +21,8 @@ const Section = ({ withTitle = false, children }: Readonly<Props>) => {
 
   return (
     <LinearGradient
-      colors={theme.color.statsGradient}
-      // horizontal gradient from left (1/3) to right (1)
-      end={[1, 0]}
-      start={[1 / 3, 0]}
+      {...theme.color.gradient.statSection}
+      horizontal
       style={[styles.section, withTitle && styles.sectionWithTitle]}
     >
       {children}
@@ -83,6 +81,6 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.l,
   },
   sectionWithTitle: {
-    marginTop: theme.spacing.m,
+    marginTop: theme.spacing.xl,
   },
 }));

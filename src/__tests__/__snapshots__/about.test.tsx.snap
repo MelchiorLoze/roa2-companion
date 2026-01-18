@@ -83,8 +83,8 @@ exports[`About matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4278913061,
-          4278913061,
+          4279043869,
+          4279636041,
         ]
       }
       endPoint={
@@ -212,8 +212,8 @@ exports[`About matches snapshot 1`] = `
     <ViewManagerAdapter_ExpoLinearGradient
       colors={
         [
-          4278913061,
-          4278913061,
+          4279043869,
+          4279636041,
         ]
       }
       endPoint={

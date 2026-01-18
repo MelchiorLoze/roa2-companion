@@ -1,8 +1,8 @@
-import { LinearGradient } from 'expo-linear-gradient';
-import { useState } from 'react';
+import { type PropsWithChildren, useState } from 'react';
 import { Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { ItemList } from '@/features/store/components/ItemList/ItemList';
 import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';
@@ -10,6 +10,16 @@ import { TimeCountdown } from '@/features/store/components/TimeCountdown/TimeCou
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
 import { type CoinStoreItem } from '@/features/store/types/item';
 import { type Item } from '@/types/item';
+
+const GradientWrapper = ({ children }: PropsWithChildren) => {
+  const { theme } = useUnistyles();
+
+  return (
+    <LinearGradient {...theme.color.gradient.store} style={styles.container} vertical>
+      {children}
+    </LinearGradient>
+  );
+};
 
 export default function Store() {
   const { theme } = useUnistyles();
@@ -23,23 +33,24 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <GradientWrapper>
+        <Spinner />
+      </GradientWrapper>
+    );
 
   return (
     <>
-      <LinearGradient colors={theme.color.storeGradient} style={styles.container}>
+      <GradientWrapper>
         {expirationDate && (
-          <LinearGradient
-            {...theme.gradient.horizontal}
-            colors={theme.color.blackGradient}
-            style={styles.titleContainer}
-          >
-            <Text style={styles.title}>Items refresh in:</Text>
-            <TimeCountdown date={expirationDate} style={styles.title} />
+          <LinearGradient {...theme.color.gradient.storeCountdown} horizontal style={styles.timerContainer}>
+            <Text style={styles.timer}>Items refresh in:</Text>
+            <TimeCountdown date={expirationDate} style={styles.timer} />
           </LinearGradient>
         )}
         <ItemList items={items} onSelect={openDialog} />
-      </LinearGradient>
+      </GradientWrapper>
       {selectedItem && <PurchaseConfirmationDialog item={selectedItem} onClose={closeDialog} />}
     </>
   );
@@ -52,16 +63,17 @@ const styles = StyleSheet.create((theme) => ({
     paddingBottom: theme.spacing.none,
     gap: theme.spacing.l,
   },
-  titleContainer: {
+  timerContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: '100%',
+    alignSelf: 'flex-end',
+    minWidth: '90%',
     padding: theme.spacing.s,
     paddingHorizontal: theme.spacing.m,
     gap: theme.spacing.xs,
   },
-  title: {
+  timer: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 18,
     color: theme.color.white,

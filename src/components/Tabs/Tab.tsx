@@ -1,6 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, Text } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { LinearGradient } from '../LinearGradient/LinearGradient';
 
 type Props = {
   title: string;
@@ -13,16 +14,15 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
 
   return (
     <Pressable disabled={selected} onPress={onPress} style={styles.container}>
-      <LinearGradient {...theme.gradient.vertical} colors={theme.color.tabGradient(selected)} style={styles.inner}>
+      <LinearGradient {...theme.color.gradient.tab} style={styles.inner} vertical>
         <Text style={styles.label(selected)}>{title}</Text>
       </LinearGradient>
       {selected && (
-        <LinearGradient
-          {...theme.gradient.horizontal}
-          colors={theme.color.tabUnderlineGradient}
-          locations={[0, 1 / 3, 2 / 3, 1]}
-          style={styles.underline}
-        />
+        <>
+          <LinearGradient {...theme.color.gradient.tabSelectedOverlay} style={styles.selectedOverlay} vertical />
+          <LinearGradient {...theme.color.gradient.tabSelectedGoldAccent} horizontal style={styles.underline} />
+          <LinearGradient {...theme.color.gradient.tabSelectedWhiteAccent} horizontal style={styles.underline} />
+        </>
       )}
     </Pressable>
   );
@@ -42,10 +42,18 @@ const styles = StyleSheet.create((theme) => ({
     color: selected ? theme.color.accent : theme.color.inactiveLight,
     textTransform: 'uppercase',
   }),
+  selectedOverlay: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+  },
   underline: {
     position: 'absolute',
     height: 2,
-    width: '100%',
+    right: 0,
     bottom: 0,
+    left: 0,
   },
 }));

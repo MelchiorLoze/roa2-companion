@@ -34,7 +34,7 @@ export default function PrivateLayout() {
           tabBarLabelStyle: styles.label,
           tabBarActiveTintColor: theme.color.white,
           tabBarInactiveTintColor: theme.color.inactive,
-          sceneStyle: { backgroundColor: theme.color.highlight },
+          sceneStyle: { backgroundColor: theme.color.transparent },
         }}
       >
         <Tabs.Screen
