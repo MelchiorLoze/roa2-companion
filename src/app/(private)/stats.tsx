@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import { type ComponentType } from 'react';
 
 import { Tabs } from '@/components/Tabs/Tabs';
 import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';

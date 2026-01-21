@@ -1,4 +1,4 @@
-import type { RefreshableState } from '@/types/loadableState';
+import { type RefreshableState } from '@/types/loadableState';
 
 import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
