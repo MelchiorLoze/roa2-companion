@@ -25,7 +25,7 @@ const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
-    bestWinStreak: 0,
+    bestWinStreak: 9,
     position: 4404,
     profile: {
       playerName: 'Player1',
@@ -61,15 +61,15 @@ describe('CrewsStats', () => {
 
     expect(screen.getByText('Crews sets')).toBeTruthy();
     expect(screen.getByText('50')).toBeTruthy();
+    expect(screen.getByText('Best win streak')).toBeTruthy();
+    expect(screen.getByText('9')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
     useUserCrewsStatsMock.mockReturnValue({
+      ...defaultUserCrewsStatsReturnValue,
       stats: undefined,
       isLoading: true,
-      isError: false,
-      isRefreshing: false,
-      refresh: jest.fn(),
     });
 
     renderComponent();
@@ -79,11 +79,9 @@ describe('CrewsStats', () => {
 
   it('displays loading spinner when stats are undefined', () => {
     useUserCrewsStatsMock.mockReturnValue({
+      ...defaultUserCrewsStatsReturnValue,
       stats: undefined,
       isLoading: true,
-      isError: false,
-      isRefreshing: false,
-      refresh: jest.fn(),
     });
 
     renderComponent();

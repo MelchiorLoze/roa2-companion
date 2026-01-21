@@ -161,7 +161,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('returns empty array when response has no leaderboard', async () => {
+  it('returns error when response has no leaderboard', async () => {
     fetchMock.postOnce('*', { Leaderboard: [] });
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();

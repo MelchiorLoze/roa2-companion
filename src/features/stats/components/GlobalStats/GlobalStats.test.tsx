@@ -43,15 +43,16 @@ describe('GlobalStats', () => {
 
     expect(screen.getByText('Global win rate')).toBeTruthy();
     expect(screen.getByText('85.24%')).toBeTruthy();
+
+    expect(screen.getByText('Level')).toBeTruthy();
+    expect(screen.getByText('Games')).toBeTruthy();
   });
 
   it('displays loading spinner when stats are loading', () => {
     useUserGlobalStatsMock.mockReturnValue({
+      ...defaultUserGlobalStatsReturnValue,
       stats: undefined,
       isLoading: true,
-      isError: false,
-      isRefreshing: false,
-      refresh: jest.fn(),
     });
 
     renderComponent();

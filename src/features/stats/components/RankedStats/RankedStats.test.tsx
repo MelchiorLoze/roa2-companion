@@ -147,11 +147,9 @@ describe('RankedStats', () => {
 
   it('displays loading spinner when stats are loading', () => {
     useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsState,
       stats: undefined,
       isLoading: true,
-      isError: false,
-      isRefreshing: false,
-      refresh: jest.fn(),
     });
 
     renderComponent();

@@ -13,9 +13,8 @@ export type LoadableState<TKey extends string, TData> = Readonly<
     })
 >;
 
-type BaseRefreshableState = Readonly<{
-  isRefreshing: boolean;
-  refresh: () => void;
-}>;
-
-export type RefreshableState<TKey extends string, TData> = LoadableState<TKey, TData> & BaseRefreshableState;
+export type RefreshableState<TKey extends string, TData> = LoadableState<TKey, TData> &
+  Readonly<{
+    isRefreshing: boolean;
+    refresh: () => void;
+  }>;
