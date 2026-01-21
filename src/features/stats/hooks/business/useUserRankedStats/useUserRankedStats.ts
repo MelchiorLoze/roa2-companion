@@ -1,7 +1,7 @@
-import { type Rank } from '@/features/stats/types/rank';
 import { type RefreshableState } from '@/types/loadableState';
 
 import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
+import { type Rank } from '../../../types/rank';
 import { type Season } from '../../../types/season';
 import { type PlayerPosition, type PlayerStatistics, StatisticName } from '../../../types/stats';
 import { getRank } from '../../../utils/getRank';
