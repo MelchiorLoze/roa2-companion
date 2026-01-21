@@ -9,16 +9,17 @@ import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUse
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
+import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const CrewsStats = () => {
   const { season } = useSeason();
-  const { stats, isLoading } = useUserCrewsStats();
+  const { stats, isLoading, isError, isRefreshing, refresh } = useUserCrewsStats();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isError) return <Spinner />;
 
   return (
-    <>
-      <SeasonTitle seasonName={`Crews - ${season.name}`} variant="crews" />
+    <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
+      <SeasonTitle seasonName={season.name} variant="crews" />
 
       <View style={styles.titlePadding} />
 
@@ -30,12 +31,11 @@ export const CrewsStats = () => {
         rankIcon={CrewsIcon}
       />
 
-      {stats.setStats && (
-        <View style={styles.setStatsContainer}>
-          <StatRow label="Crews sets" value={stats.setStats?.setCount} />
-        </View>
-      )}
-    </>
+      <View style={styles.setStatsContainer}>
+        {stats.setStats && <StatRow label="Crews sets" value={stats.setStats?.setCount} />}
+        <StatRow label="Best win streak" value={stats.bestWinStreak} />
+      </View>
+    </StatsTabContentWrapper>
   );
 };
 

@@ -43,7 +43,7 @@ const renderUseGetLeaderboardAroundPlayer = async (
 ) => {
   const { result } = renderHook(() => useGetLeaderboardAroundPlayer(args), { wrapper: TestQueryClientProvider });
   expect(result.current.isLoading).toBe(true);
-  expect(result.current.playerPositions).toEqual([]);
+  expect(result.current.playerPositions).toBeUndefined();
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -99,7 +99,8 @@ describe('useGetLeaderboardAroundPlayer', () => {
       statisticName: StatisticName.RANKED_WINS,
     });
 
-    expect(result.current.playerPositions[0].statisticName).toBe(StatisticName.RANKED_WINS);
+    expect(result.current.playerPositions).toBeDefined();
+    expect(result.current.playerPositions![0].statisticName).toBe(StatisticName.RANKED_WINS);
     expect(result.current.isError).toBe(false);
   });
 
@@ -108,7 +109,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
 
-    expect(result.current.playerPositions).toEqual([]);
+    expect(result.current.playerPositions).toBeUndefined();
     expect(result.current.isError).toBe(true);
   });
 
@@ -160,12 +161,12 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('returns empty array when response has no leaderboard', async () => {
+  it('returns error when response has no leaderboard', async () => {
     fetchMock.postOnce('*', { Leaderboard: [] });
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
 
-    expect(result.current.playerPositions).toEqual([]);
-    expect(result.current.isError).toBe(false);
+    expect(result.current.playerPositions).toBeUndefined();
+    expect(result.current.isError).toBe(true);
   });
 });

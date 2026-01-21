@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useTabs } from '@/hooks/core/useTabs/useTabs';
 
 import { useGetActiveTournaments } from '../../data/useGetActiveTournaments/useGetActiveTournaments';
 import { useGetPastTournaments } from '../../data/useGetPastTournaments/useGetPastTournaments';
 
+const TOURNAMENT_TABS = ['active', 'past'] as const;
+
 export const useTournamentsTab = () => {
-  const [selectedTab, setSelectedTab] = useState<'active' | 'past'>('active');
-  const selectActiveTab = () => setSelectedTab('active');
-  const selectPastTab = () => setSelectedTab('past');
+  const { tabs, selectedTab, getValueForSelectedTab } = useTabs(TOURNAMENT_TABS);
 
   const {
     tournaments: activeTournaments,
@@ -22,10 +22,21 @@ export const useTournamentsTab = () => {
     isError: isErrorPastTournaments,
     isRefetching: isRefetchingPastTournaments,
   } = useGetPastTournaments();
-  const tournaments = selectedTab === 'active' ? activeTournaments : pastTournaments;
-  const isLoading = selectedTab === 'active' ? isLoadingActiveTournaments : isLoadingPastTournaments;
-  const isRefreshing = selectedTab === 'active' ? isRefetchingActiveTournaments : isRefetchingPastTournaments;
-  const isError = selectedTab === 'active' ? isErrorActiveTournaments : isErrorPastTournaments;
+
+  const resultForSelectedTab = getValueForSelectedTab({
+    active: {
+      tournaments: activeTournaments,
+      isLoading: isLoadingActiveTournaments,
+      isError: isErrorActiveTournaments,
+      isRefreshing: isRefetchingActiveTournaments,
+    },
+    past: {
+      tournaments: pastTournaments,
+      isLoading: isLoadingPastTournaments,
+      isError: isErrorPastTournaments,
+      isRefreshing: isRefetchingPastTournaments,
+    },
+  });
 
   const refresh = () => {
     void refetchActiveTournaments();
@@ -33,13 +44,9 @@ export const useTournamentsTab = () => {
   };
 
   return {
-    tournaments,
-    isLoading,
-    isRefreshing,
-    isError,
+    ...resultForSelectedTab,
+    tabs,
     selectedTab,
-    selectActiveTab,
-    selectPastTab,
     refresh,
   } as const;
 };

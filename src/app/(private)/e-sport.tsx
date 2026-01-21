@@ -30,20 +30,13 @@ const Content = ({ refreshControl, tournaments, isLoading, isError }: Readonly<P
 };
 
 export default function ESport() {
-  const { tournaments, isLoading, isRefreshing, isError, selectedTab, selectActiveTab, selectPastTab, refresh } =
-    useTournamentsTab();
+  const { tabs, selectedTab, tournaments, isLoading, isError, isRefreshing, refresh } = useTournamentsTab();
 
   const refreshControl = <RefreshControl onRefresh={refresh} refreshing={isRefreshing} />;
 
   return (
     <View style={styles.container}>
-      <Tabs
-        selectedTab={selectedTab}
-        tabs={[
-          { title: 'active', onPress: selectActiveTab },
-          { title: 'past', onPress: selectPastTab },
-        ]}
-      />
+      <Tabs selectedTab={selectedTab} tabs={tabs} />
       <Content
         isError={isError}
         isLoading={isLoading}

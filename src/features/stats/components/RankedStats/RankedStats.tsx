@@ -10,16 +10,17 @@ import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/Leaderboar
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRow } from '../StatRow/StatRow';
+import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const RankedStats = () => {
   const { season, setPreviousSeason, setNextSeason } = useSeason();
-  const { stats, isLoading } = useUserRankedStats();
+  const { stats, isLoading, isError, isRefreshing, refresh } = useUserRankedStats();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isError) return <Spinner />;
 
   return (
-    <>
-      <SeasonTitle seasonName={`Ranked - ${season.name}`} variant="ranked" />
+    <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
+      <SeasonTitle seasonName={season.name} variant="ranked" />
 
       <View style={styles.changeSeasonContainer}>
         <IconButton
@@ -54,19 +55,17 @@ export const RankedStats = () => {
         )}
       </View>
 
-      {stats.bestWinStreak !== undefined && (
-        <View style={styles.setStatsContainer}>
-          {stats.setStats && (
-            <>
-              <StatRow label="Ranked wins" value={stats.setStats?.winCount} />
-              <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
-              <StatRow label="Ranked win rate" value={stats.setStats?.winRate.toFixed(2) + '%'} />
-            </>
-          )}
-          <StatRow label="Best win streak" value={stats.bestWinStreak} />
-        </View>
-      )}
-    </>
+      <View style={styles.setStatsContainer}>
+        {stats.setStats && (
+          <>
+            <StatRow label="Ranked wins" value={stats.setStats.winCount} />
+            <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
+            <StatRow label="Ranked win rate" value={stats.setStats.winRate.toFixed(2) + '%'} />
+          </>
+        )}
+        <StatRow label="Best win streak" value={stats.bestWinStreak} />
+      </View>
+    </StatsTabContentWrapper>
   );
 };
 

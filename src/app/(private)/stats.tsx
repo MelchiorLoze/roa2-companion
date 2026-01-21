@@ -1,86 +1,30 @@
-import { type PropsWithChildren } from 'react';
-import { RefreshControl, ScrollView } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { type ComponentType } from 'react';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
-import { CharacterStats } from '@/features/stats/components/CharacterStats/CharacterStats';
+import { Tabs } from '@/components/Tabs/Tabs';
 import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';
 import { GlobalStats } from '@/features/stats/components/GlobalStats/GlobalStats';
 import { RankedStats } from '@/features/stats/components/RankedStats/RankedStats';
-import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats';
-import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
-import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
-import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
+import { useTabs } from '@/hooks/core/useTabs/useTabs';
 
-type Props = {
-  withTitle?: boolean;
-} & PropsWithChildren;
+const STATS_TABS = ['ranked', 'crews', 'global'] as const;
+type StatTab = (typeof STATS_TABS)[number];
 
-const Section = ({ withTitle = false, children }: Readonly<Props>) => {
-  const { theme } = useUnistyles();
-
-  return (
-    <LinearGradient
-      {...theme.color.gradient.statSection}
-      horizontal
-      style={[styles.section, withTitle && styles.sectionWithTitle]}
-    >
-      {children}
-    </LinearGradient>
-  );
-};
+const componentPerTab: Record<StatTab, ComponentType> = {
+  ranked: RankedStats,
+  crews: CrewsStats,
+  global: GlobalStats,
+} as const;
 
 export default function Stats() {
-  const { refresh: refreshRankedStats, isRefreshing: isRefreshingRankedStats } = useUserRankedStats();
-  const { refresh: refreshCrewsStats, isRefreshing: isRefreshingCrewsStats } = useUserCrewsStats();
-  const { refresh: refreshGlobalStats, isRefreshing: isRefreshingGlobalStats } = useUserGlobalStats();
-  const { refresh: refreshCharacterStats, isRefreshing: isRefreshingCharacterStats } = useUserCharacterStats();
+  const { tabs, selectedTab, getValueForSelectedTab } = useTabs(STATS_TABS);
 
-  const refresh = () => {
-    refreshRankedStats();
-    refreshCrewsStats();
-    refreshGlobalStats();
-    refreshCharacterStats();
-  };
+  const TabContent = getValueForSelectedTab(componentPerTab);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      refreshControl={
-        <RefreshControl
-          onRefresh={refresh}
-          refreshing={
-            isRefreshingRankedStats || isRefreshingCrewsStats || isRefreshingGlobalStats || isRefreshingCharacterStats
-          }
-        />
-      }
-    >
-      <Section withTitle>
-        <RankedStats />
-      </Section>
-      <Section withTitle>
-        <CrewsStats />
-      </Section>
-      <Section>
-        <GlobalStats />
-      </Section>
-      <Section>
-        <CharacterStats />
-      </Section>
-    </ScrollView>
+    <>
+      <Tabs selectedTab={selectedTab} tabs={tabs} />
+
+      <TabContent />
+    </>
   );
 }
-
-const styles = StyleSheet.create((theme) => ({
-  container: {
-    padding: theme.spacing.l,
-    gap: theme.spacing.l,
-  },
-  section: {
-    padding: theme.spacing.s,
-    gap: theme.spacing.l,
-  },
-  sectionWithTitle: {
-    marginTop: theme.spacing.xl,
-  },
-}));

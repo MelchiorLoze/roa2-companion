@@ -28,6 +28,7 @@ export enum StatisticName {
 
   CREWS_ELO = 'Crews_Elo',
   CREWS_SETS = 'Crews_Matches',
+  CREWS_BEST_WIN_STREAK = 'Crews_WinStreak',
 
   /*
    * GENERAL STATS
