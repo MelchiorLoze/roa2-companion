@@ -13,9 +13,9 @@ import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabConten
 
 export const CrewsStats = () => {
   const { season } = useSeason();
-  const { stats, isLoading, refresh, isRefreshing } = useUserCrewsStats();
+  const { stats, isLoading, isError, isRefreshing, refresh } = useUserCrewsStats();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isError) return <Spinner />;
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
@@ -31,11 +31,10 @@ export const CrewsStats = () => {
         rankIcon={CrewsIcon}
       />
 
-      {stats.setStats && (
-        <View style={styles.setStatsContainer}>
-          <StatRow label="Crews sets" value={stats.setStats?.setCount} />
-        </View>
-      )}
+      <View style={styles.setStatsContainer}>
+        {stats.setStats && <StatRow label="Crews sets" value={stats.setStats?.setCount} />}
+        <StatRow label="Best win streak" value={stats.bestWinStreak} />
+      </View>
     </StatsTabContentWrapper>
   );
 };

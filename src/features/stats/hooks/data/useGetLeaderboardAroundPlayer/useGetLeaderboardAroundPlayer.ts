@@ -25,7 +25,7 @@ type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
 export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerRequest) => {
   const apiClient = useGameApiClient();
 
-  const { data, refetch, isPending, isRefetching, isError } = useQuery({
+  const { data, isSuccess, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['getLeaderboardAroundPlayer', maxResultCount, statisticName],
     queryFn: () =>
       apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
@@ -38,8 +38,10 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
           },
         },
       }),
-    select: (data): PlayerPosition[] =>
-      data.Leaderboard.map(({ StatValue, Position, Profile }) => ({
+    select: (data): [PlayerPosition, ...PlayerPosition[]] => {
+      if (!data.Leaderboard.length) throw new Error(`The player is not ranked for the statistic ${statisticName}`);
+
+      return data.Leaderboard.map(({ StatValue, Position, Profile }) => ({
         statisticName: statisticName,
         statisticValue: StatValue,
         position: Position,
@@ -47,16 +49,17 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
           playerName: Profile.DisplayName,
           avatarUrl: imageUrlFromFriendlyId(Category.ICON, Profile.AvatarUrl),
         },
-      })),
+      })) as [PlayerPosition, ...PlayerPosition[]];
+    },
     staleTime: Infinity,
     gcTime: Infinity,
   });
 
   return {
-    playerPositions: data ?? [],
-    refetch,
+    playerPositions: data,
+    isSuccess,
     isLoading: isPending,
     isRefetching,
-    isError,
+    refetch,
   } as const;
 };

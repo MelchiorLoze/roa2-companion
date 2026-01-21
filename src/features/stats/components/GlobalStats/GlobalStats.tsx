@@ -10,9 +10,9 @@ import { StatRow } from '../StatRow/StatRow';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const GlobalStats = () => {
-  const { stats, isLoading, refresh, isRefreshing } = useUserGlobalStats();
+  const { stats, isLoading, isError, refresh, isRefreshing } = useUserGlobalStats();
 
-  if (isLoading || !stats.gameStats || !stats.characterStats) return <Spinner />;
+  if (isLoading || isError) return <Spinner />;
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh}>

@@ -1,47 +1,70 @@
-import { type PlayerStatistics, StatisticName } from '../../../types/stats';
+import type { RefreshableState } from '@/types/loadableState';
+
+import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
-const getCrewsStats = (rawStats: PlayerStatistics) => {
-  const elo = rawStats[StatisticName.CREWS_ELO] ? rawStats[StatisticName.CREWS_ELO] - 10000 : 1000;
-  const setCount = rawStats[StatisticName.CREWS_SETS] ?? 0;
+type UserCrewsStats = {
+  elo: number;
+  setStats: {
+    setCount: number;
+  };
+  bestWinStreak: number;
+} & Pick<PlayerPosition, 'position' | 'profile'>;
 
-  return { elo, setStats: { setCount } } as const;
-};
-
-export const useUserCrewsStats = () => {
+export const useUserCrewsStats = (): RefreshableState<'stats', UserCrewsStats> => {
   const {
     statistics: rawStats,
-    refetch: refetchPlayerStatistics,
+    isSuccess: isSuccessRawStats,
     isLoading: isLoadingRawStats,
     isRefetching: isRefetchingRawStats,
+    refetch: refetchPlayerStatistics,
   } = useGetPlayerStatistics();
   const {
-    playerPositions: [userCrewsPosition],
-    refetch: refetchPlayerPosition,
+    playerPositions,
+    isSuccess: isSuccessPlayerPosition,
     isLoading: isLoadingPlayerPosition,
     isRefetching: isRefetchingPlayerPosition,
+    refetch: refetchPlayerPosition,
   } = useGetLeaderboardAroundPlayer({
     maxResultCount: 1,
     statisticName: StatisticName.CREWS_ELO,
   });
 
-  const isLoading = isLoadingRawStats || isLoadingPlayerPosition;
-  const isRefreshing = isRefetchingRawStats || isRefetchingPlayerPosition;
+  const baseState = {
+    stats: undefined,
+    isLoading: false,
+    isError: false,
+    isRefreshing: isRefetchingRawStats || isRefetchingPlayerPosition,
+    refresh: () => {
+      void refetchPlayerStatistics();
+      void refetchPlayerPosition();
+    },
+  } as const;
 
-  const refresh = () => {
-    void refetchPlayerStatistics();
-    void refetchPlayerPosition();
-  };
+  if (isSuccessRawStats && isSuccessPlayerPosition && rawStats && playerPositions) {
+    const [userCrewsPosition] = playerPositions;
+    return {
+      ...baseState,
+      stats: {
+        elo: rawStats[StatisticName.CREWS_ELO] ? rawStats[StatisticName.CREWS_ELO] - 10000 : 1000,
+        setStats: { setCount: rawStats[StatisticName.CREWS_SETS] ?? 0 },
+        position: userCrewsPosition.position,
+        profile: userCrewsPosition.profile,
+        bestWinStreak: rawStats[StatisticName.CREWS_BEST_WIN_STREAK] ?? 0,
+      },
+    } as const;
+  }
+
+  if (isLoadingRawStats || isLoadingPlayerPosition) {
+    return {
+      ...baseState,
+      isLoading: true,
+    } as const;
+  }
 
   return {
-    stats: {
-      ...(rawStats ? getCrewsStats(rawStats) : {}),
-      position: userCrewsPosition?.position,
-      profile: userCrewsPosition?.profile,
-    },
-    refresh,
-    isLoading,
-    isRefreshing,
+    ...baseState,
+    isError: true,
   } as const;
 };

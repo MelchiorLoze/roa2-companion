@@ -14,9 +14,9 @@ import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabConten
 
 export const RankedStats = () => {
   const { season, setPreviousSeason, setNextSeason } = useSeason();
-  const { stats, isLoading, refresh, isRefreshing } = useUserRankedStats();
+  const { stats, isLoading, isError, isRefreshing, refresh } = useUserRankedStats();
 
-  if (isLoading) return <Spinner />;
+  if (isLoading || isError) return <Spinner />;
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
@@ -55,18 +55,16 @@ export const RankedStats = () => {
         )}
       </View>
 
-      {stats.bestWinStreak !== undefined && (
-        <View style={styles.setStatsContainer}>
-          {stats.setStats && (
-            <>
-              <StatRow label="Ranked wins" value={stats.setStats?.winCount} />
-              <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
-              <StatRow label="Ranked win rate" value={stats.setStats?.winRate.toFixed(2) + '%'} />
-            </>
-          )}
-          <StatRow label="Best win streak" value={stats.bestWinStreak} />
-        </View>
-      )}
+      <View style={styles.setStatsContainer}>
+        {stats.setStats && (
+          <>
+            <StatRow label="Ranked wins" value={stats.setStats.winCount} />
+            <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
+            <StatRow label="Ranked win rate" value={stats.setStats.winRate.toFixed(2) + '%'} />
+          </>
+        )}
+        <StatRow label="Best win streak" value={stats.bestWinStreak} />
+      </View>
     </StatsTabContentWrapper>
   );
 };
