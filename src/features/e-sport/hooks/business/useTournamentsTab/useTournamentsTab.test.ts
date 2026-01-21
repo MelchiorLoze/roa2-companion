@@ -72,6 +72,16 @@ describe('useTournamentsTab', () => {
     expect(result.current.selectedTab).toBe('active');
   });
 
+  it('returns tabs array with active and past tabs', () => {
+    const { result } = renderHook(() => useTournamentsTab());
+
+    expect(result.current.tabs).toHaveLength(2);
+    expect(result.current.tabs[0].title).toBe('active');
+    expect(result.current.tabs[1].title).toBe('past');
+    expect(typeof result.current.tabs[0].onPress).toBe('function');
+    expect(typeof result.current.tabs[1].onPress).toBe('function');
+  });
+
   describe('when active tab is selected', () => {
     it('returns active tournaments', () => {
       useGetActiveTournamentsMock.mockReturnValue({
@@ -142,8 +152,10 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.tournaments).toEqual(mockPastTournaments);
@@ -160,8 +172,10 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.isLoading).toBe(true);
@@ -178,8 +192,10 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.isRefreshing).toBe(true);
@@ -196,8 +212,10 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.isError).toBe(true);
@@ -205,29 +223,34 @@ describe('useTournamentsTab', () => {
   });
 
   describe('tab selection', () => {
-    it('switches to active tab when selectActiveTab is called', () => {
+    it('switches to active tab when active tab is pressed', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const activeTab = result.current.tabs.find((tab) => tab.title === 'active');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.selectedTab).toBe('past');
 
       act(() => {
-        result.current.selectActiveTab();
+        activeTab?.onPress();
       });
 
       expect(result.current.selectedTab).toBe('active');
     });
 
-    it('switches to past tab when selectPastTab is called', () => {
+    it('switches to past tab when past tab is pressed', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
       expect(result.current.selectedTab).toBe('active');
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       expect(result.current.selectedTab).toBe('past');
@@ -249,8 +272,10 @@ describe('useTournamentsTab', () => {
     it('refetches both tournaments regardless of selected tab', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
+      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+
       act(() => {
-        result.current.selectPastTab();
+        pastTab?.onPress();
       });
 
       act(() => {

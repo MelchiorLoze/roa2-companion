@@ -2,12 +2,15 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import ESport from '@/app/(private)/e-sport';
-import { useTournamentsTab } from '@/features/e-sport/hooks/business/useTournamentsTab/useTournamentsTab';
+import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments';
+import { useGetPastTournaments } from '@/features/e-sport/hooks/data/useGetPastTournaments/useGetPastTournaments';
 import { type Tournament, TournamentState } from '@/features/e-sport/types/tournament';
 
-jest.mock('@/features/e-sport/hooks/business/useTournamentsTab/useTournamentsTab');
+jest.mock('@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments');
+jest.mock('@/features/e-sport/hooks/data/useGetPastTournaments/useGetPastTournaments');
 
-const useTournamentsTabMock = jest.mocked(useTournamentsTab);
+const useGetActiveTournamentsMock = jest.mocked(useGetActiveTournaments);
+const useGetPastTournamentsMock = jest.mocked(useGetPastTournaments);
 
 const mockTournament1: Tournament = {
   id: 1,
@@ -78,25 +81,34 @@ const mockTournament3: Tournament = {
   ],
 };
 
-const defaultTournamentsTabReturnValue: ReturnType<typeof useTournamentsTab> = {
+const mockRefetchActive = jest.fn();
+const mockRefetchPast = jest.fn();
+
+const defaultActiveTournamentsReturnValue: ReturnType<typeof useGetActiveTournaments> = {
   tournaments: [],
   isLoading: false,
-  isRefreshing: false,
   isError: false,
-  selectedTab: 'active',
-  selectActiveTab: jest.fn(),
-  selectPastTab: jest.fn(),
-  refresh: jest.fn(),
+  refetch: mockRefetchActive,
+  isRefetching: false,
+};
+
+const defaultPastTournamentsReturnValue: ReturnType<typeof useGetPastTournaments> = {
+  tournaments: [],
+  isLoading: false,
+  isError: false,
+  refetch: mockRefetchPast,
+  isRefetching: false,
 };
 
 describe('ESport', () => {
   beforeEach(() => {
-    useTournamentsTabMock.mockReturnValue(defaultTournamentsTabReturnValue);
+    useGetActiveTournamentsMock.mockReturnValue(defaultActiveTournamentsReturnValue);
+    useGetPastTournamentsMock.mockReturnValue(defaultPastTournamentsReturnValue);
   });
 
   it('matches snapshot with tournaments', () => {
-    useTournamentsTabMock.mockReturnValue({
-      ...defaultTournamentsTabReturnValue,
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1, mockTournament2, mockTournament3],
     });
 
@@ -117,8 +129,8 @@ describe('ESport', () => {
   });
 
   it('shows spinner when loading', () => {
-    useTournamentsTabMock.mockReturnValue({
-      ...defaultTournamentsTabReturnValue,
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
       isLoading: true,
     });
 
@@ -130,8 +142,8 @@ describe('ESport', () => {
   });
 
   it('shows error message when request fails', () => {
-    useTournamentsTabMock.mockReturnValue({
-      ...defaultTournamentsTabReturnValue,
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
       isError: true,
     });
 
@@ -150,27 +162,10 @@ describe('ESport', () => {
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
-  it('calls selectActiveTab when active tab is pressed', () => {
-    const selectActiveTabMock = jest.fn();
-    useTournamentsTabMock.mockReturnValue({
-      ...defaultTournamentsTabReturnValue,
-      selectedTab: 'past',
-      selectActiveTab: selectActiveTabMock,
-    });
-
-    render(<ESport />);
-
-    const activeTab = screen.getByText('active');
-    fireEvent.press(activeTab);
-
-    expect(selectActiveTabMock).toHaveBeenCalledTimes(1);
-  });
-
-  it('calls selectPastTab when past tab is pressed', () => {
-    const selectPastTabMock = jest.fn();
-    useTournamentsTabMock.mockReturnValue({
-      ...defaultTournamentsTabReturnValue,
-      selectPastTab: selectPastTabMock,
+  it('calls active tab onPress when active tab is pressed', () => {
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament1],
     });
 
     render(<ESport />);
@@ -178,6 +173,149 @@ describe('ESport', () => {
     const pastTab = screen.getByText('past');
     fireEvent.press(pastTab);
 
-    expect(selectPastTabMock).toHaveBeenCalledTimes(1);
+    // Switch back to active tab
+    const activeTab = screen.getByText('active');
+    fireEvent.press(activeTab);
+
+    // Verify active tab is now selected (disabled)
+    expect(screen.getByText('active')).toBeDisabled();
+    expect(screen.getByText('past')).toBeEnabled();
+  });
+
+  it('calls past tab onPress when past tab is pressed', () => {
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament1],
+    });
+
+    render(<ESport />);
+
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    // Verify past tab is now selected (disabled)
+    expect(screen.getByText('past')).toBeDisabled();
+    expect(screen.getByText('active')).toBeEnabled();
+  });
+
+  it('shows active tournaments when active tab is selected', () => {
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
+      tournaments: [mockTournament1, mockTournament2],
+    });
+
+    render(<ESport />);
+
+    // Verify active tournaments are displayed
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
+    expect(screen.getByText('Test Tournament 2')).toBeTruthy();
+  });
+
+  it('shows past tournaments when past tab is selected', () => {
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
+      tournaments: [mockTournament1],
+    });
+
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament3],
+    });
+
+    const { rerender } = render(<ESport />);
+
+    // Initially shows active tournaments
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    // Re-render to update the view
+    rerender(<ESport />);
+
+    // Verify past tournaments are displayed
+    expect(screen.getByText('Test Tournament 3')).toBeTruthy();
+  });
+
+  it('shows loading state when past tab is loading', () => {
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      isLoading: true,
+    });
+
+    render(<ESport />);
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    // Verify spinner is shown
+    expect(screen.getByTestId('spinner')).toBeTruthy();
+  });
+
+  it('shows error when past tab has error', () => {
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      isError: true,
+    });
+
+    render(<ESport />);
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    // Verify error message is shown
+    expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
+  });
+
+  it('shows error when past tab has empty tournaments', () => {
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [],
+    });
+
+    render(<ESport />);
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    // Verify error message is shown
+    expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
+  });
+
+  it('maintains separate state for each tab', () => {
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
+      tournaments: [mockTournament1],
+    });
+
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament3],
+    });
+
+    const { rerender } = render(<ESport />);
+
+    // Verify active tab shows active tournament
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+    rerender(<ESport />);
+
+    // Verify past tab shows past tournament
+    expect(screen.getByText('Test Tournament 3')).toBeTruthy();
+
+    // Switch back to active tab
+    const activeTab = screen.getByText('active');
+    fireEvent.press(activeTab);
+    rerender(<ESport />);
+
+    // Verify active tab still shows active tournament
+    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
   });
 });
