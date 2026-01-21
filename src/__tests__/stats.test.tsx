@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@testing-library/react-native';
 
 import Stats from '@/app/(private)/stats';
 import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
@@ -8,7 +8,6 @@ import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGloba
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
 import { Rank } from '@/features/stats/types/rank';
-import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Character } from '@/types/character';
 
 jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext');
@@ -36,14 +35,6 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   setNextSeason: jest.fn(),
 };
 
-const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
-  firstPlayerElo: 2162,
-  lastPlayerElo: -100,
-  lastAethereanElo: 1837,
-  leaderboardEntries: testLeaderboardEntries,
-  isLoading: false,
-};
-
 const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> = {
   stats: {
     elo: 925,
@@ -64,7 +55,7 @@ const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
-    bestWinStreak: 0,
+    bestWinStreak: 5,
     position: 45,
     profile: { playerName: 'Player1', avatarUrl: new URL('https://www.example.com/avatars/player1.png') },
   },
@@ -90,6 +81,14 @@ const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> =
   isError: false,
 };
 
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
+  firstPlayerElo: 2162,
+  lastPlayerElo: -100,
+  lastAethereanElo: 1837,
+  leaderboardEntries: testLeaderboardEntries,
+  isLoading: false,
+};
+
 describe('Stats', () => {
   beforeEach(() => {
     useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
@@ -99,14 +98,58 @@ describe('Stats', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('renders the Stats component correctly', () => {
-    const { getByText } = render(<Stats />, { wrapper: TestQueryClientProvider });
+  it('renders correctly on initial tab', () => {
+    const { toJSON } = render(<Stats />);
 
-    // Verify the component renders the main title
-    expect(getByText('Season 1')).toBeTruthy();
+    expect(screen.getByText('ranked')).toBeDisabled();
+    expect(screen.getByText('crews')).toBeEnabled();
+    expect(screen.getByText('global')).toBeEnabled();
+
+    const tree = toJSON();
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree[1].props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
   });
 
-  it('renders the Stats component correctly when player is unranked', () => {
+  it('renders correctly on crews tab', () => {
+    const { toJSON } = render(<Stats />);
+
+    const crewsTab = screen.getByText('crews');
+    fireEvent.press(crewsTab);
+
+    expect(screen.getByText('ranked')).toBeEnabled();
+    expect(screen.getByText('crews')).toBeDisabled();
+    expect(screen.getByText('global')).toBeEnabled();
+
+    const tree = toJSON();
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree[1].props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders correctly on global tab', () => {
+    const { toJSON } = render(<Stats />);
+
+    const globalTab = screen.getByText('global');
+    fireEvent.press(globalTab);
+
+    expect(screen.getByText('ranked')).toBeEnabled();
+    expect(screen.getByText('crews')).toBeEnabled();
+    expect(screen.getByText('global')).toBeDisabled();
+
+    const tree = toJSON();
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree[1].props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders correctly when player is unranked', () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -140,10 +183,8 @@ describe('Stats', () => {
       },
     });
 
-    const { getByText } = render(<Stats />, { wrapper: TestQueryClientProvider });
+    render(<Stats />);
 
-    // Verify unranked player display
-    expect(getByText('Season 2')).toBeTruthy();
-    expect(getByText('UNRANKED')).toBeTruthy();
+    expect(screen.getByText('UNRANKED')).toBeTruthy();
   });
 });

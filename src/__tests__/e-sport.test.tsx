@@ -106,7 +106,7 @@ describe('ESport', () => {
     useGetPastTournamentsMock.mockReturnValue(defaultPastTournamentsReturnValue);
   });
 
-  it('matches snapshot with tournaments', () => {
+  it('matches snapshot on initial tab', () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1, mockTournament2, mockTournament3],
@@ -117,6 +117,37 @@ describe('ESport', () => {
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
+    expect(screen.getByText('Test Tournament 2')).toBeTruthy();
+    expect(screen.getByText('Test Tournament 3')).toBeTruthy();
+
+    const tree = toJSON();
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree.children[1].props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('matches snapshot on past tournaments tab', () => {
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
+      tournaments: [mockTournament1],
+    });
+
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament2, mockTournament3],
+    });
+
+    const { toJSON } = render(<ESport />);
+
+    // Switch to past tab
+    const pastTab = screen.getByText('past');
+    fireEvent.press(pastTab);
+
+    expect(screen.getByText('active')).toBeEnabled();
+    expect(screen.getByText('past')).toBeDisabled();
+    expect(screen.queryByText('Test Tournament 1')).toBeFalsy();
     expect(screen.getByText('Test Tournament 2')).toBeTruthy();
     expect(screen.getByText('Test Tournament 3')).toBeTruthy();
 
