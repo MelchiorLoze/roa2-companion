@@ -25,7 +25,7 @@ type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
 export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerRequest) => {
   const apiClient = useGameApiClient();
 
-  const { data, isSuccess, isPending, isRefetching, isError, refetch } = useQuery({
+  const { data, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['getLeaderboardAroundPlayer', maxResultCount, statisticName],
     queryFn: () =>
       apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
@@ -57,10 +57,8 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
 
   return {
     playerPositions: data,
-    isSuccess,
     isLoading: isPending,
     isRefetching,
-    isError,
     refetch,
   } as const;
 };

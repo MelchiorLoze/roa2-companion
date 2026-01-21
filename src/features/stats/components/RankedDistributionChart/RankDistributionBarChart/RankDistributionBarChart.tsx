@@ -48,11 +48,21 @@ type Props = {
 };
 
 export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
-  const { firstPlayerElo, lastPlayerElo, lastAethereanElo } = useLeaderboardStats();
-  const { rankDistribution, isLoading } = useRankDistribution();
+  const {
+    firstPlayerElo,
+    lastPlayerElo,
+    lastAethereanElo,
+    isLoading: isLoadingLeaderboardStats,
+    isError: isErrorLeaderboardStats,
+  } = useLeaderboardStats();
+  const {
+    rankDistribution,
+    isLoading: isLoadingRankDistribution,
+    isError: isErrorRankDistribution,
+  } = useRankDistribution();
   const { theme } = useUnistyles();
 
-  if (isLoading)
+  if (isLoadingLeaderboardStats || isErrorLeaderboardStats || isLoadingRankDistribution || isErrorRankDistribution)
     return (
       <View style={{ height: width }}>
         <Spinner />

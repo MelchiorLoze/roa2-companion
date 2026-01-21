@@ -14,10 +14,8 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
     [StatisticName.CREWS_BEST_WIN_STREAK]: 5,
   },
   refetch: jest.fn(),
-  isSuccess: true,
   isLoading: false,
   isRefetching: false,
-  isError: false,
 };
 
 jest.mock('../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
@@ -35,10 +33,8 @@ const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderb
     },
   ],
   refetch: jest.fn(),
-  isSuccess: true,
   isLoading: false,
   isRefetching: false,
-  isError: false,
 };
 
 const renderUseUserCrewsStats = () => {
@@ -57,12 +53,9 @@ describe('useUserCrewsStats', () => {
 
   it('returns loading state when statistics are loading', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
-      refetch: jest.fn(),
       isLoading: true,
-      isRefetching: false,
-      isError: false,
-      isSuccess: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -74,12 +67,9 @@ describe('useUserCrewsStats', () => {
 
   it('returns loading state when leaderboard position is loading', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      ...defaultLeaderboardAroundPlayerReturnValue,
       playerPositions: undefined,
-      refetch: jest.fn(),
       isLoading: true,
-      isRefetching: false,
-      isError: false,
-      isSuccess: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -91,12 +81,8 @@ describe('useUserCrewsStats', () => {
 
   it('returns refetching state when statistics are being refetched', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: defaultPlayerStatisticsReturnValue.statistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
+      ...defaultPlayerStatisticsReturnValue,
       isRefetching: true,
-      isError: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -117,12 +103,8 @@ describe('useUserCrewsStats', () => {
 
   it('returns refetching state when leaderboard position is being refetched', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: defaultLeaderboardAroundPlayerReturnValue.playerPositions,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
+      ...defaultLeaderboardAroundPlayerReturnValue,
       isRefetching: true,
-      isError: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -164,12 +146,8 @@ describe('useUserCrewsStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -186,12 +164,8 @@ describe('useUserCrewsStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserCrewsStats();
@@ -204,22 +178,14 @@ describe('useUserCrewsStats', () => {
   it('passes through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: defaultPlayerStatisticsReturnValue.statistics,
+      ...defaultPlayerStatisticsReturnValue,
       refetch: mockRefetchStatistics,
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const mockRefetchLeaderboardPosition = jest.fn();
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
-      playerPositions: defaultLeaderboardAroundPlayerReturnValue.playerPositions,
+      ...defaultLeaderboardAroundPlayerReturnValue,
       refetch: mockRefetchLeaderboardPosition,
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserCrewsStats();

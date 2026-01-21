@@ -28,7 +28,6 @@ describe('useGetPlayerStatistics', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.statistics).toBeUndefined();
-    expect(result.current.isError).toBe(false);
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -38,7 +37,6 @@ describe('useGetPlayerStatistics', () => {
     const { result } = await renderUseGetPlayerStatistics();
 
     expect(result.current.statistics).toBeUndefined();
-    expect(result.current.isError).toBe(true);
   });
 
   it('returns statistics when the request succeeds', async () => {
@@ -57,7 +55,6 @@ describe('useGetPlayerStatistics', () => {
       [StatisticName.RANKED_S1_ELO]: 932,
       [StatisticName.RANKED_S1_SETS]: 708,
     });
-    expect(result.current.isError).toBe(false);
   });
 
   it('refetches the data', async () => {
@@ -94,6 +91,5 @@ describe('useGetPlayerStatistics', () => {
         [StatisticName.RANKED_S1_SETS]: 800,
       }),
     );
-    expect(result.current.isError).toBe(false);
   });
 });

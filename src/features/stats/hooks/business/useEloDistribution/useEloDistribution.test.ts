@@ -12,6 +12,7 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   lastAethereanElo: 1837,
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
+  isError: false,
 };
 
 const renderUseEloDistribution = () => {
@@ -30,17 +31,17 @@ describe('useEloDistribution', () => {
   it('returns correct values when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
-      firstPlayerElo: 0,
-      lastPlayerElo: 0,
-      lastAethereanElo: 0,
-      leaderboardEntries: [],
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
       isLoading: true,
     });
 
     const { result } = renderUseEloDistribution();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.eloDistribution).toEqual({});
+    expect(result.current.eloDistribution).toBeUndefined();
   });
 
   it('returns correct elo distribution for complete leaderboard', () => {

@@ -1,19 +1,19 @@
-export type LoadableState<TKey extends string, TData> = Readonly<
-  | (Record<TKey, TData> & {
+export type LoadableState<T extends Record<string, unknown>> = Readonly<
+  | (T & {
       isLoading: false;
       isError: false;
     })
-  | (Record<TKey, undefined> & {
+  | (Record<keyof T, undefined> & {
       isLoading: true;
       isError: false;
     })
-  | (Record<TKey, undefined> & {
+  | (Record<keyof T, undefined> & {
       isLoading: false;
       isError: true;
     })
 >;
 
-export type RefreshableState<TKey extends string, TData> = LoadableState<TKey, TData> &
+export type RefreshableState<T extends Record<string, unknown>> = LoadableState<T> &
   Readonly<{
     isRefreshing: boolean;
     refresh: () => void;

@@ -25,7 +25,6 @@ const useCommunityLeaderboardMock = jest.mocked(useCommunityLeaderboard);
 const defaultCommunityLeaderboardReturnValue: ReturnType<typeof useCommunityLeaderboard> = {
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
-  isError: false,
 };
 
 const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardStats>) => {
@@ -49,6 +48,10 @@ describe('useLeaderboardStats', () => {
       ...defaultSeasonReturnValue,
       isLoading: true,
     });
+    useCommunityLeaderboardMock.mockReturnValue({
+      ...defaultCommunityLeaderboardReturnValue,
+      leaderboardEntries: undefined,
+    });
 
     const { result } = renderUseLeaderboardStats();
 
@@ -58,16 +61,16 @@ describe('useLeaderboardStats', () => {
   it('returns correct values when leaderboard entries are loading', () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
-      leaderboardEntries: [],
+      leaderboardEntries: undefined,
       isLoading: true,
     });
 
     const { result } = renderUseLeaderboardStats();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.firstPlayerElo).toBe(0);
-    expect(result.current.lastPlayerElo).toBe(0);
-    expect(result.current.lastAethereanElo).toBe(0);
+    expect(result.current.firstPlayerElo).toBeUndefined();
+    expect(result.current.lastPlayerElo).toBeUndefined();
+    expect(result.current.lastAethereanElo).toBeUndefined();
   });
 
   it('returns correct values for complete leaderboard', () => {

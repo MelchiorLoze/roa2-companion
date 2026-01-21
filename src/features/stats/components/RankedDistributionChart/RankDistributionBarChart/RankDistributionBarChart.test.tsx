@@ -12,6 +12,7 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   lastAethereanElo: 1837,
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
+  isError: false,
 };
 
 const renderComponent = () => {
@@ -30,6 +31,10 @@ describe('RankDistributionBarChart', () => {
   it('renders loading state when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
       isLoading: true,
     });
 

@@ -87,6 +87,7 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   lastAethereanElo: 1837,
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
+  isError: false,
 };
 
 describe('Stats', () => {

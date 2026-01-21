@@ -1,3 +1,5 @@
+import { type LoadableState } from '@/types/loadableState';
+
 import { type LeaderboardEntry, Rank, RANK_ELO_THRESHOLDS } from '../../../types/rank';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
@@ -37,11 +39,31 @@ const getRankDistribution = (leaderboardEntries: LeaderboardEntry[]): Record<Ran
   } as const;
 };
 
-export const useRankDistribution = () => {
-  const { leaderboardEntries, isLoading } = useLeaderboardStats();
+export const useRankDistribution = (): LoadableState<{ rankDistribution: Record<Rank, number> }> => {
+  const { leaderboardEntries, isLoading, isError } = useLeaderboardStats();
+
+  const baseState = {
+    rankDistribution: undefined,
+    isLoading: false,
+    isError: false,
+  } as const;
+
+  if (isError) {
+    return {
+      ...baseState,
+      isError: true,
+    } as const;
+  }
+
+  if (isLoading) {
+    return {
+      ...baseState,
+      isLoading: true,
+    } as const;
+  }
 
   return {
+    ...baseState,
     rankDistribution: getRankDistribution(leaderboardEntries),
-    isLoading,
   } as const;
 };

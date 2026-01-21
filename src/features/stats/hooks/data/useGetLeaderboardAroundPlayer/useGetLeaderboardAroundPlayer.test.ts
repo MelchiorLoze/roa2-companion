@@ -88,7 +88,6 @@ describe('useGetLeaderboardAroundPlayer', () => {
         },
       },
     ]);
-    expect(result.current.isError).toBe(false);
   });
 
   it('fetches with custom parameters', async () => {
@@ -101,7 +100,6 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     expect(result.current.playerPositions).toBeDefined();
     expect(result.current.playerPositions![0].statisticName).toBe(StatisticName.RANKED_WINS);
-    expect(result.current.isError).toBe(false);
   });
 
   it('handles API error', async () => {
@@ -110,7 +108,6 @@ describe('useGetLeaderboardAroundPlayer', () => {
     const { result } = await renderUseGetLeaderboardAroundPlayer();
 
     expect(result.current.playerPositions).toBeUndefined();
-    expect(result.current.isError).toBe(true);
   });
 
   it('calls the query function again when refetching', async () => {
@@ -158,7 +155,6 @@ describe('useGetLeaderboardAroundPlayer', () => {
         },
       },
     ]);
-    expect(result.current.isError).toBe(false);
   });
 
   it('returns error when response has no leaderboard', async () => {
@@ -167,6 +163,5 @@ describe('useGetLeaderboardAroundPlayer', () => {
     const { result } = await renderUseGetLeaderboardAroundPlayer();
 
     expect(result.current.playerPositions).toBeUndefined();
-    expect(result.current.isError).toBe(true);
   });
 });

@@ -34,10 +34,8 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
     [StatisticName.RANKED_BEST_WIN_STREAK]: 9,
   },
   refetch: jest.fn(),
-  isSuccess: true,
   isLoading: false,
   isRefetching: false,
-  isError: false,
 };
 
 jest.mock('../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer');
@@ -55,10 +53,8 @@ const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderb
     },
   ],
   refetch: jest.fn(),
-  isSuccess: true,
   isLoading: false,
   isRefetching: false,
-  isError: false,
 };
 
 jest.mock('../../business/useLeaderboardStats/useLeaderboardStats');
@@ -69,6 +65,7 @@ const defaultLeaderboardStatsMock: ReturnType<typeof useLeaderboardStats> = {
   lastAethereanElo: 1837,
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
+  isError: false,
 };
 
 const mockStatistics: PlayerStatistics = {
@@ -110,7 +107,6 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
-      isSuccess: false,
       isLoading: true,
     });
 
@@ -125,7 +121,6 @@ describe('useUserRankedStats', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
       playerPositions: undefined,
-      isSuccess: false,
       isLoading: true,
     });
 
@@ -162,12 +157,8 @@ describe('useUserRankedStats', () => {
 
   it('computes ranked stats correctly from player stats for last (current) season', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
@@ -199,12 +190,8 @@ describe('useUserRankedStats', () => {
     });
 
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
@@ -236,12 +223,8 @@ describe('useUserRankedStats', () => {
     });
 
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats(StatisticName.RANKED_S2_ELO);
@@ -268,12 +251,8 @@ describe('useUserRankedStats', () => {
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
@@ -298,15 +277,11 @@ describe('useUserRankedStats', () => {
 
   it('returns undefined elo and rank when elo stat is not present', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
       statistics: {
         [StatisticName.RANKED_SETS]: 10,
         [StatisticName.RANKED_WINS]: 3,
-      } as PlayerStatistics,
-      refetch: jest.fn(),
-      isSuccess: true,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
+      },
     });
 
     const { result } = renderUseUserRankedStats();

@@ -1,3 +1,5 @@
+import { type LoadableState } from '@/types/loadableState';
+
 import { type LeaderboardEntry } from '../../../types/rank';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
@@ -23,12 +25,38 @@ const getEloDistribution = (
   return result;
 };
 
-export const useEloDistribution = () => {
-  const { firstPlayerElo, lastPlayerElo, leaderboardEntries, isLoading } = useLeaderboardStats();
+type EloDistribution = {
+  eloDistribution: Record<number, number>;
+  roundElo: (elo: number) => number;
+};
+
+export const useEloDistribution = (): LoadableState<EloDistribution> => {
+  const { firstPlayerElo, lastPlayerElo, leaderboardEntries, isLoading, isError } = useLeaderboardStats();
+
+  const baseState = {
+    eloDistribution: undefined,
+    roundElo: undefined,
+    isLoading: false,
+    isError: false,
+  } as const;
+
+  if (isError) {
+    return {
+      ...baseState,
+      isError: true,
+    } as const;
+  }
+
+  if (isLoading) {
+    return {
+      ...baseState,
+      isLoading: true,
+    } as const;
+  }
 
   return {
+    ...baseState,
     eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),
     roundElo,
-    isLoading,
   } as const;
 };

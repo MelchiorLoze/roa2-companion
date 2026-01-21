@@ -17,16 +17,14 @@ describe('useCommunityLeaderboard', () => {
   it('returns empty leaderboard entries when leaderboardId is -1', async () => {
     const { result } = await renderUseCommunityLeaderboard(-1);
 
-    expect(result.current.leaderboardEntries).toEqual([]);
-    expect(result.current.isError).toBe(false);
+    expect(result.current.leaderboardEntries).toBeUndefined();
   });
 
   it('returns an empty leaderboard while the request is loading', async () => {
     const { result } = renderHook(() => useCommunityLeaderboard(123), { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.leaderboardEntries).toEqual([]);
-    expect(result.current.isError).toBe(false);
+    expect(result.current.leaderboardEntries).toBeUndefined();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -56,7 +54,6 @@ describe('useCommunityLeaderboard', () => {
         { steamId: 456, position: 2, elo: 90 },
         { steamId: 789, position: 3, elo: 80 },
       ]);
-      expect(result.current.isError).toBe(false);
     });
 
     it('returns the leaderboard entries for multiple requests', async () => {
@@ -100,7 +97,6 @@ describe('useCommunityLeaderboard', () => {
         { steamId: 789, position: 5, elo: 50 },
         { steamId: 321, position: 6, elo: 40 },
       ]);
-      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -112,8 +108,7 @@ describe('useCommunityLeaderboard', () => {
     it('returns an error state', async () => {
       const { result } = await renderUseCommunityLeaderboard(123);
 
-      expect(result.current.leaderboardEntries).toEqual([]);
-      expect(result.current.isError).toBe(true);
+      expect(result.current.leaderboardEntries).toBeUndefined();
     });
   });
 });

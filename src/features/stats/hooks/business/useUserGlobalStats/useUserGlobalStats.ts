@@ -33,17 +33,15 @@ const getGlobalCharacterStats = (rawStats: PlayerStatistics, userData: UserData)
     level: userData.characterData[character]?.lvl ?? 0,
   }));
 
-export const useUserGlobalStats = (): RefreshableState<'stats', UserGlobalStats> => {
+export const useUserGlobalStats = (): RefreshableState<{ stats: UserGlobalStats }> => {
   const {
     statistics: rawStats,
-    isSuccess: isSuccessRawStats,
     isLoading: isLoadingRawStats,
     isRefetching: isRefetchingRawStats,
     refetch: refetchPlayerStatistics,
   } = useGetPlayerStatistics();
   const {
     userData,
-    isSuccess: isSuccessUserData,
     isLoading: isLoadingUserData,
     isRefetching: isRefetchingUserData,
     refetch: refetchUserData,
@@ -60,7 +58,7 @@ export const useUserGlobalStats = (): RefreshableState<'stats', UserGlobalStats>
     },
   } as const;
 
-  if (isSuccessRawStats && isSuccessUserData && rawStats && userData) {
+  if (rawStats && userData) {
     return {
       ...baseState,
       stats: {
