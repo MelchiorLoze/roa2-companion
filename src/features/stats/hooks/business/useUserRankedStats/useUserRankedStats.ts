@@ -45,18 +45,16 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season): UserR
   return result;
 };
 
-export const useUserRankedStats = (): RefreshableState<'stats', UserRankedStats> => {
+export const useUserRankedStats = (): RefreshableState<{ stats: UserRankedStats }> => {
   const { season } = useSeason();
   const {
     statistics: rawStats,
-    isSuccess: isSuccessRawStats,
     isLoading: isLoadingRawStats,
     isRefetching: isRefetchingRawStats,
     refetch: refetchPlayerStatistics,
   } = useGetPlayerStatistics();
   const {
     playerPositions,
-    isSuccess: isSuccessPlayerPosition,
     isLoading: isLoadingPlayerPosition,
     isRefetching: isRefetchingPlayerPosition,
     refetch: refetchPlayerPosition,
@@ -64,7 +62,7 @@ export const useUserRankedStats = (): RefreshableState<'stats', UserRankedStats>
     maxResultCount: 1,
     statisticName: getEloStatNameForSeason(season.index),
   });
-  const { leaderboardEntries } = useLeaderboardStats();
+  const { leaderboardEntries, isLoading: isLoadingLeaderboardStats } = useLeaderboardStats();
 
   const baseState = {
     stats: undefined,
@@ -77,7 +75,7 @@ export const useUserRankedStats = (): RefreshableState<'stats', UserRankedStats>
     },
   } as const;
 
-  if (isSuccessRawStats && isSuccessPlayerPosition && rawStats && playerPositions) {
+  if (rawStats && playerPositions && leaderboardEntries) {
     const [userRankedPosition] = playerPositions;
     const elo = rawStats[getEloStatNameForSeason(season.index)];
     const rank = elo != null && userRankedPosition ? getRank(elo, userRankedPosition?.position) : undefined;
@@ -95,7 +93,7 @@ export const useUserRankedStats = (): RefreshableState<'stats', UserRankedStats>
     };
   }
 
-  if (isLoadingRawStats || isLoadingPlayerPosition) {
+  if (isLoadingRawStats || isLoadingPlayerPosition || isLoadingLeaderboardStats) {
     return {
       ...baseState,
       isLoading: true,

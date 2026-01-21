@@ -13,6 +13,7 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   lastAethereanElo: 1837,
   leaderboardEntries: testLeaderboardEntries,
   isLoading: false,
+  isError: false,
 };
 
 const renderUseRankDistribution = () => {
@@ -31,27 +32,17 @@ describe('useRankDistribution', () => {
   it('returns correct values when leaderboard stats are loading', () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
-      firstPlayerElo: 0,
-      lastPlayerElo: 0,
-      lastAethereanElo: 0,
-      leaderboardEntries: [],
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
       isLoading: true,
     });
 
     const { result } = renderUseRankDistribution();
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.rankDistribution).toEqual({
-      [Rank.STONE]: 0,
-      [Rank.BRONZE]: 0,
-      [Rank.SILVER]: 0,
-      [Rank.GOLD]: 0,
-      [Rank.PLATINUM]: 0,
-      [Rank.DIAMOND]: 0,
-      [Rank.MASTER]: 0,
-      [Rank.GRANDMASTER]: 0,
-      [Rank.AETHEREAN]: 0,
-    });
+    expect(result.current.rankDistribution).toBeUndefined();
   });
 
   it('returns correct elo distribution for complete leaderboard', () => {

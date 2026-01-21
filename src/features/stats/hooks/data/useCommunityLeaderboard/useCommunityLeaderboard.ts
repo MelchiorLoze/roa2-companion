@@ -51,7 +51,7 @@ export const useCommunityLeaderboard = (leaderboardId: Leaderboard['id'] = -1) =
   const apiClient = useSteamCommunityApiClient();
   const enabled = leaderboardId !== -1;
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['communityLeaderboard', leaderboardId],
     queryFn: () => queryFn(apiClient, leaderboardId),
     enabled,
@@ -60,8 +60,7 @@ export const useCommunityLeaderboard = (leaderboardId: Leaderboard['id'] = -1) =
   });
 
   return {
-    leaderboardEntries: data ?? [],
+    leaderboardEntries: data,
     isLoading: enabled && isPending,
-    isError,
   } as const;
 };

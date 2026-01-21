@@ -52,6 +52,7 @@ useLeaderboardStatsMock.mockReturnValue({
   lastAethereanElo: 1800,
   leaderboardEntries: [],
   isLoading: false,
+  isError: false,
 });
 
 const renderComponent = () => {

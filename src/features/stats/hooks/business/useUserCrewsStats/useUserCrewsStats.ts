@@ -12,17 +12,15 @@ type UserCrewsStats = {
   bestWinStreak: number;
 } & Pick<PlayerPosition, 'position' | 'profile'>;
 
-export const useUserCrewsStats = (): RefreshableState<'stats', UserCrewsStats> => {
+export const useUserCrewsStats = (): RefreshableState<{ stats: UserCrewsStats }> => {
   const {
     statistics: rawStats,
-    isSuccess: isSuccessRawStats,
     isLoading: isLoadingRawStats,
     isRefetching: isRefetchingRawStats,
     refetch: refetchPlayerStatistics,
   } = useGetPlayerStatistics();
   const {
     playerPositions,
-    isSuccess: isSuccessPlayerPosition,
     isLoading: isLoadingPlayerPosition,
     isRefetching: isRefetchingPlayerPosition,
     refetch: refetchPlayerPosition,
@@ -42,7 +40,7 @@ export const useUserCrewsStats = (): RefreshableState<'stats', UserCrewsStats> =
     },
   } as const;
 
-  if (isSuccessRawStats && isSuccessPlayerPosition && rawStats && playerPositions) {
+  if (rawStats && playerPositions) {
     const [userCrewsPosition] = playerPositions;
     return {
       ...baseState,

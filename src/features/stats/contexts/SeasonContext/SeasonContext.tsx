@@ -20,8 +20,8 @@ export const SeasonProvider = ({ children }: PropsWithChildren) => {
   const [seasonIndex, setSeasonIndex] = useState(MAX_SEASON_INDEX);
   const { leaderboards, isLoading } = useCommunityLeaderboards();
 
-  const currentLeaderboard = leaderboards[seasonIndex - 1];
-  const seasonName = currentLeaderboard?.displayName.replace(/leaderboard/i, '').trim() || `Season ${seasonIndex}`;
+  const currentLeaderboard = leaderboards?.[seasonIndex - 1];
+  const seasonName = currentLeaderboard?.displayName.replace(/leaderboard/i, '').trim() ?? `Season ${seasonIndex}`;
 
   const setPreviousSeason = () => {
     setSeasonIndex((prev) => {

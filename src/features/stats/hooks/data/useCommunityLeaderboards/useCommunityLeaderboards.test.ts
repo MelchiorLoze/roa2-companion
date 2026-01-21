@@ -18,8 +18,7 @@ describe('useCommunityLeaderboards', () => {
     const { result } = renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.leaderboards).toEqual([]);
-    expect(result.current.isError).toBe(false);
+    expect(result.current.leaderboards).toBeUndefined();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -45,7 +44,6 @@ describe('useCommunityLeaderboards', () => {
         { id: 1, name: 'Leaderboard 1', displayName: 'Leaderboard One', entryCount: 100 },
         { id: 2, name: 'Leaderboard 2', displayName: 'Leaderboard Two', entryCount: 200 },
       ]);
-      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -57,8 +55,7 @@ describe('useCommunityLeaderboards', () => {
     it('returns an error state', async () => {
       const { result } = await renderUseCommunityLeaderboards();
 
-      expect(result.current.leaderboards).toEqual([]);
-      expect(result.current.isError).toBe(true);
+      expect(result.current.leaderboards).toBeUndefined();
     });
   });
 });

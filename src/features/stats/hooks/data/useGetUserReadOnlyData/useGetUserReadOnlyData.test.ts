@@ -28,7 +28,6 @@ describe('useGetUserReadOnlyData', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.userData).toBeUndefined();
-    expect(result.current.isError).toBe(false);
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -38,7 +37,6 @@ describe('useGetUserReadOnlyData', () => {
     const { result } = await renderUseGetUserReadOnlyData();
 
     expect(result.current.userData).toBeUndefined();
-    expect(result.current.isError).toBe(true);
   });
 
   it('returns statistics when the request succeeds', async () => {
@@ -58,7 +56,6 @@ describe('useGetUserReadOnlyData', () => {
         [Character.RANNO]: { lvl: 213 },
       },
     });
-    expect(result.current.isError).toBe(false);
   });
 
   it('refetches the data', async () => {
@@ -98,6 +95,5 @@ describe('useGetUserReadOnlyData', () => {
         },
       }),
     );
-    expect(result.current.isError).toBe(false);
   });
 });

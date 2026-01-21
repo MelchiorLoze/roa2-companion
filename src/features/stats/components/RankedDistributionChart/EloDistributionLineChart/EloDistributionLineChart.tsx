@@ -13,9 +13,14 @@ type Props = {
 };
 
 export const EloDistributionLineChart = ({ userElo, width, style }: Readonly<Props>) => {
-  const { eloDistribution, roundElo, isLoading: isLoadingLeaderboard } = useEloDistribution();
+  const {
+    eloDistribution,
+    roundElo,
+    isLoading: isLoadingLeaderboard,
+    isError: isErrorLeaderboard,
+  } = useEloDistribution();
 
-  if (isLoadingLeaderboard) return null;
+  if (isLoadingLeaderboard || isErrorLeaderboard) return null;
 
   const lineData = formatLineData(eloDistribution);
 

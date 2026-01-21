@@ -22,7 +22,6 @@ const mockCommunityLeaderboards = (leaderboards = mockLeaderboards) => {
   useCommunityLeaderboardsMock.mockReturnValue({
     leaderboards,
     isLoading: false,
-    isError: false,
   });
 };
 
