@@ -34,6 +34,7 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
     [StatisticName.RANKED_BEST_WIN_STREAK]: 9,
   },
   refetch: jest.fn(),
+  isSuccess: true,
   isLoading: false,
   isRefetching: false,
   isError: false,
@@ -54,6 +55,7 @@ const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderb
     },
   ],
   refetch: jest.fn(),
+  isSuccess: true,
   isLoading: false,
   isRefetching: false,
   isError: false,
@@ -108,6 +110,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
+      isSuccess: false,
       isLoading: true,
     });
 
@@ -115,24 +118,14 @@ describe('useUserRankedStats', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
-    expect(result.current.stats).toEqual({
-      elo: undefined,
-      rank: undefined,
-      bestWinStreak: undefined,
-      position: 4404,
-      playerCount: 21,
-      setStats: undefined,
-      profile: {
-        playerName: 'Player1',
-        avatarUrl: new URL('https://www.example.com/icon/player1.png'),
-      },
-    });
+    expect(result.current.stats).toBeUndefined();
   });
 
   it('returns loading state when leaderboard data is loading', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
-      playerPositions: [],
+      playerPositions: undefined,
+      isSuccess: false,
       isLoading: true,
     });
 
@@ -140,24 +133,13 @@ describe('useUserRankedStats', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
-    expect(result.current.stats).toEqual({
-      elo: 950,
-      rank: undefined,
-      bestWinStreak: 9,
-      position: undefined,
-      playerCount: 21,
-      setStats: { setCount: 100, winCount: 75, winRate: 75 },
-      profile: undefined,
-    });
+    expect(result.current.stats).toBeUndefined();
   });
 
   it('returns refetching state when statistics are being refetched', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: {} as PlayerStatistics,
-      refetch: jest.fn(),
-      isLoading: false,
+      ...defaultPlayerStatisticsReturnValue,
       isRefetching: true,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
@@ -182,6 +164,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
       refetch: jest.fn(),
+      isSuccess: true,
       isLoading: false,
       isRefetching: false,
       isError: false,
@@ -218,6 +201,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
       refetch: jest.fn(),
+      isSuccess: true,
       isLoading: false,
       isRefetching: false,
       isError: false,
@@ -254,6 +238,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
       refetch: jest.fn(),
+      isSuccess: true,
       isLoading: false,
       isRefetching: false,
       isError: false,
@@ -285,6 +270,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       statistics: mockStatistics,
       refetch: jest.fn(),
+      isSuccess: true,
       isLoading: false,
       isRefetching: false,
       isError: false,
@@ -299,11 +285,8 @@ describe('useUserRankedStats', () => {
     const mockRefetchStatistics = jest.fn();
 
     useGetPlayerStatisticsMock.mockReturnValue({
-      statistics: undefined,
+      ...defaultPlayerStatisticsReturnValue,
       refetch: mockRefetchStatistics,
-      isLoading: false,
-      isRefetching: false,
-      isError: false,
     });
 
     const { result } = renderUseUserRankedStats();
@@ -320,6 +303,7 @@ describe('useUserRankedStats', () => {
         [StatisticName.RANKED_WINS]: 3,
       } as PlayerStatistics,
       refetch: jest.fn(),
+      isSuccess: true,
       isLoading: false,
       isRefetching: false,
       isError: false,

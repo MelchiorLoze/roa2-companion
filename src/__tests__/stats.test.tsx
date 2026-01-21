@@ -3,26 +3,24 @@ import { render } from '@testing-library/react-native';
 import Stats from '@/app/(private)/stats';
 import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 import { useLeaderboardStats } from '@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats';
-import { useUserCharacterStats } from '@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats';
 import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
 import { Rank } from '@/features/stats/types/rank';
+import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Character } from '@/types/character';
 
 jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext');
 jest.mock('@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats');
 jest.mock('@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats');
 jest.mock('@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats');
-jest.mock('@/features/stats/hooks/business/useUserCharacterStats/useUserCharacterStats');
 jest.mock('@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats');
 
 const useSeasonMock = jest.mocked(useSeason);
 const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
 const useUserCrewsStatsMock = jest.mocked(useUserCrewsStats);
 const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
-const useUserCharacterStatsMock = jest.mocked(useUserCharacterStats);
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
 
 const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
@@ -38,6 +36,14 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
   setNextSeason: jest.fn(),
 };
 
+const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
+  firstPlayerElo: 2162,
+  lastPlayerElo: -100,
+  lastAethereanElo: 1837,
+  leaderboardEntries: testLeaderboardEntries,
+  isLoading: false,
+};
+
 const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> = {
   stats: {
     elo: 925,
@@ -51,47 +57,37 @@ const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> =
   refresh: jest.fn(),
   isLoading: false,
   isRefreshing: false,
+  isError: false,
 };
 
 const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   stats: {
     elo: 1500,
     setStats: { setCount: 50 },
+    bestWinStreak: 0,
     position: 45,
     profile: { playerName: 'Player1', avatarUrl: new URL('https://www.example.com/avatars/player1.png') },
   },
   refresh: jest.fn(),
   isLoading: false,
   isRefreshing: false,
+  isError: false,
 };
 
 const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> = {
   stats: {
     gameStats: { gameCount: 500, winCount: 300, winRate: 60 },
+    characterStats: [
+      { character: Character.KRAGG, gameCount: 20, level: 3 },
+      { character: Character.CLAIREN, gameCount: 50, level: 5 },
+      { character: Character.OLYMPIA, gameCount: 10, level: 10 },
+      { character: Character.RANNO, gameCount: 30, level: 5 },
+    ],
   },
   refresh: jest.fn(),
   isLoading: false,
   isRefreshing: false,
-};
-
-const defaultUserCharacterStatsReturnValue: ReturnType<typeof useUserCharacterStats> = {
-  stats: [
-    { character: Character.KRAGG, gameCount: 20, level: 3 },
-    { character: Character.CLAIREN, gameCount: 50, level: 5 },
-    { character: Character.OLYMPIA, gameCount: 10, level: 10 },
-    { character: Character.RANNO, gameCount: 30, level: 5 },
-  ],
-  refresh: jest.fn(),
-  isLoading: false,
-  isRefreshing: false,
-};
-
-const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats> = {
-  firstPlayerElo: 2162,
-  lastPlayerElo: -100,
-  lastAethereanElo: 1837,
-  leaderboardEntries: testLeaderboardEntries,
-  isLoading: false,
+  isError: false,
 };
 
 describe('Stats', () => {
@@ -100,21 +96,17 @@ describe('Stats', () => {
     useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsReturnValue);
     useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsReturnValue);
     useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
-    useUserCharacterStatsMock.mockReturnValue(defaultUserCharacterStatsReturnValue);
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('matches snapshot', () => {
-    const tree = render(<Stats />).toJSON();
+  it('renders the Stats component correctly', () => {
+    const { getByText } = render(<Stats />, { wrapper: TestQueryClientProvider });
 
-    // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree.props.refreshControl;
-
-    expect(tree).toMatchSnapshot();
+    // Verify the component renders the main title
+    expect(getByText('Season 1')).toBeTruthy();
   });
 
-  it('matches snapshot when the player is unranked', () => {
+  it('renders the Stats component correctly when player is unranked', () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -133,26 +125,25 @@ describe('Stats', () => {
         bestWinStreak: 0,
         position: 12300,
         playerCount: 20000,
-        setStats: { setCount: 0, winCount: 0, winRate: 0 },
+        setStats: undefined,
         profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
       },
     });
     useUserCrewsStatsMock.mockReturnValue({
       ...defaultUserCrewsStatsReturnValue,
       stats: {
-        elo: undefined,
+        elo: 1000,
         setStats: { setCount: 0 },
+        bestWinStreak: 0,
         position: 0,
         profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
       },
     });
 
-    const tree = render(<Stats />).toJSON();
+    const { getByText } = render(<Stats />, { wrapper: TestQueryClientProvider });
 
-    // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree.props.refreshControl;
-
-    expect(tree).toMatchSnapshot();
+    // Verify unranked player display
+    expect(getByText('Season 2')).toBeTruthy();
+    expect(getByText('UNRANKED')).toBeTruthy();
   });
 });

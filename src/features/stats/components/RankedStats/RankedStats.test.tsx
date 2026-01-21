@@ -41,6 +41,7 @@ const defaultUserRankedStatsState: ReturnType<typeof useUserRankedStats> = {
   refresh: jest.fn(),
   isLoading: false,
   isRefreshing: false,
+  isError: false,
 };
 
 jest.mock('../../hooks/business/useLeaderboardStats/useLeaderboardStats');
@@ -69,7 +70,7 @@ describe('RankedStats', () => {
   it('renders correctly', () => {
     renderComponent();
 
-    expect(screen.getByText('Ranked - Season 5')).toBeTruthy();
+    expect(screen.getByText('Season 5')).toBeTruthy();
     expect(screen.getByText('S5')).toBeTruthy();
     expect(screen.getAllByRole('button')).toHaveLength(2); // Previous and Next season buttons
 
@@ -146,8 +147,11 @@ describe('RankedStats', () => {
 
   it('displays loading spinner when stats are loading', () => {
     useUserRankedStatsMock.mockReturnValue({
-      ...defaultUserRankedStatsState,
+      stats: undefined,
       isLoading: true,
+      isError: false,
+      isRefreshing: false,
+      refresh: jest.fn(),
     });
 
     renderComponent();

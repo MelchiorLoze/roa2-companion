@@ -15,7 +15,7 @@ type GetUserReadOnlyDataResponse = DeepReadonly<{
 export const useGetUserReadOnlyData = () => {
   const apiClient = useGameApiClient();
 
-  const { data, isSuccess, isPending, isRefetching, refetch } = useQuery({
+  const { data, isSuccess, isPending, isRefetching, isError, refetch } = useQuery({
     queryKey: ['userReadOnlyData'],
     queryFn: () => apiClient.post<GetUserReadOnlyDataResponse>('/Client/GetUserReadOnlyData'),
     select: (data): UserData => ({ characterData: JSON.parse(data.Data.character_data.Value) }),
@@ -28,6 +28,7 @@ export const useGetUserReadOnlyData = () => {
     isSuccess,
     isLoading: isPending,
     isRefetching,
+    isError,
     refetch,
   } as const;
 };
