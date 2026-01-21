@@ -2,10 +2,29 @@
 
 exports[`Stats renders correctly on crews tab 1`] = `
 [
-  <View
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        3861914241,
+        3861255013,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
     style={
       {
         "flexDirection": "row",
+        "justifyContent": "center",
       }
     }
   >
@@ -41,49 +60,24 @@ exports[`Stats renders correctly on crews tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          ranked
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        ranked
+      </Text>
     </View>
     <View
       accessibilityState={
@@ -117,49 +111,24 @@ exports[`Stats renders correctly on crews tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#FEDD84",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#FEDD84",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          crews
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        crews
+      </Text>
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
@@ -300,51 +269,26 @@ exports[`Stats renders correctly on crews tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          global
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        global
+      </Text>
     </View>
-  </View>,
+  </ViewManagerAdapter_ExpoLinearGradient>,
   <RCTScrollView
     contentContainerStyle={
       {
@@ -1020,10 +964,29 @@ exports[`Stats renders correctly on crews tab 1`] = `
 
 exports[`Stats renders correctly on global tab 1`] = `
 [
-  <View
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        3861914241,
+        3861255013,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
     style={
       {
         "flexDirection": "row",
+        "justifyContent": "center",
       }
     }
   >
@@ -1059,49 +1022,24 @@ exports[`Stats renders correctly on global tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          ranked
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        ranked
+      </Text>
     </View>
     <View
       accessibilityState={
@@ -1135,49 +1073,24 @@ exports[`Stats renders correctly on global tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          crews
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        crews
+      </Text>
     </View>
     <View
       accessibilityState={
@@ -1211,49 +1124,24 @@ exports[`Stats renders correctly on global tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#FEDD84",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#FEDD84",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          global
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        global
+      </Text>
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
@@ -1362,7 +1250,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         }
       />
     </View>
-  </View>,
+  </ViewManagerAdapter_ExpoLinearGradient>,
   <RCTScrollView
     contentContainerStyle={
       {
@@ -2200,10 +2088,29 @@ exports[`Stats renders correctly on global tab 1`] = `
 
 exports[`Stats renders correctly on initial tab 1`] = `
 [
-  <View
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        3861914241,
+        3861255013,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
     style={
       {
         "flexDirection": "row",
+        "justifyContent": "center",
       }
     }
   >
@@ -2239,49 +2146,24 @@ exports[`Stats renders correctly on initial tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#FEDD84",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#FEDD84",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          ranked
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        ranked
+      </Text>
       <ViewManagerAdapter_ExpoLinearGradient
         colors={
           [
@@ -2422,49 +2304,24 @@ exports[`Stats renders correctly on initial tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          crews
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        crews
+      </Text>
     </View>
     <View
       accessibilityState={
@@ -2498,51 +2355,26 @@ exports[`Stats renders correctly on initial tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "flex": 1,
+          "padding": 8,
         }
       }
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3861914241,
-            3861255013,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
+      <Text
         style={
           {
-            "paddingVertical": 8,
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
           }
         }
       >
-        <Text
-          style={
-            {
-              "color": "#5F46C2",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 16,
-              "textAlign": "center",
-              "textTransform": "uppercase",
-            }
-          }
-        >
-          global
-        </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+        global
+      </Text>
     </View>
-  </View>,
+  </ViewManagerAdapter_ExpoLinearGradient>,
   <RCTScrollView
     contentContainerStyle={
       {

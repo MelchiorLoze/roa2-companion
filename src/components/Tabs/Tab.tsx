@@ -14,9 +14,7 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
 
   return (
     <Pressable disabled={selected} onPress={onPress} style={styles.container}>
-      <LinearGradient {...theme.color.gradient.tab} style={styles.inner} vertical>
-        <Text style={styles.label(selected)}>{title}</Text>
-      </LinearGradient>
+      <Text style={styles.label(selected)}>{title}</Text>
       {selected && (
         <>
           <LinearGradient {...theme.color.gradient.tabSelectedOverlay} style={styles.selectedOverlay} vertical />
@@ -30,14 +28,12 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    flex: 1,
-  },
-  inner: {
-    paddingVertical: theme.spacing.s,
+    padding: theme.spacing.s,
   },
   label: (selected: boolean) => ({
     fontFamily: theme.font.primary.regular,
     fontSize: 16,
+    lineHeight: 16,
     textAlign: 'center',
     color: selected ? theme.color.accent : theme.color.inactiveLight,
     textTransform: 'uppercase',
