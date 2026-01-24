@@ -6,17 +6,17 @@ import { type LoadableState } from '@/types/loadableState';
 
 import { useGetMyRotationalCoinStore } from '../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore';
 
-type RotatingCoinShop = LoadableState<{
-  items: Item[];
-  expirationDate: DateTime;
-}>;
-
 const sortItems = (items: Item[]): Item[] =>
   items.sort(
     (itemA, itemB) => (itemA.coinPrice ?? 0) - (itemB.coinPrice ?? 0) || itemA.category.localeCompare(itemB.category),
   );
 
-export const useRotatingCoinShop = (): RotatingCoinShop => {
+type RotatingCoinShopState = LoadableState<{
+  items: Item[];
+  expirationDate: DateTime;
+}>;
+
+export const useRotatingCoinShop = (): RotatingCoinShopState => {
   const { rotationalCoinStore, isLoading: isLoadingRotation } = useGetMyRotationalCoinStore();
   const { items, isLoading: isLoadingItems } = useGetItems(rotationalCoinStore?.itemIds ?? []);
 

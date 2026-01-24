@@ -31,7 +31,7 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season) => {
   return result;
 };
 
-type UserRankedStats = RefreshableState<{
+type UserRankedStatsState = RefreshableState<{
   stats: {
     elo: number | undefined;
     rank: Rank | undefined;
@@ -47,7 +47,7 @@ type UserRankedStats = RefreshableState<{
   } & Pick<PlayerPosition, 'position' | 'profile'>;
 }>;
 
-export const useUserRankedStats = (): UserRankedStats => {
+export const useUserRankedStats = (): UserRankedStatsState => {
   const { season } = useSeason();
   const {
     statistics: rawStats,

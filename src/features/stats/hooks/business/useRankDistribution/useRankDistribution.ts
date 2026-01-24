@@ -39,9 +39,9 @@ const getRankDistribution = (leaderboardEntries: LeaderboardEntry[]): Record<Ran
   } as const;
 };
 
-type RankDistribution = LoadableState<{ rankDistribution: Record<Rank, number> }>;
+type RankDistributionState = LoadableState<{ rankDistribution: Record<Rank, number> }>;
 
-export const useRankDistribution = (): RankDistribution => {
+export const useRankDistribution = (): RankDistributionState => {
   const { leaderboardEntries, isLoading } = useLeaderboardStats();
 
   const baseState = {

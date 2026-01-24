@@ -25,7 +25,7 @@ const getEloDistribution = (
   return result;
 };
 
-type EloDistribution = LoadableState<
+type EloDistributionState = LoadableState<
   {
     eloDistribution: Record<number, number>;
   },
@@ -34,7 +34,7 @@ type EloDistribution = LoadableState<
   }
 >;
 
-export const useEloDistribution = (): EloDistribution => {
+export const useEloDistribution = (): EloDistributionState => {
   const { firstPlayerElo, lastPlayerElo, leaderboardEntries, isLoading } = useLeaderboardStats();
 
   const baseState = {

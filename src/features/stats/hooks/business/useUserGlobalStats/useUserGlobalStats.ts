@@ -20,7 +20,7 @@ const getGlobalCharacterStats = (rawStats: PlayerStatistics, userData: UserData)
     level: userData.characterData[character]?.lvl ?? 0,
   }));
 
-type UserGlobalStats = RefreshableState<{
+type UserGlobalStatsState = RefreshableState<{
   stats: {
     gameStats: {
       gameCount: number;
@@ -35,7 +35,7 @@ type UserGlobalStats = RefreshableState<{
   };
 }>;
 
-export const useUserGlobalStats = (): UserGlobalStats => {
+export const useUserGlobalStats = (): UserGlobalStatsState => {
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,

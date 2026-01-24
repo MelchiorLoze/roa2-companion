@@ -74,6 +74,7 @@ describe('SignIn', () => {
   it('renders loading state', () => {
     useAuthMock.mockReturnValue({
       ...defaultAuthReturnValue,
+      isLoggedIn: undefined,
       isLoading: true,
     });
 
@@ -109,6 +110,7 @@ describe('SignIn', () => {
   it('shows error message when login fails', () => {
     useAuthMock.mockReturnValue({
       ...defaultAuthReturnValue,
+      isLoggedIn: undefined,
       isError: true,
     });
 

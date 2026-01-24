@@ -8,14 +8,14 @@ import { useGetPastTournaments } from '../../data/useGetPastTournaments/useGetPa
 const TOURNAMENT_TABS = ['active', 'past'] as const;
 type TournamentTab = (typeof TOURNAMENT_TABS)[number];
 
-type TournamentsTab = RefreshableState<
+type TournamentsTabState = RefreshableState<
   {
     tournaments: Tournament[];
   },
   Pick<ReturnType<typeof useTabs<TournamentTab>>, 'tabs' | 'selectedTab'>
 >;
 
-export const useTournamentsTab = (): TournamentsTab => {
+export const useTournamentsTab = (): TournamentsTabState => {
   const { tabs, selectedTab, getValueForSelectedTab } = useTabs(TOURNAMENT_TABS);
 
   const {

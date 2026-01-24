@@ -4,7 +4,7 @@ import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
-type UserCrewsStats = RefreshableState<{
+type UserCrewsStatsState = RefreshableState<{
   stats: {
     elo: number;
     setStats: {
@@ -14,7 +14,7 @@ type UserCrewsStats = RefreshableState<{
   } & Pick<PlayerPosition, 'position' | 'profile'>;
 }>;
 
-export const useUserCrewsStats = (): UserCrewsStats => {
+export const useUserCrewsStats = (): UserCrewsStatsState => {
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,
