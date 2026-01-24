@@ -85,19 +85,17 @@ const mockRefetchActive = jest.fn();
 const mockRefetchPast = jest.fn();
 
 const defaultActiveTournamentsReturnValue: ReturnType<typeof useGetActiveTournaments> = {
-  tournaments: [],
+  tournaments: undefined,
   isLoading: false,
-  isError: false,
-  refetch: mockRefetchActive,
   isRefetching: false,
+  refetch: mockRefetchActive,
 };
 
 const defaultPastTournamentsReturnValue: ReturnType<typeof useGetPastTournaments> = {
-  tournaments: [],
+  tournaments: undefined,
   isLoading: false,
-  isError: false,
-  refetch: mockRefetchPast,
   isRefetching: false,
+  refetch: mockRefetchPast,
 };
 
 describe('ESport', () => {
@@ -109,7 +107,12 @@ describe('ESport', () => {
   it('matches snapshot on initial tab', () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
-      tournaments: [mockTournament1, mockTournament2, mockTournament3],
+      tournaments: [mockTournament1],
+    });
+
+    useGetPastTournamentsMock.mockReturnValue({
+      ...defaultPastTournamentsReturnValue,
+      tournaments: [mockTournament2, mockTournament3],
     });
 
     const { toJSON } = render(<ESport />);
@@ -117,8 +120,8 @@ describe('ESport', () => {
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
-    expect(screen.getByText('Test Tournament 2')).toBeTruthy();
-    expect(screen.getByText('Test Tournament 3')).toBeTruthy();
+    expect(screen.queryByText('Test Tournament 2')).toBeFalsy();
+    expect(screen.queryByText('Test Tournament 3')).toBeFalsy();
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
@@ -173,11 +176,6 @@ describe('ESport', () => {
   });
 
   it('shows error message when request fails', () => {
-    useGetActiveTournamentsMock.mockReturnValue({
-      ...defaultActiveTournamentsReturnValue,
-      isError: true,
-    });
-
     render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
@@ -186,6 +184,11 @@ describe('ESport', () => {
   });
 
   it('shows error message when tournament list is empty', () => {
+    useGetActiveTournamentsMock.mockReturnValue({
+      ...defaultActiveTournamentsReturnValue,
+      tournaments: [],
+    });
+
     render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
@@ -242,33 +245,6 @@ describe('ESport', () => {
     expect(screen.getByText('Test Tournament 2')).toBeTruthy();
   });
 
-  it('shows past tournaments when past tab is selected', () => {
-    useGetActiveTournamentsMock.mockReturnValue({
-      ...defaultActiveTournamentsReturnValue,
-      tournaments: [mockTournament1],
-    });
-
-    useGetPastTournamentsMock.mockReturnValue({
-      ...defaultPastTournamentsReturnValue,
-      tournaments: [mockTournament3],
-    });
-
-    const { rerender } = render(<ESport />);
-
-    // Initially shows active tournaments
-    expect(screen.getByText('Test Tournament 1')).toBeTruthy();
-
-    // Switch to past tab
-    const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
-
-    // Re-render to update the view
-    rerender(<ESport />);
-
-    // Verify past tournaments are displayed
-    expect(screen.getByText('Test Tournament 3')).toBeTruthy();
-  });
-
   it('shows loading state when past tab is loading', () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
@@ -288,7 +264,8 @@ describe('ESport', () => {
   it('shows error when past tab has error', () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
-      isError: true,
+      tournaments: undefined,
+      isLoading: false,
     });
 
     render(<ESport />);

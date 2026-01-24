@@ -14,9 +14,9 @@ export const CurrenciesBalance = ({ style }: Readonly<Props>) => {
 
   return (
     <View style={style} testID="currencies-balance">
-      <CurrencyBalance balance={coinsBalance} currency={Currency.COINS} />
-      <CurrencyBalance balance={bucksBalance} currency={Currency.BUCKS} />
-      <CurrencyBalance balance={medalsBalance} currency={Currency.MEDALS} />
+      <CurrencyBalance balance={coinsBalance ?? 0} currency={Currency.COINS} />
+      <CurrencyBalance balance={bucksBalance ?? 0} currency={Currency.BUCKS} />
+      <CurrencyBalance balance={medalsBalance ?? 0} currency={Currency.MEDALS} />
     </View>
   );
 };

@@ -1,52 +1,76 @@
 import { useTabs } from '@/hooks/core/useTabs/useTabs';
+import { type RefreshableState } from '@/types/loadableState';
 
+import { type Tournament } from '../../../types/tournament';
 import { useGetActiveTournaments } from '../../data/useGetActiveTournaments/useGetActiveTournaments';
 import { useGetPastTournaments } from '../../data/useGetPastTournaments/useGetPastTournaments';
 
 const TOURNAMENT_TABS = ['active', 'past'] as const;
+type TournamentTab = (typeof TOURNAMENT_TABS)[number];
 
-export const useTournamentsTab = () => {
+type TournamentsTabState = RefreshableState<
+  {
+    tournaments: Tournament[];
+  },
+  Pick<ReturnType<typeof useTabs<TournamentTab>>, 'tabs' | 'selectedTab'>
+>;
+
+export const useTournamentsTab = (): TournamentsTabState => {
   const { tabs, selectedTab, getValueForSelectedTab } = useTabs(TOURNAMENT_TABS);
 
   const {
     tournaments: activeTournaments,
     isLoading: isLoadingActiveTournaments,
-    isError: isErrorActiveTournaments,
-    refetch: refetchActiveTournaments,
     isRefetching: isRefetchingActiveTournaments,
+    refetch: refetchActiveTournaments,
   } = useGetActiveTournaments();
   const {
     tournaments: pastTournaments,
-    refetch: refetchPastTournaments,
     isLoading: isLoadingPastTournaments,
-    isError: isErrorPastTournaments,
     isRefetching: isRefetchingPastTournaments,
+    refetch: refetchPastTournaments,
   } = useGetPastTournaments();
 
-  const resultForSelectedTab = getValueForSelectedTab({
+  const baseState = {
+    tournaments: undefined,
+    tabs,
+    selectedTab,
+    isLoading: false,
+    isError: false,
+    isRefreshing: isRefetchingActiveTournaments || isRefetchingPastTournaments,
+    refresh: () => {
+      void refetchActiveTournaments();
+      void refetchPastTournaments();
+    },
+  } as const;
+
+  const { tournaments, isLoading } = getValueForSelectedTab({
     active: {
       tournaments: activeTournaments,
       isLoading: isLoadingActiveTournaments,
-      isError: isErrorActiveTournaments,
-      isRefreshing: isRefetchingActiveTournaments,
     },
     past: {
       tournaments: pastTournaments,
       isLoading: isLoadingPastTournaments,
-      isError: isErrorPastTournaments,
-      isRefreshing: isRefetchingPastTournaments,
     },
   });
 
-  const refresh = () => {
-    void refetchActiveTournaments();
-    void refetchPastTournaments();
-  };
+  if (tournaments?.length) {
+    return {
+      ...baseState,
+      tournaments,
+    } as const;
+  }
+
+  if (isLoading) {
+    return {
+      ...baseState,
+      isLoading: true,
+    } as const;
+  }
 
   return {
-    ...resultForSelectedTab,
-    tabs,
-    selectedTab,
-    refresh,
+    ...baseState,
+    isError: true,
   } as const;
 };

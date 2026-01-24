@@ -11,7 +11,7 @@ import { type Tournament } from '@/features/e-sport/types/tournament';
 
 type Props = {
   refreshControl: ComponentProps<typeof ScrollView>['refreshControl'];
-  tournaments: Tournament[];
+  tournaments: Tournament[] | undefined;
   isLoading: boolean;
   isError: boolean;
 };
@@ -19,7 +19,7 @@ type Props = {
 const Content = ({ refreshControl, tournaments, isLoading, isError }: Readonly<Props>) => {
   if (isLoading) return <Spinner />;
 
-  if (isError || tournaments.length === 0)
+  if (isError || !tournaments)
     return (
       <ScrollView refreshControl={refreshControl}>
         <Alert text="An error occurred while loading tournaments. Please try again later." />

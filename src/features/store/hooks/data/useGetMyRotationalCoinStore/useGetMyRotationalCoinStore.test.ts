@@ -51,7 +51,6 @@ describe('useGetMyRotationalCoinStore', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rotationalCoinStore).toBeUndefined();
-    expect(result.current.isError).toBe(false);
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -75,7 +74,6 @@ describe('useGetMyRotationalCoinStore', () => {
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rotationalCoinStore).toEqual(firstResult);
-    expect(result.current.isError).toBe(false);
 
     await waitFor(() => expect(result.current.isLoading).toBe(false));
     expect(result.current.rotationalCoinStore).toEqual(secondResult);
@@ -93,7 +91,6 @@ describe('useGetMyRotationalCoinStore', () => {
         itemIds: ['1', '2'],
         expirationDate: VALID_DATE,
       });
-      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -106,7 +103,6 @@ describe('useGetMyRotationalCoinStore', () => {
       const { result } = await renderUseGetMyRotationalCoinStore();
 
       expect(result.current.rotationalCoinStore).toBeUndefined();
-      expect(result.current.isError).toBe(true);
     });
   });
 });

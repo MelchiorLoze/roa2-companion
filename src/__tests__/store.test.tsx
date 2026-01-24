@@ -41,6 +41,7 @@ const defaultRotatingCoinShopReturnValue: ReturnType<typeof useRotatingCoinShop>
   items: testItemList,
   expirationDate: DateTime.utc().plus({ day: 1 }),
   isLoading: false,
+  isError: false,
 };
 
 describe('Store', () => {
@@ -101,7 +102,7 @@ describe('Store', () => {
   it('displays a spinner when the store items are loading', () => {
     useRotatingCoinShopMock.mockReturnValue({
       ...defaultRotatingCoinShopReturnValue,
-      items: [],
+      items: undefined,
       expirationDate: undefined,
       isLoading: true,
     });

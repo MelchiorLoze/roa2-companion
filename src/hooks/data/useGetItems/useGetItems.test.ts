@@ -29,16 +29,14 @@ describe('useGetItems', () => {
       const { result } = renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });
 
       expect(result.current.isLoading).toBe(true);
-      expect(result.current.items).toEqual([]);
-      expect(result.current.isError).toBe(false);
+      expect(result.current.items).toBeUndefined();
       await waitFor(() => expect(result.current.isLoading).toBe(false));
     });
 
     it('when itemIds is empty', async () => {
       const { result } = await renderUseGetItems([]);
 
-      expect(result.current.items).toEqual([]);
-      expect(result.current.isError).toBe(false);
+      expect(result.current.items).toBeUndefined();
     });
 
     it('when the request fails', async () => {
@@ -46,8 +44,7 @@ describe('useGetItems', () => {
 
       const { result } = await renderUseGetItems(['1', '2']);
 
-      expect(result.current.items).toEqual([]);
-      expect(result.current.isError).toBe(true);
+      expect(result.current.items).toBeUndefined();
     });
   });
 
@@ -81,7 +78,6 @@ describe('useGetItems', () => {
           coinPrice: 2000,
         },
       ]);
-      expect(result.current.isError).toBe(false);
     });
   });
 });

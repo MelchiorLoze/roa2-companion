@@ -39,8 +39,10 @@ const getRankDistribution = (leaderboardEntries: LeaderboardEntry[]): Record<Ran
   } as const;
 };
 
-export const useRankDistribution = (): LoadableState<{ rankDistribution: Record<Rank, number> }> => {
-  const { leaderboardEntries, isLoading, isError } = useLeaderboardStats();
+type RankDistributionState = LoadableState<{ rankDistribution: Record<Rank, number> }>;
+
+export const useRankDistribution = (): RankDistributionState => {
+  const { leaderboardEntries, isLoading } = useLeaderboardStats();
 
   const baseState = {
     rankDistribution: undefined,
@@ -48,10 +50,10 @@ export const useRankDistribution = (): LoadableState<{ rankDistribution: Record<
     isError: false,
   } as const;
 
-  if (isError) {
+  if (leaderboardEntries) {
     return {
       ...baseState,
-      isError: true,
+      rankDistribution: getRankDistribution(leaderboardEntries),
     } as const;
   }
 
@@ -64,6 +66,6 @@ export const useRankDistribution = (): LoadableState<{ rankDistribution: Record<
 
   return {
     ...baseState,
-    rankDistribution: getRankDistribution(leaderboardEntries),
+    isError: true,
   } as const;
 };

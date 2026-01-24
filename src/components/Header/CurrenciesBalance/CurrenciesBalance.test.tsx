@@ -27,9 +27,9 @@ describe('CurrenciesBalance', () => {
 
   it('renders correctly when the balances are loading', () => {
     useCurrencyBalanceMock.mockReturnValue({
-      coinsBalance: 0,
-      bucksBalance: 0,
-      medalsBalance: 0,
+      coinsBalance: undefined,
+      bucksBalance: undefined,
+      medalsBalance: undefined,
       isLoading: true,
       isError: false,
     });

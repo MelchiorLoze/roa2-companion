@@ -70,10 +70,10 @@ describe('getGradientProps', () => {
     expect(result.colors).toEqual(['red', 'green', 'yellow', 'blue']);
     expect(result.start).toEqual({ x: 0, y: 0 });
     expect(result.end).toEqual({ x: 100, y: 0 });
-    expect(result.locations![0]).toBe(0);
-    expect(result.locations![1]).toBeCloseTo(0.3333, 4);
-    expect(result.locations![2]).toBeCloseTo(0.6666, 4);
-    expect(result.locations![3]).toBe(1);
+    expect(result.locations?.[0]).toBe(0);
+    expect(result.locations?.[1]).toBeCloseTo(0.3333, 4);
+    expect(result.locations?.[2]).toBeCloseTo(0.6666, 4);
+    expect(result.locations?.[3]).toBe(1);
   });
 
   it('maintains the correct length of locations array', () => {
@@ -94,9 +94,9 @@ describe('getGradientProps', () => {
     expect(result.colors).toEqual(['red', 'green', 'blue']);
     expect(result.start).toEqual({ x: 0, y: 0 });
     expect(result.end).toEqual({ x: 0, y: 0.002 });
-    expect(result.locations![0]).toBe(0);
-    expect(result.locations![1]).toBe(0.5);
-    expect(result.locations![2]).toBe(1);
+    expect(result.locations?.[0]).toBe(0);
+    expect(result.locations?.[1]).toBe(0.5);
+    expect(result.locations?.[2]).toBe(1);
   });
 
   it('handles very large intervals correctly', () => {
@@ -174,9 +174,9 @@ describe('getGradientProps', () => {
     expect(result.colors).toEqual(['red', 'green', 'yellow', 'blue']);
     expect(result.start).toEqual({ x: 0, y: 0 });
     expect(result.end).toEqual({ x: 0, y: 1 });
-    expect(result.locations![0]).toBe(0);
-    expect(result.locations![1]).toBeCloseTo(1 / 3, 10);
-    expect(result.locations![2]).toBeCloseTo(2 / 3, 10);
-    expect(result.locations![3]).toBe(1);
+    expect(result.locations?.[0]).toBe(0);
+    expect(result.locations?.[1]).toBeCloseTo(1 / 3, 10);
+    expect(result.locations?.[2]).toBeCloseTo(2 / 3, 10);
+    expect(result.locations?.[3]).toBe(1);
   });
 });

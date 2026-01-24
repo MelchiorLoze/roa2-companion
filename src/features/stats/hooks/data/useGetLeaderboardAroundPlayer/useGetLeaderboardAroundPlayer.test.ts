@@ -99,7 +99,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     });
 
     expect(result.current.playerPositions).toBeDefined();
-    expect(result.current.playerPositions![0].statisticName).toBe(StatisticName.RANKED_WINS);
+    expect(result.current.playerPositions?.[0].statisticName).toBe(StatisticName.RANKED_WINS);
   });
 
   it('handles API error', async () => {

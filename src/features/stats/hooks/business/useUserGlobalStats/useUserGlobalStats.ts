@@ -5,20 +5,7 @@ import { type PlayerStatistics, StatisticName, type UserData } from '../../../ty
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 
-type UserGlobalStats = {
-  gameStats: {
-    gameCount: number;
-    winCount: number;
-    winRate: number;
-  };
-  characterStats: {
-    character: Character;
-    gameCount: number;
-    level: number;
-  }[];
-};
-
-const getGlobalGameStats = (rawStats: PlayerStatistics): UserGlobalStats['gameStats'] => {
+const getGlobalGameStats = (rawStats: PlayerStatistics) => {
   const gameCount = rawStats[StatisticName.TOTAL_GAMES] ?? 0;
   const winCount = rawStats[StatisticName.TOTAL_WINS] ?? 0;
   const winRate = gameCount ? (winCount / gameCount) * 100 : 0;
@@ -26,14 +13,29 @@ const getGlobalGameStats = (rawStats: PlayerStatistics): UserGlobalStats['gameSt
   return { gameCount, winCount, winRate } as const;
 };
 
-const getGlobalCharacterStats = (rawStats: PlayerStatistics, userData: UserData): UserGlobalStats['characterStats'] =>
+const getGlobalCharacterStats = (rawStats: PlayerStatistics, userData: UserData) =>
   Object.values(Character).map((character) => ({
     character,
     gameCount: rawStats[StatisticName[`${character.toUpperCase()}_MATCH_COUNT` as keyof typeof StatisticName]] ?? 0,
     level: userData.characterData[character]?.lvl ?? 0,
   }));
 
-export const useUserGlobalStats = (): RefreshableState<{ stats: UserGlobalStats }> => {
+type UserGlobalStatsState = RefreshableState<{
+  stats: {
+    gameStats: {
+      gameCount: number;
+      winCount: number;
+      winRate: number;
+    };
+    characterStats: {
+      character: Character;
+      gameCount: number;
+      level: number;
+    }[];
+  };
+}>;
+
+export const useUserGlobalStats = (): UserGlobalStatsState => {
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,

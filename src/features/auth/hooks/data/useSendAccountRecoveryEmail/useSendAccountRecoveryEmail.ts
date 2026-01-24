@@ -6,7 +6,7 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 export const useSendAccountRecoveryEmail = () => {
   const apiClient = useGameApiClient();
 
-  const { mutate, isPending, isSuccess, isError } = useMutation({
+  const { mutate, isSuccess, isPending, isError } = useMutation({
     mutationFn: (email: string) =>
       apiClient.post<void>('/Client/SendAccountRecoveryEmail', {
         body: {
@@ -18,8 +18,8 @@ export const useSendAccountRecoveryEmail = () => {
 
   return {
     sendRecoveryEmail: mutate,
-    isLoading: isPending,
     isSuccess,
+    isLoading: isPending,
     isError,
   } as const;
 };

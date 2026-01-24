@@ -10,31 +10,33 @@ import { useRotatingCoinShop } from './useRotatingCoinShop';
 const VALID_DATE = DateTime.utc().plus({ day: 1 });
 
 jest.mock('../../data/useGetMyRotationalCoinStore/useGetMyRotationalCoinStore');
-const useGetMyRotationalCoinStoreMock = jest.mocked(useGetMyRotationalCoinStore);
-
 jest.mock('@/hooks/data/useGetItems/useGetItems');
+
+const useGetMyRotationalCoinStoreMock = jest.mocked(useGetMyRotationalCoinStore);
 const useGetItemsMock = jest.mocked(useGetItems);
+
+const defaultRotationalCoinStoreReturnValue: ReturnType<typeof useGetMyRotationalCoinStore> = {
+  rotationalCoinStore: undefined,
+  isLoading: false,
+};
+
+const defaultItemsReturnValue: ReturnType<typeof useGetItems> = {
+  items: undefined,
+  isLoading: false,
+};
 
 describe('useRotatingCoinShop', () => {
   beforeEach(() => {
-    useGetMyRotationalCoinStoreMock.mockReturnValue({
-      rotationalCoinStore: undefined,
-      isLoading: false,
-      isError: false,
-    });
-
-    useGetItemsMock.mockReturnValue({
-      items: [],
-      isLoading: false,
-      isError: false,
-    });
+    useGetMyRotationalCoinStoreMock.mockReturnValue(defaultRotationalCoinStoreReturnValue);
+    useGetItemsMock.mockReturnValue(defaultItemsReturnValue);
   });
 
   it('handles null rotationalCoinStore', () => {
     const { result } = renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(false);
-    expect(result.current.items).toEqual([]);
+    expect(result.current.isError).toBe(true);
+    expect(result.current.items).toBeUndefined();
     expect(result.current.expirationDate).toBeUndefined();
   });
 
@@ -42,13 +44,12 @@ describe('useRotatingCoinShop', () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: undefined,
       isLoading: true,
-      isError: false,
     });
 
     const { result } = renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.items).toEqual([]);
+    expect(result.current.items).toBeUndefined();
     expect(result.current.expirationDate).toBeUndefined();
   });
 
@@ -56,19 +57,17 @@ describe('useRotatingCoinShop', () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: { itemIds: ['1', '2', '3'], expirationDate: VALID_DATE },
       isLoading: false,
-      isError: false,
     });
     useGetItemsMock.mockReturnValue({
       items: [],
       isLoading: true,
-      isError: false,
     });
 
     const { result } = renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.items).toEqual([]);
-    expect(result.current.expirationDate).toEqual(VALID_DATE);
+    expect(result.current.items).toBeUndefined();
+    expect(result.current.expirationDate).toBeUndefined();
   });
 
   it('passes correct itemIds to useGetItems', () => {
@@ -77,7 +76,6 @@ describe('useRotatingCoinShop', () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: { itemIds, expirationDate: DateTime.utc().plus({ days: 1 }) },
       isLoading: false,
-      isError: false,
     });
 
     renderHook(useRotatingCoinShop);
@@ -159,17 +157,16 @@ describe('useRotatingCoinShop', () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: { itemIds: ['1', '2', '3', '4'], expirationDate: VALID_DATE },
       isLoading: false,
-      isError: false,
     });
     useGetItemsMock.mockReturnValue({
       items: mockItems,
       isLoading: false,
-      isError: false,
     });
 
     const { result } = renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(false);
     expect(result.current.items).toEqual(expectedSortedItems);
     expect(result.current.expirationDate).toEqual(VALID_DATE);
   });

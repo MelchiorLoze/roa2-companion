@@ -25,7 +25,7 @@ export default function Store() {
   const { theme } = useUnistyles();
 
   const [selectedItem, setSelectedItem] = useState<CoinStoreItem | null>(null);
-  const { items, expirationDate, isLoading } = useRotatingCoinShop();
+  const { items, expirationDate, isLoading, isError } = useRotatingCoinShop();
 
   const openDialog = (item: Item) => {
     if (item.coinPrice) setSelectedItem(item as CoinStoreItem);
@@ -33,7 +33,7 @@ export default function Store() {
 
   const closeDialog = () => setSelectedItem(null);
 
-  if (isLoading)
+  if (isLoading || isError)
     return (
       <GradientWrapper>
         <Spinner />
@@ -43,12 +43,10 @@ export default function Store() {
   return (
     <>
       <GradientWrapper>
-        {expirationDate && (
-          <LinearGradient {...theme.color.gradient.storeCountdown} horizontal style={styles.timerContainer}>
-            <Text style={styles.timer}>Items refresh in:</Text>
-            <TimeCountdown date={expirationDate} style={styles.timer} />
-          </LinearGradient>
-        )}
+        <LinearGradient {...theme.color.gradient.storeCountdown} horizontal style={styles.timerContainer}>
+          <Text style={styles.timer}>Items refresh in:</Text>
+          <TimeCountdown date={expirationDate} style={styles.timer} />
+        </LinearGradient>
         <ItemList items={items} onSelect={openDialog} />
       </GradientWrapper>
       {selectedItem && <PurchaseConfirmationDialog item={selectedItem} onClose={closeDialog} />}

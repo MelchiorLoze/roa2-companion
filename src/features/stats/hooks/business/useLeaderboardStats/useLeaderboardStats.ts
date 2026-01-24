@@ -4,14 +4,14 @@ import { useSeason } from '../../../contexts/SeasonContext/SeasonContext';
 import { type LeaderboardEntry, MAX_AETHEREAN_PLAYERS, Rank, RANK_ELO_THRESHOLDS } from '../../../types/rank';
 import { useCommunityLeaderboard } from '../../data/useCommunityLeaderboard/useCommunityLeaderboard';
 
-type LeaderboardStats = {
+type LeaderboardStatsState = LoadableState<{
   firstPlayerElo: number;
   lastPlayerElo: number;
   lastAethereanElo: number;
   leaderboardEntries: LeaderboardEntry[];
-};
+}>;
 
-export const useLeaderboardStats = (): LoadableState<LeaderboardStats> => {
+export const useLeaderboardStats = (): LeaderboardStatsState => {
   const { leaderboardId, isLoading: isLoadingSeason } = useSeason();
   const { leaderboardEntries, isLoading: isLoadingLeaderboard } = useCommunityLeaderboard(leaderboardId);
 

@@ -4,15 +4,17 @@ import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
-type UserCrewsStats = {
-  elo: number;
-  setStats: {
-    setCount: number;
-  };
-  bestWinStreak: number;
-} & Pick<PlayerPosition, 'position' | 'profile'>;
+type UserCrewsStatsState = RefreshableState<{
+  stats: {
+    elo: number;
+    setStats: {
+      setCount: number;
+    };
+    bestWinStreak: number;
+  } & Pick<PlayerPosition, 'position' | 'profile'>;
+}>;
 
-export const useUserCrewsStats = (): RefreshableState<{ stats: UserCrewsStats }> => {
+export const useUserCrewsStats = (): UserCrewsStatsState => {
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,

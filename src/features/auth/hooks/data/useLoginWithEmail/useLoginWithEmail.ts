@@ -23,8 +23,8 @@ export const useLoginWithEmail = () => {
   const {
     data,
     mutate: loginWithEmail,
-    isError,
     isPending,
+    isError,
   } = useMutation({
     mutationFn: async ({ email, password }: LoginWithEmailAddressRequest): Promise<Session> => {
       const data = await apiClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {

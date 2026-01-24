@@ -12,7 +12,7 @@ type GetPastTournamentsResponse = {
 export const useGetPastTournaments = () => {
   const apiClient = useCompanionApiClient();
 
-  const { data, isPending, refetch, isRefetching, isError } = useQuery({
+  const { data, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['tournaments', 'past'],
     queryFn: () =>
       apiClient.get<GetPastTournamentsResponse>('/v1/tournaments/past', {
@@ -24,10 +24,9 @@ export const useGetPastTournaments = () => {
   });
 
   return {
-    tournaments: data ?? [],
+    tournaments: data,
     isLoading: isPending,
-    refetch,
     isRefetching,
-    isError,
+    refetch,
   } as const;
 };

@@ -47,23 +47,24 @@ const mockPastTournaments = [
 const mockRefetchActive = jest.fn();
 const mockRefetchPast = jest.fn();
 
+const defaultActiveTournamentsReturnValue: ReturnType<typeof useGetActiveTournaments> = {
+  tournaments: undefined,
+  isLoading: false,
+  refetch: mockRefetchActive,
+  isRefetching: false,
+};
+
+const defaultPastTournamentsReturnValue: ReturnType<typeof useGetPastTournaments> = {
+  tournaments: undefined,
+  isLoading: false,
+  refetch: mockRefetchPast,
+  isRefetching: false,
+};
+
 describe('useTournamentsTab', () => {
   beforeEach(() => {
-    useGetActiveTournamentsMock.mockReturnValue({
-      tournaments: [],
-      isLoading: false,
-      isError: false,
-      refetch: mockRefetchActive,
-      isRefetching: false,
-    });
-
-    useGetPastTournamentsMock.mockReturnValue({
-      tournaments: [],
-      isLoading: false,
-      isError: false,
-      refetch: mockRefetchPast,
-      isRefetching: false,
-    });
+    useGetActiveTournamentsMock.mockReturnValue(defaultActiveTournamentsReturnValue);
+    useGetPastTournamentsMock.mockReturnValue(defaultPastTournamentsReturnValue);
   });
 
   it('defaults to active tab', () => {
@@ -85,11 +86,8 @@ describe('useTournamentsTab', () => {
   describe('when active tab is selected', () => {
     it('returns active tournaments', () => {
       useGetActiveTournamentsMock.mockReturnValue({
+        ...defaultActiveTournamentsReturnValue,
         tournaments: mockActiveTournaments,
-        isLoading: false,
-        isError: false,
-        refetch: mockRefetchActive,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
@@ -99,11 +97,8 @@ describe('useTournamentsTab', () => {
 
     it('returns loading state from active tournaments', () => {
       useGetActiveTournamentsMock.mockReturnValue({
-        tournaments: [],
+        ...defaultActiveTournamentsReturnValue,
         isLoading: true,
-        isError: false,
-        refetch: mockRefetchActive,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
@@ -113,10 +108,8 @@ describe('useTournamentsTab', () => {
 
     it('returns refreshing state from active tournaments', () => {
       useGetActiveTournamentsMock.mockReturnValue({
+        ...defaultActiveTournamentsReturnValue,
         tournaments: mockActiveTournaments,
-        isLoading: false,
-        isError: false,
-        refetch: mockRefetchActive,
         isRefetching: true,
       });
 
@@ -125,13 +118,11 @@ describe('useTournamentsTab', () => {
       expect(result.current.isRefreshing).toBe(true);
     });
 
-    it('returns error state from active tournaments', () => {
+    it('returns error state when tournaments are undefined and not loading', () => {
       useGetActiveTournamentsMock.mockReturnValue({
-        tournaments: [],
+        ...defaultActiveTournamentsReturnValue,
+        tournaments: undefined,
         isLoading: false,
-        isError: true,
-        refetch: mockRefetchActive,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
@@ -143,11 +134,8 @@ describe('useTournamentsTab', () => {
   describe('when past tab is selected', () => {
     it('returns past tournaments', () => {
       useGetPastTournamentsMock.mockReturnValue({
+        ...defaultPastTournamentsReturnValue,
         tournaments: mockPastTournaments,
-        isLoading: false,
-        isError: false,
-        refetch: mockRefetchPast,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
@@ -163,11 +151,8 @@ describe('useTournamentsTab', () => {
 
     it('returns loading state from past tournaments', () => {
       useGetPastTournamentsMock.mockReturnValue({
-        tournaments: [],
+        ...defaultPastTournamentsReturnValue,
         isLoading: true,
-        isError: false,
-        refetch: mockRefetchPast,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
@@ -183,10 +168,8 @@ describe('useTournamentsTab', () => {
 
     it('returns refreshing state from past tournaments', () => {
       useGetPastTournamentsMock.mockReturnValue({
+        ...defaultPastTournamentsReturnValue,
         tournaments: mockPastTournaments,
-        isLoading: false,
-        isError: false,
-        refetch: mockRefetchPast,
         isRefetching: true,
       });
 
@@ -201,13 +184,11 @@ describe('useTournamentsTab', () => {
       expect(result.current.isRefreshing).toBe(true);
     });
 
-    it('returns error state from past tournaments', () => {
+    it('returns error state when tournaments are undefined and not loading', () => {
       useGetPastTournamentsMock.mockReturnValue({
-        tournaments: [],
+        ...defaultPastTournamentsReturnValue,
+        tournaments: undefined,
         isLoading: false,
-        isError: true,
-        refetch: mockRefetchPast,
-        isRefetching: false,
       });
 
       const { result } = renderHook(() => useTournamentsTab());
