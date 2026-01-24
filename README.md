@@ -1,7 +1,6 @@
-![feature-graphic](https://github.com/user-attachments/assets/a44dba1e-4eec-4f21-a74a-33bf0d967b68)
+# <img src="https://github.com/user-attachments/assets/fdff33d1-a508-4080-8507-bb4d54348ab4" />
 
-Using the game's client API, this app provide useful information and tools for players on their mobile.
-
+Using the game's client API, this app provide useful information and tools for players on their mobile. \
 Key features:
 
 - access the in-game coin shop daily rotation, and purchase items anywhere and anytime
