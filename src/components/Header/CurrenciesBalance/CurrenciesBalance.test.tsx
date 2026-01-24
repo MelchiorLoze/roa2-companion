@@ -37,7 +37,6 @@ describe('CurrenciesBalance', () => {
     render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
-    // When balances are undefined, they should display as 0
     expect(screen.getAllByText('00000000')).toHaveLength(3);
   });
 });

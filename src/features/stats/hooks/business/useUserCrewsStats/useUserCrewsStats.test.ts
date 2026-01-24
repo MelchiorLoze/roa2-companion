@@ -153,8 +153,8 @@ describe('useUserCrewsStats', () => {
     const { result } = renderUseUserCrewsStats();
 
     expect(result.current.stats).toBeDefined();
-    expect(result.current.stats!.elo).toBe(1000);
-    expect(result.current.stats!.setStats?.setCount).toBe(25);
+    expect(result.current.stats?.elo).toBe(1000);
+    expect(result.current.stats?.setStats?.setCount).toBe(25);
   });
 
   it('handles missing set count by defaulting to 0', () => {
@@ -171,8 +171,8 @@ describe('useUserCrewsStats', () => {
     const { result } = renderUseUserCrewsStats();
 
     expect(result.current.stats).toBeDefined();
-    expect(result.current.stats!.elo).toBe(2000);
-    expect(result.current.stats!.setStats?.setCount).toBe(0);
+    expect(result.current.stats?.elo).toBe(2000);
+    expect(result.current.stats?.setStats?.setCount).toBe(0);
   });
 
   it('passes through the refetch function correctly', async () => {
