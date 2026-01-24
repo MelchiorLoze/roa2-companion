@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native-unistyles';
 import { GitHubIcon, KoFiIcon, MailIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
 import { Separator } from '@/components/Separator/Separator';
+import { COMPANION_SUPPORT_URI } from '@/constants';
 
 export default function About() {
   return (
@@ -33,7 +34,7 @@ export default function About() {
         iconName="arrow-outward"
         label="Report an issue"
         logo={MailIcon}
-        url={new URL('mailto:support@roa2-companion.app')}
+        url={new URL(COMPANION_SUPPORT_URI)}
       />
       <Separator />
       <ActionRow
