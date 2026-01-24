@@ -127,7 +127,41 @@ describe('useUserGlobalStats', () => {
 
     const { result } = renderUseUserGlobalStats();
 
-    expect(result.current.stats?.gameStats?.winRate).toBe(0);
+    expect(result.current.stats?.gameStats.winRate).toBe(0);
+  });
+
+  it('handles undefined matches played', () => {
+    const mockStatistics: PlayerStatistics = {};
+
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      statistics: mockStatistics,
+    });
+
+    const { result } = renderUseUserGlobalStats();
+
+    expect(result.current.stats?.gameStats.gameCount).toBe(0);
+    expect(result.current.stats?.gameStats.winCount).toBe(0);
+    expect(result.current.stats?.gameStats.winRate).toBe(0);
+  });
+
+  it('returns error state when statistics are undefined and not loading', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      statistics: undefined,
+      isLoading: false,
+    });
+    useGetUserReadOnlyDataMock.mockReturnValue({
+      ...defaultUserReadOnlyDataReturnValue,
+      userData: undefined,
+      isLoading: false,
+    });
+
+    const { result } = renderUseUserGlobalStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(true);
+    expect(result.current.stats).toBeUndefined();
   });
 
   it('passes through the refetch function correctly', async () => {

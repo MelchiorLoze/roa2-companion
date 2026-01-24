@@ -44,6 +44,23 @@ describe('RankDistributionBarChart', () => {
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 
+  it('renders loading state when leaderboard stats have error', () => {
+    useLeaderboardStatsMock.mockReturnValue({
+      ...defaultLeaderboardStatsReturnValue,
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
+      isLoading: false,
+      isError: true,
+    });
+
+    renderComponent();
+
+    expect(screen.getByTestId('spinner')).toBeTruthy();
+    expect(screen.queryByTestId('rank-distribution')).toBeNull();
+  });
+
   it('renders the chart when leaderboard stats are available', () => {
     const tree = renderComponent().toJSON();
 

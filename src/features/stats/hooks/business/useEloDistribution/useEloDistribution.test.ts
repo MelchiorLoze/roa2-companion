@@ -50,4 +50,22 @@ describe('useEloDistribution', () => {
     expect(result.current.isLoading).toBe(false);
     expect(result.current.eloDistribution).toMatchSnapshot();
   });
+
+  it('returns error state when leaderboard stats have error', () => {
+    useLeaderboardStatsMock.mockReturnValue({
+      ...defaultLeaderboardStatsReturnValue,
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
+      isLoading: false,
+      isError: true,
+    });
+
+    const { result } = renderUseEloDistribution();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(true);
+    expect(result.current.eloDistribution).toBeUndefined();
+  });
 });

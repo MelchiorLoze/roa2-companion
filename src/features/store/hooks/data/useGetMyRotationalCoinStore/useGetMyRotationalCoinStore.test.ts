@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { renderHook, waitFor } from '@testing-library/react-native';
+import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 import { DateTime } from 'luxon';
 
@@ -79,6 +79,35 @@ describe('useGetMyRotationalCoinStore', () => {
     expect(result.current.rotationalCoinStore).toEqual(secondResult);
   });
 
+  it('invalidates the query when the rotational coin store expires', async () => {
+    jest.useFakeTimers();
+    mockSuccessfulResponse({ expirationDate: DateTime.utc().plus({ minutes: 5 }) });
+
+    const queryClient = new QueryClient();
+    const invalidateQueriesSpy = jest.spyOn(queryClient, 'invalidateQueries');
+
+    const { result } = renderHook(useGetMyRotationalCoinStore, {
+      wrapper: ({ children }) => QueryClientProvider({ client: queryClient, children }),
+    });
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+    expect(result.current.rotationalCoinStore).toBeDefined();
+
+    // Fast-forward time to just before expiration - should not invalidate
+    act(() => {
+      jest.advanceTimersByTime(4 * 60 * 1000); // 4 minutes
+    });
+    expect(invalidateQueriesSpy).not.toHaveBeenCalled();
+
+    // Fast-forward to expiration time - should invalidate
+    act(() => {
+      jest.advanceTimersByTime(60 * 1000); // 1 more minute = 5 minutes total
+    });
+    expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['getMyRotationalCoinStore'] });
+
+    jest.useRealTimers();
+  });
+
   describe('when the request succeeds', () => {
     beforeEach(() => {
       mockSuccessfulResponse();
@@ -103,6 +132,17 @@ describe('useGetMyRotationalCoinStore', () => {
       const { result } = await renderUseGetMyRotationalCoinStore();
 
       expect(result.current.rotationalCoinStore).toBeUndefined();
+    });
+  });
+
+  describe('invalidateGetMyRotationalCoinStore', () => {
+    it('invalidates the rotational coin store query', () => {
+      const queryClient = new QueryClient();
+      const invalidateQueriesSpy = jest.spyOn(queryClient, 'invalidateQueries');
+
+      invalidateGetMyRotationalCoinStore(queryClient);
+
+      expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['getMyRotationalCoinStore'] });
     });
   });
 });

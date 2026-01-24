@@ -73,6 +73,34 @@ describe('useLeaderboardStats', () => {
     expect(result.current.lastAethereanElo).toBeUndefined();
   });
 
+  it('returns error state when leaderboard entries fail to load', () => {
+    useCommunityLeaderboardMock.mockReturnValue({
+      ...defaultCommunityLeaderboardReturnValue,
+      leaderboardEntries: undefined,
+    });
+
+    const { result } = renderUseLeaderboardStats();
+
+    expect(result.current.isError).toBe(true);
+    expect(result.current.firstPlayerElo).toBeUndefined();
+    expect(result.current.lastPlayerElo).toBeUndefined();
+    expect(result.current.lastAethereanElo).toBeUndefined();
+  });
+
+  it('returns error state when leaderboard entries are empty', () => {
+    useCommunityLeaderboardMock.mockReturnValue({
+      ...defaultCommunityLeaderboardReturnValue,
+      leaderboardEntries: [],
+    });
+
+    const { result } = renderUseLeaderboardStats();
+
+    expect(result.current.isError).toBe(true);
+    expect(result.current.firstPlayerElo).toBeUndefined();
+    expect(result.current.lastPlayerElo).toBeUndefined();
+    expect(result.current.lastAethereanElo).toBeUndefined();
+  });
+
   it('returns correct values for complete leaderboard', () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
@@ -130,5 +158,22 @@ describe('useLeaderboardStats', () => {
     const { result } = renderUseLeaderboardStats();
 
     expect(result.current.lastPlayerElo).toBe(0);
+  });
+
+  it('returns 0 as lastAethereanElo when there are no aetherean players', () => {
+    useCommunityLeaderboardMock.mockReturnValue({
+      ...defaultCommunityLeaderboardReturnValue,
+      leaderboardEntries: [
+        // All players below Aetherean threshold or above position 100
+        { steamId: 1, position: 101, elo: 1850 }, // Above threshold but position > 100
+        { steamId: 2, position: 1, elo: 1799 }, // Below threshold
+        { steamId: 3, position: 2, elo: 1000 },
+        { steamId: 4, position: 3, elo: 500 },
+      ],
+    });
+
+    const { result } = renderUseLeaderboardStats();
+
+    expect(result.current.lastAethereanElo).toBe(0);
   });
 });

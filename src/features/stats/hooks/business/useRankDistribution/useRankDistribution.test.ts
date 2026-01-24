@@ -61,4 +61,44 @@ describe('useRankDistribution', () => {
       [Rank.AETHEREAN]: 4,
     });
   });
+
+  it('returns error state when leaderboard stats have error', () => {
+    useLeaderboardStatsMock.mockReturnValue({
+      ...defaultLeaderboardStatsReturnValue,
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
+      isLoading: false,
+      isError: true,
+    });
+
+    const { result } = renderUseRankDistribution();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(true);
+    expect(result.current.rankDistribution).toBeUndefined();
+  });
+
+  it('returns empty rank distribution when leaderboard entries is empty', () => {
+    useLeaderboardStatsMock.mockReturnValue({
+      ...defaultLeaderboardStatsReturnValue,
+      leaderboardEntries: [],
+    });
+
+    const { result } = renderUseRankDistribution();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.rankDistribution).toEqual({
+      [Rank.STONE]: 0,
+      [Rank.BRONZE]: 0,
+      [Rank.SILVER]: 0,
+      [Rank.GOLD]: 0,
+      [Rank.PLATINUM]: 0,
+      [Rank.DIAMOND]: 0,
+      [Rank.MASTER]: 0,
+      [Rank.GRANDMASTER]: 0,
+      [Rank.AETHEREAN]: 0,
+    });
+  });
 });

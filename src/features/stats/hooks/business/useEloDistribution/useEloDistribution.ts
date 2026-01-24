@@ -44,7 +44,7 @@ export const useEloDistribution = (): EloDistributionState => {
     isError: false,
   } as const;
 
-  if (firstPlayerElo !== undefined && lastPlayerElo !== undefined && leaderboardEntries) {
+  if (leaderboardEntries) {
     return {
       ...baseState,
       eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),

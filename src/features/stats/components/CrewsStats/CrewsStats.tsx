@@ -31,8 +31,8 @@ export const CrewsStats = () => {
         rankIcon={CrewsIcon}
       />
 
-      <View style={styles.setStatsContainer}>
-        {stats.setStats && <StatRow label="Crews sets" value={stats.setStats?.setCount} />}
+      <View style={styles.statRowsContainer}>
+        <StatRow label="Crews sets" value={stats.setStats.setCount} />
         <StatRow label="Best win streak" value={stats.bestWinStreak} />
       </View>
     </StatsTabContentWrapper>
@@ -43,7 +43,7 @@ const styles = StyleSheet.create((theme) => ({
   titlePadding: {
     height: theme.spacing.l,
   },
-  setStatsContainer: {
+  statRowsContainer: {
     gap: theme.spacing.s,
   },
 }));

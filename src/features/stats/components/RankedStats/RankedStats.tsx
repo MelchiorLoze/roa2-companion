@@ -55,7 +55,7 @@ export const RankedStats = () => {
         )}
       </View>
 
-      <View style={styles.setStatsContainer}>
+      <View style={styles.statRowsContainer}>
         {stats.setStats && (
           <>
             <StatRow label="Ranked wins" value={stats.setStats.winCount} />
@@ -84,7 +84,7 @@ const styles = StyleSheet.create((theme) => ({
   changeSeasonButton: {
     padding: theme.spacing.xxs,
   },
-  setStatsContainer: {
+  statRowsContainer: {
     gap: theme.spacing.s,
   },
   percentageLabel: {

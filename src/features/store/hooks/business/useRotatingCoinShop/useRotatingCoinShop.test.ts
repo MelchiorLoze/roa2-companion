@@ -102,6 +102,14 @@ describe('useRotatingCoinShop', () => {
         rarity: Rarity.COMMON,
       },
       {
+        id: '5',
+        imageUrl: new URL('https://www.example.com/items/Platform_item_e.png'),
+        name: 'Item E',
+        coinPrice: undefined,
+        category: Category.PLATFORM,
+        rarity: Rarity.COMMON,
+      },
+      {
         id: '3',
         imageUrl: new URL('https://www.example.com/items/DeathEffect_item_c.png'),
         name: 'Item C',
@@ -111,21 +119,29 @@ describe('useRotatingCoinShop', () => {
       },
       {
         id: '4',
-        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_d.png'),
+        imageUrl: new URL('https://www.example.com/items/Skin_item_d.png'),
         name: 'Item D',
         coinPrice: undefined,
-        category: Category.DEATHEFFECT,
+        category: Category.SKIN,
         rarity: Rarity.RARE,
       },
     ];
 
     const expectedSortedItems: Item[] = [
       {
+        id: '5',
+        imageUrl: new URL('https://www.example.com/items/Platform_item_e.png'),
+        name: 'Item E',
+        coinPrice: undefined,
+        category: Category.PLATFORM,
+        rarity: Rarity.COMMON,
+      },
+      {
         id: '4',
-        imageUrl: new URL('https://www.example.com/items/DeathEffect_item_d.png'),
+        imageUrl: new URL('https://www.example.com/items/Skin_item_d.png'),
         name: 'Item D',
         coinPrice: undefined,
-        category: Category.DEATHEFFECT,
+        category: Category.SKIN,
         rarity: Rarity.RARE,
       },
       {
@@ -155,7 +171,7 @@ describe('useRotatingCoinShop', () => {
     ];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({
-      rotationalCoinStore: { itemIds: ['1', '2', '3', '4'], expirationDate: VALID_DATE },
+      rotationalCoinStore: { itemIds: ['1', '2', '3', '4', '5'], expirationDate: VALID_DATE },
       isLoading: false,
     });
     useGetItemsMock.mockReturnValue({

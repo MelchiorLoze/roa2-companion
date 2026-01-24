@@ -1,10 +1,11 @@
+import { QueryClient } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
-import { useGetInventoryItems } from './useGetInventoryItems';
+import { invalidateGetInventoryItems, useGetInventoryItems } from './useGetInventoryItems';
 
 jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 
@@ -66,6 +67,17 @@ describe('useGetInventoryItems', () => {
       const { result } = await renderUseGetInventoryItems();
 
       expect(result.current.inventoryItems).toBeUndefined();
+    });
+  });
+
+  describe('invalidateGetInventoryItems', () => {
+    it('invalidates the inventory items query', () => {
+      const queryClient = new QueryClient();
+      const invalidateQueriesSpy = jest.spyOn(queryClient, 'invalidateQueries');
+
+      invalidateGetInventoryItems(queryClient);
+
+      expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['inventoryItems'] });
     });
   });
 });
