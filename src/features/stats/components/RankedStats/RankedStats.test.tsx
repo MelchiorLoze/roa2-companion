@@ -194,4 +194,21 @@ describe('RankedStats', () => {
     expect(screen.getByText('Top 12.30%')).toBeTruthy();
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
+
+  it('does not display percentage when player count is zero', () => {
+    useUserRankedStatsMock.mockReturnValue({
+      ...defaultUserRankedStatsState,
+      stats: {
+        ...defaultUserRankedStatsState.stats,
+        playerCount: 0,
+      } as typeof defaultUserRankedStatsState.stats,
+    });
+
+    renderComponent();
+
+    expect(screen.getByText('123')).toBeTruthy();
+    expect(screen.getByText('Player1')).toBeTruthy();
+    expect(screen.getByText('925')).toBeTruthy();
+    expect(screen.queryByText('Top')).toBeNull();
+  });
 });

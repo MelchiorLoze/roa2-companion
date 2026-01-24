@@ -64,7 +64,7 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     maxResultCount: 1,
     statisticName: getEloStatNameForSeason(season.index),
   });
-  const { leaderboardEntries, isLoading: isLoadingLeaderboardStats } = useLeaderboardStats();
+  const { leaderboardEntries } = useLeaderboardStats();
 
   const baseState = {
     stats: undefined,
@@ -77,7 +77,7 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     },
   } as const;
 
-  if (rawStats && playerPositions && leaderboardEntries) {
+  if (rawStats && playerPositions) {
     const [userRankedPosition] = playerPositions;
     const elo = rawStats[getEloStatNameForSeason(season.index)];
     const rank = elo != null ? getRank(elo, userRankedPosition.position) : undefined;
@@ -88,14 +88,14 @@ export const useUserRankedStats = (): UserRankedStatsState => {
         rank,
         position: userRankedPosition.position,
         profile: userRankedPosition.profile,
-        playerCount: leaderboardEntries.length,
+        playerCount: leaderboardEntries?.length ?? 0,
         setStats: getSetStatsForSeason(rawStats, season),
         bestWinStreak: rawStats[StatisticName.RANKED_BEST_WIN_STREAK] ?? 0,
       },
     };
   }
 
-  if (isLoadingRawStats || isLoadingPlayerPosition || isLoadingLeaderboardStats) {
+  if (isLoadingRawStats || isLoadingPlayerPosition) {
     return {
       ...baseState,
       isLoading: true,

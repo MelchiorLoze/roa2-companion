@@ -329,7 +329,7 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats?.rank).toBeUndefined();
   });
 
-  it('returns error state when data is available but leaderboard stats are loading', () => {
+  it('returns 0 as player count when leaderboard entries are undefined', () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsMock,
       firstPlayerElo: undefined,
@@ -341,8 +341,9 @@ describe('useUserRankedStats', () => {
 
     const { result } = renderUseUserRankedStats();
 
-    expect(result.current.isLoading).toBe(true);
-    expect(result.current.stats).toBeUndefined();
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.stats).toBeDefined();
+    expect(result.current.stats?.playerCount).toBe(0);
   });
 
   it('returns error state when statistics and position are missing but not loading', () => {
