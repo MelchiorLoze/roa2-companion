@@ -12,7 +12,7 @@ type GetActiveTournamentsResponse = {
 export const useGetActiveTournaments = () => {
   const apiClient = useCompanionApiClient();
 
-  const { data, isPending, refetch, isRefetching, isError } = useQuery({
+  const { data, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['tournaments', 'active'],
     queryFn: () =>
       apiClient.get<GetActiveTournamentsResponse>('/v1/tournaments/active', {
@@ -24,10 +24,9 @@ export const useGetActiveTournaments = () => {
   });
 
   return {
-    tournaments: data ?? [],
+    tournaments: data,
     isLoading: isPending,
-    refetch,
     isRefetching,
-    isError,
+    refetch,
   } as const;
 };

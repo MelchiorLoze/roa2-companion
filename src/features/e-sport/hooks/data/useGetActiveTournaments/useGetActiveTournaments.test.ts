@@ -35,13 +35,12 @@ const renderUseGetActiveTournaments = async () => {
 };
 
 describe('useGetActiveTournaments', () => {
-  describe('returns empty array', () => {
+  describe('returns undefined', () => {
     it('when the request is loading', async () => {
       const { result } = renderHook(() => useGetActiveTournaments(), { wrapper: TestQueryClientProvider });
 
       expect(result.current.isLoading).toBe(true);
-      expect(result.current.tournaments).toEqual([]);
-      expect(result.current.isError).toBe(false);
+      expect(result.current.tournaments).toBeUndefined();
       await waitFor(() => expect(result.current.isLoading).toBe(false));
     });
 
@@ -50,8 +49,7 @@ describe('useGetActiveTournaments', () => {
 
       const { result } = await renderUseGetActiveTournaments();
 
-      expect(result.current.tournaments).toEqual([]);
-      expect(result.current.isError).toBe(true);
+      expect(result.current.tournaments).toBeUndefined();
     });
 
     it('when no tournaments are returned', async () => {
@@ -62,7 +60,6 @@ describe('useGetActiveTournaments', () => {
       const { result } = await renderUseGetActiveTournaments();
 
       expect(result.current.tournaments).toEqual([]);
-      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -75,10 +72,9 @@ describe('useGetActiveTournaments', () => {
       const { result } = await renderUseGetActiveTournaments();
 
       expect(result.current.tournaments).toHaveLength(1);
-      expect(result.current.tournaments[0].id).toBe(1);
-      expect(result.current.tournaments[0].name).toBe('Test Tournament');
-      expect(result.current.tournaments[0].url.toString()).toBe('https://example.com/tournament/1');
-      expect(result.current.isError).toBe(false);
+      expect(result.current.tournaments![0].id).toBe(1);
+      expect(result.current.tournaments![0].name).toBe('Test Tournament');
+      expect(result.current.tournaments![0].url.toString()).toBe('https://example.com/tournament/1');
     });
 
     it('sorts events by numEntrants in descending order', async () => {
@@ -112,10 +108,10 @@ describe('useGetActiveTournaments', () => {
 
       const { result } = await renderUseGetActiveTournaments();
 
-      expect(result.current.tournaments[0].events).toHaveLength(3);
-      expect(result.current.tournaments[0].events[0].numEntrants).toBe(50);
-      expect(result.current.tournaments[0].events[1].numEntrants).toBe(40);
-      expect(result.current.tournaments[0].events[2].numEntrants).toBe(30);
+      expect(result.current.tournaments![0].events).toHaveLength(3);
+      expect(result.current.tournaments![0].events[0].numEntrants).toBe(50);
+      expect(result.current.tournaments![0].events[1].numEntrants).toBe(40);
+      expect(result.current.tournaments![0].events[2].numEntrants).toBe(30);
     });
   });
 });
