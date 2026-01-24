@@ -12,7 +12,7 @@ export const useGetItems = (itemIds: readonly Item['id'][]) => {
   const apiClient = useGameApiClient();
   const enabled = itemIds.length > 0;
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['items', ...itemIds],
     queryFn: () => apiClient.post<GetItemsResponse>('/Catalog/GetItems', { body: { Ids: itemIds } }),
     enabled,
@@ -22,8 +22,7 @@ export const useGetItems = (itemIds: readonly Item['id'][]) => {
   });
 
   return {
-    items: data ?? [],
+    items: data,
     isLoading: enabled && isPending,
-    isError,
   } as const;
 };
