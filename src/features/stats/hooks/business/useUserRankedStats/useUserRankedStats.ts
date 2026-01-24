@@ -9,24 +9,10 @@ import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroun
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
-type UserRankedStats = {
-  elo: number | undefined;
-  rank: Rank | undefined;
-  playerCount: number;
-  setStats:
-    | {
-        setCount: number;
-        winCount: number;
-        winRate: number;
-      }
-    | undefined;
-  bestWinStreak: number;
-} & Pick<PlayerPosition, 'position' | 'profile'>;
-
 const getEloStatNameForSeason = (seasonIndex: number): StatisticName =>
   StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName];
 
-const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season): UserRankedStats['setStats'] => {
+const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season) => {
   if (!season.isFirst && !season.isLast) return undefined;
 
   const result = {
@@ -45,7 +31,23 @@ const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season): UserR
   return result;
 };
 
-export const useUserRankedStats = (): RefreshableState<{ stats: UserRankedStats }> => {
+type UserRankedStats = RefreshableState<{
+  stats: {
+    elo: number | undefined;
+    rank: Rank | undefined;
+    playerCount: number;
+    setStats:
+      | {
+          setCount: number;
+          winCount: number;
+          winRate: number;
+        }
+      | undefined;
+    bestWinStreak: number;
+  } & Pick<PlayerPosition, 'position' | 'profile'>;
+}>;
+
+export const useUserRankedStats = (): UserRankedStats => {
   const { season } = useSeason();
   const {
     statistics: rawStats,

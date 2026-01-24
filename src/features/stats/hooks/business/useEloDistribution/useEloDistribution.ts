@@ -25,25 +25,29 @@ const getEloDistribution = (
   return result;
 };
 
-type EloDistribution = {
-  eloDistribution: Record<number, number>;
-  roundElo: (elo: number) => number;
-};
+type EloDistribution = LoadableState<
+  {
+    eloDistribution: Record<number, number>;
+  },
+  {
+    roundElo: (elo: number) => number;
+  }
+>;
 
-export const useEloDistribution = (): LoadableState<EloDistribution> => {
-  const { firstPlayerElo, lastPlayerElo, leaderboardEntries, isLoading, isError } = useLeaderboardStats();
+export const useEloDistribution = (): EloDistribution => {
+  const { firstPlayerElo, lastPlayerElo, leaderboardEntries, isLoading } = useLeaderboardStats();
 
   const baseState = {
     eloDistribution: undefined,
-    roundElo: undefined,
+    roundElo,
     isLoading: false,
     isError: false,
   } as const;
 
-  if (isError) {
+  if (firstPlayerElo !== undefined && lastPlayerElo !== undefined && leaderboardEntries) {
     return {
       ...baseState,
-      isError: true,
+      eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),
     } as const;
   }
 
@@ -56,7 +60,6 @@ export const useEloDistribution = (): LoadableState<EloDistribution> => {
 
   return {
     ...baseState,
-    eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),
-    roundElo,
+    isError: true,
   } as const;
 };
