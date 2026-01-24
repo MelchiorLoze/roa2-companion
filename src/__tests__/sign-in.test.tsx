@@ -1,5 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react-native';
 import { Redirect } from 'expo-router';
+import { Keyboard } from 'react-native';
 
 import SignIn from '@/app/sign-in';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
@@ -8,6 +9,9 @@ import { useSendAccountRecoveryEmail } from '@/features/auth/hooks/data/useSendA
 jest.mock('expo-router');
 jest.mock('@/features/auth/hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 jest.mock('@/features/auth/hooks/business/useAuth/useAuth');
+
+const keyboardDismissSpy = jest.spyOn(Keyboard, 'dismiss');
+const keyboardIsVisibleSpy = jest.spyOn(Keyboard, 'isVisible');
 
 const RedirectMock = jest.mocked(Redirect);
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
@@ -97,8 +101,24 @@ describe('SignIn', () => {
     expect(screen.queryByText(SCREEN_TITLE)).toBeNull();
   });
 
-  it('shows an error message when submitting with empty email or password', () => {
+  it('shows an error message when submitting with empty email', () => {
     render(<SignIn />);
+
+    const passwordInput = screen.getByPlaceholderText('PASSWORD');
+    fireEvent.changeText(passwordInput, 'r0ck');
+
+    const loginButton = screen.getByRole('button', { name: 'Login' });
+    fireEvent.press(loginButton);
+
+    expect(screen.getByText('Invalid email or password')).toBeTruthy();
+    expect(loginMock).not.toHaveBeenCalled();
+  });
+
+  it('shows an error message when submitting with empty password', () => {
+    render(<SignIn />);
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    fireEvent.changeText(emailInput, 'kragg@example.com');
 
     const loginButton = screen.getByRole('button', { name: 'Login' });
     fireEvent.press(loginButton);
@@ -168,6 +188,7 @@ describe('SignIn', () => {
         'After submitting, you will receive an email from Aether Studios allowing you to reset your password',
       ),
     ).toBeTruthy();
+    expect(keyboardDismissSpy).not.toHaveBeenCalled();
   });
 
   it('fills email field when reset password dialog is closed with email', () => {
@@ -196,5 +217,68 @@ describe('SignIn', () => {
     fireEvent.press(closeButton);
 
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
+  });
+
+  it('clears password field when reset password dialog is closed with email', () => {
+    const { rerender } = render(<SignIn />);
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    const passwordInput = screen.getByPlaceholderText('PASSWORD');
+
+    fireEvent.changeText(emailInput, 'old@example.com');
+    fireEvent.changeText(passwordInput, 'oldpassword');
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+    const withinDialog = within(screen.getByTestId('dialog'));
+
+    const resetPasswordEmailInput = withinDialog.getByPlaceholderText('EMAIL');
+    fireEvent.changeText(resetPasswordEmailInput, 'kragg@example.com');
+
+    const resetPasswordButton = withinDialog.getByRole('button', { name: 'Reset password' });
+    fireEvent.press(resetPasswordButton);
+
+    useSendAccountRecoveryEmailMock.mockReturnValue({
+      ...defaultSendAccountRecoveryEmailReturnValue,
+      isSuccess: true,
+    });
+    rerender(<SignIn />);
+
+    const closeButton = withinDialog.getByRole('button', { name: 'Ok' });
+    fireEvent.press(closeButton);
+
+    expect(emailInput).toHaveDisplayValue('kragg@example.com');
+    expect(passwordInput).toHaveDisplayValue('');
+  });
+
+  it('clears invalid state when opening reset password dialog', () => {
+    render(<SignIn />);
+
+    const loginButton = screen.getByRole('button', { name: 'Login' });
+    fireEvent.press(loginButton);
+
+    expect(screen.getByText('Invalid email or password')).toBeTruthy();
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+
+    // After opening the dialog and closing it, the error should be cleared
+    const overlay = screen.getByTestId('overlay');
+    fireEvent.press(overlay);
+
+    expect(screen.queryByText('Invalid email or password')).toBeNull();
+  });
+
+  it('dismisses keyboard when opening reset password dialog', () => {
+    render(<SignIn />);
+
+    keyboardIsVisibleSpy.mockReturnValue(true);
+
+    const forgotPasswordButton = screen.getByRole('button', { name: 'Forgot your password?' });
+    fireEvent.press(forgotPasswordButton);
+
+    expect(keyboardDismissSpy).toHaveBeenCalledTimes(1);
+
+    keyboardIsVisibleSpy.mockRestore();
   });
 });

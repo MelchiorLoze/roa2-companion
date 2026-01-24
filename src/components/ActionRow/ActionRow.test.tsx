@@ -50,4 +50,23 @@ describe('ActionRow', () => {
     expect(pushMock).not.toHaveBeenCalled();
     expect(buttonProps.onPress).toHaveBeenCalledTimes(1);
   });
+
+  it('renders with logo when provided', () => {
+    const propsWithLogo: ComponentProps<typeof ActionRow> = {
+      ...linkProps,
+      logo: { uri: 'https://example.com/logo.png' },
+    };
+
+    const { getByRole } = render(<ActionRow {...propsWithLogo} />);
+    const link = getByRole('link');
+
+    expect(link).toBeDefined();
+  });
+
+  it('renders without logo when not provided', () => {
+    const { getByRole } = render(<ActionRow {...linkProps} />);
+    const link = getByRole('link');
+
+    expect(link).toBeDefined();
+  });
 });

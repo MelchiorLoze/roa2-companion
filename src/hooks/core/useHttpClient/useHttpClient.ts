@@ -3,10 +3,10 @@ type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 const fetchWrapper = async (
   baseUrl: string,
   path: string,
-  options: { method: Method; params?: URLSearchParams; headers?: Record<string, string>; body?: object },
+  options: { method: Method; params: URLSearchParams; headers?: Record<string, string>; body?: object },
 ) => {
   const url = new URL(path, baseUrl);
-  url.search = options.params?.toString() ?? '';
+  url.search = options.params.toString();
 
   return await fetch(url, {
     method: options.method,

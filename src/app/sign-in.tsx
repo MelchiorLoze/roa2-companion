@@ -41,7 +41,7 @@ export default function SignIn() {
   };
 
   const onSubmit = () => {
-    if (!email?.length || !password?.length) {
+    if (!email.length || !password.length) {
       setIsInvalid(true);
       return;
     }

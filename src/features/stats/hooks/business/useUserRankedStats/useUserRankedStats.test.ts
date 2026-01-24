@@ -260,6 +260,44 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats?.setStats?.winRate).toBe(0);
   });
 
+  it('handles undefined matches played', () => {
+    const mockStatistics: PlayerStatistics = {};
+
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      statistics: mockStatistics,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    expect(result.current.stats?.setStats?.setCount).toBe(0);
+    expect(result.current.stats?.setStats?.winCount).toBe(0);
+    expect(result.current.stats?.setStats?.winRate).toBe(0);
+  });
+
+  it('handles undefined matches played for first season', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonReturnValue,
+      season: {
+        index: 1,
+        name: 'Season 1',
+        isFirst: true,
+        isLast: false,
+      },
+    });
+
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      statistics: {},
+    });
+
+    const { result } = renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
+
+    expect(result.current.stats?.setStats?.setCount).toBe(0);
+    expect(result.current.stats?.setStats?.winCount).toBe(0);
+    expect(result.current.stats?.setStats?.winRate).toBe(0);
+  });
+
   it('passes through the refetch function correctly', async () => {
     const mockRefetchStatistics = jest.fn();
 
@@ -289,5 +327,61 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats).toBeTruthy();
     expect(result.current.stats?.elo).toBeUndefined();
     expect(result.current.stats?.rank).toBeUndefined();
+  });
+
+  it('returns error state when data is available but leaderboard stats are loading', () => {
+    useLeaderboardStatsMock.mockReturnValue({
+      ...defaultLeaderboardStatsMock,
+      firstPlayerElo: undefined,
+      lastPlayerElo: undefined,
+      lastAethereanElo: undefined,
+      leaderboardEntries: undefined,
+      isLoading: true,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.stats).toBeUndefined();
+  });
+
+  it('returns error state when statistics and position are missing but not loading', () => {
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      statistics: undefined,
+      isLoading: false,
+    });
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      ...defaultLeaderboardAroundPlayerReturnValue,
+      playerPositions: undefined,
+      isLoading: false,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    expect(result.current.isLoading).toBe(false);
+    expect(result.current.isError).toBe(true);
+    expect(result.current.stats).toBeUndefined();
+  });
+
+  it('handles refresh for both statistics and player position', async () => {
+    const mockRefetchStatistics = jest.fn();
+    const mockRefetchPosition = jest.fn();
+
+    useGetPlayerStatisticsMock.mockReturnValue({
+      ...defaultPlayerStatisticsReturnValue,
+      refetch: mockRefetchStatistics,
+    });
+    useGetLeaderboardAroundPlayerMock.mockReturnValue({
+      ...defaultLeaderboardAroundPlayerReturnValue,
+      refetch: mockRefetchPosition,
+    });
+
+    const { result } = renderUseUserRankedStats();
+
+    await act(async () => result.current.refresh());
+
+    expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
+    expect(mockRefetchPosition).toHaveBeenCalledTimes(1);
   });
 });

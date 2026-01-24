@@ -14,8 +14,8 @@ const renderUseCommunityLeaderboard = async (...props: Parameters<typeof useComm
 };
 
 describe('useCommunityLeaderboard', () => {
-  it('returns empty leaderboard entries when leaderboardId is -1', async () => {
-    const { result } = await renderUseCommunityLeaderboard(-1);
+  it('does not perform any request when no leaderboardId is provided', async () => {
+    const { result } = await renderUseCommunityLeaderboard();
 
     expect(result.current.leaderboardEntries).toBeUndefined();
   });

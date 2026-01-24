@@ -21,7 +21,7 @@ const Content = ({ email: propsEmail, onClose }: Readonly<Props>) => {
   const { sendRecoveryEmail, isLoading, isSuccess, isError } = useSendAccountRecoveryEmail();
 
   const onSubmit = () => {
-    if (!email?.length) {
+    if (!email.length) {
       setIsInvalid(true);
       return;
     }

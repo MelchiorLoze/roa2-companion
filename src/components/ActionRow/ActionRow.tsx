@@ -29,7 +29,7 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
 
   return (
     <Pressable
-      onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress?.())}
+      onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress())}
       role={url ? 'link' : 'button'}
     >
       {({ pressed }) => (

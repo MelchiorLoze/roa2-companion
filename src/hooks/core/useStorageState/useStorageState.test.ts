@@ -219,13 +219,11 @@ describe('useStorageState', () => {
     it('handles undefined localStorage gracefully', async () => {
       Object.defineProperty(global, 'localStorage', { value: undefined });
 
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+      const consoleSpy = jest.spyOn(console, 'error');
 
       renderHook(() => useStorageState(TEST_KEY));
 
       expect(consoleSpy).not.toHaveBeenCalled();
-
-      consoleSpy.mockRestore();
     });
   });
 });

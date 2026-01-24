@@ -80,7 +80,7 @@ export const useUserRankedStats = (): UserRankedStatsState => {
   if (rawStats && playerPositions && leaderboardEntries) {
     const [userRankedPosition] = playerPositions;
     const elo = rawStats[getEloStatNameForSeason(season.index)];
-    const rank = elo != null && userRankedPosition ? getRank(elo, userRankedPosition?.position) : undefined;
+    const rank = elo != null ? getRank(elo, userRankedPosition.position) : undefined;
     return {
       ...baseState,
       stats: {

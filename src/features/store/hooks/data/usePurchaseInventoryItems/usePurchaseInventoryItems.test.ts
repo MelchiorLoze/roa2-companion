@@ -49,9 +49,7 @@ describe('usePurchaseInventoryItems', () => {
     it('invalidates inventory and rotation cache when using coins', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
-      await act(async () =>
-        result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
-      );
+      await act(async () => result.current.purchase({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }));
 
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.isError).toBe(false);
@@ -62,9 +60,7 @@ describe('usePurchaseInventoryItems', () => {
     it('invalidates inventory cache when using bucks', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
-      await act(async () =>
-        result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.BUCKS } }),
-      );
+      await act(async () => result.current.purchase({ id: '1', price: { value: 100, currencyId: CurrencyId.BUCKS } }));
 
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.isError).toBe(false);
@@ -76,9 +72,7 @@ describe('usePurchaseInventoryItems', () => {
       const onSuccess = jest.fn();
       const { result } = await renderUsePurchaseInventoryItems({ onSuccess });
 
-      await act(async () =>
-        result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
-      );
+      await act(async () => result.current.purchase({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }));
 
       expect(onSuccess).toHaveBeenCalledTimes(1);
     });
@@ -94,9 +88,7 @@ describe('usePurchaseInventoryItems', () => {
     it('returns an error', async () => {
       const { result } = await renderUsePurchaseInventoryItems();
 
-      await act(async () =>
-        result.current.purchase?.({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }),
-      );
+      await act(async () => result.current.purchase({ id: '1', price: { value: 100, currencyId: CurrencyId.COINS } }));
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);

@@ -16,10 +16,10 @@ export const GlobalStats = () => {
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh}>
-      <View style={styles.gameStatsContainer}>
-        <StatRow label="Global wins" value={stats.gameStats?.winCount} />
+      <View style={styles.statRowsContainer}>
+        <StatRow label="Global wins" value={stats.gameStats.winCount} />
         <StatRow label="Global losses" value={stats.gameStats.gameCount - stats.gameStats.winCount} />
-        <StatRow label="Global win rate" value={stats.gameStats?.winRate.toFixed(2) + '%'} />
+        <StatRow label="Global win rate" value={stats.gameStats.winRate.toFixed(2) + '%'} />
       </View>
 
       <View>
@@ -45,7 +45,7 @@ export const GlobalStats = () => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  gameStatsContainer: {
+  statRowsContainer: {
     gap: theme.spacing.s,
   },
   label: {

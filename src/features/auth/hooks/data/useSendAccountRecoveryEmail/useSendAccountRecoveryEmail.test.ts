@@ -40,7 +40,7 @@ describe('usePurchaseInventoryItems', () => {
     it('invalidates inventory and rotation cache when using coins', async () => {
       const { result } = await renderUseSendAccountRecoveryEmail();
 
-      await act(async () => result.current.sendRecoveryEmail?.('kragg@example.com'));
+      await act(async () => result.current.sendRecoveryEmail('kragg@example.com'));
 
       await waitFor(() => expect(result.current.isLoading).toBe(false));
       expect(result.current.isError).toBe(false);
@@ -57,7 +57,7 @@ describe('usePurchaseInventoryItems', () => {
     it('returns an error', async () => {
       const { result } = await renderUseSendAccountRecoveryEmail();
 
-      await act(async () => result.current.sendRecoveryEmail?.('kragg@email.com'));
+      await act(async () => result.current.sendRecoveryEmail('kragg@email.com'));
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);
