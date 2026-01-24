@@ -7,7 +7,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 import { Tabs } from '@/components/Tabs/Tabs';
 import { TournamentList } from '@/features/e-sport/components/TournamentList/TournamentList';
 import { useTournamentsTab } from '@/features/e-sport/hooks/business/useTournamentsTab/useTournamentsTab';
-import type { Tournament } from '@/features/e-sport/types/tournament';
+import { type Tournament } from '@/features/e-sport/types/tournament';
 
 type Props = {
   refreshControl: ComponentProps<typeof ScrollView>['refreshControl'];

@@ -1,7 +1,7 @@
 import { useTabs } from '@/hooks/core/useTabs/useTabs';
-import type { RefreshableState } from '@/types/loadableState';
+import { type RefreshableState } from '@/types/loadableState';
 
-import type { Tournament } from '../../../types/tournament';
+import { type Tournament } from '../../../types/tournament';
 import { useGetActiveTournaments } from '../../data/useGetActiveTournaments/useGetActiveTournaments';
 import { useGetPastTournaments } from '../../data/useGetPastTournaments/useGetPastTournaments';
 

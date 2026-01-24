@@ -27,9 +27,9 @@ describe('CurrenciesBalance', () => {
 
   it('renders correctly when the balances are loading', () => {
     useCurrencyBalanceMock.mockReturnValue({
-      coinsBalance: 0,
-      bucksBalance: 0,
-      medalsBalance: 0,
+      coinsBalance: undefined,
+      bucksBalance: undefined,
+      medalsBalance: undefined,
       isLoading: true,
       isError: false,
     });
@@ -37,6 +37,7 @@ describe('CurrenciesBalance', () => {
     render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
+    // When balances are undefined, they should display as 0
     expect(screen.getAllByText('00000000')).toHaveLength(3);
   });
 });

@@ -26,8 +26,7 @@ describe('useGetInventoryItems', () => {
     const { result } = renderHook(useGetInventoryItems, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
-    expect(result.current.inventoryItems).toEqual([]);
-    expect(result.current.isError).toBe(false);
+    expect(result.current.inventoryItems).toBeUndefined();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -53,7 +52,6 @@ describe('useGetInventoryItems', () => {
         { id: '1', amount: 1 },
         { id: '2', amount: 2 },
       ]);
-      expect(result.current.isError).toBe(false);
     });
   });
 
@@ -64,11 +62,10 @@ describe('useGetInventoryItems', () => {
       });
     });
 
-    it('returns an empty array', async () => {
+    it('returns undefined', async () => {
       const { result } = await renderUseGetInventoryItems();
 
-      expect(result.current.inventoryItems).toEqual([]);
-      expect(result.current.isError).toBe(true);
+      expect(result.current.inventoryItems).toBeUndefined();
     });
   });
 });
