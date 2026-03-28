@@ -1,6 +1,6 @@
 import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import type { LoadableState } from '@/types/loadableState';
+import { type LoadableState } from '@/types/loadableState';
 
 import { useCurrentSeasonIndex } from '../../hooks/business/useCurrentSeasonIndex/useCurrentSeasonIndex';
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';

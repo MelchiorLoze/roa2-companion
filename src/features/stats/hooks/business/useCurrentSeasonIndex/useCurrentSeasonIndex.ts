@@ -1,5 +1,5 @@
 import { StatisticName } from '@/features/stats/types/stats';
-import type { LoadableState } from '@/types/loadableState';
+import { type LoadableState } from '@/types/loadableState';
 
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
