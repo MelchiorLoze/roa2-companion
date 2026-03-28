@@ -63,6 +63,44 @@ describe('useSeason', () => {
     console.error = originalError;
   });
 
+  it('returns loading state when current season index is loading', () => {
+    useCurrentSeasonIndexMock.mockReturnValue({
+      currentSeasonIndex: undefined,
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
+  it('returns loading state when leaderboards are loading', () => {
+    useCommunityLeaderboardsMock.mockReturnValue({
+      leaderboards: undefined,
+      isLoading: true,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
+  it('returns loading state when current season index has an error', () => {
+    useCurrentSeasonIndexMock.mockReturnValue({
+      currentSeasonIndex: undefined,
+      isLoading: false,
+      isError: true,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
   it('initializes with max season index', () => {
     const { result } = renderUseSeason();
 

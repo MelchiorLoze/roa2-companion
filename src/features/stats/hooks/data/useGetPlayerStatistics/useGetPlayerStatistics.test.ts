@@ -98,4 +98,19 @@ describe('useGetPlayerStatistics', () => {
       }),
     );
   });
+
+  it('defaults RANKED_SEASON_INDEX to 1 when not in the API response', async () => {
+    fetchMock.postOnce('*', {
+      data: {
+        Statistics: [{ StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 }],
+      },
+    });
+
+    const { result } = await renderUseGetPlayerStatistics();
+
+    expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
+      [StatisticName.RANKED_S1_ELO]: 932,
+    });
+  });
 });

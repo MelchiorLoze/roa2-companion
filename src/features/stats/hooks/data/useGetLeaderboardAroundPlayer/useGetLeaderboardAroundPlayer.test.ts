@@ -102,6 +102,17 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.playerPositions?.[0].statisticName).toBe(StatisticName.RANKED_WINS);
   });
 
+  it('does not fetch when statisticName is undefined', () => {
+    // No fetch mock registered — if a request were made, it would fail
+    const { result } = renderHook(
+      () => useGetLeaderboardAroundPlayer({ maxResultCount: 10, statisticName: undefined }),
+      { wrapper: TestQueryClientProvider },
+    );
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.playerPositions).toBeUndefined();
+  });
+
   it('handles API error', async () => {
     fetchMock.postOnce('*', 400);
 

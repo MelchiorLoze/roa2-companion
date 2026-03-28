@@ -134,6 +134,28 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
+  it('returns loading state when season is loading', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonReturnValue,
+      season: undefined,
+      leaderboardId: undefined,
+      setPreviousSeason: undefined,
+      setNextSeason: undefined,
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderHook(useUserRankedStats);
+
+    expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledWith({
+      maxResultCount: 1,
+      statisticName: undefined,
+    });
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.isRefreshing).toBe(false);
+    expect(result.current.stats).toBeUndefined();
+  });
+
   it('returns refetching state when statistics are being refetched', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
