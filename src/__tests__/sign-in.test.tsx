@@ -88,6 +88,21 @@ describe('SignIn', () => {
     expect(screen.queryByText(SCREEN_TITLE)).toBeNull();
   });
 
+  it('shows spinner after submitting valid credentials', () => {
+    render(<SignIn />);
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    const passwordInput = screen.getByPlaceholderText('PASSWORD');
+    const loginButton = screen.getByRole('button', { name: 'Login' });
+
+    fireEvent.changeText(emailInput, 'kragg@example.com');
+    fireEvent.changeText(passwordInput, 'r0ck');
+    fireEvent.press(loginButton);
+
+    expect(screen.getByTestId('spinner')).toBeTruthy();
+    expect(screen.queryByText(SCREEN_TITLE)).toBeNull();
+  });
+
   it('redirects to store when already logged in', () => {
     useAuthMock.mockReturnValue({
       ...defaultAuthReturnValue,
@@ -136,6 +151,26 @@ describe('SignIn', () => {
 
     render(<SignIn />);
 
+    expect(screen.getByText('Invalid email or password')).toBeTruthy();
+  });
+
+  it('hides spinner and shows error when login request fails', () => {
+    const { rerender } = render(<SignIn />);
+
+    const emailInput = screen.getByPlaceholderText('EMAIL');
+    const passwordInput = screen.getByPlaceholderText('PASSWORD');
+    const loginButton = screen.getByRole('button', { name: 'Login' });
+
+    fireEvent.changeText(emailInput, 'kragg@example.com');
+    fireEvent.changeText(passwordInput, 'r0ck');
+    fireEvent.press(loginButton);
+
+    expect(screen.getByTestId('spinner')).toBeTruthy();
+
+    useAuthMock.mockReturnValue({ ...defaultAuthReturnValue, isLoggedIn: undefined, isError: true });
+    rerender(<SignIn />);
+
+    expect(screen.queryByTestId('spinner')).toBeNull();
     expect(screen.getByText('Invalid email or password')).toBeTruthy();
   });
 

@@ -1,5 +1,5 @@
 import { Redirect } from 'expo-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -14,16 +14,24 @@ import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [isInvalid, setIsInvalid] = useState(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
 
   const { isVisible: isKeyboardVisible } = useKeyboard();
 
-  const { login, isLoggedIn, isLoading, isError } = useAuth();
+  const { login, isLoggedIn, isLoading: isLoadingAuth, isError } = useAuth();
 
-  if (isLoading) return <Spinner />;
+  useEffect(() => {
+    if (isError) {
+      setIsInvalid(true);
+      setIsLoading(false);
+    }
+  }, [isError]);
 
   if (isLoggedIn) return <Redirect href="/store" />;
+
+  if (isLoading || isLoadingAuth) return <Spinner />;
 
   const onForgotPassword = () => {
     // Do not call isKeyboardVisible in callback to avoid unnecessary re-renders
@@ -46,6 +54,7 @@ export default function SignIn() {
       return;
     }
     setIsInvalid(false);
+    setIsLoading(true);
     login({ email, password });
   };
 
@@ -66,7 +75,7 @@ export default function SignIn() {
                 label: 'Forgot your password?',
                 onPress: onForgotPassword,
               }}
-              errorMessage={isInvalid || isError ? 'Invalid email or password' : undefined}
+              errorMessage={isInvalid ? 'Invalid email or password' : undefined}
               hidden
               onChange={setPassword}
               placeholder="PASSWORD"
@@ -86,7 +95,6 @@ export default function SignIn() {
 const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flex: 1,
-    backgroundColor: theme.color.background,
     padding: theme.spacing.l,
     marginBottom: runtime.insets.bottom,
     justifyContent: 'center',
