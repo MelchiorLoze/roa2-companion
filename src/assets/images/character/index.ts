@@ -13,6 +13,7 @@ export const MaypulIcon: ImageSource = require('./maypul.png');
 export const OlympiaIcon: ImageSource = require('./olympia.png');
 export const OrcaneIcon: ImageSource = require('./orcane.png');
 export const RannoIcon: ImageSource = require('./ranno.png');
+export const SladeIcon: ImageSource = require('./slade.png');
 export const WrastorIcon: ImageSource = require('./wrastor.png');
 export const ZetterburnIcon: ImageSource = require('./zetterburn.png');
 

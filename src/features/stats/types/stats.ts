@@ -51,6 +51,7 @@ export enum StatisticName {
   OLY_MATCH_COUNT = 'Oly Match Count',
   ORC_MATCH_COUNT = 'Orc Match Count',
   RAN_MATCH_COUNT = 'Ran Match Count',
+  SLA_MATCH_COUNT = 'Sla Match Count',
   WRA_MATCH_COUNT = 'Wra Match Count',
   ZET_MATCH_COUNT = 'Zet Match Count',
 

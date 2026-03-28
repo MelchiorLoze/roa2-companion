@@ -28,6 +28,7 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
 const defaultUserReadOnlyDataReturnValue: ReturnType<typeof useGetUserReadOnlyData> = {
   userData: {
     characterData: {
+      [Character.SLADE]: { lvl: 10 },
       [Character.KRAGG]: { lvl: 5 },
       [Character.CLAIREN]: { lvl: 3 },
       [Character.FLEET]: { lvl: 0 },
@@ -111,7 +112,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats).toMatchObject({
       gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
     });
-    expect(result.current.stats?.characterStats).toHaveLength(16);
+    expect(result.current.stats?.characterStats).toHaveLength(17);
   });
 
   it('handles zero matches played when calculating win rates', () => {
