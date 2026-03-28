@@ -13,10 +13,16 @@ import { StatRow } from '../StatRow/StatRow';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const RankedStats = () => {
-  const { season, setPreviousSeason, setNextSeason } = useSeason();
-  const { stats, isLoading, isError, isRefreshing, refresh } = useUserRankedStats();
+  const { season, setPreviousSeason, setNextSeason, isLoading: isLoadingSeason, isError: isErrorSeason } = useSeason();
+  const {
+    stats,
+    isLoading: isLoadingRankedStats,
+    isError: isErrorRankedStats,
+    isRefreshing,
+    refresh,
+  } = useUserRankedStats();
 
-  if (isLoading || isError) return <Spinner />;
+  if (isLoadingSeason || isLoadingRankedStats || isErrorSeason || isErrorRankedStats) return <Spinner />;
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>

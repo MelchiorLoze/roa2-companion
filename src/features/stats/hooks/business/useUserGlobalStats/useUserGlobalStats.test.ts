@@ -15,6 +15,7 @@ const useGetUserReadOnlyDataMock = jest.mocked(useGetUserReadOnlyData);
 
 const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
+    [StatisticName.RANKED_SEASON_INDEX]: 1,
     [StatisticName.TOTAL_GAMES]: 100,
     [StatisticName.TOTAL_WINS]: 60,
     [StatisticName.KRA_MATCH_COUNT]: 30,
@@ -97,6 +98,7 @@ describe('useUserGlobalStats', () => {
 
   it('computes global stats correctly from player statistics', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.TOTAL_GAMES]: 200,
       [StatisticName.TOTAL_WINS]: 120,
     };
@@ -117,6 +119,7 @@ describe('useUserGlobalStats', () => {
 
   it('handles zero matches played when calculating win rates', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.TOTAL_GAMES]: 0,
       [StatisticName.TOTAL_WINS]: 0,
     };
@@ -132,7 +135,9 @@ describe('useUserGlobalStats', () => {
   });
 
   it('handles undefined matches played', () => {
-    const mockStatistics: PlayerStatistics = {};
+    const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
+    };
 
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,

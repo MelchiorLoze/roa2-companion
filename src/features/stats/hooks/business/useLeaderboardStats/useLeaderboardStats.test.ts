@@ -15,9 +15,10 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
     isLast: false,
   },
   leaderboardId: 789,
-  isLoading: false,
   setPreviousSeason: jest.fn(),
   setNextSeason: jest.fn(),
+  isLoading: false,
+  isError: false,
 };
 
 jest.mock('../../data/useCommunityLeaderboard/useCommunityLeaderboard');
@@ -46,6 +47,10 @@ describe('useLeaderboardStats', () => {
   it('returns correct values when season is loading', () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
+      season: undefined,
+      leaderboardId: undefined,
+      setNextSeason: undefined,
+      setPreviousSeason: undefined,
       isLoading: true,
     });
     useCommunityLeaderboardMock.mockReturnValue({
@@ -53,7 +58,7 @@ describe('useLeaderboardStats', () => {
       leaderboardEntries: undefined,
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = renderHook(() => useLeaderboardStats());
 
     expect(result.current.isLoading).toBe(true);
   });

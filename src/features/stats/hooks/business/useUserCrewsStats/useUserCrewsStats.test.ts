@@ -9,6 +9,7 @@ jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
 const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
+    [StatisticName.RANKED_SEASON_INDEX]: 4,
     [StatisticName.CREWS_ELO]: 10950,
     [StatisticName.CREWS_SETS]: 30,
     [StatisticName.CREWS_BEST_WIN_STREAK]: 5,
@@ -141,6 +142,7 @@ describe('useUserCrewsStats', () => {
 
   it('handles missing elo stat by defaulting to 1000', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.CREWS_SETS]: 25,
       [StatisticName.CREWS_BEST_WIN_STREAK]: 3,
     };
@@ -159,6 +161,7 @@ describe('useUserCrewsStats', () => {
 
   it('handles missing set count by defaulting to 0', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.CREWS_ELO]: 12000,
       [StatisticName.CREWS_BEST_WIN_STREAK]: 7,
     };
@@ -177,6 +180,7 @@ describe('useUserCrewsStats', () => {
 
   it('handles missing best win streak by defaulting to 0', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.CREWS_ELO]: 11500,
       [StatisticName.CREWS_SETS]: 15,
     };

@@ -14,9 +14,10 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
     isLast: false,
   },
   leaderboardId: 789,
-  isLoading: false,
   setPreviousSeason: jest.fn(),
   setNextSeason: jest.fn(),
+  isLoading: false,
+  isError: false,
 };
 
 jest.mock('../../hooks/business/useUserCrewsStats/useUserCrewsStats');
