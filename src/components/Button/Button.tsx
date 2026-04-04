@@ -1,8 +1,9 @@
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { ButtonBackground } from '@/assets/images/ui';
 
+import { FancyText } from '../FancyText/FancyText';
 import { NineSlicesImage } from '../NineSlicesImage/NineSlicesImage';
 
 type Props = { label: string; onPress: () => void };
@@ -20,7 +21,13 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
             style={styles.backgroundContainer}
           />
           <View style={styles.button}>
-            <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
+            <FancyText
+              style={{
+                ...styles.label(pressed),
+                gradient: { ...theme.color.gradient.buttonText(pressed), direction: 'vertical' },
+              }}
+              text={label.toUpperCase()}
+            />
           </View>
         </>
       )}
@@ -31,17 +38,14 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
 const styles = StyleSheet.create((theme) => ({
   backgroundContainer: StyleSheet.absoluteFillObject,
   button: {
-    padding: theme.spacing.xs,
+    paddingTop: theme.spacing.xs,
+    paddingBottom: theme.spacing.xs + 1, // optical adjustment to compensate for the shadow in the background image
     paddingHorizontal: theme.spacing.xl,
   },
-  label: {
-    fontFamily: theme.font.primary.regular,
+  label: (pressed: boolean) => ({
     fontSize: 16,
-    color: theme.color.white,
-    textAlign: 'center',
-    textTransform: 'uppercase',
-  },
-  labelPressed: {
-    color: theme.color.black,
-  },
+    fontFamily: theme.font.secondary.bold,
+    strokeWidth: 1.5,
+    strokeColor: pressed ? theme.color.transparent : '#28074B80',
+  }),
 }));

@@ -2,8 +2,8 @@ import { Image } from 'expo-image';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item, type Rarity } from '@/types/item';
 
@@ -25,10 +25,8 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
               <Text style={[styles.title, pressed && styles.textPressed]}>{item.name}</Text>
 
               <View style={styles.info}>
-                <OutlinedText
-                  style={styles.category(item.rarity)}
-                  text={CATEGORY_LABELS[item.category].toUpperCase()}
-                />
+                <FancyText style={styles.category(item.rarity)} text={CATEGORY_LABELS[item.category].toUpperCase()} />
+
                 {item.coinPrice && (
                   <View style={styles.priceContainer}>
                     <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
@@ -87,6 +85,7 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.secondary.bold,
     color: theme.color[rarity],
     strokeWidth: 2,
+    strokeColor: theme.color.black,
   }),
   priceContainer: {
     flexDirection: 'row',
