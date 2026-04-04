@@ -38,13 +38,7 @@ const styles = StyleSheet.create((theme) => ({
     color: selected ? theme.color.accent : theme.color.inactiveLight,
     textTransform: 'uppercase',
   }),
-  selectedOverlay: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
+  selectedOverlay: StyleSheet.absoluteFillObject,
   underline: {
     position: 'absolute',
     height: 2,

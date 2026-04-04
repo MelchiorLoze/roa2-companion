@@ -21,7 +21,5 @@ export const RankedDistributionChart = ({ elo }: Readonly<Props>) => {
 };
 
 const styles = StyleSheet.create({
-  lineChartContainer: {
-    position: 'absolute',
-  },
+  lineChartContainer: StyleSheet.absoluteFillObject,
 });

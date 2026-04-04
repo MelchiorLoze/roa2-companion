@@ -37,13 +37,7 @@ const styles = StyleSheet.create((theme) => ({
     width: '100%',
     aspectRatio: 1,
   },
-  layer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
+  layer: StyleSheet.absoluteFillObject,
   categoryIcon: {
     position: 'absolute',
     top: theme.spacing.xxs,

@@ -43,6 +43,7 @@ export const TimeCountdown = ({ date, style }: Readonly<Props>) => {
 const styles = StyleSheet.create((theme) => ({
   label: {
     position: 'absolute',
+    top: 0,
     right: 0,
   },
   widthPlaceholder: {
