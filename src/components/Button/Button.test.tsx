@@ -15,7 +15,7 @@ describe('Button', () => {
   it('calls onPress when pressed', () => {
     renderComponent();
 
-    const button = screen.getByRole('button', { name: label });
+    const button = screen.getByRole('button', { name: label.toUpperCase() });
     fireEvent.press(button);
 
     expect(onPressMock).toHaveBeenCalled();
