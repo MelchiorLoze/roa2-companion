@@ -1,7 +1,9 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { LinearGradient } from '../LinearGradient/LinearGradient';
+import { ButtonBackground } from '@/assets/images/ui';
+
+import { NineSlicesImage } from '../NineSlicesImage/NineSlicesImage';
 
 type Props = { label: string; onPress: () => void };
 
@@ -12,9 +14,14 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
     <Pressable onPress={onPress} role="button">
       {({ pressed }) => (
         <>
-          <LinearGradient {...theme.color.gradient.button(pressed)} horizontal style={styles.button}>
+          <NineSlicesImage
+            insets={{ right: '27%', left: '27%' }}
+            source={ButtonBackground}
+            style={styles.backgroundContainer}
+          />
+          <View style={styles.button}>
             <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
-          </LinearGradient>
+          </View>
         </>
       )}
     </Pressable>
@@ -22,6 +29,7 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
 };
 
 const styles = StyleSheet.create((theme) => ({
+  backgroundContainer: StyleSheet.absoluteFillObject,
   button: {
     padding: theme.spacing.xs,
     paddingHorizontal: theme.spacing.xl,
