@@ -28,7 +28,7 @@ describe('ResetPasswordDialog', () => {
     const emailInput = screen.getByPlaceholderText('EMAIL');
     expect(emailInput).toHaveDisplayValue('');
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
-    expect(screen.getByRole('button', { name: 'Reset password' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'RESET PASSWORD' })).toBeTruthy();
   });
 
   it('renders correctly when an email is provided', () => {
@@ -50,7 +50,7 @@ describe('ResetPasswordDialog', () => {
   it('calls sendRecoveryEmail when the button is pressed', () => {
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    const submitButton = screen.getByRole('button', { name: 'Reset password' });
+    const submitButton = screen.getByRole('button', { name: 'RESET PASSWORD' });
     fireEvent.press(submitButton);
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
 
@@ -67,7 +67,7 @@ describe('ResetPasswordDialog', () => {
   it('shows error message when email is invalid', () => {
     render(<ResetPasswordDialog onClose={jest.fn()} />);
 
-    const submitButton = screen.getByRole('button', { name: 'Reset password' });
+    const submitButton = screen.getByRole('button', { name: 'RESET PASSWORD' });
     fireEvent.press(submitButton);
 
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
@@ -100,7 +100,7 @@ describe('ResetPasswordDialog', () => {
     screen.getByText(
       'Check your inbox, an email sent to kragg@example.com to reset your password! (you may have to wait a couple of minutes until you receive it)',
     );
-    expect(screen.getByRole('button', { name: 'Ok' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'OK' })).toBeTruthy();
   });
 
   it('shows loading spinner when sending email', () => {

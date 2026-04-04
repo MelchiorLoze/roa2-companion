@@ -38,8 +38,8 @@ describe('PurchaseConfirmationDialog', () => {
 
     expect(screen.getByText('Test Icon')).toBeTruthy();
     expect(screen.getByText('Are you sure you want to buy this icon for 100?')).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Close' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Confirm' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'CLOSE' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'CONFIRM' })).toBeTruthy();
     expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
@@ -56,7 +56,7 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    const closeButton = screen.getByRole('button', { name: 'Close' });
+    const closeButton = screen.getByRole('button', { name: 'CLOSE' });
     fireEvent.press(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
@@ -72,7 +72,7 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    const confirmButton = screen.getByRole('button', { name: 'Confirm' });
+    const confirmButton = screen.getByRole('button', { name: 'CONFIRM' });
     fireEvent.press(confirmButton);
 
     expect(mockPurchase).toHaveBeenCalledTimes(1);
@@ -109,8 +109,8 @@ describe('PurchaseConfirmationDialog', () => {
     expect(
       screen.getByText('An error occurred while trying to purchase this item. Do you have enough funds?'),
     ).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Cancel' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Retry' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'CANCEL' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'RETRY' })).toBeTruthy();
     expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
@@ -123,7 +123,7 @@ describe('PurchaseConfirmationDialog', () => {
 
     render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
-    const retryButton = screen.getByRole('button', { name: 'Retry' });
+    const retryButton = screen.getByRole('button', { name: 'RETRY' });
     fireEvent.press(retryButton);
 
     expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledTimes(1);
@@ -143,7 +143,7 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+    const cancelButton = screen.getByRole('button', { name: 'CANCEL' });
     fireEvent.press(cancelButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
