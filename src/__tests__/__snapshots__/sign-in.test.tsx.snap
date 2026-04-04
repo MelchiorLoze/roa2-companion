@@ -202,55 +202,41 @@ exports[`SignIn matches snapshot 1`] = `
       onStartShouldSetResponder={[Function]}
       role="button"
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            4281147000,
-            4284184016,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0.006,
-            0,
-          ]
-        }
+      <View
+        onLayout={[Function]}
         style={
           {
-            "padding": 4,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        style={
+          {
+            "paddingBottom": 5,
             "paddingHorizontal": 24,
+            "paddingTop": 4,
           }
         }
       >
         <Text
           style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textAlign": "center",
-                "textTransform": "uppercase",
-              },
-              false,
-            ]
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 16,
+              "textShadowColor": "#28074B80",
+              "textShadowRadius": 1.5,
+            }
           }
         >
-          Login
+          LOGIN
         </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </View>
   <View
@@ -525,55 +511,41 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         onStartShouldSetResponder={[Function]}
         role="button"
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          colors={
-            [
-              4281147000,
-              4284184016,
-            ]
-          }
-          endPoint={
-            [
-              1,
-              0,
-            ]
-          }
-          locations={
-            [
-              0,
-              1,
-            ]
-          }
-          startPoint={
-            [
-              0.006,
-              0,
-            ]
-          }
+        <View
+          onLayout={[Function]}
           style={
             {
-              "padding": 4,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "paddingBottom": 5,
               "paddingHorizontal": 24,
+              "paddingTop": 4,
             }
           }
         >
           <Text
             style={
-              [
-                {
-                  "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textAlign": "center",
-                  "textTransform": "uppercase",
-                },
-                false,
-              ]
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 16,
+                "textShadowColor": "#28074B80",
+                "textShadowRadius": 1.5,
+              }
             }
           >
-            Login
+            LOGIN
           </Text>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
     <View
@@ -693,9 +665,11 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
           style={
             {
               "backgroundColor": "#161616AA",
-              "height": "100%",
+              "bottom": 0,
+              "left": 0,
               "position": "absolute",
-              "width": "100%",
+              "right": 0,
+              "top": 0,
             }
           }
           testID="overlay"
@@ -783,55 +757,41 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4281147000,
-                  4284184016,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              locations={
-                [
-                  0,
-                  1,
-                ]
-              }
-              startPoint={
-                [
-                  0.006,
-                  0,
-                ]
-              }
+            <View
+              onLayout={[Function]}
               style={
                 {
-                  "padding": 4,
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
+                }
+              }
+            />
+            <View
+              style={
+                {
+                  "paddingBottom": 5,
                   "paddingHorizontal": 24,
+                  "paddingTop": 4,
                 }
               }
             >
               <Text
                 style={
-                  [
-                    {
-                      "color": "white",
-                      "fontFamily": "FranklinGothicDemiCond-Regular",
-                      "fontSize": 16,
-                      "textAlign": "center",
-                      "textTransform": "uppercase",
-                    },
-                    false,
-                  ]
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#28074B80",
+                    "textShadowRadius": 1.5,
+                  }
                 }
               >
-                Reset password
+                RESET PASSWORD
               </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
+            </View>
           </View>
         </View>
       </View>
