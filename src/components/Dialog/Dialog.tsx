@@ -42,9 +42,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'center',
   },
   overlay: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: theme.color.translucentDark,
   },
   dialog: {
