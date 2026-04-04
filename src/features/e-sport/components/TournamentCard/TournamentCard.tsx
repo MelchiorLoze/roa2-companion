@@ -5,8 +5,8 @@ import { type ExternalPathString, useRouter } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { Separator } from '@/components/Separator/Separator';
 
 import { type Tournament, type TournamentState } from '../../types/tournament';
@@ -38,7 +38,7 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                 </View>
 
                 <View style={[styles.info, styles.dateInfo]}>
-                  <OutlinedText style={styles.state(tournament.state)} text={tournament.state.toUpperCase()} />
+                  <FancyText style={styles.state(tournament.state)} text={tournament.state.toUpperCase()} />
                   <Text style={styles.text(pressed)}>{formatDateRange(tournament.startAt, tournament.endAt)}</Text>
                 </View>
 
@@ -137,13 +137,13 @@ const styles = StyleSheet.create((theme) => ({
   },
   dateInfo: {
     gap: theme.spacing.xs,
-    alignItems: 'flex-end',
   },
   state: (tournamentState: TournamentState) => ({
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
-    strokeWidth: 2,
     color: theme.color[tournamentState],
+    strokeWidth: 2,
+    strokeColor: theme.color.black,
   }),
   onlineIcon: (pressed?: boolean) => ({
     color: pressed ? theme.color.black : theme.color.white,

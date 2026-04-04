@@ -2,7 +2,7 @@ import fetchMock from 'fetch-mock';
 import { createElement } from 'react';
 import { Text, type TextStyle } from 'react-native';
 
-import { OutlinedText } from './components/OutlinedText/OutlinedText';
+import { FancyText } from './components/FancyText/FancyText';
 
 globalThis.expo.modules.ExpoObserve = {
   ...globalThis.expo.modules.ExpoObserve,
@@ -19,10 +19,24 @@ jest.mock('react-native-gifted-charts', () => ({
   BarChart: '',
 }));
 
-jest.mock('@/components/OutlinedText/OutlinedText');
-jest
-  .mocked(OutlinedText)
-  .mockImplementation(({ text, style }) => createElement(Text, { style: style as TextStyle }, text));
+jest.mock('@/components/FancyText/FancyText');
+jest.mocked(FancyText).mockImplementation(({ text, style }) => {
+  const color = style.gradient ? style.gradient.colors[0] : style.color;
+
+  return createElement(
+    Text,
+    {
+      style: {
+        color,
+        fontFamily: style.fontFamily,
+        fontSize: style.fontSize,
+        textShadowColor: style.strokeColor,
+        textShadowRadius: style.strokeWidth,
+      } as TextStyle,
+    },
+    text,
+  );
+});
 
 fetchMock.mockGlobal();
 
