@@ -24,7 +24,7 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
             <FancyText
               style={{
                 ...styles.label(pressed),
-                gradient: { ...theme.color.gradient.buttonText(pressed), direction: 'vertical' },
+                gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
               }}
               text={label.toUpperCase()}
             />
@@ -46,6 +46,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
     strokeWidth: 1.5,
-    strokeColor: pressed ? theme.color.transparent : '#28074B80',
+    strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,
   }),
 }));

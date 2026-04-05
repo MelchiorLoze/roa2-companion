@@ -72,10 +72,10 @@ const computeDestinationInsets = (
 ) => {
   const minDest = Math.min(destinationWidth, destinationHeight);
 
-  const leftRaw = clamp(imageWidth > 0 ? (sourceInsets.left / imageWidth) * minDest : 0, 0, destinationWidth);
-  const rightRaw = clamp(imageWidth > 0 ? (sourceInsets.right / imageWidth) * minDest : 0, 0, destinationWidth);
-  const topRaw = clamp(imageHeight > 0 ? (sourceInsets.top / imageHeight) * minDest : 0, 0, destinationHeight);
-  const bottomRaw = clamp(imageHeight > 0 ? (sourceInsets.bottom / imageHeight) * minDest : 0, 0, destinationHeight);
+  const leftRaw = clamp(imageWidth > 0 ? (sourceInsets.left / imageWidth) * minDest : 0, 0, sourceInsets.left);
+  const rightRaw = clamp(imageWidth > 0 ? (sourceInsets.right / imageWidth) * minDest : 0, 0, sourceInsets.right);
+  const topRaw = clamp(imageHeight > 0 ? (sourceInsets.top / imageHeight) * minDest : 0, 0, sourceInsets.top);
+  const bottomRaw = clamp(imageHeight > 0 ? (sourceInsets.bottom / imageHeight) * minDest : 0, 0, sourceInsets.bottom);
 
   const horizontalScale =
     leftRaw + rightRaw > destinationWidth && leftRaw + rightRaw > 0 ? destinationWidth / (leftRaw + rightRaw) : 1;
