@@ -1,11 +1,12 @@
-import { Image } from 'expo-image';
+import { Image, ImageBackground } from 'expo-image';
 import { Pressable, Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { ItemBackground, ItemOutline } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
-import { CATEGORY_LABELS, type Item, type Rarity } from '@/types/item';
+import { CATEGORY_LABELS, type Item } from '@/types/item';
 
 import { ItemImage } from '../ItemImage/ItemImage';
 
@@ -17,26 +18,53 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   return (
     <Pressable onPress={onPress} role="button" style={styles.container}>
       {({ pressed }) => (
-        <LinearGradient {...theme.color.gradient.border(pressed)} style={styles.borderGradient} vertical>
-          <LinearGradient {...theme.color.gradient.card(pressed)} style={styles.gradient} vertical>
-            <ItemImage item={item} />
+        <>
+          <NineSlicesImage
+            insets={{ top: '40%', right: '40%', bottom: '40%', left: '40%' }}
+            source={ItemOutline}
+            style={styles.outline}
+          />
+          <View style={styles.contentContainer}>
+            <ImageBackground
+              contentFit="fill"
+              imageStyle={styles.backgroundImage}
+              source={ItemBackground}
+              style={StyleSheet.absoluteFillObject}
+            />
 
-            <View style={styles.infoContainer}>
-              <Text style={[styles.title, pressed && styles.textPressed]}>{item.name}</Text>
-
-              <View style={styles.info}>
-                <FancyText style={styles.category(item.rarity)} text={CATEGORY_LABELS[item.category].toUpperCase()} />
-
-                {item.coinPrice && (
-                  <View style={styles.priceContainer}>
-                    <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
-                    <Text style={[styles.price, pressed && styles.textPressed]}>{item.coinPrice}</Text>
-                  </View>
-                )}
+            <View style={styles.imageContainer}>
+              <ItemImage item={item} />
+              <View style={styles.nameContainer}>
+                <Text numberOfLines={2} style={styles.name(pressed)}>
+                  {item.name}
+                </Text>
               </View>
             </View>
-          </LinearGradient>
-        </LinearGradient>
+
+            <>
+              <FancyText
+                style={{
+                  ...styles.category(pressed),
+                  gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
+                }}
+                text={CATEGORY_LABELS[item.category].toUpperCase()}
+              />
+
+              {item.coinPrice && (
+                <View style={styles.priceContainer}>
+                  <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
+                  <FancyText
+                    style={{
+                      ...styles.price(pressed),
+                      gradient: { ...theme.color.gradient.labelText(pressed, true), direction: 'vertical' },
+                    }}
+                    text={item.coinPrice.toString()}
+                  />
+                </View>
+              )}
+            </>
+          </View>
+        </>
       )}
     </Pressable>
   );
@@ -45,6 +73,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1 / 2,
+    borderRadius: 14,
     boxShadow: [
       {
         color: theme.color.black,
@@ -55,54 +84,76 @@ const styles = StyleSheet.create((theme) => ({
       },
     ],
   },
-  borderGradient: {
-    flex: 1,
-    padding: theme.spacing.xxs,
+  outline: {
+    ...StyleSheet.absoluteFillObject,
+    borderRadius: 20,
   },
-  gradient: {
+  contentContainer: {
     flex: 1,
-    padding: theme.spacing.s,
-    gap: theme.spacing.s,
+    margin: 5,
+    marginBottom: theme.spacing.s,
+    padding: 10,
+    paddingBottom: theme.spacing.xxs,
+    gap: 44,
   },
-  infoContainer: {
-    flex: 1,
-    gap: theme.spacing.l,
-    justifyContent: 'space-between',
+  backgroundImage: {
+    borderRadius: theme.spacing.m,
   },
-  title: {
-    flex: 1,
+  imageContainer: {
+    padding: 5,
+    borderRadius: theme.spacing.s,
+    backgroundColor: theme.color.itemImageBackground,
+  },
+  nameContainer: {
+    position: 'absolute',
+    bottom: 0,
+    transform: [{ translateY: '50%' }],
+    paddingVertical: theme.spacing.xxs,
+    paddingHorizontal: theme.spacing.xs,
+    alignSelf: 'center',
+    backgroundColor: theme.color.itemNameBackground,
+  },
+  name: (pressed: boolean) => ({
     fontFamily: theme.font.secondary.bold,
     fontSize: 16,
-    color: theme.color.white,
+    color: pressed ? theme.color.black : theme.color.white,
+    textAlign: 'center',
     textTransform: 'uppercase',
-  },
-  info: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  category: (rarity: Rarity) => ({
+    textShadowColor: theme.color.itemNameShadow,
+    textShadowOffset: { width: 1, height: 0 },
+    textShadowRadius: 0.001, // 0 radius is not supported
+  }),
+  category: (pressed: boolean) => ({
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
-    color: theme.color[rarity],
-    strokeWidth: 2,
-    strokeColor: theme.color.black,
+    strokeWidth: 1,
+    strokeColor: pressed ? theme.color.transparent : theme.color.black,
   }),
   priceContainer: {
+    position: 'absolute',
+    right: -0.2, // compensate border not being present on the right and bottom sides
+    bottom: -0.2,
+    overflow: 'hidden',
+    paddingVertical: theme.spacing.xxs,
+    paddingHorizontal: theme.spacing.s,
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.xs,
+    backgroundColor: theme.color.itemPriceBackground,
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderColor: theme.color.itemPriceBorder,
+    borderTopLeftRadius: theme.spacing.s,
+    borderBottomRightRadius: theme.spacing.s,
   },
   currencyIcon: {
-    width: 20,
-    height: 20,
+    width: 18,
+    height: 18,
   },
-  price: {
+  price: (pressed: boolean) => ({
     fontFamily: theme.font.secondary.bold,
-    fontSize: 14,
-    color: theme.color.white,
-    textTransform: 'uppercase',
-  },
-  textPressed: {
-    color: theme.color.black,
-  },
+    fontSize: 16,
+    strokeWidth: 1,
+    strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,
+  }),
 }));

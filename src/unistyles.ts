@@ -6,6 +6,12 @@ const theme = {
     darkBlue: '#070032',
     highlight: '#2B1F74',
     accent: '#FEDD84',
+    itemImageBackground: '#512A8C',
+    itemNameShadow: '#291A3183',
+    itemNameBackground: '#664D9A',
+    itemPriceBackground: '#4513A1',
+    itemPriceBorder: '#9D6DEB',
+    borderPrimary: '#28074B80',
     borderLight: '#CACEFF',
     borderMedium: '#A9AFFF',
     borderDark: '#4838A9',
@@ -46,9 +52,13 @@ const theme = {
         // Mod Kit - BarBGUnderGlowCurve with a tint
         colors: ['#130F2C00', '#AB91E833'],
       },
-      buttonText: (pressed?: boolean) => ({
+      labelText: (pressed?: boolean, light?: boolean) => ({
         // Mod Kit - Font_PinkCurve
-        colors: pressed ? (['#000000', '#000000'] as const) : (['#FFFFFF', '#E4C1FFFF'] as const),
+        colors: pressed
+          ? light
+            ? (['#FFFFFF', '#FFFFFF'] as const)
+            : (['#000000', '#000000'] as const)
+          : (['#FFFFFF', '#E4C1FF'] as const),
       }),
       arrowButton: (pressed?: boolean) => ({
         colors: pressed ? (['#EBA245', '#FFDB74'] as const) : (['#0D071D', '#161049'] as const),

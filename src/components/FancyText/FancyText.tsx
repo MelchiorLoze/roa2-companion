@@ -5,8 +5,10 @@ import {
   PaintStyle,
   Paragraph,
   Skia,
+  type SkPaint,
   type SkParagraph,
   type SkParagraphStyle,
+  type SkRect,
   type SkTextStyle,
   type SkTypefaceFontProvider,
   TextHeightBehavior,
@@ -21,11 +23,7 @@ import {
   FranklinGothicDemiCondItalic,
   FranklinGothicDemiCondRegular,
 } from '@/assets/fonts';
-import { getGradientProps, type GradientColors } from '@/utils/getGradientProps';
-
-type PrimaryThemeFonts = Theme['font']['primary'];
-type SecondaryThemeFonts = Theme['font']['secondary'];
-type FontFamily = PrimaryThemeFonts[keyof PrimaryThemeFonts] | SecondaryThemeFonts[keyof SecondaryThemeFonts];
+import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
 
 const fonts: Record<FontFamily, [DataModule]> = {
   'AgencyFB-Black': [AgencyFBBlack as DataModule],
@@ -36,18 +34,12 @@ const fonts: Record<FontFamily, [DataModule]> = {
 
 type ParagraphResult = {
   paragraphFill: SkParagraph;
-  paragraphOutline: SkParagraph;
-  width: number;
-  height: number;
-  x: number;
-  y: number;
-};
+  paragraphStroke: SkParagraph;
+} & SkRect;
 
 type GradientOrPlainColor<T extends GradientColors> =
   | {
-      gradient: {
-        colors: T;
-        times?: { [K in keyof T]: number };
+      gradient: Gradient<T> & {
         direction: 'horizontal' | 'vertical';
       };
       color?: never;
@@ -75,37 +67,48 @@ const toSkiaColor = (color: ColorValue) => {
   throw new Error('FancyText only supports string and numeric color values');
 };
 
+const createParagraph = (
+  text: string,
+  textStyle: SkTextStyle,
+  paint: SkPaint,
+  fontProvider: SkTypefaceFontProvider,
+): SkParagraph => {
+  const paragraphStyle: SkParagraphStyle = {
+    textHeightBehavior: TextHeightBehavior.DisableAll,
+  };
+
+  const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
+    .pushStyle(textStyle, paint)
+    .addText(text)
+    .pop()
+    .build();
+  paragraph.layout(Number.MAX_SAFE_INTEGER);
+
+  return paragraph;
+};
+
 const createParagraphs = <T extends GradientColors>(
   text: string,
   style: FancyTextStyle<T>,
   fontProvider: SkTypefaceFontProvider,
 ): ParagraphResult => {
-  const paragraphStyle: SkParagraphStyle = {
-    textHeightBehavior: TextHeightBehavior.DisableAll,
-  };
-
   const textStyle: SkTextStyle = {
     fontFamilies: [style.fontFamily],
     fontSize: style.fontSize,
   };
 
-  const outlinePaint = Skia.Paint();
-  outlinePaint.setStyle(PaintStyle.Stroke);
-  outlinePaint.setStrokeWidth(style.strokeWidth);
-  outlinePaint.setColor(toSkiaColor(style.strokeColor));
+  // STROKE PARAGRAPH
+  const strokePaint = Skia.Paint();
+  strokePaint.setStyle(PaintStyle.Stroke);
+  strokePaint.setStrokeWidth(style.strokeWidth);
+  strokePaint.setColor(toSkiaColor(style.strokeColor));
 
-  const paragraphOutline = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
-    .pushStyle(textStyle, outlinePaint)
-    .addText(text)
-    .pop()
-    .build();
+  const paragraphStroke = createParagraph(text, textStyle, strokePaint, fontProvider);
 
-  paragraphOutline.layout(Number.MAX_SAFE_INTEGER);
+  const textWidth = paragraphStroke.getLongestLine();
+  const textHeight = paragraphStroke.getHeight();
 
-  const textWidth = paragraphOutline.getLongestLine();
-  const textHeight = paragraphOutline.getHeight();
-  const inset = style.strokeWidth;
-
+  // FILL PARAGRAPH
   const fillPaint = Skia.Paint();
 
   if (style.gradient) {
@@ -130,17 +133,13 @@ const createParagraphs = <T extends GradientColors>(
     fillPaint.setColor(toSkiaColor(style.color));
   }
 
-  const paragraphFill = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
-    .pushStyle(textStyle, fillPaint)
-    .addText(text)
-    .pop()
-    .build();
+  const paragraphFill = createParagraph(text, textStyle, fillPaint, fontProvider);
 
-  paragraphFill.layout(Number.MAX_SAFE_INTEGER);
+  const inset = style.strokeWidth;
 
   return {
     paragraphFill,
-    paragraphOutline,
+    paragraphStroke,
     width: textWidth + inset * 2,
     height: textHeight + inset * 2,
     x: inset,
@@ -154,16 +153,18 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
 
   if (!fontProvider) return null;
 
-  const { paragraphFill, paragraphOutline, width, height, x, y } = createParagraphs(
-    text,
-    { ...style, fontSize: style.fontSize * fontScale, strokeWidth: style.strokeWidth * fontScale },
-    fontProvider,
-  );
+  const textStyle: FancyTextStyle<T> = {
+    ...style,
+    fontSize: style.fontSize * fontScale,
+    strokeWidth: style.strokeWidth * fontScale,
+  };
+
+  const { paragraphFill, paragraphStroke, width, height, x, y } = createParagraphs(text, textStyle, fontProvider);
 
   return (
     <Canvas style={{ height, width }}>
       <Group antiAlias>
-        <Paragraph paragraph={paragraphOutline} width={width} x={x} y={y} />
+        <Paragraph paragraph={paragraphStroke} width={width} x={x} y={y} />
         <Paragraph paragraph={paragraphFill} width={width} x={x} y={y} />
       </Group>
     </Canvas>
