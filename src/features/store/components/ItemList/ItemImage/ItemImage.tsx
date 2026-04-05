@@ -36,6 +36,8 @@ const styles = StyleSheet.create((theme) => ({
   image: {
     width: '100%',
     aspectRatio: 1,
+    borderRadius: 6,
+    overflow: 'hidden',
   },
   categoryIcon: {
     position: 'absolute',
