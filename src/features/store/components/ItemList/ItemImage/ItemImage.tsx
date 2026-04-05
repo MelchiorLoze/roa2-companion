@@ -36,12 +36,14 @@ const styles = StyleSheet.create((theme) => ({
   image: {
     width: '100%',
     aspectRatio: 1,
+    borderRadius: 6,
+    overflow: 'hidden',
   },
   categoryIcon: {
     position: 'absolute',
     top: theme.spacing.xxs,
     left: theme.spacing.xxs,
-    width: 18,
-    height: 18,
+    width: 14,
+    height: 14,
   },
 }));
