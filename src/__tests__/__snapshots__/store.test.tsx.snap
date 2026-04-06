@@ -283,7 +283,7 @@ exports[`Store matches snapshot 1`] = `
               style={
                 {
                   "flex": 1,
-                  "gap": 44,
+                  "gap": 32,
                   "margin": 5,
                   "marginBottom": 8,
                   "padding": 10,
@@ -512,23 +512,26 @@ exports[`Store matches snapshot 1`] = `
                   />
                 </View>
                 <View
+                  onLayout={[Function]}
                   style={
                     {
                       "alignSelf": "center",
-                      "backgroundColor": "#664D9A",
                       "bottom": 0,
-                      "paddingHorizontal": 4,
+                      "maxWidth": "95%",
+                      "minWidth": "60%",
+                      "paddingHorizontal": 12,
                       "paddingVertical": 2,
                       "position": "absolute",
                       "transform": [
                         {
-                          "translateY": "50%",
+                          "translateY": "30%",
                         },
                       ],
                     }
                   }
                 >
                   <Text
+                    adjustsFontSizeToFit={true}
                     numberOfLines={2}
                     style={
                       {
@@ -696,7 +699,7 @@ exports[`Store matches snapshot 1`] = `
               style={
                 {
                   "flex": 1,
-                  "gap": 44,
+                  "gap": 32,
                   "margin": 5,
                   "marginBottom": 8,
                   "padding": 10,
@@ -925,23 +928,26 @@ exports[`Store matches snapshot 1`] = `
                   />
                 </View>
                 <View
+                  onLayout={[Function]}
                   style={
                     {
                       "alignSelf": "center",
-                      "backgroundColor": "#664D9A",
                       "bottom": 0,
-                      "paddingHorizontal": 4,
+                      "maxWidth": "95%",
+                      "minWidth": "60%",
+                      "paddingHorizontal": 12,
                       "paddingVertical": 2,
                       "position": "absolute",
                       "transform": [
                         {
-                          "translateY": "50%",
+                          "translateY": "30%",
                         },
                       ],
                     }
                   }
                 >
                   <Text
+                    adjustsFontSizeToFit={true}
                     numberOfLines={2}
                     style={
                       {
@@ -1061,7 +1067,7 @@ exports[`Store matches snapshot 1`] = `
               style={
                 {
                   "flex": 1,
-                  "gap": 44,
+                  "gap": 32,
                   "margin": 5,
                   "marginBottom": 8,
                   "padding": 10,
@@ -1290,23 +1296,26 @@ exports[`Store matches snapshot 1`] = `
                   />
                 </View>
                 <View
+                  onLayout={[Function]}
                   style={
                     {
                       "alignSelf": "center",
-                      "backgroundColor": "#664D9A",
                       "bottom": 0,
-                      "paddingHorizontal": 4,
+                      "maxWidth": "95%",
+                      "minWidth": "60%",
+                      "paddingHorizontal": 12,
                       "paddingVertical": 2,
                       "position": "absolute",
                       "transform": [
                         {
-                          "translateY": "50%",
+                          "translateY": "30%",
                         },
                       ],
                     }
                   }
                 >
                   <Text
+                    adjustsFontSizeToFit={true}
                     numberOfLines={2}
                     style={
                       {
@@ -1474,7 +1483,7 @@ exports[`Store matches snapshot 1`] = `
               style={
                 {
                   "flex": 1,
-                  "gap": 44,
+                  "gap": 32,
                   "margin": 5,
                   "marginBottom": 8,
                   "padding": 10,
@@ -1703,23 +1712,26 @@ exports[`Store matches snapshot 1`] = `
                   />
                 </View>
                 <View
+                  onLayout={[Function]}
                   style={
                     {
                       "alignSelf": "center",
-                      "backgroundColor": "#664D9A",
                       "bottom": 0,
-                      "paddingHorizontal": 4,
+                      "maxWidth": "95%",
+                      "minWidth": "60%",
+                      "paddingHorizontal": 12,
                       "paddingVertical": 2,
                       "position": "absolute",
                       "transform": [
                         {
-                          "translateY": "50%",
+                          "translateY": "30%",
                         },
                       ],
                     }
                   }
                 >
                   <Text
+                    adjustsFontSizeToFit={true}
                     numberOfLines={2}
                     style={
                       {
@@ -1839,7 +1851,7 @@ exports[`Store matches snapshot 1`] = `
               style={
                 {
                   "flex": 1,
-                  "gap": 44,
+                  "gap": 32,
                   "margin": 5,
                   "marginBottom": 8,
                   "padding": 10,
@@ -2068,23 +2080,26 @@ exports[`Store matches snapshot 1`] = `
                   />
                 </View>
                 <View
+                  onLayout={[Function]}
                   style={
                     {
                       "alignSelf": "center",
-                      "backgroundColor": "#664D9A",
                       "bottom": 0,
-                      "paddingHorizontal": 4,
+                      "maxWidth": "95%",
+                      "minWidth": "60%",
+                      "paddingHorizontal": 12,
                       "paddingVertical": 2,
                       "position": "absolute",
                       "transform": [
                         {
-                          "translateY": "50%",
+                          "translateY": "30%",
                         },
                       ],
                     }
                   }
                 >
                   <Text
+                    adjustsFontSizeToFit={true}
                     numberOfLines={2}
                     style={
                       {

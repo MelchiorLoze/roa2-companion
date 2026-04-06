@@ -5,6 +5,7 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 import { ItemBackground, ItemOutline } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
+import { ParallelogramView } from '@/components/ParallelogramView/ParallelogramView';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item } from '@/types/item';
 
@@ -29,16 +30,16 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
               contentFit="fill"
               imageStyle={styles.backgroundImage}
               source={ItemBackground}
-              style={StyleSheet.absoluteFillObject}
+              style={StyleSheet.absoluteFill}
             />
 
             <View style={styles.imageContainer}>
               <ItemImage item={item} />
-              <View style={styles.nameContainer}>
-                <Text numberOfLines={2} style={styles.name(pressed)}>
+              <ParallelogramView skewAmount={theme.spacing.s} style={styles.nameContainer}>
+                <Text adjustsFontSizeToFit numberOfLines={2} style={styles.name(pressed)}>
                   {item.name}
                 </Text>
-              </View>
+              </ParallelogramView>
             </View>
 
             <>
@@ -94,7 +95,7 @@ const styles = StyleSheet.create((theme) => ({
     marginBottom: theme.spacing.s,
     padding: 10,
     paddingBottom: theme.spacing.xxs,
-    gap: 44,
+    gap: theme.spacing.xxl,
   },
   backgroundImage: {
     borderRadius: theme.spacing.m,
@@ -107,9 +108,11 @@ const styles = StyleSheet.create((theme) => ({
   nameContainer: {
     position: 'absolute',
     bottom: 0,
-    transform: [{ translateY: '50%' }],
+    transform: [{ translateY: '30%' }],
+    maxWidth: '95%',
+    minWidth: '60%',
     paddingVertical: theme.spacing.xxs,
-    paddingHorizontal: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.xs + theme.spacing.s, // compensate for skew
     alignSelf: 'center',
     backgroundColor: theme.color.itemNameBackground,
   },
