@@ -28,7 +28,7 @@ type Slice = {
 };
 
 type Props = {
-  source: ImageSource;
+  source?: ImageSource;
   insets: Partial<Insets>;
   style?: StyleProp<ViewStyle>;
 };
