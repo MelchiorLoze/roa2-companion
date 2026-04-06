@@ -6,10 +6,10 @@ import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 
 import { Alert } from '../Alert/Alert';
 
-type Props = PropsWithChildren & {
+type Props = PropsWithChildren<{
   alertText?: string;
   onClose: () => void;
-};
+}>;
 
 export const Dialog = ({ alertText, onClose, children }: Readonly<Props>) => {
   const { isVisible: isKeyboardVisible } = useKeyboard();

@@ -18,7 +18,7 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
           <NineSlicesImage
             insets={{ right: '27%', left: '27%' }}
             source={ButtonBackground}
-            style={styles.backgroundContainer}
+            style={StyleSheet.absoluteFill}
           />
           <View style={styles.button}>
             <FancyText
@@ -36,7 +36,6 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  backgroundContainer: StyleSheet.absoluteFillObject,
   button: {
     paddingTop: theme.spacing.xs,
     paddingBottom: theme.spacing.xs + 1, // optical adjustment to compensate for the shadow in the background image

@@ -14,11 +14,12 @@ type HorizontalOrVertical =
       vertical: true;
     };
 
-type Props<T extends GradientColors> = {
-  style?: StyleProp<ViewStyle>;
-} & HorizontalOrVertical &
-  Gradient<T> &
-  PropsWithChildren;
+type Props<T extends GradientColors> = PropsWithChildren<
+  {
+    style?: StyleProp<ViewStyle>;
+  } & HorizontalOrVertical &
+    Gradient<T>
+>;
 
 export const LinearGradient = <T extends GradientColors>({
   style,

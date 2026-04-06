@@ -147,6 +147,7 @@ const theme = {
     m: 12,
     l: 16,
     xl: 24,
+    xxl: 32,
   },
   font: {
     primary: {

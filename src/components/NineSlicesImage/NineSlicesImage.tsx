@@ -172,7 +172,7 @@ export const NineSlicesImage = memo(({ source, insets, style }: Readonly<Props>)
   return (
     <View onLayout={onLayout} style={style ?? styles.container}>
       {geometry && (
-        <Canvas style={styles.canvas}>
+        <Canvas style={StyleSheet.absoluteFill}>
           {geometry.slices.map(({ source: sourceRect, destination: destinationRect }, index) => {
             const scaleX = destinationRect.width / sourceRect.width;
             const scaleY = destinationRect.height / sourceRect.height;
@@ -212,5 +212,4 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  canvas: StyleSheet.absoluteFillObject,
 });
