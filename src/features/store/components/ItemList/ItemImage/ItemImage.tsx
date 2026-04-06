@@ -14,7 +14,7 @@ export const ItemImage = ({ item }: Readonly<Props>) => {
   const { image, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(item.imageUrl);
 
   return (
-    <View style={styles.image}>
+    <View style={styles.container}>
       <Image source={RARITY_BACK_FRAMES[item.rarity]} style={StyleSheet.absoluteFill} />
       <Canvas ref={canvasRef} style={StyleSheet.absoluteFill}>
         <SkiaImage
@@ -27,13 +27,14 @@ export const ItemImage = ({ item }: Readonly<Props>) => {
         />
       </Canvas>
       <Image source={RARITY_FRONT_FRAMES[item.rarity]} style={StyleSheet.absoluteFill} />
+      <Image source={RARITY_FRONT_FRAMES[item.rarity]} style={StyleSheet.absoluteFill} />
       <Image source={CATEGORY_ICONS[item.category]} style={styles.categoryIcon} />
     </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
-  image: {
+  container: {
     width: '100%',
     aspectRatio: 1,
     borderRadius: 6,
