@@ -263,6 +263,7 @@ exports[`Store matches snapshot 1`] = `
                   },
                 ],
                 "flex": 0.5,
+                "overflow": "hidden",
               }
             }
           >
@@ -270,6 +271,7 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
+                  "backgroundColor": "#FFFFFF00",
                   "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
@@ -303,6 +305,7 @@ exports[`Store matches snapshot 1`] = `
                 }
               >
                 <ViewManagerAdapter_ExpoImage
+                  backgroundColor={4294967295}
                   borderRadius={12}
                   bottom={0}
                   containerViewRef={"[React.ref]"}
@@ -331,6 +334,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                   style={
                     {
+                      "backgroundColor": "white",
                       "borderRadius": 12,
                       "bottom": 0,
                       "left": 0,
@@ -515,6 +519,7 @@ exports[`Store matches snapshot 1`] = `
                   onLayout={[Function]}
                   style={
                     {
+                      "alignItems": "center",
                       "alignSelf": "center",
                       "bottom": 0,
                       "maxWidth": "95%",
@@ -530,27 +535,36 @@ exports[`Store matches snapshot 1`] = `
                     }
                   }
                 >
-                  <Text
-                    adjustsFontSizeToFit={true}
-                    numberOfLines={2}
+                  <View
                     style={
                       {
-                        "color": "white",
-                        "fontFamily": "AgencyFB-Bold",
-                        "fontSize": 16,
-                        "textAlign": "center",
-                        "textShadowColor": "#291A3183",
-                        "textShadowOffset": {
-                          "height": 0,
-                          "width": 1,
-                        },
-                        "textShadowRadius": 0.001,
-                        "textTransform": "uppercase",
+                        "width": "auto",
                       }
                     }
                   >
-                    Item 1
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit={true}
+                      numberOfLines={2}
+                      onTextLayout={[Function]}
+                      style={
+                        {
+                          "color": "white",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textShadowColor": "#291A3183",
+                          "textShadowOffset": {
+                            "height": 0,
+                            "width": 1,
+                          },
+                          "textShadowRadius": 0.001,
+                          "textTransform": "uppercase",
+                        }
+                      }
+                    >
+                      Item 1
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Text
@@ -558,7 +572,7 @@ exports[`Store matches snapshot 1`] = `
                   {
                     "color": "#FFFFFF",
                     "fontFamily": "AgencyFB-Bold",
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "textShadowColor": "black",
                     "textShadowRadius": 1,
                   }
@@ -576,14 +590,14 @@ exports[`Store matches snapshot 1`] = `
                     "borderLeftWidth": 2,
                     "borderTopLeftRadius": 8,
                     "borderTopWidth": 2,
-                    "bottom": -0.2,
+                    "bottom": -0.6,
                     "flexDirection": "row",
                     "gap": 4,
                     "overflow": "hidden",
-                    "paddingHorizontal": 8,
+                    "paddingHorizontal": 4,
                     "paddingVertical": 2,
                     "position": "absolute",
-                    "right": -0.2,
+                    "right": -0.6,
                   }
                 }
               >
@@ -624,7 +638,7 @@ exports[`Store matches snapshot 1`] = `
                     {
                       "color": "#FFFFFF",
                       "fontFamily": "AgencyFB-Bold",
-                      "fontSize": 16,
+                      "fontSize": 14,
                       "textShadowColor": "#28074B80",
                       "textShadowRadius": 1,
                     }
@@ -679,6 +693,7 @@ exports[`Store matches snapshot 1`] = `
                   },
                 ],
                 "flex": 0.5,
+                "overflow": "hidden",
               }
             }
           >
@@ -686,6 +701,7 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
+                  "backgroundColor": "#FFFFFF00",
                   "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
@@ -719,6 +735,7 @@ exports[`Store matches snapshot 1`] = `
                 }
               >
                 <ViewManagerAdapter_ExpoImage
+                  backgroundColor={4294967295}
                   borderRadius={12}
                   bottom={0}
                   containerViewRef={"[React.ref]"}
@@ -747,6 +764,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                   style={
                     {
+                      "backgroundColor": "white",
                       "borderRadius": 12,
                       "bottom": 0,
                       "left": 0,
@@ -931,6 +949,7 @@ exports[`Store matches snapshot 1`] = `
                   onLayout={[Function]}
                   style={
                     {
+                      "alignItems": "center",
                       "alignSelf": "center",
                       "bottom": 0,
                       "maxWidth": "95%",
@@ -946,27 +965,36 @@ exports[`Store matches snapshot 1`] = `
                     }
                   }
                 >
-                  <Text
-                    adjustsFontSizeToFit={true}
-                    numberOfLines={2}
+                  <View
                     style={
                       {
-                        "color": "white",
-                        "fontFamily": "AgencyFB-Bold",
-                        "fontSize": 16,
-                        "textAlign": "center",
-                        "textShadowColor": "#291A3183",
-                        "textShadowOffset": {
-                          "height": 0,
-                          "width": 1,
-                        },
-                        "textShadowRadius": 0.001,
-                        "textTransform": "uppercase",
+                        "width": "auto",
                       }
                     }
                   >
-                    Item 2
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit={true}
+                      numberOfLines={2}
+                      onTextLayout={[Function]}
+                      style={
+                        {
+                          "color": "white",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textShadowColor": "#291A3183",
+                          "textShadowOffset": {
+                            "height": 0,
+                            "width": 1,
+                          },
+                          "textShadowRadius": 0.001,
+                          "textTransform": "uppercase",
+                        }
+                      }
+                    >
+                      Item 2
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Text
@@ -974,7 +1002,7 @@ exports[`Store matches snapshot 1`] = `
                   {
                     "color": "#FFFFFF",
                     "fontFamily": "AgencyFB-Bold",
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "textShadowColor": "black",
                     "textShadowRadius": 1,
                   }
@@ -1047,6 +1075,7 @@ exports[`Store matches snapshot 1`] = `
                   },
                 ],
                 "flex": 0.5,
+                "overflow": "hidden",
               }
             }
           >
@@ -1054,6 +1083,7 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
+                  "backgroundColor": "#FFFFFF00",
                   "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
@@ -1087,6 +1117,7 @@ exports[`Store matches snapshot 1`] = `
                 }
               >
                 <ViewManagerAdapter_ExpoImage
+                  backgroundColor={4294967295}
                   borderRadius={12}
                   bottom={0}
                   containerViewRef={"[React.ref]"}
@@ -1115,6 +1146,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                   style={
                     {
+                      "backgroundColor": "white",
                       "borderRadius": 12,
                       "bottom": 0,
                       "left": 0,
@@ -1299,6 +1331,7 @@ exports[`Store matches snapshot 1`] = `
                   onLayout={[Function]}
                   style={
                     {
+                      "alignItems": "center",
                       "alignSelf": "center",
                       "bottom": 0,
                       "maxWidth": "95%",
@@ -1314,27 +1347,36 @@ exports[`Store matches snapshot 1`] = `
                     }
                   }
                 >
-                  <Text
-                    adjustsFontSizeToFit={true}
-                    numberOfLines={2}
+                  <View
                     style={
                       {
-                        "color": "white",
-                        "fontFamily": "AgencyFB-Bold",
-                        "fontSize": 16,
-                        "textAlign": "center",
-                        "textShadowColor": "#291A3183",
-                        "textShadowOffset": {
-                          "height": 0,
-                          "width": 1,
-                        },
-                        "textShadowRadius": 0.001,
-                        "textTransform": "uppercase",
+                        "width": "auto",
                       }
                     }
                   >
-                    Item 3
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit={true}
+                      numberOfLines={2}
+                      onTextLayout={[Function]}
+                      style={
+                        {
+                          "color": "white",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textShadowColor": "#291A3183",
+                          "textShadowOffset": {
+                            "height": 0,
+                            "width": 1,
+                          },
+                          "textShadowRadius": 0.001,
+                          "textTransform": "uppercase",
+                        }
+                      }
+                    >
+                      Item 3
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Text
@@ -1342,7 +1384,7 @@ exports[`Store matches snapshot 1`] = `
                   {
                     "color": "#FFFFFF",
                     "fontFamily": "AgencyFB-Bold",
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "textShadowColor": "black",
                     "textShadowRadius": 1,
                   }
@@ -1360,14 +1402,14 @@ exports[`Store matches snapshot 1`] = `
                     "borderLeftWidth": 2,
                     "borderTopLeftRadius": 8,
                     "borderTopWidth": 2,
-                    "bottom": -0.2,
+                    "bottom": -0.6,
                     "flexDirection": "row",
                     "gap": 4,
                     "overflow": "hidden",
-                    "paddingHorizontal": 8,
+                    "paddingHorizontal": 4,
                     "paddingVertical": 2,
                     "position": "absolute",
-                    "right": -0.2,
+                    "right": -0.6,
                   }
                 }
               >
@@ -1408,7 +1450,7 @@ exports[`Store matches snapshot 1`] = `
                     {
                       "color": "#FFFFFF",
                       "fontFamily": "AgencyFB-Bold",
-                      "fontSize": 16,
+                      "fontSize": 14,
                       "textShadowColor": "#28074B80",
                       "textShadowRadius": 1,
                     }
@@ -1463,6 +1505,7 @@ exports[`Store matches snapshot 1`] = `
                   },
                 ],
                 "flex": 0.5,
+                "overflow": "hidden",
               }
             }
           >
@@ -1470,6 +1513,7 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
+                  "backgroundColor": "#FFFFFF00",
                   "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
@@ -1503,6 +1547,7 @@ exports[`Store matches snapshot 1`] = `
                 }
               >
                 <ViewManagerAdapter_ExpoImage
+                  backgroundColor={4294967295}
                   borderRadius={12}
                   bottom={0}
                   containerViewRef={"[React.ref]"}
@@ -1531,6 +1576,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                   style={
                     {
+                      "backgroundColor": "white",
                       "borderRadius": 12,
                       "bottom": 0,
                       "left": 0,
@@ -1715,6 +1761,7 @@ exports[`Store matches snapshot 1`] = `
                   onLayout={[Function]}
                   style={
                     {
+                      "alignItems": "center",
                       "alignSelf": "center",
                       "bottom": 0,
                       "maxWidth": "95%",
@@ -1730,27 +1777,36 @@ exports[`Store matches snapshot 1`] = `
                     }
                   }
                 >
-                  <Text
-                    adjustsFontSizeToFit={true}
-                    numberOfLines={2}
+                  <View
                     style={
                       {
-                        "color": "white",
-                        "fontFamily": "AgencyFB-Bold",
-                        "fontSize": 16,
-                        "textAlign": "center",
-                        "textShadowColor": "#291A3183",
-                        "textShadowOffset": {
-                          "height": 0,
-                          "width": 1,
-                        },
-                        "textShadowRadius": 0.001,
-                        "textTransform": "uppercase",
+                        "width": "auto",
                       }
                     }
                   >
-                    Item 4
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit={true}
+                      numberOfLines={2}
+                      onTextLayout={[Function]}
+                      style={
+                        {
+                          "color": "white",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textShadowColor": "#291A3183",
+                          "textShadowOffset": {
+                            "height": 0,
+                            "width": 1,
+                          },
+                          "textShadowRadius": 0.001,
+                          "textTransform": "uppercase",
+                        }
+                      }
+                    >
+                      Item 4
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Text
@@ -1758,7 +1814,7 @@ exports[`Store matches snapshot 1`] = `
                   {
                     "color": "#FFFFFF",
                     "fontFamily": "AgencyFB-Bold",
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "textShadowColor": "black",
                     "textShadowRadius": 1,
                   }
@@ -1831,6 +1887,7 @@ exports[`Store matches snapshot 1`] = `
                   },
                 ],
                 "flex": 0.5,
+                "overflow": "hidden",
               }
             }
           >
@@ -1838,6 +1895,7 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
+                  "backgroundColor": "#FFFFFF00",
                   "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
@@ -1871,6 +1929,7 @@ exports[`Store matches snapshot 1`] = `
                 }
               >
                 <ViewManagerAdapter_ExpoImage
+                  backgroundColor={4294967295}
                   borderRadius={12}
                   bottom={0}
                   containerViewRef={"[React.ref]"}
@@ -1899,6 +1958,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                   style={
                     {
+                      "backgroundColor": "white",
                       "borderRadius": 12,
                       "bottom": 0,
                       "left": 0,
@@ -2083,6 +2143,7 @@ exports[`Store matches snapshot 1`] = `
                   onLayout={[Function]}
                   style={
                     {
+                      "alignItems": "center",
                       "alignSelf": "center",
                       "bottom": 0,
                       "maxWidth": "95%",
@@ -2098,27 +2159,36 @@ exports[`Store matches snapshot 1`] = `
                     }
                   }
                 >
-                  <Text
-                    adjustsFontSizeToFit={true}
-                    numberOfLines={2}
+                  <View
                     style={
                       {
-                        "color": "white",
-                        "fontFamily": "AgencyFB-Bold",
-                        "fontSize": 16,
-                        "textAlign": "center",
-                        "textShadowColor": "#291A3183",
-                        "textShadowOffset": {
-                          "height": 0,
-                          "width": 1,
-                        },
-                        "textShadowRadius": 0.001,
-                        "textTransform": "uppercase",
+                        "width": "auto",
                       }
                     }
                   >
-                    Item 5
-                  </Text>
+                    <Text
+                      adjustsFontSizeToFit={true}
+                      numberOfLines={2}
+                      onTextLayout={[Function]}
+                      style={
+                        {
+                          "color": "white",
+                          "fontFamily": "AgencyFB-Bold",
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textShadowColor": "#291A3183",
+                          "textShadowOffset": {
+                            "height": 0,
+                            "width": 1,
+                          },
+                          "textShadowRadius": 0.001,
+                          "textTransform": "uppercase",
+                        }
+                      }
+                    >
+                      Item 5
+                    </Text>
+                  </View>
                 </View>
               </View>
               <Text
@@ -2126,7 +2196,7 @@ exports[`Store matches snapshot 1`] = `
                   {
                     "color": "#FFFFFF",
                     "fontFamily": "AgencyFB-Bold",
-                    "fontSize": 16,
+                    "fontSize": 14,
                     "textShadowColor": "black",
                     "textShadowRadius": 1,
                   }
@@ -2144,14 +2214,14 @@ exports[`Store matches snapshot 1`] = `
                     "borderLeftWidth": 2,
                     "borderTopLeftRadius": 8,
                     "borderTopWidth": 2,
-                    "bottom": -0.2,
+                    "bottom": -0.6,
                     "flexDirection": "row",
                     "gap": 4,
                     "overflow": "hidden",
-                    "paddingHorizontal": 8,
+                    "paddingHorizontal": 4,
                     "paddingVertical": 2,
                     "position": "absolute",
-                    "right": -0.2,
+                    "right": -0.6,
                   }
                 }
               >
@@ -2192,7 +2262,7 @@ exports[`Store matches snapshot 1`] = `
                     {
                       "color": "#FFFFFF",
                       "fontFamily": "AgencyFB-Bold",
-                      "fontSize": 16,
+                      "fontSize": 14,
                       "textShadowColor": "#28074B80",
                       "textShadowRadius": 1,
                     }

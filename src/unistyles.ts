@@ -11,6 +11,8 @@ const theme = {
     itemNameBackground: '#664D9A',
     itemPriceBackground: '#4513A1',
     itemPriceBorder: '#9D6DEB',
+    itemSelectedPrimary: '#FF9100',
+    itemSelectedSecondary: '#FAC468',
     borderPrimary: '#28074B80',
     borderLight: '#CACEFF',
     borderMedium: '#A9AFFF',
