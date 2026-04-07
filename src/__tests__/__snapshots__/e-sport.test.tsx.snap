@@ -415,6 +415,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -428,6 +429,8 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                       "height": "auto",
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                 />
                 <View
@@ -1102,6 +1105,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1115,6 +1119,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                       "height": "auto",
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                 />
                 <View
@@ -1443,6 +1449,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1456,6 +1463,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                       "height": "auto",
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                 />
                 <View

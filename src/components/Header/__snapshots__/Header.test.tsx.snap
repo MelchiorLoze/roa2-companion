@@ -40,6 +40,7 @@ exports[`Header matches the snapshot 1`] = `
         onLoadStart={[Function]}
         onProgress={[Function]}
         placeholder={[]}
+        sfEffect={null}
         source={
           [
             {
@@ -53,6 +54,8 @@ exports[`Header matches the snapshot 1`] = `
             "width": 20,
           }
         }
+        symbolSize={null}
+        symbolWeight={null}
         transition={null}
         width={20}
       />
@@ -102,6 +105,7 @@ exports[`Header matches the snapshot 1`] = `
         onLoadStart={[Function]}
         onProgress={[Function]}
         placeholder={[]}
+        sfEffect={null}
         source={
           [
             {
@@ -115,6 +119,8 @@ exports[`Header matches the snapshot 1`] = `
             "width": 20,
           }
         }
+        symbolSize={null}
+        symbolWeight={null}
         transition={null}
         width={20}
       />
@@ -164,6 +170,7 @@ exports[`Header matches the snapshot 1`] = `
         onLoadStart={[Function]}
         onProgress={[Function]}
         placeholder={[]}
+        sfEffect={null}
         source={
           [
             {
@@ -177,6 +184,8 @@ exports[`Header matches the snapshot 1`] = `
             "width": 20,
           }
         }
+        symbolSize={null}
+        symbolWeight={null}
         transition={null}
         width={20}
       />

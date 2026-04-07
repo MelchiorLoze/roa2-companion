@@ -61,7 +61,7 @@ describe('useGetItems', () => {
       expect(result.current.items).toEqual([
         {
           id: '1',
-          imageUrl: new URL('https://www.example.com/icon/icon_item_1.png'),
+          imageUrl: new URL('https://cdn.roa2-companion.app/skin/skin_item_1.png'),
           name: 'Item 1',
           category: Category.SKIN,
           rarity: Rarity.COMMON,
@@ -70,7 +70,7 @@ describe('useGetItems', () => {
         },
         {
           id: '2',
-          imageUrl: new URL('https://www.example.com/icon/icon_item_2.png'),
+          imageUrl: new URL('https://cdn.roa2-companion.app/icon/icon_item_2.png'),
           name: 'Item 2',
           category: Category.ICON,
           rarity: Rarity.COMMON,

@@ -17,17 +17,17 @@ const mockResponse = {
       {
         StatValue: 2500,
         Position: 1,
-        Profile: { DisplayName: 'Player1', AvatarUrl: 'https://www.example.com/avatars/player1.png' },
+        Profile: { DisplayName: 'Player1', AvatarUrl: 'icon_player1' },
       },
       {
         StatValue: 2400,
         Position: 2,
-        Profile: { DisplayName: 'Player2', AvatarUrl: 'https://www.example.com/avatars/player2.png' },
+        Profile: { DisplayName: 'Player2', AvatarUrl: 'icon_player2' },
       },
       {
         StatValue: 2300,
         Position: 3,
-        Profile: { DisplayName: 'Player3', AvatarUrl: 'https://www.example.com/avatars/player3.png' },
+        Profile: { DisplayName: 'Player3', AvatarUrl: 'icon_player3' },
       },
     ],
   },
@@ -66,7 +66,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 1,
         profile: {
           playerName: 'Player1',
-          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player1.png'),
+          avatarUrl: new URL('https://cdn.roa2-companion.app/icon/icon_player1.png'),
         },
       },
       {
@@ -75,7 +75,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 2,
         profile: {
           playerName: 'Player2',
-          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player2.png'),
+          avatarUrl: new URL('https://cdn.roa2-companion.app/icon/icon_player2.png'),
         },
       },
       {
@@ -84,7 +84,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 3,
         profile: {
           playerName: 'Player3',
-          avatarUrl: new URL('https://www.example.com/icon/https://www.example.com/avatars/player3.png'),
+          avatarUrl: new URL('https://cdn.roa2-companion.app/icon/icon_player3.png'),
         },
       },
     ]);
@@ -132,12 +132,12 @@ describe('useGetLeaderboardAroundPlayer', () => {
           {
             StatValue: 2600,
             Position: 1,
-            Profile: { DisplayName: 'NewPlayer1', AvatarUrl: 'https://www.example.com/avatars/newplayer1.png' },
+            Profile: { DisplayName: 'NewPlayer1', AvatarUrl: 'icon_newplayer1' },
           },
           {
             StatValue: 2550,
             Position: 2,
-            Profile: { DisplayName: 'NewPlayer2', AvatarUrl: 'https://www.example.com/avatars/newplayer2.png' },
+            Profile: { DisplayName: 'NewPlayer2', AvatarUrl: 'icon_newplayer2' },
           },
         ],
       },
@@ -153,7 +153,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 1,
         profile: {
           playerName: 'NewPlayer1',
-          avatarUrl: new URL('https://www.example.com/avatars/newplayer1.png'),
+          avatarUrl: new URL('https://cdn.roa2-companion.app/icon/icon_newplayer1.png'),
         },
       },
       {
@@ -162,7 +162,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         position: 2,
         profile: {
           playerName: 'NewPlayer2',
-          avatarUrl: new URL('https://www.example.com/avatars/newplayer2.png'),
+          avatarUrl: new URL('https://cdn.roa2-companion.app/icon/icon_newplayer2.png'),
         },
       },
     ]);
