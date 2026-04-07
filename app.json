@@ -2,7 +2,7 @@
   "expo": {
     "name": "Rivals of Aether II Companion",
     "slug": "roa2-companion",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "roa2-companion",
@@ -13,7 +13,7 @@
       "bundleIdentifier": "com.cp0-mand4le.roa2companion"
     },
     "android": {
-      "versionCode": 15,
+      "versionCode": 16,
       "package": "com.cp0_mand4le.roa2companion",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
