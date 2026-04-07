@@ -695,6 +695,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               onLoadStart={[Function]}
               onProgress={[Function]}
               placeholder={[]}
+              sfEffect={null}
               source={
                 [
                   {
@@ -708,6 +709,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
                   "width": 24,
                 }
               }
+              symbolSize={null}
+              symbolWeight={null}
               transition={null}
               width={24}
             />
@@ -1742,6 +1745,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 onLoadStart={[Function]}
                 onProgress={[Function]}
                 placeholder={[]}
+                sfEffect={null}
                 source={
                   [
                     {
@@ -1755,6 +1759,8 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "width": 24,
                   }
                 }
+                symbolSize={null}
+                symbolWeight={null}
                 transition={null}
                 width={24}
               />
@@ -1835,6 +1841,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 onLoadStart={[Function]}
                 onProgress={[Function]}
                 placeholder={[]}
+                sfEffect={null}
                 source={
                   [
                     {
@@ -1848,6 +1855,8 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "width": 24,
                   }
                 }
+                symbolSize={null}
+                symbolWeight={null}
                 transition={null}
                 width={24}
               />
@@ -1928,6 +1937,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 onLoadStart={[Function]}
                 onProgress={[Function]}
                 placeholder={[]}
+                sfEffect={null}
                 source={
                   [
                     {
@@ -1941,6 +1951,8 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "width": 24,
                   }
                 }
+                symbolSize={null}
+                symbolWeight={null}
                 transition={null}
                 width={24}
               />
@@ -2021,6 +2033,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 onLoadStart={[Function]}
                 onProgress={[Function]}
                 placeholder={[]}
+                sfEffect={null}
                 source={
                   [
                     {
@@ -2034,6 +2047,8 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "width": 24,
                   }
                 }
+                symbolSize={null}
+                symbolWeight={null}
                 transition={null}
                 width={24}
               />
@@ -2897,6 +2912,7 @@ exports[`Stats renders correctly on initial tab 1`] = `
               onLoadStart={[Function]}
               onProgress={[Function]}
               placeholder={[]}
+              sfEffect={null}
               source={
                 [
                   {
@@ -2910,6 +2926,8 @@ exports[`Stats renders correctly on initial tab 1`] = `
                   "width": 24,
                 }
               }
+              symbolSize={null}
+              symbolWeight={null}
               transition={null}
               width={24}
             />
