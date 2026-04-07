@@ -31,7 +31,7 @@ export default function RootLayout() {
       <QueryClientProvider client={queryClient}>
         <SessionProvider>
           {/* Ensure content is drawn under the status bar */}
-          <StatusBar backgroundColor="transparent" style="light" translucent />
+          <StatusBar style="light" />
 
           <ImageBackground source={AppBackground} style={styles.backgroundImage}>
             <Stack

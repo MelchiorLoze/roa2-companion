@@ -71,6 +71,7 @@ export default [
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],
       '@typescript-eslint/consistent-type-exports': 'warn',
       '@typescript-eslint/consistent-type-imports': 'warn',
+      '@typescript-eslint/no-deprecated': 'warn',
       '@typescript-eslint/no-require-imports': ['error', { allow: ['\\.png$', '\\.otf$', '\\.ttf$'] }],
       '@typescript-eslint/no-unnecessary-condition': 'warn',
       '@typescript-eslint/no-unsafe-assignment': 'off',
