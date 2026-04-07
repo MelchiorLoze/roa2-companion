@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 
-import { type PlayerStatistics, type StatisticName } from '../../../types/stats';
+import { type PlayerStatistics, StatisticName } from '../../../types/stats';
 
 type GetPlayerStatisticsResponse = DeepReadonly<{
   Statistics: {
@@ -18,10 +18,13 @@ export const useGetPlayerStatistics = () => {
     queryKey: ['playerStatistics'],
     queryFn: () => apiClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
     select: (data): PlayerStatistics =>
-      data.Statistics.reduce<PlayerStatistics>((acc, { StatisticName, Value }) => {
-        acc[StatisticName] = Value;
-        return acc;
-      }, {}),
+      data.Statistics.reduce<PlayerStatistics>(
+        (acc, { StatisticName: name, Value }) => {
+          acc[name] = Value;
+          return acc;
+        },
+        { [StatisticName.RANKED_SEASON_INDEX]: 1 },
+      ),
     staleTime: Infinity,
     gcTime: Infinity,
   });

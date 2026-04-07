@@ -3,10 +3,14 @@ import { type PropsWithChildren } from 'react';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
+import { useCurrentSeasonIndex } from '../../hooks/business/useCurrentSeasonIndex/useCurrentSeasonIndex';
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
 import { type Leaderboard } from '../../types/rank';
-import { MAX_SEASON_INDEX, MIN_SEASON_INDEX } from '../../types/season';
+import { MIN_SEASON_INDEX } from '../../types/season';
 import { SeasonProvider, useSeason } from './SeasonContext';
+
+jest.mock('../../hooks/business/useCurrentSeasonIndex/useCurrentSeasonIndex');
+const useCurrentSeasonIndexMock = jest.mocked(useCurrentSeasonIndex);
 
 jest.mock('../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards');
 const useCommunityLeaderboardsMock = jest.mocked(useCommunityLeaderboards);
@@ -25,27 +29,30 @@ const mockCommunityLeaderboards = (leaderboards = mockLeaderboards) => {
   });
 };
 
+const MAX_SEASON_INDEX = mockLeaderboards.length;
+
 const Wrapper = ({ children }: PropsWithChildren) => (
   <TestQueryClientProvider>
     <SeasonProvider>{children}</SeasonProvider>
   </TestQueryClientProvider>
 );
 
-jest.mock('../../types/season', () => ({
-  MAX_SEASON_INDEX: 4,
-  MIN_SEASON_INDEX: 1,
-}));
-
 const renderUseSeason = () => {
   const { result } = renderHook(useSeason, { wrapper: Wrapper });
 
-  expect(useCommunityLeaderboardsMock).toHaveBeenCalledTimes(1);
+  expect(useCurrentSeasonIndexMock).toHaveBeenCalled();
+  expect(useCommunityLeaderboardsMock).toHaveBeenCalled();
 
   return { result };
 };
 
 describe('useSeason', () => {
   beforeEach(() => {
+    useCurrentSeasonIndexMock.mockReturnValue({
+      currentSeasonIndex: MAX_SEASON_INDEX,
+      isLoading: false,
+      isError: false,
+    });
     mockCommunityLeaderboards();
   });
 
@@ -56,18 +63,56 @@ describe('useSeason', () => {
     console.error = originalError;
   });
 
+  it('returns loading state when current season index is loading', () => {
+    useCurrentSeasonIndexMock.mockReturnValue({
+      currentSeasonIndex: undefined,
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
+  it('returns loading state when leaderboards are loading', () => {
+    useCommunityLeaderboardsMock.mockReturnValue({
+      leaderboards: undefined,
+      isLoading: true,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
+  it('returns loading state when current season index has an error', () => {
+    useCurrentSeasonIndexMock.mockReturnValue({
+      currentSeasonIndex: undefined,
+      isLoading: false,
+      isError: true,
+    });
+
+    const { result } = renderUseSeason();
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.season).toBeUndefined();
+  });
+
   it('initializes with max season index', () => {
     const { result } = renderUseSeason();
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX);
-    expect(result.current.season.isLast).toBe(true);
-    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX);
+    expect(result.current.season!.isLast).toBe(true);
+    expect(result.current.season!.isFirst).toBe(false);
   });
 
   it('displays correct season name from leaderboard', () => {
     const { result } = renderUseSeason();
 
-    expect(result.current.season.name).toBe('Fall 2025');
+    expect(result.current.season!.name).toBe('Fall 2025');
     expect(result.current.leaderboardId).toBe(444);
   });
 
@@ -76,40 +121,40 @@ describe('useSeason', () => {
 
     const { result } = renderUseSeason();
 
-    expect(result.current.season.name).toBe(`Season ${MAX_SEASON_INDEX}`);
+    expect(result.current.season!.name).toBe(`Season ${MAX_SEASON_INDEX}`);
     expect(result.current.leaderboardId).toBeUndefined();
   });
 
   it('allows navigation to previous season', () => {
     const { result } = renderUseSeason();
 
-    act(() => result.current.setPreviousSeason());
+    act(result.current.setPreviousSeason!);
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 1);
-    expect(result.current.season.name).toBe('Summer 2025');
-    expect(result.current.season.isLast).toBe(false);
-    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX - 1);
+    expect(result.current.season!.name).toBe('Summer 2025');
+    expect(result.current.season!.isLast).toBe(false);
+    expect(result.current.season!.isFirst).toBe(false);
     expect(result.current.leaderboardId).toBe(333);
   });
 
   it('allows navigation to next season', () => {
     const { result } = renderUseSeason();
 
-    act(() => result.current.setPreviousSeason());
-    act(() => result.current.setPreviousSeason());
+    act(result.current.setPreviousSeason!);
+    act(result.current.setPreviousSeason!);
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 2);
-    expect(result.current.season.name).toBe('Spring 2025');
-    expect(result.current.season.isLast).toBe(false);
-    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX - 2);
+    expect(result.current.season!.name).toBe('Spring 2025');
+    expect(result.current.season!.isLast).toBe(false);
+    expect(result.current.season!.isFirst).toBe(false);
     expect(result.current.leaderboardId).toBe(222);
 
-    act(() => result.current.setNextSeason());
+    act(result.current.setNextSeason!);
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX - 1);
-    expect(result.current.season.name).toBe('Summer 2025');
-    expect(result.current.season.isLast).toBe(false);
-    expect(result.current.season.isFirst).toBe(false);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX - 1);
+    expect(result.current.season!.name).toBe('Summer 2025');
+    expect(result.current.season!.isLast).toBe(false);
+    expect(result.current.season!.isFirst).toBe(false);
     expect(result.current.leaderboardId).toBe(333);
   });
 
@@ -119,29 +164,29 @@ describe('useSeason', () => {
     // Navigate to first season
     act(() => {
       for (let i = MAX_SEASON_INDEX; i > MIN_SEASON_INDEX; i--) {
-        result.current.setPreviousSeason();
+        result.current.setPreviousSeason!();
       }
     });
 
-    expect(result.current.season.index).toBe(MIN_SEASON_INDEX);
-    expect(result.current.season.isFirst).toBe(true);
-    expect(result.current.season.isLast).toBe(false);
+    expect(result.current.season!.index).toBe(MIN_SEASON_INDEX);
+    expect(result.current.season!.isFirst).toBe(true);
+    expect(result.current.season!.isLast).toBe(false);
     expect(result.current.leaderboardId).toBe(111);
 
     // Try to go before first season
-    act(() => result.current.setPreviousSeason());
+    act(result.current.setPreviousSeason!);
 
-    expect(result.current.season.index).toBe(MIN_SEASON_INDEX);
+    expect(result.current.season!.index).toBe(MIN_SEASON_INDEX);
   });
 
   it('does not navigate after last season', () => {
     const { result } = renderUseSeason();
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX);
-    expect(result.current.season.isLast).toBe(true);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX);
+    expect(result.current.season!.isLast).toBe(true);
 
-    act(() => result.current.setNextSeason());
+    act(result.current.setNextSeason!);
 
-    expect(result.current.season.index).toBe(MAX_SEASON_INDEX);
+    expect(result.current.season!.index).toBe(MAX_SEASON_INDEX);
   });
 });

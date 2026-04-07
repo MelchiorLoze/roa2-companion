@@ -9,8 +9,10 @@ import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroun
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useLeaderboardStats } from '../useLeaderboardStats/useLeaderboardStats';
 
-const getEloStatNameForSeason = (seasonIndex: number): StatisticName =>
-  StatisticName[`RANKED_S${seasonIndex}_ELO` as keyof typeof StatisticName];
+const getEloStatNameForSeason = (season: Season): StatisticName => {
+  if (season.isFirst) return StatisticName.RANKED_S1_ELO;
+  return `Ranked_SeasonEloPure_${season.index}` as StatisticName;
+};
 
 const getSetStatsForSeason = (rawStats: PlayerStatistics, season: Season) => {
   if (!season.isFirst && !season.isLast) return undefined;
@@ -48,7 +50,7 @@ type UserRankedStatsState = RefreshableState<{
 }>;
 
 export const useUserRankedStats = (): UserRankedStatsState => {
-  const { season } = useSeason();
+  const { season, isLoading: isLoadingSeason } = useSeason();
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,
@@ -62,7 +64,7 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     refetch: refetchPlayerPosition,
   } = useGetLeaderboardAroundPlayer({
     maxResultCount: 1,
-    statisticName: getEloStatNameForSeason(season.index),
+    statisticName: season && getEloStatNameForSeason(season),
   });
   const { leaderboardEntries } = useLeaderboardStats();
 
@@ -77,9 +79,9 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     },
   } as const;
 
-  if (rawStats && playerPositions) {
+  if (season && rawStats && playerPositions) {
     const [userRankedPosition] = playerPositions;
-    const elo = rawStats[getEloStatNameForSeason(season.index)];
+    const elo = rawStats[getEloStatNameForSeason(season)];
     const rank = elo != null ? getRank(elo, userRankedPosition.position) : undefined;
     return {
       ...baseState,
@@ -95,7 +97,7 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     };
   }
 
-  if (isLoadingRawStats || isLoadingPlayerPosition) {
+  if (isLoadingSeason || isLoadingRawStats || isLoadingPlayerPosition) {
     return {
       ...baseState,
       isLoading: true,

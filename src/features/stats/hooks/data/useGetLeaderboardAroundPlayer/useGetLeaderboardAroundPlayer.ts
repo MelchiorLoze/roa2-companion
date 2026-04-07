@@ -8,7 +8,7 @@ import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
 type GetLeaderboardAroundPlayerRequest = Readonly<{
   maxResultCount: number;
-  statisticName: StatisticName;
+  statisticName?: StatisticName;
 }>;
 
 type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
@@ -53,6 +53,7 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
     },
     staleTime: Infinity,
     gcTime: Infinity,
+    enabled: Boolean(statisticName),
   });
 
   return {

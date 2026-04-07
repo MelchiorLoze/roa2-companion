@@ -43,6 +43,7 @@ describe('useGetPlayerStatistics', () => {
     fetchMock.postOnce('*', {
       data: {
         Statistics: [
+          { StatisticName: StatisticName.RANKED_SEASON_INDEX, Value: 1 },
           { StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 },
           { StatisticName: StatisticName.RANKED_S1_SETS, Value: 708 },
         ],
@@ -52,6 +53,7 @@ describe('useGetPlayerStatistics', () => {
     const { result } = await renderUseGetPlayerStatistics();
 
     expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.RANKED_S1_ELO]: 932,
       [StatisticName.RANKED_S1_SETS]: 708,
     });
@@ -61,6 +63,7 @@ describe('useGetPlayerStatistics', () => {
     fetchMock.postOnce('*', {
       data: {
         Statistics: [
+          { StatisticName: StatisticName.RANKED_SEASON_INDEX, Value: 1 },
           { StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 },
           { StatisticName: StatisticName.RANKED_S1_SETS, Value: 708 },
         ],
@@ -70,6 +73,7 @@ describe('useGetPlayerStatistics', () => {
     const { result } = await renderUseGetPlayerStatistics();
 
     expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.RANKED_S1_ELO]: 932,
       [StatisticName.RANKED_S1_SETS]: 708,
     });
@@ -77,6 +81,7 @@ describe('useGetPlayerStatistics', () => {
     fetchMock.postOnce('*', {
       data: {
         Statistics: [
+          { StatisticName: StatisticName.RANKED_SEASON_INDEX, Value: 1 },
           { StatisticName: StatisticName.RANKED_S1_ELO, Value: 1000 },
           { StatisticName: StatisticName.RANKED_S1_SETS, Value: 800 },
         ],
@@ -87,9 +92,25 @@ describe('useGetPlayerStatistics', () => {
 
     await waitFor(() =>
       expect(result.current.statistics).toEqual({
+        [StatisticName.RANKED_SEASON_INDEX]: 1,
         [StatisticName.RANKED_S1_ELO]: 1000,
         [StatisticName.RANKED_S1_SETS]: 800,
       }),
     );
+  });
+
+  it('defaults RANKED_SEASON_INDEX to 1 when not in the API response', async () => {
+    fetchMock.postOnce('*', {
+      data: {
+        Statistics: [{ StatisticName: StatisticName.RANKED_S1_ELO, Value: 932 }],
+      },
+    });
+
+    const { result } = await renderUseGetPlayerStatistics();
+
+    expect(result.current.statistics).toEqual({
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
+      [StatisticName.RANKED_S1_ELO]: 932,
+    });
   });
 });

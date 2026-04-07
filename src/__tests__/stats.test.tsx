@@ -30,9 +30,10 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
     isLast: false,
   },
   leaderboardId: 789,
-  isLoading: false,
   setPreviousSeason: jest.fn(),
   setNextSeason: jest.fn(),
+  isLoading: false,
+  isError: false,
 };
 
 const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> = {

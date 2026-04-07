@@ -35,7 +35,7 @@ const mockResponse = {
 
 const defaultRequest = {
   maxResultCount: 100,
-  statisticName: StatisticName.RANKED_S2_ELO,
+  statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
 };
 
 const renderUseGetLeaderboardAroundPlayer = async (
@@ -61,7 +61,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     expect(result.current.playerPositions).toEqual([
       {
-        statisticName: StatisticName.RANKED_S2_ELO,
+        statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
         statisticValue: 2500,
         position: 1,
         profile: {
@@ -70,7 +70,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         },
       },
       {
-        statisticName: StatisticName.RANKED_S2_ELO,
+        statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
         statisticValue: 2400,
         position: 2,
         profile: {
@@ -79,7 +79,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         },
       },
       {
-        statisticName: StatisticName.RANKED_S2_ELO,
+        statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
         statisticValue: 2300,
         position: 3,
         profile: {
@@ -100,6 +100,17 @@ describe('useGetLeaderboardAroundPlayer', () => {
 
     expect(result.current.playerPositions).toBeDefined();
     expect(result.current.playerPositions?.[0].statisticName).toBe(StatisticName.RANKED_WINS);
+  });
+
+  it('does not fetch when statisticName is undefined', () => {
+    // No fetch mock registered — if a request were made, it would fail
+    const { result } = renderHook(
+      () => useGetLeaderboardAroundPlayer({ maxResultCount: 10, statisticName: undefined }),
+      { wrapper: TestQueryClientProvider },
+    );
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.playerPositions).toBeUndefined();
   });
 
   it('handles API error', async () => {
@@ -137,7 +148,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
     await waitFor(() => expect(result.current.playerPositions).toHaveLength(2));
     expect(result.current.playerPositions).toEqual([
       {
-        statisticName: StatisticName.RANKED_S2_ELO,
+        statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
         statisticValue: 2600,
         position: 1,
         profile: {
@@ -146,7 +157,7 @@ describe('useGetLeaderboardAroundPlayer', () => {
         },
       },
       {
-        statisticName: StatisticName.RANKED_S2_ELO,
+        statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
         statisticValue: 2550,
         position: 2,
         profile: {

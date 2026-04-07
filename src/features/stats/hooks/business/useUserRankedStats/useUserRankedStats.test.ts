@@ -19,16 +19,18 @@ const defaultSeasonReturnValue: ReturnType<typeof useSeason> = {
     isLast: true,
   },
   leaderboardId: 789,
-  isLoading: false,
   setPreviousSeason: jest.fn(),
   setNextSeason: jest.fn(),
+  isLoading: false,
+  isError: false,
 };
 
 jest.mock('../../data/useGetPlayerStatistics/useGetPlayerStatistics');
 const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
 const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
-    [StatisticName.RANKED_S4_ELO]: 950,
+    [StatisticName.RANKED_SEASON_INDEX]: 4,
+    ['Ranked_SeasonEloPure_4' as StatisticName]: 950,
     [StatisticName.RANKED_SETS]: 100,
     [StatisticName.RANKED_WINS]: 75,
     [StatisticName.RANKED_BEST_WIN_STREAK]: 9,
@@ -43,7 +45,7 @@ const useGetLeaderboardAroundPlayerMock = jest.mocked(useGetLeaderboardAroundPla
 const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderboardAroundPlayer> = {
   playerPositions: [
     {
-      statisticName: StatisticName.RANKED_S2_ELO,
+      statisticName: 'Ranked_SeasonEloPure_2' as StatisticName,
       statisticValue: 916,
       position: 4404,
       profile: {
@@ -69,18 +71,19 @@ const defaultLeaderboardStatsMock: ReturnType<typeof useLeaderboardStats> = {
 };
 
 const mockStatistics: PlayerStatistics = {
+  [StatisticName.RANKED_SEASON_INDEX]: 4,
   [StatisticName.RANKED_S1_ELO]: 815,
   [StatisticName.RANKED_S1_SETS]: 200,
   [StatisticName.RANKED_S1_WINS]: 22,
-  [StatisticName.RANKED_S2_ELO]: 900,
-  [StatisticName.RANKED_S3_ELO]: 925,
-  [StatisticName.RANKED_S4_ELO]: 950,
+  ['Ranked_SeasonEloPure_2' as StatisticName]: 900,
+  ['Ranked_SeasonEloPure_3' as StatisticName]: 925,
+  ['Ranked_SeasonEloPure_4' as StatisticName]: 950,
   [StatisticName.RANKED_SETS]: 100,
   [StatisticName.RANKED_WINS]: 60,
   [StatisticName.RANKED_BEST_WIN_STREAK]: 12,
 };
 
-const renderUseUserRankedStats = (seasonEloStatName = StatisticName.RANKED_S4_ELO) => {
+const renderUseUserRankedStats = (seasonEloStatName: StatisticName = 'Ranked_SeasonEloPure_4' as StatisticName) => {
   const { result } = renderHook(useUserRankedStats);
 
   expect(useSeasonMock).toHaveBeenCalledTimes(1);
@@ -126,6 +129,28 @@ describe('useUserRankedStats', () => {
 
     const { result } = renderUseUserRankedStats();
 
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.isRefreshing).toBe(false);
+    expect(result.current.stats).toBeUndefined();
+  });
+
+  it('returns loading state when season is loading', () => {
+    useSeasonMock.mockReturnValue({
+      ...defaultSeasonReturnValue,
+      season: undefined,
+      leaderboardId: undefined,
+      setPreviousSeason: undefined,
+      setNextSeason: undefined,
+      isLoading: true,
+      isError: false,
+    });
+
+    const { result } = renderHook(useUserRankedStats);
+
+    expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledWith({
+      maxResultCount: 1,
+      statisticName: undefined,
+    });
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
@@ -227,7 +252,7 @@ describe('useUserRankedStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserRankedStats(StatisticName.RANKED_S2_ELO);
+    const { result } = renderUseUserRankedStats('Ranked_SeasonEloPure_2' as StatisticName);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
@@ -246,6 +271,7 @@ describe('useUserRankedStats', () => {
 
   it('handles zero matches played when calculating win rates', () => {
     const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.RANKED_SETS]: 0,
       [StatisticName.RANKED_WINS]: 0,
     };
@@ -261,7 +287,9 @@ describe('useUserRankedStats', () => {
   });
 
   it('handles undefined matches played', () => {
-    const mockStatistics: PlayerStatistics = {};
+    const mockStatistics: PlayerStatistics = {
+      [StatisticName.RANKED_SEASON_INDEX]: 1,
+    };
 
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
@@ -288,7 +316,9 @@ describe('useUserRankedStats', () => {
 
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
-      statistics: {},
+      statistics: {
+        [StatisticName.RANKED_SEASON_INDEX]: 1,
+      },
     });
 
     const { result } = renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
@@ -317,6 +347,7 @@ describe('useUserRankedStats', () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: {
+        [StatisticName.RANKED_SEASON_INDEX]: 1,
         [StatisticName.RANKED_SETS]: 10,
         [StatisticName.RANKED_WINS]: 3,
       },

@@ -1,59 +1,84 @@
-import { createContext, type PropsWithChildren, useContext, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
+import { type LoadableState } from '@/types/loadableState';
+
+import { useCurrentSeasonIndex } from '../../hooks/business/useCurrentSeasonIndex/useCurrentSeasonIndex';
 import { useCommunityLeaderboards } from '../../hooks/data/useCommunityLeaderboards/useCommunityLeaderboards';
-import { MAX_SEASON_INDEX, MIN_SEASON_INDEX, type Season } from '../../types/season';
+import { MIN_SEASON_INDEX, type Season } from '../../types/season';
 
 const isFirstSeason = (index: number): boolean => index === MIN_SEASON_INDEX;
-const isLastSeason = (index: number): boolean => index === MAX_SEASON_INDEX;
+const isLastSeason = (index: number, maxIndex: number): boolean => index === maxIndex;
 
-type SeasonState = DeepReadonly<{
-  season: Season;
-  leaderboardId?: number;
-  isLoading: boolean;
-  setPreviousSeason: () => void;
-  setNextSeason: () => void;
-}>;
+type SeasonState = LoadableState<
+  Readonly<{
+    season: Season;
+    leaderboardId?: number;
+    setPreviousSeason: () => void;
+    setNextSeason: () => void;
+  }>
+>;
 
 const SeasonContext = createContext<SeasonState | undefined>(undefined);
 
-export const SeasonProvider = ({ children }: PropsWithChildren) => {
-  const [seasonIndex, setSeasonIndex] = useState(MAX_SEASON_INDEX);
-  const { leaderboards, isLoading } = useCommunityLeaderboards();
+const useSeasonState = (): SeasonState => {
+  const [selectedSeasonIndex, setSelectedSeasonIndex] = useState<number | undefined>(undefined);
+  const { currentSeasonIndex, isLoading: isCurrentSeasonIndexLoading, isError } = useCurrentSeasonIndex();
+  const { leaderboards, isLoading: isLeaderboardsLoading } = useCommunityLeaderboards();
 
+  useEffect(() => {
+    setSelectedSeasonIndex((prev) => prev ?? currentSeasonIndex);
+  }, [currentSeasonIndex]);
+
+  const baseState = {
+    season: undefined,
+    leaderboardId: undefined,
+    setPreviousSeason: undefined,
+    setNextSeason: undefined,
+    isLoading: false,
+    isError: false,
+  } as const;
+
+  if (isLeaderboardsLoading || isCurrentSeasonIndexLoading || isError)
+    return {
+      ...baseState,
+      isLoading: true,
+    };
+
+  const seasonIndex = selectedSeasonIndex ?? currentSeasonIndex;
   const currentLeaderboard = leaderboards?.[seasonIndex - 1];
   const seasonName = currentLeaderboard?.displayName.replace(/leaderboard/i, '').trim() ?? `Season ${seasonIndex}`;
 
   const setPreviousSeason = () => {
-    setSeasonIndex((prev) => {
-      if (!isFirstSeason(prev)) return prev - 1;
-      return prev;
+    setSelectedSeasonIndex((prev) => {
+      if (!prev || isFirstSeason(prev)) return prev;
+      return prev - 1;
     });
   };
   const setNextSeason = () => {
-    setSeasonIndex((prev) => {
-      if (!isLastSeason(prev)) return prev + 1;
-      return prev;
+    setSelectedSeasonIndex((prev) => {
+      if (!prev || isLastSeason(prev, currentSeasonIndex)) return prev;
+      return prev + 1;
     });
   };
 
-  return (
-    <SeasonContext.Provider
-      value={{
-        season: {
-          index: seasonIndex,
-          name: seasonName,
-          isFirst: isFirstSeason(seasonIndex),
-          isLast: isLastSeason(seasonIndex),
-        },
-        leaderboardId: currentLeaderboard?.id,
-        isLoading,
-        setPreviousSeason,
-        setNextSeason,
-      }}
-    >
-      {children}
-    </SeasonContext.Provider>
-  );
+  return {
+    ...baseState,
+    season: {
+      index: seasonIndex,
+      name: seasonName,
+      isFirst: isFirstSeason(seasonIndex),
+      isLast: isLastSeason(seasonIndex, currentSeasonIndex),
+    },
+    leaderboardId: currentLeaderboard?.id,
+    setPreviousSeason,
+    setNextSeason,
+  };
+};
+
+export const SeasonProvider = ({ children }: PropsWithChildren) => {
+  const seasonState = useSeasonState();
+
+  return <SeasonContext.Provider value={seasonState}>{children}</SeasonContext.Provider>;
 };
 
 export const useSeason = (): SeasonState => {
