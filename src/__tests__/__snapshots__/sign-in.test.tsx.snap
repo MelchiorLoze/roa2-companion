@@ -219,9 +219,10 @@ exports[`SignIn matches snapshot 1`] = `
       <View
         style={
           {
-            "paddingBottom": 5,
+            "alignItems": "center",
+            "paddingBottom": 9,
             "paddingHorizontal": 24,
-            "paddingTop": 4,
+            "paddingTop": 8,
           }
         }
       >
@@ -232,7 +233,7 @@ exports[`SignIn matches snapshot 1`] = `
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 16,
               "textShadowColor": "#28074B80",
-              "textShadowRadius": 1.5,
+              "textShadowRadius": 1,
             }
           }
         >
@@ -530,9 +531,10 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         <View
           style={
             {
-              "paddingBottom": 5,
+              "alignItems": "center",
+              "paddingBottom": 9,
               "paddingHorizontal": 24,
-              "paddingTop": 4,
+              "paddingTop": 8,
             }
           }
         >
@@ -543,7 +545,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 16,
                 "textShadowColor": "#28074B80",
-                "textShadowRadius": 1.5,
+                "textShadowRadius": 1,
               }
             }
           >
@@ -777,9 +779,10 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             <View
               style={
                 {
-                  "paddingBottom": 5,
+                  "alignItems": "center",
+                  "paddingBottom": 9,
                   "paddingHorizontal": 24,
-                  "paddingTop": 4,
+                  "paddingTop": 8,
                 }
               }
             >
@@ -790,7 +793,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
                     "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textShadowColor": "#28074B80",
-                    "textShadowRadius": 1.5,
+                    "textShadowRadius": 1,
                   }
                 }
               >
