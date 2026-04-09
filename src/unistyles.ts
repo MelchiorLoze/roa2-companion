@@ -13,6 +13,8 @@ const theme = {
     itemPriceBorder: '#9D6DEB',
     itemSelectedPrimary: '#FF9100',
     itemSelectedSecondary: '#FAC468',
+    buttonSelectedPrimary: '#FF8E00',
+    buttonSelectedSecondary: '#F4EBE2',
     borderPrimary: '#28074B80',
     borderLight: '#CACEFF',
     borderMedium: '#A9AFFF',

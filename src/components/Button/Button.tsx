@@ -5,6 +5,7 @@ import { ButtonBackground } from '@/assets/images/ui';
 
 import { FancyText } from '../FancyText/FancyText';
 import { NineSlicesImage } from '../NineSlicesImage/NineSlicesImage';
+import { ParallelogramView } from '../ParallelogramView/ParallelogramView';
 
 type Props = { label: string; onPress: () => void };
 
@@ -20,10 +21,11 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
             source={ButtonBackground}
             style={StyleSheet.absoluteFill}
           />
+          {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
           <View style={styles.button}>
             <FancyText
               style={{
-                ...styles.label(pressed),
+                ...styles.label,
                 gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
               }}
               text={label.toUpperCase()}
@@ -37,14 +39,22 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
 
 const styles = StyleSheet.create((theme) => ({
   button: {
-    paddingTop: theme.spacing.xs,
-    paddingBottom: theme.spacing.xs + 1, // optical adjustment to compensate for the shadow in the background image
+    alignItems: 'center',
+    paddingTop: theme.spacing.s,
+    paddingBottom: theme.spacing.s + 1, // optical adjustment to compensate for the bottom shadow in the background image
     paddingHorizontal: theme.spacing.xl,
   },
-  label: (pressed: boolean) => ({
+  label: {
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
-    strokeWidth: 1.5,
-    strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,
-  }),
+    strokeWidth: 1,
+    strokeColor: theme.color.borderPrimary,
+  },
+  pressedBackground: {
+    ...StyleSheet.absoluteFillObject,
+    bottom: 2, // optical adjustment to compensate for the bottom shadow in the background image
+    backgroundColor: theme.color.buttonSelectedSecondary,
+    borderColor: theme.color.buttonSelectedPrimary,
+    borderWidth: 2,
+  },
 }));

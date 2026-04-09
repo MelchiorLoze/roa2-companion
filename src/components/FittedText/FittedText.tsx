@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Text, type TextProps, View } from 'react-native';
 
 export const FittedText = ({ children, ...props }: Readonly<TextProps>) => {
-  const [width, setWidth] = useState<number | undefined>();
+  const [width, setWidth] = useState<number | 'auto' | undefined>();
 
   useEffect(() => setWidth(undefined), [children]);
 
@@ -11,11 +11,12 @@ export const FittedText = ({ children, ...props }: Readonly<TextProps>) => {
       <Text
         {...props}
         onTextLayout={(e) => {
-          const longestLineWidth = e.nativeEvent.lines.reduce(
-            (longest, line) => Math.max(longest, Math.ceil(line.width)),
-            0,
-          );
-          setWidth((prev) => prev ?? longestLineWidth);
+          const lines = e.nativeEvent.lines;
+          setWidth((prev) => {
+            if (prev) return prev;
+            if (lines.length > 1) return lines.reduce((longest, line) => Math.max(longest, line.width), 0);
+            return 'auto';
+          });
         }}
       >
         {children}
