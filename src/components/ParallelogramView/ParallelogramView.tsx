@@ -10,21 +10,32 @@ type Props = PropsWithChildren<{
 export const ParallelogramView = ({ style, skewAmount, children }: Readonly<Props>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
-  const { backgroundColor, ...viewStyle } = StyleSheet.flatten(style);
+  const {
+    backgroundColor = 'transparent',
+    borderColor,
+    borderWidth = 0,
+    ...viewStyle
+  } = StyleSheet.flatten(style ?? {});
   const skew = Math.abs(skewAmount);
 
   // Positive skewAmount: top edge shifted right (leans like /)
   // Negative skewAmount: top edge shifted left (leans like \)
   const points =
     skewAmount >= 0
-      ? `${skew},0 ${size.width},0 ${size.width - skew},${size.height} 0,${size.height}`
-      : `0,0 ${size.width - skew},0 ${size.width},${size.height} ${skew},${size.height}`;
+      ? `${skew},${borderWidth} ${size.width - borderWidth},${borderWidth} ${size.width - skew},${size.height - borderWidth} ${borderWidth},${size.height - borderWidth}`
+      : `${borderWidth},${borderWidth} ${size.width - skew},${borderWidth} ${size.width},${size.height - borderWidth} ${skew},${size.height - borderWidth}`;
 
   return (
     <View onLayout={(e) => setSize(e.nativeEvent.layout)} style={viewStyle}>
       {size.width > 0 && size.height > 0 && (
         <Svg height={size.height} style={StyleSheet.absoluteFill} width={size.width}>
-          <Polygon fill={typeof backgroundColor === 'string' ? backgroundColor : 'transparent'} points={points} />
+          <Polygon
+            fill={backgroundColor}
+            points={points}
+            stroke={borderColor}
+            strokeLinejoin="round"
+            strokeWidth={borderWidth}
+          />
         </Svg>
       )}
       {children}
