@@ -325,6 +325,7 @@ exports[`Store matches snapshot 1`] = `
                   placeholder={[]}
                   position="absolute"
                   right={0}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -343,6 +344,8 @@ exports[`Store matches snapshot 1`] = `
                       "top": 0,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   top={0}
                   transition={null}
                 />
@@ -617,6 +620,7 @@ exports[`Store matches snapshot 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -630,6 +634,8 @@ exports[`Store matches snapshot 1`] = `
                       "width": 18,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                   width={18}
                 />
@@ -755,6 +761,7 @@ exports[`Store matches snapshot 1`] = `
                   placeholder={[]}
                   position="absolute"
                   right={0}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -773,6 +780,8 @@ exports[`Store matches snapshot 1`] = `
                       "top": 0,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   top={0}
                   transition={null}
                 />
@@ -1137,6 +1146,7 @@ exports[`Store matches snapshot 1`] = `
                   placeholder={[]}
                   position="absolute"
                   right={0}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1155,6 +1165,8 @@ exports[`Store matches snapshot 1`] = `
                       "top": 0,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   top={0}
                   transition={null}
                 />
@@ -1429,6 +1441,7 @@ exports[`Store matches snapshot 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1442,6 +1455,8 @@ exports[`Store matches snapshot 1`] = `
                       "width": 18,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                   width={18}
                 />
@@ -1567,6 +1582,7 @@ exports[`Store matches snapshot 1`] = `
                   placeholder={[]}
                   position="absolute"
                   right={0}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1585,6 +1601,8 @@ exports[`Store matches snapshot 1`] = `
                       "top": 0,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   top={0}
                   transition={null}
                 />
@@ -1949,6 +1967,7 @@ exports[`Store matches snapshot 1`] = `
                   placeholder={[]}
                   position="absolute"
                   right={0}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -1967,6 +1986,8 @@ exports[`Store matches snapshot 1`] = `
                       "top": 0,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   top={0}
                   transition={null}
                 />
@@ -2241,6 +2262,7 @@ exports[`Store matches snapshot 1`] = `
                   onLoadStart={[Function]}
                   onProgress={[Function]}
                   placeholder={[]}
+                  sfEffect={null}
                   source={
                     [
                       {
@@ -2254,6 +2276,8 @@ exports[`Store matches snapshot 1`] = `
                       "width": 18,
                     }
                   }
+                  symbolSize={null}
+                  symbolWeight={null}
                   transition={null}
                   width={18}
                 />
