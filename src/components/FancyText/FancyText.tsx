@@ -17,20 +17,16 @@ import {
 } from '@shopify/react-native-skia';
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
-import {
-  AgencyFBBlack,
-  AgencyFBBold,
-  FranklinGothicDemiCondItalic,
-  FranklinGothicDemiCondRegular,
-} from '@/assets/fonts';
+import { FONTS } from '@/assets/fonts';
 import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
 
-const fonts: Record<FontFamily, [DataModule]> = {
-  'AgencyFB-Black': [AgencyFBBlack as DataModule],
-  'AgencyFB-Bold': [AgencyFBBold as DataModule],
-  'FranklinGothicDemiCond-Italic': [FranklinGothicDemiCondItalic as DataModule],
-  'FranklinGothicDemiCond-Regular': [FranklinGothicDemiCondRegular as DataModule],
-};
+const SKIA_FONTS = Object.entries(FONTS).reduce(
+  (acc, [key, value]) => {
+    acc[key as FontFamily] = [value as DataModule];
+    return acc;
+  },
+  {} as Record<FontFamily, [DataModule]>,
+);
 
 type ParagraphResult = {
   paragraphFill: SkParagraph;
@@ -149,7 +145,7 @@ const createParagraphs = <T extends GradientColors>(
 
 export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Props<T>>) => {
   const { fontScale } = useWindowDimensions();
-  const fontProvider = useFonts(fonts);
+  const fontProvider = useFonts(SKIA_FONTS);
 
   if (!fontProvider) return null;
 
