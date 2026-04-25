@@ -1,6 +1,8 @@
-import { Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { Skia } from '@shopify/react-native-skia';
+import { View } from 'react-native';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { FancyText } from '@/components/FancyText/FancyText';
 import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { type Currency, CURRENCY_BACKGROUNDS } from '@/types/currency';
 
@@ -15,6 +17,7 @@ type Props = {
 };
 
 export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
+  const { theme } = useUnistyles();
   return (
     <View style={styles.container}>
       <NineSlicesImage
@@ -22,16 +25,24 @@ export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
         source={CURRENCY_BACKGROUNDS[currency]}
         style={StyleSheet.absoluteFill}
       />
-      <Text adjustsFontSizeToFit numberOfLines={1} style={styles.label(currency)}>
-        {formatCurrency(balance)}
-      </Text>
+      <FancyText
+        style={{
+          ...styles.label(currency),
+          shadow: {
+            color: Skia.Color(theme.color.currencyLabelShadow),
+            offset: { x: 1, y: 1 },
+            blurRadius: 0.001, // 0 radius is not supported
+          },
+        }}
+        text={formatCurrency(balance)}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    flex: 1,
+    flexShrink: 1,
     flexDirection: 'row',
     marginVertical: -theme.spacing.l,
     paddingVertical: theme.spacing.xl,
@@ -44,8 +55,6 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.color[currency],
     lineHeight: 14,
     letterSpacing: -0.5,
-    textShadowColor: theme.color.currencyLabelShadow,
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 0.001, // 0 radius is not supported
+    skew: -0.178001, // WBP_CurrencyDisplayer2
   }),
 }));
