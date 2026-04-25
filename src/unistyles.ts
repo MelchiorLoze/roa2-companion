@@ -15,6 +15,7 @@ const theme = {
     itemSelectedSecondary: '#FAC468',
     buttonSelectedPrimary: '#FF8E00',
     buttonSelectedSecondary: '#F4EBE2',
+    currencyLabelShadow: '#00000049',
     overlay: '#000000AA',
     dialogBorderPrimary: '#A95AF1',
     dialogBorderSecondary: '#4C12AA',
@@ -38,6 +39,10 @@ const theme = {
     translucentBlack: '#000000AA',
     translucentDark: '#161616AA',
     error: '#BA1A27',
+    // Currency colors
+    coins: '#FFFFB4',
+    bucks: '#0FDE6B',
+    medals: '#B0F6D6',
     // Rarity colors
     common: '#D3D5E4',
     rare: '#447CF1',
@@ -163,6 +168,7 @@ const theme = {
     },
     secondary: {
       bold: 'AgencyFB-Bold',
+      boldWide: 'AgencyFB-BoldWide',
       black: 'AgencyFB-Black',
     },
   },

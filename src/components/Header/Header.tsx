@@ -45,11 +45,13 @@ const styles = StyleSheet.create((theme, runtime) => ({
   },
   topContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    padding: theme.spacing.s,
-    paddingTop: theme.spacing.s + runtime.insets.top,
+    paddingTop: theme.spacing.xs + runtime.insets.top,
+    paddingBottom: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.s,
     backgroundColor: theme.color.highlight,
+    gap: theme.spacing.xs,
   },
   bottomContainer: (withBackNavigation?: boolean) => ({
     flexDirection: 'row',

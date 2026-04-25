@@ -1,6 +1,7 @@
 import { type ImageSource } from 'expo-image';
 
 import { BucksIcon, CoinsIcon, MedalsIcon } from '@/assets/images/currency';
+import { CurrencyBucksBackground, CurrencyCoinsBackground, CurrencyMedalsBackground } from '@/assets/images/ui';
 
 export const enum CurrencyId {
   COINS = 'b3f4a8f0-dd58-4e3f-ae0a-7a17418fc903',
@@ -18,4 +19,10 @@ export const CURRENCY_ICONS = Object.freeze<Record<Currency, ImageSource>>({
   [Currency.COINS]: CoinsIcon,
   [Currency.BUCKS]: BucksIcon,
   [Currency.MEDALS]: MedalsIcon,
+});
+
+export const CURRENCY_BACKGROUNDS = Object.freeze<Record<Currency, ImageSource>>({
+  [Currency.COINS]: CurrencyCoinsBackground,
+  [Currency.BUCKS]: CurrencyBucksBackground,
+  [Currency.MEDALS]: CurrencyMedalsBackground,
 });
