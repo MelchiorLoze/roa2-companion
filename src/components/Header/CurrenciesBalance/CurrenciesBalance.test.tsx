@@ -20,9 +20,9 @@ describe('CurrenciesBalance', () => {
     render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
-    expect(screen.getByText('00208092')).toBeTruthy();
-    expect(screen.getByText('00002850')).toBeTruthy();
-    expect(screen.getByText('00000013')).toBeTruthy();
+    expect(screen.getByText('208,092')).toBeTruthy();
+    expect(screen.getByText('2,850')).toBeTruthy();
+    expect(screen.getByText('13')).toBeTruthy();
   });
 
   it('renders correctly when the balances are loading', () => {
@@ -37,6 +37,6 @@ describe('CurrenciesBalance', () => {
     render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
-    expect(screen.getAllByText('00000000')).toHaveLength(3);
+    expect(screen.getAllByText('0')).toHaveLength(3);
   });
 });
