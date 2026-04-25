@@ -7,12 +7,12 @@ import {
   Skia,
   type SkPaint,
   type SkParagraph,
-  type SkParagraphStyle,
   type SkRect,
+  type SkTextShadow,
   type SkTextStyle,
   type SkTypefaceFontProvider,
-  TextHeightBehavior,
   TileMode,
+  type TransformProp,
   useFonts,
 } from '@shopify/react-native-skia';
 import { type ColorValue, useWindowDimensions } from 'react-native';
@@ -31,25 +31,21 @@ const SKIA_FONTS = Object.entries(FONTS).reduce(
 type ParagraphResult = {
   paragraphFill: SkParagraph;
   paragraphStroke: SkParagraph;
-} & SkRect;
+  paragraphRect: SkRect;
+};
 
-type GradientOrPlainColor<T extends GradientColors> =
-  | {
-      gradient: Gradient<T> & {
-        direction: 'horizontal' | 'vertical';
-      };
-      color?: never;
-    }
-  | {
-      gradient?: never;
-      color: ColorValue;
-    };
+type GradientOrPlainColor<T extends GradientColors> = Either<
+  { gradient: Gradient<T> & { direction: 'horizontal' | 'vertical' } },
+  { color: ColorValue }
+>;
 
 type FancyTextStyle<T extends GradientColors> = {
   fontSize: number;
   fontFamily: FontFamily;
-  strokeWidth: number;
-  strokeColor: ColorValue;
+  strokeWidth?: number;
+  strokeColor?: ColorValue;
+  shadow?: SkTextShadow;
+  skew?: number;
 } & GradientOrPlainColor<T>;
 
 type Props<T extends GradientColors> = {
@@ -69,11 +65,7 @@ const createParagraph = (
   paint: SkPaint,
   fontProvider: SkTypefaceFontProvider,
 ): SkParagraph => {
-  const paragraphStyle: SkParagraphStyle = {
-    textHeightBehavior: TextHeightBehavior.DisableAll,
-  };
-
-  const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
+  const paragraph = Skia.ParagraphBuilder.Make({}, fontProvider)
     .pushStyle(textStyle, paint)
     .addText(text)
     .pop()
@@ -91,13 +83,14 @@ const createParagraphs = <T extends GradientColors>(
   const textStyle: SkTextStyle = {
     fontFamilies: [style.fontFamily],
     fontSize: style.fontSize,
+    shadows: style.shadow ? [style.shadow] : [],
   };
 
   // STROKE PARAGRAPH
   const strokePaint = Skia.Paint();
   strokePaint.setStyle(PaintStyle.Stroke);
-  strokePaint.setStrokeWidth(style.strokeWidth);
-  strokePaint.setColor(toSkiaColor(style.strokeColor));
+  strokePaint.setStrokeWidth(style.strokeWidth ?? 0);
+  strokePaint.setColor(toSkiaColor(style.strokeColor ?? 'transparent'));
 
   const paragraphStroke = createParagraph(text, textStyle, strokePaint, fontProvider);
 
@@ -131,16 +124,30 @@ const createParagraphs = <T extends GradientColors>(
 
   const paragraphFill = createParagraph(text, textStyle, fillPaint, fontProvider);
 
-  const inset = style.strokeWidth;
+  const inset = style.strokeWidth ?? 0;
 
   return {
     paragraphFill,
     paragraphStroke,
-    width: textWidth + inset * 2,
-    height: textHeight + inset * 2,
-    x: inset,
-    y: inset,
-  };
+    paragraphRect: {
+      width: textWidth + inset * 2,
+      height: textHeight + inset * 2,
+      x: inset,
+      y: inset,
+    },
+  } as const;
+};
+
+// Only handles horizontal skew for now, using skewY given Skia axis swap
+const computeSkew = (skew: number, initialRect: SkRect): SkRect & TransformProp => {
+  const { width: initialWidth, height, x: initialX, y } = initialRect;
+
+  const horizontalOverflow = Math.abs(skew) * height;
+  const width = initialWidth + horizontalOverflow;
+  const x = initialX + (skew < 0 ? horizontalOverflow : 0);
+  const transform = skew ? [{ skewY: skew }] : undefined;
+
+  return { width, height, x, y, transform } as const;
 };
 
 export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Props<T>>) => {
@@ -152,14 +159,15 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
   const textStyle: FancyTextStyle<T> = {
     ...style,
     fontSize: style.fontSize * fontScale,
-    strokeWidth: style.strokeWidth * fontScale,
+    strokeWidth: (style.strokeWidth ?? 0) * fontScale,
   };
 
-  const { paragraphFill, paragraphStroke, width, height, x, y } = createParagraphs(text, textStyle, fontProvider);
+  const { paragraphFill, paragraphStroke, paragraphRect } = createParagraphs(text, textStyle, fontProvider);
+  const { width, height, x, y, transform } = computeSkew(style.skew ?? 0, paragraphRect);
 
   return (
     <Canvas style={{ height, width }}>
-      <Group antiAlias>
+      <Group transform={transform}>
         <Paragraph paragraph={paragraphStroke} width={width} x={x} y={y} />
         <Paragraph paragraph={paragraphFill} width={width} x={x} y={y} />
       </Group>

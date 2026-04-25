@@ -9,6 +9,9 @@ declare global {
   type Theme = UnistylesThemes['default'];
   type FontFamily = PrimaryThemeFonts[keyof PrimaryThemeFonts] | SecondaryThemeFonts[keyof SecondaryThemeFonts];
   type Require<T, K extends keyof T> = T & Required<Pick<T, K>>;
+  type Either<A, B> =
+    | ({ [K in keyof A]: A[K] } & { [K in keyof B]?: never })
+    | ({ [K in keyof A]?: never } & { [K in keyof B]: B[K] });
 }
 
 export {};

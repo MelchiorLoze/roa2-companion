@@ -10,7 +10,7 @@ import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCache
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
 // Either rank or rankIcon or neither, but not both
-type RankOrIcon = { rank?: Rank; rankIcon?: never } | { rank?: never; rankIcon?: ImageSource };
+type RankOrIcon = Either<{ rank?: Rank }, { rankIcon?: ImageSource }>;
 
 type Props = {
   position: number;

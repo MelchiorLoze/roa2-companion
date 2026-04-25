@@ -20,8 +20,8 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flex": 1,
           "flexDirection": "row",
+          "flexShrink": 1,
           "marginVertical": -16,
           "paddingLeft": "11%",
           "paddingRight": 12,
@@ -42,21 +42,13 @@ exports[`Header matches the snapshot 1`] = `
         }
       />
       <Text
-        adjustsFontSizeToFit={true}
-        numberOfLines={1}
         style={
           {
             "color": "#FFFFB4",
             "fontFamily": "AgencyFB-BoldWide",
             "fontSize": 14,
-            "letterSpacing": -0.5,
-            "lineHeight": 14,
-            "textShadowColor": "#00000049",
-            "textShadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "textShadowRadius": 0.001,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
           }
         }
       >
@@ -66,8 +58,8 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flex": 1,
           "flexDirection": "row",
+          "flexShrink": 1,
           "marginVertical": -16,
           "paddingLeft": "11%",
           "paddingRight": 12,
@@ -88,21 +80,13 @@ exports[`Header matches the snapshot 1`] = `
         }
       />
       <Text
-        adjustsFontSizeToFit={true}
-        numberOfLines={1}
         style={
           {
             "color": "#0FDE6B",
             "fontFamily": "AgencyFB-BoldWide",
             "fontSize": 14,
-            "letterSpacing": -0.5,
-            "lineHeight": 14,
-            "textShadowColor": "#00000049",
-            "textShadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "textShadowRadius": 0.001,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
           }
         }
       >
@@ -112,8 +96,8 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flex": 1,
           "flexDirection": "row",
+          "flexShrink": 1,
           "marginVertical": -16,
           "paddingLeft": "11%",
           "paddingRight": 12,
@@ -134,21 +118,13 @@ exports[`Header matches the snapshot 1`] = `
         }
       />
       <Text
-        adjustsFontSizeToFit={true}
-        numberOfLines={1}
         style={
           {
             "color": "#B0F6D6",
             "fontFamily": "AgencyFB-BoldWide",
             "fontSize": 14,
-            "letterSpacing": -0.5,
-            "lineHeight": 14,
-            "textShadowColor": "#00000049",
-            "textShadowOffset": {
-              "height": 1,
-              "width": 1,
-            },
-            "textShadowRadius": 0.001,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
           }
         }
       >
