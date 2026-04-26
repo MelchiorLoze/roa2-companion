@@ -84,6 +84,57 @@ exports[`Stats renders correctly on crews tab 1`] = `
         {
           "busy": undefined,
           "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        doubles
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
           "disabled": true,
           "expanded": undefined,
           "selected": undefined,
@@ -1042,6 +1093,57 @@ exports[`Stats renders correctly on global tab 1`] = `
         }
       >
         ranked
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        doubles
       </Text>
     </View>
     <View
@@ -2286,6 +2388,57 @@ exports[`Stats renders correctly on initial tab 1`] = `
           }
         }
       />
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        doubles
+      </Text>
     </View>
     <View
       accessibilityState={
