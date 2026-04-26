@@ -63,9 +63,6 @@ export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) =
 };
 
 const styles = StyleSheet.create((theme) => ({
-  spinner: {
-    paddingVertical: theme.spacing.xl,
-  },
   title: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 24,
