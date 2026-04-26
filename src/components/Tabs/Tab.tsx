@@ -17,7 +17,7 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
       <Text style={styles.label(selected)}>{title}</Text>
       {selected && (
         <>
-          <LinearGradient {...theme.color.gradient.tabSelectedOverlay} style={styles.selectedOverlay} vertical />
+          <LinearGradient {...theme.color.gradient.tabSelectedOverlay} style={StyleSheet.absoluteFill} vertical />
           <LinearGradient {...theme.color.gradient.tabSelectedGoldAccent} horizontal style={styles.underline} />
           <LinearGradient {...theme.color.gradient.tabSelectedWhiteAccent} horizontal style={styles.underline} />
         </>
@@ -38,13 +38,6 @@ const styles = StyleSheet.create((theme) => ({
     color: selected ? theme.color.accent : theme.color.inactiveLight,
     textTransform: 'uppercase',
   }),
-  selectedOverlay: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-  },
   underline: {
     position: 'absolute',
     height: 2,

@@ -15,13 +15,7 @@ export const RankedDistributionChart = ({ elo }: Readonly<Props>) => {
   return (
     <View>
       <RankDistributionBarChart width={width} />
-      <EloDistributionLineChart style={styles.lineChartContainer} userElo={elo} width={width} />
+      <EloDistributionLineChart style={StyleSheet.absoluteFill} userElo={elo} width={width} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  lineChartContainer: {
-    position: 'absolute',
-  },
-});

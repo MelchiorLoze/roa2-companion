@@ -4,11 +4,11 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
-type Props = {
+type Props = PropsWithChildren<{
   onRefresh: () => void;
   isRefreshing: boolean;
   withTitle?: boolean;
-} & PropsWithChildren;
+}>;
 
 export const StatsTabContentWrapper = ({ onRefresh, isRefreshing, withTitle = false, children }: Readonly<Props>) => {
   const { theme } = useUnistyles();

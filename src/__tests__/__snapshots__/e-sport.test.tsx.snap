@@ -490,7 +490,6 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -502,7 +501,8 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                           "color": "#FEDD84",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >
@@ -1180,7 +1180,6 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -1192,7 +1191,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "color": "#CACEFF",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >
@@ -1524,7 +1524,6 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -1536,7 +1535,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "color": "#FC7575",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >

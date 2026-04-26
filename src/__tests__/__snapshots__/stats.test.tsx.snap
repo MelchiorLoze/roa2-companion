@@ -3021,7 +3021,11 @@ exports[`Stats renders correctly on initial tab 1`] = `
             <View
               style={
                 {
+                  "bottom": 0,
+                  "left": 0,
                   "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 }
               }
               testID="elo-distribution"

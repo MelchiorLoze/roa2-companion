@@ -3,14 +3,14 @@ import { Image, type ImageSource } from 'expo-image';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
-import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
 // Either rank or rankIcon or neither, but not both
-type RankOrIcon = { rank?: Rank; rankIcon?: never } | { rank?: never; rankIcon?: ImageSource };
+type RankOrIcon = Either<{ rank?: Rank }, { rankIcon?: ImageSource }>;
 
 type Props = {
   position: number;
@@ -59,7 +59,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
             <Text style={styles.eloLabel(rank)}>{elo}</Text>
           </>
         ) : (
-          <OutlinedText style={styles.unrankedLabel} text="UNRANKED" />
+          <FancyText style={styles.unrankedLabel} text="UNRANKED" />
         )}
       </LinearGradient>
     </LinearGradient>
@@ -127,5 +127,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     color: theme.color.white,
     strokeWidth: 3,
+    strokeColor: theme.color.black,
   },
 }));

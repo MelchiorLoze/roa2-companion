@@ -28,17 +28,20 @@ export const Input = ({
 
   return (
     <View style={styles.container}>
-      <TextInput
-        autoCapitalize="none"
-        autoComplete={autoComplete}
-        cursorColor={theme.color.white}
-        onChangeText={onChange}
-        placeholder={placeholder}
-        placeholderTextColor={theme.color.weak}
-        secureTextEntry={hidden}
-        style={styles.input}
-        value={value}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          autoCapitalize="none"
+          autoComplete={autoComplete}
+          cursorColor={theme.color.white}
+          onChangeText={onChange}
+          placeholder={placeholder}
+          placeholderTextColor={theme.color.weak}
+          secureTextEntry={hidden}
+          selectionColor={theme.color.itemNameBackground}
+          style={styles.input}
+          value={value}
+        />
+      </View>
       {(errorMessage ?? contextualCTA) && (
         <View style={styles.footer}>
           {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
@@ -55,15 +58,27 @@ export const Input = ({
 
 const styles = StyleSheet.create((theme) => ({
   container: {
+    width: '100%',
     gap: theme.spacing.xs,
   },
+  inputContainer: {
+    boxShadow: [
+      {
+        color: theme.color.dark,
+        offsetX: 0,
+        offsetY: 0,
+        blurRadius: 3,
+        spreadDistance: 3,
+      },
+    ],
+  },
   input: {
-    width: '100%',
+    fontFamily: theme.font.primary.regular,
+    fontSize: 16,
     padding: theme.spacing.s,
-    borderWidth: 1,
-    borderColor: theme.color.accent,
     color: theme.color.white,
     backgroundColor: theme.color.dark,
+    borderRadius: 1,
   },
   footer: {
     flexDirection: 'row',

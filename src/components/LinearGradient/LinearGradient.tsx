@@ -4,21 +4,14 @@ import { type StyleProp, type ViewStyle } from 'react-native';
 
 import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
 
-type HorizontalOrVertical =
-  | {
-      horizontal: true;
-      vertical?: never;
-    }
-  | {
-      horizontal?: never;
-      vertical: true;
-    };
+type HorizontalOrVertical = Either<{ horizontal: true }, { vertical: true }>;
 
-type Props<T extends GradientColors> = {
-  style?: StyleProp<ViewStyle>;
-} & HorizontalOrVertical &
-  Gradient<T> &
-  PropsWithChildren;
+type Props<T extends GradientColors> = PropsWithChildren<
+  {
+    style?: StyleProp<ViewStyle>;
+  } & HorizontalOrVertical &
+    Gradient<T>
+>;
 
 export const LinearGradient = <T extends GradientColors>({
   style,

@@ -6,6 +6,20 @@ const theme = {
     darkBlue: '#070032',
     highlight: '#2B1F74',
     accent: '#FEDD84',
+    itemImageBackground: '#512A8C',
+    itemNameShadow: '#291A3183',
+    itemNameBackground: '#664D9A',
+    itemPriceBackground: '#4513A1',
+    itemPriceBorder: '#9D6DEB',
+    itemSelectedPrimary: '#FF9100',
+    itemSelectedSecondary: '#FAC468',
+    buttonSelectedPrimary: '#FF8E00',
+    buttonSelectedSecondary: '#F4EBE2',
+    currencyLabelShadow: '#00000049',
+    overlay: '#000000AA',
+    dialogBorderPrimary: '#A95AF1',
+    dialogBorderSecondary: '#4C12AA',
+    borderPrimary: '#28074B80',
     borderLight: '#CACEFF',
     borderMedium: '#A9AFFF',
     borderDark: '#4838A9',
@@ -25,6 +39,10 @@ const theme = {
     translucentBlack: '#000000AA',
     translucentDark: '#161616AA',
     error: '#BA1A27',
+    // Currency colors
+    coins: '#FFFFB4',
+    bucks: '#0FDE6B',
+    medals: '#B0F6D6',
     // Rarity colors
     common: '#D3D5E4',
     rare: '#447CF1',
@@ -46,10 +64,13 @@ const theme = {
         // Mod Kit - BarBGUnderGlowCurve with a tint
         colors: ['#130F2C00', '#AB91E833'],
       },
-      button: (pressed?: boolean) => ({
-        // Mod Kit - RectangleButtonCurve and RectangleButtonHighlightCurve with a tint of #FFFCF3FF
-        colors: pressed ? (['#F1A645', '#FDD76A'] as const) : (['#2D1E78', '#5B75D0'] as const),
-        times: pressed ? ([0, 1] as const) : ([0.006, 1] as const),
+      labelText: (pressed?: boolean, light?: boolean) => ({
+        // Mod Kit - Font_PinkCurve
+        colors: pressed
+          ? light
+            ? (['#FFFFFF', '#FFFFFF'] as const)
+            : (['#000000', '#000000'] as const)
+          : (['#FFFFFF', '#E4C1FF'] as const),
       }),
       arrowButton: (pressed?: boolean) => ({
         colors: pressed ? (['#EBA245', '#FFDB74'] as const) : (['#0D071D', '#161049'] as const),
@@ -138,6 +159,7 @@ const theme = {
     m: 12,
     l: 16,
     xl: 24,
+    xxl: 32,
   },
   font: {
     primary: {
@@ -146,6 +168,7 @@ const theme = {
     },
     secondary: {
       bold: 'AgencyFB-Bold',
+      boldWide: 'AgencyFB-BoldWide',
       black: 'AgencyFB-Black',
     },
   },

@@ -1,10 +1,15 @@
-import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
-import { StyleSheet } from 'react-native-unistyles';
+import { Skia } from '@shopify/react-native-skia';
+import { View } from 'react-native';
+import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { type Currency, CURRENCY_ICONS } from '@/types/currency';
+import { FancyText } from '@/components/FancyText/FancyText';
+import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
+import { type Currency, CURRENCY_BACKGROUNDS } from '@/types/currency';
 
-const MIN_DIGIT_COUNT = 8;
+const formatCurrency = (amount: number) => {
+  // adds commas every three digits
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
 
 type Props = {
   balance: number;
@@ -12,36 +17,44 @@ type Props = {
 };
 
 export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
-  const balanceDigitCount = balance.toString().length;
-  const leadingZeros = '0'.repeat(MIN_DIGIT_COUNT - Math.min(MIN_DIGIT_COUNT, balanceDigitCount));
-
+  const { theme } = useUnistyles();
   return (
     <View style={styles.container}>
-      <Image contentFit="contain" source={CURRENCY_ICONS[currency]} style={styles.icon} />
-      <Text style={styles.label}>
-        <Text style={styles.leadingZeros}>{leadingZeros}</Text>
-        {balance}
-      </Text>
+      <NineSlicesImage
+        insets={{ top: '49%', right: '39%', bottom: '49%', left: '59%' }}
+        source={CURRENCY_BACKGROUNDS[currency]}
+        style={StyleSheet.absoluteFill}
+      />
+      <FancyText
+        style={{
+          ...styles.label(currency),
+          shadow: {
+            color: Skia.Color(theme.color.currencyLabelShadow),
+            offset: { x: 1, y: 1 },
+            blurRadius: 0.001, // 0 radius is not supported
+          },
+        }}
+        text={formatCurrency(balance)}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
+    flexShrink: 1,
     flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.xs,
+    marginVertical: -theme.spacing.l,
+    paddingVertical: theme.spacing.xl,
+    paddingRight: theme.spacing.m,
+    paddingLeft: '11%',
   },
-  leadingZeros: {
-    color: theme.color.darkBlue,
-  },
-  label: {
-    fontFamily: theme.font.secondary.black,
-    fontSize: 16,
-    color: theme.color.white,
-  },
-  icon: {
-    width: 20,
-    height: 20,
-  },
+  label: (currency: Currency) => ({
+    fontFamily: theme.font.secondary.boldWide,
+    fontSize: 14,
+    color: theme.color[currency],
+    lineHeight: 14,
+    letterSpacing: -0.5,
+    skew: -0.178001, // WBP_CurrencyDisplayer2
+  }),
 }));

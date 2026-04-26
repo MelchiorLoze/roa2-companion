@@ -82,8 +82,8 @@ describe('Store', () => {
 
     expect(withinDialog.getByText(testItemList[0].name)).toBeTruthy();
     expect(withinDialog.getByText('Are you sure you want to buy this icon for 2000?')).toBeTruthy();
-    expect(withinDialog.getByRole('button', { name: 'Close' })).toBeTruthy();
-    expect(withinDialog.getByRole('button', { name: 'Confirm' })).toBeTruthy();
+    expect(withinDialog.getByRole('button', { name: 'CLOSE' })).toBeTruthy();
+    expect(withinDialog.getByRole('button', { name: 'CONFIRM' })).toBeTruthy();
   });
 
   it('does not show the confirmation dialog when the selected item does not have a coin price', () => {
@@ -121,7 +121,7 @@ describe('Store', () => {
     const dialog = screen.getByTestId('dialog');
     expect(dialog).toBeTruthy();
 
-    const closeButton = within(dialog).getByRole('button', { name: 'Close' });
+    const closeButton = within(dialog).getByRole('button', { name: 'CLOSE' });
     fireEvent.press(closeButton);
 
     expect(screen.queryByTestId('dialog')).toBeNull();

@@ -1,7 +1,16 @@
 import { type FontSource } from 'expo-font';
 
-export const AgencyFBBlack: FontSource = require('./AgencyFB-Black.otf');
-export const AgencyFBBold: FontSource = require('./AgencyFB-Bold.ttf');
+const AgencyFBBlack: FontSource = require('./AgencyFB-Black.otf');
+const AgencyFBBold: FontSource = require('./AgencyFB-Bold.ttf');
+const AgencyFBBoldWide: FontSource = require('./AgencyFB-BoldWide.ttf');
 
-export const FranklinGothicDemiCondItalic: FontSource = require('./FranklinGothicDemiCond-Italic.otf');
-export const FranklinGothicDemiCondRegular: FontSource = require('./FranklinGothicDemiCond-Regular.ttf');
+const FranklinGothicDemiCondItalic: FontSource = require('./FranklinGothicDemiCond-Italic.otf');
+const FranklinGothicDemiCondRegular: FontSource = require('./FranklinGothicDemiCond-Regular.ttf');
+
+export const FONTS: Record<FontFamily, FontSource> = {
+  'AgencyFB-Black': AgencyFBBlack,
+  'AgencyFB-Bold': AgencyFBBold,
+  'AgencyFB-BoldWide': AgencyFBBoldWide,
+  'FranklinGothicDemiCond-Italic': FranklinGothicDemiCondItalic,
+  'FranklinGothicDemiCond-Regular': FranklinGothicDemiCondRegular,
+};

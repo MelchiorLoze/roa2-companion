@@ -55,56 +55,92 @@ exports[`SignIn matches snapshot 1`] = `
         style={
           {
             "gap": 4,
+            "width": "100%",
           }
         }
       >
-        <TextInput
-          autoCapitalize="none"
-          autoComplete="email"
-          cursorColor="white"
-          onChangeText={[Function]}
-          placeholder="EMAIL"
-          placeholderTextColor="#676767"
+        <View
           style={
             {
-              "backgroundColor": "#161616",
-              "borderColor": "#FEDD84",
-              "borderWidth": 1,
-              "color": "white",
-              "padding": 8,
-              "width": "100%",
+              "boxShadow": [
+                {
+                  "blurRadius": 3,
+                  "color": "#161616",
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "spreadDistance": 3,
+                },
+              ],
             }
           }
-          value=""
-        />
+        >
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="email"
+            cursorColor="white"
+            onChangeText={[Function]}
+            placeholder="EMAIL"
+            placeholderTextColor="#676767"
+            selectionColor="#664D9A"
+            style={
+              {
+                "backgroundColor": "#161616",
+                "borderRadius": 1,
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "padding": 8,
+              }
+            }
+            value=""
+          />
+        </View>
       </View>
       <View
         style={
           {
             "gap": 4,
+            "width": "100%",
           }
         }
       >
-        <TextInput
-          autoCapitalize="none"
-          autoComplete="current-password"
-          cursorColor="white"
-          onChangeText={[Function]}
-          placeholder="PASSWORD"
-          placeholderTextColor="#676767"
-          secureTextEntry={true}
+        <View
           style={
             {
-              "backgroundColor": "#161616",
-              "borderColor": "#FEDD84",
-              "borderWidth": 1,
-              "color": "white",
-              "padding": 8,
-              "width": "100%",
+              "boxShadow": [
+                {
+                  "blurRadius": 3,
+                  "color": "#161616",
+                  "offsetX": 0,
+                  "offsetY": 0,
+                  "spreadDistance": 3,
+                },
+              ],
             }
           }
-          value=""
-        />
+        >
+          <TextInput
+            autoCapitalize="none"
+            autoComplete="current-password"
+            cursorColor="white"
+            onChangeText={[Function]}
+            placeholder="PASSWORD"
+            placeholderTextColor="#676767"
+            secureTextEntry={true}
+            selectionColor="#664D9A"
+            style={
+              {
+                "backgroundColor": "#161616",
+                "borderRadius": 1,
+                "color": "white",
+                "fontFamily": "FranklinGothicDemiCond-Regular",
+                "fontSize": 16,
+                "padding": 8,
+              }
+            }
+            value=""
+          />
+        </View>
         <View
           style={
             {
@@ -202,55 +238,42 @@ exports[`SignIn matches snapshot 1`] = `
       onStartShouldSetResponder={[Function]}
       role="button"
     >
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            4281147000,
-            4284184016,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0.006,
-            0,
-          ]
-        }
+      <View
+        onLayout={[Function]}
         style={
           {
-            "padding": 4,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "paddingBottom": 9,
             "paddingHorizontal": 24,
+            "paddingTop": 8,
           }
         }
       >
         <Text
           style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-                "textAlign": "center",
-                "textTransform": "uppercase",
-              },
-              false,
-            ]
+            {
+              "color": "#FFFFFF",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 16,
+              "textShadowColor": "#28074B80",
+              "textShadowRadius": 1,
+            }
           }
         >
-          Login
+          LOGIN
         </Text>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </View>
   <View
@@ -378,56 +401,92 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
           style={
             {
               "gap": 4,
+              "width": "100%",
             }
           }
         >
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="email"
-            cursorColor="white"
-            onChangeText={[Function]}
-            placeholder="EMAIL"
-            placeholderTextColor="#676767"
+          <View
             style={
               {
-                "backgroundColor": "#161616",
-                "borderColor": "#FEDD84",
-                "borderWidth": 1,
-                "color": "white",
-                "padding": 8,
-                "width": "100%",
+                "boxShadow": [
+                  {
+                    "blurRadius": 3,
+                    "color": "#161616",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 3,
+                  },
+                ],
               }
             }
-            value=""
-          />
+          >
+            <TextInput
+              autoCapitalize="none"
+              autoComplete="email"
+              cursorColor="white"
+              onChangeText={[Function]}
+              placeholder="EMAIL"
+              placeholderTextColor="#676767"
+              selectionColor="#664D9A"
+              style={
+                {
+                  "backgroundColor": "#161616",
+                  "borderRadius": 1,
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "padding": 8,
+                }
+              }
+              value=""
+            />
+          </View>
         </View>
         <View
           style={
             {
               "gap": 4,
+              "width": "100%",
             }
           }
         >
-          <TextInput
-            autoCapitalize="none"
-            autoComplete="current-password"
-            cursorColor="white"
-            onChangeText={[Function]}
-            placeholder="PASSWORD"
-            placeholderTextColor="#676767"
-            secureTextEntry={true}
+          <View
             style={
               {
-                "backgroundColor": "#161616",
-                "borderColor": "#FEDD84",
-                "borderWidth": 1,
-                "color": "white",
-                "padding": 8,
-                "width": "100%",
+                "boxShadow": [
+                  {
+                    "blurRadius": 3,
+                    "color": "#161616",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 3,
+                  },
+                ],
               }
             }
-            value=""
-          />
+          >
+            <TextInput
+              autoCapitalize="none"
+              autoComplete="current-password"
+              cursorColor="white"
+              onChangeText={[Function]}
+              placeholder="PASSWORD"
+              placeholderTextColor="#676767"
+              secureTextEntry={true}
+              selectionColor="#664D9A"
+              style={
+                {
+                  "backgroundColor": "#161616",
+                  "borderRadius": 1,
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "padding": 8,
+                }
+              }
+              value=""
+            />
+          </View>
           <View
             style={
               {
@@ -525,55 +584,42 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         onStartShouldSetResponder={[Function]}
         role="button"
       >
-        <ViewManagerAdapter_ExpoLinearGradient
-          colors={
-            [
-              4281147000,
-              4284184016,
-            ]
-          }
-          endPoint={
-            [
-              1,
-              0,
-            ]
-          }
-          locations={
-            [
-              0,
-              1,
-            ]
-          }
-          startPoint={
-            [
-              0.006,
-              0,
-            ]
-          }
+        <View
+          onLayout={[Function]}
           style={
             {
-              "padding": 4,
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "paddingBottom": 9,
               "paddingHorizontal": 24,
+              "paddingTop": 8,
             }
           }
         >
           <Text
             style={
-              [
-                {
-                  "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textAlign": "center",
-                  "textTransform": "uppercase",
-                },
-                false,
-              ]
+              {
+                "color": "#FFFFFF",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 16,
+                "textShadowColor": "#28074B80",
+                "textShadowRadius": 1,
+              }
             }
           >
-            Login
+            LOGIN
           </Text>
-        </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
       </View>
     </View>
     <View
@@ -692,10 +738,12 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
           onStartShouldSetResponder={[Function]}
           style={
             {
-              "backgroundColor": "#161616AA",
-              "height": "100%",
+              "backgroundColor": "#000000AA",
+              "bottom": 0,
+              "left": 0,
               "position": "absolute",
-              "width": "100%",
+              "right": 0,
+              "top": 0,
             }
           }
           testID="overlay"
@@ -703,135 +751,204 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         <View
           style={
             {
-              "backgroundColor": "#0B0825",
-              "borderColor": "#FEDD84",
-              "borderWidth": 2,
-              "gap": 16,
-              "padding": 16,
+              "backgroundColor": "#4C12AA",
+              "borderColor": "#A95AF1",
+              "borderWidth": 2.5,
               "width": "85%",
             }
           }
           testID="dialog"
         >
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
-              }
-            }
-          >
-            After submitting, you will receive an email from Aether Studios allowing you to reset your password
-          </Text>
           <View
             style={
               {
-                "gap": 4,
+                "alignItems": "center",
+                "borderColor": "#4C12AA",
+                "borderWidth": 2,
+                "gap": 16,
+                "minHeight": "20%",
+                "padding": 16,
               }
             }
           >
-            <TextInput
-              autoCapitalize="none"
-              autoComplete="email"
-              cursorColor="white"
-              onChangeText={[Function]}
-              placeholder="EMAIL"
-              placeholderTextColor="#676767"
+            <View
               style={
                 {
-                  "backgroundColor": "#161616",
-                  "borderColor": "#FEDD84",
-                  "borderWidth": 1,
-                  "color": "white",
-                  "padding": 8,
-                  "width": "100%",
-                }
-              }
-              value=""
-            />
-          </View>
-          <View
-            accessibilityState={
-              {
-                "busy": undefined,
-                "checked": undefined,
-                "disabled": undefined,
-                "expanded": undefined,
-                "selected": undefined,
-              }
-            }
-            accessibilityValue={
-              {
-                "max": undefined,
-                "min": undefined,
-                "now": undefined,
-                "text": undefined,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            onBlur={[Function]}
-            onClick={[Function]}
-            onFocus={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
-            role="button"
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4281147000,
-                  4284184016,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              locations={
-                [
-                  0,
-                  1,
-                ]
-              }
-              startPoint={
-                [
-                  0.006,
-                  0,
-                ]
-              }
-              style={
-                {
-                  "padding": 4,
-                  "paddingHorizontal": 24,
+                  "bottom": 0,
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": 0,
                 }
               }
             >
-              <Text
-                style={
+              <ViewManagerAdapter_ExpoImage
+                bottom={0}
+                containerViewRef={"[React.ref]"}
+                contentFit="fill"
+                contentPosition={
+                  {
+                    "left": "50%",
+                    "top": "50%",
+                  }
+                }
+                left={0}
+                nativeViewRef={"[React.ref]"}
+                onError={[Function]}
+                onLoad={[Function]}
+                onLoadStart={[Function]}
+                onProgress={[Function]}
+                placeholder={[]}
+                position="absolute"
+                right={0}
+                sfEffect={null}
+                source={
                   [
                     {
+                      "testUri": "../../../src/assets/images/ui/dialog-bg.png",
+                    },
+                  ]
+                }
+                style={
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+                symbolSize={null}
+                symbolWeight={null}
+                top={0}
+                transition={null}
+              />
+            </View>
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              After submitting, you will receive an email from Aether Studios allowing you to reset your password
+            </Text>
+            <View
+              style={
+                {
+                  "gap": 4,
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "boxShadow": [
+                      {
+                        "blurRadius": 3,
+                        "color": "#161616",
+                        "offsetX": 0,
+                        "offsetY": 0,
+                        "spreadDistance": 3,
+                      },
+                    ],
+                  }
+                }
+              >
+                <TextInput
+                  autoCapitalize="none"
+                  autoComplete="email"
+                  cursorColor="white"
+                  onChangeText={[Function]}
+                  placeholder="EMAIL"
+                  placeholderTextColor="#676767"
+                  selectionColor="#664D9A"
+                  style={
+                    {
+                      "backgroundColor": "#161616",
+                      "borderRadius": 1,
                       "color": "white",
                       "fontFamily": "FranklinGothicDemiCond-Regular",
                       "fontSize": 16,
-                      "textAlign": "center",
-                      "textTransform": "uppercase",
-                    },
-                    false,
-                  ]
+                      "padding": 8,
+                    }
+                  }
+                  value=""
+                />
+              </View>
+            </View>
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              role="button"
+            >
+              <View
+                onLayout={[Function]}
+                style={
+                  {
+                    "bottom": 0,
+                    "left": 0,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
+                  }
+                }
+              />
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "paddingBottom": 9,
+                    "paddingHorizontal": 24,
+                    "paddingTop": 8,
+                  }
                 }
               >
-                Reset password
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "#28074B80",
+                      "textShadowRadius": 1,
+                    }
+                  }
+                >
+                  RESET PASSWORD
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
       </View>
