@@ -4,6 +4,8 @@ import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
+const DOUBLES_ELO_OFFSET = 20000;
+
 type UserDoublesStatsState = RefreshableState<{
   stats: {
     elo: number;
@@ -47,7 +49,7 @@ export const useUserDoublesStats = (): UserDoublesStatsState => {
     return {
       ...baseState,
       stats: {
-        elo: rawStats[StatisticName.DOUBLES_ELO] ? rawStats[StatisticName.DOUBLES_ELO] - 10000 : 1000,
+        elo: rawStats[StatisticName.DOUBLES_ELO] ? rawStats[StatisticName.DOUBLES_ELO] - DOUBLES_ELO_OFFSET : 1000,
         setStats: { setCount: rawStats[StatisticName.DOUBLES_SETS] ?? 0 },
         position: userDoublesPosition.position,
         profile: userDoublesPosition.profile,

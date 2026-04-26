@@ -10,7 +10,7 @@ const useGetPlayerStatisticsMock = jest.mocked(useGetPlayerStatistics);
 const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatistics> = {
   statistics: {
     [StatisticName.RANKED_SEASON_INDEX]: 4,
-    [StatisticName.DOUBLES_ELO]: 10950,
+    [StatisticName.DOUBLES_ELO]: 20950,
     [StatisticName.DOUBLES_SETS]: 30,
     [StatisticName.DOUBLES_BEST_WIN_STREAK]: 5,
   },
@@ -162,7 +162,7 @@ describe('useUserDoublesStats', () => {
   it('handles missing set count by defaulting to 0', () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
-      [StatisticName.DOUBLES_ELO]: 12000,
+      [StatisticName.DOUBLES_ELO]: 22000,
       [StatisticName.DOUBLES_BEST_WIN_STREAK]: 7,
     };
 
@@ -181,7 +181,7 @@ describe('useUserDoublesStats', () => {
   it('handles missing best win streak by defaulting to 0', () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
-      [StatisticName.DOUBLES_ELO]: 11500,
+      [StatisticName.DOUBLES_ELO]: 21500,
       [StatisticName.DOUBLES_SETS]: 15,
     };
 

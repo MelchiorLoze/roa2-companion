@@ -4,6 +4,8 @@ import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
+const CREWS_ELO_OFFSET = 10000;
+
 type UserCrewsStatsState = RefreshableState<{
   stats: {
     elo: number;
@@ -47,7 +49,7 @@ export const useUserCrewsStats = (): UserCrewsStatsState => {
     return {
       ...baseState,
       stats: {
-        elo: rawStats[StatisticName.CREWS_ELO] ? rawStats[StatisticName.CREWS_ELO] - 10000 : 1000,
+        elo: rawStats[StatisticName.CREWS_ELO] ? rawStats[StatisticName.CREWS_ELO] - CREWS_ELO_OFFSET : 1000,
         setStats: { setCount: rawStats[StatisticName.CREWS_SETS] ?? 0 },
         position: userCrewsPosition.position,
         profile: userCrewsPosition.profile,
