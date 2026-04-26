@@ -4,9 +4,9 @@ import { type PlayerPosition, StatisticName } from '../../../types/stats';
 import { useGetLeaderboardAroundPlayer } from '../../data/useGetLeaderboardAroundPlayer/useGetLeaderboardAroundPlayer';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
-const CREWS_ELO_OFFSET = 10000;
+const DOUBLES_ELO_OFFSET = 20000;
 
-type UserCrewsStatsState = RefreshableState<{
+type UserDoublesStatsState = RefreshableState<{
   stats: {
     elo: number;
     setStats: {
@@ -16,7 +16,7 @@ type UserCrewsStatsState = RefreshableState<{
   } & Pick<PlayerPosition, 'position' | 'profile'>;
 }>;
 
-export const useUserCrewsStats = (): UserCrewsStatsState => {
+export const useUserDoublesStats = (): UserDoublesStatsState => {
   const {
     statistics: rawStats,
     isLoading: isLoadingRawStats,
@@ -30,7 +30,7 @@ export const useUserCrewsStats = (): UserCrewsStatsState => {
     refetch: refetchPlayerPosition,
   } = useGetLeaderboardAroundPlayer({
     maxResultCount: 1,
-    statisticName: StatisticName.CREWS_ELO,
+    statisticName: StatisticName.DOUBLES_ELO,
   });
 
   const baseState = {
@@ -45,15 +45,15 @@ export const useUserCrewsStats = (): UserCrewsStatsState => {
   } as const;
 
   if (rawStats && playerPositions) {
-    const [userCrewsPosition] = playerPositions;
+    const [userDoublesPosition] = playerPositions;
     return {
       ...baseState,
       stats: {
-        elo: rawStats[StatisticName.CREWS_ELO] ? rawStats[StatisticName.CREWS_ELO] - CREWS_ELO_OFFSET : 1000,
-        setStats: { setCount: rawStats[StatisticName.CREWS_SETS] ?? 0 },
-        position: userCrewsPosition.position,
-        profile: userCrewsPosition.profile,
-        bestWinStreak: rawStats[StatisticName.CREWS_BEST_WIN_STREAK] ?? 0,
+        elo: rawStats[StatisticName.DOUBLES_ELO] ? rawStats[StatisticName.DOUBLES_ELO] - DOUBLES_ELO_OFFSET : 1000,
+        setStats: { setCount: rawStats[StatisticName.DOUBLES_SETS] ?? 0 },
+        position: userDoublesPosition.position,
+        profile: userDoublesPosition.profile,
+        bestWinStreak: rawStats[StatisticName.DOUBLES_BEST_WIN_STREAK] ?? 0,
       },
     } as const;
   }

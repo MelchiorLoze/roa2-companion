@@ -30,6 +30,15 @@ export enum StatisticName {
   RANKED_BEST_WIN_STREAK = 'Ranked_PeakWinStreak',
 
   /**
+   * DOUBLES STATS
+   * ! The following numbers are counted in number of SETS (bo3)
+   */
+
+  DOUBLES_ELO = 'Doubles_Elo',
+  DOUBLES_SETS = 'Doubles_Matches',
+  DOUBLES_BEST_WIN_STREAK = 'Doubles_WinStreak',
+
+  /**
    * CREWS STATS
    * ! The following numbers are counted in number of SETS (bo3)
    */

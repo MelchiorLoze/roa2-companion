@@ -115,18 +115,18 @@ const theme = {
         colors: ['#000000FF', '#00000000'],
         times: [-0.693334, 0.306666],
       },
-      seasonTitleWrapper: (crews = false) => ({
+      seasonTitleWrapper: (ranked = false) => ({
         // Mod Kit - FadeCurve with a tint
-        colors: crews ? (['#65CADAFF', '#65CADA00'] as const) : (['#FF5039FF', '#FF503900'] as const),
+        colors: ranked ? (['#FF5039FF', '#FF503900'] as const) : (['#65CADAFF', '#65CADA00'] as const),
         times: [0, 0.8] as const, // estimated ~80% width
       }),
-      seasonTitleLeftToRight: (crews = false) => ({
+      seasonTitleLeftToRight: (ranked = false) => ({
         // Mod Kit - FadeCurve with a tint
-        colors: crews ? (['#293B61FF', '#293B6100'] as const) : (['#610B2EFF', '#610B2E00'] as const),
+        colors: ranked ? (['#610B2EFF', '#610B2E00'] as const) : (['#293B61FF', '#293B6100'] as const),
       }),
-      seasonTitleRightToLeft: (crews = false) => ({
+      seasonTitleRightToLeft: (ranked = false) => ({
         // Mod Kit - FadeCurve with a tint
-        colors: crews ? (['#3D399000', '#3D3990FF'] as const) : (['#BA1A2700', '#BA1A27FF'] as const),
+        colors: ranked ? (['#BA1A2700', '#BA1A27FF'] as const) : (['#3D399000', '#3D3990FF'] as const),
       }),
     },
   },

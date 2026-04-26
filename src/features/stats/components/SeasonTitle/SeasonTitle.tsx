@@ -5,7 +5,7 @@ import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   seasonName: string;
-  variant: 'ranked' | 'crews';
+  variant: 'ranked' | 'doubles' | 'crews';
 };
 
 export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
@@ -14,17 +14,17 @@ export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        {...theme.color.gradient.seasonTitleWrapper(variant === 'crews')}
+        {...theme.color.gradient.seasonTitleWrapper(variant === 'ranked')}
         horizontal
         style={styles.wrapper}
       >
         <LinearGradient
-          {...theme.color.gradient.seasonTitleLeftToRight(variant === 'crews')}
+          {...theme.color.gradient.seasonTitleLeftToRight(variant === 'ranked')}
           horizontal
           style={styles.titleBackground}
         />
         <LinearGradient
-          {...theme.color.gradient.seasonTitleRightToLeft(variant === 'crews')}
+          {...theme.color.gradient.seasonTitleRightToLeft(variant === 'ranked')}
           horizontal
           style={styles.titleBackground}
         />
