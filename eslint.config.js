@@ -76,6 +76,7 @@ const config = defineConfig([
       '@typescript-eslint/no-deprecated': 'warn',
       '@typescript-eslint/no-require-imports': ['error', { allow: ['\\.png$', '\\.otf$', '\\.ttf$'] }],
       '@typescript-eslint/no-unnecessary-condition': 'warn',
+      '@typescript-eslint/no-unnecessary-type-assertion': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
