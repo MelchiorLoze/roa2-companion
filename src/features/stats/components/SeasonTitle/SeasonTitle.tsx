@@ -5,7 +5,7 @@ import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
 type Props = {
   seasonName: string;
-  variant: 'ranked' | 'crews' | 'doubles';
+  variant: 'ranked' | 'doubles' | 'crews';
 };
 
 export const SeasonTitle = ({ seasonName, variant }: Readonly<Props>) => {
