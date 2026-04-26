@@ -1,6 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
-import { type BottomTabBarButtonProps, type BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
+import {
+  type BottomTabBarButtonProps,
+  type BottomTabHeaderProps,
+  type BottomTabNavigationOptions,
+} from '@react-navigation/bottom-tabs';
 import { Redirect, Tabs } from 'expo-router';
+import { type ComponentProps } from 'react';
 import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -14,6 +19,13 @@ const renderHeader = ({ options }: BottomTabHeaderProps) => <Header showCurrenci
 const renderTabBarButtonWithoutFeedback = (props: BottomTabBarButtonProps) => (
   <Pressable {...props} android_ripple={undefined} ref={undefined} />
 );
+
+type IconProps = ComponentProps<Required<BottomTabNavigationOptions>['tabBarIcon']>;
+
+const renderStoreIcon = ({ color }: IconProps) => <Ionicons color={color} name="cart-sharp" size={24} />;
+const renderStatsIcon = ({ color }: IconProps) => <Ionicons color={color} name="stats-chart-sharp" size={24} />;
+const renderESportIcon = ({ color }: IconProps) => <Ionicons color={color} name="trophy-sharp" size={24} />;
+const renderMoreIcon = ({ color }: IconProps) => <Ionicons color={color} name="information-circle-sharp" size={24} />;
 
 export default function PrivateLayout() {
   const { theme } = useUnistyles();
@@ -42,14 +54,14 @@ export default function PrivateLayout() {
           options={{
             title: 'Rotating coin shop',
             tabBarLabel: 'Store',
-            tabBarIcon: ({ color }) => <Ionicons color={color} name="cart-sharp" size={24} />,
+            tabBarIcon: renderStoreIcon,
           }}
         />
         <Tabs.Screen
           name="stats"
           options={{
             title: 'Stats',
-            tabBarIcon: ({ color }) => <Ionicons color={color} name="stats-chart-sharp" size={24} />,
+            tabBarIcon: renderStatsIcon,
           }}
         />
         <Tabs.Screen
@@ -57,13 +69,13 @@ export default function PrivateLayout() {
           options={{
             title: 'start.gg Tournaments',
             tabBarLabel: 'E-Sport',
-            tabBarIcon: ({ color }) => <Ionicons color={color} name="trophy-sharp" size={24} />,
+            tabBarIcon: renderESportIcon,
           }}
         />
         <Tabs.Screen
           name="more"
           options={{
-            tabBarIcon: ({ color }) => <Ionicons color={color} name="information-circle-sharp" size={24} />,
+            tabBarIcon: renderMoreIcon,
           }}
         />
       </Tabs>

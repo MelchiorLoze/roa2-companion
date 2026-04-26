@@ -25,10 +25,10 @@ export const useGetMyRotationalCoinStore = () => {
   const { data, isPending, isFetching } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
-      apiClient.post<GetMyRotationalCoinStoreResponse>('/CloudScript/ExecuteFunction', {
+      apiClient.post<GetMyRotationalCoinStoreResponse, ExecuteFunctionRequest>('/CloudScript/ExecuteFunction', {
         body: {
           FunctionName: 'GetMyRotationalCoinStore',
-        } as ExecuteFunctionRequest,
+        },
       }),
     select: ({ FunctionResult: result }): RotationalCoinStore => ({
       itemIds: result.itemIds.filter((id) => id !== null),

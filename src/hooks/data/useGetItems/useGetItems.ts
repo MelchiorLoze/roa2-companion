@@ -4,6 +4,10 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 import { type Item, type ItemDto } from '@/types/item';
 import { itemFromDto } from '@/utils/itemFromDto';
 
+type GetItemsRequest = Readonly<{
+  Ids: readonly Item['id'][];
+}>;
+
 type GetItemsResponse = Readonly<{
   Items: ItemDto[];
 }>;
@@ -14,9 +18,9 @@ export const useGetItems = (itemIds: readonly Item['id'][]) => {
 
   const { data, isPending } = useQuery({
     queryKey: ['items', ...itemIds],
-    queryFn: () => apiClient.post<GetItemsResponse>('/Catalog/GetItems', { body: { Ids: itemIds } }),
+    queryFn: () => apiClient.post<GetItemsResponse, GetItemsRequest>('/Catalog/GetItems', { body: { Ids: itemIds } }),
     enabled,
-    select: (data) => data.Items.map(itemFromDto),
+    select: ({ Items: items }) => items.map(itemFromDto),
     staleTime: Infinity,
     gcTime: Infinity,
   });

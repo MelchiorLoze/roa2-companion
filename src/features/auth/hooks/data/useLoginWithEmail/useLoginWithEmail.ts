@@ -6,9 +6,15 @@ import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApi
 
 import { type Session } from '../../../types/session';
 
-type LoginWithEmailAddressRequest = Readonly<{
+type Credentials = Readonly<{
   email: string;
   password: string;
+}>;
+
+type LoginWithEmailAddressRequest = Readonly<{
+  TitleId: string;
+  Email: string;
+  Password: string;
 }>;
 
 type LoginWithEmailAddressResponse = DeepReadonly<{
@@ -26,18 +32,22 @@ export const useLoginWithEmail = () => {
     isPending,
     isError,
   } = useMutation({
-    mutationFn: async ({ email, password }: LoginWithEmailAddressRequest): Promise<Session> => {
-      const data = await apiClient.post<LoginWithEmailAddressResponse>('/Client/LoginWithEmailAddress', {
-        body: {
-          TitleId: TITLE_ID,
-          Email: email,
-          Password: password,
+    mutationFn: async ({ email, password }: Credentials): Promise<Session> => {
+      const {
+        EntityToken: { EntityToken: entityToken, TokenExpiration: tokenExpiration },
+      } = await apiClient.post<LoginWithEmailAddressResponse, LoginWithEmailAddressRequest>(
+        '/Client/LoginWithEmailAddress',
+        {
+          body: {
+            TitleId: TITLE_ID,
+            Email: email,
+            Password: password,
+          },
         },
-      });
-      const result = data.EntityToken;
+      );
       return {
-        entityToken: result.EntityToken,
-        expirationDate: DateTime.fromISO(result.TokenExpiration, { zone: 'utc' }),
+        entityToken,
+        expirationDate: DateTime.fromISO(tokenExpiration, { zone: 'utc' }),
       };
     },
   });

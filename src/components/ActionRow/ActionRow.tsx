@@ -57,9 +57,6 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.s,
     backgroundColor: theme.color.background,
   },
-  containerPressed: {
-    backgroundColor: theme.color.accent,
-  },
   logo: {
     width: 20,
     height: 20,

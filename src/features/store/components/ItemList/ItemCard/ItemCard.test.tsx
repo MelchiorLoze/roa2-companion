@@ -10,7 +10,7 @@ jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
   size: { width: 0, height: 0 },
 });
 
-const item: Item = {
+const mockItem: Item = {
   id: '1',
   imageUrl: new URL('https://www.example.com/deatheffect/deatheffect_item_1.png'),
   name: 'Item Title',
@@ -30,24 +30,24 @@ const renderComponent = (item: Item) => {
 
 describe('ItemCard', () => {
   it('renders correctly', () => {
-    renderComponent(item);
+    renderComponent(mockItem);
 
-    expect(screen.getByText(item.name)).toBeTruthy();
-    expect(screen.getByText(CATEGORY_LABELS[item.category].toUpperCase())).toBeTruthy();
-    expect(screen.getByText(item.coinPrice!.toString())).toBeTruthy();
-    expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
+    expect(screen.getByText(mockItem.name)).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[mockItem.category].toUpperCase())).toBeTruthy();
+    expect(screen.getByText(mockItem.coinPrice!.toString())).toBeTruthy();
+    expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
 
   it('renders correctly when coinPrice is not defined', () => {
-    renderComponent({ ...item, coinPrice: undefined });
+    renderComponent({ ...mockItem, coinPrice: undefined });
 
-    expect(screen.getByText(item.name)).toBeTruthy();
-    expect(screen.getByText(CATEGORY_LABELS[item.category].toUpperCase())).toBeTruthy();
-    expect(screen.queryByText(item.buckPrice!.toString())).toBeNull();
+    expect(screen.getByText(mockItem.name)).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[mockItem.category].toUpperCase())).toBeTruthy();
+    expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
 
   it('calls onPress when pressed', () => {
-    renderComponent(item);
+    renderComponent(mockItem);
 
     const card = screen.getByRole('button');
     fireEvent.press(card);

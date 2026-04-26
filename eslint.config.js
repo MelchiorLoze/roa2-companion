@@ -1,24 +1,22 @@
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
+import { resolveFlatConfig } from '@leancodepl/resolve-eslint-flat-config';
+import reactNativeConfig from '@react-native/eslint-config/flat';
 import tsParser from '@typescript-eslint/parser';
 import expoConfig from 'eslint-config-expo/flat.js';
 import jest from 'eslint-plugin-jest';
 import react from 'eslint-plugin-react';
 import reactCompiler from 'eslint-plugin-react-compiler';
+import unistyles from 'eslint-plugin-react-native-unistyles';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import { defineConfig } from 'eslint/config';
 import { dirname } from 'path';
+import typescript from 'typescript-eslint';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-});
-
-export default [
+const config = defineConfig([
   // Global ignores - must be first
   {
     ignores: ['dist/*', '**/*.js', '**/*.cjs', '**/*.snap', 'node_modules/*', 'android/*', 'ios/*'],
@@ -26,23 +24,26 @@ export default [
 
   // Base configs
   js.configs.recommended,
-  ...expoConfig,
 
-  // React Native config (using compat for old-style config)
-  ...compat.extends('plugin:react-native/all'),
-
-  // React Compiler config
-  reactCompiler.configs.recommended,
+  // TypeScript configs
+  ...typescript.configs.recommendedTypeChecked,
+  ...typescript.configs.stylisticTypeChecked,
 
   // React configs
   react.configs.flat.recommended,
   react.configs.flat['jsx-runtime'],
 
-  // TypeScript configs
-  ...compat.extends(
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:@typescript-eslint/stylistic-type-checked',
-  ),
+  // React Compiler config
+  reactCompiler.configs.recommended,
+
+  // React Native unistyles config
+  ...unistyles.configs.recommended,
+
+  // React Native config
+  ...reactNativeConfig,
+
+  // Expo config
+  ...expoConfig,
 
   // Main configuration
   {
@@ -61,6 +62,7 @@ export default [
     rules: {
       // React Native
       'react-native/sort-styles': 'off',
+      'react-native/no-unused-styles': 'warn',
 
       // React
       'react/jsx-sort-props': 'warn',
@@ -85,6 +87,8 @@ export default [
       ],
       '@typescript-eslint/require-await': 'off',
       '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
+
+      'no-void': 'off',
 
       // Import sorting
       'simple-import-sort/exports': 'warn',
@@ -112,10 +116,13 @@ export default [
   {
     files: ['**/*.test.*', '**/__tests__/**'],
     plugins: { jest },
-    ...compat.extends('plugin:jest/recommended')[0],
+    ...jest.configs['flat/recommended'],
     rules: {
+      ...jest.configs['flat/recommended'].rules,
       '@typescript-eslint/unbound-method': 'off',
       'jest/unbound-method': 'error',
     },
   },
-];
+]);
+
+export default resolveFlatConfig(config);

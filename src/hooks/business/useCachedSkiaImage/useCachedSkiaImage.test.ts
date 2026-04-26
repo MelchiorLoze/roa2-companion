@@ -252,10 +252,10 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result, rerender } = renderHook<ReturnType<typeof useCachedSkiaImage>, { urlMock: typeof urlMock }>(
-        ({ urlMock }) => useCachedSkiaImage(urlMock),
+      const { result, rerender } = renderHook<ReturnType<typeof useCachedSkiaImage>, { url: URL }>(
+        ({ url }) => useCachedSkiaImage(url),
         {
-          initialProps: { urlMock },
+          initialProps: { url: urlMock },
         },
       );
 
@@ -263,7 +263,7 @@ describe('useCachedSkiaImage', () => {
       await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
       // Change the friendlyId
-      rerender({ urlMock: otherUrlMock });
+      rerender({ url: otherUrlMock });
 
       // Should eventually get the second image
       await waitFor(() => expect(result.current.image).toBe(otherSkImageMock));

@@ -17,10 +17,10 @@ export const useGetPlayerStatistics = () => {
   const { data, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['playerStatistics'],
     queryFn: () => apiClient.post<GetPlayerStatisticsResponse>('/Client/GetPlayerStatistics'),
-    select: (data): PlayerStatistics =>
-      data.Statistics.reduce<PlayerStatistics>(
-        (acc, { StatisticName: name, Value }) => {
-          acc[name] = Value;
+    select: ({ Statistics: statistics }): PlayerStatistics =>
+      statistics.reduce<PlayerStatistics>(
+        (acc, { StatisticName: name, Value: value }) => {
+          acc[name] = value;
           return acc;
         },
         { [StatisticName.RANKED_SEASON_INDEX]: 1 },

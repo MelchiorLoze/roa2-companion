@@ -6,9 +6,18 @@ import { imageUrlFromFriendlyId } from '@/utils/imageUrlFromFriendlyId';
 
 import { type PlayerPosition, type StatisticName } from '../../../types/stats';
 
-type GetLeaderboardAroundPlayerRequest = Readonly<{
+type GetLeaderboardAroundPlayerOptions = Readonly<{
   maxResultCount: number;
   statisticName?: StatisticName;
+}>;
+
+type GetLeaderboardAroundPlayerRequest = DeepReadonly<{
+  StatisticName: StatisticName;
+  MaxResultsCount: number;
+  ProfileConstraints: {
+    ShowDisplayName: boolean;
+    ShowAvatarUrl: boolean;
+  };
 }>;
 
 type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
@@ -22,34 +31,43 @@ type GetLeaderboardAroundPlayerResponse = DeepReadonly<{
   }[];
 }>;
 
-export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerRequest) => {
+export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }: GetLeaderboardAroundPlayerOptions) => {
   const apiClient = useGameApiClient();
 
   const { data, isPending, isRefetching, refetch } = useQuery({
     queryKey: ['getLeaderboardAroundPlayer', maxResultCount, statisticName],
     queryFn: () =>
-      apiClient.post<GetLeaderboardAroundPlayerResponse>('/Client/GetLeaderboardAroundPlayer', {
-        body: {
-          StatisticName: statisticName,
-          MaxResultsCount: maxResultCount,
-          ProfileConstraints: {
-            ShowDisplayName: true,
-            ShowAvatarUrl: true,
+      apiClient.post<GetLeaderboardAroundPlayerResponse, GetLeaderboardAroundPlayerRequest>(
+        '/Client/GetLeaderboardAroundPlayer',
+        {
+          body: {
+            StatisticName: statisticName!,
+            MaxResultsCount: maxResultCount,
+            ProfileConstraints: {
+              ShowDisplayName: true,
+              ShowAvatarUrl: true,
+            },
           },
         },
-      }),
-    select: (data): [PlayerPosition, ...PlayerPosition[]] => {
-      if (!data.Leaderboard.length) throw new Error(`The player is not ranked for the statistic ${statisticName}`);
+      ),
+    select: ({ Leaderboard: leaderboards }): [PlayerPosition, ...PlayerPosition[]] => {
+      if (!leaderboards.length) throw new Error(`The player is not ranked for the statistic ${statisticName}`);
 
-      return data.Leaderboard.map(({ StatValue, Position, Profile }) => ({
-        statisticName: statisticName,
-        statisticValue: StatValue,
-        position: Position,
-        profile: {
-          playerName: Profile.DisplayName,
-          avatarUrl: imageUrlFromFriendlyId(Category.ICON, Profile.AvatarUrl),
-        },
-      })) as [PlayerPosition, ...PlayerPosition[]];
+      return leaderboards.map(
+        ({
+          StatValue: statisticValue,
+          Position: position,
+          Profile: { DisplayName: playerName, AvatarUrl: friendlyId },
+        }) => ({
+          statisticName,
+          statisticValue,
+          position,
+          profile: {
+            playerName,
+            avatarUrl: imageUrlFromFriendlyId(Category.ICON, friendlyId),
+          },
+        }),
+      ) as [PlayerPosition, ...PlayerPosition[]];
     },
     staleTime: Infinity,
     gcTime: Infinity,

@@ -8,7 +8,7 @@ type TestData = {
   id: number;
   name: string;
 };
-const responseDataMock = { response: { id: 1, name: 'Test' } as TestData };
+const responseDataMock: { response: TestData } = { response: { id: 1, name: 'Test' } };
 
 const renderUseSteamCommunityApiClient = () => {
   return renderHook(useSteamCommunityApiClient);

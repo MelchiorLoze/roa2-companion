@@ -10,7 +10,7 @@ type TestData = {
   name: string;
 };
 
-const responseDataMock = { id: 1, name: 'test' } as TestData;
+const responseDataMock: TestData = { id: 1, name: 'test' };
 
 const renderUseCompanionApiClient = () => {
   return renderHook(useCompanionApiClient);

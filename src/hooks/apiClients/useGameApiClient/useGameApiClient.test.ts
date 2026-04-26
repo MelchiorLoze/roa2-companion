@@ -19,7 +19,7 @@ type TestData = {
   id: number;
   name: string;
 };
-const responseDataMock = { data: { id: 1, name: 'test' } as TestData };
+const responseDataMock: { data: TestData } = { data: { id: 1, name: 'test' } };
 
 const renderUseGameApiClient = () => {
   return renderHook(useGameApiClient);

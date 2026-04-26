@@ -270,7 +270,7 @@ describe('useUserRankedStats', () => {
   });
 
   it('handles zero matches played when calculating win rates', () => {
-    const mockStatistics: PlayerStatistics = {
+    const mockZeroMatchesStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.RANKED_SETS]: 0,
       [StatisticName.RANKED_WINS]: 0,
@@ -278,7 +278,7 @@ describe('useUserRankedStats', () => {
 
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
-      statistics: mockStatistics,
+      statistics: mockZeroMatchesStatistics,
     });
 
     const { result } = renderUseUserRankedStats();
@@ -287,13 +287,13 @@ describe('useUserRankedStats', () => {
   });
 
   it('handles undefined matches played', () => {
-    const mockStatistics: PlayerStatistics = {
+    const mockUndefinedMatchesStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
     };
 
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
-      statistics: mockStatistics,
+      statistics: mockUndefinedMatchesStatistics,
     });
 
     const { result } = renderUseUserRankedStats();

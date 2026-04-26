@@ -12,6 +12,18 @@ type ItemToPurchase = DeepReadonly<{
   price: { value: number; currencyId: CurrencyId };
 }>;
 
+type PurchaseInventoryItemsRequest = DeepReadonly<{
+  Item: {
+    Id: Item['id'];
+  };
+  Amount: number;
+  PriceAmounts: {
+    Amount: number;
+    ItemId: CurrencyId;
+  }[];
+  DeleteEmptyStacks: boolean;
+}>;
+
 type Props = { onSuccess?: () => void };
 
 export const usePurchaseInventoryItems = ({ onSuccess }: Readonly<Props> = {}) => {
@@ -20,7 +32,7 @@ export const usePurchaseInventoryItems = ({ onSuccess }: Readonly<Props> = {}) =
 
   const { mutate, isPending, isError } = useMutation({
     mutationFn: (item: ItemToPurchase) =>
-      apiClient.post<void>('/Inventory/PurchaseInventoryItems', {
+      apiClient.post<void, PurchaseInventoryItemsRequest>('/Inventory/PurchaseInventoryItems', {
         body: {
           Amount: 1,
           DeleteEmptyStacks: false,

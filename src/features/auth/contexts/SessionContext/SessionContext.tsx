@@ -38,8 +38,8 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
   const isValid = Boolean(session && isSessionValid(session));
 
   const setValidSession = useCallback(
-    (session: Session) => {
-      if (isSessionValid(session)) setSession(session);
+    (newSession: Session) => {
+      if (isSessionValid(newSession)) setSession(newSession);
     },
     [setSession],
   );

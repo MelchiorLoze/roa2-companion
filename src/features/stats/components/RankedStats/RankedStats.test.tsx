@@ -166,7 +166,7 @@ describe('RankedStats', () => {
         ...defaultUserRankedStatsState.stats,
         elo: undefined,
         rank: undefined,
-      } as typeof defaultUserRankedStatsState.stats,
+      },
     });
 
     renderComponent();
@@ -184,7 +184,7 @@ describe('RankedStats', () => {
         ...defaultUserRankedStatsState.stats,
         elo: 0,
         rank: Rank.STONE,
-      } as typeof defaultUserRankedStatsState.stats,
+      },
     });
 
     renderComponent();
@@ -202,7 +202,7 @@ describe('RankedStats', () => {
       stats: {
         ...defaultUserRankedStatsState.stats,
         playerCount: 0,
-      } as typeof defaultUserRankedStatsState.stats,
+      },
     });
 
     renderComponent();

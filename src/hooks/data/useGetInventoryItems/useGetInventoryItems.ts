@@ -5,6 +5,10 @@ import { type Item } from '@/types/item';
 
 const QUERY_KEY = ['inventoryItems'];
 
+type GetInventoryItemsRequest = Readonly<{
+  Count: number;
+}>;
+
 type GetInventoryItemsResponse = DeepReadonly<{
   Items: {
     Id: string;
@@ -24,12 +28,12 @@ export const useGetInventoryItems = () => {
   const { data, isPending } = useQuery({
     queryKey: QUERY_KEY,
     queryFn: () =>
-      apiClient.post<GetInventoryItemsResponse>('/Inventory/GetInventoryItems', {
+      apiClient.post<GetInventoryItemsResponse, GetInventoryItemsRequest>('/Inventory/GetInventoryItems', {
         body: {
           Count: 10000,
         },
       }),
-    select: (data): InventoryItem[] => data.Items.map((item) => ({ id: item.Id, amount: item.Amount })),
+    select: ({ Items: items }): InventoryItem[] => items.map(({ Id: id, Amount: amount }) => ({ id, amount })),
     staleTime: Infinity,
     gcTime: Infinity,
   });

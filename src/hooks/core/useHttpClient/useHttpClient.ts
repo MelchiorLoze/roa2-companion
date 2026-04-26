@@ -15,9 +15,9 @@ const fetchWrapper = async (
   });
 };
 
-type RequestOptions = DeepReadonly<{
+type RequestOptions<TBody extends object | undefined = undefined> = DeepReadonly<{
   params?: Record<string, string>;
-  body?: object;
+  body?: TBody;
 }>;
 
 type Props = DeepReadonly<{
@@ -42,7 +42,7 @@ export const useHttpClient = ({ baseUrl, baseQueryParams, headers, handleRespons
   return {
     get: async <T>(path: string, options: Pick<RequestOptions, 'params'> = {}) =>
       await requester<T>('GET', path, options.params),
-    post: async <T>(path: string, options: RequestOptions = {}) =>
+    post: async <T, TBody extends object | undefined = undefined>(path: string, options: RequestOptions<TBody> = {}) =>
       await requester<T>('POST', path, options.params, options.body),
   } as const;
 };

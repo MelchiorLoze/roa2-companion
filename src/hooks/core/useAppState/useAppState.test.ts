@@ -14,7 +14,7 @@ const addEventListenerMock = jest.mocked(AppState.addEventListener);
 const subscriptionRemoveMock = jest.fn();
 addEventListenerMock.mockReturnValue({
   remove: subscriptionRemoveMock,
-} as unknown as ReturnType<typeof addEventListenerMock>);
+});
 
 const getChangeCallback = () => addEventListenerMock.mock.calls.find((call) => call[0] === 'change')?.[1];
 

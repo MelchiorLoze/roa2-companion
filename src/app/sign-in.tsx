@@ -40,10 +40,10 @@ export default function SignIn() {
     setIsInvalid(false);
   };
 
-  const onCloseResetPasswordDialog = (email?: string) => {
+  const onCloseResetPasswordDialog = (resetEmail?: string) => {
     setShowResetPasswordDialog(false);
-    if (email) {
-      setEmail(email);
+    if (resetEmail) {
+      setEmail(resetEmail);
       setPassword('');
     }
   };

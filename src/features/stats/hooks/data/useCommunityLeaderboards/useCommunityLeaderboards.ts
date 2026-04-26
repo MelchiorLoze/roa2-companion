@@ -20,8 +20,8 @@ export const useCommunityLeaderboards = () => {
   const { data, isPending } = useQuery({
     queryKey: ['communityLeaderboards'],
     queryFn: () => apiClient.get<CommunityLeaderboardsResponse>(`/stats/${STEAM_APP_ID}/leaderboards`),
-    select: (data): Leaderboard[] =>
-      data.leaderboard.map((leaderboard) => ({
+    select: ({ leaderboard: leaderboards }): Leaderboard[] =>
+      leaderboards.map((leaderboard) => ({
         id: leaderboard.lbid,
         name: leaderboard.name,
         displayName: leaderboard.display_name,
