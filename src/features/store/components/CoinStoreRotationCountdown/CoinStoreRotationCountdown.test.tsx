@@ -1,14 +1,13 @@
 import { act, render, screen } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
-import { type StyleProp, type TextStyle } from 'react-native';
 
-import { TimeCountdown } from './TimeCountdown';
+import { CoinStoreRotationCountdown } from './CoinStoreRotationCountdown';
 
-const renderComponent = (date: DateTime, style?: StyleProp<TextStyle>) => {
-  return render(<TimeCountdown date={date} style={style} />);
+const renderComponent = (date: DateTime) => {
+  return render(<CoinStoreRotationCountdown expirationDate={date} />);
 };
 
-describe('TimeCountdown', () => {
+describe('CoinStoreRotationCountdown', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     jest.setSystemTime(new Date('2024-08-24T10:00:00Z'));
@@ -39,7 +38,6 @@ describe('TimeCountdown', () => {
 
     renderComponent(futureDate);
 
-    // Should have both the actual countdown and width placeholder
     expect(screen.getByText('01h 30m 45s')).toBeTruthy();
     expect(screen.getByText('01h 30m 88s')).toBeTruthy();
   });
@@ -69,13 +67,10 @@ describe('TimeCountdown', () => {
 
     renderComponent(futureDate);
 
-    // Initial state
     expect(screen.getByText('00h 05m 10s')).toBeTruthy();
 
-    // Advance time by 5 seconds
     act(() => jest.advanceTimersByTime(5000));
 
-    // Should show updated countdown
     expect(screen.getByText('00h 05m 05s')).toBeTruthy();
   });
 });

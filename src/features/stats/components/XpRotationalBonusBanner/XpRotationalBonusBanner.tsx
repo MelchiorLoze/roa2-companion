@@ -1,27 +1,16 @@
 import { Duration } from 'luxon';
-import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { OutlinedText } from '@/components/OutlinedText/OutlinedText';
 import { useXpRotationalBonus } from '@/features/stats/hooks/business/useXpRotationalBonus/useXpRotationalBonus';
+import { useCountdown } from '@/hooks/business/useCountdown/useCountdown';
 
 export const XpRotationalBonusBanner = () => {
   const { theme } = useUnistyles();
   const { currentQueue, expirationDate } = useXpRotationalBonus();
-  const [timeLeft, setTimeLeft] = useState<Duration>();
-
-  useEffect(() => {
-    const millisecondsLeft = expirationDate.diffNow().milliseconds;
-    setTimeLeft(Duration.fromObject({ hours: 0, minutes: 0, seconds: 0, milliseconds: millisecondsLeft }).normalize());
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => prev?.minus({ seconds: 1 }).normalize());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [expirationDate]);
+  const timeLeft = useCountdown(expirationDate);
 
   const minutes = Duration.fromObject({ minutes: timeLeft?.minutes }).toFormat('mm');
   const seconds = Duration.fromObject({ seconds: timeLeft?.seconds }).toFormat('ss');

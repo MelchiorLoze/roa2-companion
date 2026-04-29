@@ -5,7 +5,7 @@ import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';
 import { DoublesStats } from '@/features/stats/components/DoublesStats/DoublesStats';
 import { GlobalStats } from '@/features/stats/components/GlobalStats/GlobalStats';
 import { RankedStats } from '@/features/stats/components/RankedStats/RankedStats';
-import { XpRotationalBonusBanner } from '@/features/store/components/XpRotationalBonusBanner/XpRotationalBonusBanner';
+import { XpRotationalBonusBanner } from '@/features/stats/components/XpRotationalBonusBanner/XpRotationalBonusBanner';
 import { useTabs } from '@/hooks/core/useTabs/useTabs';
 
 const STATS_TABS = ['ranked', '2v2', 'crews', 'global'] as const;
