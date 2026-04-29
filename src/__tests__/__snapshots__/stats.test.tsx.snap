@@ -1,5 +1,1196 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Stats renders correctly on 2v2 tab 1`] = `
+[
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        3861914241,
+        3861255013,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        ranked
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": true,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#FEDD84",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        2v2
+      </Text>
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            14277081,
+            1308283240,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            14277081,
+            3019889550,
+            3019889550,
+            14277081,
+          ]
+        }
+        endPoint={
+          [
+            1,
+            0,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.3,
+            0.7,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "bottom": 0,
+            "height": 2,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      />
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            14277081,
+            3019898879,
+            3019898879,
+            14277081,
+          ]
+        }
+        endPoint={
+          [
+            1,
+            0,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.3,
+            0.7,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            0,
+          ]
+        }
+        style={
+          {
+            "bottom": 0,
+            "height": 2,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+          }
+        }
+      />
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        crews
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": false,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "#5F46C2",
+            "fontFamily": "FranklinGothicDemiCond-Regular",
+            "fontSize": 16,
+            "lineHeight": 16,
+            "textAlign": "center",
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        global
+      </Text>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>,
+  <RCTScrollView
+    contentContainerStyle={
+      {
+        "gap": 16,
+        "padding": 16,
+      }
+    }
+  >
+    <RCTRefreshControl />
+    <View>
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            3006881968,
+            3009652204,
+            3009652204,
+            859332230,
+            3694214,
+          ]
+        }
+        endPoint={
+          [
+            1.093,
+            0,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.04651162790697675,
+            0.2075134168157424,
+            0.7200357781753132,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            -0.025,
+            0,
+          ]
+        }
+        style={
+          [
+            {
+              "gap": 16,
+              "padding": 8,
+            },
+            {
+              "marginTop": 24,
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            {
+              "left": 0,
+              "position": "absolute",
+              "top": 0,
+              "transform": [
+                {
+                  "translateX": -8,
+                },
+                {
+                  "translateY": "-50%",
+                },
+              ],
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4284861146,
+                6671066,
+              ]
+            }
+            endPoint={
+              [
+                0.8,
+                0,
+              ]
+            }
+            locations={
+              [
+                0,
+                1,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "paddingVertical": 8,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4280892257,
+                  2702177,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
+              style={
+                {
+                  "bottom": "20%",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "20%",
+                }
+              }
+            />
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  4012432,
+                  4282202512,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
+              style={
+                {
+                  "bottom": "20%",
+                  "left": 0,
+                  "position": "absolute",
+                  "right": 0,
+                  "top": "20%",
+                }
+              }
+            />
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 22,
+                  "paddingHorizontal": 16,
+                  "paddingVertical": 4,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Season 1
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+        <View
+          style={
+            {
+              "height": 16,
+            }
+          }
+        />
+        <ViewManagerAdapter_ExpoLinearGradient
+          colors={
+            [
+              4279833174,
+              4280227690,
+            ]
+          }
+          endPoint={
+            [
+              1,
+              0,
+            ]
+          }
+          startPoint={
+            [
+              0,
+              0,
+            ]
+          }
+          style={
+            {
+              "boxShadow": [
+                {
+                  "blurRadius": 5,
+                  "color": "#161616AA",
+                  "offsetX": 0,
+                  "offsetY": 2,
+                  "spreadDistance": 0,
+                },
+              ],
+              "flexDirection": "row",
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "backgroundColor": "#4838A9",
+                "width": 8,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                1840481,
+                2201231531,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "padding": 4,
+                "paddingHorizontal": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "flexShrink": 1,
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              4404
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#A9AFFF",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                1840481,
+                4281606315,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              [
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 4,
+                  "padding": 4,
+                  "paddingHorizontal": 8,
+                },
+                {
+                  "flex": 1,
+                  "flexShrink": 1,
+                },
+              ]
+            }
+          >
+            <View
+              style={
+                {
+                  "height": 32,
+                  "width": 32,
+                }
+              }
+            >
+              <skImage
+                fit="contain"
+                height={0}
+                image={null}
+                sampling={
+                  {
+                    "filter": 0,
+                  }
+                }
+                width={0}
+                x={0}
+                y={0}
+              />
+            </View>
+            <Text
+              numberOfLines={1}
+              style={
+                {
+                  "color": "white",
+                  "flexShrink": 1,
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                  "textTransform": "uppercase",
+                }
+              }
+            >
+              Player1
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <View
+            style={
+              {
+                "backgroundColor": "#A9AFFF",
+                "width": 4,
+              }
+            }
+          />
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4278190080,
+                0,
+              ]
+            }
+            endPoint={
+              [
+                0.306666,
+                0,
+              ]
+            }
+            locations={
+              [
+                0,
+                1,
+              ]
+            }
+            startPoint={
+              [
+                -0.693334,
+                0,
+              ]
+            }
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "gap": 4,
+                "padding": 4,
+                "paddingHorizontal": 8,
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="contain"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={24}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              sfEffect={null}
+              source={
+                [
+                  {
+                    "testUri": "../../../src/features/stats/assets/images/doubles/doubles_icon.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 24,
+                  "width": 24,
+                }
+              }
+              symbolSize={null}
+              symbolWeight={null}
+              transition={null}
+              width={24}
+            />
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontSize": 16,
+                }
+              }
+            >
+              1500
+            </Text>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </ViewManagerAdapter_ExpoLinearGradient>
+        <View
+          style={
+            {
+              "gap": 8,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "#161616AA",
+                    "offsetX": 0,
+                    "offsetY": 2,
+                    "spreadDistance": 0,
+                  },
+                ],
+                "flexDirection": "row",
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  1840481,
+                  4281606315,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
+              style={
+                [
+                  {
+                    "padding": 8,
+                    "paddingHorizontal": 16,
+                  },
+                  {
+                    "width": "60%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                    "textTransform": "uppercase",
+                  }
+                }
+              >
+                2v2 sets
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
+            <View
+              style={
+                {
+                  "backgroundColor": "#FFBC51",
+                  "width": 4,
+                }
+              }
+            />
+            <View
+              style={
+                [
+                  {
+                    "padding": 8,
+                    "paddingHorizontal": 16,
+                  },
+                  {
+                    "flex": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFBC51",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                  }
+                }
+              >
+                50
+              </Text>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+          <ViewManagerAdapter_ExpoLinearGradient
+            colors={
+              [
+                4279833174,
+                4280227690,
+              ]
+            }
+            endPoint={
+              [
+                1,
+                0,
+              ]
+            }
+            startPoint={
+              [
+                0,
+                0,
+              ]
+            }
+            style={
+              {
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "#161616AA",
+                    "offsetX": 0,
+                    "offsetY": 2,
+                    "spreadDistance": 0,
+                  },
+                ],
+                "flexDirection": "row",
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  1840481,
+                  4281606315,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
+              style={
+                [
+                  {
+                    "padding": 8,
+                    "paddingHorizontal": 16,
+                  },
+                  {
+                    "width": "60%",
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                    "textTransform": "uppercase",
+                  }
+                }
+              >
+                Best win streak
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
+            <View
+              style={
+                {
+                  "backgroundColor": "#FFBC51",
+                  "width": 4,
+                }
+              }
+            />
+            <View
+              style={
+                [
+                  {
+                    "padding": 8,
+                    "paddingHorizontal": 16,
+                  },
+                  {
+                    "flex": 1,
+                  },
+                ]
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFBC51",
+                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontSize": 16,
+                  }
+                }
+              >
+                9
+              </Text>
+            </View>
+          </ViewManagerAdapter_ExpoLinearGradient>
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+  </RCTScrollView>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        4283811327,
+        4283811327,
+        4281890733,
+        4281890733,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1.035,
+      ]
+    }
+    locations={
+      [
+        0,
+        0.02173913043478261,
+        0.9669187145557656,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        -0.023,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "padding": 4,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 12,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        CASUAL: BONUS +50%
+      </Text>
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 10,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        XP
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#00000059",
+          "bottom": 0,
+          "padding": 1,
+          "paddingBottom": 0,
+          "position": "absolute",
+          "right": 16,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            3004506675,
+            3004506675,
+            3004046892,
+            3004046892,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1.035,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.02173913043478261,
+            0.9669187145557656,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            -0.023,
+          ]
+        }
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 4,
+            "paddingVertical": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 10,
+              "strokeWidth": 1,
+            }
+          }
+        >
+          ENDS IN:
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              },
+              {
+                "color": "#FFFFFF00",
+              },
+            ]
+          }
+        >
+           
+          30
+          :88
+        </Text>
+        <View
+          style={
+            {
+              "position": "absolute",
+              "right": 4,
+              "top": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              }
+            }
+          >
+            30:00
+          </Text>
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>,
+]
+`;
+
 exports[`Stats renders correctly on crews tab 1`] = `
 [
   <ViewManagerAdapter_ExpoLinearGradient
@@ -127,7 +1318,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
           }
         }
       >
-        doubles
+        2v2
       </Text>
     </View>
     <View
@@ -1013,6 +2204,181 @@ exports[`Stats renders correctly on crews tab 1`] = `
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
   </RCTScrollView>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        4283811327,
+        4283811327,
+        4281890733,
+        4281890733,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1.035,
+      ]
+    }
+    locations={
+      [
+        0,
+        0.02173913043478261,
+        0.9669187145557656,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        -0.023,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "padding": 4,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 12,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        CASUAL: BONUS +50%
+      </Text>
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 10,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        XP
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#00000059",
+          "bottom": 0,
+          "padding": 1,
+          "paddingBottom": 0,
+          "position": "absolute",
+          "right": 16,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            3004506675,
+            3004506675,
+            3004046892,
+            3004046892,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1.035,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.02173913043478261,
+            0.9669187145557656,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            -0.023,
+          ]
+        }
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 4,
+            "paddingVertical": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 10,
+              "strokeWidth": 1,
+            }
+          }
+        >
+          ENDS IN:
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              },
+              {
+                "color": "#FFFFFF00",
+              },
+            ]
+          }
+        >
+           
+          30
+          :88
+        </Text>
+        <View
+          style={
+            {
+              "position": "absolute",
+              "right": 4,
+              "top": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              }
+            }
+          >
+            30:00
+          </Text>
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>,
 ]
 `;
 
@@ -1143,7 +2509,7 @@ exports[`Stats renders correctly on global tab 1`] = `
           }
         }
       >
-        doubles
+        2v2
       </Text>
     </View>
     <View
@@ -2200,10 +3566,185 @@ exports[`Stats renders correctly on global tab 1`] = `
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
   </RCTScrollView>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        4283811327,
+        4283811327,
+        4281890733,
+        4281890733,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1.035,
+      ]
+    }
+    locations={
+      [
+        0,
+        0.02173913043478261,
+        0.9669187145557656,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        -0.023,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "padding": 4,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 12,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        CASUAL: BONUS +50%
+      </Text>
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 10,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        XP
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#00000059",
+          "bottom": 0,
+          "padding": 1,
+          "paddingBottom": 0,
+          "position": "absolute",
+          "right": 16,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            3004506675,
+            3004506675,
+            3004046892,
+            3004046892,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1.035,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.02173913043478261,
+            0.9669187145557656,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            -0.023,
+          ]
+        }
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 4,
+            "paddingVertical": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 10,
+              "strokeWidth": 1,
+            }
+          }
+        >
+          ENDS IN:
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              },
+              {
+                "color": "#FFFFFF00",
+              },
+            ]
+          }
+        >
+           
+          30
+          :88
+        </Text>
+        <View
+          style={
+            {
+              "position": "absolute",
+              "right": 4,
+              "top": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              }
+            }
+          >
+            30:00
+          </Text>
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>,
 ]
 `;
 
-exports[`Stats renders correctly on initial tab 1`] = `
+exports[`Stats renders correctly on initial tab (ranked) 1`] = `
 [
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
@@ -2437,7 +3978,7 @@ exports[`Stats renders correctly on initial tab 1`] = `
           }
         }
       >
-        doubles
+        2v2
       </Text>
     </View>
     <View
@@ -4018,5 +5559,180 @@ exports[`Stats renders correctly on initial tab 1`] = `
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
   </RCTScrollView>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        4283811327,
+        4283811327,
+        4281890733,
+        4281890733,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1.035,
+      ]
+    }
+    locations={
+      [
+        0,
+        0.02173913043478261,
+        0.9669187145557656,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        -0.023,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "padding": 4,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "alignItems": "flex-end",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 12,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        CASUAL: BONUS +50%
+      </Text>
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 10,
+            "strokeWidth": 1,
+          }
+        }
+      >
+        XP
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "backgroundColor": "#00000059",
+          "bottom": 0,
+          "padding": 1,
+          "paddingBottom": 0,
+          "position": "absolute",
+          "right": 16,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoLinearGradient
+        colors={
+          [
+            3004506675,
+            3004506675,
+            3004046892,
+            3004046892,
+          ]
+        }
+        endPoint={
+          [
+            0,
+            1.035,
+          ]
+        }
+        locations={
+          [
+            0,
+            0.02173913043478261,
+            0.9669187145557656,
+            1,
+          ]
+        }
+        startPoint={
+          [
+            0,
+            -0.023,
+          ]
+        }
+        style={
+          {
+            "flexDirection": "row",
+            "justifyContent": "space-between",
+            "paddingHorizontal": 4,
+            "paddingVertical": 2,
+          }
+        }
+      >
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Bold",
+              "fontSize": 10,
+              "strokeWidth": 1,
+            }
+          }
+        >
+          ENDS IN:
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              },
+              {
+                "color": "#FFFFFF00",
+              },
+            ]
+          }
+        >
+           
+          30
+          :88
+        </Text>
+        <View
+          style={
+            {
+              "position": "absolute",
+              "right": 4,
+              "top": 2,
+            }
+          }
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 10,
+                "strokeWidth": 1,
+              }
+            }
+          >
+            30:00
+          </Text>
+        </View>
+      </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
+  </ViewManagerAdapter_ExpoLinearGradient>,
 ]
 `;

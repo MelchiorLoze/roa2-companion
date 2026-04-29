@@ -93,6 +93,15 @@ const theme = {
         colors: ['#00000000', '#000000FF'],
         times: [0, 0.6],
       },
+      xpRotationalBonusBanner: {
+        // Mod Kit - ButtonBannerCurve
+        colors: ['#55C5FFFF', '#55C5FFFF', '#3877ADFF', '#3877ADFF'],
+        times: [-0.023, 0, 1, 1.035],
+      },
+      xpRotationalBonusTimeLeft: {
+        colors: ['#152233B3', '#152233B3', '#0E1E2CB3', '#0E1E2CB3'],
+        times: [-0.023, 0, 1, 1.035],
+      },
       statSection: {
         // Mod Kit - LeaderboardBgCurve
         colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'],

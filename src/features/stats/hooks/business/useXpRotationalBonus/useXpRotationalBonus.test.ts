@@ -19,7 +19,7 @@ describe('useXpRotationalBonus', () => {
   it('returns the expected initial queue and expiration date', () => {
     const { result } = renderHook(useXpRotationalBonus);
 
-    expect(result.current.currentQueue).toBe('ffa');
+    expect(result.current.currentQueue).toBe('casual');
     expect(result.current.expirationDate.toSeconds()).toBe(BONUS_DURATION);
   });
 
@@ -32,7 +32,7 @@ describe('useXpRotationalBonus', () => {
       jest.advanceTimersByTime(BONUS_DURATION_MS);
     });
 
-    expect(result.current.currentQueue).toBe('doubles');
+    expect(result.current.currentQueue).toBe('2v2');
     expect(result.current.expirationDate.toSeconds()).toBe(initialExpirationSeconds + BONUS_DURATION);
   });
 
@@ -44,7 +44,7 @@ describe('useXpRotationalBonus', () => {
     act(() => {
       jest.advanceTimersByTime(BONUS_DURATION_MS);
     });
-    expect(result.current.currentQueue).toBe('doubles');
+    expect(result.current.currentQueue).toBe('2v2');
 
     act(() => {
       jest.advanceTimersByTime(BONUS_DURATION_MS);
@@ -62,7 +62,7 @@ describe('useXpRotationalBonus', () => {
 
     const { result } = renderHook(useXpRotationalBonus);
 
-    expect(result.current.currentQueue).toBe('ffa');
+    expect(result.current.currentQueue).toBe('casual');
 
     const delayMs = result.current.expirationDate.diffNow().as('milliseconds');
     expect(delayMs).toBe(45 * 60 * 1000);
@@ -71,7 +71,7 @@ describe('useXpRotationalBonus', () => {
       jest.advanceTimersByTime(delayMs);
     });
 
-    expect(result.current.currentQueue).toBe('doubles');
+    expect(result.current.currentQueue).toBe('2v2');
   });
 
   it('cleans up scheduled timeout on unmount', () => {

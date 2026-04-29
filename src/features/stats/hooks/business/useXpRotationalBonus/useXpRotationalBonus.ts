@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const BONUS_DURATION = Duration.fromObject({ minutes: 90 }).as('seconds');
 
-const QUEUES = ['ffa', 'doubles', 'crews'] as const;
+const QUEUES = ['casual', '2v2', 'crews'] as const;
 type Queue = (typeof QUEUES)[number];
 
 type XpRotationalBonusState = {

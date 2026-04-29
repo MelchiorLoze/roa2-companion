@@ -60,7 +60,7 @@ describe('DoublesStats', () => {
     expect(screen.getByText('Player1')).toBeTruthy();
     expect(screen.getByText('1500')).toBeTruthy();
 
-    expect(screen.getByText('Doubles sets')).toBeTruthy();
+    expect(screen.getByText('2v2 sets')).toBeTruthy();
     expect(screen.getByText('50')).toBeTruthy();
     expect(screen.getByText('Best win streak')).toBeTruthy();
     expect(screen.getByText('9')).toBeTruthy();
