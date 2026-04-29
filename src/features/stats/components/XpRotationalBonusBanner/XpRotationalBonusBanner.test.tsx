@@ -28,7 +28,7 @@ describe('XpRotationalBonusBanner', () => {
   it('renders the current queue name in the bonus label', () => {
     renderComponent();
 
-    expect(screen.getByText('CASUAL: BONUS +50%')).toBeTruthy();
+    expect(screen.getByText('CASUAL — BONUS +50%')).toBeTruthy();
   });
 
   it('renders the XP unit label', () => {
@@ -63,7 +63,7 @@ describe('XpRotationalBonusBanner', () => {
 
     renderComponent();
 
-    expect(screen.getByText('2V2: BONUS +50%')).toBeTruthy();
+    expect(screen.getByText('2V2 — BONUS +50%')).toBeTruthy();
   });
 
   it('formats single-digit minutes and seconds with leading zeros', () => {

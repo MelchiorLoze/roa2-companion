@@ -1067,7 +1067,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           }
         }
       >
-        CASUAL: BONUS +50%
+        CASUAL — BONUS +50%
       </Text>
       <Text
         style={
@@ -1126,7 +1126,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "justifyContent": "space-between",
+            "gap": 2,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -1155,6 +1155,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
+                "paddingLeft": 10,
               },
             ]
           }
@@ -1166,12 +1167,49 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         <View
           style={
             {
+              "alignItems": "center",
+              "flexDirection": "row",
               "position": "absolute",
               "right": 4,
               "top": 2,
             }
           }
         >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={10}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 10,
+                "width": 10,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            transition={null}
+            width={10}
+          />
           <Text
             style={
               {
@@ -2258,7 +2296,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
           }
         }
       >
-        CASUAL: BONUS +50%
+        CASUAL — BONUS +50%
       </Text>
       <Text
         style={
@@ -2317,7 +2355,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "justifyContent": "space-between",
+            "gap": 2,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -2346,6 +2384,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
+                "paddingLeft": 10,
               },
             ]
           }
@@ -2357,12 +2396,49 @@ exports[`Stats renders correctly on crews tab 1`] = `
         <View
           style={
             {
+              "alignItems": "center",
+              "flexDirection": "row",
               "position": "absolute",
               "right": 4,
               "top": 2,
             }
           }
         >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={10}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 10,
+                "width": 10,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            transition={null}
+            width={10}
+          />
           <Text
             style={
               {
@@ -3620,7 +3696,7 @@ exports[`Stats renders correctly on global tab 1`] = `
           }
         }
       >
-        CASUAL: BONUS +50%
+        CASUAL — BONUS +50%
       </Text>
       <Text
         style={
@@ -3679,7 +3755,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "justifyContent": "space-between",
+            "gap": 2,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -3708,6 +3784,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
+                "paddingLeft": 10,
               },
             ]
           }
@@ -3719,12 +3796,49 @@ exports[`Stats renders correctly on global tab 1`] = `
         <View
           style={
             {
+              "alignItems": "center",
+              "flexDirection": "row",
               "position": "absolute",
               "right": 4,
               "top": 2,
             }
           }
         >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={10}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 10,
+                "width": 10,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            transition={null}
+            width={10}
+          />
           <Text
             style={
               {
@@ -5613,7 +5727,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           }
         }
       >
-        CASUAL: BONUS +50%
+        CASUAL — BONUS +50%
       </Text>
       <Text
         style={
@@ -5672,7 +5786,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         style={
           {
             "flexDirection": "row",
-            "justifyContent": "space-between",
+            "gap": 2,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -5701,6 +5815,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               },
               {
                 "color": "#FFFFFF00",
+                "paddingLeft": 10,
               },
             ]
           }
@@ -5712,12 +5827,49 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         <View
           style={
             {
+              "alignItems": "center",
+              "flexDirection": "row",
               "position": "absolute",
               "right": 4,
               "top": 2,
             }
           }
         >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={10}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 10,
+                "width": 10,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            transition={null}
+            width={10}
+          />
           <Text
             style={
               {
