@@ -1155,7 +1155,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
-                "paddingLeft": 10,
+                "paddingLeft": 12,
               },
             ]
           }
@@ -1169,6 +1169,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             {
               "alignItems": "center",
               "flexDirection": "row",
+              "gap": 2,
               "position": "absolute",
               "right": 4,
               "top": 2,
@@ -2384,7 +2385,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
-                "paddingLeft": 10,
+                "paddingLeft": 12,
               },
             ]
           }
@@ -2398,6 +2399,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
             {
               "alignItems": "center",
               "flexDirection": "row",
+              "gap": 2,
               "position": "absolute",
               "right": 4,
               "top": 2,
@@ -3784,7 +3786,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               },
               {
                 "color": "#FFFFFF00",
-                "paddingLeft": 10,
+                "paddingLeft": 12,
               },
             ]
           }
@@ -3798,6 +3800,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             {
               "alignItems": "center",
               "flexDirection": "row",
+              "gap": 2,
               "position": "absolute",
               "right": 4,
               "top": 2,
@@ -5815,7 +5818,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               },
               {
                 "color": "#FFFFFF00",
-                "paddingLeft": 10,
+                "paddingLeft": 12,
               },
             ]
           }
@@ -5829,6 +5832,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             {
               "alignItems": "center",
               "flexDirection": "row",
+              "gap": 2,
               "position": "absolute",
               "right": 4,
               "top": 2,

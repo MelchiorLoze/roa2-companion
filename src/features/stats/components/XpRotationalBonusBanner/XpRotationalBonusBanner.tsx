@@ -78,6 +78,7 @@ const styles = StyleSheet.create((theme) => ({
     right: theme.spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
+    gap: theme.spacing.xxs,
   },
   timeLeftLabel: {
     fontFamily: theme.font.secondary.bold,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   timeLeftPlaceHolder: {
     color: theme.color.transparent,
-    paddingLeft: 10,
+    paddingLeft: theme.spacing.xxs + 10, // clock icon width + gap
   },
   clockIcon: {
     width: 10,
