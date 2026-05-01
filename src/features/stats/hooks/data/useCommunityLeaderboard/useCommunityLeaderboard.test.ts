@@ -1,5 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
-import { XMLBuilder } from 'fast-xml-parser';
+import XMLBuilder from 'fast-xml-builder';
 import fetchMock from 'fetch-mock';
 
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';

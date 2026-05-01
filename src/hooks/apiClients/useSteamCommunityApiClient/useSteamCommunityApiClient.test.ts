@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-native';
-import { XMLBuilder } from 'fast-xml-parser';
+import XMLBuilder from 'fast-xml-builder';
 import fetchMock from 'fetch-mock';
 
 import { STEAM_COMMUNITY_API_BASE_URL, useSteamCommunityApiClient } from './useSteamCommunityApiClient';
