@@ -24,6 +24,7 @@ const theme = {
     transparent: '#FFFFFF00',
     translucentBlack: '#000000AA',
     translucentDark: '#161616AA',
+    translucentBorder: '#00000059',
     error: '#BA1A27',
     // Rarity colors
     common: '#D3D5E4',
@@ -92,6 +93,15 @@ const theme = {
         // Mod Kit - TimerBGCurve
         colors: ['#00000000', '#000000FF'],
         times: [0, 0.6],
+      },
+      xpRotationalBonusBanner: {
+        // Mod Kit - ButtonBannerCurve
+        colors: ['#55C5FFFF', '#55C5FFFF', '#3877ADFF', '#3877ADFF'],
+        times: [-0.023, 0, 1, 1.035],
+      },
+      xpRotationalBonusTimeLeft: {
+        colors: ['#152233B3', '#152233B3', '#0E1E2CB3', '#0E1E2CB3'],
+        times: [-0.023, 0, 1, 1.035],
       },
       statSection: {
         // Mod Kit - LeaderboardBgCurve

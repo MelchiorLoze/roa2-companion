@@ -4,6 +4,7 @@ import Stats from '@/app/(private)/stats';
 import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 import { useLeaderboardStats } from '@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { useUserCrewsStats } from '@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats';
+import { useUserDoublesStats } from '@/features/stats/hooks/business/useUserDoublesStats/useUserDoublesStats';
 import { useUserGlobalStats } from '@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats';
 import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats';
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
@@ -12,12 +13,14 @@ import { Character } from '@/types/character';
 
 jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext');
 jest.mock('@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats');
+jest.mock('@/features/stats/hooks/business/useUserDoublesStats/useUserDoublesStats');
 jest.mock('@/features/stats/hooks/business/useUserCrewsStats/useUserCrewsStats');
 jest.mock('@/features/stats/hooks/business/useUserGlobalStats/useUserGlobalStats');
 jest.mock('@/features/stats/hooks/business/useLeaderboardStats/useLeaderboardStats');
 
 const useSeasonMock = jest.mocked(useSeason);
 const useUserRankedStatsMock = jest.mocked(useUserRankedStats);
+const useUserDoublesStatsMock = jest.mocked(useUserDoublesStats);
 const useUserCrewsStatsMock = jest.mocked(useUserCrewsStats);
 const useUserGlobalStatsMock = jest.mocked(useUserGlobalStats);
 const useLeaderboardStatsMock = jest.mocked(useLeaderboardStats);
@@ -45,6 +48,23 @@ const defaultUserRankedStatsReturnValue: ReturnType<typeof useUserRankedStats> =
     playerCount: 1000,
     setStats: { setCount: 100, winCount: 75, winRate: 75 },
     profile: { playerName: 'TestPlayer', avatarUrl: new URL('https://www.example.com/avatars/testplayer.png') },
+  },
+  refresh: jest.fn(),
+  isLoading: false,
+  isRefreshing: false,
+  isError: false,
+};
+
+const defaultUserDoublesStatsReturnValue: ReturnType<typeof useUserDoublesStats> = {
+  stats: {
+    elo: 1500,
+    setStats: { setCount: 50 },
+    bestWinStreak: 9,
+    position: 4404,
+    profile: {
+      playerName: 'Player1',
+      avatarUrl: new URL('https://www.example.com/icon/player1.png'),
+    },
   },
   refresh: jest.fn(),
   isLoading: false,
@@ -93,17 +113,45 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
 
 describe('Stats', () => {
   beforeEach(() => {
+    jest.useFakeTimers();
+    jest.setSystemTime(new Date('1970-01-01T00:00:00.000Z'));
+
     useSeasonMock.mockReturnValue(defaultSeasonReturnValue);
     useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsReturnValue);
+    useUserDoublesStatsMock.mockReturnValue(defaultUserDoublesStatsReturnValue);
     useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsReturnValue);
     useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('renders correctly on initial tab', () => {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('renders correctly on initial tab (ranked)', () => {
     const { toJSON } = render(<Stats />);
 
     expect(screen.getByText('ranked')).toBeDisabled();
+    expect(screen.getByText('2v2')).toBeEnabled();
+    expect(screen.getByText('crews')).toBeEnabled();
+    expect(screen.getByText('global')).toBeEnabled();
+
+    const tree = toJSON();
+    // Remove circular references for snapshot testing
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    delete tree[1].props.refreshControl;
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('renders correctly on 2v2 tab', () => {
+    const { toJSON } = render(<Stats />);
+
+    const doublesTab = screen.getByText('2v2');
+    fireEvent.press(doublesTab);
+
+    expect(screen.getByText('ranked')).toBeEnabled();
+    expect(screen.getByText('2v2')).toBeDisabled();
     expect(screen.getByText('crews')).toBeEnabled();
     expect(screen.getByText('global')).toBeEnabled();
 
@@ -122,6 +170,7 @@ describe('Stats', () => {
     fireEvent.press(crewsTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
+    expect(screen.getByText('2v2')).toBeEnabled();
     expect(screen.getByText('crews')).toBeDisabled();
     expect(screen.getByText('global')).toBeEnabled();
 
@@ -140,6 +189,7 @@ describe('Stats', () => {
     fireEvent.press(globalTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
+    expect(screen.getByText('2v2')).toBeEnabled();
     expect(screen.getByText('crews')).toBeEnabled();
     expect(screen.getByText('global')).toBeDisabled();
 
@@ -152,16 +202,6 @@ describe('Stats', () => {
   });
 
   it('renders correctly when player is unranked', () => {
-    useSeasonMock.mockReturnValue({
-      ...defaultSeasonReturnValue,
-      season: {
-        index: 2,
-        name: 'Season 2',
-        isFirst: false,
-        isLast: false,
-      },
-      leaderboardId: 987,
-    });
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsReturnValue,
       stats: {
@@ -171,16 +211,6 @@ describe('Stats', () => {
         position: 12300,
         playerCount: 20000,
         setStats: undefined,
-        profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
-      },
-    });
-    useUserCrewsStatsMock.mockReturnValue({
-      ...defaultUserCrewsStatsReturnValue,
-      stats: {
-        elo: 1000,
-        setStats: { setCount: 0 },
-        bestWinStreak: 0,
-        position: 0,
         profile: { playerName: 'Player 2', avatarUrl: new URL('https://www.example.com/avatars/player2.png') },
       },
     });

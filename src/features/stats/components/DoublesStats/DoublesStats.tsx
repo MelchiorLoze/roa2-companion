@@ -38,7 +38,7 @@ export const DoublesStats = () => {
       />
 
       <View style={styles.statRowsContainer}>
-        <StatRow label="Doubles sets" value={stats.setStats.setCount} />
+        <StatRow label="2v2 sets" value={stats.setStats.setCount} />
         <StatRow label="Best win streak" value={stats.bestWinStreak} />
       </View>
     </StatsTabContentWrapper>
