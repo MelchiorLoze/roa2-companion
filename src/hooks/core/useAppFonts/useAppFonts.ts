@@ -1,24 +1,14 @@
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 
-import {
-  AgencyFBBlack,
-  AgencyFBBold,
-  FranklinGothicDemiCondItalic,
-  FranklinGothicDemiCondRegular,
-} from '@/assets/fonts';
+import { FONTS } from '@/assets/fonts';
 
 type Props = {
   onLoaded?: () => void;
 };
 
 export const useAppFonts = ({ onLoaded }: Readonly<Props>): void => {
-  const [loaded] = useFonts({
-    'AgencyFB-Black': AgencyFBBlack,
-    'AgencyFB-Bold': AgencyFBBold,
-    'FranklinGothicDemiCond-Italic': FranklinGothicDemiCondItalic,
-    'FranklinGothicDemiCond-Regular': FranklinGothicDemiCondRegular,
-  });
+  const [loaded] = useFonts(FONTS);
 
   useEffect(() => {
     if (loaded) onLoaded?.();
