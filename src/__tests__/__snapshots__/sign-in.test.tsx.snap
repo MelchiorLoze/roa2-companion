@@ -65,6 +65,7 @@ exports[`SignIn matches snapshot 1`] = `
           onChangeText={[Function]}
           placeholder="EMAIL"
           placeholderTextColor="#676767"
+          selectionColor="#A9AFFF"
           style={
             {
               "backgroundColor": "#161616",
@@ -93,6 +94,7 @@ exports[`SignIn matches snapshot 1`] = `
           placeholder="PASSWORD"
           placeholderTextColor="#676767"
           secureTextEntry={true}
+          selectionColor="#A9AFFF"
           style={
             {
               "backgroundColor": "#161616",
@@ -388,6 +390,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             onChangeText={[Function]}
             placeholder="EMAIL"
             placeholderTextColor="#676767"
+            selectionColor="#A9AFFF"
             style={
               {
                 "backgroundColor": "#161616",
@@ -416,6 +419,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
             placeholder="PASSWORD"
             placeholderTextColor="#676767"
             secureTextEntry={true}
+            selectionColor="#A9AFFF"
             style={
               {
                 "backgroundColor": "#161616",
@@ -738,6 +742,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               onChangeText={[Function]}
               placeholder="EMAIL"
               placeholderTextColor="#676767"
+              selectionColor="#A9AFFF"
               style={
                 {
                   "backgroundColor": "#161616",

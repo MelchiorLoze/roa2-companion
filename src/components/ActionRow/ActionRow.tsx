@@ -7,21 +7,13 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 
-type EitherLinkOrButton =
-  | {
-      url: URL;
-      onPress?: never;
-    }
-  | {
-      url?: never;
-      onPress: () => void;
-    };
+type LinkOrButton = Either<{ url: URL }, { onPress: () => void }>;
 
 type Props = {
   label: string;
   logo?: ImageSource;
   iconName: ComponentProps<typeof MaterialIcons>['name'];
-} & EitherLinkOrButton;
+} & LinkOrButton;
 
 export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Props>) => {
   const router = useRouter();

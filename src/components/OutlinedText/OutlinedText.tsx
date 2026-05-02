@@ -15,7 +15,7 @@ import {
 } from '@shopify/react-native-skia';
 import { useWindowDimensions } from 'react-native';
 
-import { AgencyFBBlack, AgencyFBBold } from '@/assets/fonts';
+import { FONTS } from '@/assets/fonts';
 
 type ThemeFonts = Theme['font']['secondary'];
 type FontFamily = ThemeFonts[keyof ThemeFonts];
@@ -27,10 +27,13 @@ type OutlinedTextStyle = {
   strokeWidth: number;
 };
 
-const fonts: Record<FontFamily, [DataModule]> = {
-  'AgencyFB-Bold': [AgencyFBBold as DataModule],
-  'AgencyFB-Black': [AgencyFBBlack as DataModule],
-};
+const SKIA_FONTS = Object.entries(FONTS).reduce(
+  (acc, [key, value]) => {
+    acc[key as FontFamily] = [value as DataModule];
+    return acc;
+  },
+  {} as Record<FontFamily, [DataModule]>,
+);
 
 const getParagraph = (text: string, style: OutlinedTextStyle, fontProvider: SkTypefaceFontProvider) => {
   const outlineForegroundPaint = Skia.Paint();
@@ -78,7 +81,7 @@ type Props = {
 
 export const OutlinedText = ({ text, style }: Readonly<Props>) => {
   const { fontScale } = useWindowDimensions();
-  const fontProvider = useFonts(fonts);
+  const fontProvider = useFonts(SKIA_FONTS);
 
   if (!fontProvider) return null;
 

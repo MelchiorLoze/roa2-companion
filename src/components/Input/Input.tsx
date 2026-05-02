@@ -36,6 +36,7 @@ export const Input = ({
         placeholder={placeholder}
         placeholderTextColor={theme.color.weak}
         secureTextEntry={hidden}
+        selectionColor={theme.color.borderMedium}
         style={styles.input}
         value={value}
       />
