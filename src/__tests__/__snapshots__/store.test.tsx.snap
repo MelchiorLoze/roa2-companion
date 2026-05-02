@@ -92,7 +92,6 @@ exports[`Store matches snapshot 1`] = `
             {
               "position": "absolute",
               "right": 0,
-              "top": 0,
             },
           ]
         }
@@ -435,6 +434,47 @@ exports[`Store matches snapshot 1`] = `
                       y={0}
                     />
                   </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    sfEffect={null}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    symbolSize={null}
+                    symbolWeight={null}
+                    top={0}
+                    transition={null}
+                  />
                   <ViewManagerAdapter_ExpoImage
                     bottom={0}
                     containerViewRef={"[React.ref]"}
@@ -913,6 +953,47 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    sfEffect={null}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame-epic-front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    symbolSize={null}
+                    symbolWeight={null}
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -1256,6 +1337,47 @@ exports[`Store matches snapshot 1`] = `
                       y={0}
                     />
                   </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    sfEffect={null}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame-rare-front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    symbolSize={null}
+                    symbolWeight={null}
+                    top={0}
+                    transition={null}
+                  />
                   <ViewManagerAdapter_ExpoImage
                     bottom={0}
                     containerViewRef={"[React.ref]"}
@@ -1734,6 +1856,47 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    sfEffect={null}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame-legendary-front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    symbolSize={null}
+                    symbolWeight={null}
+                    top={0}
+                    transition={null}
+                  />
+                  <ViewManagerAdapter_ExpoImage
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -2077,6 +2240,47 @@ exports[`Store matches snapshot 1`] = `
                       y={0}
                     />
                   </View>
+                  <ViewManagerAdapter_ExpoImage
+                    bottom={0}
+                    containerViewRef={"[React.ref]"}
+                    contentFit="cover"
+                    contentPosition={
+                      {
+                        "left": "50%",
+                        "top": "50%",
+                      }
+                    }
+                    left={0}
+                    nativeViewRef={"[React.ref]"}
+                    onError={[Function]}
+                    onLoad={[Function]}
+                    onLoadStart={[Function]}
+                    onProgress={[Function]}
+                    placeholder={[]}
+                    position="absolute"
+                    right={0}
+                    sfEffect={null}
+                    source={
+                      [
+                        {
+                          "testUri": "../../../src/assets/images/rarity/frame-common-front.png",
+                        },
+                      ]
+                    }
+                    style={
+                      {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                    symbolSize={null}
+                    symbolWeight={null}
+                    top={0}
+                    transition={null}
+                  />
                   <ViewManagerAdapter_ExpoImage
                     bottom={0}
                     containerViewRef={"[React.ref]"}
