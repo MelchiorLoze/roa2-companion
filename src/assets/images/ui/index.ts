@@ -5,5 +5,6 @@ export const DialogBackground: ImageSource = require('./dialog-bg.png'); // MI_S
 export const CurrencyCoinsBackground: ImageSource = require('./currency-coins-bg.png'); // BG_Container_Currency
 export const CurrencyBucksBackground: ImageSource = require('./currency-bucks-bg.png');
 export const CurrencyMedalsBackground: ImageSource = require('./currency-medals-bg.png');
+export const HeaderBackground: ImageSource = require('./header-bg.png'); // MI_CSSTopBarBG
 export const ItemOutline: ImageSource = require('./item-outline.png'); // DarkPurpleStoreItemOutline
 export const ItemBackground: ImageSource = require('./item-bg.png'); // MI_StoreItemRippleBG
