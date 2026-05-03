@@ -8,3 +8,4 @@ export const CurrencyMedalsBackground: ImageSource = require('./currency-medals-
 export const HeaderBackground: ImageSource = require('./header-bg.png'); // MI_CSSTopBarBG
 export const ItemOutline: ImageSource = require('./item-outline.png'); // DarkPurpleStoreItemOutline
 export const ItemBackground: ImageSource = require('./item-bg.png'); // MI_StoreItemRippleBG
+export const TabBarBackground: ImageSource = require('./tab-bar-bg.png'); // MI_CSSTopBarBG
