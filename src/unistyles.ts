@@ -16,6 +16,8 @@ const theme = {
     buttonSelectedPrimary: '#FF8E00',
     buttonSelectedSecondary: '#F4EBE2',
     currencyLabelShadow: '#00000049',
+    headerSeparator: '#A990CCFF',
+    headerTitle: '#E7C8FFFF',
     overlay: '#000000AA',
     dialogBorderPrimary: '#A95AF1',
     dialogBorderSecondary: '#4C12AA',
@@ -63,7 +65,16 @@ const theme = {
     gradient: {
       headerOverlay: {
         // Mod Kit - BarBGUnderGlowCurve with a tint
-        colors: ['#130F2C00', '#AB91E833'],
+        colors: ['#1D0F2E00', '#FF91F71F'],
+      },
+      headerShadow: {
+        // Mod Kit - BarBGUnderGlowCurve with a tint
+        colors: ['#FFFFFF40', '#1D1A3000'],
+      },
+      headerTitleBackground: {
+        // Mod Kit - Font_PinkCurve with a tint
+        colors: ['#00000099', '#00000000'],
+        times: [0.8, 1],
       },
       labelText: (pressed?: boolean, light?: boolean) => ({
         // Mod Kit - Font_PinkCurve

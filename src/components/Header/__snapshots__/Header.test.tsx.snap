@@ -5,8 +5,136 @@ exports[`Header matches the snapshot 1`] = `
   <View
     style={
       {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoImage
+      bottom={0}
+      containerViewRef={"[React.ref]"}
+      contentFit="fill"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      left={0}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      position="absolute"
+      right={0}
+      sfEffect={null}
+      source={
+        [
+          {
+            "testUri": "../../../src/assets/images/ui/header-bg.png",
+          },
+        ]
+      }
+      style={
+        {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+      symbolSize={null}
+      symbolWeight={null}
+      top={0}
+      transition={null}
+    />
+  </View>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        1904430,
+        536842743,
+      ]
+    }
+    endPoint={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0,
+        0,
+      ]
+    }
+    style={
+      {
+        "bottom": 2.5,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": "40%",
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          1090519039,
+          1907248,
+        ]
+      }
+      endPoint={
+        [
+          0,
+          1,
+        ]
+      }
+      startPoint={
+        [
+          0,
+          0,
+        ]
+      }
+      style={
+        {
+          "height": 6,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": "100%",
+          "transform": [
+            {
+              "translateY": 1,
+            },
+          ],
+        }
+      }
+    />
+  </ViewManagerAdapter_ExpoLinearGradient>,
+  <View
+    style={
+      {
+        "backgroundColor": "#A990CCFF",
+        "bottom": 0.5,
+        "height": 2,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+      }
+    }
+  />,
+  <View
+    style={
+      {
         "alignItems": "center",
-        "backgroundColor": "#2B1F74",
         "flexDirection": "row",
         "gap": 4,
         "justifyContent": "space-evenly",
@@ -132,22 +260,20 @@ exports[`Header matches the snapshot 1`] = `
       </Text>
     </View>
   </View>,
-  <View
-    style={
-      {
-        "backgroundColor": "#FEDD84",
-        "height": 2,
-      }
-    }
-  />,
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
-        1249068,
-        866882024,
+        2566914048,
+        0,
       ]
     }
     endPoint={
+      [
+        1,
+        0,
+      ]
+    }
+    locations={
       [
         0,
         1,
@@ -155,17 +281,19 @@ exports[`Header matches the snapshot 1`] = `
     }
     startPoint={
       [
-        0,
+        0.8,
         0,
       ]
     }
     style={
       {
         "alignItems": "center",
-        "backgroundColor": "#05011A",
+        "alignSelf": "flex-start",
         "flexDirection": "row",
-        "paddingHorizontal": 8,
-        "paddingVertical": 8,
+        "marginBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 32,
+        "paddingVertical": 4,
       }
     }
   >
@@ -201,32 +329,54 @@ exports[`Header matches the snapshot 1`] = `
       onStartShouldSetResponder={[Function]}
       role="button"
       style={
-        [
-          {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF00",
-            "justifyContent": "center",
-          },
-          {
-            "padding": 8,
-          },
-        ]
+        {
+          "padding": 8,
+        }
       }
     >
-      <
-        color="white"
-        name="arrow-back"
-        size={24}
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={18}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        sfEffect={null}
+        source={
+          [
+            {
+              "testUri": "../../../src/assets/images/ui/icons/left-arrow.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 18,
+            "width": 18,
+          }
+        }
+        symbolSize={null}
+        symbolWeight={null}
+        transition={null}
+        width={18}
       />
     </View>
     <Text
       style={
         {
-          "color": "white",
-          "fontFamily": "FranklinGothicDemiCond-Italic",
-          "fontSize": 24,
+          "color": "#E7C8FFFF",
+          "fontFamily": "AgencyFB-Bold",
+          "fontSize": 20,
           "textTransform": "uppercase",
-          "width": "100%",
         }
       }
     >
