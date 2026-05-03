@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native-unistyles';
 const theme = {
   color: {
     background: '#0B0825',
-    darkBlue: '#070032',
     highlight: '#2B1F74',
     accent: '#FEDD84',
     itemImageBackground: '#512A8C',
@@ -25,7 +24,6 @@ const theme = {
     borderLight: '#CACEFF',
     borderMedium: '#A9AFFF',
     borderDark: '#4838A9',
-    headerBackground: '#05011A',
     dark: '#161616',
     weak: '#676767',
     stat: '#FFBC51',
@@ -38,7 +36,6 @@ const theme = {
     black: 'black',
     white: 'white',
     transparent: '#FFFFFF00',
-    translucentBlack: '#000000AA',
     translucentDark: '#161616AA',
     translucentBorder: '#00000059',
     error: '#BA1A27',
@@ -116,10 +113,6 @@ const theme = {
       alert: {
         // Mod Kit - GentleWhiteToGray
         colors: ['#FFFFFFFF', '#C4C4C4FF'],
-      },
-      store: {
-        // Mod Kit - StoreBgCurve with 75% opacity
-        colors: ['#4F38D4BF', '#251A5EBF'],
       },
       storeCountdown: {
         // Mod Kit - TimerBGCurve
