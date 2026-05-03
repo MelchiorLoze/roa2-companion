@@ -29,8 +29,8 @@ exports[`SignIn matches snapshot 1`] = `
     <Text
       style={
         {
-          "color": "white",
-          "fontFamily": "FranklinGothicDemiCond-Italic",
+          "color": "#E7C8FFFF",
+          "fontFamily": "AgencyFB-Bold",
           "fontSize": 24,
           "textAlign": "center",
           "textTransform": "uppercase",
@@ -192,7 +192,7 @@ exports[`SignIn matches snapshot 1`] = `
             <Text
               style={
                 {
-                  "color": "#CACEFF",
+                  "color": "white",
                   "fontFamily": "FranklinGothicDemiCond-Italic",
                   "fontSize": 14,
                   "textAlign": "right",
@@ -375,8 +375,8 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
       <Text
         style={
           {
-            "color": "white",
-            "fontFamily": "FranklinGothicDemiCond-Italic",
+            "color": "#E7C8FFFF",
+            "fontFamily": "AgencyFB-Bold",
             "fontSize": 24,
             "textAlign": "center",
             "textTransform": "uppercase",
@@ -538,7 +538,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               <Text
                 style={
                   {
-                    "color": "#CACEFF",
+                    "color": "white",
                     "fontFamily": "FranklinGothicDemiCond-Italic",
                     "fontSize": 14,
                     "textAlign": "right",

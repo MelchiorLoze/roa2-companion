@@ -50,12 +50,14 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 12,
     color: theme.color.white,
     strokeWidth: 1,
+    strokeColor: theme.color.black,
   },
   bonusUnit: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 10,
     color: theme.color.white,
     strokeWidth: 1,
+    strokeColor: theme.color.black,
   },
   timeLeftBorder: {
     backgroundColor: theme.color.translucentBorder,
@@ -84,6 +86,7 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 10,
     color: theme.color.white,
     strokeWidth: 1,
+    strokeColor: theme.color.black,
   },
   timeLeftPlaceHolder: {
     color: theme.color.transparent,
