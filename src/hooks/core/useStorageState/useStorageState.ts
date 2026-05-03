@@ -1,5 +1,5 @@
 import * as SecureStorage from 'expo-secure-store';
-import { useCallback, useEffect, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import { Platform } from 'react-native';
 
 type AsyncState<T> = [value: T | null, isLoading: boolean];
@@ -24,18 +24,15 @@ const setStorageItemAsync = async <T>(key: string, value: T | null) => {
 export const useStorageState = <T>(key: string, converter?: (value: unknown) => T) => {
   const [state, setState] = useAsyncState<T>();
 
-  const setStateFromString = useCallback(
-    (value: string | null) => {
+  // Get
+  useEffect(() => {
+    const setStateFromString = (value: string | null) => {
       if (value) {
         const parsedValue: unknown = JSON.parse(value);
         setState(converter ? converter(parsedValue) : (parsedValue as T));
       } else setState(null);
-    },
-    [setState, converter],
-  );
+    };
 
-  // Get
-  useEffect(() => {
     if (Platform.OS === 'web') {
       try {
         if (typeof localStorage !== 'undefined') setStateFromString(localStorage.getItem(key));
@@ -43,16 +40,13 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
         console.error('Local storage is unavailable:', error);
       }
     } else SecureStorage.getItemAsync(key).then(setStateFromString).catch(console.error);
-  }, [key, setStateFromString]);
+  }, [key, converter, setState]);
 
   // Set
-  const setValue = useCallback(
-    (value: T | null) => {
-      setState(value);
-      void setStorageItemAsync(key, value);
-    },
-    [key, setState],
-  );
+  const setValue = (value: T | null) => {
+    setState(value);
+    void setStorageItemAsync(key, value);
+  };
 
   return [state, setValue] as const;
 };

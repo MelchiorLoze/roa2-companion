@@ -66,8 +66,10 @@ const config = defineConfig([
 
       // React
       'react/jsx-sort-props': 'warn',
-      'react/react-in-jsx-scope': 'off',
+      'react/no-array-index-key': 'warn',
+      'react/no-unstable-nested-components': 'error',
       'react/prefer-read-only-props': 'warn',
+      'react/react-in-jsx-scope': 'off',
 
       // TypeScript
       '@typescript-eslint/consistent-type-definitions': ['warn', 'type'],

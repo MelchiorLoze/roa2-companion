@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { FlatList, type ListRenderItem } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -11,10 +10,7 @@ const keyExtractor = (item: Item): string => item.id;
 type Props = { items: Item[]; onSelect: (item: Item) => void };
 
 export const ItemList = ({ items, onSelect }: Readonly<Props>) => {
-  const renderItem = useCallback<ListRenderItem<Item>>(
-    ({ item }) => <ItemCard item={item} onPress={() => onSelect(item)} />,
-    [onSelect],
-  );
+  const renderItem: ListRenderItem<Item> = ({ item }) => <ItemCard item={item} onPress={() => onSelect(item)} />;
 
   return (
     <FlatList
