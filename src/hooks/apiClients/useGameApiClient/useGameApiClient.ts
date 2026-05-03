@@ -21,9 +21,7 @@ export const useGameApiClient = (): HttpClient => {
 
     const data: unknown = await response.json();
 
-    if (data && typeof data === 'object' && 'data' in data) {
-      return data.data as T;
-    }
+    if (data && typeof data === 'object' && 'data' in data) return data.data as T;
 
     return data as T;
   };

@@ -27,20 +27,18 @@ export const useRotatingCoinShop = (): RotatingCoinShopState => {
     isError: false,
   } as const;
 
-  if (rotationalCoinStore && items?.length) {
+  if (rotationalCoinStore && items?.length)
     return {
       ...baseState,
       items: sortItems(items),
       expirationDate: rotationalCoinStore.expirationDate,
     } as const;
-  }
 
-  if (isLoadingRotation || isLoadingItems) {
+  if (isLoadingRotation || isLoadingItems)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

@@ -32,9 +32,7 @@ export default function PrivateLayout() {
   const { isLoggedIn } = useAuth();
   useAutomaticSessionRefresh();
 
-  if (!isLoggedIn) {
-    return <Redirect href="/sign-in" />;
-  }
+  if (!isLoggedIn) return <Redirect href="/sign-in" />;
 
   return (
     <SeasonProvider>

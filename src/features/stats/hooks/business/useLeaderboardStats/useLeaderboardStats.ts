@@ -24,7 +24,7 @@ export const useLeaderboardStats = (): LeaderboardStatsState => {
     isError: false,
   } as const;
 
-  if (leaderboardEntries?.length) {
+  if (leaderboardEntries?.length)
     return {
       ...baseState,
       firstPlayerElo: leaderboardEntries[0].elo,
@@ -35,14 +35,12 @@ export const useLeaderboardStats = (): LeaderboardStatsState => {
         )?.elo ?? 0,
       leaderboardEntries,
     } as const;
-  }
 
-  if (isLoadingSeason || isLoadingLeaderboard) {
+  if (isLoadingSeason || isLoadingLeaderboard)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

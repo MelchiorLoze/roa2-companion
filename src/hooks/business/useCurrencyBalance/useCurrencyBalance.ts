@@ -25,21 +25,19 @@ export const useCurrencyBalance = (): CurrencyBalanceState => {
     isError: false,
   } as const;
 
-  if (inventoryItems) {
+  if (inventoryItems)
     return {
       ...baseState,
       coinsBalance: getCurrencyBalance(CurrencyId.COINS, inventoryItems),
       bucksBalance: getCurrencyBalance(CurrencyId.BUCKS, inventoryItems),
       medalsBalance: getCurrencyBalance(CurrencyId.MEDALS, inventoryItems),
     } as const;
-  }
 
-  if (isLoading) {
+  if (isLoading)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

@@ -44,19 +44,17 @@ export const useEloDistribution = (): EloDistributionState => {
     isError: false,
   } as const;
 
-  if (leaderboardEntries) {
+  if (leaderboardEntries)
     return {
       ...baseState,
       eloDistribution: getEloDistribution(leaderboardEntries, firstPlayerElo, lastPlayerElo),
     } as const;
-  }
 
-  if (isLoading) {
+  if (isLoading)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

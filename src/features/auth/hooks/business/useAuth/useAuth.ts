@@ -31,26 +31,23 @@ export const useAuth = (): AuthState => {
     isError: false,
   } as const;
 
-  if (isValid) {
+  if (isValid)
     return {
       ...baseState,
       isLoggedIn: true,
     } as const;
-  }
 
-  if (isLoadingSession || isLoadingLogin) {
+  if (isLoadingSession || isLoadingLogin)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
-  if (isError) {
+  if (isError)
     return {
       ...baseState,
       isError: true,
     } as const;
-  }
 
   return {
     ...baseState,

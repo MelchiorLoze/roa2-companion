@@ -58,12 +58,11 @@ export const useUserCrewsStats = (): UserCrewsStatsState => {
     } as const;
   }
 
-  if (isLoadingRawStats || isLoadingPlayerPosition) {
+  if (isLoadingRawStats || isLoadingPlayerPosition)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

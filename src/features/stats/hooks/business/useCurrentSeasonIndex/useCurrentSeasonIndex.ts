@@ -12,19 +12,17 @@ export const useCurrentSeasonIndex = (): LoadableState<{ currentSeasonIndex: num
     isError: false,
   } as const;
 
-  if (statistics) {
+  if (statistics)
     return {
       ...baseState,
       currentSeasonIndex: statistics[StatisticName.RANKED_SEASON_INDEX],
     };
-  }
 
-  if (isLoading) {
+  if (isLoading)
     return {
       ...baseState,
       isLoading: true,
     };
-  }
 
   return {
     ...baseState,

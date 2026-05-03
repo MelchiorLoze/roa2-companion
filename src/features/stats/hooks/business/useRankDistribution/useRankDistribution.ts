@@ -9,11 +9,8 @@ const findFirstIndexWithElo = (leaderboardEntries: LeaderboardEntry[], targetElo
 
   while (left < right) {
     const mid = Math.floor((left + right) / 2);
-    if (leaderboardEntries[mid].elo > targetElo) {
-      left = mid + 1;
-    } else {
-      right = mid;
-    }
+    if (leaderboardEntries[mid].elo > targetElo) left = mid + 1;
+    else right = mid;
   }
 
   return left;
@@ -50,19 +47,17 @@ export const useRankDistribution = (): RankDistributionState => {
     isError: false,
   } as const;
 
-  if (leaderboardEntries) {
+  if (leaderboardEntries)
     return {
       ...baseState,
       rankDistribution: getRankDistribution(leaderboardEntries),
     } as const;
-  }
 
-  if (isLoading) {
+  if (isLoading)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,
