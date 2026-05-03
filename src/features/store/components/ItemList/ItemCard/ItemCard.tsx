@@ -1,5 +1,4 @@
 import { Image, ImageBackground } from 'expo-image';
-import { memo } from 'react';
 import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -15,7 +14,7 @@ import { ItemImage } from '../ItemImage/ItemImage';
 
 type Props = { item: Item; onPress: () => void };
 
-export const ItemCard = memo(({ item, onPress }: Readonly<Props>) => {
+export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
@@ -71,9 +70,7 @@ export const ItemCard = memo(({ item, onPress }: Readonly<Props>) => {
       )}
     </Pressable>
   );
-});
-
-ItemCard.displayName = 'ItemCard';
+};
 
 const styles = StyleSheet.create((theme) => ({
   container: {
