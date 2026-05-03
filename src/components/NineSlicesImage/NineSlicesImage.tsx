@@ -9,7 +9,7 @@ import {
   useImage,
 } from '@shopify/react-native-skia';
 import { type ImageSource } from 'expo-image';
-import { memo, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { type LayoutChangeEvent, type StyleProp, View, type ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -137,9 +137,7 @@ const createNineSlices = (image: SkImage, destinationWidth: number, destinationH
         height: destinationY[rowIndex + 1] - destinationY[rowIndex],
       };
 
-      if (source.width <= 0 || source.height <= 0 || destination.width <= 0 || destination.height <= 0) {
-        continue;
-      }
+      if (source.width <= 0 || source.height <= 0 || destination.width <= 0 || destination.height <= 0) continue;
 
       slices.push({ source, destination });
     }
@@ -148,17 +146,14 @@ const createNineSlices = (image: SkImage, destinationWidth: number, destinationH
   return { slices, imageWidth, imageHeight } as const;
 };
 
-export const NineSlicesImage = memo(({ source, insets, style }: Readonly<Props>) => {
+export const NineSlicesImage = ({ source, insets, style }: Readonly<Props>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
   const image = useImage(source as DataSourceParam);
 
-  const geometry = useMemo(() => {
-    if (!image || size.width <= 0 || size.height <= 0) {
-      return null;
-    }
-
-    return createNineSlices(image, size.width, size.height, { ...DEFAULT_INSETS, ...insets });
-  }, [image, insets, size.height, size.width]);
+  const geometry =
+    image && size.width > 0 && size.height > 0
+      ? createNineSlices(image, size.width, size.height, { ...DEFAULT_INSETS, ...insets })
+      : null;
 
   const onLayout = (event: LayoutChangeEvent) => {
     const newSize = event.nativeEvent.layout;
@@ -173,12 +168,12 @@ export const NineSlicesImage = memo(({ source, insets, style }: Readonly<Props>)
     <View onLayout={onLayout} style={style ?? styles.container}>
       {geometry && (
         <Canvas style={StyleSheet.absoluteFill}>
-          {geometry.slices.map(({ source: sourceRect, destination: destinationRect }, index) => {
+          {geometry.slices.map(({ source: sourceRect, destination: destinationRect }) => {
             const scaleX = destinationRect.width / sourceRect.width;
             const scaleY = destinationRect.height / sourceRect.height;
 
             return (
-              <Group clip={destinationRect} key={index}>
+              <Group clip={destinationRect} key={`${sourceRect.x}_${sourceRect.y}`}>
                 <Group
                   transform={[
                     { translateX: destinationRect.x - sourceRect.x * scaleX },
@@ -203,7 +198,7 @@ export const NineSlicesImage = memo(({ source, insets, style }: Readonly<Props>)
       )}
     </View>
   );
-});
+};
 
 NineSlicesImage.displayName = 'NineSlicesImage';
 
