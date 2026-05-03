@@ -32,7 +32,7 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
       </View>
     );
 
-  if (isError) {
+  if (isError)
     return (
       <>
         <Text style={styles.title}>{item.name}</Text>
@@ -43,7 +43,6 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
         </View>
       </>
     );
-  }
 
   return (
     <>
