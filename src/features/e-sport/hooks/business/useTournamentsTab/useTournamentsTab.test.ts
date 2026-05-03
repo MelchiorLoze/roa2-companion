@@ -241,8 +241,6 @@ describe('useTournamentsTab', () => {
 
       act(pastTab!.onPress);
 
-      act(pastTab!.onPress);
-
       act(result.current.refresh);
 
       expect(mockRefetchActive).toHaveBeenCalled();
