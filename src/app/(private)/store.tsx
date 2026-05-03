@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useState } from 'react';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
 import { CoinStoreRotationCountdown } from '@/features/store/components/CoinStoreRotationCountdown/CoinStoreRotationCountdown';
 import { ItemList } from '@/features/store/components/ItemList/ItemList';
@@ -11,13 +11,7 @@ import { type CoinStoreItem } from '@/features/store/types/item';
 import { type Item } from '@/types/item';
 
 const GradientWrapper = ({ children }: PropsWithChildren) => {
-  const { theme } = useUnistyles();
-
-  return (
-    <LinearGradient {...theme.color.gradient.store} style={styles.container} vertical>
-      {children}
-    </LinearGradient>
-  );
+  return <View style={styles.container}>{children}</View>;
 };
 
 export default function Store() {

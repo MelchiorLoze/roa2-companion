@@ -102,9 +102,9 @@ const styles = StyleSheet.create((theme, runtime) => ({
   },
   title: {
     width: '100%',
-    fontFamily: theme.font.primary.italic,
+    fontFamily: theme.font.secondary.bold,
     fontSize: 24,
-    color: theme.color.white,
+    color: theme.color.headerTitle,
     textAlign: 'center',
     textTransform: 'uppercase',
   },
