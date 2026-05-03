@@ -27,7 +27,7 @@ const theme = {
     dark: '#161616',
     weak: '#676767',
     stat: '#FFBC51',
-    inactive: '#5A5C95',
+    inactive: '#84769C',
     inactiveLight: '#5F46C2',
     disabled: '#AAAAAA',
     upcoming: '#CACEFF',
