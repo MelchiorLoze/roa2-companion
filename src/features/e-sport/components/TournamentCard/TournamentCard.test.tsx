@@ -38,9 +38,7 @@ const mockTournament: Tournament = {
   ],
 };
 
-const renderComponent = (tournament: Tournament) => {
-  return render(<TournamentCard tournament={tournament} />);
-};
+const renderComponent = (tournament: Tournament) => render(<TournamentCard tournament={tournament} />);
 
 describe('TournamentCard', () => {
   beforeEach(() => {

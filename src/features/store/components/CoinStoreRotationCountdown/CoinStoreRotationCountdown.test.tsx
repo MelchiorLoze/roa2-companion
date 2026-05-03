@@ -3,9 +3,7 @@ import { DateTime } from 'luxon';
 
 import { CoinStoreRotationCountdown } from './CoinStoreRotationCountdown';
 
-const renderComponent = (date: DateTime) => {
-  return render(<CoinStoreRotationCountdown expirationDate={date} />);
-};
+const renderComponent = (date: DateTime) => render(<CoinStoreRotationCountdown expirationDate={date} />);
 
 describe('CoinStoreRotationCountdown', () => {
   beforeEach(() => {

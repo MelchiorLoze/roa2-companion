@@ -6,9 +6,7 @@ import { type LoadableState } from '@/types/loadableState';
 const getCurrencyBalance = (
   currencyId: Item['id'],
   items: NonNullable<ReturnType<typeof useGetInventoryItems>['inventoryItems']>,
-) => {
-  return items.find((item) => item.id === currencyId)?.amount ?? 0;
-};
+) => items.find((item) => item.id === currencyId)?.amount ?? 0;
 
 type CurrencyBalanceState = LoadableState<{
   coinsBalance: number;

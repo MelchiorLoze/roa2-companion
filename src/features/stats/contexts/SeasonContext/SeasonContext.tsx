@@ -25,9 +25,7 @@ const useSeasonState = (): SeasonState => {
   const { currentSeasonIndex, isLoading: isCurrentSeasonIndexLoading, isError } = useCurrentSeasonIndex();
   const { leaderboards, isLoading: isLeaderboardsLoading } = useCommunityLeaderboards();
 
-  useEffect(() => {
-    setSelectedSeasonIndex((prev) => prev ?? currentSeasonIndex);
-  }, [currentSeasonIndex]);
+  useEffect(() => setSelectedSeasonIndex((prev) => prev ?? currentSeasonIndex), [currentSeasonIndex]);
 
   const baseState = {
     season: undefined,

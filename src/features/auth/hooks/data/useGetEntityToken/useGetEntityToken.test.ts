@@ -50,9 +50,7 @@ describe('useGetEntityToken', () => {
 
       const { result } = await renderUseGetEntityToken();
 
-      await act(async () => {
-        result.current.renew();
-      });
+      act(result.current.renew);
 
       await waitFor(() => expect(onSuccessMock).toHaveBeenCalledTimes(1));
       expect(onSuccessMock).toHaveBeenCalledWith({
@@ -74,9 +72,7 @@ describe('useGetEntityToken', () => {
     it('does not call onSuccess', async () => {
       const { result } = await renderUseGetEntityToken();
 
-      await act(async () => {
-        result.current.renew();
-      });
+      act(result.current.renew);
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);

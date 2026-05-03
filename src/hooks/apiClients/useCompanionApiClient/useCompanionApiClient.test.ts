@@ -12,9 +12,7 @@ type TestData = {
 
 const responseDataMock: TestData = { id: 1, name: 'test' };
 
-const renderUseCompanionApiClient = () => {
-  return renderHook(useCompanionApiClient);
-};
+const renderUseCompanionApiClient = () => renderHook(useCompanionApiClient);
 
 describe('useCompanionApiClient', () => {
   it('makes GET requests with correct headers', async () => {

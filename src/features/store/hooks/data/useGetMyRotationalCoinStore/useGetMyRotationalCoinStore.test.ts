@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
@@ -94,15 +94,11 @@ describe('useGetMyRotationalCoinStore', () => {
     expect(result.current.rotationalCoinStore).toBeDefined();
 
     // Fast-forward time to just before expiration - should not invalidate
-    act(() => {
-      jest.advanceTimersByTime(4 * 60 * 1000); // 4 minutes
-    });
+    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 4 }).as('milliseconds'))); // 4 minutes
     expect(invalidateQueriesSpy).not.toHaveBeenCalled();
 
     // Fast-forward to expiration time - should invalidate
-    act(() => {
-      jest.advanceTimersByTime(60 * 1000); // 1 more minute = 5 minutes total
-    });
+    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 1 }).as('milliseconds'))); // 1 more minute = 5 minutes total
     expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['getMyRotationalCoinStore'] });
 
     jest.useRealTimers();

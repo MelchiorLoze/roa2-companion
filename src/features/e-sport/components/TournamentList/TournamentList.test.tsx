@@ -76,9 +76,8 @@ const mockTournament3: Tournament = {
 
 const refreshControl = <RefreshControl onRefresh={jest.fn()} refreshing={false} />;
 
-const renderComponent = (tournaments: Tournament[]) => {
-  return render(<TournamentList refreshControl={refreshControl} tournaments={tournaments} />);
-};
+const renderComponent = (tournaments: Tournament[]) =>
+  render(<TournamentList refreshControl={refreshControl} tournaments={tournaments} />);
 
 describe('TournamentList', () => {
   it('renders empty list correctly', () => {

@@ -1,7 +1,7 @@
 import { DateTime, Duration } from 'luxon';
 import { useEffect, useState } from 'react';
 
-const BONUS_DURATION = Duration.fromObject({ minutes: 90 }).as('seconds');
+export const BONUS_DURATION = Duration.fromObject({ minutes: 90 });
 
 const QUEUES = ['casual', '2v2', 'crews'] as const;
 type Queue = (typeof QUEUES)[number];
@@ -14,8 +14,9 @@ type XpRotationalBonusState = {
 const calculateCurrentBonus = (): XpRotationalBonusState => {
   const epochSeconds = DateTime.utc().toSeconds();
 
-  const currentBonusIndex = Math.floor(epochSeconds / BONUS_DURATION) % QUEUES.length;
-  const secondsRemaining = BONUS_DURATION - (epochSeconds % BONUS_DURATION);
+  const bonusDurationSeconds = BONUS_DURATION.as('seconds');
+  const currentBonusIndex = Math.floor(epochSeconds / bonusDurationSeconds) % QUEUES.length;
+  const secondsRemaining = bonusDurationSeconds - (epochSeconds % bonusDurationSeconds);
 
   return {
     currentQueue: QUEUES[currentBonusIndex],

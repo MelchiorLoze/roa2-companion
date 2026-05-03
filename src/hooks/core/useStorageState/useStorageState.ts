@@ -4,12 +4,8 @@ import { Platform } from 'react-native';
 
 type AsyncState<T> = [value: T | null, isLoading: boolean];
 
-const useAsyncState = <T>(initialValue: AsyncState<T>[0] = null) => {
-  return useReducer<AsyncState<T>, [AsyncState<T>[0]]>(
-    (_, ...actions) => [actions[0] ?? null, false],
-    [initialValue, true],
-  );
-};
+const useAsyncState = <T>(initialValue: AsyncState<T>[0] = null) =>
+  useReducer<AsyncState<T>, [AsyncState<T>[0]]>((_, ...actions) => [actions[0] ?? null, false], [initialValue, true]);
 
 const setStorageItemAsync = async <T>(key: string, value: T | null) => {
   if (Platform.OS === 'web') {

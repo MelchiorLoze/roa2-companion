@@ -10,9 +10,7 @@ type TestData = {
 };
 const responseDataMock: { response: TestData } = { response: { id: 1, name: 'Test' } };
 
-const renderUseSteamCommunityApiClient = () => {
-  return renderHook(useSteamCommunityApiClient);
-};
+const renderUseSteamCommunityApiClient = () => renderHook(useSteamCommunityApiClient);
 
 describe('useSteamCommunityApiClient', () => {
   it('parses XML response correctly when wrapped in a `response` property', async () => {

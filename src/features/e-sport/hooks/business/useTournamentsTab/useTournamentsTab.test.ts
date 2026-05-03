@@ -142,9 +142,7 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.tournaments).toEqual(mockPastTournaments);
     });
@@ -159,9 +157,7 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.isLoading).toBe(true);
     });
@@ -177,9 +173,7 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.isRefreshing).toBe(true);
     });
@@ -195,9 +189,7 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.isError).toBe(true);
     });
@@ -210,15 +202,11 @@ describe('useTournamentsTab', () => {
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
       const activeTab = result.current.tabs.find((tab) => tab.title === 'active');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.selectedTab).toBe('past');
 
-      act(() => {
-        activeTab?.onPress();
-      });
+      act(activeTab!.onPress);
 
       expect(result.current.selectedTab).toBe('active');
     });
@@ -230,9 +218,7 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
       expect(result.current.selectedTab).toBe('past');
     });
@@ -242,9 +228,7 @@ describe('useTournamentsTab', () => {
     it('calls refetch for both active and past tournaments', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
-      act(() => {
-        result.current.refresh();
-      });
+      act(result.current.refresh);
 
       expect(mockRefetchActive).toHaveBeenCalled();
       expect(mockRefetchPast).toHaveBeenCalled();
@@ -255,13 +239,9 @@ describe('useTournamentsTab', () => {
 
       const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
 
-      act(() => {
-        pastTab?.onPress();
-      });
+      act(pastTab!.onPress);
 
-      act(() => {
-        result.current.refresh();
-      });
+      act(result.current.refresh);
 
       expect(mockRefetchActive).toHaveBeenCalled();
       expect(mockRefetchPast).toHaveBeenCalled();
