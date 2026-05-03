@@ -97,12 +97,11 @@ export const useUserRankedStats = (): UserRankedStatsState => {
     };
   }
 
-  if (isLoadingSeason || isLoadingRawStats || isLoadingPlayerPosition) {
+  if (isLoadingSeason || isLoadingRawStats || isLoadingPlayerPosition)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

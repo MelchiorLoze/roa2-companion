@@ -12,9 +12,7 @@ export const useSteamCommunityApiClient = (): HttpClient => {
     const parser = new XMLParser();
     const data: unknown = parser.parse(xmlString);
 
-    if (data && typeof data === 'object' && 'response' in data) {
-      return data.response as T;
-    }
+    if (data && typeof data === 'object' && 'response' in data) return data.response as T;
 
     return data as T;
   };

@@ -66,8 +66,8 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
 
 export const useSession = (): SessionState => {
   const context = useContext(SessionContext);
-  if (!context) {
-    throw new Error('useSession must be used within a SessionProvider');
-  }
+
+  if (!context) throw new Error('useSession must be used within a SessionProvider');
+
   return context;
 };

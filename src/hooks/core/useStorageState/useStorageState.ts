@@ -29,9 +29,7 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
       if (value) {
         const parsedValue: unknown = JSON.parse(value);
         setState(converter ? converter(parsedValue) : (parsedValue as T));
-      } else {
-        setState(null);
-      }
+      } else setState(null);
     },
     [setState, converter],
   );
@@ -40,15 +38,11 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
   useEffect(() => {
     if (Platform.OS === 'web') {
       try {
-        if (typeof localStorage !== 'undefined') {
-          setStateFromString(localStorage.getItem(key));
-        }
+        if (typeof localStorage !== 'undefined') setStateFromString(localStorage.getItem(key));
       } catch (error) {
         console.error('Local storage is unavailable:', error);
       }
-    } else {
-      SecureStorage.getItemAsync(key).then(setStateFromString).catch(console.error);
-    }
+    } else SecureStorage.getItemAsync(key).then(setStateFromString).catch(console.error);
   }, [key, setStateFromString]);
 
   // Set

@@ -31,7 +31,7 @@ const Content = ({ email: propsEmail, onClose }: Readonly<Props>) => {
 
   if (isLoading) return <Spinner />;
 
-  if (isSuccess) {
+  if (isSuccess)
     return (
       <>
         <Text style={styles.description}>
@@ -41,7 +41,6 @@ const Content = ({ email: propsEmail, onClose }: Readonly<Props>) => {
         <Button label="Ok" onPress={() => onClose(email)} />
       </>
     );
-  }
 
   return (
     <>

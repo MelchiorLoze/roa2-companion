@@ -55,19 +55,17 @@ export const useTournamentsTab = (): TournamentsTabState => {
     },
   });
 
-  if (tournaments?.length) {
+  if (tournaments?.length)
     return {
       ...baseState,
       tournaments,
     } as const;
-  }
 
-  if (isLoading) {
+  if (isLoading)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,

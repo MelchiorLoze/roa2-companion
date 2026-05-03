@@ -60,7 +60,7 @@ export const useUserGlobalStats = (): UserGlobalStatsState => {
     },
   } as const;
 
-  if (rawStats && userData) {
+  if (rawStats && userData)
     return {
       ...baseState,
       stats: {
@@ -68,14 +68,12 @@ export const useUserGlobalStats = (): UserGlobalStatsState => {
         characterStats: getGlobalCharacterStats(rawStats, userData),
       },
     } as const;
-  }
 
-  if (isLoadingRawStats || isLoadingUserData) {
+  if (isLoadingRawStats || isLoadingUserData)
     return {
       ...baseState,
       isLoading: true,
     } as const;
-  }
 
   return {
     ...baseState,
