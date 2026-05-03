@@ -60,13 +60,11 @@ const Content = ({ email: propsEmail, onClose }: Readonly<Props>) => {
   );
 };
 
-export const ResetPasswordDialog = ({ email, onClose }: Readonly<Props>) => {
-  return (
-    <Dialog onClose={onClose}>
-      <Content email={email} onClose={onClose} />
-    </Dialog>
-  );
-};
+export const ResetPasswordDialog = ({ email, onClose }: Readonly<Props>) => (
+  <Dialog onClose={onClose}>
+    <Content email={email} onClose={onClose} />
+  </Dialog>
+);
 
 const styles = StyleSheet.create((theme) => ({
   description: {

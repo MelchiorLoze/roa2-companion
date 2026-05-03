@@ -24,9 +24,7 @@ describe('useTabs', () => {
 
     expect(result.current.selectedTab).toBe('tab1');
 
-    act(() => {
-      result.current.tabs[1].onPress();
-    });
+    act(result.current.tabs[1].onPress);
 
     expect(result.current.selectedTab).toBe('tab2');
   });
@@ -36,9 +34,7 @@ describe('useTabs', () => {
 
     expect(result.current.selectedTab).toBe('tab1');
 
-    act(() => {
-      result.current.tabs[2].onPress();
-    });
+    act(result.current.tabs[2].onPress);
 
     expect(result.current.selectedTab).toBe('tab3');
   });
@@ -46,15 +42,11 @@ describe('useTabs', () => {
   it('switches back to first tab after selecting another tab', () => {
     const { result } = renderHook(() => useTabs(['tab1', 'tab2', 'tab3'] as const));
 
-    act(() => {
-      result.current.tabs[1].onPress();
-    });
+    act(result.current.tabs[1].onPress);
 
     expect(result.current.selectedTab).toBe('tab2');
 
-    act(() => {
-      result.current.tabs[0].onPress();
-    });
+    act(result.current.tabs[0].onPress);
 
     expect(result.current.selectedTab).toBe('tab1');
   });
@@ -63,27 +55,19 @@ describe('useTabs', () => {
     const { result } = renderHook(() => useTabs(['tab1', 'tab2', 'tab3'] as const));
 
     // tab1 -> tab2
-    act(() => {
-      result.current.tabs[1].onPress();
-    });
+    act(result.current.tabs[1].onPress);
     expect(result.current.selectedTab).toBe('tab2');
 
     // tab2 -> tab3
-    act(() => {
-      result.current.tabs[2].onPress();
-    });
+    act(result.current.tabs[2].onPress);
     expect(result.current.selectedTab).toBe('tab3');
 
     // tab3 -> tab1
-    act(() => {
-      result.current.tabs[0].onPress();
-    });
+    act(result.current.tabs[0].onPress);
     expect(result.current.selectedTab).toBe('tab1');
 
     // tab1 -> tab3
-    act(() => {
-      result.current.tabs[2].onPress();
-    });
+    act(result.current.tabs[2].onPress);
     expect(result.current.selectedTab).toBe('tab3');
   });
 
@@ -93,9 +77,7 @@ describe('useTabs', () => {
     expect(result.current.selectedTab).toBe('active');
     expect(result.current.tabs).toHaveLength(2);
 
-    act(() => {
-      result.current.tabs[1].onPress();
-    });
+    act(result.current.tabs[1].onPress);
 
     expect(result.current.selectedTab).toBe('inactive');
   });
@@ -107,9 +89,7 @@ describe('useTabs', () => {
     expect(result.current.tabs).toHaveLength(1);
 
     // Pressing the only tab should not cause errors
-    act(() => {
-      result.current.tabs[0].onPress();
-    });
+    act(result.current.tabs[0].onPress);
 
     expect(result.current.selectedTab).toBe('only');
   });
@@ -132,9 +112,7 @@ describe('useTabs', () => {
     it('returns value for the second tab when it is selected', () => {
       const { result } = renderHook(() => useTabs(['tab1', 'tab2', 'tab3'] as const));
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
 
       const valuePerTab = {
         tab1: 'value1',
@@ -150,9 +128,7 @@ describe('useTabs', () => {
     it('returns value for the third tab when it is selected', () => {
       const { result } = renderHook(() => useTabs(['tab1', 'tab2', 'tab3'] as const));
 
-      act(() => {
-        result.current.tabs[2].onPress();
-      });
+      act(result.current.tabs[2].onPress);
 
       const valuePerTab = {
         tab1: 'value1',
@@ -178,9 +154,7 @@ describe('useTabs', () => {
         isLoading: false,
       });
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toEqual({
         data: [4, 5, 6],
@@ -198,9 +172,7 @@ describe('useTabs', () => {
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(100);
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(200);
     });
@@ -215,9 +187,7 @@ describe('useTabs', () => {
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(true);
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(false);
     });
@@ -233,15 +203,11 @@ describe('useTabs', () => {
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(null);
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe(undefined);
 
-      act(() => {
-        result.current.tabs[2].onPress();
-      });
+      act(result.current.tabs[2].onPress);
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe('value');
     });
@@ -257,19 +223,13 @@ describe('useTabs', () => {
 
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe('A');
 
-      act(() => {
-        result.current.tabs[1].onPress();
-      });
+      act(result.current.tabs[1].onPress);
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe('B');
 
-      act(() => {
-        result.current.tabs[2].onPress();
-      });
+      act(result.current.tabs[2].onPress);
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe('C');
 
-      act(() => {
-        result.current.tabs[0].onPress();
-      });
+      act(result.current.tabs[0].onPress);
       expect(result.current.getValueForSelectedTab(valuePerTab)).toBe('A');
     });
   });

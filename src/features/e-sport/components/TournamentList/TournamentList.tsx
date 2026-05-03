@@ -13,17 +13,15 @@ type Props = {
   refreshControl: ComponentProps<typeof FlatList>['refreshControl'];
 };
 
-export const TournamentList = ({ tournaments, refreshControl }: Readonly<Props>) => {
-  return (
-    <FlatList
-      contentContainerStyle={styles.container}
-      data={tournaments}
-      keyExtractor={keyExtractor}
-      refreshControl={refreshControl}
-      renderItem={renderItem}
-    />
-  );
-};
+export const TournamentList = ({ tournaments, refreshControl }: Readonly<Props>) => (
+  <FlatList
+    contentContainerStyle={styles.container}
+    data={tournaments}
+    keyExtractor={keyExtractor}
+    refreshControl={refreshControl}
+    renderItem={renderItem}
+  />
+);
 
 const styles = StyleSheet.create((theme) => ({
   container: {

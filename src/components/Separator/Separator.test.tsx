@@ -2,9 +2,8 @@ import { render } from '@testing-library/react-native';
 
 import { Separator } from './Separator';
 
-const renderComponent = (variant?: 'borderLight' | 'accent' | 'gradient', pressed?: boolean, height?: number) => {
-  return render(<Separator height={height} pressed={pressed} variant={variant} />);
-};
+const renderComponent = (variant?: 'borderLight' | 'accent' | 'gradient', pressed?: boolean, height?: number) =>
+  render(<Separator height={height} pressed={pressed} variant={variant} />);
 
 describe('Separator', () => {
   it('renders correctly with default props', () => {

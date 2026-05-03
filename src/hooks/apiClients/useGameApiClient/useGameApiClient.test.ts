@@ -21,9 +21,7 @@ type TestData = {
 };
 const responseDataMock: { data: TestData } = { data: { id: 1, name: 'test' } };
 
-const renderUseGameApiClient = () => {
-  return renderHook(useGameApiClient);
-};
+const renderUseGameApiClient = () => renderHook(useGameApiClient);
 
 describe('useGameApiClient', () => {
   beforeEach(() => {

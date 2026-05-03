@@ -59,13 +59,11 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
   );
 };
 
-export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) => {
-  return (
-    <Dialog alertText="If you have the game opened, don't try to buy the same item twice" onClose={onClose}>
-      <Content item={item} onClose={onClose} />
-    </Dialog>
-  );
-};
+export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) => (
+  <Dialog alertText="If you have the game opened, don't try to buy the same item twice" onClose={onClose}>
+    <Content item={item} onClose={onClose} />
+  </Dialog>
+);
 
 const styles = StyleSheet.create((theme) => ({
   spinner: {

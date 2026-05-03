@@ -8,9 +8,10 @@ export const useCountdown = (expirationDate: DateTime) => {
     const millisecondsLeft = expirationDate.diffNow().milliseconds;
     setTimeLeft(Duration.fromObject({ hours: 0, minutes: 0, seconds: 0, milliseconds: millisecondsLeft }).normalize());
 
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => prev?.minus({ seconds: 1 }).normalize());
-    }, 1000);
+    const interval = setInterval(
+      () => setTimeLeft((prev) => prev?.minus({ seconds: 1 }).normalize()),
+      Duration.fromObject({ seconds: 1 }).as('milliseconds'),
+    );
 
     return () => clearInterval(interval);
   }, [expirationDate]);

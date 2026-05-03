@@ -99,9 +99,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
-      await act(async () => {
-        setValue(MOCK_OBJECT);
-      });
+      act(() => setValue(MOCK_OBJECT));
 
       expect(setItemAsyncMock).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
 
@@ -115,9 +113,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
-      await act(async () => {
-        setValue(null);
-      });
+      act(() => setValue(null));
 
       expect(deleteItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
     });
@@ -178,9 +174,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
-      await act(async () => {
-        setValue(MOCK_OBJECT);
-      });
+      act(() => setValue(MOCK_OBJECT));
 
       expect(localStorageMock.setItem).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
 
@@ -194,9 +188,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
-      await act(async () => {
-        setValue(null);
-      });
+      act(() => setValue(null));
 
       expect(localStorageMock.removeItem).toHaveBeenCalledWith(TEST_KEY);
     });

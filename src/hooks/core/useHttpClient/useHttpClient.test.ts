@@ -8,9 +8,8 @@ const BASE_URL = 'https://example.com';
 const responseDataMock = { data: { id: 1, name: 'test' } };
 const handleResponseMock = jest.fn().mockResolvedValue(responseDataMock);
 
-const renderUseHttpClient = (options?: Pick<Parameters<typeof useHttpClient>[0], 'baseQueryParams' | 'headers'>) => {
-  return renderHook(() => useHttpClient({ baseUrl: BASE_URL, handleResponse: handleResponseMock, ...options }));
-};
+const renderUseHttpClient = (options?: Pick<Parameters<typeof useHttpClient>[0], 'baseQueryParams' | 'headers'>) =>
+  renderHook(() => useHttpClient({ baseUrl: BASE_URL, handleResponse: handleResponseMock, ...options }));
 
 describe('useHttpClient', () => {
   it('allows request with no params', async () => {
