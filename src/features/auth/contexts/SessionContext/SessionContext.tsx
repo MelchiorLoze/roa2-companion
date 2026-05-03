@@ -1,6 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { DateTime } from 'luxon';
-import { createContext, type PropsWithChildren, useCallback, useContext } from 'react';
+import { createContext, type PropsWithChildren, useContext } from 'react';
 
 import { useStorageState } from '@/hooks/core/useStorageState/useStorageState';
 
@@ -37,17 +37,14 @@ export const SessionProvider = ({ children }: PropsWithChildren) => {
 
   const isValid = Boolean(session && isSessionValid(session));
 
-  const setValidSession = useCallback(
-    (newSession: Session) => {
-      if (isSessionValid(newSession)) setSession(newSession);
-    },
-    [setSession],
-  );
+  const setValidSession = (newSession: Session) => {
+    if (isSessionValid(newSession)) setSession(newSession);
+  };
 
-  const clearSession = useCallback(() => {
+  const clearSession = () => {
     setSession(null);
     queryClient.clear();
-  }, [queryClient, setSession]);
+  };
 
   return (
     <SessionContext.Provider
