@@ -13,8 +13,8 @@ export const XpRotationalBonusBanner = () => {
   const { currentQueue, expirationDate } = useXpRotationalBonus();
   const timeLeft = useCountdown(expirationDate);
 
-  const minutes = timeLeft?.toFormat('mm');
-  const seconds = timeLeft?.extract('seconds').toFormat('ss');
+  const minutes = timeLeft.toFormat('mm');
+  const seconds = timeLeft.extract('seconds').toFormat('ss');
 
   return (
     <LinearGradient {...theme.color.gradient.xpRotationalBonusBanner} style={styles.container} vertical>

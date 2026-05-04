@@ -18,9 +18,9 @@ describe('useCountdown', () => {
 
     const { result } = renderHook(() => useCountdown(expirationDate));
 
-    expect(result.current?.hours).toBe(2);
-    expect(result.current?.minutes).toBe(30);
-    expect(result.current?.seconds).toBe(45);
+    expect(result.current.hours).toBe(2);
+    expect(result.current.minutes).toBe(30);
+    expect(result.current.seconds).toBe(45);
   });
 
   it('returns zero hours when expiration is less than an hour away', () => {
@@ -28,9 +28,9 @@ describe('useCountdown', () => {
 
     const { result } = renderHook(() => useCountdown(expirationDate));
 
-    expect(result.current?.hours).toBe(0);
-    expect(result.current?.minutes).toBe(45);
-    expect(result.current?.seconds).toBe(20);
+    expect(result.current.hours).toBe(0);
+    expect(result.current.minutes).toBe(45);
+    expect(result.current.seconds).toBe(20);
   });
 
   it('clamps to zero when expiration is in the past', () => {
@@ -38,7 +38,7 @@ describe('useCountdown', () => {
 
     const { result } = renderHook(() => useCountdown(expirationDate));
 
-    expect(result.current?.toMillis()).toBe(0);
+    expect(result.current.toMillis()).toBe(0);
   });
 
   it('decrements by one second each interval tick', () => {
@@ -46,11 +46,11 @@ describe('useCountdown', () => {
 
     const { result } = renderHook(() => useCountdown(expirationDate));
 
-    expect(result.current?.seconds).toBe(10);
+    expect(result.current.seconds).toBe(10);
 
     act(() => jest.advanceTimersByTime(1000));
 
-    expect(result.current?.seconds).toBe(9);
+    expect(result.current.seconds).toBe(9);
   });
 
   it('carries over correctly when seconds reach zero', () => {
@@ -60,8 +60,8 @@ describe('useCountdown', () => {
 
     act(() => jest.advanceTimersByTime(1000));
 
-    expect(result.current?.minutes).toBe(0);
-    expect(result.current?.seconds).toBe(59);
+    expect(result.current.minutes).toBe(0);
+    expect(result.current.seconds).toBe(59);
   });
 
   it('cleans up the interval on unmount', () => {
@@ -84,10 +84,10 @@ describe('useCountdown', () => {
       initialProps: { date: firstDate },
     });
 
-    expect(result.current?.minutes).toBe(5);
+    expect(result.current.minutes).toBe(5);
 
     rerender({ date: secondDate });
 
-    expect(result.current?.minutes).toBe(10);
+    expect(result.current.minutes).toBe(10);
   });
 });
