@@ -41,8 +41,8 @@ export const useGetMyRotationalCoinStore = () => {
   useEffect(() => {
     if (!data) return;
 
-    const timeUntilExpiration = data.expirationDate.diffNow().as('millisecond');
-    const timeout = setTimeout(() => invalidateGetMyRotationalCoinStore(queryClient), timeUntilExpiration);
+    const timeLeft = data.expirationDate.diffNow();
+    const timeout = timeLeft.setTimeout(() => invalidateGetMyRotationalCoinStore(queryClient));
 
     return () => clearTimeout(timeout);
   }, [data, queryClient]);

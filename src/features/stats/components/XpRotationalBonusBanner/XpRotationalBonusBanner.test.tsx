@@ -73,4 +73,12 @@ describe('XpRotationalBonusBanner', () => {
 
     expect(screen.getByText('05:09')).toBeTruthy();
   });
+
+  it('handles durations above one hour correctly', () => {
+    useCountdownMock.mockReturnValue(Duration.fromObject({ hours: 1, minutes: 22, seconds: 3 }));
+
+    renderComponent();
+
+    expect(screen.getByText('82:03')).toBeTruthy();
+  });
 });

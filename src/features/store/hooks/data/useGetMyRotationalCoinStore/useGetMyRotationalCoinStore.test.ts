@@ -94,11 +94,11 @@ describe('useGetMyRotationalCoinStore', () => {
     expect(result.current.rotationalCoinStore).toBeDefined();
 
     // Fast-forward time to just before expiration - should not invalidate
-    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 4 }).as('milliseconds'))); // 4 minutes
+    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 4 }).toMillis())); // 4 minutes
     expect(invalidateQueriesSpy).not.toHaveBeenCalled();
 
     // Fast-forward to expiration time - should invalidate
-    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 1 }).as('milliseconds'))); // 1 more minute = 5 minutes total
+    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 1 }).toMillis())); // 1 more minute = 5 minutes total
     expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['getMyRotationalCoinStore'] });
 
     jest.useRealTimers();

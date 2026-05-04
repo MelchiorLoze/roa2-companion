@@ -1,5 +1,4 @@
 import { Image } from 'expo-image';
-import { Duration } from 'luxon';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -14,8 +13,8 @@ export const XpRotationalBonusBanner = () => {
   const { currentQueue, expirationDate } = useXpRotationalBonus();
   const timeLeft = useCountdown(expirationDate);
 
-  const minutes = Duration.fromObject({ minutes: timeLeft?.minutes }).toFormat('mm');
-  const seconds = Duration.fromObject({ seconds: timeLeft?.seconds }).toFormat('ss');
+  const minutes = timeLeft?.toFormat('mm');
+  const seconds = timeLeft?.extract('seconds').toFormat('ss');
 
   return (
     <LinearGradient {...theme.color.gradient.xpRotationalBonusBanner} style={styles.container} vertical>

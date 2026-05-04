@@ -1,4 +1,4 @@
-import { type DateTime, Duration } from 'luxon';
+import { type DateTime } from 'luxon';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -12,8 +12,8 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
   const timeLeft = useCountdown(expirationDate);
 
   const hours = timeLeft?.toFormat('hh');
-  const minutes = Duration.fromObject({ minutes: timeLeft?.minutes }).toFormat('mm');
-  const seconds = Duration.fromObject({ seconds: timeLeft?.seconds }).toFormat('ss');
+  const minutes = timeLeft?.extract('minutes').toFormat('mm');
+  const seconds = timeLeft?.extract('seconds').toFormat('ss');
 
   /*
    * As the countdown is aligned on the right and the digits characters are not the same width,

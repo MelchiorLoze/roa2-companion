@@ -29,7 +29,7 @@ const parseSession = (raw: unknown): Session => {
   };
 };
 
-const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().as('millisecond') > 0;
+const isSessionValid = (session: Session): boolean => session.expirationDate.diffNow().toMillis() > 0;
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
   const queryClient = useQueryClient();

@@ -1161,7 +1161,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           }
         >
            
-          30
+          90
           :88
         </Text>
         <View
@@ -1221,7 +1221,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               }
             }
           >
-            30:00
+            90:00
           </Text>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
@@ -2391,7 +2391,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
           }
         >
            
-          30
+          90
           :88
         </Text>
         <View
@@ -2451,7 +2451,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               }
             }
           >
-            30:00
+            90:00
           </Text>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
@@ -3792,7 +3792,7 @@ exports[`Stats renders correctly on global tab 1`] = `
           }
         >
            
-          30
+          90
           :88
         </Text>
         <View
@@ -3852,7 +3852,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               }
             }
           >
-            30:00
+            90:00
           </Text>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
@@ -5828,7 +5828,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           }
         >
            
-          30
+          90
           :88
         </Text>
         <View
@@ -5888,7 +5888,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               }
             }
           >
-            30:00
+            90:00
           </Text>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>

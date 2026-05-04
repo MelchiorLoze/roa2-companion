@@ -14,7 +14,7 @@ type XpRotationalBonusState = {
 const calculateCurrentBonus = (): XpRotationalBonusState => {
   const epochSeconds = DateTime.utc().toSeconds();
 
-  const bonusDurationSeconds = BONUS_DURATION.as('seconds');
+  const bonusDurationSeconds = BONUS_DURATION.toSeconds();
   const currentBonusIndex = Math.floor(epochSeconds / bonusDurationSeconds) % QUEUES.length;
   const secondsRemaining = bonusDurationSeconds - (epochSeconds % bonusDurationSeconds);
 
@@ -28,10 +28,8 @@ export const useXpRotationalBonus = (): XpRotationalBonusState => {
   const [state, setState] = useState<XpRotationalBonusState>(calculateCurrentBonus);
 
   useEffect(() => {
-    const timeout = setTimeout(
-      () => setState(calculateCurrentBonus),
-      state.expirationDate.diffNow().as('milliseconds'),
-    );
+    const timeLeft = state.expirationDate.diffNow();
+    const timeout = timeLeft.setTimeout(setState, calculateCurrentBonus);
 
     return () => clearTimeout(timeout);
   }, [state.expirationDate]);

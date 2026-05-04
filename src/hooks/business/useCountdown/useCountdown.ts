@@ -1,17 +1,15 @@
 import { type DateTime, Duration } from 'luxon';
 import { useEffect, useState } from 'react';
 
+const ONE_SECOND = Duration.fromObject({ seconds: 1 });
+
 export const useCountdown = (expirationDate: DateTime) => {
   const [timeLeft, setTimeLeft] = useState<Duration>();
 
   useEffect(() => {
-    const millisecondsLeft = expirationDate.diffNow().milliseconds;
-    setTimeLeft(Duration.fromObject({ hours: 0, minutes: 0, seconds: 0, milliseconds: millisecondsLeft }).normalize());
+    setTimeLeft(expirationDate.diffNow().rescale());
 
-    const interval = setInterval(
-      () => setTimeLeft((prev) => prev?.minus({ seconds: 1 }).normalize()),
-      Duration.fromObject({ seconds: 1 }).as('milliseconds'),
-    );
+    const interval = ONE_SECOND.setInterval(setTimeLeft, (prev) => prev?.minus(ONE_SECOND).rescale());
 
     return () => clearInterval(interval);
   }, [expirationDate]);
