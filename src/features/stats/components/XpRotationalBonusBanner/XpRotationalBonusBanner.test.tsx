@@ -34,7 +34,7 @@ describe('XpRotationalBonusBanner', () => {
 
     expect(screen.getByText('ENDS IN:')).toBeTruthy();
     expect(screen.getByText('45:30')).toBeTruthy();
-    expect(screen.getByText(' 45:88')).toBeTruthy(); // placeholder
+    expect(screen.getByText('45:88')).toBeTruthy(); // placeholder
   });
 
   it('renders a different queue name', () => {

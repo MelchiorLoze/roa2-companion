@@ -1126,7 +1126,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "gap": 2,
+            "gap": 4,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -1160,7 +1160,6 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             ]
           }
         >
-           
           90
           :88
         </Text>
@@ -2356,7 +2355,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "gap": 2,
+            "gap": 4,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -2390,7 +2389,6 @@ exports[`Stats renders correctly on crews tab 1`] = `
             ]
           }
         >
-           
           90
           :88
         </Text>
@@ -3757,7 +3755,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         style={
           {
             "flexDirection": "row",
-            "gap": 2,
+            "gap": 4,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -3791,7 +3789,6 @@ exports[`Stats renders correctly on global tab 1`] = `
             ]
           }
         >
-           
           90
           :88
         </Text>
@@ -5793,7 +5790,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         style={
           {
             "flexDirection": "row",
-            "gap": 2,
+            "gap": 4,
             "paddingHorizontal": 4,
             "paddingVertical": 2,
           }
@@ -5827,7 +5824,6 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             ]
           }
         >
-           
           90
           :88
         </Text>

@@ -33,6 +33,14 @@ describe('useCountdown', () => {
     expect(result.current?.seconds).toBe(20);
   });
 
+  it('clamps to zero when expiration is in the past', () => {
+    const expirationDate = DateTime.utc().minus({ seconds: 10 });
+
+    const { result } = renderHook(() => useCountdown(expirationDate));
+
+    expect(result.current?.toMillis()).toBe(0);
+  });
+
   it('decrements by one second each interval tick', () => {
     const expirationDate = DateTime.utc().plus({ minutes: 5, seconds: 10 });
 

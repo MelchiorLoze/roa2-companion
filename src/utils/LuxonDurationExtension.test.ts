@@ -17,7 +17,7 @@ describe('LuxonDurationExtension', () => {
 
   it('schedules a timeout using the duration in milliseconds', () => {
     const callback = jest.fn();
-    const duration = Duration.fromObject({ milliseconds: 50 });
+    const duration = Duration.fromMillis(50);
 
     duration.setTimeout(callback, 'tick', 1);
 
@@ -33,7 +33,7 @@ describe('LuxonDurationExtension', () => {
 
   it('clamps negative timeout durations to zero', () => {
     const callback = jest.fn();
-    const duration = Duration.fromObject({ milliseconds: -10 });
+    const duration = Duration.fromMillis(-10);
 
     duration.setTimeout(callback);
 
@@ -52,7 +52,7 @@ describe('LuxonDurationExtension', () => {
 
   it('schedules an interval using the duration in milliseconds', () => {
     const callback = jest.fn();
-    const duration = Duration.fromObject({ milliseconds: 100 });
+    const duration = Duration.fromMillis(100);
 
     const intervalId = duration.setInterval(callback, 'pulse');
 

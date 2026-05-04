@@ -25,7 +25,7 @@ export const XpRotationalBonusBanner = () => {
       <View style={styles.timeLeftBorder}>
         <LinearGradient {...theme.color.gradient.xpRotationalBonusTimeLeft} style={styles.timeLeftContainer} vertical>
           <OutlinedText style={styles.timeLeftLabel} text={'Ends in:'.toUpperCase()} />
-          <Text style={[styles.timeLeftLabel, styles.timeLeftPlaceHolder]}> {minutes}:88</Text>
+          <Text style={[styles.timeLeftLabel, styles.timeLeftPlaceHolder]}>{minutes}:88</Text>
           <View style={styles.timeLeft}>
             <Image source={ClockIcon} style={styles.clockIcon} />
             <OutlinedText style={styles.timeLeftLabel} text={`${minutes}:${seconds}`} />
@@ -67,7 +67,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   timeLeftContainer: {
     flexDirection: 'row',
-    gap: theme.spacing.xxs,
+    gap: theme.spacing.xs,
     paddingVertical: theme.spacing.xxs,
     paddingHorizontal: theme.spacing.xs,
   },
