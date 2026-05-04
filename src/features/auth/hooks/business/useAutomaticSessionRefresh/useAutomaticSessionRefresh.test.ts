@@ -99,7 +99,7 @@ describe('useAutomaticSessionRefresh hook', () => {
     expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(newSession);
     jest.clearAllMocks();
 
-    jest.advanceTimersByTime(Duration.fromObject({ minutes: 30 }).as('milliseconds'));
+    jest.advanceTimersByTime(Duration.fromObject({ minutes: 30 }).toMillis());
 
     const otherSession: Session = {
       entityToken: 'other-mock-token',

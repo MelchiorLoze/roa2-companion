@@ -1,5 +1,4 @@
 import { Image } from 'expo-image';
-import { Duration } from 'luxon';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -14,8 +13,8 @@ export const XpRotationalBonusBanner = () => {
   const { currentQueue, expirationDate } = useXpRotationalBonus();
   const timeLeft = useCountdown(expirationDate);
 
-  const minutes = Duration.fromObject({ minutes: timeLeft?.minutes }).toFormat('mm');
-  const seconds = Duration.fromObject({ seconds: timeLeft?.seconds }).toFormat('ss');
+  const minutes = timeLeft?.toFormat('mm');
+  const seconds = timeLeft?.extract('seconds').toFormat('ss');
 
   return (
     <LinearGradient {...theme.color.gradient.xpRotationalBonusBanner} style={styles.container} vertical>
@@ -26,7 +25,7 @@ export const XpRotationalBonusBanner = () => {
       <View style={styles.timeLeftBorder}>
         <LinearGradient {...theme.color.gradient.xpRotationalBonusTimeLeft} style={styles.timeLeftContainer} vertical>
           <OutlinedText style={styles.timeLeftLabel} text={'Ends in:'.toUpperCase()} />
-          <Text style={[styles.timeLeftLabel, styles.timeLeftPlaceHolder]}> {minutes}:88</Text>
+          <Text style={[styles.timeLeftLabel, styles.timeLeftPlaceHolder]}>{minutes}:88</Text>
           <View style={styles.timeLeft}>
             <Image source={ClockIcon} style={styles.clockIcon} />
             <OutlinedText style={styles.timeLeftLabel} text={`${minutes}:${seconds}`} />
@@ -68,7 +67,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   timeLeftContainer: {
     flexDirection: 'row',
-    gap: theme.spacing.xxs,
+    gap: theme.spacing.xs,
     paddingVertical: theme.spacing.xxs,
     paddingHorizontal: theme.spacing.xs,
   },
