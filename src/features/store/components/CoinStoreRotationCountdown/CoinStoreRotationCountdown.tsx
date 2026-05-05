@@ -11,9 +11,9 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
   const { theme } = useUnistyles();
   const timeLeft = useCountdown(expirationDate);
 
-  const hours = timeLeft?.toFormat('hh');
-  const minutes = timeLeft?.extract('minutes').toFormat('mm');
-  const seconds = timeLeft?.extract('seconds').toFormat('ss');
+  const hours = timeLeft.toFormat('hh');
+  const minutes = timeLeft.extract('minutes').toFormat('mm');
+  const seconds = timeLeft.extract('seconds').toFormat('ss');
 
   /*
    * As the countdown is aligned on the right and the digits characters are not the same width,

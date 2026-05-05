@@ -26,7 +26,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "expo lint",
-    "lint:fix": "eslint --fix .",
+    "lint:fix": "expo lint --fix",
+    "lint:ci": "expo lint --max-warnings 0",
     "type-check": "tsc --strict --noEmit"
   },
   "jest": {
