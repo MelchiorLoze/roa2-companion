@@ -11,102 +11,153 @@ exports[`Store matches snapshot 1`] = `
     }
   }
 >
-  <ViewManagerAdapter_ExpoLinearGradient
-    colors={
-      [
-        0,
-        4278190080,
-      ]
-    }
-    endPoint={
-      [
-        0.6,
-        0,
-      ]
-    }
-    locations={
-      [
-        0,
-        1,
-      ]
-    }
-    startPoint={
-      [
-        0,
-        0,
-      ]
-    }
+  <View
     style={
       {
         "alignItems": "center",
         "alignSelf": "flex-end",
         "flexDirection": "row",
-        "gap": 4,
-        "justifyContent": "flex-end",
-        "minWidth": "90%",
+        "justifyContent": "center",
         "padding": 8,
-        "paddingHorizontal": 12,
+        "paddingHorizontal": 32,
+        "paddingRight": 40,
+        "paddingTop": 12,
       }
     }
   >
-    <Text
+    <View
       style={
         {
-          "color": "white",
-          "fontFamily": "AgencyFB-Bold",
-          "fontSize": 18,
-          "textTransform": "uppercase",
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
     >
-      Items refresh in:
-    </Text>
-    <View>
-      <Text
-        style={
+      <ViewManagerAdapter_ExpoImage
+        bottom={0}
+        containerViewRef={"[React.ref]"}
+        contentFit="fill"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        left={0}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        position="absolute"
+        right={0}
+        sfEffect={null}
+        source={
           [
             {
-              "color": "white",
-              "fontFamily": "AgencyFB-Bold",
-              "fontSize": 18,
-              "textTransform": "uppercase",
-            },
-            {
-              "position": "absolute",
-              "right": 0,
+              "testUri": "../../../src/assets/images/ui/coin-store-rotation-countdown-bg.png",
             },
           ]
         }
-      >
-        15
-        h 
-        22
-        m 
-        56
-        s
-      </Text>
-      <Text
         style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+        symbolSize={null}
+        symbolWeight={null}
+        top={0}
+        transition={null}
+      />
+    </View>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "gap": 2,
+        }
+      }
+    >
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={18}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        sfEffect={null}
+        source={
           [
             {
-              "color": "white",
-              "fontFamily": "AgencyFB-Bold",
-              "fontSize": 18,
-              "textTransform": "uppercase",
-            },
-            {
-              "color": "#FFFFFF00",
+              "testUri": "../../../src/assets/images/ui/icons/time.png",
             },
           ]
         }
+        style={
+          {
+            "height": 18,
+            "width": 18,
+          }
+        }
+        symbolSize={null}
+        symbolWeight={null}
+        transition={null}
+        width={18}
+      />
+      <View
+        style={
+          {
+            "position": "absolute",
+            "right": 0,
+          }
+        }
       >
-        15
-        h 
-        22
-        m 88s
+        <Text
+          style={
+            {
+              "color": "white",
+              "fontFamily": "AgencyFB-Black",
+              "fontSize": 18,
+              "textShadowColor": undefined,
+              "textShadowRadius": undefined,
+            }
+          }
+        >
+          15:22:56
+        </Text>
+      </View>
+      <Text
+        style={
+          {
+            "color": "#FFFFFF00",
+            "fontFamily": "AgencyFB-Black",
+            "fontSize": 18,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        15:22:88
       </Text>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {

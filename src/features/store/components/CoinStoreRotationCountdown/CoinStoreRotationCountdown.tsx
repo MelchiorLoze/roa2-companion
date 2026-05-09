@@ -1,14 +1,16 @@
+import { Image, ImageBackground } from 'expo-image';
 import { type DateTime } from 'luxon';
-import { Text, View } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { CoinStoreRotationCountdownBackground } from '@/assets/images/ui';
+import { TimeIcon } from '@/assets/images/ui/icons';
+import { FancyText } from '@/components/FancyText/FancyText';
 import { useCountdown } from '@/hooks/business/useCountdown/useCountdown';
 
 type Props = { expirationDate: DateTime };
 
 export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) => {
-  const { theme } = useUnistyles();
   const timeLeft = useCountdown(expirationDate);
 
   const hours = timeLeft.toFormat('hh');
@@ -21,36 +23,48 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
    * whole text from jumping every second.
    */
   return (
-    <LinearGradient {...theme.color.gradient.storeCountdown} horizontal style={styles.container}>
-      <Text style={styles.label}>Items refresh in:</Text>
-      <View>
-        <Text style={[styles.label, styles.countdown]}>
-          {hours}h {minutes}m {seconds}s
-        </Text>
-        <Text style={[styles.label, styles.countdownPlaceholder]}>
-          {hours}h {minutes}m 88s
-        </Text>
+    <View style={styles.container}>
+      <ImageBackground
+        contentFit="fill"
+        source={CoinStoreRotationCountdownBackground}
+        style={StyleSheet.absoluteFill}
+      />
+      <View style={styles.content}>
+        <Image source={TimeIcon} style={styles.icon} />
+        <View style={styles.countdown}>
+          <FancyText style={styles.label} text={`${hours}:${minutes}:${seconds}`} />
+        </View>
+        <FancyText style={{ ...styles.label, ...styles.countdownPlaceholder }} text={`${hours}:${minutes}:88`} />
       </View>
-    </LinearGradient>
+    </View>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'flex-end',
-    minWidth: '90%',
     padding: theme.spacing.s,
-    paddingHorizontal: theme.spacing.m,
-    gap: theme.spacing.xs,
+    paddingHorizontal: theme.spacing.xxl,
+    paddingTop: theme.spacing.m,
+    paddingRight: theme.spacing.xxl + theme.spacing.s, // optical correction to compensate the asymmetry of the background image
+  },
+  content: {
+    flexDirection: 'row',
+    gap: theme.spacing.xxs,
+  },
+  icon: {
+    width: 18,
+    height: 18,
   },
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.secondary.black,
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',
+    skew: -0.2,
   },
   countdown: {
     position: 'absolute',

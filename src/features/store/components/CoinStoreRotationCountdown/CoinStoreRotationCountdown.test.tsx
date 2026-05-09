@@ -20,7 +20,7 @@ describe('CoinStoreRotationCountdown', () => {
 
     renderComponent(futureDate);
 
-    expect(screen.getByText('02h 30m 45s')).toBeTruthy();
+    expect(screen.getByText('02:30:45')).toBeTruthy();
   });
 
   it('renders countdown with zero hours correctly', () => {
@@ -28,7 +28,7 @@ describe('CoinStoreRotationCountdown', () => {
 
     renderComponent(futureDate);
 
-    expect(screen.getByText('00h 45m 20s')).toBeTruthy();
+    expect(screen.getByText('00:45:20')).toBeTruthy();
   });
 
   it('renders consistent width placeholder', () => {
@@ -36,8 +36,8 @@ describe('CoinStoreRotationCountdown', () => {
 
     renderComponent(futureDate);
 
-    expect(screen.getByText('01h 30m 45s')).toBeTruthy();
-    expect(screen.getByText('01h 30m 88s')).toBeTruthy();
+    expect(screen.getByText('01:30:45')).toBeTruthy();
+    expect(screen.getByText('01:30:88')).toBeTruthy();
   });
 
   it('handles large time differences correctly', () => {
@@ -45,7 +45,7 @@ describe('CoinStoreRotationCountdown', () => {
 
     renderComponent(farFutureDate);
 
-    expect(screen.getByText('25h 30m 45s')).toBeTruthy();
+    expect(screen.getByText('25:30:45')).toBeTruthy();
   });
 
   it('cleans up interval on unmount', () => {
@@ -65,10 +65,10 @@ describe('CoinStoreRotationCountdown', () => {
 
     renderComponent(futureDate);
 
-    expect(screen.getByText('00h 05m 10s')).toBeTruthy();
+    expect(screen.getByText('00:05:10')).toBeTruthy();
 
     act(() => jest.advanceTimersByTime(5000));
 
-    expect(screen.getByText('00h 05m 05s')).toBeTruthy();
+    expect(screen.getByText('00:05:05')).toBeTruthy();
   });
 });
