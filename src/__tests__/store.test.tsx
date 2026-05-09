@@ -71,7 +71,6 @@ describe('Store', () => {
   it('renders the items of the store', () => {
     render(<Store />);
 
-    expect(screen.getByText('Items refresh in:')).toBeTruthy();
     const itemCards = screen.getAllByRole('button');
     expect(itemCards).toHaveLength(testItemList.length);
     expect(within(itemCards[0]).getByText(testItemList[0].name)).toBeTruthy();

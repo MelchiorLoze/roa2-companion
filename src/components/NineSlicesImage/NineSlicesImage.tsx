@@ -33,11 +33,11 @@ type Props = {
   style?: StyleProp<ViewStyle>;
 };
 
-const DEFAULT_INSETS: Insets = { top: '0%', right: '0%', bottom: '0%', left: '0%' };
+const DEFAULT_INSETS = Object.freeze<Insets>({ top: '0%', right: '0%', bottom: '0%', left: '0%' });
 
-const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const clamp = (value: number, min: number, max: number): number => Math.min(Math.max(value, min), max);
 
-const toPixels = (value: Percentage, fullSize: number) => {
+const toPixels = (value: Percentage, fullSize: number): number => {
   const parsed = Number.parseFloat(value.replace('%', ''));
   if (!Number.isFinite(parsed)) return 0;
 
@@ -199,8 +199,6 @@ export const NineSlicesImage = ({ source, insets, style }: Readonly<Props>) => {
     </View>
   );
 };
-
-NineSlicesImage.displayName = 'NineSlicesImage';
 
 const styles = StyleSheet.create({
   container: {
