@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 
-import { FONTS } from '@/assets/fonts';
+import { FONTS } from '@/types/font';
 
 type Props = {
   onLoaded?: () => void;
