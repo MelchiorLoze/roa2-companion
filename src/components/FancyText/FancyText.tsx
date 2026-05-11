@@ -17,7 +17,7 @@ import {
 } from '@shopify/react-native-skia';
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
-import { FONTS } from '@/assets/fonts';
+import { type FontFamily, FONTS } from '@/types/font';
 import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
 
 const SKIA_FONTS = Object.entries(FONTS).reduce(
