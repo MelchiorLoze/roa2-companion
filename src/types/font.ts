@@ -3,6 +3,7 @@ import { type FontSource } from 'expo-font';
 import {
   AgencyFBBlack,
   AgencyFBBold,
+  AgencyFBBoldWide,
   FranklinGothicDemiCondItalic,
   FranklinGothicDemiCondRegular,
 } from '@/assets/fonts';
@@ -15,6 +16,7 @@ export type FontFamily = PrimaryFontFamily[keyof PrimaryFontFamily] | SecondaryF
 export const FONTS = Object.freeze<Record<FontFamily, FontSource>>({
   'AgencyFB-Black': AgencyFBBlack,
   'AgencyFB-Bold': AgencyFBBold,
+  'AgencyFB-BoldWide': AgencyFBBoldWide,
   'FranklinGothicDemiCond-Italic': FranklinGothicDemiCondItalic,
   'FranklinGothicDemiCond-Regular': FranklinGothicDemiCondRegular,
 });

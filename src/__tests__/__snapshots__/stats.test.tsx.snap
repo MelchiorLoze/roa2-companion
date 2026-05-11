@@ -1063,7 +1063,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -1075,7 +1076,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -1138,7 +1140,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
@@ -1151,6 +1154,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
+                "strokeColor": "black",
                 "strokeWidth": 1,
               },
               {
@@ -1216,7 +1220,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
-                "strokeWidth": 1,
+                "textShadowColor": "black",
+                "textShadowRadius": 1,
               }
             }
           >
@@ -2292,7 +2297,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -2304,7 +2310,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -2367,7 +2374,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
@@ -2380,6 +2388,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
+                "strokeColor": "black",
                 "strokeWidth": 1,
               },
               {
@@ -2445,7 +2454,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
-                "strokeWidth": 1,
+                "textShadowColor": "black",
+                "textShadowRadius": 1,
               }
             }
           >
@@ -3692,7 +3702,8 @@ exports[`Stats renders correctly on global tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -3704,7 +3715,8 @@ exports[`Stats renders correctly on global tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -3767,7 +3779,8 @@ exports[`Stats renders correctly on global tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
@@ -3780,6 +3793,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
+                "strokeColor": "black",
                 "strokeWidth": 1,
               },
               {
@@ -3845,7 +3859,8 @@ exports[`Stats renders correctly on global tab 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
-                "strokeWidth": 1,
+                "textShadowColor": "black",
+                "textShadowRadius": 1,
               }
             }
           >
@@ -5727,7 +5742,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -5739,7 +5755,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -5802,7 +5819,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
@@ -5815,6 +5833,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
+                "strokeColor": "black",
                 "strokeWidth": 1,
               },
               {
@@ -5880,7 +5899,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                 "color": "white",
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 10,
-                "strokeWidth": 1,
+                "textShadowColor": "black",
+                "textShadowRadius": 1,
               }
             }
           >

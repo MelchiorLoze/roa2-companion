@@ -5,225 +5,61 @@ exports[`Header matches the snapshot 1`] = `
   <View
     style={
       {
-        "alignItems": "center",
-        "backgroundColor": "#2B1F74",
-        "flexDirection": "row",
-        "justifyContent": "space-around",
-        "padding": 8,
-        "paddingTop": 8,
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
       }
     }
-    testID="currencies-balance"
   >
-    <View
-      style={
+    <ViewManagerAdapter_ExpoImage
+      bottom={0}
+      containerViewRef={"[React.ref]"}
+      contentFit="fill"
+      contentPosition={
         {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "gap": 4,
+          "left": "50%",
+          "top": "50%",
         }
       }
-    >
-      <ViewManagerAdapter_ExpoImage
-        containerViewRef={"[React.ref]"}
-        contentFit="contain"
-        contentPosition={
+      left={0}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      position="absolute"
+      right={0}
+      sfEffect={null}
+      source={
+        [
           {
-            "left": "50%",
-            "top": "50%",
-          }
-        }
-        height={20}
-        nativeViewRef={"[React.ref]"}
-        onError={[Function]}
-        onLoad={[Function]}
-        onLoadStart={[Function]}
-        onProgress={[Function]}
-        placeholder={[]}
-        sfEffect={null}
-        source={
-          [
-            {
-              "testUri": "../../../src/assets/images/currency/coins.png",
-            },
-          ]
-        }
-        style={
-          {
-            "height": 20,
-            "width": 20,
-          }
-        }
-        symbolSize={null}
-        symbolWeight={null}
-        transition={null}
-        width={20}
-      />
-      <Text
-        style={
-          {
-            "color": "white",
-            "fontFamily": "AgencyFB-Black",
-            "fontSize": 16,
-          }
-        }
-      >
-        <Text
-          style={
-            {
-              "color": "#070032",
-            }
-          }
-        >
-          0000000
-        </Text>
-        0
-      </Text>
-    </View>
-    <View
+            "testUri": "../../../src/assets/images/ui/header-bg.png",
+          },
+        ]
+      }
       style={
         {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "gap": 4,
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
         }
       }
-    >
-      <ViewManagerAdapter_ExpoImage
-        containerViewRef={"[React.ref]"}
-        contentFit="contain"
-        contentPosition={
-          {
-            "left": "50%",
-            "top": "50%",
-          }
-        }
-        height={20}
-        nativeViewRef={"[React.ref]"}
-        onError={[Function]}
-        onLoad={[Function]}
-        onLoadStart={[Function]}
-        onProgress={[Function]}
-        placeholder={[]}
-        sfEffect={null}
-        source={
-          [
-            {
-              "testUri": "../../../src/assets/images/currency/bucks.png",
-            },
-          ]
-        }
-        style={
-          {
-            "height": 20,
-            "width": 20,
-          }
-        }
-        symbolSize={null}
-        symbolWeight={null}
-        transition={null}
-        width={20}
-      />
-      <Text
-        style={
-          {
-            "color": "white",
-            "fontFamily": "AgencyFB-Black",
-            "fontSize": 16,
-          }
-        }
-      >
-        <Text
-          style={
-            {
-              "color": "#070032",
-            }
-          }
-        >
-          0000000
-        </Text>
-        0
-      </Text>
-    </View>
-    <View
-      style={
-        {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "gap": 4,
-        }
-      }
-    >
-      <ViewManagerAdapter_ExpoImage
-        containerViewRef={"[React.ref]"}
-        contentFit="contain"
-        contentPosition={
-          {
-            "left": "50%",
-            "top": "50%",
-          }
-        }
-        height={20}
-        nativeViewRef={"[React.ref]"}
-        onError={[Function]}
-        onLoad={[Function]}
-        onLoadStart={[Function]}
-        onProgress={[Function]}
-        placeholder={[]}
-        sfEffect={null}
-        source={
-          [
-            {
-              "testUri": "../../../src/assets/images/currency/medals.png",
-            },
-          ]
-        }
-        style={
-          {
-            "height": 20,
-            "width": 20,
-          }
-        }
-        symbolSize={null}
-        symbolWeight={null}
-        transition={null}
-        width={20}
-      />
-      <Text
-        style={
-          {
-            "color": "white",
-            "fontFamily": "AgencyFB-Black",
-            "fontSize": 16,
-          }
-        }
-      >
-        <Text
-          style={
-            {
-              "color": "#070032",
-            }
-          }
-        >
-          0000000
-        </Text>
-        0
-      </Text>
-    </View>
+      symbolSize={null}
+      symbolWeight={null}
+      top={0}
+      transition={null}
+    />
   </View>,
-  <View
-    style={
-      {
-        "backgroundColor": "#FEDD84",
-        "height": 2,
-      }
-    }
-  />,
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
-        1249068,
-        866882024,
+        1904430,
+        536842743,
       ]
     }
     endPoint={
@@ -240,11 +76,224 @@ exports[`Header matches the snapshot 1`] = `
     }
     style={
       {
+        "bottom": 2.5,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": "40%",
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoLinearGradient
+      colors={
+        [
+          1090519039,
+          1907248,
+        ]
+      }
+      endPoint={
+        [
+          0,
+          1,
+        ]
+      }
+      startPoint={
+        [
+          0,
+          0,
+        ]
+      }
+      style={
+        {
+          "height": 6,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": "100%",
+          "transform": [
+            {
+              "translateY": 1,
+            },
+          ],
+        }
+      }
+    />
+  </ViewManagerAdapter_ExpoLinearGradient>,
+  <View
+    style={
+      {
+        "backgroundColor": "#A990CCFF",
+        "bottom": 0.5,
+        "height": 2,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+      }
+    }
+  />,
+  <View
+    style={
+      {
         "alignItems": "center",
-        "backgroundColor": "#05011A",
         "flexDirection": "row",
+        "gap": 4,
+        "justifyContent": "space-evenly",
+        "paddingBottom": 4,
         "paddingHorizontal": 8,
-        "paddingVertical": 8,
+        "paddingTop": 4,
+      }
+    }
+    testID="currencies-balance"
+  >
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "flexShrink": 1,
+          "marginVertical": -16,
+          "paddingLeft": "11%",
+          "paddingRight": 12,
+          "paddingVertical": 24,
+        }
+      }
+    >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#FFFFB4",
+            "fontFamily": "AgencyFB-BoldWide",
+            "fontSize": 14,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "flexShrink": 1,
+          "marginVertical": -16,
+          "paddingLeft": "11%",
+          "paddingRight": 12,
+          "paddingVertical": 24,
+        }
+      }
+    >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#0FDE6B",
+            "fontFamily": "AgencyFB-BoldWide",
+            "fontSize": 14,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "flexShrink": 1,
+          "marginVertical": -16,
+          "paddingLeft": "11%",
+          "paddingRight": 12,
+          "paddingVertical": 24,
+        }
+      }
+    >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#B0F6D6",
+            "fontFamily": "AgencyFB-BoldWide",
+            "fontSize": 14,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
+  </View>,
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        2566914048,
+        0,
+      ]
+    }
+    endPoint={
+      [
+        1,
+        0,
+      ]
+    }
+    locations={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0.8,
+        0,
+      ]
+    }
+    style={
+      {
+        "alignItems": "center",
+        "alignSelf": "flex-start",
+        "flexDirection": "row",
+        "marginBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 32,
+        "paddingVertical": 4,
       }
     }
   >
@@ -280,32 +329,54 @@ exports[`Header matches the snapshot 1`] = `
       onStartShouldSetResponder={[Function]}
       role="button"
       style={
-        [
-          {
-            "alignItems": "center",
-            "backgroundColor": "#FFFFFF00",
-            "justifyContent": "center",
-          },
-          {
-            "padding": 8,
-          },
-        ]
+        {
+          "padding": 8,
+        }
       }
     >
-      <
-        color="white"
-        name="arrow-back"
-        size={24}
+      <ViewManagerAdapter_ExpoImage
+        containerViewRef={"[React.ref]"}
+        contentFit="cover"
+        contentPosition={
+          {
+            "left": "50%",
+            "top": "50%",
+          }
+        }
+        height={18}
+        nativeViewRef={"[React.ref]"}
+        onError={[Function]}
+        onLoad={[Function]}
+        onLoadStart={[Function]}
+        onProgress={[Function]}
+        placeholder={[]}
+        sfEffect={null}
+        source={
+          [
+            {
+              "testUri": "../../../src/assets/images/ui/icons/left-arrow.png",
+            },
+          ]
+        }
+        style={
+          {
+            "height": 18,
+            "width": 18,
+          }
+        }
+        symbolSize={null}
+        symbolWeight={null}
+        transition={null}
+        width={18}
       />
     </View>
     <Text
       style={
         {
-          "color": "white",
-          "fontFamily": "FranklinGothicDemiCond-Italic",
-          "fontSize": 24,
+          "color": "#E7C8FFFF",
+          "fontFamily": "AgencyFB-Bold",
+          "fontSize": 20,
           "textTransform": "uppercase",
-          "width": "100%",
         }
       }
     >
