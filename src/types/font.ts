@@ -1,0 +1,20 @@
+import { type FontSource } from 'expo-font';
+
+import {
+  AgencyFBBlack,
+  AgencyFBBold,
+  FranklinGothicDemiCondItalic,
+  FranklinGothicDemiCondRegular,
+} from '@/assets/fonts';
+
+type PrimaryFontFamily = Theme['font']['primary'];
+type SecondaryFontFamily = Theme['font']['secondary'];
+
+export type FontFamily = PrimaryFontFamily[keyof PrimaryFontFamily] | SecondaryFontFamily[keyof SecondaryFontFamily];
+
+export const FONTS = Object.freeze<Record<FontFamily, FontSource>>({
+  'AgencyFB-Black': AgencyFBBlack,
+  'AgencyFB-Bold': AgencyFBBold,
+  'FranklinGothicDemiCond-Italic': FranklinGothicDemiCondItalic,
+  'FranklinGothicDemiCond-Regular': FranklinGothicDemiCondRegular,
+});

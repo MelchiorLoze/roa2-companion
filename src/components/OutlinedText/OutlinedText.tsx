@@ -15,7 +15,7 @@ import {
 } from '@shopify/react-native-skia';
 import { useWindowDimensions } from 'react-native';
 
-import { FONTS } from '@/assets/fonts';
+import { FONTS } from '@/types/font';
 
 type ThemeFonts = Theme['font']['secondary'];
 type FontFamily = ThemeFonts[keyof ThemeFonts];
