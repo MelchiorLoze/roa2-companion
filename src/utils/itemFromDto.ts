@@ -1,5 +1,5 @@
 import { CurrencyId } from '@/types/currency';
-import { type Item, type ItemDto, RARITY_VALUES_MAPPING } from '@/types/item';
+import { type Item, type ItemDto, RARITY_VALUES_MAPPING, RarityValue } from '@/types/item';
 
 import { imageUrlFromFriendlyId } from './imageUrlFromFriendlyId';
 
@@ -14,5 +14,5 @@ export const itemFromDto = (item: ItemDto): Item => ({
   category: item.ContentType,
   coinPrice: getPriceValueFromItemDto(item, CurrencyId.COINS),
   buckPrice: getPriceValueFromItemDto(item, CurrencyId.BUCKS),
-  rarity: RARITY_VALUES_MAPPING[item.DisplayProperties.rarity],
+  rarity: RARITY_VALUES_MAPPING[item.DisplayProperties.rarity ?? RarityValue.COMMON],
 });

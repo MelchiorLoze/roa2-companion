@@ -433,6 +433,7 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    aspectRatio={1}
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -441,8 +442,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    height={18}
-                    left={2}
+                    left={1}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -460,18 +460,18 @@ exports[`Store matches snapshot 1`] = `
                     }
                     style={
                       {
-                        "height": 18,
-                        "left": 2,
+                        "aspectRatio": 1,
+                        "left": 1,
                         "position": "absolute",
-                        "top": 2,
-                        "width": 18,
+                        "top": 3,
+                        "width": 17,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={2}
+                    top={3}
                     transition={null}
-                    width={18}
+                    width={17}
                   />
                 </View>
                 <View
@@ -529,6 +529,7 @@ exports[`Store matches snapshot 1`] = `
                       }
                     >
                       <ViewManagerAdapter_ExpoImage
+                        aspectRatio={1}
                         containerViewRef={"[React.ref]"}
                         contentFit="contain"
                         contentPosition={
@@ -537,7 +538,6 @@ exports[`Store matches snapshot 1`] = `
                             "top": "50%",
                           }
                         }
-                        height={20}
                         nativeViewRef={"[React.ref]"}
                         onError={[Function]}
                         onLoad={[Function]}
@@ -554,7 +554,7 @@ exports[`Store matches snapshot 1`] = `
                         }
                         style={
                           {
-                            "height": 20,
+                            "aspectRatio": 1,
                             "width": 20,
                           }
                         }
@@ -799,6 +799,7 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    aspectRatio={1}
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -807,8 +808,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    height={18}
-                    left={2}
+                    left={1}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -826,18 +826,18 @@ exports[`Store matches snapshot 1`] = `
                     }
                     style={
                       {
-                        "height": 18,
-                        "left": 2,
+                        "aspectRatio": 1,
+                        "left": 1,
                         "position": "absolute",
-                        "top": 2,
-                        "width": 18,
+                        "top": 3,
+                        "width": 17,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={2}
+                    top={3}
                     transition={null}
-                    width={18}
+                    width={17}
                   />
                 </View>
                 <View
@@ -1124,6 +1124,7 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    aspectRatio={1}
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -1132,8 +1133,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    height={18}
-                    left={2}
+                    left={1}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1151,18 +1151,18 @@ exports[`Store matches snapshot 1`] = `
                     }
                     style={
                       {
-                        "height": 18,
-                        "left": 2,
+                        "aspectRatio": 1,
+                        "left": 1,
                         "position": "absolute",
-                        "top": 2,
-                        "width": 18,
+                        "top": 3,
+                        "width": 17,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={2}
+                    top={3}
                     transition={null}
-                    width={18}
+                    width={17}
                   />
                 </View>
                 <View
@@ -1220,6 +1220,7 @@ exports[`Store matches snapshot 1`] = `
                       }
                     >
                       <ViewManagerAdapter_ExpoImage
+                        aspectRatio={1}
                         containerViewRef={"[React.ref]"}
                         contentFit="contain"
                         contentPosition={
@@ -1228,7 +1229,6 @@ exports[`Store matches snapshot 1`] = `
                             "top": "50%",
                           }
                         }
-                        height={20}
                         nativeViewRef={"[React.ref]"}
                         onError={[Function]}
                         onLoad={[Function]}
@@ -1245,7 +1245,7 @@ exports[`Store matches snapshot 1`] = `
                         }
                         style={
                           {
-                            "height": 20,
+                            "aspectRatio": 1,
                             "width": 20,
                           }
                         }
@@ -1490,6 +1490,7 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    aspectRatio={1}
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -1498,8 +1499,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    height={18}
-                    left={2}
+                    left={1}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1517,18 +1517,18 @@ exports[`Store matches snapshot 1`] = `
                     }
                     style={
                       {
-                        "height": 18,
-                        "left": 2,
+                        "aspectRatio": 1,
+                        "left": 1,
                         "position": "absolute",
-                        "top": 2,
-                        "width": 18,
+                        "top": 3,
+                        "width": 17,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={2}
+                    top={3}
                     transition={null}
-                    width={18}
+                    width={17}
                   />
                 </View>
                 <View
@@ -1815,6 +1815,7 @@ exports[`Store matches snapshot 1`] = `
                     transition={null}
                   />
                   <ViewManagerAdapter_ExpoImage
+                    aspectRatio={1}
                     containerViewRef={"[React.ref]"}
                     contentFit="cover"
                     contentPosition={
@@ -1823,8 +1824,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    height={18}
-                    left={2}
+                    left={1}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1842,18 +1842,18 @@ exports[`Store matches snapshot 1`] = `
                     }
                     style={
                       {
-                        "height": 18,
-                        "left": 2,
+                        "aspectRatio": 1,
+                        "left": 1,
                         "position": "absolute",
-                        "top": 2,
-                        "width": 18,
+                        "top": 3,
+                        "width": 17,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={2}
+                    top={3}
                     transition={null}
-                    width={18}
+                    width={17}
                   />
                 </View>
                 <View
@@ -1911,6 +1911,7 @@ exports[`Store matches snapshot 1`] = `
                       }
                     >
                       <ViewManagerAdapter_ExpoImage
+                        aspectRatio={1}
                         containerViewRef={"[React.ref]"}
                         contentFit="contain"
                         contentPosition={
@@ -1919,7 +1920,6 @@ exports[`Store matches snapshot 1`] = `
                             "top": "50%",
                           }
                         }
-                        height={20}
                         nativeViewRef={"[React.ref]"}
                         onError={[Function]}
                         onLoad={[Function]}
@@ -1936,7 +1936,7 @@ exports[`Store matches snapshot 1`] = `
                         }
                         style={
                           {
-                            "height": 20,
+                            "aspectRatio": 1,
                             "width": 20,
                           }
                         }

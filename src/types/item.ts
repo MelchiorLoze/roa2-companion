@@ -10,6 +10,8 @@ import {
   SkinIcon,
   StageskinIcon,
   TauntIcon,
+  TitleNameplateIcon,
+  TitleWordIcon,
 } from '@/assets/images/category';
 import {
   FrameCommonBack,
@@ -34,6 +36,8 @@ export const enum Category {
   SKIN = 'skin',
   STAGESKIN = 'stageskin',
   TAUNT = 'taunt',
+  TITLE_NAMEPLATE = 'title_nameplate',
+  TITLE_WORD = 'title_word',
 }
 
 export const CATEGORY_LABELS = Object.freeze<Record<Category, string>>({
@@ -46,6 +50,8 @@ export const CATEGORY_LABELS = Object.freeze<Record<Category, string>>({
   [Category.SKIN]: 'skin',
   [Category.STAGESKIN]: 'stage skin',
   [Category.TAUNT]: 'taunt',
+  [Category.TITLE_NAMEPLATE]: 'title nameplate',
+  [Category.TITLE_WORD]: 'title word',
 });
 
 export const CATEGORY_ICONS = Object.freeze<Record<Category, ImageSource>>({
@@ -58,6 +64,8 @@ export const CATEGORY_ICONS = Object.freeze<Record<Category, ImageSource>>({
   [Category.SKIN]: SkinIcon,
   [Category.STAGESKIN]: StageskinIcon,
   [Category.TAUNT]: TauntIcon,
+  [Category.TITLE_NAMEPLATE]: TitleNameplateIcon,
+  [Category.TITLE_WORD]: TitleWordIcon,
 });
 
 export const enum RarityValue {
@@ -109,7 +117,7 @@ export type ItemDto = DeepReadonly<{
     }[];
   };
   DisplayProperties: {
-    rarity: RarityValue;
+    rarity?: RarityValue;
   };
 }>;
 
