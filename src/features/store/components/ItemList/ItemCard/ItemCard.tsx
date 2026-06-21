@@ -95,7 +95,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   currencyIcon: {
     width: 20,
-    height: 20,
+    aspectRatio: 1,
   },
   price: {
     fontFamily: theme.font.secondary.bold,

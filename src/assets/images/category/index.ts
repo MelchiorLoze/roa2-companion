@@ -9,3 +9,5 @@ export const PlatformIcon: ImageSource = require('./platform.png');
 export const SkinIcon: ImageSource = require('./skin.png');
 export const StageskinIcon: ImageSource = require('./stageskin.png');
 export const TauntIcon: ImageSource = require('./taunt.png');
+export const TitleNameplateIcon: ImageSource = require('./title.png');
+export const TitleWordIcon: ImageSource = require('./title.png');
