@@ -1,4 +1,4 @@
-import { type ComponentType } from 'react';
+import { type ComponentType, createElement } from 'react';
 
 import { Tabs } from '@/components/Tabs/Tabs';
 import { CrewsStats } from '@/features/stats/components/CrewsStats/CrewsStats';
@@ -21,13 +21,11 @@ const componentPerTab: Record<StatTab, ComponentType> = {
 export default function Stats() {
   const { tabs, selectedTab, getValueForSelectedTab } = useTabs(STATS_TABS);
 
-  const TabContent = getValueForSelectedTab(componentPerTab);
-
   return (
     <>
       <Tabs selectedTab={selectedTab} tabs={tabs} />
 
-      <TabContent />
+      {createElement(getValueForSelectedTab(componentPerTab))}
 
       <XpRotationalBonusBanner />
     </>

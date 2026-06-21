@@ -9,8 +9,13 @@ const clampedTimeLeft = (expirationDate: DateTime) =>
 export const useCountdown = (expirationDate: DateTime) => {
   const [timeLeft, setTimeLeft] = useState<Duration>(clampedTimeLeft(expirationDate));
 
-  useEffect(() => {
+  const [prevExp, setPrevExp] = useState(expirationDate);
+  if (prevExp !== expirationDate) {
+    setPrevExp(expirationDate);
     setTimeLeft(clampedTimeLeft(expirationDate));
+  }
+
+  useEffect(() => {
     const interval = ONE_SECOND.setInterval(setTimeLeft, () => clampedTimeLeft(expirationDate));
 
     return () => clearInterval(interval);

@@ -1,5 +1,5 @@
 import { Redirect } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Keyboard, KeyboardAvoidingView, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -14,30 +14,26 @@ import { useKeyboard } from '@/hooks/core/useKeyboard/useKeyboard';
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [isInvalid, setIsInvalid] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const [showResetPasswordDialog, setShowResetPasswordDialog] = useState(false);
 
   const { isVisible: isKeyboardVisible } = useKeyboard();
 
   const { login, isLoggedIn, isLoading: isLoadingAuth, isError } = useAuth();
 
-  useEffect(() => {
-    if (isError) {
-      setIsInvalid(true);
-      setIsLoading(false);
-    }
-  }, [isError]);
+  const isLoading = isSubmitting || isLoadingAuth;
+  const isInvalid = isEmpty || isError;
 
   if (isLoggedIn) return <Redirect href="/store" />;
 
-  if (isLoading || isLoadingAuth) return <Spinner />;
+  if (isLoading && !isError) return <Spinner />;
 
   const onForgotPassword = () => {
     // Do not call isKeyboardVisible in callback to avoid unnecessary re-renders
     if (Keyboard.isVisible()) Keyboard.dismiss();
     setShowResetPasswordDialog(true);
-    setIsInvalid(false);
+    setIsEmpty(false);
   };
 
   const onCloseResetPasswordDialog = (resetEmail?: string) => {
@@ -50,11 +46,11 @@ export default function SignIn() {
 
   const onSubmit = () => {
     if (!email.length || !password.length) {
-      setIsInvalid(true);
+      setIsEmpty(true);
       return;
     }
-    setIsInvalid(false);
-    setIsLoading(true);
+    setIsEmpty(false);
+    setIsSubmitting(true);
     login({ email, password });
   };
 

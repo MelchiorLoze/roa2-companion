@@ -1,4 +1,4 @@
-import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
 import { type LoadableState } from '@/types/loadableState';
 
@@ -25,8 +25,6 @@ const useSeasonState = (): SeasonState => {
   const { currentSeasonIndex, isLoading: isCurrentSeasonIndexLoading, isError } = useCurrentSeasonIndex();
   const { leaderboards, isLoading: isLeaderboardsLoading } = useCommunityLeaderboards();
 
-  useEffect(() => setSelectedSeasonIndex((prev) => prev ?? currentSeasonIndex), [currentSeasonIndex]);
-
   const baseState = {
     season: undefined,
     leaderboardId: undefined,
@@ -48,12 +46,14 @@ const useSeasonState = (): SeasonState => {
 
   const setPreviousSeason = () => {
     setSelectedSeasonIndex((prev) => {
+      prev = prev ?? currentSeasonIndex;
       if (!prev || isFirstSeason(prev)) return prev;
       return prev - 1;
     });
   };
   const setNextSeason = () => {
     setSelectedSeasonIndex((prev) => {
+      prev = prev ?? currentSeasonIndex;
       if (!prev || isLastSeason(prev, currentSeasonIndex)) return prev;
       return prev + 1;
     });

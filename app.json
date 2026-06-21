@@ -20,9 +20,6 @@
         "backgroundColor": "#0B0825"
       }
     },
-    "androidNavigationBar": {
-      "enforceContrast": false
-    },
     "web": {
       "bundler": "metro",
       "output": "static",
@@ -45,7 +42,8 @@
         }
       ],
       "expo-secure-store",
-      "expo-image"
+      "expo-image",
+      "expo-status-bar"
     ],
     "experiments": {
       "typedRoutes": true,

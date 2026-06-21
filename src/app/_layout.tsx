@@ -1,8 +1,7 @@
-import { type NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ImageBackground } from 'expo-image';
-import * as NavigationBar from 'expo-navigation-bar';
-import { SplashScreen, Stack } from 'expo-router';
+import { NavigationBar } from 'expo-navigation-bar';
+import { type NativeStackHeaderProps, SplashScreen, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { StrictMode, useEffect } from 'react';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';

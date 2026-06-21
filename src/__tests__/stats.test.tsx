@@ -138,8 +138,7 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree[1].props.refreshControl;
+    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });
@@ -157,8 +156,7 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree[1].props.refreshControl;
+    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });
@@ -176,8 +174,7 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree[1].props.refreshControl;
+    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });
@@ -195,8 +192,7 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree[1].props.refreshControl;
+    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });

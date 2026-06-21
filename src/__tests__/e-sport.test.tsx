@@ -125,8 +125,8 @@ describe('ESport', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree.children[1].props.refreshControl;
+    if (tree && !Array.isArray(tree) && typeof tree.children?.[1] !== 'string')
+      delete tree.children?.[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });
@@ -156,8 +156,8 @@ describe('ESport', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    delete tree.children[1].props.refreshControl;
+    if (tree && !Array.isArray(tree) && typeof tree.children?.[1] !== 'string')
+      delete tree.children?.[1].props.refreshControl;
 
     expect(tree).toMatchSnapshot();
   });
