@@ -1,16 +1,18 @@
 import {
   Canvas,
   type DataModule,
-  Group,
+  matchFont,
   PaintStyle,
   Paragraph,
   Skia,
   type SkPaint,
   type SkParagraph,
+  type SkParagraphStyle,
   type SkRect,
   type SkTextShadow,
   type SkTextStyle,
   type SkTypefaceFontProvider,
+  TextHeightBehavior,
   TileMode,
   type TransformProp,
   useFonts,
@@ -42,6 +44,7 @@ type GradientOrPlainColor<T extends GradientColors> = Either<
 type FancyTextStyle<T extends GradientColors> = {
   fontSize: number;
   fontFamily: FontFamily;
+  letterSpacing?: number;
   strokeWidth?: number;
   strokeColor?: ColorValue;
   shadow?: SkTextShadow;
@@ -65,7 +68,11 @@ const createParagraph = (
   paint: SkPaint,
   fontProvider: SkTypefaceFontProvider,
 ): SkParagraph => {
-  const paragraph = Skia.ParagraphBuilder.Make({}, fontProvider)
+  const paragraphStyle: SkParagraphStyle = {
+    textHeightBehavior: TextHeightBehavior.DisableAll,
+  };
+
+  const paragraph = Skia.ParagraphBuilder.Make(paragraphStyle, fontProvider)
     .pushStyle(textStyle, paint)
     .addText(text)
     .pop()
@@ -83,6 +90,7 @@ const createParagraphs = <T extends GradientColors>(
   const textStyle: SkTextStyle = {
     fontFamilies: [style.fontFamily],
     fontSize: style.fontSize,
+    letterSpacing: style.letterSpacing,
     shadows: style.shadow ? [style.shadow] : [],
   };
 
@@ -94,7 +102,7 @@ const createParagraphs = <T extends GradientColors>(
 
   const paragraphStroke = createParagraph(text, textStyle, strokePaint, fontProvider);
 
-  const textWidth = paragraphStroke.getLongestLine();
+  const textWidth = Math.ceil(paragraphStroke.getLongestLine());
   const textHeight = paragraphStroke.getHeight();
 
   // FILL PARAGRAPH
@@ -124,16 +132,19 @@ const createParagraphs = <T extends GradientColors>(
 
   const paragraphFill = createParagraph(text, textStyle, fillPaint, fontProvider);
 
-  const inset = style.strokeWidth ?? 0;
+  const inset = (style.strokeWidth ?? 0) / 2; // skia stroke is centered on the path, so half of it goes inward
+  const font = matchFont(style, fontProvider);
+  const metrics = font.getMetrics();
+  const padding = Math.abs(metrics.bounds?.y ?? 0) - Math.abs(metrics.ascent);
 
   return {
     paragraphFill,
     paragraphStroke,
     paragraphRect: {
       width: textWidth + inset * 2,
-      height: textHeight + inset * 2,
+      height: textHeight + inset * 2 + padding,
       x: inset,
-      y: inset,
+      y: inset + padding,
     },
   } as const;
 };
@@ -159,6 +170,7 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
   const textStyle: FancyTextStyle<T> = {
     ...style,
     fontSize: style.fontSize * fontScale,
+    letterSpacing: (style.letterSpacing ?? 0) * fontScale,
     strokeWidth: (style.strokeWidth ?? 0) * fontScale,
   };
 
@@ -167,10 +179,8 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
 
   return (
     <Canvas style={{ height, width }}>
-      <Group transform={transform}>
-        <Paragraph paragraph={paragraphStroke} width={width} x={x} y={y} />
-        <Paragraph paragraph={paragraphFill} width={width} x={x} y={y} />
-      </Group>
+      <Paragraph paragraph={paragraphStroke} transform={transform} width={width} x={x} y={y} />
+      <Paragraph paragraph={paragraphFill} transform={transform} width={width} x={x} y={y} />
     </Canvas>
   );
 };

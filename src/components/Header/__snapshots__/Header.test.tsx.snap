@@ -148,10 +148,9 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flexDirection": "row",
           "flexShrink": 1,
           "marginVertical": -16,
-          "paddingLeft": "11%",
+          "paddingLeft": 38,
           "paddingRight": 12,
           "paddingVertical": 24,
         }
@@ -186,10 +185,9 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flexDirection": "row",
           "flexShrink": 1,
           "marginVertical": -16,
-          "paddingLeft": "11%",
+          "paddingLeft": 38,
           "paddingRight": 12,
           "paddingVertical": 24,
         }
@@ -224,10 +222,9 @@ exports[`Header matches the snapshot 1`] = `
     <View
       style={
         {
-          "flexDirection": "row",
           "flexShrink": 1,
           "marginVertical": -16,
-          "paddingLeft": "11%",
+          "paddingLeft": 38,
           "paddingRight": 12,
           "paddingVertical": 24,
         }
