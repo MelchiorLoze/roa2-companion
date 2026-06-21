@@ -53,6 +53,7 @@
     "@tanstack/react-query": "^5.101.0",
     "country-flag-icons": "^1.6.18",
     "expo": "^56.0.12",
+    "expo-build-properties": "~56.0.19",
     "expo-constants": "~56.0.18",
     "expo-font": "~56.0.7",
     "expo-image": "~56.0.11",

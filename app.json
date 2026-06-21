@@ -43,7 +43,9 @@
       ],
       "expo-secure-store",
       "expo-image",
-      "expo-status-bar"
+      ["expo-status-bar", { "style": "light", "hidden": false }],
+      ["expo-navigation-bar", { "style": "light", "hidden": false, "enforceContrast": false }],
+      ["expo-build-properties", { "android": { "usePrecompiledHeaders": true } }]
     ],
     "experiments": {
       "typedRoutes": true,
