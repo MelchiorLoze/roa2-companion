@@ -39,7 +39,7 @@ exports[`Store matches snapshot 1`] = `
       <ViewManagerAdapter_ExpoImage
         bottom={0}
         containerViewRef={"[React.ref]"}
-        contentFit="fill"
+        contentFit="contain"
         contentPosition={
           {
             "left": "50%",
@@ -81,12 +81,14 @@ exports[`Store matches snapshot 1`] = `
     <View
       style={
         {
+          "alignItems": "center",
           "flexDirection": "row",
           "gap": 2,
         }
       }
     >
       <ViewManagerAdapter_ExpoImage
+        aspectRatio={1}
         containerViewRef={"[React.ref]"}
         contentFit="cover"
         contentPosition={
@@ -95,7 +97,7 @@ exports[`Store matches snapshot 1`] = `
             "top": "50%",
           }
         }
-        height={18}
+        height={16}
         nativeViewRef={"[React.ref]"}
         onError={[Function]}
         onLoad={[Function]}
@@ -112,27 +114,19 @@ exports[`Store matches snapshot 1`] = `
         }
         style={
           {
-            "height": 18,
-            "width": 18,
+            "aspectRatio": 1,
+            "height": 16,
           }
         }
         symbolSize={null}
         symbolWeight={null}
         transition={null}
-        width={18}
       />
-      <View
-        style={
-          {
-            "position": "absolute",
-            "right": 0,
-          }
-        }
-      >
+      <View>
         <Text
           style={
             {
-              "color": "white",
+              "color": "#FFFFFF00",
               "fontFamily": "AgencyFB-Black",
               "fontSize": 18,
               "textShadowColor": undefined,
@@ -140,22 +134,30 @@ exports[`Store matches snapshot 1`] = `
             }
           }
         >
-          15:22:56
+          15:22:88
         </Text>
-      </View>
-      <Text
-        style={
-          {
-            "color": "#FFFFFF00",
-            "fontFamily": "AgencyFB-Black",
-            "fontSize": 18,
-            "textShadowColor": undefined,
-            "textShadowRadius": undefined,
+        <View
+          style={
+            {
+              "position": "absolute",
+            }
           }
-        }
-      >
-        15:22:88
-      </Text>
+        >
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Black",
+                "fontSize": 18,
+                "textShadowColor": undefined,
+                "textShadowRadius": undefined,
+              }
+            }
+          >
+            15:22:56
+          </Text>
+        </View>
+      </View>
     </View>
   </View>
   <RCTScrollView

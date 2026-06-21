@@ -39,7 +39,10 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
 
                 <View style={[styles.info, styles.dateInfo]}>
                   <FancyText style={styles.state(tournament.state)} text={tournament.state.toUpperCase()} />
-                  <Text style={styles.text(pressed)}>{formatDateRange(tournament.startAt, tournament.endAt)}</Text>
+                  <FancyText
+                    style={styles.text(pressed)}
+                    text={formatDateRange(tournament.startAt, tournament.endAt).toUpperCase()}
+                  />
                 </View>
 
                 <View style={styles.info}>

@@ -40,20 +40,18 @@ export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flexShrink: 1,
-    flexDirection: 'row',
     marginVertical: -theme.spacing.l,
-    paddingVertical: theme.spacing.xl,
+    paddingVertical: theme.spacing.xl * runtime.fontScale,
     paddingRight: theme.spacing.m,
-    paddingLeft: '11%',
+    paddingLeft: (theme.spacing.m + 26) * runtime.fontScale,
   },
   label: (currency: Currency) => ({
     fontFamily: theme.font.secondary.boldWide,
     fontSize: 14,
     color: theme.color[currency],
-    lineHeight: 14,
     letterSpacing: -0.5,
     skew: -0.178001, // WBP_CurrencyDisplayer2
   }),

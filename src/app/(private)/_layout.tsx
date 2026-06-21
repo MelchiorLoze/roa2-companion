@@ -17,8 +17,11 @@ import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 import { useAutomaticSessionRefresh } from '@/features/auth/hooks/business/useAutomaticSessionRefresh/useAutomaticSessionRefresh';
 import { SeasonProvider } from '@/features/stats/contexts/SeasonContext/SeasonContext';
 
-const renderHeader = ({ options }: BottomTabHeaderProps) =>
-  typeof options.headerTitle === 'string' ? <Header showCurrencies title={options.headerTitle} /> : null;
+const renderHeader = ({ options, route }: BottomTabHeaderProps) => {
+  const title = typeof options.headerTitle === 'string' ? options.headerTitle : route.name;
+
+  return <Header showCurrencies title={title} />;
+};
 
 const renderTabBarBackground = () => (
   <ImageBackground contentFit="fill" source={TabBarBackground} style={StyleSheet.absoluteFill} />
@@ -64,14 +67,12 @@ export default function PrivateLayout() {
         <Tabs.Screen
           name="store"
           options={{
-            headerTitle: 'Rotating coin shop',
             tabBarIcon: renderStoreIcon,
           }}
         />
         <Tabs.Screen
           name="stats"
           options={{
-            headerTitle: 'Stats',
             tabBarIcon: renderStatsIcon,
           }}
         />
@@ -85,7 +86,6 @@ export default function PrivateLayout() {
         <Tabs.Screen
           name="more"
           options={{
-            headerTitle: 'More',
             tabBarIcon: renderMoreIcon,
           }}
         />

@@ -1,5 +1,5 @@
 import { Image } from 'expo-image';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { ClockIcon } from '@/assets/images/ui/icons';
@@ -22,13 +22,19 @@ export const XpRotationalBonusBanner = () => {
         <FancyText style={styles.bonusLabel} text={`${currentQueue} — Bonus +50%`.toUpperCase()} />
         <FancyText style={styles.bonusUnit} text={'XP'} />
       </View>
+
       <View style={styles.timeLeftBorder}>
         <LinearGradient {...theme.color.gradient.xpRotationalBonusTimeLeft} style={styles.timeLeftContainer} vertical>
           <FancyText style={styles.timeLeftLabel} text={'Ends in:'.toUpperCase()} />
-          <Text style={[styles.timeLeftLabel, styles.timeLeftPlaceHolder]}>{minutes}:88</Text>
+
           <View style={styles.timeLeft}>
             <Image source={ClockIcon} style={styles.clockIcon} />
-            <FancyText style={styles.timeLeftLabel} text={`${minutes}:${seconds}`} />
+            <View>
+              <FancyText style={{ ...styles.timeLeftLabel, ...styles.timeLeftPlaceHolder }} text={`${minutes}:88`} />
+              <View style={styles.timeLeftLabelContainer}>
+                <FancyText style={styles.timeLeftLabel} text={`${minutes}:${seconds}`} />
+              </View>
+            </View>
           </View>
         </LinearGradient>
       </View>
@@ -36,7 +42,7 @@ export const XpRotationalBonusBanner = () => {
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     padding: theme.spacing.xs,
     alignItems: 'center',
@@ -69,17 +75,17 @@ const styles = StyleSheet.create((theme) => ({
   },
   timeLeftContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: theme.spacing.xs,
     paddingVertical: theme.spacing.xxs,
     paddingHorizontal: theme.spacing.xs,
   },
   timeLeft: {
-    position: 'absolute',
-    top: theme.spacing.xxs,
-    right: theme.spacing.xs,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.xxs,
+  },
+  timeLeftLabelContainer: {
+    position: 'absolute',
   },
   timeLeftLabel: {
     fontFamily: theme.font.secondary.bold,
@@ -90,10 +96,10 @@ const styles = StyleSheet.create((theme) => ({
   },
   timeLeftPlaceHolder: {
     color: theme.color.transparent,
-    paddingLeft: theme.spacing.xxs + 10, // clock icon width + gap
+    strokeColor: theme.color.transparent,
   },
   clockIcon: {
-    width: 10,
-    height: 10,
+    height: 10 * runtime.fontScale,
+    aspectRatio: 1,
   },
 }));

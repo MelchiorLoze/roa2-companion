@@ -18,29 +18,30 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
   const seconds = timeLeft.extract('seconds').toFormat('ss');
 
   /*
-   * As the countdown is aligned on the right and the digits characters are not the same width,
-   * we need to add a transparent placeholder with the widest character (8) to prevent the
-   * whole text from jumping every second.
+   * As the digit characters are not the same width, we need to add a transparent placeholder
+   * with the widest character (8) to prevent the whole text from jumping every second.
    */
   return (
     <View style={styles.container}>
       <ImageBackground
-        contentFit="fill"
+        contentFit="contain"
         source={CoinStoreRotationCountdownBackground}
         style={StyleSheet.absoluteFill}
       />
       <View style={styles.content}>
         <Image source={TimeIcon} style={styles.icon} />
-        <View style={styles.countdown}>
-          <FancyText style={styles.label} text={`${hours}:${minutes}:${seconds}`} />
+        <View>
+          <FancyText style={{ ...styles.label, ...styles.countdownPlaceholder }} text={`${hours}:${minutes}:88`} />
+          <View style={styles.countdown}>
+            <FancyText style={styles.label} text={`${hours}:${minutes}:${seconds}`} />
+          </View>
         </View>
-        <FancyText style={{ ...styles.label, ...styles.countdownPlaceholder }} text={`${hours}:${minutes}:88`} />
       </View>
     </View>
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -53,11 +54,12 @@ const styles = StyleSheet.create((theme) => ({
   },
   content: {
     flexDirection: 'row',
+    alignItems: 'center',
     gap: theme.spacing.xxs,
   },
   icon: {
-    width: 18,
-    height: 18,
+    height: 16 * runtime.fontScale,
+    aspectRatio: 1,
   },
   label: {
     fontFamily: theme.font.secondary.black,
@@ -68,7 +70,6 @@ const styles = StyleSheet.create((theme) => ({
   },
   countdown: {
     position: 'absolute',
-    right: 0,
   },
   countdownPlaceholder: {
     color: theme.color.transparent,
