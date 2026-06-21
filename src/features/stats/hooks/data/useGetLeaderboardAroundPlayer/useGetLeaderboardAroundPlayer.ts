@@ -57,16 +57,19 @@ export const useGetLeaderboardAroundPlayer = ({ maxResultCount, statisticName }:
         ({
           StatValue: statisticValue,
           Position: position,
-          Profile: { DisplayName: playerName, AvatarUrl: friendlyId },
-        }) => ({
-          statisticName,
-          statisticValue,
-          position,
-          profile: {
-            playerName,
-            avatarUrl: imageUrlFromFriendlyId(Category.ICON, friendlyId),
-          },
-        }),
+          Profile: { DisplayName: playerName, AvatarUrl: friendlyIds },
+        }) => {
+          const iconFriendlyId = friendlyIds.split('/')[0]; // AvatarUrl is in the format "iconFriendlyId/titleWordLeft/titleWordRight/titleNameplate"
+          return {
+            statisticName,
+            statisticValue,
+            position,
+            profile: {
+              playerName,
+              avatarUrl: imageUrlFromFriendlyId(Category.ICON, iconFriendlyId),
+            },
+          };
+        },
       ) as [PlayerPosition, ...PlayerPosition[]];
     },
     staleTime: Infinity,

@@ -22,12 +22,12 @@ const mockResponse = {
       {
         StatValue: 2400,
         Position: 2,
-        Profile: { DisplayName: 'Player2', AvatarUrl: 'icon_player2' },
+        Profile: { DisplayName: 'Player2', AvatarUrl: 'icon_player2/title_word_left/title_word_right/title_nameplate' },
       },
       {
         StatValue: 2300,
         Position: 3,
-        Profile: { DisplayName: 'Player3', AvatarUrl: 'icon_player3' },
+        Profile: { DisplayName: 'Player3', AvatarUrl: 'icon_player3///' },
       },
     ],
   },
