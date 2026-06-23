@@ -490,7 +490,6 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -502,7 +501,8 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                           "color": "#FEDD84",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >
@@ -512,14 +512,14 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                       style={
                         {
                           "color": "white",
-                          "flexShrink": 1,
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 14,
-                          "textTransform": "uppercase",
+                          "textShadowColor": undefined,
+                          "textShadowRadius": undefined,
                         }
                       }
                     >
-                      Jan 05, 2025
+                      JAN 05, 2025
                     </Text>
                   </View>
                   <View
@@ -1180,7 +1180,6 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -1192,7 +1191,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "color": "#CACEFF",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >
@@ -1202,14 +1202,14 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                       style={
                         {
                           "color": "white",
-                          "flexShrink": 1,
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 14,
-                          "textTransform": "uppercase",
+                          "textShadowColor": undefined,
+                          "textShadowRadius": undefined,
                         }
                       }
                     >
-                      Feb 01-05, 2025
+                      FEB 01-05, 2025
                     </Text>
                   </View>
                   <View
@@ -1524,7 +1524,6 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "flexDirection": "row",
                         },
                         {
-                          "alignItems": "flex-end",
                           "gap": 4,
                         },
                       ]
@@ -1536,7 +1535,8 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                           "color": "#FC7575",
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 16,
-                          "strokeWidth": 2,
+                          "textShadowColor": "black",
+                          "textShadowRadius": 2,
                         }
                       }
                     >
@@ -1546,14 +1546,14 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                       style={
                         {
                           "color": "white",
-                          "flexShrink": 1,
                           "fontFamily": "AgencyFB-Bold",
                           "fontSize": 14,
-                          "textTransform": "uppercase",
+                          "textShadowColor": undefined,
+                          "textShadowRadius": undefined,
                         }
                       }
                     >
-                      Mar 28 - Apr 03, 2025
+                      MAR 28 - APR 03, 2025
                     </Text>
                   </View>
                   <View

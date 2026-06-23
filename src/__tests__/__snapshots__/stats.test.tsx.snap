@@ -1063,7 +1063,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -1075,7 +1076,8 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -1125,6 +1127,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         }
         style={
           {
+            "alignItems": "center",
             "flexDirection": "row",
             "gap": 4,
             "paddingHorizontal": 4,
@@ -1138,44 +1141,23 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
           ENDS IN:
-        </Text>
-        <Text
-          style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
-              },
-              {
-                "color": "#FFFFFF00",
-                "paddingLeft": 12,
-              },
-            ]
-          }
-        >
-          90
-          :88
         </Text>
         <View
           style={
             {
               "alignItems": "center",
               "flexDirection": "row",
-              "gap": 2,
-              "position": "absolute",
-              "right": 4,
-              "top": 2,
             }
           }
         >
           <ViewManagerAdapter_ExpoImage
+            aspectRatio={1}
             containerViewRef={"[React.ref]"}
             contentFit="cover"
             contentPosition={
@@ -1201,27 +1183,50 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             }
             style={
               {
+                "aspectRatio": 1,
                 "height": 10,
-                "width": 10,
               }
             }
             symbolSize={null}
             symbolWeight={null}
             transition={null}
-            width={10}
           />
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
+          <View>
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF00",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 10,
+                  "textShadowColor": "#FFFFFF00",
+                  "textShadowRadius": 1,
+                }
               }
-            }
-          >
-            90:00
-          </Text>
+            >
+              90:88
+            </Text>
+            <View
+              style={
+                {
+                  "position": "absolute",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 10,
+                    "textShadowColor": "black",
+                    "textShadowRadius": 1,
+                  }
+                }
+              >
+                90:00
+              </Text>
+            </View>
+          </View>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
@@ -2292,7 +2297,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -2304,7 +2310,8 @@ exports[`Stats renders correctly on crews tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -2354,6 +2361,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
         }
         style={
           {
+            "alignItems": "center",
             "flexDirection": "row",
             "gap": 4,
             "paddingHorizontal": 4,
@@ -2367,44 +2375,23 @@ exports[`Stats renders correctly on crews tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
           ENDS IN:
-        </Text>
-        <Text
-          style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
-              },
-              {
-                "color": "#FFFFFF00",
-                "paddingLeft": 12,
-              },
-            ]
-          }
-        >
-          90
-          :88
         </Text>
         <View
           style={
             {
               "alignItems": "center",
               "flexDirection": "row",
-              "gap": 2,
-              "position": "absolute",
-              "right": 4,
-              "top": 2,
             }
           }
         >
           <ViewManagerAdapter_ExpoImage
+            aspectRatio={1}
             containerViewRef={"[React.ref]"}
             contentFit="cover"
             contentPosition={
@@ -2430,27 +2417,50 @@ exports[`Stats renders correctly on crews tab 1`] = `
             }
             style={
               {
+                "aspectRatio": 1,
                 "height": 10,
-                "width": 10,
               }
             }
             symbolSize={null}
             symbolWeight={null}
             transition={null}
-            width={10}
           />
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
+          <View>
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF00",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 10,
+                  "textShadowColor": "#FFFFFF00",
+                  "textShadowRadius": 1,
+                }
               }
-            }
-          >
-            90:00
-          </Text>
+            >
+              90:88
+            </Text>
+            <View
+              style={
+                {
+                  "position": "absolute",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 10,
+                    "textShadowColor": "black",
+                    "textShadowRadius": 1,
+                  }
+                }
+              >
+                90:00
+              </Text>
+            </View>
+          </View>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
@@ -3692,7 +3702,8 @@ exports[`Stats renders correctly on global tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -3704,7 +3715,8 @@ exports[`Stats renders correctly on global tab 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -3754,6 +3766,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         }
         style={
           {
+            "alignItems": "center",
             "flexDirection": "row",
             "gap": 4,
             "paddingHorizontal": 4,
@@ -3767,44 +3780,23 @@ exports[`Stats renders correctly on global tab 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
           ENDS IN:
-        </Text>
-        <Text
-          style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
-              },
-              {
-                "color": "#FFFFFF00",
-                "paddingLeft": 12,
-              },
-            ]
-          }
-        >
-          90
-          :88
         </Text>
         <View
           style={
             {
               "alignItems": "center",
               "flexDirection": "row",
-              "gap": 2,
-              "position": "absolute",
-              "right": 4,
-              "top": 2,
             }
           }
         >
           <ViewManagerAdapter_ExpoImage
+            aspectRatio={1}
             containerViewRef={"[React.ref]"}
             contentFit="cover"
             contentPosition={
@@ -3830,27 +3822,50 @@ exports[`Stats renders correctly on global tab 1`] = `
             }
             style={
               {
+                "aspectRatio": 1,
                 "height": 10,
-                "width": 10,
               }
             }
             symbolSize={null}
             symbolWeight={null}
             transition={null}
-            width={10}
           />
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
+          <View>
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF00",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 10,
+                  "textShadowColor": "#FFFFFF00",
+                  "textShadowRadius": 1,
+                }
               }
-            }
-          >
-            90:00
-          </Text>
+            >
+              90:88
+            </Text>
+            <View
+              style={
+                {
+                  "position": "absolute",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 10,
+                    "textShadowColor": "black",
+                    "textShadowRadius": 1,
+                  }
+                }
+              >
+                90:00
+              </Text>
+            </View>
+          </View>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
@@ -5727,7 +5742,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 12,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -5739,7 +5755,8 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             "color": "white",
             "fontFamily": "AgencyFB-Bold",
             "fontSize": 10,
-            "strokeWidth": 1,
+            "textShadowColor": "black",
+            "textShadowRadius": 1,
           }
         }
       >
@@ -5789,6 +5806,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         }
         style={
           {
+            "alignItems": "center",
             "flexDirection": "row",
             "gap": 4,
             "paddingHorizontal": 4,
@@ -5802,44 +5820,23 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               "color": "white",
               "fontFamily": "AgencyFB-Bold",
               "fontSize": 10,
-              "strokeWidth": 1,
+              "textShadowColor": "black",
+              "textShadowRadius": 1,
             }
           }
         >
           ENDS IN:
-        </Text>
-        <Text
-          style={
-            [
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
-              },
-              {
-                "color": "#FFFFFF00",
-                "paddingLeft": 12,
-              },
-            ]
-          }
-        >
-          90
-          :88
         </Text>
         <View
           style={
             {
               "alignItems": "center",
               "flexDirection": "row",
-              "gap": 2,
-              "position": "absolute",
-              "right": 4,
-              "top": 2,
             }
           }
         >
           <ViewManagerAdapter_ExpoImage
+            aspectRatio={1}
             containerViewRef={"[React.ref]"}
             contentFit="cover"
             contentPosition={
@@ -5865,27 +5862,50 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             }
             style={
               {
+                "aspectRatio": 1,
                 "height": 10,
-                "width": 10,
               }
             }
             symbolSize={null}
             symbolWeight={null}
             transition={null}
-            width={10}
           />
-          <Text
-            style={
-              {
-                "color": "white",
-                "fontFamily": "AgencyFB-Bold",
-                "fontSize": 10,
-                "strokeWidth": 1,
+          <View>
+            <Text
+              style={
+                {
+                  "color": "#FFFFFF00",
+                  "fontFamily": "AgencyFB-Bold",
+                  "fontSize": 10,
+                  "textShadowColor": "#FFFFFF00",
+                  "textShadowRadius": 1,
+                }
               }
-            }
-          >
-            90:00
-          </Text>
+            >
+              90:88
+            </Text>
+            <View
+              style={
+                {
+                  "position": "absolute",
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "white",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 10,
+                    "textShadowColor": "black",
+                    "textShadowRadius": 1,
+                  }
+                }
+              >
+                90:00
+              </Text>
+            </View>
+          </View>
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>

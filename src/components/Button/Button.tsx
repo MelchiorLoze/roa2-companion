@@ -1,7 +1,11 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { LinearGradient } from '../LinearGradient/LinearGradient';
+import { ButtonBackground } from '@/assets/images/ui';
+
+import { FancyText } from '../FancyText/FancyText';
+import { NineSlicesImage } from '../NineSlicesImage/NineSlicesImage';
+import { ParallelogramView } from '../ParallelogramView/ParallelogramView';
 
 type Props = { label: string; onPress: () => void };
 
@@ -12,9 +16,21 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
     <Pressable onPress={onPress} role="button">
       {({ pressed }) => (
         <>
-          <LinearGradient {...theme.color.gradient.button(pressed)} horizontal style={styles.button}>
-            <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
-          </LinearGradient>
+          <NineSlicesImage
+            insets={{ right: '27%', left: '27%' }}
+            source={ButtonBackground}
+            style={StyleSheet.absoluteFill}
+          />
+          {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
+          <View style={styles.button}>
+            <FancyText
+              style={{
+                ...styles.label,
+                gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
+              }}
+              text={label.toUpperCase()}
+            />
+          </View>
         </>
       )}
     </Pressable>
@@ -23,17 +39,22 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
 
 const styles = StyleSheet.create((theme) => ({
   button: {
-    padding: theme.spacing.xs,
+    alignItems: 'center',
+    paddingTop: theme.spacing.s,
+    paddingBottom: theme.spacing.s + 1, // optical adjustment to compensate for the bottom shadow in the background image
     paddingHorizontal: theme.spacing.xl,
   },
   label: {
-    fontFamily: theme.font.primary.regular,
     fontSize: 16,
-    color: theme.color.white,
-    textAlign: 'center',
-    textTransform: 'uppercase',
+    fontFamily: theme.font.secondary.bold,
+    strokeWidth: 1,
+    strokeColor: theme.color.borderPrimary,
   },
-  labelPressed: {
-    color: theme.color.black,
+  pressedBackground: {
+    ...StyleSheet.absoluteFillObject,
+    bottom: 2, // optical adjustment to compensate for the bottom shadow in the background image
+    backgroundColor: theme.color.buttonSelectedSecondary,
+    borderColor: theme.color.buttonSelectedPrimary,
+    borderWidth: 2,
   },
 }));

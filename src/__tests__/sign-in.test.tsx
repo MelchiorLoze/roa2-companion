@@ -72,7 +72,7 @@ describe('SignIn', () => {
 
     expect(screen.queryByText('Invalid email or password')).toBeNull();
     expect(screen.getByRole('button', { name: 'Forgot your password?' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Login' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'LOGIN' })).toBeTruthy();
   });
 
   it('renders loading state', () => {
@@ -93,7 +93,7 @@ describe('SignIn', () => {
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
 
     fireEvent.changeText(emailInput, 'kragg@example.com');
     fireEvent.changeText(passwordInput, 'r0ck');
@@ -122,7 +122,7 @@ describe('SignIn', () => {
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
     fireEvent.changeText(passwordInput, 'r0ck');
 
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
     fireEvent.press(loginButton);
 
     expect(screen.getByText('Invalid email or password')).toBeTruthy();
@@ -135,7 +135,7 @@ describe('SignIn', () => {
     const emailInput = screen.getByPlaceholderText('EMAIL');
     fireEvent.changeText(emailInput, 'kragg@example.com');
 
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
     fireEvent.press(loginButton);
 
     expect(screen.getByText('Invalid email or password')).toBeTruthy();
@@ -159,7 +159,7 @@ describe('SignIn', () => {
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
 
     fireEvent.changeText(emailInput, 'kragg@example.com');
     fireEvent.changeText(passwordInput, 'r0ck');
@@ -179,7 +179,7 @@ describe('SignIn', () => {
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
 
     fireEvent.changeText(emailInput, 'kragg@example.com');
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
@@ -199,7 +199,7 @@ describe('SignIn', () => {
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     const passwordInput = screen.getByPlaceholderText('PASSWORD');
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
 
     fireEvent.press(loginButton);
     expect(screen.getByText('Invalid email or password')).toBeTruthy();
@@ -239,7 +239,7 @@ describe('SignIn', () => {
     const resetPasswordEmailInput = withinDialog.getByPlaceholderText('EMAIL');
     fireEvent.changeText(resetPasswordEmailInput, 'kragg@example.com');
 
-    const resetPasswordButton = withinDialog.getByRole('button', { name: 'Reset password' });
+    const resetPasswordButton = withinDialog.getByRole('button', { name: 'RESET PASSWORD' });
     fireEvent.press(resetPasswordButton);
 
     useSendAccountRecoveryEmailMock.mockReturnValue({
@@ -248,7 +248,7 @@ describe('SignIn', () => {
     });
     rerender(<SignIn />);
 
-    const closeButton = withinDialog.getByRole('button', { name: 'Ok' });
+    const closeButton = withinDialog.getByRole('button', { name: 'OK' });
     fireEvent.press(closeButton);
 
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
@@ -270,7 +270,7 @@ describe('SignIn', () => {
     const resetPasswordEmailInput = withinDialog.getByPlaceholderText('EMAIL');
     fireEvent.changeText(resetPasswordEmailInput, 'kragg@example.com');
 
-    const resetPasswordButton = withinDialog.getByRole('button', { name: 'Reset password' });
+    const resetPasswordButton = withinDialog.getByRole('button', { name: 'RESET PASSWORD' });
     fireEvent.press(resetPasswordButton);
 
     useSendAccountRecoveryEmailMock.mockReturnValue({
@@ -279,7 +279,7 @@ describe('SignIn', () => {
     });
     rerender(<SignIn />);
 
-    const closeButton = withinDialog.getByRole('button', { name: 'Ok' });
+    const closeButton = withinDialog.getByRole('button', { name: 'OK' });
     fireEvent.press(closeButton);
 
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
@@ -289,7 +289,7 @@ describe('SignIn', () => {
   it('clears invalid state when opening reset password dialog', () => {
     render(<SignIn />);
 
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'LOGIN' });
     fireEvent.press(loginButton);
 
     expect(screen.getByText('Invalid email or password')).toBeTruthy();

@@ -63,7 +63,7 @@ describe('TournamentCard', () => {
 
     renderComponent(sameDayTournament);
 
-    expect(screen.getByText('Jan 10, 2025')).toBeTruthy();
+    expect(screen.getByText('JAN 10, 2025')).toBeTruthy();
   });
 
   it('displays date range for same month', () => {
@@ -75,7 +75,7 @@ describe('TournamentCard', () => {
 
     renderComponent(sameMonthTournament);
 
-    expect(screen.getByText('Jan 10-15, 2025')).toBeTruthy();
+    expect(screen.getByText('JAN 10-15, 2025')).toBeTruthy();
   });
 
   it('displays date range for different months', () => {
@@ -87,7 +87,7 @@ describe('TournamentCard', () => {
 
     renderComponent(diffMonthTournament);
 
-    expect(screen.getByText('Jan 30 - Feb 05, 2025')).toBeTruthy();
+    expect(screen.getByText('JAN 30 - FEB 05, 2025')).toBeTruthy();
   });
 
   it('displays wifi icon for online tournaments', () => {
