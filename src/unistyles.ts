@@ -5,6 +5,7 @@ const theme = {
     background: '#0B0825',
     highlight: '#2B1F74',
     accent: '#FEDD84',
+    storeTitleShadow: '#2D2D2D80',
     itemImageBackground: '#512A8C',
     itemNameShadow: '#291A3183',
     itemNameBackground: '#664D9A',
@@ -114,10 +115,10 @@ const theme = {
         // Mod Kit - GentleWhiteToGray
         colors: ['#FFFFFFFF', '#C4C4C4FF'],
       },
-      storeCountdown: {
-        // Mod Kit - TimerBGCurve
-        colors: ['#00000000', '#000000FF'],
-        times: [0, 0.6],
+      storeGradient: {
+        // Mod Kit - BGFadeAtlas with a tint
+        colors: ['#172644FF', '#17264400'],
+        times: [0.4, 1],
       },
       xpRotationalBonusBanner: {
         // Mod Kit - ButtonBannerCurve

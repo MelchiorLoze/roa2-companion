@@ -44,7 +44,7 @@ const styles = StyleSheet.create((theme) => ({
     position: 'absolute',
     top: theme.spacing.xxs,
     left: theme.spacing.xxs,
-    width: 18,
+    width: 15,
     aspectRatio: 1,
   },
 }));
