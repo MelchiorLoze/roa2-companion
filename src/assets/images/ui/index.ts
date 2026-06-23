@@ -9,4 +9,6 @@ export const HeaderBackground: ImageSource = require('./header-bg.png'); // MI_C
 export const ItemOutline: ImageSource = require('./item-outline.png'); // DarkPurpleStoreItemOutline
 export const ItemBackground: ImageSource = require('./item-bg.png'); // MI_StoreItemRippleBG
 export const TabBarBackground: ImageSource = require('./tab-bar-bg.png'); // MI_CSSTopBarBG
+export const CoinStoreBackground: ImageSource = require('./coin-store-bg.png'); // MI_MedalShopBG
+export const CoinStoreTitleBackground: ImageSource = require('./coin-store-title-bg.png'); // UI_StoreTitle_SwipeBG
 export const CoinStoreRotationCountdownBackground: ImageSource = require('./coin-store-rotation-countdown-bg.png'); // CoinShopTimerBG

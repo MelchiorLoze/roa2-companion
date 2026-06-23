@@ -14,18 +14,41 @@ exports[`Store matches snapshot 1`] = `
   <View
     style={
       {
-        "alignItems": "center",
-        "alignSelf": "flex-end",
-        "flexDirection": "row",
-        "justifyContent": "center",
-        "padding": 8,
-        "paddingHorizontal": 32,
-        "paddingRight": 40,
-        "paddingTop": 12,
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
       }
     }
   >
-    <View
+    <ViewManagerAdapter_ExpoImage
+      bottom={0}
+      containerViewRef={"[React.ref]"}
+      contentFit="fill"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      left={0}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      position="absolute"
+      right={0}
+      sfEffect={null}
+      source={
+        [
+          {
+            "testUri": "../../../src/assets/images/ui/coin-store-bg.png",
+          },
+        ]
+      }
       style={
         {
           "bottom": 0,
@@ -35,34 +58,66 @@ exports[`Store matches snapshot 1`] = `
           "top": 0,
         }
       }
+      symbolSize={null}
+      symbolWeight={null}
+      top={0}
+      transition={null}
+    />
+  </View>
+  <ViewManagerAdapter_ExpoLinearGradient
+    colors={
+      [
+        4279707204,
+        1517124,
+      ]
+    }
+    endPoint={
+      [
+        1,
+        0,
+      ]
+    }
+    locations={
+      [
+        0,
+        1,
+      ]
+    }
+    startPoint={
+      [
+        0.4,
+        0,
+      ]
+    }
+    style={
+      {
+        "bottom": 0,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 36,
+      }
+    }
+  />
+  <View
+    style={
+      {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "marginTop": -8,
+          "padding": 16,
+          "paddingRight": 24,
+        }
+      }
     >
-      <ViewManagerAdapter_ExpoImage
-        bottom={0}
-        containerViewRef={"[React.ref]"}
-        contentFit="contain"
-        contentPosition={
-          {
-            "left": "50%",
-            "top": "50%",
-          }
-        }
-        left={0}
-        nativeViewRef={"[React.ref]"}
-        onError={[Function]}
-        onLoad={[Function]}
-        onLoadStart={[Function]}
-        onProgress={[Function]}
-        placeholder={[]}
-        position="absolute"
-        right={0}
-        sfEffect={null}
-        source={
-          [
-            {
-              "testUri": "../../../src/assets/images/ui/coin-store-rotation-countdown-bg.png",
-            },
-          ]
-        }
+      <View
         style={
           {
             "bottom": 0,
@@ -72,81 +127,175 @@ exports[`Store matches snapshot 1`] = `
             "top": 0,
           }
         }
-        symbolSize={null}
-        symbolWeight={null}
-        top={0}
-        transition={null}
-      />
+      >
+        <ViewManagerAdapter_ExpoImage
+          bottom={0}
+          containerViewRef={"[React.ref]"}
+          contentFit="fill"
+          contentPosition={
+            {
+              "left": "50%",
+              "top": "50%",
+            }
+          }
+          left={0}
+          nativeViewRef={"[React.ref]"}
+          onError={[Function]}
+          onLoad={[Function]}
+          onLoadStart={[Function]}
+          onProgress={[Function]}
+          placeholder={[]}
+          position="absolute"
+          right={0}
+          sfEffect={null}
+          source={
+            [
+              {
+                "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+              },
+            ]
+          }
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+          symbolSize={null}
+          symbolWeight={null}
+          top={0}
+          transition={null}
+        />
+      </View>
+      <Text
+        style={
+          {
+            "color": "white",
+            "fontFamily": "AgencyFB-Black",
+            "fontSize": 22,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        COIN SHOP
+      </Text>
     </View>
     <View
       style={
         {
-          "alignItems": "center",
-          "flexDirection": "row",
-          "gap": 2,
+          "paddingBottom": 8,
+          "paddingLeft": 32,
+          "paddingRight": 40,
+          "paddingTop": 12,
         }
       }
     >
-      <ViewManagerAdapter_ExpoImage
-        aspectRatio={1}
-        containerViewRef={"[React.ref]"}
-        contentFit="cover"
-        contentPosition={
-          {
-            "left": "50%",
-            "top": "50%",
-          }
-        }
-        height={16}
-        nativeViewRef={"[React.ref]"}
-        onError={[Function]}
-        onLoad={[Function]}
-        onLoadStart={[Function]}
-        onProgress={[Function]}
-        placeholder={[]}
-        sfEffect={null}
-        source={
-          [
-            {
-              "testUri": "../../../src/assets/images/ui/icons/time.png",
-            },
-          ]
-        }
+      <View
         style={
           {
-            "aspectRatio": 1,
-            "height": 16,
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
           }
         }
-        symbolSize={null}
-        symbolWeight={null}
-        transition={null}
-      />
-      <View>
-        <Text
-          style={
+      >
+        <ViewManagerAdapter_ExpoImage
+          bottom={0}
+          containerViewRef={"[React.ref]"}
+          contentFit="fill"
+          contentPosition={
             {
-              "color": "#FFFFFF00",
-              "fontFamily": "AgencyFB-Black",
-              "fontSize": 18,
-              "textShadowColor": undefined,
-              "textShadowRadius": undefined,
+              "left": "50%",
+              "top": "50%",
             }
           }
-        >
-          15:22:88
-        </Text>
-        <View
+          left={0}
+          nativeViewRef={"[React.ref]"}
+          onError={[Function]}
+          onLoad={[Function]}
+          onLoadStart={[Function]}
+          onProgress={[Function]}
+          placeholder={[]}
+          position="absolute"
+          right={0}
+          sfEffect={null}
+          source={
+            [
+              {
+                "testUri": "../../../src/assets/images/ui/coin-store-rotation-countdown-bg.png",
+              },
+            ]
+          }
           style={
             {
+              "bottom": 0,
+              "left": 0,
               "position": "absolute",
+              "right": 0,
+              "top": 0,
             }
           }
-        >
+          symbolSize={null}
+          symbolWeight={null}
+          top={0}
+          transition={null}
+        />
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "gap": 2,
+          }
+        }
+      >
+        <ViewManagerAdapter_ExpoImage
+          aspectRatio={1}
+          containerViewRef={"[React.ref]"}
+          contentFit="cover"
+          contentPosition={
+            {
+              "left": "50%",
+              "top": "50%",
+            }
+          }
+          height={16}
+          nativeViewRef={"[React.ref]"}
+          onError={[Function]}
+          onLoad={[Function]}
+          onLoadStart={[Function]}
+          onProgress={[Function]}
+          placeholder={[]}
+          sfEffect={null}
+          source={
+            [
+              {
+                "testUri": "../../../src/assets/images/ui/icons/time.png",
+              },
+            ]
+          }
+          style={
+            {
+              "aspectRatio": 1,
+              "height": 16,
+            }
+          }
+          symbolSize={null}
+          symbolWeight={null}
+          transition={null}
+        />
+        <View>
           <Text
             style={
               {
-                "color": "white",
+                "color": "#FFFFFF00",
                 "fontFamily": "AgencyFB-Black",
                 "fontSize": 18,
                 "textShadowColor": undefined,
@@ -154,8 +303,29 @@ exports[`Store matches snapshot 1`] = `
               }
             }
           >
-            15:22:56
+            15:22:88
           </Text>
+          <View
+            style={
+              {
+                "position": "absolute",
+              }
+            }
+          >
+            <Text
+              style={
+                {
+                  "color": "white",
+                  "fontFamily": "AgencyFB-Black",
+                  "fontSize": 18,
+                  "textShadowColor": undefined,
+                  "textShadowRadius": undefined,
+                }
+              }
+            >
+              15:22:56
+            </Text>
+          </View>
         </View>
       </View>
     </View>
@@ -305,8 +475,6 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
-                  "backgroundColor": "#FFFFFF00",
-                  "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -583,14 +751,14 @@ exports[`Store matches snapshot 1`] = `
                         "left": 2,
                         "position": "absolute",
                         "top": 2,
-                        "width": 18,
+                        "width": 15,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
                     top={2}
                     transition={null}
-                    width={18}
+                    width={15}
                   />
                 </View>
                 <View
@@ -782,8 +950,6 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
-                  "backgroundColor": "#FFFFFF00",
-                  "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -1060,14 +1226,14 @@ exports[`Store matches snapshot 1`] = `
                         "left": 2,
                         "position": "absolute",
                         "top": 2,
-                        "width": 18,
+                        "width": 15,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
                     top={2}
                     transition={null}
-                    width={18}
+                    width={15}
                   />
                 </View>
                 <View
@@ -1208,8 +1374,6 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
-                  "backgroundColor": "#FFFFFF00",
-                  "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -1486,14 +1650,14 @@ exports[`Store matches snapshot 1`] = `
                         "left": 2,
                         "position": "absolute",
                         "top": 2,
-                        "width": 18,
+                        "width": 15,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
                     top={2}
                     transition={null}
-                    width={18}
+                    width={15}
                   />
                 </View>
                 <View
@@ -1685,8 +1849,6 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
-                  "backgroundColor": "#FFFFFF00",
-                  "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -1963,14 +2125,14 @@ exports[`Store matches snapshot 1`] = `
                         "left": 2,
                         "position": "absolute",
                         "top": 2,
-                        "width": 18,
+                        "width": 15,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
                     top={2}
                     transition={null}
-                    width={18}
+                    width={15}
                   />
                 </View>
                 <View
@@ -2111,8 +2273,6 @@ exports[`Store matches snapshot 1`] = `
               onLayout={[Function]}
               style={
                 {
-                  "backgroundColor": "#FFFFFF00",
-                  "borderRadius": 20,
                   "bottom": 0,
                   "left": 0,
                   "position": "absolute",
@@ -2389,14 +2549,14 @@ exports[`Store matches snapshot 1`] = `
                         "left": 2,
                         "position": "absolute",
                         "top": 2,
-                        "width": 18,
+                        "width": 15,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
                     top={2}
                     transition={null}
-                    width={18}
+                    width={15}
                   />
                 </View>
                 <View

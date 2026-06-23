@@ -24,7 +24,7 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
   return (
     <View style={styles.container}>
       <ImageBackground
-        contentFit="contain"
+        contentFit="fill"
         source={CoinStoreRotationCountdownBackground}
         style={StyleSheet.absoluteFill}
       />
@@ -43,14 +43,10 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
 
 const styles = StyleSheet.create((theme, runtime) => ({
   container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'flex-end',
-    padding: theme.spacing.s,
-    paddingHorizontal: theme.spacing.xxl,
     paddingTop: theme.spacing.m,
     paddingRight: theme.spacing.xxl + theme.spacing.s, // optical correction to compensate the asymmetry of the background image
+    paddingBottom: theme.spacing.s,
+    paddingLeft: theme.spacing.xxl,
   },
   content: {
     flexDirection: 'row',

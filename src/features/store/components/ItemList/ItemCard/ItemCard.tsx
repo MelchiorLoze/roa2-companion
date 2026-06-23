@@ -23,9 +23,10 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
         <>
           <NineSlicesImage
             insets={{ top: '40%', right: '40%', bottom: '40%', left: '40%' }}
-            source={pressed ? undefined : ItemOutline}
-            style={styles.outline(pressed)}
+            source={ItemOutline}
+            style={StyleSheet.absoluteFill}
           />
+          {pressed && <View style={styles.outLinePressed} />}
           <View style={styles.contentContainer}>
             <ImageBackground
               contentFit="fill"
@@ -87,11 +88,11 @@ const styles = StyleSheet.create((theme) => ({
       },
     ],
   },
-  outline: (pressed: boolean) => ({
+  outLinePressed: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 20,
-    backgroundColor: pressed ? theme.color.itemSelectedPrimary : theme.color.transparent,
-  }),
+    borderRadius: 14,
+    backgroundColor: theme.color.itemSelectedPrimary,
+  },
   contentContainer: {
     flex: 1,
     margin: 5,
