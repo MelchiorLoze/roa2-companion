@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
+import { Redirect, Tabs } from 'expo-router';
 import {
   type BottomTabBarButtonProps,
   type BottomTabHeaderProps,
   type BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
-import { Redirect, Tabs } from 'expo-router';
+} from 'expo-router/build/react-navigation/bottom-tabs';
 import { type ComponentProps } from 'react';
 import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';

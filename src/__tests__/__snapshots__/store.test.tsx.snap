@@ -442,7 +442,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    left={1}
+                    left={2}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -461,17 +461,17 @@ exports[`Store matches snapshot 1`] = `
                     style={
                       {
                         "aspectRatio": 1,
-                        "left": 1,
+                        "left": 2,
                         "position": "absolute",
-                        "top": 3,
-                        "width": 17,
+                        "top": 2,
+                        "width": 18,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={3}
+                    top={2}
                     transition={null}
-                    width={17}
+                    width={18}
                   />
                 </View>
                 <View
@@ -808,7 +808,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    left={1}
+                    left={2}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -827,17 +827,17 @@ exports[`Store matches snapshot 1`] = `
                     style={
                       {
                         "aspectRatio": 1,
-                        "left": 1,
+                        "left": 2,
                         "position": "absolute",
-                        "top": 3,
-                        "width": 17,
+                        "top": 2,
+                        "width": 18,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={3}
+                    top={2}
                     transition={null}
-                    width={17}
+                    width={18}
                   />
                 </View>
                 <View
@@ -1133,7 +1133,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    left={1}
+                    left={2}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1152,17 +1152,17 @@ exports[`Store matches snapshot 1`] = `
                     style={
                       {
                         "aspectRatio": 1,
-                        "left": 1,
+                        "left": 2,
                         "position": "absolute",
-                        "top": 3,
-                        "width": 17,
+                        "top": 2,
+                        "width": 18,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={3}
+                    top={2}
                     transition={null}
-                    width={17}
+                    width={18}
                   />
                 </View>
                 <View
@@ -1499,7 +1499,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    left={1}
+                    left={2}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1518,17 +1518,17 @@ exports[`Store matches snapshot 1`] = `
                     style={
                       {
                         "aspectRatio": 1,
-                        "left": 1,
+                        "left": 2,
                         "position": "absolute",
-                        "top": 3,
-                        "width": 17,
+                        "top": 2,
+                        "width": 18,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={3}
+                    top={2}
                     transition={null}
-                    width={17}
+                    width={18}
                   />
                 </View>
                 <View
@@ -1824,7 +1824,7 @@ exports[`Store matches snapshot 1`] = `
                         "top": "50%",
                       }
                     }
-                    left={1}
+                    left={2}
                     nativeViewRef={"[React.ref]"}
                     onError={[Function]}
                     onLoad={[Function]}
@@ -1843,17 +1843,17 @@ exports[`Store matches snapshot 1`] = `
                     style={
                       {
                         "aspectRatio": 1,
-                        "left": 1,
+                        "left": 2,
                         "position": "absolute",
-                        "top": 3,
-                        "width": 17,
+                        "top": 2,
+                        "width": 18,
                       }
                     }
                     symbolSize={null}
                     symbolWeight={null}
-                    top={3}
+                    top={2}
                     transition={null}
-                    width={17}
+                    width={18}
                   />
                 </View>
                 <View

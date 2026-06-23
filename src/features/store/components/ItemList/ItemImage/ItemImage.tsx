@@ -32,16 +32,16 @@ export const ItemImage = ({ item }: Readonly<Props>) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create((theme) => ({
   image: {
     width: '100%',
     aspectRatio: 1,
   },
   categoryIcon: {
     position: 'absolute',
-    top: 3,
-    left: 1,
-    width: 17,
+    top: theme.spacing.xxs,
+    left: theme.spacing.xxs,
+    width: 18,
     aspectRatio: 1,
   },
-});
+}));
