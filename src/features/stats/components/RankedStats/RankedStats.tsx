@@ -26,7 +26,7 @@ export const RankedStats = () => {
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
-      <SeasonTitle seasonName={season.name} variant="ranked" />
+      <SeasonTitle seasonName={season.name} />
 
       <View style={styles.changeSeasonContainer}>
         <IconButton

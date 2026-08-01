@@ -6,7 +6,7 @@ describe('SeasonTitle', () => {
   it('renders the season title correctly', () => {
     const seasonName = 'Season 5';
 
-    render(<SeasonTitle seasonName={seasonName} variant="ranked" />);
+    render(<SeasonTitle seasonName={seasonName} />);
 
     expect(screen.getByText(seasonName)).toBeTruthy();
   });

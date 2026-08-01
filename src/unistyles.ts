@@ -149,19 +149,6 @@ const theme = {
         // Mod Kit - EntryFadeCurve
         colors: ['#1C156100', '#3420ABFF'],
       },
-      seasonTitleWrapper: (ranked = false) => ({
-        // Mod Kit - FadeCurve with a tint
-        colors: ranked ? (['#FF5039FF', '#FF503900'] as const) : (['#65CADAFF', '#65CADA00'] as const),
-        times: [0, 0.8] as const, // estimated ~80% width
-      }),
-      seasonTitleLeftToRight: (ranked = false) => ({
-        // Mod Kit - FadeCurve with a tint
-        colors: ranked ? (['#610B2EFF', '#610B2E00'] as const) : (['#293B61FF', '#293B6100'] as const),
-      }),
-      seasonTitleRightToLeft: (ranked = false) => ({
-        // Mod Kit - FadeCurve with a tint
-        colors: ranked ? (['#BA1A2700', '#BA1A27FF'] as const) : (['#3D399000', '#3D3990FF'] as const),
-      }),
     },
   },
   spacing: {

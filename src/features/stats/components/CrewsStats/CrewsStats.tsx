@@ -25,7 +25,7 @@ export const CrewsStats = () => {
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
-      <SeasonTitle seasonName={season.name} variant="crews" />
+      <SeasonTitle seasonName={season.name} />
 
       <View style={styles.titlePadding} />
 
@@ -47,7 +47,7 @@ export const CrewsStats = () => {
 
 const styles = StyleSheet.create((theme) => ({
   titlePadding: {
-    height: theme.spacing.l,
+    height: theme.spacing.xxl,
   },
   statRowsContainer: {
     gap: theme.spacing.s,

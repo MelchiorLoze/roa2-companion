@@ -397,128 +397,90 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           style={
             {
               "left": 0,
+              "padding": 24,
+              "paddingTop": 20,
               "position": "absolute",
               "top": 0,
               "transform": [
                 {
-                  "translateX": -8,
-                },
-                {
-                  "translateY": "-50%",
+                  "translateY": "-40%",
                 },
               ],
+              "width": "70%",
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4284861146,
-                6671066,
-              ]
-            }
-            endPoint={
-              [
-                0.8,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "paddingVertical": 8,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4280892257,
-                  2702177,
-                ]
+            <ViewManagerAdapter_ExpoImage
+              bottom={0}
+              containerViewRef={"[React.ref]"}
+              contentFit="fill"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
               }
-              endPoint={
+              left={0}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              position="absolute"
+              right={0}
+              sfEffect={null}
+              source={
                 [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
+                  {
+                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                  },
                 ]
               }
               style={
                 {
-                  "bottom": "20%",
+                  "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
-                  "top": "20%",
+                  "top": 0,
                 }
               }
+              symbolSize={null}
+              symbolWeight={null}
+              top={0}
+              transition={null}
             />
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4012432,
-                  4282202512,
-                ]
+          </View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
+                "textShadowColor": undefined,
+                "textShadowRadius": undefined,
               }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                {
-                  "bottom": "20%",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": "20%",
-                }
-              }
-            />
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 4,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Season 1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            }
+          >
+            Season 1
+          </Text>
         </View>
         <View
           style={
             {
-              "height": 16,
+              "height": 32,
             }
           }
         />
@@ -1597,128 +1559,90 @@ exports[`Stats renders correctly on crews tab 1`] = `
           style={
             {
               "left": 0,
+              "padding": 24,
+              "paddingTop": 20,
               "position": "absolute",
               "top": 0,
               "transform": [
                 {
-                  "translateX": -8,
-                },
-                {
-                  "translateY": "-50%",
+                  "translateY": "-40%",
                 },
               ],
+              "width": "70%",
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4284861146,
-                6671066,
-              ]
-            }
-            endPoint={
-              [
-                0.8,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "paddingVertical": 8,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4280892257,
-                  2702177,
-                ]
+            <ViewManagerAdapter_ExpoImage
+              bottom={0}
+              containerViewRef={"[React.ref]"}
+              contentFit="fill"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
               }
-              endPoint={
+              left={0}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              position="absolute"
+              right={0}
+              sfEffect={null}
+              source={
                 [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
+                  {
+                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                  },
                 ]
               }
               style={
                 {
-                  "bottom": "20%",
+                  "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
-                  "top": "20%",
+                  "top": 0,
                 }
               }
+              symbolSize={null}
+              symbolWeight={null}
+              top={0}
+              transition={null}
             />
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4012432,
-                  4282202512,
-                ]
+          </View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
+                "textShadowColor": undefined,
+                "textShadowRadius": undefined,
               }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                {
-                  "bottom": "20%",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": "20%",
-                }
-              }
-            />
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 4,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Season 1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            }
+          >
+            Season 1
+          </Text>
         </View>
         <View
           style={
             {
-              "height": 16,
+              "height": 32,
             }
           }
         />
@@ -4202,123 +4126,85 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           style={
             {
               "left": 0,
+              "padding": 24,
+              "paddingTop": 20,
               "position": "absolute",
               "top": 0,
               "transform": [
                 {
-                  "translateX": -8,
-                },
-                {
-                  "translateY": "-50%",
+                  "translateY": "-40%",
                 },
               ],
+              "width": "70%",
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4294922297,
-                16732217,
-              ]
-            }
-            endPoint={
-              [
-                0.8,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "paddingVertical": 8,
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  4284549934,
-                  6359854,
-                ]
+            <ViewManagerAdapter_ExpoImage
+              bottom={0}
+              containerViewRef={"[React.ref]"}
+              contentFit="fill"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
               }
-              endPoint={
+              left={0}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              position="absolute"
+              right={0}
+              sfEffect={null}
+              source={
                 [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
+                  {
+                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                  },
                 ]
               }
               style={
                 {
-                  "bottom": "20%",
+                  "bottom": 0,
                   "left": 0,
                   "position": "absolute",
                   "right": 0,
-                  "top": "20%",
+                  "top": 0,
                 }
               }
+              symbolSize={null}
+              symbolWeight={null}
+              top={0}
+              transition={null}
             />
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  12196391,
-                  4290386471,
-                ]
+          </View>
+          <Text
+            style={
+              {
+                "color": "white",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 22,
+                "textShadowColor": undefined,
+                "textShadowRadius": undefined,
               }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                {
-                  "bottom": "20%",
-                  "left": 0,
-                  "position": "absolute",
-                  "right": 0,
-                  "top": "20%",
-                }
-              }
-            />
-            <Text
-              style={
-                {
-                  "color": "white",
-                  "fontFamily": "AgencyFB-Bold",
-                  "fontSize": 22,
-                  "paddingHorizontal": 16,
-                  "paddingVertical": 4,
-                  "textTransform": "uppercase",
-                }
-              }
-            >
-              Season 1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+            }
+          >
+            Season 1
+          </Text>
         </View>
         <View
           style={
