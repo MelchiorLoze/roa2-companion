@@ -40,7 +40,7 @@ const renderMoreIcon = ({ color }: IconProps) => <Ionicons color={color} name="i
 
 type TabBarLabelProps = ComponentProps<Exclude<Required<BottomTabNavigationOptions>['tabBarLabel'], string>>;
 const renderTabBarLabel = ({ focused, children }: TabBarLabelProps) => (
-  <FancyText style={styles.label(focused)} text={children.toUpperCase()} />
+  <FancyText style={styles.label(focused)} text={children} />
 );
 
 export default function PrivateLayout() {
@@ -103,6 +103,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   label: (focused: boolean) => ({
     fontFamily: theme.font.secondary.bold,
     fontSize: 14,
+    textTransform: 'uppercase',
     color: focused ? theme.color.white : theme.color.inactive,
     skew: -0.1,
   }),

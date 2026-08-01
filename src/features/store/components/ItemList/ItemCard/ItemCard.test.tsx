@@ -33,7 +33,7 @@ describe('ItemCard', () => {
     renderComponent(mockItem);
 
     expect(screen.getByText(mockItem.name)).toBeTruthy();
-    expect(screen.getByText(CATEGORY_LABELS[mockItem.category].toUpperCase())).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[mockItem.category])).toBeTruthy();
     expect(screen.getByText(mockItem.coinPrice!.toString())).toBeTruthy();
     expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
@@ -42,7 +42,7 @@ describe('ItemCard', () => {
     renderComponent({ ...mockItem, coinPrice: undefined });
 
     expect(screen.getByText(mockItem.name)).toBeTruthy();
-    expect(screen.getByText(CATEGORY_LABELS[mockItem.category].toUpperCase())).toBeTruthy();
+    expect(screen.getByText(CATEGORY_LABELS[mockItem.category])).toBeTruthy();
     expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
 

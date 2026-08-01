@@ -19,13 +19,13 @@ export const XpRotationalBonusBanner = () => {
   return (
     <LinearGradient {...theme.color.gradient.xpRotationalBonusBanner} style={styles.container} vertical>
       <View style={styles.bonusContainer}>
-        <FancyText style={styles.bonusLabel} text={`${currentQueue} — Bonus +50%`.toUpperCase()} />
-        <FancyText style={styles.bonusUnit} text={'XP'} />
+        <FancyText style={styles.bonusLabel} text={`${currentQueue} — Bonus +50%`} />
+        <FancyText style={styles.bonusUnit} text={'xp'} />
       </View>
 
       <View style={styles.timeLeftBorder}>
         <LinearGradient {...theme.color.gradient.xpRotationalBonusTimeLeft} style={styles.timeLeftContainer} vertical>
-          <FancyText style={styles.timeLeftLabel} text={'Ends in:'.toUpperCase()} />
+          <FancyText style={styles.timeLeftLabel} text={'Ends in:'} />
 
           <View style={styles.timeLeft}>
             <Image source={ClockIcon} style={styles.clockIcon} />
@@ -54,6 +54,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   bonusLabel: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 12,
+    textTransform: 'uppercase',
     color: theme.color.white,
     strokeWidth: 1,
     strokeColor: theme.color.black,
@@ -61,6 +62,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   bonusUnit: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 10,
+    textTransform: 'uppercase',
     color: theme.color.white,
     strokeWidth: 1,
     strokeColor: theme.color.black,
@@ -90,6 +92,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   timeLeftLabel: {
     fontFamily: theme.font.secondary.bold,
     fontSize: 10,
+    textTransform: 'uppercase',
     color: theme.color.white,
     strokeWidth: 1,
     strokeColor: theme.color.black,

@@ -29,10 +29,10 @@ describe('XpRotationalBonusBanner', () => {
   it('renders correctly', () => {
     renderComponent();
 
-    expect(screen.getByText('CASUAL — BONUS +50%')).toBeTruthy();
-    expect(screen.getByText('XP')).toBeTruthy();
+    expect(screen.getByText('casual — Bonus +50%')).toBeTruthy();
+    expect(screen.getByText('xp')).toBeTruthy();
 
-    expect(screen.getByText('ENDS IN:')).toBeTruthy();
+    expect(screen.getByText('Ends in:')).toBeTruthy();
     expect(screen.getByText('45:30')).toBeTruthy();
     expect(screen.getByText('45:88')).toBeTruthy(); // placeholder
   });
@@ -45,7 +45,7 @@ describe('XpRotationalBonusBanner', () => {
 
     renderComponent();
 
-    expect(screen.getByText('2V2 — BONUS +50%')).toBeTruthy();
+    expect(screen.getByText('2v2 — Bonus +50%')).toBeTruthy();
   });
 
   it('updates the formatted time as the countdown ticks', () => {

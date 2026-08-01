@@ -28,7 +28,7 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
                 ...styles.label,
                 gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
               }}
-              text={label.toUpperCase()}
+              text={label}
             />
           </View>
         </>
@@ -47,6 +47,7 @@ const styles = StyleSheet.create((theme) => ({
   label: {
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
+    textTransform: 'uppercase',
     strokeWidth: 1,
     strokeColor: theme.color.borderPrimary,
   },

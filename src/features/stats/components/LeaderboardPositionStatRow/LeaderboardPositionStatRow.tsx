@@ -1,10 +1,12 @@
 import { Canvas, Image as SkiaImage } from '@shopify/react-native-skia';
 import { Image, type ImageSource } from 'expo-image';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LeaderboardRowBackground, PlayerIconContainerBackground } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
 
 import { type Rank, RANK_ICONS } from '../../types/rank';
@@ -24,109 +26,127 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
   const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
   return (
-    <LinearGradient {...theme.color.gradient.statRow} horizontal style={styles.container}>
-      <View style={styles.firstSeparator} />
-      <LinearGradient {...theme.color.gradient.statPositionOverlay} horizontal style={styles.labelContainer}>
-        <Text style={styles.label}>{position}</Text>
-      </LinearGradient>
+    <View style={styles.container}>
+      <NineSlicesImage
+        insets={{ top: '49%', right: '40%', bottom: '49%', left: '40%' }}
+        source={LeaderboardRowBackground}
+        style={styles.rowBackground}
+      />
 
-      <View style={styles.secondSeparator} />
-      <LinearGradient
-        {...theme.color.gradient.statRowOverlay}
-        horizontal
-        style={[styles.labelContainer, styles.profileContainer]}
-      >
-        <Canvas ref={canvasRef} style={styles.playerIcon}>
-          <SkiaImage
-            height={canvasSize.height}
-            image={avatarImage}
-            sampling={{ filter: canvasFilter }}
-            width={canvasSize.width}
-            x={0}
-            y={0}
+      <View style={styles.leftContainer}>
+        <LinearGradient {...theme.color.gradient.leaderboardLeftGradient} horizontal style={styles.positionContainer}>
+          <FancyText
+            style={{
+              ...styles.label,
+              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
+            }}
+            text={position.toString()}
           />
-        </Canvas>
-        <Text numberOfLines={1} style={styles.label}>
-          {playerName}
-        </Text>
-      </LinearGradient>
+        </LinearGradient>
 
-      <View style={styles.thirdSeparator(rank)} />
-      <LinearGradient {...theme.color.gradient.statRankOverlay} horizontal style={styles.labelContainer}>
-        {elo !== undefined && (rank || rankIcon) ? (
-          <>
-            <Image contentFit="contain" source={rank ? RANK_ICONS[rank] : rankIcon} style={styles.rankIcon} />
-            <Text style={styles.eloLabel(rank)}>{elo}</Text>
-          </>
-        ) : (
-          <FancyText style={styles.unrankedLabel} text="UNRANKED" />
+        <View style={styles.iconContainer}>
+          <NineSlicesImage
+            insets={{ top: '40%', right: '40%', bottom: '40%', left: '40%' }}
+            source={PlayerIconContainerBackground}
+            style={styles.iconBackground}
+          />
+          <Canvas ref={canvasRef} style={styles.playerIcon}>
+            <SkiaImage
+              height={canvasSize.height}
+              image={avatarImage}
+              sampling={{ filter: canvasFilter }}
+              width={canvasSize.width}
+              x={0}
+              y={0}
+            />
+          </Canvas>
+        </View>
+
+        <LinearGradient
+          {...theme.color.gradient.leaderboardRightGradient}
+          horizontal
+          style={styles.playerNameContainer}
+        >
+          <FancyText
+            style={{
+              ...styles.label,
+              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
+            }}
+            text={playerName}
+          />
+        </LinearGradient>
+      </View>
+
+      <View style={styles.eloContainer}>
+        {Boolean(rank ?? rankIcon) && (
+          <Image contentFit="contain" source={rank ? RANK_ICONS[rank] : rankIcon} style={styles.rankIcon} />
         )}
-      </LinearGradient>
-    </LinearGradient>
+        <FancyText style={{ ...styles.label, ...styles.eloLabel(rank) }} text={elo?.toString() ?? 'UNRANKED'} />
+      </View>
+    </View>
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flexDirection: 'row',
-    boxShadow: [
-      {
-        color: theme.color.translucentDark,
-        offsetX: 0,
-        offsetY: 2,
-        blurRadius: 5,
-        spreadDistance: 0,
-      },
-    ],
-  },
-  firstSeparator: {
-    width: theme.spacing.s,
-    backgroundColor: theme.color.borderDark,
-  },
-  secondSeparator: {
-    width: theme.spacing.xs,
-    backgroundColor: theme.color.borderMedium,
-  },
-  thirdSeparator: (rank?: Rank) => ({
-    width: theme.spacing.xs,
-    backgroundColor: rank ? theme.color[rank] : theme.color.borderMedium,
-  }),
-  labelContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    padding: theme.spacing.xs,
-    paddingHorizontal: theme.spacing.s,
-    gap: theme.spacing.xs,
+    paddingRight: theme.spacing.m,
+    paddingLeft: theme.spacing.s,
+    justifyContent: 'space-between',
+  },
+  rowBackground: {
+    ...StyleSheet.absoluteFillObject,
+    margin: -theme.spacing.l,
+    marginHorizontal: -theme.spacing.m,
   },
   label: {
-    flexShrink: 1,
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.bold,
     fontSize: 16,
-    color: theme.color.white,
     textTransform: 'uppercase',
+    strokeWidth: 1.5,
+    strokeColor: theme.color.leaderboardLabelOutline,
   },
-  profileContainer: {
-    flex: 1,
+  leftContainer: {
     flexShrink: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  positionContainer: {
+    paddingRight: theme.spacing.s,
+    marginLeft: theme.spacing.s,
+    paddingVertical: 6,
+    minWidth: 25,
+  },
+  iconContainer: {
+    marginHorizontal: theme.spacing.xs,
+  },
+  iconBackground: {
+    ...StyleSheet.absoluteFillObject,
+    margin: -theme.spacing.l,
   },
   playerIcon: {
-    width: 32,
-    height: 32,
+    width: 38 * runtime.fontScale,
+    aspectRatio: 1,
+  },
+  playerNameContainer: {
+    flexShrink: 1,
+    overflow: 'hidden',
+    paddingLeft: theme.spacing.s,
+    marginRight: theme.spacing.s,
+    paddingVertical: 6,
+  },
+  eloContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: theme.spacing.xs,
   },
   rankIcon: {
-    width: 24,
-    height: 24,
+    height: 22 * runtime.fontScale,
+    aspectRatio: 1,
   },
   eloLabel: (rank?: Rank) => ({
-    fontFamily: theme.font.primary.regular,
-    fontSize: 16,
     color: rank ? theme.color[rank] : theme.color.white,
-  }),
-  unrankedLabel: {
-    fontFamily: theme.font.secondary.black,
-    fontSize: 16,
-    color: theme.color.white,
-    strokeWidth: 3,
     strokeColor: theme.color.black,
-  },
+  }),
 }));

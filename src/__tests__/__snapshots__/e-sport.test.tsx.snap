@@ -506,7 +506,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                         }
                       }
                     >
-                      ONGOING
+                      ongoing
                     </Text>
                     <Text
                       style={
@@ -519,7 +519,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                         }
                       }
                     >
-                      JAN 05, 2025
+                      Jan 05, 2025
                     </Text>
                   </View>
                   <View
@@ -1196,7 +1196,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                         }
                       }
                     >
-                      UPCOMING
+                      upcoming
                     </Text>
                     <Text
                       style={
@@ -1209,7 +1209,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                         }
                       }
                     >
-                      FEB 01-05, 2025
+                      Feb 01-05, 2025
                     </Text>
                   </View>
                   <View
@@ -1540,7 +1540,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                         }
                       }
                     >
-                      COMPLETED
+                      completed
                     </Text>
                     <Text
                       style={
@@ -1553,7 +1553,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                         }
                       }
                     >
-                      MAR 28 - APR 03, 2025
+                      Mar 28 - Apr 03, 2025
                     </Text>
                   </View>
                   <View

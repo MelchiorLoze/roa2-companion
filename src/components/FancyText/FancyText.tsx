@@ -44,6 +44,7 @@ type GradientOrPlainColor<T extends GradientColors> = Either<
 type FancyTextStyle<T extends GradientColors> = {
   fontSize: number;
   fontFamily: FontFamily;
+  textTransform?: 'uppercase';
   letterSpacing?: number;
   strokeWidth?: number;
   strokeColor?: ColorValue;
@@ -174,7 +175,11 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
     strokeWidth: (style.strokeWidth ?? 0) * fontScale,
   };
 
-  const { paragraphFill, paragraphStroke, paragraphRect } = createParagraphs(text, textStyle, fontProvider);
+  const { paragraphFill, paragraphStroke, paragraphRect } = createParagraphs(
+    style.textTransform === 'uppercase' ? text.toUpperCase() : text,
+    textStyle,
+    fontProvider,
+  );
   const { width, height, x, y, transform } = computeSkew(style.skew ?? 0, paragraphRect);
 
   return (

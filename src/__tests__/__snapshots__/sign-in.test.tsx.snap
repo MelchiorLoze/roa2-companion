@@ -271,7 +271,7 @@ exports[`SignIn matches snapshot 1`] = `
             }
           }
         >
-          LOGIN
+          Login
         </Text>
       </View>
     </View>
@@ -617,7 +617,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
               }
             }
           >
-            LOGIN
+            Login
           </Text>
         </View>
       </View>
@@ -945,7 +945,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
                     }
                   }
                 >
-                  RESET PASSWORD
+                  Reset password
                 </Text>
               </View>
             </View>

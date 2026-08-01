@@ -16,6 +16,7 @@ const theme = {
     buttonSelectedPrimary: '#FF8E00',
     buttonSelectedSecondary: '#F4EBE2',
     currencyLabelShadow: '#00000049',
+    leaderboardLabelOutline: '#0000008F',
     headerSeparator: '#A990CCFF',
     headerTitle: '#E7C8FFFF',
     overlay: '#000000AA',
@@ -129,6 +130,12 @@ const theme = {
         colors: ['#152233B3', '#152233B3', '#0E1E2CB3', '#0E1E2CB3'],
         times: [-0.023, 0, 1, 1.035],
       },
+      leaderboardLeftGradient: {
+        colors: ['#00000000', '#00000080'],
+      },
+      leaderboardRightGradient: {
+        colors: ['#00000080', '#00000000'],
+      },
       statSection: {
         // Mod Kit - LeaderboardBgCurve
         colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'],
@@ -141,15 +148,6 @@ const theme = {
       statRowOverlay: {
         // Mod Kit - EntryFadeCurve
         colors: ['#1C156100', '#3420ABFF'],
-      },
-      statPositionOverlay: {
-        // Mod Kit - EntryFadeCurve with 51% opacity
-        colors: ['#1C156100', '#3420AB83'],
-      },
-      statRankOverlay: {
-        // Mod Kit - MI_RankedLeaderboardEntryFadeLeft with a black tint
-        colors: ['#000000FF', '#00000000'],
-        times: [-0.693334, 0.306666],
       },
       seasonTitleWrapper: (ranked = false) => ({
         // Mod Kit - FadeCurve with a tint

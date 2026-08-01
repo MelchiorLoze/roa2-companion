@@ -824,7 +824,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                 }
               >
-                ICON
+                icon
               </Text>
               <View
                 style={
@@ -1299,7 +1299,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                 }
               >
-                DEATH
+                death
               </Text>
             </View>
           </View>
@@ -1723,7 +1723,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                 }
               >
-                EMOTE
+                emote
               </Text>
               <View
                 style={
@@ -2198,7 +2198,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                 }
               >
-                SKIN
+                skin
               </Text>
             </View>
           </View>
@@ -2622,7 +2622,7 @@ exports[`Store matches snapshot 1`] = `
                   }
                 }
               >
-                STAGE SKIN
+                stage skin
               </Text>
               <View
                 style={

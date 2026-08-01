@@ -38,10 +38,10 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                 </View>
 
                 <View style={[styles.info, styles.dateInfo]}>
-                  <FancyText style={styles.state(tournament.state)} text={tournament.state.toUpperCase()} />
+                  <FancyText style={styles.state(tournament.state)} text={tournament.state} />
                   <FancyText
                     style={styles.text(pressed)}
-                    text={formatDateRange(tournament.startAt, tournament.endAt).toUpperCase()}
+                    text={formatDateRange(tournament.startAt, tournament.endAt)}
                   />
                 </View>
 
@@ -144,6 +144,7 @@ const styles = StyleSheet.create((theme) => ({
   state: (tournamentState: TournamentState) => ({
     fontSize: 16,
     fontFamily: theme.font.secondary.bold,
+    textTransform: 'uppercase',
     color: theme.color[tournamentState],
     strokeWidth: 2,
     strokeColor: theme.color.black,

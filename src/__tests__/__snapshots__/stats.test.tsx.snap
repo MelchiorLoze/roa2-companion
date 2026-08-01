@@ -522,215 +522,180 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             }
           }
         />
-        <ViewManagerAdapter_ExpoLinearGradient
-          colors={
-            [
-              4279833174,
-              4280227690,
-            ]
-          }
-          endPoint={
-            [
-              1,
-              0,
-            ]
-          }
-          startPoint={
-            [
-              0,
-              0,
-            ]
-          }
+        <View
           style={
             {
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "#161616AA",
-                  "offsetX": 0,
-                  "offsetY": 2,
-                  "spreadDistance": 0,
-                },
-              ],
+              "alignItems": "center",
               "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingLeft": 8,
+              "paddingRight": 12,
             }
           }
         >
           <View
+            onLayout={[Function]}
             style={
               {
-                "backgroundColor": "#4838A9",
-                "width": 8,
+                "bottom": 0,
+                "left": 0,
+                "margin": -16,
+                "marginHorizontal": -12,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                2201231531,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
+                "flexShrink": 1,
               }
             }
           >
-            <Text
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  0,
+                  2147483648,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
-                  "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginLeft": 8,
+                  "minWidth": 25,
+                  "paddingRight": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              4404
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <View
-            style={
-              {
-                "backgroundColor": "#A9AFFF",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                4281606315,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "gap": 4,
-                  "padding": 4,
-                  "paddingHorizontal": 8,
-                },
-                {
-                  "flex": 1,
-                  "flexShrink": 1,
-                },
-              ]
-            }
-          >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                4404
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "height": 32,
-                  "width": 32,
+                  "marginHorizontal": 4,
                 }
               }
             >
-              <skImage
-                fit="contain"
-                height={0}
-                image={null}
-                sampling={
+              <View
+                onLayout={[Function]}
+                style={
                   {
-                    "filter": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "margin": -16,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   }
                 }
-                width={0}
-                x={0}
-                y={0}
               />
+              <View
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "width": 38,
+                  }
+                }
+              >
+                <skImage
+                  fit="contain"
+                  height={0}
+                  image={null}
+                  sampling={
+                    {
+                      "filter": 0,
+                    }
+                  }
+                  width={0}
+                  x={0}
+                  y={0}
+                />
+              </View>
             </View>
-            <Text
-              numberOfLines={1}
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  2147483648,
+                  0,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
                   "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginRight": 8,
+                  "overflow": "hidden",
+                  "paddingLeft": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              Player1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                Player1
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
           <View
-            style={
-              {
-                "backgroundColor": "#A9AFFF",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4278190080,
-                0,
-              ]
-            }
-            endPoint={
-              [
-                0.306666,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                -0.693334,
-                0,
-              ]
-            }
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
               }
             }
           >
             <ViewManagerAdapter_ExpoImage
+              aspectRatio={1}
               containerViewRef={"[React.ref]"}
               contentFit="contain"
               contentPosition={
@@ -739,7 +704,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
                   "top": "50%",
                 }
               }
-              height={24}
+              height={22}
               nativeViewRef={"[React.ref]"}
               onError={[Function]}
               onLoad={[Function]}
@@ -756,28 +721,29 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               }
               style={
                 {
-                  "height": 24,
-                  "width": 24,
+                  "aspectRatio": 1,
+                  "height": 22,
                 }
               }
               symbolSize={null}
               symbolWeight={null}
               transition={null}
-              width={24}
             />
             <Text
               style={
                 {
                   "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontFamily": "AgencyFB-Bold",
                   "fontSize": 16,
+                  "textShadowColor": "black",
+                  "textShadowRadius": 1.5,
                 }
               }
             >
               1500
             </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
         <View
           style={
             {
@@ -1068,7 +1034,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           }
         }
       >
-        CASUAL — BONUS +50%
+        casual — Bonus +50%
       </Text>
       <Text
         style={
@@ -1081,7 +1047,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           }
         }
       >
-        XP
+        xp
       </Text>
     </View>
     <View
@@ -1146,7 +1112,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             }
           }
         >
-          ENDS IN:
+          Ends in:
         </Text>
         <View
           style={
@@ -1756,215 +1722,180 @@ exports[`Stats renders correctly on crews tab 1`] = `
             }
           }
         />
-        <ViewManagerAdapter_ExpoLinearGradient
-          colors={
-            [
-              4279833174,
-              4280227690,
-            ]
-          }
-          endPoint={
-            [
-              1,
-              0,
-            ]
-          }
-          startPoint={
-            [
-              0,
-              0,
-            ]
-          }
+        <View
           style={
             {
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "#161616AA",
-                  "offsetX": 0,
-                  "offsetY": 2,
-                  "spreadDistance": 0,
-                },
-              ],
+              "alignItems": "center",
               "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingLeft": 8,
+              "paddingRight": 12,
             }
           }
         >
           <View
+            onLayout={[Function]}
             style={
               {
-                "backgroundColor": "#4838A9",
-                "width": 8,
+                "bottom": 0,
+                "left": 0,
+                "margin": -16,
+                "marginHorizontal": -12,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                2201231531,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
+                "flexShrink": 1,
               }
             }
           >
-            <Text
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  0,
+                  2147483648,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
-                  "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginLeft": 8,
+                  "minWidth": 25,
+                  "paddingRight": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              45
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <View
-            style={
-              {
-                "backgroundColor": "#A9AFFF",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                4281606315,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "gap": 4,
-                  "padding": 4,
-                  "paddingHorizontal": 8,
-                },
-                {
-                  "flex": 1,
-                  "flexShrink": 1,
-                },
-              ]
-            }
-          >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                45
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "height": 32,
-                  "width": 32,
+                  "marginHorizontal": 4,
                 }
               }
             >
-              <skImage
-                fit="contain"
-                height={0}
-                image={null}
-                sampling={
+              <View
+                onLayout={[Function]}
+                style={
                   {
-                    "filter": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "margin": -16,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   }
                 }
-                width={0}
-                x={0}
-                y={0}
               />
+              <View
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "width": 38,
+                  }
+                }
+              >
+                <skImage
+                  fit="contain"
+                  height={0}
+                  image={null}
+                  sampling={
+                    {
+                      "filter": 0,
+                    }
+                  }
+                  width={0}
+                  x={0}
+                  y={0}
+                />
+              </View>
             </View>
-            <Text
-              numberOfLines={1}
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  2147483648,
+                  0,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
                   "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginRight": 8,
+                  "overflow": "hidden",
+                  "paddingLeft": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              Player1
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                Player1
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
           <View
-            style={
-              {
-                "backgroundColor": "#A9AFFF",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4278190080,
-                0,
-              ]
-            }
-            endPoint={
-              [
-                0.306666,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                -0.693334,
-                0,
-              ]
-            }
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
               }
             }
           >
             <ViewManagerAdapter_ExpoImage
+              aspectRatio={1}
               containerViewRef={"[React.ref]"}
               contentFit="contain"
               contentPosition={
@@ -1973,7 +1904,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
                   "top": "50%",
                 }
               }
-              height={24}
+              height={22}
               nativeViewRef={"[React.ref]"}
               onError={[Function]}
               onLoad={[Function]}
@@ -1990,28 +1921,29 @@ exports[`Stats renders correctly on crews tab 1`] = `
               }
               style={
                 {
-                  "height": 24,
-                  "width": 24,
+                  "aspectRatio": 1,
+                  "height": 22,
                 }
               }
               symbolSize={null}
               symbolWeight={null}
               transition={null}
-              width={24}
             />
             <Text
               style={
                 {
                   "color": "white",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontFamily": "AgencyFB-Bold",
                   "fontSize": 16,
+                  "textShadowColor": "black",
+                  "textShadowRadius": 1.5,
                 }
               }
             >
               1500
             </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
         <View
           style={
             {
@@ -2302,7 +2234,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
           }
         }
       >
-        CASUAL — BONUS +50%
+        casual — Bonus +50%
       </Text>
       <Text
         style={
@@ -2315,7 +2247,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
           }
         }
       >
-        XP
+        xp
       </Text>
     </View>
     <View
@@ -2380,7 +2312,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
             }
           }
         >
-          ENDS IN:
+          Ends in:
         </Text>
         <View
           style={
@@ -3707,7 +3639,7 @@ exports[`Stats renders correctly on global tab 1`] = `
           }
         }
       >
-        CASUAL — BONUS +50%
+        casual — Bonus +50%
       </Text>
       <Text
         style={
@@ -3720,7 +3652,7 @@ exports[`Stats renders correctly on global tab 1`] = `
           }
         }
       >
-        XP
+        xp
       </Text>
     </View>
     <View
@@ -3785,7 +3717,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             }
           }
         >
-          ENDS IN:
+          Ends in:
         </Text>
         <View
           style={
@@ -4511,215 +4443,180 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             />
           </View>
         </View>
-        <ViewManagerAdapter_ExpoLinearGradient
-          colors={
-            [
-              4279833174,
-              4280227690,
-            ]
-          }
-          endPoint={
-            [
-              1,
-              0,
-            ]
-          }
-          startPoint={
-            [
-              0,
-              0,
-            ]
-          }
+        <View
           style={
             {
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "#161616AA",
-                  "offsetX": 0,
-                  "offsetY": 2,
-                  "spreadDistance": 0,
-                },
-              ],
+              "alignItems": "center",
               "flexDirection": "row",
+              "justifyContent": "space-between",
+              "paddingLeft": 8,
+              "paddingRight": 12,
             }
           }
         >
           <View
+            onLayout={[Function]}
             style={
               {
-                "backgroundColor": "#4838A9",
-                "width": 8,
+                "bottom": 0,
+                "left": 0,
+                "margin": -16,
+                "marginHorizontal": -12,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
               }
             }
           />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                2201231531,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
+                "flexShrink": 1,
               }
             }
           >
-            <Text
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  0,
+                  2147483648,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
-                  "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginLeft": 8,
+                  "minWidth": 25,
+                  "paddingRight": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              123
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <View
-            style={
-              {
-                "backgroundColor": "#A9AFFF",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                1840481,
-                4281606315,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              [
-                {
-                  "alignItems": "center",
-                  "flexDirection": "row",
-                  "gap": 4,
-                  "padding": 4,
-                  "paddingHorizontal": 8,
-                },
-                {
-                  "flex": 1,
-                  "flexShrink": 1,
-                },
-              ]
-            }
-          >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                123
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "height": 32,
-                  "width": 32,
+                  "marginHorizontal": 4,
                 }
               }
             >
-              <skImage
-                fit="contain"
-                height={0}
-                image={null}
-                sampling={
+              <View
+                onLayout={[Function]}
+                style={
                   {
-                    "filter": 0,
+                    "bottom": 0,
+                    "left": 0,
+                    "margin": -16,
+                    "position": "absolute",
+                    "right": 0,
+                    "top": 0,
                   }
                 }
-                width={0}
-                x={0}
-                y={0}
               />
+              <View
+                style={
+                  {
+                    "aspectRatio": 1,
+                    "width": 38,
+                  }
+                }
+              >
+                <skImage
+                  fit="contain"
+                  height={0}
+                  image={null}
+                  sampling={
+                    {
+                      "filter": 0,
+                    }
+                  }
+                  width={0}
+                  x={0}
+                  y={0}
+                />
+              </View>
             </View>
-            <Text
-              numberOfLines={1}
+            <ViewManagerAdapter_ExpoLinearGradient
+              colors={
+                [
+                  2147483648,
+                  0,
+                ]
+              }
+              endPoint={
+                [
+                  1,
+                  0,
+                ]
+              }
+              startPoint={
+                [
+                  0,
+                  0,
+                ]
+              }
               style={
                 {
-                  "color": "white",
                   "flexShrink": 1,
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
-                  "fontSize": 16,
-                  "textTransform": "uppercase",
+                  "marginRight": 8,
+                  "overflow": "hidden",
+                  "paddingLeft": 8,
+                  "paddingVertical": 6,
                 }
               }
             >
-              TestPlayer
-            </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#0000008F",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                TestPlayer
+              </Text>
+            </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
           <View
-            style={
-              {
-                "backgroundColor": "#FFC64E",
-                "width": 4,
-              }
-            }
-          />
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4278190080,
-                0,
-              ]
-            }
-            endPoint={
-              [
-                0.306666,
-                0,
-              ]
-            }
-            locations={
-              [
-                0,
-                1,
-              ]
-            }
-            startPoint={
-              [
-                -0.693334,
-                0,
-              ]
-            }
             style={
               {
                 "alignItems": "center",
                 "flexDirection": "row",
                 "gap": 4,
-                "padding": 4,
-                "paddingHorizontal": 8,
               }
             }
           >
             <ViewManagerAdapter_ExpoImage
+              aspectRatio={1}
               containerViewRef={"[React.ref]"}
               contentFit="contain"
               contentPosition={
@@ -4728,7 +4625,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                   "top": "50%",
                 }
               }
-              height={24}
+              height={22}
               nativeViewRef={"[React.ref]"}
               onError={[Function]}
               onLoad={[Function]}
@@ -4745,28 +4642,29 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               }
               style={
                 {
-                  "height": 24,
-                  "width": 24,
+                  "aspectRatio": 1,
+                  "height": 22,
                 }
               }
               symbolSize={null}
               symbolWeight={null}
               transition={null}
-              width={24}
             />
             <Text
               style={
                 {
                   "color": "#FFC64E",
-                  "fontFamily": "FranklinGothicDemiCond-Regular",
+                  "fontFamily": "AgencyFB-Bold",
                   "fontSize": 16,
+                  "textShadowColor": "black",
+                  "textShadowRadius": 1.5,
                 }
               }
             >
               925
             </Text>
-          </ViewManagerAdapter_ExpoLinearGradient>
-        </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
+        </View>
         <View>
           <View>
             <View
@@ -5747,7 +5645,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           }
         }
       >
-        CASUAL — BONUS +50%
+        casual — Bonus +50%
       </Text>
       <Text
         style={
@@ -5760,7 +5658,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           }
         }
       >
-        XP
+        xp
       </Text>
     </View>
     <View
@@ -5825,7 +5723,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             }
           }
         >
-          ENDS IN:
+          Ends in:
         </Text>
         <View
           style={

@@ -50,7 +50,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
                   ...styles.category(pressed),
                   gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
                 }}
-                text={CATEGORY_LABELS[item.category].toUpperCase()}
+                text={CATEGORY_LABELS[item.category]}
               />
 
               {item.coinPrice && (
@@ -135,6 +135,7 @@ const styles = StyleSheet.create((theme) => ({
   category: (pressed: boolean) => ({
     fontSize: 14,
     fontFamily: theme.font.secondary.bold,
+    textTransform: 'uppercase',
     strokeWidth: 1,
     strokeColor: pressed ? theme.color.transparent : theme.color.black,
   }),
