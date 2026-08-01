@@ -1,7 +1,8 @@
 import { Text, View } from 'react-native';
-import { BarChart, type barDataItem } from 'react-native-gifted-charts';
+import { BarChart, type barDataItem, type stackDataItem } from 'react-native-gifted-charts';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useLeaderboardStats } from '../../../hooks/business/useLeaderboardStats/useLeaderboardStats';
@@ -47,6 +48,21 @@ type Props = {
   width: number;
 };
 
+const InnerBar = (maxValue: number, item?: barDataItem | stackDataItem) => {
+  if (!item || !('frontColor' in item) || !item.frontColor || item.value == null) return null;
+
+  const diffProportion = (maxValue - item.value) / maxValue;
+
+  return (
+    <LinearGradient
+      colors={['#210D2C', item.frontColor]}
+      style={StyleSheet.absoluteFill}
+      times={[-0.5 - diffProportion, 0.7]}
+      vertical
+    />
+  );
+};
+
 export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
   const {
     firstPlayerElo,
@@ -74,6 +90,7 @@ export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
   return (
     <View testID="rank-distribution">
       <BarChart
+        barInnerComponent={(item) => InnerBar(Math.max(...Object.values(rankDistribution)), item)}
         data={formatBarData(rankDistribution, barWidths, theme)}
         disablePress
         disableScroll
@@ -90,8 +107,8 @@ export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
 
 const styles = StyleSheet.create((theme) => ({
   topLabel: {
-    fontFamily: theme.font.secondary.black,
-    fontSize: 10,
-    color: theme.color.black,
+    fontFamily: theme.font.secondary.boldWide,
+    fontSize: 7,
+    color: theme.color.white,
   },
 }));

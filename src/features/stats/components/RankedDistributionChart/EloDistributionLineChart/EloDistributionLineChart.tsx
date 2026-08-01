@@ -37,6 +37,7 @@ export const EloDistributionLineChart = ({ userElo, width, style }: Readonly<Pro
     <View style={style} testID="elo-distribution">
       <LineChart
         adjustToWidth
+        color="white"
         data={lineData}
         dataPointsColor="transparent"
         disableScroll

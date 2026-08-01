@@ -16,6 +16,7 @@ const theme = {
     buttonSelectedPrimary: '#FF8E00',
     buttonSelectedSecondary: '#F4EBE2',
     currencyLabelShadow: '#00000049',
+    statsContainerBorder: '#876AAA',
     leaderboardLabelOutline: '#0000008F',
     headerSeparator: '#A990CCFF',
     headerTitle: '#E7C8FFFF',
@@ -135,11 +136,6 @@ const theme = {
       },
       leaderboardRightGradient: {
         colors: ['#00000080', '#00000000'],
-      },
-      statSection: {
-        // Mod Kit - LeaderboardBgCurve
-        colors: ['#3960B0B3', '#63A5ECB3', '#63A5ECB3', '#385E8633', '#385E8600'],
-        times: [-0.025, 0.027, 0.207, 0.78, 1.093],
       },
       statRow: {
         // Mod Kit - EntryNumberBgCurve

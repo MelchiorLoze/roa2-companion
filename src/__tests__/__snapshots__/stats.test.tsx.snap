@@ -344,46 +344,18 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
-        "padding": 16,
+        "padding": 8,
       }
     }
   >
     <RCTRefreshControl />
     <View>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3006881968,
-            3009652204,
-            3009652204,
-            859332230,
-            3694214,
-          ]
-        }
-        endPoint={
-          [
-            1.093,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.04651162790697675,
-            0.2075134168157424,
-            0.7200357781753132,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            -0.025,
-            0,
-          ]
-        }
+      <View
         style={
           [
             {
+              "borderColor": "#876AAA",
+              "borderWidth": 2,
               "gap": 16,
               "padding": 8,
             },
@@ -393,6 +365,59 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
           ]
         }
       >
+        <View
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            bottom={0}
+            containerViewRef={"[React.ref]"}
+            contentFit="fill"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            left={0}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            position="absolute"
+            right={0}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                },
+              ]
+            }
+            style={
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            top={0}
+            transition={null}
+          />
+        </View>
         <View
           style={
             {
@@ -938,7 +963,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             </View>
           </ViewManagerAdapter_ExpoLinearGradient>
         </View>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </RCTScrollView>,
   <ViewManagerAdapter_ExpoLinearGradient
@@ -1506,46 +1531,18 @@ exports[`Stats renders correctly on crews tab 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
-        "padding": 16,
+        "padding": 8,
       }
     }
   >
     <RCTRefreshControl />
     <View>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3006881968,
-            3009652204,
-            3009652204,
-            859332230,
-            3694214,
-          ]
-        }
-        endPoint={
-          [
-            1.093,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.04651162790697675,
-            0.2075134168157424,
-            0.7200357781753132,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            -0.025,
-            0,
-          ]
-        }
+      <View
         style={
           [
             {
+              "borderColor": "#876AAA",
+              "borderWidth": 2,
               "gap": 16,
               "padding": 8,
             },
@@ -1555,6 +1552,59 @@ exports[`Stats renders correctly on crews tab 1`] = `
           ]
         }
       >
+        <View
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            bottom={0}
+            containerViewRef={"[React.ref]"}
+            contentFit="fill"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            left={0}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            position="absolute"
+            right={0}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                },
+              ]
+            }
+            style={
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            top={0}
+            transition={null}
+          />
+        </View>
         <View
           style={
             {
@@ -2100,7 +2150,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
             </View>
           </ViewManagerAdapter_ExpoLinearGradient>
         </View>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </RCTScrollView>,
   <ViewManagerAdapter_ExpoLinearGradient
@@ -2668,46 +2718,18 @@ exports[`Stats renders correctly on global tab 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
-        "padding": 16,
+        "padding": 8,
       }
     }
   >
     <RCTRefreshControl />
     <View>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3006881968,
-            3009652204,
-            3009652204,
-            859332230,
-            3694214,
-          ]
-        }
-        endPoint={
-          [
-            1.093,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.04651162790697675,
-            0.2075134168157424,
-            0.7200357781753132,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            -0.025,
-            0,
-          ]
-        }
+      <View
         style={
           [
             {
+              "borderColor": "#876AAA",
+              "borderWidth": 2,
               "gap": 16,
               "padding": 8,
             },
@@ -2715,6 +2737,59 @@ exports[`Stats renders correctly on global tab 1`] = `
           ]
         }
       >
+        <View
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            bottom={0}
+            containerViewRef={"[React.ref]"}
+            contentFit="fill"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            left={0}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            position="absolute"
+            right={0}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                },
+              ]
+            }
+            style={
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            top={0}
+            transition={null}
+          />
+        </View>
         <View
           style={
             {
@@ -3505,7 +3580,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             </Text>
           </View>
         </View>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </RCTScrollView>,
   <ViewManagerAdapter_ExpoLinearGradient
@@ -4073,46 +4148,18 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
     contentContainerStyle={
       {
         "gap": 16,
-        "padding": 16,
+        "padding": 8,
       }
     }
   >
     <RCTRefreshControl />
     <View>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            3006881968,
-            3009652204,
-            3009652204,
-            859332230,
-            3694214,
-          ]
-        }
-        endPoint={
-          [
-            1.093,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.04651162790697675,
-            0.2075134168157424,
-            0.7200357781753132,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            -0.025,
-            0,
-          ]
-        }
+      <View
         style={
           [
             {
+              "borderColor": "#876AAA",
+              "borderWidth": 2,
               "gap": 16,
               "padding": 8,
             },
@@ -4122,6 +4169,59 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           ]
         }
       >
+        <View
+          style={
+            {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            bottom={0}
+            containerViewRef={"[React.ref]"}
+            contentFit="fill"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            left={0}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            position="absolute"
+            right={0}
+            sfEffect={null}
+            source={
+              [
+                {
+                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                },
+              ]
+            }
+            style={
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+            symbolSize={null}
+            symbolWeight={null}
+            top={0}
+            transition={null}
+          />
+        </View>
         <View
           style={
             {
@@ -4557,6 +4657,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               testID="rank-distribution"
             >
               <
+                barInnerComponent={[Function]}
                 data={
                   [
                     {
@@ -4639,6 +4740,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             >
               <
                 adjustToWidth={true}
+                color="white"
                 data={
                   [
                     {
@@ -5473,7 +5575,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             </View>
           </ViewManagerAdapter_ExpoLinearGradient>
         </View>
-      </ViewManagerAdapter_ExpoLinearGradient>
+      </View>
     </View>
   </RCTScrollView>,
   <ViewManagerAdapter_ExpoLinearGradient
