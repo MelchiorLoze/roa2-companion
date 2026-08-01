@@ -57,5 +57,6 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.buttonSelectedSecondary,
     borderColor: theme.color.buttonSelectedPrimary,
     borderWidth: 2,
+    borderRadius: 2,
   },
 }));

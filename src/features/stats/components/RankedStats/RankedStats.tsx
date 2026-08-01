@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -24,9 +25,7 @@ export const RankedStats = () => {
 
   if (isLoadingSeason || isLoadingRankedStats || isErrorSeason || isErrorRankedStats) return <Spinner />;
 
-  const statRows: { label: string; value: string | number }[] = [
-    { label: 'Best win streak', value: stats.bestWinStreak },
-  ];
+  const statRows: ComponentProps<typeof StatRows>['rows'] = [{ label: 'Best win streak', value: stats.bestWinStreak }];
 
   if (stats.setStats) {
     statRows.unshift(
