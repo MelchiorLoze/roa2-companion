@@ -6,7 +6,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 import { CHARACTER_ICONS } from '@/types/character';
 
 import { useUserGlobalStats } from '../../hooks/business/useUserGlobalStats/useUserGlobalStats';
-import { StatRow } from '../StatRow/StatRow';
+import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const GlobalStats = () => {
@@ -16,11 +16,13 @@ export const GlobalStats = () => {
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh}>
-      <View style={styles.statRowsContainer}>
-        <StatRow label="Global wins" value={stats.gameStats.winCount} />
-        <StatRow label="Global losses" value={stats.gameStats.gameCount - stats.gameStats.winCount} />
-        <StatRow label="Global win rate" value={stats.gameStats.winRate.toFixed(2) + '%'} />
-      </View>
+      <StatRows
+        rows={[
+          { label: 'Global wins', value: stats.gameStats.winCount },
+          { label: 'Global losses', value: stats.gameStats.gameCount - stats.gameStats.winCount },
+          { label: 'Global win rate', value: stats.gameStats.winRate.toFixed(2) + '%' },
+        ]}
+      />
 
       <View>
         <View style={styles.tableRow()}>
@@ -45,9 +47,6 @@ export const GlobalStats = () => {
 };
 
 const styles = StyleSheet.create((theme) => ({
-  statRowsContainer: {
-    gap: theme.spacing.s,
-  },
   label: {
     fontFamily: theme.font.primary.regular,
     fontSize: 16,

@@ -734,234 +734,136 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         <View
           style={
             {
-              "gap": 8,
+              "backgroundColor": "#1F094C",
+              "borderColor": "#8B6DAF",
+              "borderWidth": 2,
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
+                "backgroundColor": "#1F094C",
+                "borderColor": "#3E1399",
+                "borderWidth": 3,
+                "gap": 8,
+                "paddingVertical": 16,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                2v2 sets
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                50
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  2v2 sets
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  50
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Best win streak
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                9
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Best win streak
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  9
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
         </View>
       </View>
     </View>
@@ -1921,234 +1823,136 @@ exports[`Stats renders correctly on crews tab 1`] = `
         <View
           style={
             {
-              "gap": 8,
+              "backgroundColor": "#1F094C",
+              "borderColor": "#8B6DAF",
+              "borderWidth": 2,
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
+                "backgroundColor": "#1F094C",
+                "borderColor": "#3E1399",
+                "borderWidth": 3,
+                "gap": 8,
+                "paddingVertical": 16,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Crews sets
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                50
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Crews sets
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  50
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Best win streak
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                5
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Best win streak
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  5
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
         </View>
       </View>
     </View>
@@ -2793,346 +2597,192 @@ exports[`Stats renders correctly on global tab 1`] = `
         <View
           style={
             {
-              "gap": 8,
+              "backgroundColor": "#1F094C",
+              "borderColor": "#8B6DAF",
+              "borderWidth": 2,
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
+                "backgroundColor": "#1F094C",
+                "borderColor": "#3E1399",
+                "borderWidth": 3,
+                "gap": 8,
+                "paddingVertical": 16,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Global wins
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                300
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Global wins
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  300
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Global losses
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                200
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Global losses
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  200
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Global win rate
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                60.00%
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Global win rate
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  60.00%
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
         </View>
         <View>
           <View
@@ -5105,12 +4755,12 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             style={
               {
                 "color": "white",
-                "fontFamily": "FranklinGothicDemiCond-Regular",
-                "fontSize": 16,
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 14,
                 "position": "absolute",
                 "right": 0,
                 "textTransform": "uppercase",
-                "top": 0,
+                "top": 16,
               }
             }
           >
@@ -5122,458 +4772,248 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         <View
           style={
             {
-              "gap": 8,
+              "backgroundColor": "#1F094C",
+              "borderColor": "#8B6DAF",
+              "borderWidth": 2,
             }
           }
         >
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
+          <View
             style={
               {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
+                "backgroundColor": "#1F094C",
+                "borderColor": "#3E1399",
+                "borderWidth": 3,
+                "gap": 8,
+                "paddingVertical": 16,
               }
             }
           >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Ranked wins
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                75
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Ranked wins
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  75
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Ranked losses
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                25
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Ranked losses
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  25
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Ranked win rate
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                75.00%
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Ranked win rate
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  75.00%
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
-          <ViewManagerAdapter_ExpoLinearGradient
-            colors={
-              [
-                4279833174,
-                4280227690,
-              ]
-            }
-            endPoint={
-              [
-                1,
-                0,
-              ]
-            }
-            startPoint={
-              [
-                0,
-                0,
-              ]
-            }
-            style={
-              {
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "#161616AA",
-                    "offsetX": 0,
-                    "offsetY": 2,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flexDirection": "row",
-              }
-            }
-          >
-            <ViewManagerAdapter_ExpoLinearGradient
-              colors={
-                [
-                  1840481,
-                  4281606315,
-                ]
-              }
-              endPoint={
-                [
-                  1,
-                  0,
-                ]
-              }
-              startPoint={
-                [
-                  0,
-                  0,
-                ]
-              }
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "width": "60%",
-                  },
-                ]
-              }
-            >
-              <Text
-                style={
-                  {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
-                  }
-                }
-              >
-                Best win streak
-              </Text>
-            </ViewManagerAdapter_ExpoLinearGradient>
             <View
               style={
                 {
-                  "backgroundColor": "#FFBC51",
-                  "width": 4,
+                  "backgroundColor": "#3E1399",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "paddingVertical": 8,
                 }
               }
-            />
-            <View
-              style={
-                [
-                  {
-                    "padding": 8,
-                    "paddingHorizontal": 16,
-                  },
-                  {
-                    "flex": 1,
-                  },
-                ]
-              }
             >
-              <Text
+              <View
                 style={
                   {
-                    "color": "#FFBC51",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
+                    "paddingLeft": 24,
+                    "width": "50%",
                   }
                 }
               >
-                15
-              </Text>
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  Best win streak
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "flexDirection": "row",
+                    "justifyContent": "center",
+                    "width": "50%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    {
+                      "color": "#FFFFFF",
+                      "fontFamily": "AgencyFB-Bold",
+                      "fontSize": 16,
+                      "textShadowColor": "black",
+                      "textShadowRadius": 1.5,
+                    }
+                  }
+                >
+                  15
+                </Text>
+              </View>
             </View>
-          </ViewManagerAdapter_ExpoLinearGradient>
+          </View>
         </View>
       </View>
     </View>

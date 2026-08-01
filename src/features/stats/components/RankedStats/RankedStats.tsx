@@ -9,7 +9,7 @@ import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useU
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
-import { StatRow } from '../StatRow/StatRow';
+import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const RankedStats = () => {
@@ -23,6 +23,18 @@ export const RankedStats = () => {
   } = useUserRankedStats();
 
   if (isLoadingSeason || isLoadingRankedStats || isErrorSeason || isErrorRankedStats) return <Spinner />;
+
+  const statRows: { label: string; value: string | number }[] = [
+    { label: 'Best win streak', value: stats.bestWinStreak },
+  ];
+
+  if (stats.setStats) {
+    statRows.unshift(
+      { label: 'Ranked wins', value: stats.setStats.winCount },
+      { label: 'Ranked losses', value: stats.setStats.setCount - stats.setStats.winCount },
+      { label: 'Ranked win rate', value: stats.setStats.winRate.toFixed(2) + '%' },
+    );
+  }
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
@@ -61,16 +73,7 @@ export const RankedStats = () => {
         )}
       </View>
 
-      <View style={styles.statRowsContainer}>
-        {stats.setStats && (
-          <>
-            <StatRow label="Ranked wins" value={stats.setStats.winCount} />
-            <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
-            <StatRow label="Ranked win rate" value={stats.setStats.winRate.toFixed(2) + '%'} />
-          </>
-        )}
-        <StatRow label="Best win streak" value={stats.bestWinStreak} />
-      </View>
+      <StatRows rows={statRows} />
     </StatsTabContentWrapper>
   );
 };
@@ -90,16 +93,13 @@ const styles = StyleSheet.create((theme) => ({
   changeSeasonButton: {
     padding: theme.spacing.xxs,
   },
-  statRowsContainer: {
-    gap: theme.spacing.s,
-  },
   percentageLabel: {
-    fontFamily: theme.font.primary.regular,
-    fontSize: 16,
+    fontFamily: theme.font.secondary.bold,
+    fontSize: 14,
     color: theme.color.white,
     textTransform: 'uppercase',
     position: 'absolute',
     right: 0,
-    top: 0,
+    top: theme.spacing.l,
   },
 }));

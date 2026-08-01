@@ -8,7 +8,7 @@ import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserDoublesStats } from '../../hooks/business/useUserDoublesStats/useUserDoublesStats';
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
-import { StatRow } from '../StatRow/StatRow';
+import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const DoublesStats = () => {
@@ -37,10 +37,12 @@ export const DoublesStats = () => {
         rankIcon={DoublesIcon}
       />
 
-      <View style={styles.statRowsContainer}>
-        <StatRow label="2v2 sets" value={stats.setStats.setCount} />
-        <StatRow label="Best win streak" value={stats.bestWinStreak} />
-      </View>
+      <StatRows
+        rows={[
+          { label: '2v2 sets', value: stats.setStats.setCount },
+          { label: 'Best win streak', value: stats.bestWinStreak },
+        ]}
+      />
     </StatsTabContentWrapper>
   );
 };
@@ -48,8 +50,5 @@ export const DoublesStats = () => {
 const styles = StyleSheet.create((theme) => ({
   titlePadding: {
     height: theme.spacing.xxl,
-  },
-  statRowsContainer: {
-    gap: theme.spacing.s,
   },
 }));

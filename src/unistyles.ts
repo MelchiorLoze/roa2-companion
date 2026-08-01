@@ -17,6 +17,9 @@ const theme = {
     buttonSelectedSecondary: '#F4EBE2',
     currencyLabelShadow: '#00000049',
     statsContainerBorder: '#876AAA',
+    statRowsBorder: '#8B6DAF',
+    statRowsBackground: '#1F094C',
+    statRowBackground: '#3E1399',
     leaderboardLabelOutline: '#0000008F',
     headerSeparator: '#A990CCFF',
     headerTitle: '#E7C8FFFF',
@@ -25,8 +28,6 @@ const theme = {
     dialogBorderSecondary: '#4C12AA',
     borderPrimary: '#28074B80',
     borderLight: '#CACEFF',
-    borderMedium: '#A9AFFF',
-    borderDark: '#4838A9',
     dark: '#161616',
     weak: '#676767',
     stat: '#FFBC51',
@@ -136,14 +137,6 @@ const theme = {
       },
       leaderboardRightGradient: {
         colors: ['#00000080', '#00000000'],
-      },
-      statRow: {
-        // Mod Kit - EntryNumberBgCurve
-        colors: ['#191256', '#1F176A'],
-      },
-      statRowOverlay: {
-        // Mod Kit - EntryFadeCurve
-        colors: ['#1C156100', '#3420ABFF'],
       },
     },
   },
