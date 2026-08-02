@@ -78,7 +78,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
       </View>
 
       <View style={styles.eloContainer}>
-        {Boolean(rank ?? rankIcon) && (
+        {(rank ?? rankIcon) && (
           <Image contentFit="contain" source={rank ? RANK_ICONS[rank] : rankIcon} style={styles.rankIcon} />
         )}
         <FancyText style={{ ...styles.label, ...styles.eloLabel(rank) }} text={elo?.toString() ?? 'UNRANKED'} />
@@ -139,7 +139,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   eloContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.xs,
+    gap: theme.spacing.xxs,
   },
   rankIcon: {
     height: 22 * runtime.fontScale,

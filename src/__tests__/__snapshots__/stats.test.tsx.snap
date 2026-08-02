@@ -677,7 +677,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
+                "gap": 2,
               }
             }
           >
@@ -1766,7 +1766,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
+                "gap": 2,
               }
             }
           >
@@ -2788,8 +2788,8 @@ exports[`Stats renders correctly on global tab 1`] = `
           <View
             style={
               {
-                "borderBottomWidth": 1,
-                "borderColor": "#FFBC51",
+                "borderBottomWidth": 2,
+                "borderColor": "#8B6DAF",
                 "flexDirection": "row",
                 "width": "100%",
               }
@@ -2804,52 +2804,69 @@ exports[`Stats renders correctly on global tab 1`] = `
                 }
               }
             />
-            <Text
+            <View
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
-                    "fontSize": 16,
-                    "textTransform": "uppercase",
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
+                    "flex": 0.4,
+                    "paddingBottom": 2,
+                    "paddingLeft": 8,
+                    "paddingTop": 4,
                   },
                   {
-                    "borderColor": "#FFBC51",
                     "borderLeftWidth": 2,
-                    "flex": 0.4,
-                    "paddingLeft": 8,
                   },
                 ]
               }
             >
-              Level
-            </Text>
-            <Text
-              style={
-                [
+              <Text
+                style={
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
-                    "textTransform": "uppercase",
-                  },
-                  {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
-                    "flex": 0.4,
-                    "paddingLeft": 8,
-                  },
-                ]
+                    "textShadowColor": undefined,
+                    "textShadowRadius": undefined,
+                  }
+                }
+              >
+                Level
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "borderColor": "#8B6DAF",
+                  "borderLeftWidth": 1,
+                  "flex": 0.4,
+                  "paddingBottom": 2,
+                  "paddingLeft": 8,
+                  "paddingTop": 4,
+                }
               }
             >
-              Games
-            </Text>
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": undefined,
+                    "textShadowRadius": undefined,
+                  }
+                }
+              >
+                Games
+              </Text>
+            </View>
           </View>
           <View
             style={
               {
                 "borderBottomWidth": 1,
-                "borderColor": "#FFBC51",
+                "borderColor": "#8B6DAF",
                 "flexDirection": "row",
                 "width": "100%",
               }
@@ -2865,6 +2882,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               }
             >
               <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
                 containerViewRef={"[React.ref]"}
                 contentFit="contain"
                 contentPosition={
@@ -2873,7 +2891,6 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "top": "50%",
                   }
                 }
-                height={24}
                 nativeViewRef={"[React.ref]"}
                 onError={[Function]}
                 onLoad={[Function]}
@@ -2890,7 +2907,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 }
                 style={
                   {
-                    "height": 24,
+                    "aspectRatio": 1,
                     "width": 24,
                   }
                 }
@@ -2904,16 +2921,23 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
+                  },
+                  {
+                    "borderLeftWidth": 2,
                   },
                 ]
               }
@@ -2924,16 +2948,20 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
                   },
                 ]
               }
@@ -2945,7 +2973,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             style={
               {
                 "borderBottomWidth": 1,
-                "borderColor": "#FFBC51",
+                "borderColor": "#8B6DAF",
                 "flexDirection": "row",
                 "width": "100%",
               }
@@ -2961,6 +2989,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               }
             >
               <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
                 containerViewRef={"[React.ref]"}
                 contentFit="contain"
                 contentPosition={
@@ -2969,7 +2998,6 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "top": "50%",
                   }
                 }
-                height={24}
                 nativeViewRef={"[React.ref]"}
                 onError={[Function]}
                 onLoad={[Function]}
@@ -2986,7 +3014,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 }
                 style={
                   {
-                    "height": 24,
+                    "aspectRatio": 1,
                     "width": 24,
                   }
                 }
@@ -3000,16 +3028,23 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
+                  },
+                  {
+                    "borderLeftWidth": 2,
                   },
                 ]
               }
@@ -3020,16 +3055,20 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
                   },
                 ]
               }
@@ -3041,7 +3080,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             style={
               {
                 "borderBottomWidth": 1,
-                "borderColor": "#FFBC51",
+                "borderColor": "#8B6DAF",
                 "flexDirection": "row",
                 "width": "100%",
               }
@@ -3057,6 +3096,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               }
             >
               <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
                 containerViewRef={"[React.ref]"}
                 contentFit="contain"
                 contentPosition={
@@ -3065,7 +3105,6 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "top": "50%",
                   }
                 }
-                height={24}
                 nativeViewRef={"[React.ref]"}
                 onError={[Function]}
                 onLoad={[Function]}
@@ -3082,7 +3121,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 }
                 style={
                   {
-                    "height": 24,
+                    "aspectRatio": 1,
                     "width": 24,
                   }
                 }
@@ -3096,16 +3135,23 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
+                  },
+                  {
+                    "borderLeftWidth": 2,
                   },
                 ]
               }
@@ -3116,16 +3162,20 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
                   },
                 ]
               }
@@ -3137,7 +3187,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             style={
               {
                 "borderBottomWidth": 0,
-                "borderColor": "#FFBC51",
+                "borderColor": "#8B6DAF",
                 "flexDirection": "row",
                 "width": "100%",
               }
@@ -3153,6 +3203,7 @@ exports[`Stats renders correctly on global tab 1`] = `
               }
             >
               <ViewManagerAdapter_ExpoImage
+                aspectRatio={1}
                 containerViewRef={"[React.ref]"}
                 contentFit="contain"
                 contentPosition={
@@ -3161,7 +3212,6 @@ exports[`Stats renders correctly on global tab 1`] = `
                     "top": "50%",
                   }
                 }
-                height={24}
                 nativeViewRef={"[React.ref]"}
                 onError={[Function]}
                 onLoad={[Function]}
@@ -3178,7 +3228,7 @@ exports[`Stats renders correctly on global tab 1`] = `
                 }
                 style={
                   {
-                    "height": 24,
+                    "aspectRatio": 1,
                     "width": 24,
                   }
                 }
@@ -3192,16 +3242,23 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
+                  },
+                  {
+                    "borderLeftWidth": 2,
                   },
                 ]
               }
@@ -3212,16 +3269,20 @@ exports[`Stats renders correctly on global tab 1`] = `
               style={
                 [
                   {
-                    "color": "white",
-                    "fontFamily": "FranklinGothicDemiCond-Regular",
+                    "fontFamily": "AgencyFB-Bold",
                     "fontSize": 16,
                     "textTransform": "uppercase",
                   },
                   {
-                    "borderColor": "#FFBC51",
-                    "borderLeftWidth": 2,
+                    "color": "white",
+                  },
+                  {
+                    "borderColor": "#8B6DAF",
+                    "borderLeftWidth": 1,
                     "flex": 0.4,
+                    "paddingBottom": 2,
                     "paddingLeft": 8,
+                    "paddingTop": 4,
                   },
                 ]
               }
@@ -4247,7 +4308,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               {
                 "alignItems": "center",
                 "flexDirection": "row",
-                "gap": 4,
+                "gap": 2,
               }
             }
           >
