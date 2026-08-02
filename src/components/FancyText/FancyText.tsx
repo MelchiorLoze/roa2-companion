@@ -92,16 +92,32 @@ const createParagraphs = <T extends GradientColors>(
     fontFamilies: [style.fontFamily],
     fontSize: style.fontSize,
     letterSpacing: style.letterSpacing,
-    shadows: style.shadow ? [style.shadow] : [],
   };
 
+  const inset = (style.strokeWidth ?? 0) / 2; // skia stroke is centered on the path, so half of it goes inward
+  const shadowInset = inset > 0 && style.strokeColor ? inset : 0; // if stroke is present, shadow should be inset by the same amount to avoid being cut off
+
+  const shadows: SkTextShadow[] = style.shadow?.offset
+    ? [
+        {
+          ...style.shadow,
+          offset: {
+            x: style.shadow.offset.x ? style.shadow.offset.x + shadowInset : 0,
+            y: style.shadow.offset.y ? style.shadow.offset.y + shadowInset : 0,
+          },
+        },
+      ]
+    : [];
+
   // STROKE PARAGRAPH
+  const strokeTextStyle: SkTextStyle = { ...textStyle, shadows };
+
   const strokePaint = Skia.Paint();
   strokePaint.setStyle(PaintStyle.Stroke);
   strokePaint.setStrokeWidth(style.strokeWidth ?? 0);
   strokePaint.setColor(toSkiaColor(style.strokeColor ?? 'transparent'));
 
-  const paragraphStroke = createParagraph(text, textStyle, strokePaint, fontProvider);
+  const paragraphStroke = createParagraph(text, strokeTextStyle, strokePaint, fontProvider);
 
   const textWidth = Math.ceil(paragraphStroke.getLongestLine());
   const textHeight = paragraphStroke.getHeight();
@@ -133,7 +149,6 @@ const createParagraphs = <T extends GradientColors>(
 
   const paragraphFill = createParagraph(text, textStyle, fillPaint, fontProvider);
 
-  const inset = (style.strokeWidth ?? 0) / 2; // skia stroke is centered on the path, so half of it goes inward
   const font = matchFont(style, fontProvider);
   const metrics = font.getMetrics();
   const padding = Math.abs(metrics.bounds?.y ?? 0) - Math.abs(metrics.ascent);

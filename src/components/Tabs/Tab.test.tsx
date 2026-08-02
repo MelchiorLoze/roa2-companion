@@ -29,13 +29,15 @@ describe('Tab', () => {
   it('renders differently when selected', () => {
     const { rerender } = render(<Tab onPress={onPressMock} selected={false} title="Test Tab" />);
     const unselectedView = screen.toJSON();
-    const tab = screen.getByText('Test Tab');
-    expect(tab).toBeEnabled();
+
+    const unselectedTab = screen.getByText('Test Tab');
+    expect(unselectedTab).toBeEnabled();
 
     rerender(<Tab onPress={onPressMock} selected={true} title="Test Tab" />);
     const selectedView = screen.toJSON();
+    expect(selectedView).not.toEqual(unselectedView);
 
-    expect(unselectedView).not.toEqual(selectedView);
-    expect(tab).toBeDisabled();
+    const selectedTab = screen.getByText('Test Tab');
+    expect(selectedTab).toBeDisabled();
   });
 });

@@ -1,10 +1,25 @@
-import { type PropsWithChildren, useState } from 'react';
-import { type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
-import { Path, Polygon, Svg } from 'react-native-svg';
+import { type PropsWithChildren, type ReactNode, useState } from 'react';
+import { type ColorValue, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
+import { Defs, LinearGradient, Path, Polygon, Stop, Svg } from 'react-native-svg';
+
+type Percent = `${number}%`;
+
+type GradientStop = {
+  offset: Percent;
+  color: ColorValue;
+  opacity?: number;
+};
+
+type GradientProps = {
+  stops: GradientStop[];
+  start?: { x: Percent; y: Percent };
+  end?: { x: Percent; y: Percent };
+};
 
 type Props = PropsWithChildren<{
   style?: StyleProp<ViewStyle>;
   skewAmount: number;
+  gradient?: GradientProps;
 }>;
 
 type Point = [number, number];
@@ -44,7 +59,7 @@ const formatPoints = (points: Point[]): string => {
   return points.map((p) => p.join(',')).join(' ');
 };
 
-export const ParallelogramView = ({ style, skewAmount, children }: Readonly<Props>) => {
+export const ParallelogramView = ({ style, skewAmount, gradient, children }: Readonly<Props>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   const {
@@ -74,28 +89,48 @@ export const ParallelogramView = ({ style, skewAmount, children }: Readonly<Prop
           [skew, size.height - borderWidth],
         ];
 
+  const fill = gradient ? 'url(#parallelogramGradient)' : backgroundColor;
+
+  const renderSvg = (): ReactNode =>
+    size.width > 0 && size.height > 0 ? (
+      <Svg height={size.height} style={StyleSheet.absoluteFill} width={size.width}>
+        {gradient && (
+          <Defs>
+            <LinearGradient
+              id="parallelogramGradient"
+              x1={gradient.start?.x ?? '0%'}
+              x2={gradient.end?.x ?? '100%'}
+              y1={gradient.start?.y ?? '0%'}
+              y2={gradient.end?.y ?? '0%'}
+            >
+              {gradient.stops.map((stop) => (
+                <Stop key={stop.offset} offset={stop.offset} stopColor={stop.color} stopOpacity={stop.opacity ?? 1} />
+              ))}
+            </LinearGradient>
+          </Defs>
+        )}
+        {borderRadius > 0 ? (
+          <Path
+            d={roundedPolygonPath(points, borderRadius)}
+            fill={fill}
+            stroke={borderColor}
+            strokeLinejoin="round"
+            strokeWidth={borderWidth}
+          />
+        ) : (
+          <Polygon fill={fill} points={formatPoints(points)} stroke={borderColor} strokeWidth={borderWidth} />
+        )}
+      </Svg>
+    ) : null;
+
   return (
-    <View onLayout={(e) => setSize(e.nativeEvent.layout)} style={viewStyle}>
-      {size.width > 0 && size.height > 0 && (
-        <Svg height={size.height} style={StyleSheet.absoluteFill} width={size.width}>
-          {borderRadius > 0 ? (
-            <Path
-              d={roundedPolygonPath(points, borderRadius)}
-              fill={backgroundColor}
-              stroke={borderColor}
-              strokeLinejoin="round"
-              strokeWidth={borderWidth}
-            />
-          ) : (
-            <Polygon
-              fill={backgroundColor}
-              points={formatPoints(points)}
-              stroke={borderColor}
-              strokeWidth={borderWidth}
-            />
-          )}
-        </Svg>
-      )}
+    <View
+      onLayout={(e) =>
+        setSize({ width: Math.ceil(e.nativeEvent.layout.width), height: Math.ceil(e.nativeEvent.layout.height) })
+      }
+      style={viewStyle}
+    >
+      {renderSvg()}
       {children}
     </View>
   );

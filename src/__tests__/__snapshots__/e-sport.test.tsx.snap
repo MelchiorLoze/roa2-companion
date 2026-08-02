@@ -8,29 +8,12 @@ exports[`ESport matches snapshot on initial tab 1`] = `
     }
   }
 >
-  <ViewManagerAdapter_ExpoLinearGradient
-    colors={
-      [
-        3861914241,
-        3861255013,
-      ]
-    }
-    endPoint={
-      [
-        0,
-        1,
-      ]
-    }
-    startPoint={
-      [
-        0,
-        0,
-      ]
-    }
+  <View
     style={
       {
         "flexDirection": "row",
         "justifyContent": "center",
+        "padding": 8,
       }
     }
   >
@@ -66,131 +49,43 @@ exports[`ESport matches snapshot on initial tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "padding": 8,
+          "flex": 1,
+          "maxWidth": "33%",
         }
       }
     >
-      <Text
+      <View
+        onLayout={[Function]}
         style={
           {
-            "color": "#FEDD84",
-            "fontFamily": "FranklinGothicDemiCond-Regular",
-            "fontSize": 16,
-            "lineHeight": 16,
-            "textAlign": "center",
-            "textTransform": "uppercase",
+            "padding": 2,
           }
         }
       >
-        active
-      </Text>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            1308283240,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+        <View
+          onLayout={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "padding": 3,
+            }
           }
-        }
-      />
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            3019889550,
-            3019889550,
-            14277081,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.3,
-            0.7,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "height": 2,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          }
-        }
-      />
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            3019898879,
-            3019898879,
-            14277081,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.3,
-            0.7,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "height": 2,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          }
-        }
-      />
+        >
+          <Text
+            style={
+              {
+                "color": "#24094FFF",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 16,
+                "textShadowColor": undefined,
+                "textShadowRadius": 2,
+              }
+            }
+          >
+            active
+          </Text>
+        </View>
+      </View>
     </View>
     <View
       accessibilityState={
@@ -224,26 +119,63 @@ exports[`ESport matches snapshot on initial tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "padding": 8,
+          "flex": 1,
+          "maxWidth": "33%",
         }
       }
     >
-      <Text
+      <View
+        onLayout={[Function]}
         style={
           {
-            "color": "#5F46C2",
-            "fontFamily": "FranklinGothicDemiCond-Regular",
-            "fontSize": 16,
-            "lineHeight": 16,
-            "textAlign": "center",
-            "textTransform": "uppercase",
+            "padding": 1,
           }
         }
       >
-        past
-      </Text>
+        <View
+          onLayout={[Function]}
+          style={
+            {
+              "padding": 1,
+            }
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              {
+                "padding": 1,
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "padding": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#562E95FF",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                past
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {
@@ -672,29 +604,12 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
     }
   }
 >
-  <ViewManagerAdapter_ExpoLinearGradient
-    colors={
-      [
-        3861914241,
-        3861255013,
-      ]
-    }
-    endPoint={
-      [
-        0,
-        1,
-      ]
-    }
-    startPoint={
-      [
-        0,
-        0,
-      ]
-    }
+  <View
     style={
       {
         "flexDirection": "row",
         "justifyContent": "center",
+        "padding": 8,
       }
     }
   >
@@ -730,24 +645,61 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "padding": 8,
+          "flex": 1,
+          "maxWidth": "33%",
         }
       }
     >
-      <Text
+      <View
+        onLayout={[Function]}
         style={
           {
-            "color": "#5F46C2",
-            "fontFamily": "FranklinGothicDemiCond-Regular",
-            "fontSize": 16,
-            "lineHeight": 16,
-            "textAlign": "center",
-            "textTransform": "uppercase",
+            "padding": 1,
           }
         }
       >
-        active
-      </Text>
+        <View
+          onLayout={[Function]}
+          style={
+            {
+              "padding": 1,
+            }
+          }
+        >
+          <View
+            onLayout={[Function]}
+            style={
+              {
+                "padding": 1,
+              }
+            }
+          >
+            <View
+              onLayout={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "padding": 2,
+                }
+              }
+            >
+              <Text
+                style={
+                  {
+                    "color": "#FFFFFF",
+                    "fontFamily": "AgencyFB-Bold",
+                    "fontSize": 16,
+                    "textShadowColor": "#562E95FF",
+                    "textShadowRadius": 1.5,
+                  }
+                }
+              >
+                active
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
     </View>
     <View
       accessibilityState={
@@ -781,133 +733,45 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
       onStartShouldSetResponder={[Function]}
       style={
         {
-          "padding": 8,
+          "flex": 1,
+          "maxWidth": "33%",
         }
       }
     >
-      <Text
+      <View
+        onLayout={[Function]}
         style={
           {
-            "color": "#FEDD84",
-            "fontFamily": "FranklinGothicDemiCond-Regular",
-            "fontSize": 16,
-            "lineHeight": 16,
-            "textAlign": "center",
-            "textTransform": "uppercase",
+            "padding": 2,
           }
         }
       >
-        past
-      </Text>
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            1308283240,
-          ]
-        }
-        endPoint={
-          [
-            0,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
+        <View
+          onLayout={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "padding": 3,
+            }
           }
-        }
-      />
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            3019889550,
-            3019889550,
-            14277081,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.3,
-            0.7,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "height": 2,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          }
-        }
-      />
-      <ViewManagerAdapter_ExpoLinearGradient
-        colors={
-          [
-            14277081,
-            3019898879,
-            3019898879,
-            14277081,
-          ]
-        }
-        endPoint={
-          [
-            1,
-            0,
-          ]
-        }
-        locations={
-          [
-            0,
-            0.3,
-            0.7,
-            1,
-          ]
-        }
-        startPoint={
-          [
-            0,
-            0,
-          ]
-        }
-        style={
-          {
-            "bottom": 0,
-            "height": 2,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-          }
-        }
-      />
+        >
+          <Text
+            style={
+              {
+                "color": "#24094FFF",
+                "fontFamily": "AgencyFB-Bold",
+                "fontSize": 16,
+                "textShadowColor": undefined,
+                "textShadowRadius": 2,
+              }
+            }
+          >
+            past
+          </Text>
+        </View>
+      </View>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {

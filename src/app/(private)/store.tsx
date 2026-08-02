@@ -56,7 +56,7 @@ export default function Store() {
                 shadow: {
                   color: Skia.Color(theme.color.storeTitleShadow),
                   offset: { x: 1, y: 1 },
-                  blurRadius: 0.001,
+                  blurRadius: 0.001, // 0 radius is not supported
                 },
               }}
               text="COIN SHOP"

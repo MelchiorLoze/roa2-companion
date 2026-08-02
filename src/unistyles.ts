@@ -21,6 +21,14 @@ const theme = {
     statRowsBackground: '#1F094C',
     statRowBackground: '#3E1399',
     leaderboardLabelOutline: '#0000008F',
+    tabBackground: '#561FBC',
+    tabInnerBackground: '#571CBA',
+    tabLabelOutline: '#562E95FF',
+    tabLabelShadow: '#1F074C7C',
+    tabPressedBackground: '#FEF5EB',
+    tabPressedLabelShadow: '#0000007C',
+    tabSelectedBorder: '#A186C5FF',
+    tabSelectedLabel: '#24094FFF',
     headerSeparator: '#A990CCFF',
     headerTitle: '#E7C8FFFF',
     overlay: '#000000AA',
@@ -112,6 +120,11 @@ const theme = {
         // Mod Kit - NavBarButtonOpenAccentWhiteCurve
         colors: ['#D9D9D900', '#FFFFFFB3', '#FFFFFFB3', '#D9D9D900'],
         times: [0, 0.3, 0.7, 1],
+      },
+      tabBorder: {
+        // Mod Kit - StoreTabButtonCurve
+        colors: ['#422C8FFF', '#8F60D0FF'],
+        times: [0.193443, 0.468601],
       },
       alert: {
         // Mod Kit - GentleWhiteToGray
