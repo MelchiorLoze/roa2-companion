@@ -14,7 +14,7 @@
     },
     "android": {
       "versionCode": 19,
-      "package": "com.anonymous.roa2companion",
+      "package": "com.cp0_mand4le.roa2companion",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
         "backgroundColor": "#0B0825"
@@ -26,30 +26,15 @@
       "favicon": "./src/assets/images/icon.png"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./src/assets/images/icon.png",
-          "imageWidth": 200,
-          "backgroundColor": "#0B0825"
-        }
-      ],
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./src/assets/fonts"
-          ]
-        }
-      ],
-      "expo-secure-store",
       "expo-image",
+      "expo-router",
+      "expo-secure-store",
       [
-        "expo-status-bar",
+        "expo-build-properties",
         {
-          "style": "light",
-          "hidden": false
+          "android": {
+            "usePrecompiledHeaders": true
+          }
         }
       ],
       [
@@ -61,11 +46,24 @@
         }
       ],
       [
-        "expo-build-properties",
+        "expo-font",
         {
-          "android": {
-            "usePrecompiledHeaders": true
-          }
+          "fonts": ["./src/assets/fonts"]
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./src/assets/images/icon.png",
+          "imageWidth": 200,
+          "backgroundColor": "#0B0825"
+        }
+      ],
+      [
+        "expo-status-bar",
+        {
+          "style": "light",
+          "hidden": false
         }
       ]
     ],
