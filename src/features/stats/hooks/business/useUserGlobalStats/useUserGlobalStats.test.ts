@@ -115,7 +115,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats).toMatchObject({
       gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
     });
-    expect(result.current.stats?.characterStats).toHaveLength(18);
+    expect(result.current.stats?.characterStats).toHaveLength(Object.values(Character).length);
   });
 
   it('handles zero matches played when calculating win rates', () => {
