@@ -4,6 +4,11 @@ import { Text, type TextStyle } from 'react-native';
 
 import { OutlinedText } from './components/OutlinedText/OutlinedText';
 
+globalThis.expo.modules.ExpoObserve = {
+  ...globalThis.expo.modules.ExpoObserve,
+  getIntegrations: () => ({}),
+};
+
 jest.mock('@expo/vector-icons', () => ({
   Ionicons: '',
   MaterialIcons: '',
