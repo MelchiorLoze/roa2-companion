@@ -1,5 +1,12 @@
 import { type ConfigContext, type ExpoConfig } from '@expo/config';
-import { withAppBuildGradle } from '@expo/config-plugins';
+import { withAppBuildGradle, withGradleProperties } from '@expo/config-plugins';
+
+const GRADLE_PROPERTIES: Record<string, string> = {
+  MYAPP_UPLOAD_STORE_FILE: 'upload-keystore.jks',
+  MYAPP_UPLOAD_KEY_ALIAS: 'upload-key',
+  MYAPP_UPLOAD_STORE_PASSWORD: '',
+  MYAPP_UPLOAD_KEY_PASSWORD: '',
+};
 
 const RELEASE_SIGNING_CONFIG = `
         release {
@@ -11,8 +18,8 @@ const RELEASE_SIGNING_CONFIG = `
             }
         }`;
 
-export default ({ config }: ConfigContext): ExpoConfig =>
-  withAppBuildGradle(config as ExpoConfig, (mod) => {
+export default ({ config }: ConfigContext): ExpoConfig => {
+  const buildGradleMod = withAppBuildGradle(config as ExpoConfig, (mod) => {
     let contents = mod.modResults.contents;
 
     // java.time.* backport for Android < 8 (API < 26)
@@ -53,3 +60,15 @@ export default ({ config }: ConfigContext): ExpoConfig =>
     mod.modResults.contents = contents;
     return mod;
   });
+
+  return withGradleProperties(buildGradleMod, (mod) => {
+    const existing = new Set(mod.modResults.filter((i) => i.type === 'property').map((i) => i.key));
+
+    for (const [key, value] of Object.entries(GRADLE_PROPERTIES)) {
+      if (!existing.has(key)) {
+        mod.modResults.push({ type: 'property', key, value });
+      }
+    }
+    return mod;
+  });
+};
