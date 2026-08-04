@@ -29,22 +29,23 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
 const defaultUserReadOnlyDataReturnValue: ReturnType<typeof useGetUserReadOnlyData> = {
   userData: {
     characterData: {
-      [Character.SLADE]: { lvl: 10 },
-      [Character.KRAGG]: { lvl: 5 },
+      [Character.ABSA]: { lvl: 0 },
       [Character.CLAIREN]: { lvl: 3 },
+      [Character.ETALUS]: { lvl: 0 },
       [Character.FLEET]: { lvl: 0 },
       [Character.FORSBURN]: { lvl: 0 },
+      [Character.GALVAN]: { lvl: 0 },
+      [Character.GOUIE]: { lvl: 0 },
+      [Character.KRAGG]: { lvl: 5 },
+      [Character.LAREINA]: { lvl: 0 },
       [Character.LOXODONT]: { lvl: 0 },
       [Character.MAYPUL]: { lvl: 0 },
+      [Character.OLYMPIA]: { lvl: 0 },
       [Character.ORCANE]: { lvl: 0 },
       [Character.RANNO]: { lvl: 0 },
+      [Character.SLADE]: { lvl: 10 },
       [Character.WRASTOR]: { lvl: 0 },
       [Character.ZETTERBURN]: { lvl: 0 },
-      [Character.OLYMPIA]: { lvl: 0 },
-      [Character.ABSA]: { lvl: 0 },
-      [Character.ETALUS]: { lvl: 0 },
-      [Character.LAREINA]: { lvl: 0 },
-      [Character.GALVAN]: { lvl: 0 },
       [Character.RANDOM]: undefined,
     },
   },
@@ -114,7 +115,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats).toMatchObject({
       gameStats: { gameCount: 200, winCount: 120, winRate: 60 },
     });
-    expect(result.current.stats?.characterStats).toHaveLength(17);
+    expect(result.current.stats?.characterStats).toHaveLength(Object.values(Character).length);
   });
 
   it('handles zero matches played when calculating win rates', () => {
