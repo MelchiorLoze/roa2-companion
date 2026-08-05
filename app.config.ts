@@ -10,13 +10,18 @@ const GRADLE_PROPERTIES: Record<string, string> = {
 
 const RELEASE_SIGNING_CONFIG = `
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
+            storeFile file(MYAPP_UPLOAD_STORE_FILE)
+            storePassword MYAPP_UPLOAD_STORE_PASSWORD
+            keyAlias MYAPP_UPLOAD_KEY_ALIAS
+            keyPassword MYAPP_UPLOAD_KEY_PASSWORD
         }`;
+
+const SIGNING_CONFIG = `
+            if (MYAPP_UPLOAD_STORE_PASSWORD != '') {
+                signingConfig signingConfigs.release
+            } else {
+                signingConfig signingConfigs.debug
+            }`;
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   const buildGradleMod = withAppBuildGradle(config as ExpoConfig, (mod) => {
@@ -51,9 +56,8 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         `$1${RELEASE_SIGNING_CONFIG}\n    }`,
       );
       contents = contents.replace(
-        // Switch release buildType from the placeholder debug keystore
-        '// Caution! In production, you need to generate your own keystore file.\n            // see https://reactnative.dev/docs/signed-apk-android.\n            signingConfig signingConfigs.debug',
-        'signingConfig signingConfigs.release',
+        '\n            // Caution! In production, you need to generate your own keystore file.\n            // see https://reactnative.dev/docs/signed-apk-android.\n            signingConfig signingConfigs.debug',
+        SIGNING_CONFIG,
       );
     }
 
