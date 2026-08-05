@@ -26,7 +26,31 @@
       "favicon": "./src/assets/images/icon.png"
     },
     "plugins": [
+      "expo-image",
       "expo-router",
+      "expo-secure-store",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usePrecompiledHeaders": true
+          }
+        }
+      ],
+      [
+        "expo-navigation-bar",
+        {
+          "style": "light",
+          "hidden": false,
+          "enforceContrast": false
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./src/assets/fonts"]
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -36,16 +60,12 @@
         }
       ],
       [
-        "expo-font",
+        "expo-status-bar",
         {
-          "fonts": ["./src/assets/fonts"]
+          "style": "light",
+          "hidden": false
         }
-      ],
-      "expo-secure-store",
-      "expo-image",
-      ["expo-status-bar", { "style": "light", "hidden": false }],
-      ["expo-navigation-bar", { "style": "light", "hidden": false, "enforceContrast": false }],
-      ["expo-build-properties", { "android": { "usePrecompiledHeaders": true } }]
+      ]
     ],
     "experiments": {
       "typedRoutes": true,
