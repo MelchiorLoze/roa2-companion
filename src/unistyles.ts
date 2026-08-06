@@ -2,8 +2,6 @@ import { StyleSheet } from 'react-native-unistyles';
 
 const theme = {
   color: {
-    background: '#0B0825',
-    highlight: '#2B1F74',
     accent: '#FEDD84',
     storeTitleShadow: '#2D2D2D80',
     itemImageBackground: '#512A8C',
@@ -39,7 +37,6 @@ const theme = {
     dark: '#161616',
     weak: '#676767',
     inactive: '#84769C',
-    inactiveLight: '#5F46C2',
     disabled: '#AAAAAA',
     upcoming: '#CACEFF',
     ongoing: '#FEDD84',
@@ -47,7 +44,6 @@ const theme = {
     black: 'black',
     white: 'white',
     transparent: '#FFFFFF00',
-    translucentDark: '#161616AA',
     translucentBorder: '#00000059',
     error: '#BA1A27',
     // Currency colors
@@ -92,9 +88,6 @@ const theme = {
             : (['#000000', '#000000'] as const)
           : (['#FFFFFF', '#E4C1FF'] as const),
       }),
-      arrowButton: (pressed?: boolean) => ({
-        colors: pressed ? (['#EBA245', '#FFDB74'] as const) : (['#0D071D', '#161049'] as const),
-      }),
       card: (pressed?: boolean) => ({
         // Mod Kit - NormalInnerCurve and NormalBorder
         colors: pressed ? (['#FFDB74', '#EBA245'] as const) : (['#161049', '#0D071D'] as const),
@@ -103,24 +96,6 @@ const theme = {
         // Mod Kit - HoverBorder and NormalBorder
         colors: pressed ? (['#EBA245', '#FFDB74'] as const) : (['#CACEFF', '#6B76DB'] as const),
       }),
-      tab: {
-        // Mod Kit - NavBarCurve with 90% opacity
-        colors: ['#302281E6', '#261365E6'],
-      },
-      tabSelectedOverlay: {
-        // Mod Kit - NavBarButtonOpenCurve
-        colors: ['#D9D9D900', '#FAD1684D'],
-      },
-      tabSelectedGoldAccent: {
-        // Mod Kit - NavBarButtonOpenAccentCurve
-        colors: ['#D9D9D900', '#FFDB8EB3', '#FFDB8EB3', '#D9D9D900'],
-        times: [0, 0.3, 0.7, 1],
-      },
-      tabSelectedWhiteAccent: {
-        // Mod Kit - NavBarButtonOpenAccentWhiteCurve
-        colors: ['#D9D9D900', '#FFFFFFB3', '#FFFFFFB3', '#D9D9D900'],
-        times: [0, 0.3, 0.7, 1],
-      },
       tabBorder: {
         // Mod Kit - StoreTabButtonCurve
         colors: ['#422C8FFF', '#8F60D0FF'],

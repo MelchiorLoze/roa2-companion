@@ -91,7 +91,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: theme.spacing.m,
+    paddingRight: theme.spacing.l,
     paddingLeft: theme.spacing.s,
     justifyContent: 'space-between',
   },

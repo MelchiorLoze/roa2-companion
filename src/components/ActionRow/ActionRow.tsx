@@ -2,10 +2,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Image, type ImageSource } from 'expo-image';
 import { type ExternalPathString, useRouter } from 'expo-router';
 import { type ComponentProps } from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { ButtonBackground } from '@/assets/images/ui';
+
+import { FancyText } from '../FancyText/FancyText';
+import { NineSlicesImage } from '../NineSlicesImage/NineSlicesImage';
+import { ParallelogramView } from '../ParallelogramView/ParallelogramView';
 
 type LinkOrButton = Either<{ url: URL }, { onPress: () => void }>;
 
@@ -23,44 +27,61 @@ export const ActionRow = ({ label, url, logo, iconName, onPress }: Readonly<Prop
     <Pressable
       onPress={() => (url ? router.push(url.toString() as ExternalPathString) : onPress())}
       role={url ? 'link' : 'button'}
+      style={styles.container}
     >
       {({ pressed }) => (
-        <LinearGradient {...theme.color.gradient.arrowButton(pressed)} horizontal style={styles.container}>
+        <>
+          <NineSlicesImage
+            insets={{ right: '27%', left: '27%' }}
+            source={ButtonBackground}
+            style={StyleSheet.absoluteFill}
+          />
+          {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
+
+          <FancyText
+            style={{
+              ...styles.label,
+              gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
+            }}
+            text={label}
+          />
           {logo && <Image contentFit="contain" source={logo} style={styles.logo} />}
-          <Text style={[styles.label, pressed && styles.labelPressed]}>{label}</Text>
           <MaterialIcons
             color={pressed ? theme.color.black : theme.color.white}
             name={iconName}
             size={20}
             style={styles.icon}
           />
-        </LinearGradient>
+        </>
       )}
     </Pressable>
   );
 };
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create((theme, runtime) => ({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: theme.spacing.m,
+    paddingVertical: theme.spacing.m,
     paddingHorizontal: theme.spacing.l,
     gap: theme.spacing.s,
-    backgroundColor: theme.color.background,
+  },
+  pressedBackground: {
+    ...StyleSheet.absoluteFillObject,
+    bottom: 2, // optical adjustment to compensate for the bottom shadow in the background image
+    backgroundColor: theme.color.buttonSelectedSecondary,
+    borderColor: theme.color.buttonSelectedPrimary,
+    borderWidth: 2,
+    borderRadius: 2,
   },
   logo: {
-    width: 20,
-    height: 20,
+    width: 18 * runtime.fontScale,
+    aspectRatio: 1,
   },
   label: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.bold,
     fontSize: 18,
-    color: theme.color.white,
     textTransform: 'uppercase',
-  },
-  labelPressed: {
-    color: theme.color.black,
   },
   icon: {
     marginLeft: 'auto',

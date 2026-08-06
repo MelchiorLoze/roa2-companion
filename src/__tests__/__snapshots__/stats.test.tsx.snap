@@ -522,7 +522,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingLeft": 8,
-              "paddingRight": 12,
+              "paddingRight": 16,
             }
           }
         >
@@ -1617,7 +1617,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingLeft": 8,
-              "paddingRight": 12,
+              "paddingRight": 16,
             }
           }
         >
@@ -4171,7 +4171,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               "flexDirection": "row",
               "justifyContent": "space-between",
               "paddingLeft": 8,
-              "paddingRight": 12,
+              "paddingRight": 16,
             }
           }
         >
