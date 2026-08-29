@@ -102,12 +102,12 @@ const styles = StyleSheet.create((theme) => ({
     gap: theme.spacing.xxl,
   },
   backgroundImage: {
-    borderRadius: theme.spacing.m,
+    borderRadius: 12,
     backgroundColor: theme.color.white,
   },
   imageContainer: (pressed: boolean) => ({
     padding: 5,
-    borderRadius: theme.spacing.s,
+    borderRadius: 8,
     backgroundColor: pressed ? theme.color.itemSelectedSecondary : theme.color.itemImageBackground,
   }),
   nameContainer: (pressed: boolean) => ({
@@ -153,8 +153,8 @@ const styles = StyleSheet.create((theme) => ({
     borderTopWidth: 2,
     borderLeftWidth: 2,
     borderColor: pressed ? theme.color.itemSelectedPrimary : theme.color.itemPriceBorder,
-    borderTopLeftRadius: theme.spacing.s,
-    borderBottomRightRadius: theme.spacing.s,
+    borderTopLeftRadius: 8,
+    borderBottomRightRadius: 8,
   }),
   currencyIcon: {
     width: 20,

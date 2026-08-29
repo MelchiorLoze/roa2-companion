@@ -38,8 +38,8 @@ const theme = {
     weak: '#676767',
     inactive: '#84769C',
     disabled: '#AAAAAA',
-    upcoming: '#CACEFF',
-    ongoing: '#FEDD84',
+    upcoming: '#664D9A',
+    ongoing: '#FAC468',
     completed: '#FC7575',
     black: 'black',
     white: 'white',
@@ -50,11 +50,6 @@ const theme = {
     coins: '#FFFFB4',
     bucks: '#0FDE6B',
     medals: '#B0F6D6',
-    // Rarity colors
-    common: '#D3D5E4',
-    rare: '#447CF1',
-    epic: '#C161E5',
-    legendary: '#EFDB77',
     // Rank colors
     stone: '#7F7A66',
     bronze: '#B87A2E',
@@ -87,14 +82,6 @@ const theme = {
             ? (['#FFFFFF', '#FFFFFF'] as const)
             : (['#000000', '#000000'] as const)
           : (['#FFFFFF', '#E4C1FF'] as const),
-      }),
-      card: (pressed?: boolean) => ({
-        // Mod Kit - NormalInnerCurve and NormalBorder
-        colors: pressed ? (['#FFDB74', '#EBA245'] as const) : (['#161049', '#0D071D'] as const),
-      }),
-      border: (pressed?: boolean) => ({
-        // Mod Kit - HoverBorder and NormalBorder
-        colors: pressed ? (['#EBA245', '#FFDB74'] as const) : (['#CACEFF', '#6B76DB'] as const),
       }),
       tabBorder: {
         // Mod Kit - StoreTabButtonCurve

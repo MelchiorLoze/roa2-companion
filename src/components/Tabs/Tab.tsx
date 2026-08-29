@@ -128,7 +128,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.tabBackground,
   },
   innerBackground: {
-    padding: theme.spacing.xxs,
+    padding: 3,
     borderRadius: 2,
     backgroundColor: theme.color.tabInnerBackground,
     alignItems: 'center',
@@ -146,7 +146,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.buttonSelectedPrimary,
   },
   pressedBackground: {
-    padding: 3,
+    padding: theme.spacing.xs,
     borderRadius: 2,
     alignItems: 'center',
     backgroundColor: theme.color.tabPressedBackground,
@@ -164,7 +164,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.tabSelectedBorder,
   },
   selectedBackground: {
-    padding: 3,
+    padding: theme.spacing.xs,
     borderRadius: 2,
     alignItems: 'center',
   },
