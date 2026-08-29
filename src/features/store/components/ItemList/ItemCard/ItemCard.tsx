@@ -164,6 +164,6 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.bold,
     fontSize: 14,
     strokeWidth: 1,
-    strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,
+    strokeColor: pressed ? theme.color.transparent : theme.color.labelOutline,
   }),
 }));

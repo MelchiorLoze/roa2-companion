@@ -20,7 +20,7 @@ const GradientWrapper = ({ children }: PropsWithChildren) => {
   return (
     <View style={styles.container}>
       <ImageBackground contentFit="fill" source={CoinStoreBackground} style={StyleSheet.absoluteFill} />
-      <LinearGradient {...theme.color.gradient.storeGradient} horizontal style={styles.backgroundGradient} />
+      <LinearGradient {...theme.color.gradient.storeBackground} horizontal style={styles.backgroundGradient} />
       {children}
     </View>
   );

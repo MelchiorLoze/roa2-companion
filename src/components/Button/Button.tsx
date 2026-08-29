@@ -49,7 +49,7 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
     strokeWidth: 1,
-    strokeColor: theme.color.borderPrimary,
+    strokeColor: theme.color.labelOutline,
   },
   pressedBackground: {
     ...StyleSheet.absoluteFillObject,

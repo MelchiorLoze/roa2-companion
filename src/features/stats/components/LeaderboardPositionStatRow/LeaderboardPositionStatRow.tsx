@@ -34,7 +34,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
       />
 
       <View style={styles.leftContainer}>
-        <LinearGradient {...theme.color.gradient.leaderboardLeftGradient} horizontal style={styles.positionContainer}>
+        <LinearGradient {...theme.color.gradient.leaderboardLeft} horizontal style={styles.positionContainer}>
           <FancyText
             style={{
               ...styles.label,
@@ -62,11 +62,7 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
           </Canvas>
         </View>
 
-        <LinearGradient
-          {...theme.color.gradient.leaderboardRightGradient}
-          horizontal
-          style={styles.playerNameContainer}
-        >
+        <LinearGradient {...theme.color.gradient.leaderboardRight} horizontal style={styles.playerNameContainer}>
           <FancyText
             style={{
               ...styles.label,
