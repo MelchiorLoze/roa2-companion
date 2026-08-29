@@ -101,7 +101,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     marginHorizontal: -theme.spacing.m,
   },
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
     strokeWidth: 1.5,

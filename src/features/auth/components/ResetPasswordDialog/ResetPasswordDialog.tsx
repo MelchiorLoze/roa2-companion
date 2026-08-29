@@ -67,7 +67,7 @@ export const ResetPasswordDialog = ({ email, onClose }: Readonly<Props>) => (
 
 const styles = StyleSheet.create((theme) => ({
   description: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 16,
     color: theme.color.white,
   },

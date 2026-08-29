@@ -123,7 +123,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: pressed ? theme.color.itemSelectedPrimary : theme.color.itemNameBackground,
   }),
   name: (pressed: boolean) => ({
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 14,
     color: pressed ? theme.color.black : theme.color.white,
     textAlign: 'center',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create((theme) => ({
   }),
   category: (pressed: boolean) => ({
     fontSize: 14,
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
     strokeWidth: 1,
     strokeColor: pressed ? theme.color.transparent : theme.color.black,
@@ -161,7 +161,7 @@ const styles = StyleSheet.create((theme) => ({
     aspectRatio: 1,
   },
   price: (pressed: boolean) => ({
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 14,
     strokeWidth: 1,
     strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,

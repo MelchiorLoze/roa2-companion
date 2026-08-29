@@ -49,7 +49,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     paddingLeft: (theme.spacing.m + 26) * runtime.fontScale,
   },
   label: (currency: Currency) => ({
-    fontFamily: theme.font.secondary.boldWide,
+    fontFamily: theme.font.primary.boldWide,
     fontSize: 14,
     color: theme.color[currency],
     letterSpacing: -0.5,

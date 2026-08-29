@@ -134,7 +134,7 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
   },
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
     strokeWidth: 1.5,
@@ -152,7 +152,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.tabPressedBackground,
   },
   labelPressed: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.black,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create((theme) => ({
     alignItems: 'center',
   },
   labelSelected: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.tabSelectedLabel,

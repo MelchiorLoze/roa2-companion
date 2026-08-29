@@ -57,7 +57,7 @@ const styles = StyleSheet.create((theme) => ({
     paddingHorizontal: theme.spacing.s,
   },
   paragraph: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     color: theme.color.white,
     gap: theme.spacing.xl,
   },

@@ -79,7 +79,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     aspectRatio: 1,
   },
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 18,
     textTransform: 'uppercase',
   },

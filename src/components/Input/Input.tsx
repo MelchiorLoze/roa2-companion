@@ -73,7 +73,7 @@ const styles = StyleSheet.create((theme) => ({
     ],
   },
   input: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 16,
     padding: theme.spacing.s,
     color: theme.color.white,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create((theme) => ({
     width: '100%',
   },
   errorMessage: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 14,
     color: theme.color.error,
   },
@@ -96,7 +96,7 @@ const styles = StyleSheet.create((theme) => ({
     padding: theme.spacing.xs,
   },
   contextualCTALabel: {
-    fontFamily: theme.font.primary.italic,
+    fontFamily: theme.font.secondary.italic,
     fontSize: 14,
     color: theme.color.white,
     textAlign: 'right',

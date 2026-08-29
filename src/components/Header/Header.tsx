@@ -100,7 +100,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     height: 18,
   },
   title: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 20,
     color: theme.color.headerTitle,
     textTransform: 'uppercase',

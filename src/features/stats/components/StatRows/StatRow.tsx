@@ -37,7 +37,7 @@ const styles = StyleSheet.create((theme) => ({
     backgroundColor: theme.color.statRowBackground,
   },
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
     strokeWidth: 1.5,

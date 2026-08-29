@@ -157,7 +157,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   },
   titleLabel: {
     fontSize: 18,
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
   },
   redirectIcon: (pressed?: boolean) => ({
@@ -167,7 +167,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   text: (pressed?: boolean) => ({
     flexShrink: 1,
     color: pressed ? theme.color.black : theme.color.white,
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 14,
     textTransform: 'uppercase',
   }),
@@ -180,7 +180,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
   },
   state: (tournamentState: TournamentState) => ({
     fontSize: 14,
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
     color: theme.color[tournamentState],
     strokeWidth: 2,

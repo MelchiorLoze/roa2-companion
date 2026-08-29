@@ -52,7 +52,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     alignItems: 'flex-end',
   },
   bonusLabel: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 12,
     textTransform: 'uppercase',
     color: theme.color.white,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     strokeColor: theme.color.black,
   },
   bonusUnit: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 10,
     textTransform: 'uppercase',
     color: theme.color.white,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     position: 'absolute',
   },
   timeLeftLabel: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 10,
     textTransform: 'uppercase',
     color: theme.color.white,

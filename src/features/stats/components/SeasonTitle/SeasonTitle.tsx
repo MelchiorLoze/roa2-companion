@@ -30,7 +30,7 @@ const styles = StyleSheet.create((theme) => ({
     transform: [{ translateY: '-40%' }],
   },
   title: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 22,
     textTransform: 'uppercase',
     skew: -0.15,

@@ -61,14 +61,14 @@ export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) =
 
 const styles = StyleSheet.create((theme) => ({
   title: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 24,
     color: theme.color.white,
     textAlign: 'center',
     textTransform: 'uppercase',
   },
   body: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 16,
     color: theme.color.white,
     textAlign: 'center',

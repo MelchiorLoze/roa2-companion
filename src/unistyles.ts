@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native-unistyles';
 
 const theme = {
   color: {
-    accent: '#FEDD84',
     storeTitleShadow: '#2D2D2D80',
     itemImageBackground: '#512A8C',
     itemNameShadow: '#291A3183',
@@ -33,7 +32,6 @@ const theme = {
     dialogBorderPrimary: '#A95AF1',
     dialogBorderSecondary: '#4C12AA',
     borderPrimary: '#28074B80',
-    borderLight: '#CACEFF',
     dark: '#161616',
     weak: '#676767',
     inactive: '#84769C',
@@ -126,13 +124,13 @@ const theme = {
   },
   font: {
     primary: {
-      regular: 'FranklinGothicDemiCond-Regular',
-      italic: 'FranklinGothicDemiCond-Italic',
-    },
-    secondary: {
       bold: 'AgencyFB-Bold',
       boldWide: 'AgencyFB-BoldWide',
       black: 'AgencyFB-Black',
+    },
+    secondary: {
+      regular: 'FranklinGothicDemiCond-Regular',
+      italic: 'FranklinGothicDemiCond-Italic',
     },
   },
 } as const;

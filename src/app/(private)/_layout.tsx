@@ -101,7 +101,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     borderColor: theme.color.headerSeparator,
   },
   label: (focused: boolean) => ({
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 14,
     textTransform: 'uppercase',
     color: focused ? theme.color.white : theme.color.inactive,

@@ -84,7 +84,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'flex-end',
   },
   seasonLabel: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 20,
     color: theme.color.white,
     textTransform: 'uppercase',
@@ -93,7 +93,7 @@ const styles = StyleSheet.create((theme) => ({
     padding: theme.spacing.xxs,
   },
   percentageLabel: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 14,
     color: theme.color.white,
     textTransform: 'uppercase',

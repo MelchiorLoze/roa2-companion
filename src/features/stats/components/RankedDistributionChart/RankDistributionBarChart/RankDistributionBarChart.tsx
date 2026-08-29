@@ -107,7 +107,7 @@ export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
 
 const styles = StyleSheet.create((theme) => ({
   topLabel: {
-    fontFamily: theme.font.secondary.boldWide,
+    fontFamily: theme.font.primary.boldWide,
     fontSize: 7,
     color: theme.color.white,
   },

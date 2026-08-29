@@ -93,7 +93,7 @@ const styles = StyleSheet.create((theme) => ({
     paddingRight: theme.spacing.xl,
   },
   title: {
-    fontFamily: theme.font.secondary.black,
+    fontFamily: theme.font.primary.black,
     fontSize: 22,
     color: theme.color.white,
     skew: -0.23,

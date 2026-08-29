@@ -60,7 +60,7 @@ export const CharacterStatsTable = ({ characterStats }: Props) => {
 
 const styles = StyleSheet.create((theme) => ({
   label: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 16,
     textTransform: 'uppercase',
   },

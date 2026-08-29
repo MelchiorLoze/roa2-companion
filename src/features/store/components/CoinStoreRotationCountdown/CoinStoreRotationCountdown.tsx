@@ -58,7 +58,7 @@ const styles = StyleSheet.create((theme, runtime) => ({
     aspectRatio: 1,
   },
   label: {
-    fontFamily: theme.font.secondary.black,
+    fontFamily: theme.font.primary.black,
     fontSize: 18,
     color: theme.color.white,
     textTransform: 'uppercase',

@@ -46,7 +46,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   label: {
     fontSize: 16,
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
     strokeWidth: 1,
     strokeColor: theme.color.borderPrimary,
