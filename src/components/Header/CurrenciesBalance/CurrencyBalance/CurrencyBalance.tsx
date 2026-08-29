@@ -1,4 +1,3 @@
-import { Skia } from '@shopify/react-native-skia';
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -26,14 +25,12 @@ export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
         style={StyleSheet.absoluteFill}
       />
       <FancyText
-        style={{
-          ...styles.label(currency),
-          shadow: {
-            color: Skia.Color(theme.color.currencyLabelShadow),
-            offset: { x: 1, y: 1 },
-            blurRadius: 0.001, // 0 radius is not supported
-          },
+        shadow={{
+          color: theme.color.currencyLabelShadow,
+          offset: { x: 1, y: 1 },
+          blurRadius: 0
         }}
+        style={styles.label(currency)}
         text={formatCurrency(balance)}
       />
     </View>

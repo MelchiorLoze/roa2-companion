@@ -36,10 +36,8 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
       <View style={styles.leftContainer}>
         <LinearGradient {...theme.color.gradient.leaderboardLeft} horizontal style={styles.positionContainer}>
           <FancyText
-            style={{
-              ...styles.label,
-              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
-            }}
+            gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+            style={styles.label}
             text={position.toString()}
           />
         </LinearGradient>
@@ -64,10 +62,8 @@ export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, r
 
         <LinearGradient {...theme.color.gradient.leaderboardRight} horizontal style={styles.playerNameContainer}>
           <FancyText
-            style={{
-              ...styles.label,
-              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
-            }}
+            gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+            style={styles.label}
             text={playerName}
           />
         </LinearGradient>

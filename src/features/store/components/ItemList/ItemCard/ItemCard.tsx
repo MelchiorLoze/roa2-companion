@@ -46,10 +46,8 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
 
             <>
               <FancyText
-                style={{
-                  ...styles.category(pressed),
-                  gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
-                }}
+                gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
+                style={styles.category(pressed)}
                 text={CATEGORY_LABELS[item.category]}
               />
 
@@ -57,10 +55,8 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
                 <View style={styles.priceContainer(pressed)}>
                   <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
                   <FancyText
-                    style={{
-                      ...styles.price(pressed),
-                      gradient: { ...theme.color.gradient.labelText(pressed, true), direction: 'vertical' },
-                    }}
+                    gradient={{ ...theme.color.gradient.labelText(pressed, true), direction: 'vertical' }}
+                    style={styles.price(pressed)}
                     text={item.coinPrice.toString()}
                   />
                 </View>

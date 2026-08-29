@@ -1,4 +1,3 @@
-import { Skia } from '@shopify/react-native-skia';
 import { ImageBackground } from 'expo-image';
 import { type PropsWithChildren, useState } from 'react';
 import { View } from 'react-native';
@@ -51,14 +50,12 @@ export default function Store() {
           <View style={styles.titleContainer}>
             <ImageBackground contentFit="fill" source={CoinStoreTitleBackground} style={StyleSheet.absoluteFill} />
             <FancyText
-              style={{
-                ...styles.title,
-                shadow: {
-                  color: Skia.Color(theme.color.storeTitleShadow),
-                  offset: { x: 1, y: 1 },
-                  blurRadius: 0.001, // 0 radius is not supported
-                },
+              shadow={{
+                color: theme.color.storeTitleShadow,
+                offset: { x: 1, y: 1 },
+                blurRadius: 0,
               }}
+              style={styles.title}
               text="COIN SHOP"
             />
           </View>

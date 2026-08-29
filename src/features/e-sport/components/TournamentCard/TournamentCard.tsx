@@ -47,10 +47,8 @@ export const TournamentCard = ({ tournament }: Readonly<Props>) => {
                 <View style={styles.titleContainer}>
                   <View style={styles.title}>
                     <FancyText
-                      style={{
-                        gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
-                        ...styles.titleLabel,
-                      }}
+                      gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
+                      style={styles.titleLabel}
                       text={tournament.name}
                     />
                   </View>

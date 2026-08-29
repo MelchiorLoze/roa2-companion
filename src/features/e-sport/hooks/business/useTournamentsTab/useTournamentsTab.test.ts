@@ -77,8 +77,8 @@ describe('useTournamentsTab', () => {
     const { result } = renderHook(() => useTournamentsTab());
 
     expect(result.current.tabs).toHaveLength(2);
-    expect(result.current.tabs[0].title).toBe('active');
-    expect(result.current.tabs[1].title).toBe('past');
+    expect(result.current.tabs[0].label).toBe('active');
+    expect(result.current.tabs[1].label).toBe('past');
     expect(typeof result.current.tabs[0].onPress).toBe('function');
     expect(typeof result.current.tabs[1].onPress).toBe('function');
   });
@@ -140,7 +140,7 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 
@@ -155,7 +155,7 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 
@@ -171,7 +171,7 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 
@@ -187,7 +187,7 @@ describe('useTournamentsTab', () => {
 
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 
@@ -199,8 +199,8 @@ describe('useTournamentsTab', () => {
     it('switches to active tab when active tab is pressed', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
-      const activeTab = result.current.tabs.find((tab) => tab.title === 'active');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
+      const activeTab = result.current.tabs.find((tab) => tab.label === 'active');
 
       act(pastTab!.onPress);
 
@@ -216,7 +216,7 @@ describe('useTournamentsTab', () => {
 
       expect(result.current.selectedTab).toBe('active');
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 
@@ -237,7 +237,7 @@ describe('useTournamentsTab', () => {
     it('refetches both tournaments regardless of selected tab', () => {
       const { result } = renderHook(() => useTournamentsTab());
 
-      const pastTab = result.current.tabs.find((tab) => tab.title === 'past');
+      const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
       act(pastTab!.onPress);
 

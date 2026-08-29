@@ -24,10 +24,8 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
           {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
           <View style={styles.button}>
             <FancyText
-              style={{
-                ...styles.label,
-                gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
-              }}
+              gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
+              style={styles.label}
               text={label}
             />
           </View>

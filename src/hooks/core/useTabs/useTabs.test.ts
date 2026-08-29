@@ -13,8 +13,8 @@ describe('useTabs', () => {
     const { result } = renderHook(() => useTabs(['tab1', 'tab2'] as const));
 
     expect(result.current.tabs).toHaveLength(2);
-    expect(result.current.tabs[0].title).toBe('tab1');
-    expect(result.current.tabs[1].title).toBe('tab2');
+    expect(result.current.tabs[0].label).toBe('tab1');
+    expect(result.current.tabs[1].label).toBe('tab2');
     expect(typeof result.current.tabs[0].onPress).toBe('function');
     expect(typeof result.current.tabs[1].onPress).toBe('function');
   });

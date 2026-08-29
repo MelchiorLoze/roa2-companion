@@ -26,19 +26,15 @@ export const CharacterStatsTable = ({ characterStats }: Props) => {
         <View style={styles.iconColumn} />
         <View style={[styles.dataColumn, styles.firstDataColumn]}>
           <FancyText
-            style={{
-              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
-              ...styles.label,
-            }}
+            gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+            style={styles.label}
             text="Level"
           />
         </View>
         <View style={styles.dataColumn}>
           <FancyText
-            style={{
-              gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
-              ...styles.label,
-            }}
+            gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+            style={styles.label}
             text="Games"
           />
         </View>
