@@ -33,7 +33,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   text: {
     flexShrink: 1,
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     color: theme.color.black,
     fontSize: 14,
   },

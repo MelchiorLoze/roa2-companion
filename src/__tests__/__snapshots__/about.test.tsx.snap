@@ -4,16 +4,18 @@ exports[`About matches snapshot 1`] = `
 <View
   style={
     {
-      "backgroundColor": "#2B1F74",
       "flex": 1,
+      "gap": 24,
+      "paddingHorizontal": 8,
+      "paddingVertical": 16,
     }
   }
 >
   <View
     style={
       {
-        "gap": 24,
-        "padding": 16,
+        "gap": 16,
+        "paddingHorizontal": 8,
       }
     }
   >
@@ -40,77 +42,75 @@ exports[`About matches snapshot 1`] = `
       The app is completely free to use, contains no advertisements, and does not generate any revenue. It does not collect nor transmit any personal information or data from users to any third party. Everything stays exclusively between your device and the official game servers.
     </Text>
   </View>
-  <View
-    style={
-      {
-        "backgroundColor": "#CACEFF",
-        "height": 1,
+  <View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
       }
-    }
-  />
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
       }
-    }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    role="link"
-  >
-    <ViewManagerAdapter_ExpoLinearGradient
-      colors={
-        [
-          4279043869,
-          4279636041,
-        ]
-      }
-      endPoint={
-        [
-          1,
-          0,
-        ]
-      }
-      startPoint={
-        [
-          0,
-          0,
-        ]
-      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="link"
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "#0B0825",
           "flexDirection": "row",
           "gap": 8,
-          "padding": 12,
           "paddingHorizontal": 16,
+          "paddingVertical": 12,
         }
       }
     >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 18,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        GitHub
+      </Text>
       <ViewManagerAdapter_ExpoImage
+        aspectRatio={1}
         containerViewRef={"[React.ref]"}
         contentFit="contain"
         contentPosition={
@@ -119,7 +119,6 @@ exports[`About matches snapshot 1`] = `
             "top": "50%",
           }
         }
-        height={20}
         nativeViewRef={"[React.ref]"}
         onError={[Function]}
         onLoad={[Function]}
@@ -136,30 +135,15 @@ exports[`About matches snapshot 1`] = `
         }
         style={
           {
-            "height": 20,
-            "width": 20,
+            "aspectRatio": 1,
+            "width": 18,
           }
         }
         symbolSize={null}
         symbolWeight={null}
         transition={null}
-        width={20}
+        width={18}
       />
-      <Text
-        style={
-          [
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 18,
-              "textTransform": "uppercase",
-            },
-            false,
-          ]
-        }
-      >
-        GitHub
-      </Text>
       <
         color="white"
         name="arrow-outward"
@@ -170,79 +154,75 @@ exports[`About matches snapshot 1`] = `
           }
         }
       />
-    </ViewManagerAdapter_ExpoLinearGradient>
-  </View>
-  <View
-    style={
-      {
-        "backgroundColor": "#CACEFF",
-        "height": 1,
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
       }
-    }
-  />
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
       }
-    }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    role="link"
-  >
-    <ViewManagerAdapter_ExpoLinearGradient
-      colors={
-        [
-          4279043869,
-          4279636041,
-        ]
-      }
-      endPoint={
-        [
-          1,
-          0,
-        ]
-      }
-      startPoint={
-        [
-          0,
-          0,
-        ]
-      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="link"
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "#0B0825",
           "flexDirection": "row",
           "gap": 8,
-          "padding": 12,
           "paddingHorizontal": 16,
+          "paddingVertical": 12,
         }
       }
     >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 18,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        Report an issue
+      </Text>
       <ViewManagerAdapter_ExpoImage
+        aspectRatio={1}
         containerViewRef={"[React.ref]"}
         contentFit="contain"
         contentPosition={
@@ -251,7 +231,6 @@ exports[`About matches snapshot 1`] = `
             "top": "50%",
           }
         }
-        height={20}
         nativeViewRef={"[React.ref]"}
         onError={[Function]}
         onLoad={[Function]}
@@ -268,30 +247,15 @@ exports[`About matches snapshot 1`] = `
         }
         style={
           {
-            "height": 20,
-            "width": 20,
+            "aspectRatio": 1,
+            "width": 18,
           }
         }
         symbolSize={null}
         symbolWeight={null}
         transition={null}
-        width={20}
+        width={18}
       />
-      <Text
-        style={
-          [
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 18,
-              "textTransform": "uppercase",
-            },
-            false,
-          ]
-        }
-      >
-        Report an issue
-      </Text>
       <
         color="white"
         name="arrow-outward"
@@ -302,79 +266,75 @@ exports[`About matches snapshot 1`] = `
           }
         }
       />
-    </ViewManagerAdapter_ExpoLinearGradient>
-  </View>
-  <View
-    style={
-      {
-        "backgroundColor": "#CACEFF",
-        "height": 1,
+    </View>
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
       }
-    }
-  />
-  <View
-    accessibilityState={
-      {
-        "busy": undefined,
-        "checked": undefined,
-        "disabled": undefined,
-        "expanded": undefined,
-        "selected": undefined,
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
       }
-    }
-    accessibilityValue={
-      {
-        "max": undefined,
-        "min": undefined,
-        "now": undefined,
-        "text": undefined,
-      }
-    }
-    accessible={true}
-    collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    role="link"
-  >
-    <ViewManagerAdapter_ExpoLinearGradient
-      colors={
-        [
-          4279043869,
-          4279636041,
-        ]
-      }
-      endPoint={
-        [
-          1,
-          0,
-        ]
-      }
-      startPoint={
-        [
-          0,
-          0,
-        ]
-      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      role="link"
       style={
         {
           "alignItems": "center",
-          "backgroundColor": "#0B0825",
           "flexDirection": "row",
           "gap": 8,
-          "padding": 12,
           "paddingHorizontal": 16,
+          "paddingVertical": 12,
         }
       }
     >
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      />
+      <Text
+        style={
+          {
+            "color": "#FFFFFF",
+            "fontFamily": "AgencyFB-Bold",
+            "fontSize": 18,
+            "textShadowColor": undefined,
+            "textShadowRadius": undefined,
+          }
+        }
+      >
+        Support the project
+      </Text>
       <ViewManagerAdapter_ExpoImage
+        aspectRatio={1}
         containerViewRef={"[React.ref]"}
         contentFit="contain"
         contentPosition={
@@ -383,7 +343,6 @@ exports[`About matches snapshot 1`] = `
             "top": "50%",
           }
         }
-        height={20}
         nativeViewRef={"[React.ref]"}
         onError={[Function]}
         onLoad={[Function]}
@@ -400,30 +359,15 @@ exports[`About matches snapshot 1`] = `
         }
         style={
           {
-            "height": 20,
-            "width": 20,
+            "aspectRatio": 1,
+            "width": 18,
           }
         }
         symbolSize={null}
         symbolWeight={null}
         transition={null}
-        width={20}
+        width={18}
       />
-      <Text
-        style={
-          [
-            {
-              "color": "white",
-              "fontFamily": "FranklinGothicDemiCond-Regular",
-              "fontSize": 18,
-              "textTransform": "uppercase",
-            },
-            false,
-          ]
-        }
-      >
-        Support the project
-      </Text>
       <
         color="white"
         name="arrow-outward"
@@ -434,15 +378,7 @@ exports[`About matches snapshot 1`] = `
           }
         }
       />
-    </ViewManagerAdapter_ExpoLinearGradient>
+    </View>
   </View>
-  <View
-    style={
-      {
-        "backgroundColor": "#CACEFF",
-        "height": 1,
-      }
-    }
-  />
 </View>
 `;

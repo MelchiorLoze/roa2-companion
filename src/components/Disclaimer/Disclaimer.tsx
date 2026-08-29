@@ -35,7 +35,7 @@ const styles = StyleSheet.create((theme) => ({
   },
   body: {
     flexShrink: 1,
-    fontFamily: theme.font.primary.italic,
+    fontFamily: theme.font.secondary.italic,
     color: theme.color.silver,
     fontSize: 14,
   },

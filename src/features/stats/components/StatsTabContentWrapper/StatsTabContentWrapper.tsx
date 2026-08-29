@@ -1,8 +1,9 @@
+import { ImageBackground } from 'expo-image';
 import { type PropsWithChildren } from 'react';
-import { RefreshControl, ScrollView } from 'react-native';
-import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+import { RefreshControl, ScrollView, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { StatsBackground } from '@/assets/images/ui';
 
 type Props = PropsWithChildren<{
   onRefresh: () => void;
@@ -11,32 +12,29 @@ type Props = PropsWithChildren<{
 }>;
 
 export const StatsTabContentWrapper = ({ onRefresh, isRefreshing, withTitle = false, children }: Readonly<Props>) => {
-  const { theme } = useUnistyles();
-
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       refreshControl={<RefreshControl onRefresh={onRefresh} refreshing={isRefreshing} />}
     >
-      <LinearGradient
-        {...theme.color.gradient.statSection}
-        horizontal
-        style={[styles.section, withTitle && styles.sectionWithTitle]}
-      >
+      <View style={[styles.section, withTitle && styles.sectionWithTitle]}>
+        <ImageBackground contentFit="fill" source={StatsBackground} style={StyleSheet.absoluteFill} />
         {children}
-      </LinearGradient>
+      </View>
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
-    padding: theme.spacing.l,
+    padding: theme.spacing.s,
     gap: theme.spacing.l,
   },
   section: {
     padding: theme.spacing.s,
     gap: theme.spacing.l,
+    borderColor: theme.color.statsContainerBorder,
+    borderWidth: theme.spacing.xxs,
   },
   sectionWithTitle: {
     marginTop: theme.spacing.xl,

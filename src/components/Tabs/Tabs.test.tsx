@@ -54,18 +54,21 @@ describe('Tabs', () => {
 
   it('renders differently when selectedTab changes', () => {
     const { rerender } = render(<Tabs selectedTab="Tab 1" tabs={tabs} />);
-    const tab1Selected = screen.toJSON();
-    const tab1 = screen.getByText('Tab 1');
-    const tab2 = screen.getByText('Tab 2');
-    expect(tab1).toBeDisabled();
-    expect(tab2).toBeEnabled();
+    const tab1SelectedView = screen.toJSON();
+
+    const tab1Selected = screen.getByText('Tab 1');
+    const tab2Unselected = screen.getByText('Tab 2');
+    expect(tab1Selected).toBeDisabled();
+    expect(tab2Unselected).toBeEnabled();
 
     rerender(<Tabs selectedTab="Tab 2" tabs={tabs} />);
-    const tab2Selected = screen.toJSON();
+    const tab2SelectedView = screen.toJSON();
+    expect(tab2SelectedView).not.toEqual(tab1SelectedView);
 
-    expect(tab1Selected).not.toEqual(tab2Selected);
-    expect(tab1).toBeEnabled();
-    expect(tab2).toBeDisabled();
+    const tab1Unselected = screen.getByText('Tab 1');
+    const tab2Selected = screen.getByText('Tab 2');
+    expect(tab1Unselected).toBeEnabled();
+    expect(tab2Selected).toBeDisabled();
   });
 
   it('renders with two tabs', () => {

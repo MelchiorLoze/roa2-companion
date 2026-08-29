@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native-unistyles';
 
 import { GitHubIcon, KoFiIcon, MailIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
-import { Separator } from '@/components/Separator/Separator';
 import { COMPANION_SUPPORT_URI } from '@/constants';
 
 export default function About() {
@@ -22,28 +21,26 @@ export default function About() {
           exclusively between your device and the official game servers.
         </Text>
       </View>
-      <Separator />
-      <ActionRow
-        iconName="arrow-outward"
-        label="GitHub"
-        logo={GitHubIcon}
-        url={new URL('https://github.com/MelchiorLoze/roa2-companion')}
-      />
-      <Separator />
-      <ActionRow
-        iconName="arrow-outward"
-        label="Report an issue"
-        logo={MailIcon}
-        url={new URL(COMPANION_SUPPORT_URI)}
-      />
-      <Separator />
-      <ActionRow
-        iconName="arrow-outward"
-        label="Support the project"
-        logo={KoFiIcon}
-        url={new URL('https://ko-fi.com/roa2companion')}
-      />
-      <Separator />
+      <View>
+        <ActionRow
+          iconName="arrow-outward"
+          label="GitHub"
+          logo={GitHubIcon}
+          url={new URL('https://github.com/MelchiorLoze/roa2-companion')}
+        />
+        <ActionRow
+          iconName="arrow-outward"
+          label="Report an issue"
+          logo={MailIcon}
+          url={new URL(COMPANION_SUPPORT_URI)}
+        />
+        <ActionRow
+          iconName="arrow-outward"
+          label="Support the project"
+          logo={KoFiIcon}
+          url={new URL('https://ko-fi.com/roa2companion')}
+        />
+      </View>
     </View>
   );
 }
@@ -51,14 +48,16 @@ export default function About() {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    backgroundColor: theme.color.highlight,
+    paddingVertical: theme.spacing.l,
+    paddingHorizontal: theme.spacing.s,
+    gap: theme.spacing.xl,
   },
   descriptionContainer: {
-    gap: theme.spacing.xl,
-    padding: theme.spacing.l,
+    gap: theme.spacing.l,
+    paddingHorizontal: theme.spacing.s,
   },
   paragraph: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     color: theme.color.white,
     gap: theme.spacing.xl,
   },

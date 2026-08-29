@@ -25,12 +25,7 @@ const Content = ({ item, onClose }: Readonly<Props>) => {
     });
   };
 
-  if (isLoading)
-    return (
-      <View style={styles.spinner}>
-        <Spinner />
-      </View>
-    );
+  if (isLoading) return <Spinner />;
 
   if (isError)
     return (
@@ -65,23 +60,21 @@ export const PurchaseConfirmationDialog = ({ item, onClose }: Readonly<Props>) =
 );
 
 const styles = StyleSheet.create((theme) => ({
-  spinner: {
-    paddingVertical: theme.spacing.xl,
-  },
   title: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 24,
     color: theme.color.white,
     textAlign: 'center',
     textTransform: 'uppercase',
   },
   body: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 16,
     color: theme.color.white,
     textAlign: 'center',
   },
   buttonContainer: {
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
   },

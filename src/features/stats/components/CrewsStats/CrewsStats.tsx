@@ -8,7 +8,7 @@ import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUserCrewsStats';
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
-import { StatRow } from '../StatRow/StatRow';
+import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const CrewsStats = () => {
@@ -25,7 +25,7 @@ export const CrewsStats = () => {
 
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
-      <SeasonTitle seasonName={season.name} variant="crews" />
+      <SeasonTitle seasonName={season.name} />
 
       <View style={styles.titlePadding} />
 
@@ -37,19 +37,18 @@ export const CrewsStats = () => {
         rankIcon={CrewsIcon}
       />
 
-      <View style={styles.statRowsContainer}>
-        <StatRow label="Crews sets" value={stats.setStats.setCount} />
-        <StatRow label="Best win streak" value={stats.bestWinStreak} />
-      </View>
+      <StatRows
+        rows={[
+          { label: 'Crews sets', value: stats.setStats.setCount },
+          { label: 'Best win streak', value: stats.bestWinStreak },
+        ]}
+      />
     </StatsTabContentWrapper>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   titlePadding: {
-    height: theme.spacing.l,
-  },
-  statRowsContainer: {
-    gap: theme.spacing.s,
+    height: theme.spacing.xxl,
   },
 }));

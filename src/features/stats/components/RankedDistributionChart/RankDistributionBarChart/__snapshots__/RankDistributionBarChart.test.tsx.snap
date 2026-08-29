@@ -5,6 +5,7 @@ exports[`RankDistributionBarChart renders the chart when leaderboard stats are a
   testID="rank-distribution"
 >
   <
+    barInnerComponent={[Function]}
     data={
       [
         {

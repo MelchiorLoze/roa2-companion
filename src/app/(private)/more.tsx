@@ -1,12 +1,10 @@
 import { type ImageSource } from 'expo-image';
 import { useRouter } from 'expo-router';
-import { Fragment } from 'react';
 import { ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { DiscordIcon, DragdownIcon, RedditIcon } from '@/assets/images/link';
 import { ActionRow } from '@/components/ActionRow/ActionRow';
-import { Separator } from '@/components/Separator/Separator';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
 
 type ExternalLink = Readonly<{
@@ -37,12 +35,7 @@ const externalLinks: readonly ExternalLink[] = [
   },
 ];
 
-const renderItem = (item: ExternalLink) => (
-  <Fragment key={item.label}>
-    <ActionRow {...item} iconName="arrow-outward" />
-    <Separator />
-  </Fragment>
-);
+const renderItem = (item: ExternalLink) => <ActionRow {...item} iconName="arrow-outward" key={item.label} />;
 
 export default function More() {
   const router = useRouter();
@@ -53,15 +46,11 @@ export default function More() {
       <View>{externalLinks.map(renderItem)}</View>
 
       <View>
-        <Separator />
         <ActionRow iconName="arrow-forward" label="About this app" onPress={() => router.navigate('/about')} />
-        <Separator />
       </View>
 
       <View>
-        <Separator />
         <ActionRow iconName="logout" label="Log out" onPress={logout} />
-        <Separator />
       </View>
     </ScrollView>
   );
@@ -70,7 +59,8 @@ export default function More() {
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1,
-    gap: theme.spacing.xl,
-    backgroundColor: theme.color.highlight,
+    gap: theme.spacing.xxl,
+    paddingVertical: theme.spacing.l,
+    paddingHorizontal: theme.spacing.s,
   },
 }));

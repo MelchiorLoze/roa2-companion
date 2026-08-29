@@ -28,18 +28,20 @@ export const Input = ({
 
   return (
     <View style={styles.container}>
-      <TextInput
-        autoCapitalize="none"
-        autoComplete={autoComplete}
-        cursorColor={theme.color.white}
-        onChangeText={onChange}
-        placeholder={placeholder}
-        placeholderTextColor={theme.color.weak}
-        secureTextEntry={hidden}
-        selectionColor={theme.color.borderMedium}
-        style={styles.input}
-        value={value}
-      />
+      <View style={styles.inputContainer}>
+        <TextInput
+          autoCapitalize="none"
+          autoComplete={autoComplete}
+          cursorColor={theme.color.white}
+          onChangeText={onChange}
+          placeholder={placeholder}
+          placeholderTextColor={theme.color.weak}
+          secureTextEntry={hidden}
+          selectionColor={theme.color.itemNameBackground}
+          style={styles.input}
+          value={value}
+        />
+      </View>
       {(errorMessage ?? contextualCTA) && (
         <View style={styles.footer}>
           {errorMessage && <Text style={styles.errorMessage}>{errorMessage}</Text>}
@@ -56,15 +58,27 @@ export const Input = ({
 
 const styles = StyleSheet.create((theme) => ({
   container: {
+    width: '100%',
     gap: theme.spacing.xs,
   },
+  inputContainer: {
+    boxShadow: [
+      {
+        color: theme.color.dark,
+        offsetX: 0,
+        offsetY: 0,
+        blurRadius: 3,
+        spreadDistance: 3,
+      },
+    ],
+  },
   input: {
-    width: '100%',
+    fontFamily: theme.font.secondary.regular,
+    fontSize: 16,
     padding: theme.spacing.s,
-    borderWidth: 1,
-    borderColor: theme.color.accent,
     color: theme.color.white,
     backgroundColor: theme.color.dark,
+    borderRadius: 1,
   },
   footer: {
     flexDirection: 'row',
@@ -73,7 +87,7 @@ const styles = StyleSheet.create((theme) => ({
     width: '100%',
   },
   errorMessage: {
-    fontFamily: theme.font.primary.regular,
+    fontFamily: theme.font.secondary.regular,
     fontSize: 14,
     color: theme.color.error,
   },
@@ -82,9 +96,9 @@ const styles = StyleSheet.create((theme) => ({
     padding: theme.spacing.xs,
   },
   contextualCTALabel: {
-    fontFamily: theme.font.primary.italic,
+    fontFamily: theme.font.secondary.italic,
     fontSize: 14,
-    color: theme.color.borderLight,
+    color: theme.color.white,
     textAlign: 'right',
     textDecorationLine: 'underline',
   },

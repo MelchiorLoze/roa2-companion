@@ -1,3 +1,4 @@
+import type { ComponentProps } from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
@@ -9,7 +10,7 @@ import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useU
 import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
-import { StatRow } from '../StatRow/StatRow';
+import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
 
 export const RankedStats = () => {
@@ -24,9 +25,19 @@ export const RankedStats = () => {
 
   if (isLoadingSeason || isLoadingRankedStats || isErrorSeason || isErrorRankedStats) return <Spinner />;
 
+  const statRows: ComponentProps<typeof StatRows>['rows'] = [{ label: 'Best win streak', value: stats.bestWinStreak }];
+
+  if (stats.setStats) {
+    statRows.unshift(
+      { label: 'Ranked wins', value: stats.setStats.winCount },
+      { label: 'Ranked losses', value: stats.setStats.setCount - stats.setStats.winCount },
+      { label: 'Ranked win rate', value: stats.setStats.winRate.toFixed(2) + '%' },
+    );
+  }
+
   return (
     <StatsTabContentWrapper isRefreshing={isRefreshing} onRefresh={refresh} withTitle>
-      <SeasonTitle seasonName={season.name} variant="ranked" />
+      <SeasonTitle seasonName={season.name} />
 
       <View style={styles.changeSeasonContainer}>
         <IconButton
@@ -61,16 +72,7 @@ export const RankedStats = () => {
         )}
       </View>
 
-      <View style={styles.statRowsContainer}>
-        {stats.setStats && (
-          <>
-            <StatRow label="Ranked wins" value={stats.setStats.winCount} />
-            <StatRow label="Ranked losses" value={stats.setStats.setCount - stats.setStats.winCount} />
-            <StatRow label="Ranked win rate" value={stats.setStats.winRate.toFixed(2) + '%'} />
-          </>
-        )}
-        <StatRow label="Best win streak" value={stats.bestWinStreak} />
-      </View>
+      <StatRows rows={statRows} />
     </StatsTabContentWrapper>
   );
 };
@@ -82,7 +84,7 @@ const styles = StyleSheet.create((theme) => ({
     justifyContent: 'flex-end',
   },
   seasonLabel: {
-    fontFamily: theme.font.secondary.bold,
+    fontFamily: theme.font.primary.bold,
     fontSize: 20,
     color: theme.color.white,
     textTransform: 'uppercase',
@@ -90,16 +92,13 @@ const styles = StyleSheet.create((theme) => ({
   changeSeasonButton: {
     padding: theme.spacing.xxs,
   },
-  statRowsContainer: {
-    gap: theme.spacing.s,
-  },
   percentageLabel: {
-    fontFamily: theme.font.primary.regular,
-    fontSize: 16,
+    fontFamily: theme.font.primary.bold,
+    fontSize: 14,
     color: theme.color.white,
     textTransform: 'uppercase',
     position: 'absolute',
     right: 0,
-    top: 0,
+    top: theme.spacing.l,
   },
 }));

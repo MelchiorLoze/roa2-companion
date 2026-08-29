@@ -6,6 +6,7 @@ exports[`EloDistributionLineChart renders the chart when leaderboard stats are a
 >
   <
     adjustToWidth={true}
+    color="white"
     data={
       [
         {
