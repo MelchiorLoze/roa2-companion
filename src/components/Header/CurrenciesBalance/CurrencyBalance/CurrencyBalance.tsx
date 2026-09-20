@@ -28,7 +28,7 @@ export const CurrencyBalance = ({ balance, currency }: Readonly<Props>) => {
         shadow={{
           color: theme.color.currencyLabelShadow,
           offset: { x: 1, y: 1 },
-          blurRadius: 0
+          blurRadius: 0,
         }}
         style={styles.label(currency)}
         text={formatCurrency(balance)}

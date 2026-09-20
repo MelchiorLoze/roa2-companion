@@ -3,12 +3,12 @@ import { Image, type ImageSource } from 'expo-image';
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { LeaderboardRowBackground, PlayerIconContainerBackground } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { useCachedSkiaImage } from '@/hooks/business/useCachedSkiaImage/useCachedSkiaImage';
 
+import { LeaderboardRowBackground, PlayerIconContainerBackground } from '../../assets/images/ui';
 import { type Rank, RANK_ICONS } from '../../types/rank';
 
 // Either rank or rankIcon or neither, but not both

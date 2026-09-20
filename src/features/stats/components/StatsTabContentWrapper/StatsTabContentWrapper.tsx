@@ -3,7 +3,7 @@ import { type PropsWithChildren } from 'react';
 import { RefreshControl, ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { StatsBackground } from '@/assets/images/ui';
+import { StatsBackground } from '../../assets/images/ui';
 
 type Props = PropsWithChildren<{
   onRefresh: () => void;

@@ -11,13 +11,3 @@ export const ItemBackground: ImageSource = require('./item-bg.png'); // MI_Store
 export const TabBarBackground: ImageSource = require('./tab-bar-bg.png'); // MI_CSSTopBarBG
 export const TabBorderBackground: ImageSource = require('./tab-border-bg.png'); // MI_StoreTabButton
 export const TabInnerBorderBackground: ImageSource = require('./tab-inner-border-bg.png'); // MI_StoreTabButtonCurve1
-
-// Store
-export const CoinStoreBackground: ImageSource = require('./coin-store-bg.png'); // MI_MedalShopBG
-export const CoinStoreTitleBackground: ImageSource = require('./coin-store-title-bg.png'); // UI_StoreTitle_SwipeBG
-export const CoinStoreRotationCountdownBackground: ImageSource = require('./coin-store-rotation-countdown-bg.png'); // CoinShopTimerBG
-
-// Stats
-export const StatsBackground: ImageSource = require('./stats-bg.png'); // MI_LeaderboardRippleBG + MI_CrackleMaterial_Inst
-export const LeaderboardRowBackground: ImageSource = require('./leaderboard-row-bg.png'); // BG_Bttn_Listing_Unfocused
-export const PlayerIconContainerBackground: ImageSource = require('./player-icon-container-bg.png'); // MG_Lobby_PlayerContainer_ProfilePic

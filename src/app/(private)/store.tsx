@@ -3,10 +3,10 @@ import { type PropsWithChildren, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { CoinStoreBackground, CoinStoreTitleBackground } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
+import { CoinStoreBackground, CoinStoreTitleBackground } from '@/features/store/assets/images/ui';
 import { CoinStoreRotationCountdown } from '@/features/store/components/CoinStoreRotationCountdown/CoinStoreRotationCountdown';
 import { ItemList } from '@/features/store/components/ItemList/ItemList';
 import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';

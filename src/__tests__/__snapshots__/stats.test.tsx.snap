@@ -405,7 +405,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/stats-bg.png",
                 },
               ]
             }
@@ -475,7 +475,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                    "testUri": "../../../src/features/store/assets/images/ui/coin-store-title-bg.png",
                   },
                 ]
               }
@@ -1038,7 +1038,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/icons/clock.png",
                 },
               ]
             }
@@ -1500,7 +1500,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/stats-bg.png",
                 },
               ]
             }
@@ -1570,7 +1570,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                    "testUri": "../../../src/features/store/assets/images/ui/coin-store-title-bg.png",
                   },
                 ]
               }
@@ -2133,7 +2133,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/icons/clock.png",
                 },
               ]
             }
@@ -2593,7 +2593,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/stats-bg.png",
                 },
               ]
             }
@@ -3476,7 +3476,7 @@ exports[`Stats renders correctly on global tab 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/icons/clock.png",
                 },
               ]
             }
@@ -3938,7 +3938,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/stats-bg.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/stats-bg.png",
                 },
               ]
             }
@@ -4008,7 +4008,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
               source={
                 [
                   {
-                    "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                    "testUri": "../../../src/features/store/assets/images/ui/coin-store-title-bg.png",
                   },
                 ]
               }
@@ -5267,7 +5267,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
             source={
               [
                 {
-                  "testUri": "../../../src/assets/images/ui/icons/clock.png",
+                  "testUri": "../../../src/features/stats/assets/images/ui/icons/clock.png",
                 },
               ]
             }
