@@ -104,7 +104,7 @@ const styles = StyleSheet.create((theme) => ({
     borderRadius: 4,
   },
   background: {
-    padding: 1,
+    padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.tabBackground,
   },
@@ -121,13 +121,14 @@ const styles = StyleSheet.create((theme) => ({
     strokeWidth: 1.5,
     strokeColor: theme.color.tabLabelOutline,
   },
+  // PRESSED STATE
   pressedBorder: {
     padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.buttonSelectedPrimary,
   },
   pressedBackground: {
-    padding: theme.spacing.xs,
+    padding: 5,
     borderRadius: 2,
     alignItems: 'center',
     backgroundColor: theme.color.tabPressedBackground,
@@ -137,15 +138,16 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.black,
-    strokeWidth: 2,
+    strokeWidth: 1.5,
   },
+  // SELECTED STATE
   selectedBorder: {
     padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.tabSelectedBorder,
   },
   selectedBackground: {
-    padding: theme.spacing.xs,
+    padding: 5,
     borderRadius: 2,
     alignItems: 'center',
   },
@@ -154,6 +156,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.tabSelectedLabel,
-    strokeWidth: 2,
+    strokeWidth: 1.5,
   },
 }));

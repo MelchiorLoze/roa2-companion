@@ -67,7 +67,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
           style={
             {
               "alignItems": "center",
-              "padding": 4,
+              "padding": 5,
             }
           }
         >
@@ -78,7 +78,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 16,
                 "textShadowColor": undefined,
-                "textShadowRadius": 2,
+                "textShadowRadius": 1.5,
               }
             }
           >
@@ -144,7 +144,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
             onLayout={[Function]}
             style={
               {
-                "padding": 1,
+                "padding": 2,
               }
             }
           >
@@ -692,7 +692,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
             onLayout={[Function]}
             style={
               {
-                "padding": 1,
+                "padding": 2,
               }
             }
           >
@@ -773,7 +773,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           style={
             {
               "alignItems": "center",
-              "padding": 4,
+              "padding": 5,
             }
           }
         >
@@ -784,7 +784,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 16,
                 "textShadowColor": undefined,
-                "textShadowRadius": 2,
+                "textShadowRadius": 1.5,
               }
             }
           >
