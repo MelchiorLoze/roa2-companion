@@ -1,11 +1,10 @@
-import { Image, ImageBackground } from 'expo-image';
-import { Pressable, View } from 'react-native';
+import { Image } from 'expo-image';
+import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { ItemBackground, ItemOutline } from '@/assets/images/ui';
+import { Card } from '@/components/Card/Card';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { FittedText } from '@/components/FittedText/FittedText';
-import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { ParallelogramView } from '@/components/ParallelogramView/ParallelogramView';
 import { Currency, CURRENCY_ICONS } from '@/types/currency';
 import { CATEGORY_LABELS, type Item } from '@/types/item';
@@ -18,92 +17,48 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
-    <Pressable onPress={onPress} role="button" style={styles.container}>
-      {({ pressed }) => (
+    <Card contentStyle={styles.content} onPress={onPress} role="button" style={styles.container}>
+      {(pressed) => (
         <>
-          <NineSlicesImage
-            insets={{ top: '40%', right: '40%', bottom: '40%', left: '40%' }}
-            source={ItemOutline}
-            style={StyleSheet.absoluteFill}
-          />
-          {pressed && <View style={styles.outLinePressed} />}
-          <View style={styles.contentContainer}>
-            <ImageBackground
-              contentFit="fill"
-              imageStyle={styles.backgroundImage}
-              source={pressed ? undefined : ItemBackground}
-              style={StyleSheet.absoluteFill}
-            />
-
-            <View style={styles.imageContainer(pressed)}>
-              <ItemImage item={item} />
-              <ParallelogramView skewAmount={theme.spacing.s} style={styles.nameContainer(pressed)}>
-                <FittedText adjustsFontSizeToFit numberOfLines={2} style={styles.name(pressed)}>
-                  {item.name}
-                </FittedText>
-              </ParallelogramView>
-            </View>
-
-            <>
-              <FancyText
-                style={{
-                  ...styles.category(pressed),
-                  gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
-                }}
-                text={CATEGORY_LABELS[item.category]}
-              />
-
-              {item.coinPrice && (
-                <View style={styles.priceContainer(pressed)}>
-                  <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
-                  <FancyText
-                    style={{
-                      ...styles.price(pressed),
-                      gradient: { ...theme.color.gradient.labelText(pressed, true), direction: 'vertical' },
-                    }}
-                    text={item.coinPrice.toString()}
-                  />
-                </View>
-              )}
-            </>
+          <View style={styles.imageContainer(pressed)}>
+            <ItemImage item={item} />
+            <ParallelogramView skewAmount={theme.spacing.s} style={styles.nameContainer(pressed)}>
+              <FittedText adjustsFontSizeToFit numberOfLines={2} style={styles.name(pressed)}>
+                {item.name}
+              </FittedText>
+            </ParallelogramView>
           </View>
+
+          <FancyText
+            gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
+            style={styles.category(pressed)}
+            text={CATEGORY_LABELS[item.category]}
+          />
+
+          {item.coinPrice && (
+            <View style={styles.priceContainer(pressed)}>
+              <Image contentFit="contain" source={CURRENCY_ICONS[Currency.COINS]} style={styles.currencyIcon} />
+              <FancyText
+                gradient={{ ...theme.color.gradient.labelText(pressed, true), direction: 'vertical' }}
+                style={styles.price(pressed)}
+                text={item.coinPrice.toString()}
+              />
+            </View>
+          )}
         </>
       )}
-    </Pressable>
+    </Card>
   );
 };
 
 const styles = StyleSheet.create((theme) => ({
   container: {
     flex: 1 / 2,
-    borderRadius: 14,
-    overflow: 'hidden',
-    boxShadow: [
-      {
-        color: theme.color.black,
-        offsetX: 0,
-        offsetY: 0,
-        blurRadius: 5,
-        spreadDistance: 0,
-      },
-    ],
   },
-  outLinePressed: {
-    ...StyleSheet.absoluteFillObject,
-    borderRadius: 14,
-    backgroundColor: theme.color.itemSelectedPrimary,
-  },
-  contentContainer: {
-    flex: 1,
-    margin: 5,
-    marginBottom: theme.spacing.s,
+  content: {
     padding: 10,
     paddingBottom: theme.spacing.xxs,
     gap: theme.spacing.xxl,
-  },
-  backgroundImage: {
-    borderRadius: 12,
-    backgroundColor: theme.color.white,
   },
   imageContainer: (pressed: boolean) => ({
     padding: 5,
@@ -164,6 +119,6 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.bold,
     fontSize: 14,
     strokeWidth: 1,
-    strokeColor: pressed ? theme.color.transparent : theme.color.borderPrimary,
+    strokeColor: pressed ? theme.color.transparent : theme.color.labelOutline,
   }),
 }));

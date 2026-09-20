@@ -21,8 +21,9 @@ export const LinearGradient = <T extends GradientColors>({
   children,
 }: Readonly<Props<T>>) => {
   const gradientProps = getGradientProps({
+    colors,
+    times,
     direction: horizontal ? 'horizontal' : 'vertical',
-    gradient: { colors, times },
   });
 
   return (

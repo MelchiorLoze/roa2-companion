@@ -1,67 +1,54 @@
-import { Skia } from '@shopify/react-native-skia';
 import { type ComponentProps } from 'react';
-import { Pressable, type StyleProp, type ViewStyle } from 'react-native';
+import { type ColorValue, Pressable, type StyleProp, type ViewStyle } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
+
+import { TabBorderBackground, TabInnerBorderBackground } from '@/assets/images/ui';
 
 import { FancyText } from '../FancyText/FancyText';
 import { ParallelogramView } from '../ParallelogramView/ParallelogramView';
 
-type Props = {
-  title: string;
-  selected: boolean;
-  onPress: () => void;
-};
-
-const borderGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '2.5%', color: '#422C8F' },
-    { offset: '30%', color: '#8F60D0' },
-  ],
-  start: { x: '9%', y: '100%' },
-  end: { x: '0%', y: '-10%' },
-} as const;
-
-const innerBorderGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '27%', color: '#5619BC' },
-    { offset: '55%', color: '#7E48D1' },
-  ],
-  start: { x: '0%', y: '0%' },
-  end: { x: '4%', y: '100%' },
-} as const;
-
-const selectedBackgroundGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '0%', color: '#EDCFFF' },
-    { offset: '100%', color: '#DDAFFF' },
-  ],
-  start: { x: '0%', y: '0%' },
-  end: { x: '0%', y: '100%' },
-} as const;
-
-const labelShadow = (color: string) => ({
-  color: Skia.Color(color),
-  offset: { x: 1, y: 0 },
-  blurRadius: 0.001, // 0 radius is not supported
-});
-
 type FaceProps = {
-  title: string;
+  label: string;
+  labelStyle: ComponentProps<typeof FancyText>['style'];
+  labelGradient?: ComponentProps<typeof FancyText>['gradient'];
+  labelShadowColor: ColorValue;
   borderStyle: StyleProp<ViewStyle>;
   backgroundStyle: StyleProp<ViewStyle>;
   backgroundGradient?: ComponentProps<typeof ParallelogramView>['gradient'];
-  labelStyle: ComponentProps<typeof FancyText>['style'];
 };
 
-const TabFace = ({ title, borderStyle, backgroundStyle, backgroundGradient, labelStyle }: Readonly<FaceProps>) => (
+const TabFace = ({
+  label,
+  labelStyle,
+  labelGradient,
+  labelShadowColor,
+  borderStyle,
+  backgroundStyle,
+  backgroundGradient,
+}: Readonly<FaceProps>) => (
   <ParallelogramView skewAmount={5} style={borderStyle}>
     <ParallelogramView gradient={backgroundGradient} skewAmount={5} style={backgroundStyle}>
-      <FancyText style={labelStyle} text={title} />
+      <FancyText
+        gradient={labelGradient}
+        shadow={{
+          color: labelShadowColor,
+          offset: { x: 1, y: 0 },
+          blurRadius: 0,
+        }}
+        style={labelStyle}
+        text={label}
+      />
     </ParallelogramView>
   </ParallelogramView>
 );
 
-export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
+type Props = {
+  label: string;
+  selected: boolean;
+  onPress: () => void;
+};
+
+export const Tab = ({ label, selected, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
   return (
@@ -71,35 +58,29 @@ export const Tab = ({ title, selected, onPress }: Readonly<Props>) => {
           <TabFace
             backgroundStyle={styles.pressedBackground}
             borderStyle={styles.pressedBorder}
-            labelStyle={{
-              ...styles.labelPressed,
-              shadow: labelShadow(theme.color.tabPressedLabelShadow),
-            }}
-            title={title}
+            label={label}
+            labelShadowColor={theme.color.tabPressedLabelShadow}
+            labelStyle={styles.labelPressed}
           />
         ) : selected ? (
           <TabFace
-            backgroundGradient={selectedBackgroundGradient}
+            backgroundGradient={{ ...theme.color.gradient.tabSelectedBackground, direction: 'vertical' }}
             backgroundStyle={styles.selectedBackground}
             borderStyle={styles.selectedBorder}
-            labelStyle={{
-              ...styles.labelSelected,
-              shadow: labelShadow(theme.color.tabLabelShadow),
-            }}
-            title={title}
+            label={label}
+            labelShadowColor={theme.color.tabLabelShadow}
+            labelStyle={styles.labelSelected}
           />
         ) : (
-          <ParallelogramView gradient={borderGradient} skewAmount={5} style={styles.border}>
-            <ParallelogramView gradient={innerBorderGradient} skewAmount={5} style={styles.innerBorder}>
+          <ParallelogramView backgroundImage={TabBorderBackground} skewAmount={5} style={styles.border}>
+            <ParallelogramView backgroundImage={TabInnerBorderBackground} skewAmount={5} style={styles.innerBorder}>
               <TabFace
                 backgroundStyle={styles.innerBackground}
                 borderStyle={styles.background}
-                labelStyle={{
-                  ...styles.label,
-                  gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' },
-                  shadow: labelShadow(theme.color.tabLabelShadow),
-                }}
-                title={title}
+                label={label}
+                labelGradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+                labelShadowColor={theme.color.tabLabelShadow}
+                labelStyle={styles.label}
               />
             </ParallelogramView>
           </ParallelogramView>
@@ -123,7 +104,7 @@ const styles = StyleSheet.create((theme) => ({
     borderRadius: 4,
   },
   background: {
-    padding: 1,
+    padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.tabBackground,
   },
@@ -140,13 +121,14 @@ const styles = StyleSheet.create((theme) => ({
     strokeWidth: 1.5,
     strokeColor: theme.color.tabLabelOutline,
   },
+  // PRESSED STATE
   pressedBorder: {
     padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.buttonSelectedPrimary,
   },
   pressedBackground: {
-    padding: theme.spacing.xs,
+    padding: 5,
     borderRadius: 2,
     alignItems: 'center',
     backgroundColor: theme.color.tabPressedBackground,
@@ -156,15 +138,16 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.black,
-    strokeWidth: 2,
+    strokeWidth: 1.5,
   },
+  // SELECTED STATE
   selectedBorder: {
     padding: theme.spacing.xxs,
     borderRadius: 4,
     backgroundColor: theme.color.tabSelectedBorder,
   },
   selectedBackground: {
-    padding: theme.spacing.xs,
+    padding: 5,
     borderRadius: 2,
     alignItems: 'center',
   },
@@ -173,6 +156,6 @@ const styles = StyleSheet.create((theme) => ({
     fontSize: 16,
     textTransform: 'uppercase',
     color: theme.color.tabSelectedLabel,
-    strokeWidth: 2,
+    strokeWidth: 1.5,
   },
 }));

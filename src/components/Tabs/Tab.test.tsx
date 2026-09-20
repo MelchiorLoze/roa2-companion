@@ -5,13 +5,13 @@ import { Tab } from './Tab';
 const onPressMock = jest.fn();
 
 const renderComponent = (selected: boolean) => {
-  render(<Tab onPress={onPressMock} selected={selected} title="Test Tab" />);
+  render(<Tab label="Test Tab" onPress={onPressMock} selected={selected} />);
 
   expect(onPressMock).not.toHaveBeenCalled();
 };
 
 describe('Tab', () => {
-  it('renders the title', () => {
+  it('renders the label', () => {
     renderComponent(false);
 
     expect(screen.getByText('Test Tab')).toBeEnabled();
@@ -27,13 +27,13 @@ describe('Tab', () => {
   });
 
   it('renders differently when selected', () => {
-    const { rerender } = render(<Tab onPress={onPressMock} selected={false} title="Test Tab" />);
+    const { rerender } = render(<Tab label="Test Tab" onPress={onPressMock} selected={false} />);
     const unselectedView = screen.toJSON();
 
     const unselectedTab = screen.getByText('Test Tab');
     expect(unselectedTab).toBeEnabled();
 
-    rerender(<Tab onPress={onPressMock} selected={true} title="Test Tab" />);
+    rerender(<Tab label="Test Tab" onPress={onPressMock} selected={true} />);
     const selectedView = screen.toJSON();
     expect(selectedView).not.toEqual(unselectedView);
 

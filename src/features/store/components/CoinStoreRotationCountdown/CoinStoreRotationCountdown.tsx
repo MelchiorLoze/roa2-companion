@@ -3,10 +3,11 @@ import { type DateTime } from 'luxon';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { CoinStoreRotationCountdownBackground } from '@/assets/images/ui';
-import { TimeIcon } from '@/assets/images/ui/icons';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { useCountdown } from '@/hooks/business/useCountdown/useCountdown';
+
+import { CoinStoreRotationCountdownBackground } from '../../assets/images/ui';
+import { ClockIcon } from '../../assets/images/ui/icons';
 
 type Props = { expirationDate: DateTime };
 
@@ -29,7 +30,7 @@ export const CoinStoreRotationCountdown = ({ expirationDate }: Readonly<Props>) 
         style={StyleSheet.absoluteFill}
       />
       <View style={styles.content}>
-        <Image source={TimeIcon} style={styles.icon} />
+        <Image source={ClockIcon} style={styles.icon} />
         <View>
           <FancyText style={{ ...styles.label, ...styles.countdownPlaceholder }} text={`${hours}:${minutes}:88`} />
           <View style={styles.countdown}>

@@ -7,9 +7,9 @@ const onPressTab2Mock = jest.fn();
 const onPressTab3Mock = jest.fn();
 
 const tabs = [
-  { title: 'Tab 1', onPress: onPressTab1Mock },
-  { title: 'Tab 2', onPress: onPressTab2Mock },
-  { title: 'Tab 3', onPress: onPressTab3Mock },
+  { label: 'Tab 1', onPress: onPressTab1Mock },
+  { label: 'Tab 2', onPress: onPressTab2Mock },
+  { label: 'Tab 3', onPress: onPressTab3Mock },
 ];
 
 const renderComponent = (selectedTab: string) => {
@@ -73,8 +73,8 @@ describe('Tabs', () => {
 
   it('renders with two tabs', () => {
     const twoTabs = [
-      { title: 'Active', onPress: jest.fn() },
-      { title: 'Past', onPress: jest.fn() },
+      { label: 'Active', onPress: jest.fn() },
+      { label: 'Past', onPress: jest.fn() },
     ];
 
     render(<Tabs selectedTab="Active" tabs={twoTabs} />);

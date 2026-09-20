@@ -1,13 +1,12 @@
-import { Skia } from '@shopify/react-native-skia';
 import { ImageBackground } from 'expo-image';
 import { type PropsWithChildren, useState } from 'react';
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { CoinStoreBackground, CoinStoreTitleBackground } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
 import { Spinner } from '@/components/Spinner/Spinner';
+import { CoinStoreBackground, CoinStoreTitleBackground } from '@/features/store/assets/images/ui';
 import { CoinStoreRotationCountdown } from '@/features/store/components/CoinStoreRotationCountdown/CoinStoreRotationCountdown';
 import { ItemList } from '@/features/store/components/ItemList/ItemList';
 import { PurchaseConfirmationDialog } from '@/features/store/components/PurchaseConfirmationDialog/PurchaseConfirmationDialog';
@@ -20,7 +19,7 @@ const GradientWrapper = ({ children }: PropsWithChildren) => {
   return (
     <View style={styles.container}>
       <ImageBackground contentFit="fill" source={CoinStoreBackground} style={StyleSheet.absoluteFill} />
-      <LinearGradient {...theme.color.gradient.storeGradient} horizontal style={styles.backgroundGradient} />
+      <LinearGradient {...theme.color.gradient.storeBackground} horizontal style={styles.backgroundGradient} />
       {children}
     </View>
   );
@@ -51,14 +50,12 @@ export default function Store() {
           <View style={styles.titleContainer}>
             <ImageBackground contentFit="fill" source={CoinStoreTitleBackground} style={StyleSheet.absoluteFill} />
             <FancyText
-              style={{
-                ...styles.title,
-                shadow: {
-                  color: Skia.Color(theme.color.storeTitleShadow),
-                  offset: { x: 1, y: 1 },
-                  blurRadius: 0.001, // 0 radius is not supported
-                },
+              shadow={{
+                color: theme.color.storeTitleShadow,
+                offset: { x: 1, y: 1 },
+                blurRadius: 0,
               }}
+              style={styles.title}
               text="COIN SHOP"
             />
           </View>

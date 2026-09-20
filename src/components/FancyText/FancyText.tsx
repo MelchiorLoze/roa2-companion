@@ -20,7 +20,7 @@ import {
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
 import { type FontFamily, FONTS } from '@/types/font';
-import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
+import { getGradientProps, type GradientColors, type GradientWithDirection } from '@/utils/getGradientProps';
 
 const SKIA_FONTS = Object.entries(FONTS).reduce(
   (acc, [key, value]) => {
@@ -36,25 +36,28 @@ type ParagraphResult = {
   paragraphRect: SkRect;
 };
 
-type GradientOrPlainColor<T extends GradientColors> = Either<
-  { gradient: Gradient<T> & { direction: 'horizontal' | 'vertical' } },
-  { color: ColorValue }
->;
-
-type FancyTextStyle<T extends GradientColors> = {
+type FancyTextStyle = {
   fontSize: number;
   fontFamily: FontFamily;
   textTransform?: 'uppercase';
   letterSpacing?: number;
   strokeWidth?: number;
   strokeColor?: ColorValue;
-  shadow?: SkTextShadow;
   skew?: number;
-} & GradientOrPlainColor<T>;
+  color?: ColorValue;
+};
+
+type ShadowProp = {
+  color: ColorValue;
+  offset: { x: number; y: number };
+  blurRadius: number;
+};
 
 type Props<T extends GradientColors> = {
   text: string;
-  style: FancyTextStyle<T>;
+  style: FancyTextStyle;
+  gradient?: GradientWithDirection<T>;
+  shadow?: ShadowProp;
 };
 
 const toSkiaColor = (color: ColorValue) => {
@@ -85,7 +88,9 @@ const createParagraph = (
 
 const createParagraphs = <T extends GradientColors>(
   text: string,
-  style: FancyTextStyle<T>,
+  style: FancyTextStyle,
+  gradient: GradientWithDirection<T> | undefined,
+  shadow: ShadowProp | undefined,
   fontProvider: SkTypefaceFontProvider,
 ): ParagraphResult => {
   const textStyle: SkTextStyle = {
@@ -97,14 +102,16 @@ const createParagraphs = <T extends GradientColors>(
   const inset = (style.strokeWidth ?? 0) / 2; // skia stroke is centered on the path, so half of it goes inward
   const shadowInset = inset > 0 && style.strokeColor ? inset : 0; // if stroke is present, shadow should be inset by the same amount to avoid being cut off
 
-  const shadows: SkTextShadow[] = style.shadow?.offset
+  const shadows: SkTextShadow[] = shadow
     ? [
         {
-          ...style.shadow,
+          ...shadow,
+          color: Skia.Color(shadow.color.toString()),
           offset: {
-            x: style.shadow.offset.x ? style.shadow.offset.x + shadowInset : 0,
-            y: style.shadow.offset.y ? style.shadow.offset.y + shadowInset : 0,
+            x: shadow.offset.x ? shadow.offset.x + shadowInset : 0,
+            y: shadow.offset.y ? shadow.offset.y + shadowInset : 0,
           },
+          blurRadius: shadow.blurRadius === 0 ? 0.001 : shadow.blurRadius, // 0 radius for a perfectly sharp shadow is not supported
         },
       ]
     : [];
@@ -125,25 +132,19 @@ const createParagraphs = <T extends GradientColors>(
   // FILL PARAGRAPH
   const fillPaint = Skia.Paint();
 
-  if (style.gradient) {
-    const { start, end, locations } = getGradientProps({
-      direction: style.gradient.direction,
-      gradient: {
-        colors: style.gradient.colors,
-        times: style.gradient.times,
-      },
-    });
+  if (gradient) {
+    const { colors, start, end, locations } = getGradientProps(gradient);
 
     fillPaint.setShader(
       Skia.Shader.MakeLinearGradient(
         { x: start.x * textWidth, y: start.y * textHeight },
         { x: end.x * textWidth, y: end.y * textHeight },
-        style.gradient.colors.map(toSkiaColor),
+        colors.map(toSkiaColor),
         locations ? [...locations] : null,
         TileMode.Clamp,
       ),
     );
-  } else {
+  } else if (style.color) {
     fillPaint.setColor(toSkiaColor(style.color));
   }
 
@@ -177,13 +178,13 @@ const computeSkew = (skew: number, initialRect: SkRect): SkRect & TransformProp 
   return { width, height, x, y, transform } as const;
 };
 
-export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Props<T>>) => {
+export const FancyText = <T extends GradientColors>({ text, style, gradient, shadow }: Readonly<Props<T>>) => {
   const { fontScale } = useWindowDimensions();
   const fontProvider = useFonts(SKIA_FONTS);
 
   if (!fontProvider) return null;
 
-  const textStyle: FancyTextStyle<T> = {
+  const textStyle: FancyTextStyle = {
     ...style,
     fontSize: style.fontSize * fontScale,
     letterSpacing: (style.letterSpacing ?? 0) * fontScale,
@@ -193,6 +194,8 @@ export const FancyText = <T extends GradientColors>({ text, style }: Readonly<Pr
   const { paragraphFill, paragraphStroke, paragraphRect } = createParagraphs(
     style.textTransform === 'uppercase' ? text.toUpperCase() : text,
     textStyle,
+    gradient,
+    shadow,
     fontProvider,
   );
   const { width, height, x, y, transform } = computeSkew(style.skew ?? 0, paragraphRect);
