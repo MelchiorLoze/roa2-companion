@@ -3,8 +3,9 @@ import { getGradientProps } from './getGradientProps';
 describe('getGradientProps', () => {
   it('calculates gradient locations for a simple two-color gradient', () => {
     const result = getGradientProps({
+      colors: ['red', 'blue'],
+      times: [0, 100] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'blue'], times: [0, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'blue']);
@@ -15,8 +16,9 @@ describe('getGradientProps', () => {
 
   it('calculates gradient locations for a three-color gradient', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'blue'],
+      times: [0, 50, 100] as const,
       direction: 'vertical',
-      gradient: { colors: ['red', 'green', 'blue'], times: [0, 50, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'blue']);
@@ -27,8 +29,9 @@ describe('getGradientProps', () => {
 
   it('calculates gradient locations for evenly spaced colors', () => {
     const result = getGradientProps({
+      colors: ['red', 'orange', 'yellow', 'green', 'blue'],
+      times: [0, 25, 50, 75, 100] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'orange', 'yellow', 'green', 'blue'], times: [0, 25, 50, 75, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'orange', 'yellow', 'green', 'blue']);
@@ -39,8 +42,9 @@ describe('getGradientProps', () => {
 
   it('calculates gradient locations for unevenly spaced colors', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'yellow', 'blue'],
+      times: [0, 10, 90, 100] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'green', 'yellow', 'blue'], times: [0, 10, 90, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'yellow', 'blue']);
@@ -51,8 +55,9 @@ describe('getGradientProps', () => {
 
   it('handles negative values correctly', () => {
     const result = getGradientProps({
+      colors: ['red', 'orange', 'yellow', 'green', 'blue'],
+      times: [-100, -50, 0, 50, 100] as const,
       direction: 'vertical',
-      gradient: { colors: ['red', 'orange', 'yellow', 'green', 'blue'], times: [-100, -50, 0, 50, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'orange', 'yellow', 'green', 'blue']);
@@ -63,8 +68,9 @@ describe('getGradientProps', () => {
 
   it('handles floating point values correctly', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'yellow', 'blue'],
+      times: [0, 33.33, 66.66, 100] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'green', 'yellow', 'blue'], times: [0, 33.33, 66.66, 100] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'yellow', 'blue']);
@@ -78,8 +84,9 @@ describe('getGradientProps', () => {
 
   it('maintains the correct length of locations array', () => {
     const result = getGradientProps({
+      colors: ['a', 'b', 'c', 'd', 'e', 'f'],
+      times: [0, 10, 20, 30, 40, 50] as const,
       direction: 'horizontal',
-      gradient: { colors: ['a', 'b', 'c', 'd', 'e', 'f'], times: [0, 10, 20, 30, 40, 50] as const },
     });
 
     expect(result.locations).toHaveLength(6);
@@ -87,8 +94,9 @@ describe('getGradientProps', () => {
 
   it('handles very small intervals correctly', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'blue'],
+      times: [0, 0.001, 0.002] as const,
       direction: 'vertical',
-      gradient: { colors: ['red', 'green', 'blue'], times: [0, 0.001, 0.002] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'blue']);
@@ -101,8 +109,9 @@ describe('getGradientProps', () => {
 
   it('handles very large intervals correctly', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'blue'],
+      times: [0, 500000, 1000000] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'green', 'blue'], times: [0, 500000, 1000000] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'blue']);
@@ -114,7 +123,7 @@ describe('getGradientProps', () => {
   it('uses default times [0, 1] when times parameter is omitted', () => {
     const result = getGradientProps({
       direction: 'horizontal',
-      gradient: { colors: ['red', 'blue'] },
+      colors: ['red', 'blue'],
     });
 
     expect(result.colors).toEqual(['red', 'blue']);
@@ -125,8 +134,9 @@ describe('getGradientProps', () => {
 
   it('horizontal gradients always have y coordinates set to 0', () => {
     const result = getGradientProps({
+      colors: ['red', 'orange', 'yellow', 'green'],
+      times: [-50, 0, 50, 100] as const,
       direction: 'horizontal',
-      gradient: { colors: ['red', 'orange', 'yellow', 'green'], times: [-50, 0, 50, 100] as const },
     });
 
     expect(result.start.y).toBe(0);
@@ -137,8 +147,9 @@ describe('getGradientProps', () => {
 
   it('vertical gradients always have x coordinates set to 0', () => {
     const result = getGradientProps({
+      colors: ['red', 'orange', 'yellow', 'green'],
+      times: [-50, 0, 50, 100] as const,
       direction: 'vertical',
-      gradient: { colors: ['red', 'orange', 'yellow', 'green'], times: [-50, 0, 50, 100] as const },
     });
 
     expect(result.start.x).toBe(0);
@@ -150,8 +161,9 @@ describe('getGradientProps', () => {
   it('throws an error if times are not sorted in ascending order', () => {
     expect(() =>
       getGradientProps({
+        colors: ['red', 'green', 'blue'],
+        times: [100, 0, 50] as const,
         direction: 'horizontal',
-        gradient: { colors: ['red', 'green', 'blue'], times: [100, 0, 50] as const },
       }),
     ).toThrow('Gradient times must be in ascending order');
   });
@@ -159,16 +171,18 @@ describe('getGradientProps', () => {
   it('throws an error if times contain duplicate values', () => {
     expect(() =>
       getGradientProps({
+        colors: ['red', 'green', 'yellow', 'blue'],
+        times: [0, 50, 50, 100] as const,
         direction: 'horizontal',
-        gradient: { colors: ['red', 'green', 'yellow', 'blue'], times: [0, 50, 50, 100] as const },
       }),
     ).toThrow('Gradient times must be unique values');
   });
 
   it('handles decimal precision correctly', () => {
     const result = getGradientProps({
+      colors: ['red', 'green', 'yellow', 'blue'],
+      times: [0, 1 / 3, 2 / 3, 1] as const,
       direction: 'vertical',
-      gradient: { colors: ['red', 'green', 'yellow', 'blue'], times: [0, 1 / 3, 2 / 3, 1] as const },
     });
 
     expect(result.colors).toEqual(['red', 'green', 'yellow', 'blue']);

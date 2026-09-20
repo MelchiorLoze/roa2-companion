@@ -135,19 +135,13 @@ const createParagraphs = <T extends GradientColors>(
   const fillPaint = Skia.Paint();
 
   if (gradient) {
-    const { start, end, locations } = getGradientProps({
-      direction: gradient.direction,
-      gradient: {
-        colors: gradient.colors,
-        times: gradient.times,
-      },
-    });
+    const { colors, start, end, locations } = getGradientProps(gradient);
 
     fillPaint.setShader(
       Skia.Shader.MakeLinearGradient(
         { x: start.x * textWidth, y: start.y * textHeight },
         { x: end.x * textWidth, y: end.y * textHeight },
-        gradient.colors.map(toSkiaColor),
+        colors.map(toSkiaColor),
         locations ? [...locations] : null,
         TileMode.Clamp,
       ),

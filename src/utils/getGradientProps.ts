@@ -7,9 +7,8 @@ export type Gradient<T extends GradientColors> = {
   times?: { [K in keyof T]: number };
 };
 
-type GetGradientPropsOptions<T extends GradientColors> = {
+export type GradientWithDirection<T extends GradientColors> = Gradient<T> & {
   direction: 'horizontal' | 'vertical';
-  gradient: Gradient<T>;
 };
 
 type GradientProps<T extends GradientColors> = Readonly<{
@@ -20,9 +19,10 @@ type GradientProps<T extends GradientColors> = Readonly<{
 }>;
 
 export const getGradientProps = <T extends GradientColors>({
+  colors,
+  times,
   direction,
-  gradient: { colors, times },
-}: GetGradientPropsOptions<T>): GradientProps<T> => {
+}: GradientWithDirection<T>): GradientProps<T> => {
   if (times) {
     // Validate that times are in ascending order
     for (let i = 1; i < times.length; i++) {

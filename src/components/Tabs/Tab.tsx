@@ -2,41 +2,10 @@ import { type ComponentProps } from 'react';
 import { type ColorValue, Pressable, type StyleProp, type ViewStyle } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
+import { TabBorderBackground, TabInnerBorderBackground } from '@/assets/images/ui';
+
 import { FancyText } from '../FancyText/FancyText';
 import { ParallelogramView } from '../ParallelogramView/ParallelogramView';
-
-type Props = {
-  label: string;
-  selected: boolean;
-  onPress: () => void;
-};
-
-const borderGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '2.5%', color: '#422C8F' },
-    { offset: '30%', color: '#8F60D0' },
-  ],
-  start: { x: '9%', y: '100%' },
-  end: { x: '0%', y: '-10%' },
-} as const;
-
-const innerBorderGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '27%', color: '#5619BC' },
-    { offset: '55%', color: '#7E48D1' },
-  ],
-  start: { x: '0%', y: '0%' },
-  end: { x: '4%', y: '100%' },
-} as const;
-
-const selectedBackgroundGradient: ComponentProps<typeof ParallelogramView>['gradient'] = {
-  stops: [
-    { offset: '0%', color: '#EDCFFF' },
-    { offset: '100%', color: '#DDAFFF' },
-  ],
-  start: { x: '0%', y: '0%' },
-  end: { x: '0%', y: '100%' },
-} as const;
 
 type FaceProps = {
   label: string;
@@ -73,6 +42,12 @@ const TabFace = ({
   </ParallelogramView>
 );
 
+type Props = {
+  label: string;
+  selected: boolean;
+  onPress: () => void;
+};
+
 export const Tab = ({ label, selected, onPress }: Readonly<Props>) => {
   const { theme } = useUnistyles();
 
@@ -89,7 +64,7 @@ export const Tab = ({ label, selected, onPress }: Readonly<Props>) => {
           />
         ) : selected ? (
           <TabFace
-            backgroundGradient={selectedBackgroundGradient}
+            backgroundGradient={{ ...theme.color.gradient.tabSelectedBackground, direction: 'vertical' }}
             backgroundStyle={styles.selectedBackground}
             borderStyle={styles.selectedBorder}
             label={label}
@@ -97,8 +72,8 @@ export const Tab = ({ label, selected, onPress }: Readonly<Props>) => {
             labelStyle={styles.labelSelected}
           />
         ) : (
-          <ParallelogramView gradient={borderGradient} skewAmount={5} style={styles.border}>
-            <ParallelogramView gradient={innerBorderGradient} skewAmount={5} style={styles.innerBorder}>
+          <ParallelogramView backgroundImage={TabBorderBackground} skewAmount={5} style={styles.border}>
+            <ParallelogramView backgroundImage={TabInnerBorderBackground} skewAmount={5} style={styles.innerBorder}>
               <TabFace
                 backgroundStyle={styles.innerBackground}
                 borderStyle={styles.background}

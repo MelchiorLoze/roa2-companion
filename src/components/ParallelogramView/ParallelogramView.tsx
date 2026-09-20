@@ -1,28 +1,47 @@
+import { type ImageSource } from 'expo-image';
 import { type PropsWithChildren, type ReactNode, useState } from 'react';
-import { type ColorValue, type StyleProp, StyleSheet, View, type ViewStyle } from 'react-native';
-import { Defs, LinearGradient, Path, Polygon, Stop, Svg } from 'react-native-svg';
+import {
+  type ColorValue,
+  type ImageSourcePropType,
+  type StyleProp,
+  StyleSheet,
+  View,
+  type ViewStyle,
+} from 'react-native';
+import { ClipPath, Defs, Image, LinearGradient, Path, Polygon, Stop, Svg } from 'react-native-svg';
 
-type Percent = `${number}%`;
+import { getGradientProps, type GradientColors, type GradientWithDirection } from '@/utils/getGradientProps';
 
-type GradientStop = {
-  offset: Percent;
-  color: ColorValue;
-  opacity?: number;
-};
-
-type GradientProps = {
-  stops: GradientStop[];
-  start?: { x: Percent; y: Percent };
-  end?: { x: Percent; y: Percent };
-};
-
-type Props = PropsWithChildren<{
+type Props<T extends GradientColors> = PropsWithChildren<{
   style?: StyleProp<ViewStyle>;
   skewAmount: number;
-  gradient?: GradientProps;
-}>;
+}> &
+  Either<{ gradient?: GradientWithDirection<T> }, { backgroundImage?: ImageSource }>;
 
 type Point = [number, number];
+
+// Positive skewAmount: top edge shifted right (leans like /)
+// Negative skewAmount: top edge shifted left (leans like \)
+const skewPolygonPoints = (
+  skewAmount: number,
+  borderWidth: number,
+  size: { width: number; height: number },
+): [Point, Point, Point, Point] => {
+  const skew = Math.abs(skewAmount);
+  return skewAmount >= 0
+    ? [
+        [skew, borderWidth],
+        [size.width - borderWidth, borderWidth],
+        [size.width - skew, size.height - borderWidth],
+        [borderWidth, size.height - borderWidth],
+      ]
+    : [
+        [borderWidth, borderWidth],
+        [size.width - skew, borderWidth],
+        [size.width, size.height - borderWidth],
+        [skew, size.height - borderWidth],
+      ];
+};
 
 const roundedPolygonPath = (points: Point[], radius: number): string => {
   const n = points.length;
@@ -59,7 +78,13 @@ const formatPoints = (points: Point[]): string => {
   return points.map((p) => p.join(',')).join(' ');
 };
 
-export const ParallelogramView = ({ style, skewAmount, gradient, children }: Readonly<Props>) => {
+export const ParallelogramView = <T extends GradientColors>({
+  style,
+  skewAmount,
+  backgroundImage,
+  gradient,
+  children,
+}: Readonly<Props<T>>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
   const {
@@ -70,56 +95,67 @@ export const ParallelogramView = ({ style, skewAmount, gradient, children }: Rea
     ...viewStyle
   } = StyleSheet.flatten(style ?? {});
   const borderRadius = typeof rawBorderRadius === 'number' ? rawBorderRadius : 0;
-  const skew = Math.abs(skewAmount);
 
-  // Positive skewAmount: top edge shifted right (leans like /)
-  // Negative skewAmount: top edge shifted left (leans like \)
-  const points: Point[] =
-    skewAmount >= 0
-      ? [
-          [skew, borderWidth],
-          [size.width - borderWidth, borderWidth],
-          [size.width - skew, size.height - borderWidth],
-          [borderWidth, size.height - borderWidth],
-        ]
-      : [
-          [borderWidth, borderWidth],
-          [size.width - skew, borderWidth],
-          [size.width, size.height - borderWidth],
-          [skew, size.height - borderWidth],
-        ];
+  const points: Point[] = skewPolygonPoints(skewAmount, borderWidth, size);
 
-  const fill = gradient ? 'url(#parallelogramGradient)' : backgroundColor;
+  const gradientProps = gradient ? getGradientProps(gradient) : undefined;
+  const fill = gradientProps ? 'url(#parallelogramGradient)' : backgroundImage ? 'transparent' : backgroundColor;
+
+  const renderShape = (): ReactNode =>
+    borderRadius > 0 ? (
+      <Path
+        d={roundedPolygonPath(points, borderRadius)}
+        fill={fill}
+        stroke={borderColor}
+        strokeLinejoin="round"
+        strokeWidth={borderWidth}
+      />
+    ) : (
+      <Polygon fill={fill} points={formatPoints(points)} stroke={borderColor} strokeWidth={borderWidth} />
+    );
 
   const renderSvg = (): ReactNode =>
     size.width > 0 && size.height > 0 ? (
       <Svg height={size.height} style={StyleSheet.absoluteFill} width={size.width}>
-        {gradient && (
+        {gradientProps && (
           <Defs>
             <LinearGradient
               id="parallelogramGradient"
-              x1={gradient.start?.x ?? '0%'}
-              x2={gradient.end?.x ?? '100%'}
-              y1={gradient.start?.y ?? '0%'}
-              y2={gradient.end?.y ?? '0%'}
+              x1={`${gradientProps.start.x * 100}%`}
+              x2={`${gradientProps.end.x * 100}%`}
+              y1={`${gradientProps.start.y * 100}%`}
+              y2={`${gradientProps.end.y * 100}%`}
             >
-              {gradient.stops.map((stop) => (
-                <Stop key={stop.offset} offset={stop.offset} stopColor={stop.color} stopOpacity={stop.opacity ?? 1} />
-              ))}
+              {gradientProps.colors.map((color, index) => {
+                const offset = gradientProps.locations?.[index] ?? index / (gradientProps.colors.length - 1);
+                return <Stop key={offset} offset={`${offset * 100}%`} stopColor={color as ColorValue} />;
+              })}
             </LinearGradient>
           </Defs>
         )}
-        {borderRadius > 0 ? (
-          <Path
-            d={roundedPolygonPath(points, borderRadius)}
-            fill={fill}
-            stroke={borderColor}
-            strokeLinejoin="round"
-            strokeWidth={borderWidth}
-          />
-        ) : (
-          <Polygon fill={fill} points={formatPoints(points)} stroke={borderColor} strokeWidth={borderWidth} />
+
+        {backgroundImage && (
+          <>
+            <Defs>
+              <ClipPath id="parallelogramClip">
+                {borderRadius > 0 ? (
+                  <Path d={roundedPolygonPath(points, borderRadius)} />
+                ) : (
+                  <Polygon points={formatPoints(points)} />
+                )}
+              </ClipPath>
+            </Defs>
+            <Image
+              clipPath="url(#parallelogramClip)"
+              height={size.height}
+              href={backgroundImage as ImageSourcePropType}
+              preserveAspectRatio="none"
+              width={size.width}
+            />
+          </>
         )}
+
+        {renderShape()}
       </Svg>
     ) : null;
 

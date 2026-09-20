@@ -87,6 +87,10 @@ const theme = {
         colors: ['#00000099', '#00000000'],
         times: [0.8, 1],
       },
+      tabSelectedBackground: {
+        // Mod Kit - MI_StoreTabButtonCurve2
+        colors: ['#EDCFFF', '#DDAFFF'],
+      },
       storeBackground: {
         // Mod Kit - BGFadeAtlas with a tint
         colors: ['#172644FF', '#17264400'],
@@ -98,6 +102,7 @@ const theme = {
         times: [-0.023, 0, 1, 1.035],
       },
       xpRotationalBonusTimeLeft: {
+        // Mod Kit - ButtonBannerCurve with a brush of #414141B3
         colors: ['#152233B3', '#152233B3', '#0E1E2CB3', '#0E1E2CB3'],
         times: [-0.023, 0, 1, 1.035],
       },
