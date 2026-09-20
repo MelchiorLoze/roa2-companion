@@ -20,7 +20,7 @@ import {
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
 import { type FontFamily, FONTS } from '@/types/font';
-import { getGradientProps, type Gradient, type GradientColors } from '@/utils/getGradientProps';
+import { getGradientProps, type GradientColors, type GradientWithDirection } from '@/utils/getGradientProps';
 
 const SKIA_FONTS = Object.entries(FONTS).reduce(
   (acc, [key, value]) => {
@@ -47,8 +47,6 @@ type FancyTextStyle = {
   color?: ColorValue;
 };
 
-type GradientProp<T extends GradientColors> = Gradient<T> & { direction: 'horizontal' | 'vertical' };
-
 type ShadowProp = {
   color: ColorValue;
   offset: { x: number; y: number };
@@ -58,7 +56,7 @@ type ShadowProp = {
 type Props<T extends GradientColors> = {
   text: string;
   style: FancyTextStyle;
-  gradient?: GradientProp<T>;
+  gradient?: GradientWithDirection<T>;
   shadow?: ShadowProp;
 };
 
@@ -91,7 +89,7 @@ const createParagraph = (
 const createParagraphs = <T extends GradientColors>(
   text: string,
   style: FancyTextStyle,
-  gradient: GradientProp<T> | undefined,
+  gradient: GradientWithDirection<T> | undefined,
   shadow: ShadowProp | undefined,
   fontProvider: SkTypefaceFontProvider,
 ): ParagraphResult => {
