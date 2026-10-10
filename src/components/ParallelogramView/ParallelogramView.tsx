@@ -1,5 +1,5 @@
 import { type ImageSource } from 'expo-image';
-import { type PropsWithChildren, type ReactNode, useState } from 'react';
+import { type PropsWithChildren, type ReactNode, useId, useState } from 'react';
 import {
   type ColorValue,
   type ImageSourcePropType,
@@ -14,20 +14,31 @@ import { getGradientProps, type GradientColors, type GradientWithDirection } fro
 
 type Props<T extends GradientColors> = PropsWithChildren<{
   style?: StyleProp<ViewStyle>;
+  // Lean of the slanted sides in degrees, measured from the vertical axis
   skewAmount: number;
 }> &
   Either<{ gradient?: GradientWithDirection<T> }, { backgroundImage?: ImageSource }>;
 
 type Point = [number, number];
 
+const DEG_TO_RAD = Math.PI / 180;
+
 // Positive skewAmount: top edge shifted right (leans like /)
 // Negative skewAmount: top edge shifted left (leans like \)
+// skewAmount is the lean ANGLE in degrees of the slanted sides (measured from the
+// vertical axis). The horizontal offset scales with the view height, so shapes of
+// any size share the same slope and nested layers (e.g. borders) stay parallel.
+const skewOffset = (skewAmount: number, y: number, viewHeight: number): number => {
+  const ratio = Math.abs(Math.tan(skewAmount * DEG_TO_RAD));
+  return skewAmount >= 0 ? ratio * (viewHeight - y) : ratio * y;
+};
+
 const skewPolygonPoints = (
   skewAmount: number,
   borderWidth: number,
   size: { width: number; height: number },
 ): [Point, Point, Point, Point] => {
-  const skew = Math.abs(skewAmount);
+  const skew = Math.abs(Math.tan(skewAmount * DEG_TO_RAD)) * size.height;
   return skewAmount >= 0
     ? [
         [skew, borderWidth],
@@ -43,35 +54,63 @@ const skewPolygonPoints = (
       ];
 };
 
-const roundedPolygonPath = (points: Point[], radius: number): string => {
-  const n = points.length;
-  const parts: string[] = [];
+// The parallelogram is a shear of an axis-aligned rectangle (skew is applied in
+// screen space, so its corners are not perfect right angles). Rounding each
+// sheared corner independently with the same radius produces inconsistent-looking
+// rounding, because a shear maps circles to ellipses only when applied uniformly.
+// Instead we round the rectangle BEFORE shearing and shear the whole path, so all
+// four corners are congruent. Both functions map between the two spaces using the
+// per-row offset given by `skewOffset`.
+const skewedPointsToRect = (points: Point[], skewAmount: number, viewHeight: number): Point[] =>
+  points.map(([x, y]) => [x - skewOffset(skewAmount, y, viewHeight), y]);
 
-  for (let i = 0; i < n; i++) {
-    const prev = points[(i - 1 + n) % n];
-    const curr = points[i];
-    const next = points[(i + 1) % n];
+const rectPointsToSkewed = (points: Point[], skewAmount: number, viewHeight: number): Point[] =>
+  points.map(([x, y]) => [x + skewOffset(skewAmount, y, viewHeight), y]);
 
-    const dx1 = prev[0] - curr[0];
-    const dy1 = prev[1] - curr[1];
-    const len1 = Math.hypot(dx1, dy1);
+const roundedParallelogramPath = (points: Point[], radius: number, skewAmount: number, viewHeight: number): string => {
+  const rect = skewedPointsToRect(points, skewAmount, viewHeight);
 
-    const dx2 = next[0] - curr[0];
-    const dy2 = next[1] - curr[1];
-    const len2 = Math.hypot(dx2, dy2);
-
-    const r = Math.min(radius, len1 / 2, len2 / 2);
-
-    const startX = curr[0] + (dx1 / len1) * r;
-    const startY = curr[1] + (dy1 / len1) * r;
-    const endX = curr[0] + (dx2 / len2) * r;
-    const endY = curr[1] + (dy2 / len2) * r;
-
-    parts.push(i === 0 ? `M${startX},${startY}` : `L${startX},${startY}`, `Q${curr[0]},${curr[1]} ${endX},${endY}`);
+  let minX = Number.POSITIVE_INFINITY;
+  let minY = Number.POSITIVE_INFINITY;
+  let maxX = Number.NEGATIVE_INFINITY;
+  let maxY = Number.NEGATIVE_INFINITY;
+  for (const [x, y] of rect) {
+    minX = Math.min(minX, x);
+    minY = Math.min(minY, y);
+    maxX = Math.max(maxX, x);
+    maxY = Math.max(maxY, y);
   }
 
-  parts.push('Z');
-  return parts.join(' ');
+  const r = Math.max(0, Math.min(radius, (maxX - minX) / 2, (maxY - minY) / 2));
+
+  // Rounded rectangle corner points and the corner vertices used as bezier control points
+  const outline: Point[] = [
+    [minX + r, minY],
+    [maxX - r, minY],
+    [maxX, minY + r],
+    [maxX, maxY - r],
+    [maxX - r, maxY],
+    [minX + r, maxY],
+    [minX, maxY - r],
+    [minX, minY + r],
+  ];
+  const corners: Point[] = [
+    [maxX, minY],
+    [maxX, maxY],
+    [minX, maxY],
+    [minX, minY],
+  ];
+
+  const skewed = rectPointsToSkewed(outline, skewAmount, viewHeight);
+  const skewedCorners = rectPointsToSkewed(corners, skewAmount, viewHeight);
+  const fmt = ([x, y]: Point) => `${x},${y}`;
+
+  let d = `M${fmt(skewed[0])} L${fmt(skewed[1])}`;
+  for (let i = 0; i < 4; i++) {
+    d += ` Q${fmt(skewedCorners[i])} ${fmt(skewed[(2 * i + 2) % 8])}`;
+    if (i < 3) d += ` L${fmt(skewed[(2 * i + 3) % 8])}`;
+  }
+  return `${d} Z`;
 };
 
 const formatPoints = (points: Point[]): string => {
@@ -87,6 +126,11 @@ export const ParallelogramView = <T extends GradientColors>({
 }: Readonly<Props<T>>) => {
   const [size, setSize] = useState({ width: 0, height: 0 });
 
+  // Unique per instance so mounted siblings don't collide on the same SVG def ids
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const gradientId = `parallelogramGradient-${uid}`;
+  const clipId = `parallelogramClip-${uid}`;
+
   const {
     backgroundColor = 'transparent',
     borderColor,
@@ -99,17 +143,16 @@ export const ParallelogramView = <T extends GradientColors>({
   const points: Point[] = skewPolygonPoints(skewAmount, borderWidth, size);
 
   const gradientProps = gradient ? getGradientProps(gradient) : undefined;
-  const fill = gradientProps ? 'url(#parallelogramGradient)' : backgroundImage ? 'transparent' : backgroundColor;
+  const fill = gradientProps ? `url(#${gradientId})` : backgroundImage ? 'transparent' : backgroundColor;
+
+  const shapePath =
+    borderRadius > 0 && size.height > 0
+      ? roundedParallelogramPath(points, borderRadius, skewAmount, size.height)
+      : undefined;
 
   const renderShape = (): ReactNode =>
-    borderRadius > 0 ? (
-      <Path
-        d={roundedPolygonPath(points, borderRadius)}
-        fill={fill}
-        stroke={borderColor}
-        strokeLinejoin="round"
-        strokeWidth={borderWidth}
-      />
+    shapePath ? (
+      <Path d={shapePath} fill={fill} stroke={borderColor} strokeLinejoin="round" strokeWidth={borderWidth} />
     ) : (
       <Polygon fill={fill} points={formatPoints(points)} stroke={borderColor} strokeWidth={borderWidth} />
     );
@@ -120,7 +163,7 @@ export const ParallelogramView = <T extends GradientColors>({
         {gradientProps && (
           <Defs>
             <LinearGradient
-              id="parallelogramGradient"
+              id={gradientId}
               x1={`${gradientProps.start.x * 100}%`}
               x2={`${gradientProps.end.x * 100}%`}
               y1={`${gradientProps.start.y * 100}%`}
@@ -137,16 +180,12 @@ export const ParallelogramView = <T extends GradientColors>({
         {backgroundImage && (
           <>
             <Defs>
-              <ClipPath id="parallelogramClip">
-                {borderRadius > 0 ? (
-                  <Path d={roundedPolygonPath(points, borderRadius)} />
-                ) : (
-                  <Polygon points={formatPoints(points)} />
-                )}
+              <ClipPath id={clipId}>
+                {shapePath ? <Path d={shapePath} /> : <Polygon points={formatPoints(points)} />}
               </ClipPath>
             </Defs>
             <Image
-              clipPath="url(#parallelogramClip)"
+              clipPath={`url(#${clipId})`}
               height={size.height}
               href={backgroundImage as ImageSourcePropType}
               preserveAspectRatio="none"

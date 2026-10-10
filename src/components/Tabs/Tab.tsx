@@ -26,8 +26,8 @@ const TabFace = ({
   backgroundStyle,
   backgroundGradient,
 }: Readonly<FaceProps>) => (
-  <ParallelogramView skewAmount={5} style={borderStyle}>
-    <ParallelogramView gradient={backgroundGradient} skewAmount={5} style={backgroundStyle}>
+  <ParallelogramView skewAmount={9} style={borderStyle}>
+    <ParallelogramView gradient={backgroundGradient} skewAmount={9} style={backgroundStyle}>
       <FancyText
         gradient={labelGradient}
         shadow={{
@@ -72,8 +72,8 @@ export const Tab = ({ label, selected, onPress }: Readonly<Props>) => {
             labelStyle={styles.labelSelected}
           />
         ) : (
-          <ParallelogramView backgroundImage={TabBorderBackground} skewAmount={5} style={styles.border}>
-            <ParallelogramView backgroundImage={TabInnerBorderBackground} skewAmount={5} style={styles.innerBorder}>
+          <ParallelogramView backgroundImage={TabBorderBackground} skewAmount={9} style={styles.border}>
+            <ParallelogramView backgroundImage={TabInnerBorderBackground} skewAmount={9} style={styles.innerBorder}>
               <TabFace
                 backgroundStyle={styles.innerBackground}
                 borderStyle={styles.background}

@@ -22,7 +22,7 @@ export const ItemCard = ({ item, onPress }: Readonly<Props>) => {
         <>
           <View style={styles.imageContainer(pressed)}>
             <ItemImage item={item} />
-            <ParallelogramView skewAmount={theme.spacing.s} style={styles.nameContainer(pressed)}>
+            <ParallelogramView skewAmount={8} style={styles.nameContainer(pressed)}>
               <FittedText adjustsFontSizeToFit numberOfLines={2} style={styles.name(pressed)}>
                 {item.name}
               </FittedText>

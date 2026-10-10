@@ -21,7 +21,7 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
             source={ButtonBackground}
             style={StyleSheet.absoluteFill}
           />
-          {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
+          {pressed && <ParallelogramView skewAmount={7} style={styles.pressedBackground} />}
           <View style={styles.button}>
             <FancyText
               gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
