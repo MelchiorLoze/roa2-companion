@@ -22,15 +22,15 @@ const mockItem: Item = {
 
 const onPressMock = jest.fn();
 
-const renderComponent = (item: Item) => {
-  render(<ItemCard item={item} onPress={onPressMock} />);
+const renderComponent = async (item: Item) => {
+  await render(<ItemCard item={item} onPress={onPressMock} />);
 
   expect(onPressMock).not.toHaveBeenCalled();
 };
 
 describe('ItemCard', () => {
-  it('renders correctly', () => {
-    renderComponent(mockItem);
+  it('renders correctly', async () => {
+    await renderComponent(mockItem);
 
     expect(screen.getByText(mockItem.name)).toBeTruthy();
     expect(screen.getByText(CATEGORY_LABELS[mockItem.category])).toBeTruthy();
@@ -38,19 +38,19 @@ describe('ItemCard', () => {
     expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
 
-  it('renders correctly when coinPrice is not defined', () => {
-    renderComponent({ ...mockItem, coinPrice: undefined });
+  it('renders correctly when coinPrice is not defined', async () => {
+    await renderComponent({ ...mockItem, coinPrice: undefined });
 
     expect(screen.getByText(mockItem.name)).toBeTruthy();
     expect(screen.getByText(CATEGORY_LABELS[mockItem.category])).toBeTruthy();
     expect(screen.queryByText(mockItem.buckPrice!.toString())).toBeNull();
   });
 
-  it('calls onPress when pressed', () => {
-    renderComponent(mockItem);
+  it('calls onPress when pressed', async () => {
+    await renderComponent(mockItem);
 
     const card = screen.getByRole('button');
-    fireEvent.press(card);
+    await fireEvent.press(card);
 
     expect(onPressMock).toHaveBeenCalled();
   });

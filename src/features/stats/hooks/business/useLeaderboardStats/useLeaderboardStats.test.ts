@@ -28,8 +28,8 @@ const defaultCommunityLeaderboardReturnValue: ReturnType<typeof useCommunityLead
   isLoading: false,
 };
 
-const renderUseLeaderboardStats = (...props: Parameters<typeof useLeaderboardStats>) => {
-  const { result } = renderHook(() => useLeaderboardStats(...props));
+const renderUseLeaderboardStats = async (...props: Parameters<typeof useLeaderboardStats>) => {
+  const { result } = await renderHook(() => useLeaderboardStats(...props));
 
   expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useCommunityLeaderboardMock).toHaveBeenCalledTimes(1);
@@ -44,7 +44,7 @@ describe('useLeaderboardStats', () => {
     useCommunityLeaderboardMock.mockReturnValue(defaultCommunityLeaderboardReturnValue);
   });
 
-  it('returns correct values when season is loading', () => {
+  it('returns correct values when season is loading', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: undefined,
@@ -58,19 +58,19 @@ describe('useLeaderboardStats', () => {
       leaderboardEntries: undefined,
     });
 
-    const { result } = renderHook(() => useLeaderboardStats());
+    const { result } = await renderHook(() => useLeaderboardStats());
 
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('returns correct values when leaderboard entries are loading', () => {
+  it('returns correct values when leaderboard entries are loading', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.firstPlayerElo).toBeUndefined();
@@ -78,13 +78,13 @@ describe('useLeaderboardStats', () => {
     expect(result.current.lastAethereanElo).toBeUndefined();
   });
 
-  it('returns error state when leaderboard entries fail to load', () => {
+  it('returns error state when leaderboard entries fail to load', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: undefined,
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.isError).toBe(true);
     expect(result.current.firstPlayerElo).toBeUndefined();
@@ -92,13 +92,13 @@ describe('useLeaderboardStats', () => {
     expect(result.current.lastAethereanElo).toBeUndefined();
   });
 
-  it('returns error state when leaderboard entries are empty', () => {
+  it('returns error state when leaderboard entries are empty', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [],
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.isError).toBe(true);
     expect(result.current.firstPlayerElo).toBeUndefined();
@@ -106,7 +106,7 @@ describe('useLeaderboardStats', () => {
     expect(result.current.lastAethereanElo).toBeUndefined();
   });
 
-  it('returns correct values for complete leaderboard', () => {
+  it('returns correct values for complete leaderboard', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [
@@ -143,7 +143,7 @@ describe('useLeaderboardStats', () => {
       ],
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.firstPlayerElo).toBe(2162);
     expect(result.current.lastPlayerElo).toBe(-100);
@@ -151,7 +151,7 @@ describe('useLeaderboardStats', () => {
     expect(result.current.leaderboardEntries).toEqual(defaultCommunityLeaderboardReturnValue.leaderboardEntries);
   });
 
-  it('returns 0 as lastPlayerElo when it is above 0', () => {
+  it('returns 0 as lastPlayerElo when it is above 0', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [
@@ -160,12 +160,12 @@ describe('useLeaderboardStats', () => {
       ],
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.lastPlayerElo).toBe(0);
   });
 
-  it('returns 0 as lastAethereanElo when there are no aetherean players', () => {
+  it('returns 0 as lastAethereanElo when there are no aetherean players', async () => {
     useCommunityLeaderboardMock.mockReturnValue({
       ...defaultCommunityLeaderboardReturnValue,
       leaderboardEntries: [
@@ -177,7 +177,7 @@ describe('useLeaderboardStats', () => {
       ],
     });
 
-    const { result } = renderUseLeaderboardStats();
+    const { result } = await renderUseLeaderboardStats();
 
     expect(result.current.lastAethereanElo).toBe(0);
   });

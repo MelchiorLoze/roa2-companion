@@ -14,7 +14,7 @@ jest.mock('../../../contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 
 const renderUseLoginWithEmail = async () => {
-  const { result } = renderHook(useLoginWithEmail, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useLoginWithEmail, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };

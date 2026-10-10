@@ -31,8 +31,8 @@ describe('useRotatingCoinShop', () => {
     useGetItemsMock.mockReturnValue(defaultItemsReturnValue);
   });
 
-  it('handles null rotationalCoinStore', () => {
-    const { result } = renderHook(useRotatingCoinShop);
+  it('handles null rotationalCoinStore', async () => {
+    const { result } = await renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
@@ -40,20 +40,20 @@ describe('useRotatingCoinShop', () => {
     expect(result.current.expirationDate).toBeUndefined();
   });
 
-  it('returns loading state when rotational coin store is loading', () => {
+  it('returns loading state when rotational coin store is loading', async () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: undefined,
       isLoading: true,
     });
 
-    const { result } = renderHook(useRotatingCoinShop);
+    const { result } = await renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.items).toBeUndefined();
     expect(result.current.expirationDate).toBeUndefined();
   });
 
-  it('returns loading state when items are loading', () => {
+  it('returns loading state when items are loading', async () => {
     useGetMyRotationalCoinStoreMock.mockReturnValue({
       rotationalCoinStore: { itemIds: ['1', '2', '3'], expirationDate: VALID_DATE },
       isLoading: false,
@@ -63,14 +63,14 @@ describe('useRotatingCoinShop', () => {
       isLoading: true,
     });
 
-    const { result } = renderHook(useRotatingCoinShop);
+    const { result } = await renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.items).toBeUndefined();
     expect(result.current.expirationDate).toBeUndefined();
   });
 
-  it('passes correct itemIds to useGetItems', () => {
+  it('passes correct itemIds to useGetItems', async () => {
     const itemIds = ['1', '2', '3'];
 
     useGetMyRotationalCoinStoreMock.mockReturnValue({
@@ -78,12 +78,12 @@ describe('useRotatingCoinShop', () => {
       isLoading: false,
     });
 
-    renderHook(useRotatingCoinShop);
+    await renderHook(useRotatingCoinShop);
 
     expect(useGetItems).toHaveBeenCalledWith(itemIds);
   });
 
-  it('returns sorted items when data is loaded', () => {
+  it('returns sorted items when data is loaded', async () => {
     const mockItems: Item[] = [
       {
         id: '1',
@@ -179,7 +179,7 @@ describe('useRotatingCoinShop', () => {
       isLoading: false,
     });
 
-    const { result } = renderHook(useRotatingCoinShop);
+    const { result } = await renderHook(useRotatingCoinShop);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(false);

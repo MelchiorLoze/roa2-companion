@@ -39,8 +39,8 @@ const defaultUserCrewsStatsReturnValue: ReturnType<typeof useUserCrewsStats> = {
   isError: false,
 };
 
-const renderComponent = () => {
-  render(<CrewsStats />);
+const renderComponent = async () => {
+  await render(<CrewsStats />);
 
   expect(useUserCrewsStatsMock).toHaveBeenCalledTimes(1);
 };
@@ -51,8 +51,8 @@ describe('CrewsStats', () => {
     useUserCrewsStatsMock.mockReturnValue(defaultUserCrewsStatsReturnValue);
   });
 
-  it('renders crews stats with correct values', () => {
-    renderComponent();
+  it('renders crews stats with correct values', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Season 5')).toBeTruthy();
 
@@ -66,26 +66,26 @@ describe('CrewsStats', () => {
     expect(screen.getByText('9')).toBeTruthy();
   });
 
-  it('displays loading spinner when stats are loading', () => {
+  it('displays loading spinner when stats are loading', async () => {
     useUserCrewsStatsMock.mockReturnValue({
       ...defaultUserCrewsStatsReturnValue,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('displays loading spinner when stats are undefined', () => {
+  it('displays loading spinner when stats are undefined', async () => {
     useUserCrewsStatsMock.mockReturnValue({
       ...defaultUserCrewsStatsReturnValue,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });

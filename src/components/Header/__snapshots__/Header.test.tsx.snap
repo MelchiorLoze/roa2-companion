@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header matches the snapshot 1`] = `
-[
+<>
   <View
     style={
       {
@@ -54,7 +54,7 @@ exports[`Header matches the snapshot 1`] = `
       top={0}
       transition={null}
     />
-  </View>,
+  </View>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -118,7 +118,7 @@ exports[`Header matches the snapshot 1`] = `
         }
       }
     />
-  </ViewManagerAdapter_ExpoLinearGradient>,
+  </ViewManagerAdapter_ExpoLinearGradient>
   <View
     style={
       {
@@ -130,7 +130,7 @@ exports[`Header matches the snapshot 1`] = `
         "right": 0,
       }
     }
-  />,
+  />
   <View
     style={
       {
@@ -256,7 +256,7 @@ exports[`Header matches the snapshot 1`] = `
         0
       </Text>
     </View>
-  </View>,
+  </View>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -379,6 +379,6 @@ exports[`Header matches the snapshot 1`] = `
     >
       Test title
     </Text>
-  </ViewManagerAdapter_ExpoLinearGradient>,
-]
+  </ViewManagerAdapter_ExpoLinearGradient>
+</>
 `;

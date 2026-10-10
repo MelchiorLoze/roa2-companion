@@ -10,13 +10,13 @@ type TestData = {
 };
 const responseDataMock: { response: TestData } = { response: { id: 1, name: 'Test' } };
 
-const renderUseSteamCommunityApiClient = () => renderHook(useSteamCommunityApiClient);
+const renderUseSteamCommunityApiClient = async () => await renderHook(useSteamCommunityApiClient);
 
 describe('useSteamCommunityApiClient', () => {
   it('parses XML response correctly when wrapped in a `response` property', async () => {
     fetchMock.postOnce(`${STEAM_COMMUNITY_API_BASE_URL}/api/data?xml=1`, new XMLBuilder().build(responseDataMock));
 
-    const { result } = renderUseSteamCommunityApiClient();
+    const { result } = await renderUseSteamCommunityApiClient();
     const response = await result.current.post('/api/data');
 
     expect(response).toEqual(responseDataMock.response);
@@ -28,7 +28,7 @@ describe('useSteamCommunityApiClient', () => {
       new XMLBuilder().build(responseDataMock.response),
     );
 
-    const { result } = renderUseSteamCommunityApiClient();
+    const { result } = await renderUseSteamCommunityApiClient();
     const response = await result.current.post('/api/data');
 
     expect(response).toEqual(responseDataMock.response);
@@ -37,7 +37,7 @@ describe('useSteamCommunityApiClient', () => {
   it('throws and error on failed response', async () => {
     fetchMock.postOnce(`${STEAM_COMMUNITY_API_BASE_URL}/api/data?xml=1`, 500);
 
-    const { result } = renderUseSteamCommunityApiClient();
+    const { result } = await renderUseSteamCommunityApiClient();
 
     await expect(result.current.post('/api/data')).rejects.toThrow('Request failed');
   });
@@ -45,7 +45,7 @@ describe('useSteamCommunityApiClient', () => {
   it('handles typed responses correctly', async () => {
     fetchMock.postOnce(`${STEAM_COMMUNITY_API_BASE_URL}/api/data?xml=1`, new XMLBuilder().build(responseDataMock));
 
-    const { result } = renderUseSteamCommunityApiClient();
+    const { result } = await renderUseSteamCommunityApiClient();
     const response = await result.current.post<TestData>('/api/data');
 
     // TypeScript should ensure this is valid

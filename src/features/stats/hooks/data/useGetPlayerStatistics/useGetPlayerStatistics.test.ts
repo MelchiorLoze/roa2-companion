@@ -2,6 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { StatisticName } from '../../../types/stats';
@@ -12,7 +13,7 @@ jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetPlayerStatistics = async () => {
-  const { result } = renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -24,10 +25,18 @@ describe('useGetPlayerStatistics', () => {
   });
 
   it('returns nothing when the request is loading', async () => {
-    const { result } = renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return { status: 400 };
+    });
+
+    const { result } = await renderHook(useGetPlayerStatistics, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.statistics).toBeUndefined();
+
+    response.resolve();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 

@@ -2,12 +2,13 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import XMLBuilder from 'fast-xml-builder';
 import fetchMock from 'fetch-mock';
 
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { useCommunityLeaderboard } from './useCommunityLeaderboard';
 
 const renderUseCommunityLeaderboard = async (...props: Parameters<typeof useCommunityLeaderboard>) => {
-  const { result } = renderHook(() => useCommunityLeaderboard(...props), { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(() => useCommunityLeaderboard(...props), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -21,10 +22,18 @@ describe('useCommunityLeaderboard', () => {
   });
 
   it('returns an empty leaderboard while the request is loading', async () => {
-    const { result } = renderHook(() => useCommunityLeaderboard(123), { wrapper: TestQueryClientProvider });
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return { status: 400 };
+    });
+
+    const { result } = await renderHook(() => useCommunityLeaderboard(123), { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.leaderboardEntries).toBeUndefined();
+
+    response.resolve();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 

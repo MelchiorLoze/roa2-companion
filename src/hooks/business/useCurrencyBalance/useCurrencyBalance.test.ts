@@ -14,13 +14,13 @@ const defaultInventoryItemsReturnValue: ReturnType<typeof useGetInventoryItems> 
 };
 
 describe('useCurrencyBalance', () => {
-  it('returns undefined balances and loading state when the inventory items are loading', () => {
+  it('returns undefined balances and loading state when the inventory items are loading', async () => {
     useGetInventoryItemsMock.mockReturnValue({
       ...defaultInventoryItemsReturnValue,
       isLoading: true,
     });
 
-    const { result } = renderHook(useCurrencyBalance);
+    const { result } = await renderHook(useCurrencyBalance);
 
     expect(result.current.coinsBalance).toBeUndefined();
     expect(result.current.bucksBalance).toBeUndefined();
@@ -29,7 +29,7 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('returns the currency balances when the inventory items are loaded', () => {
+  it('returns the currency balances when the inventory items are loaded', async () => {
     useGetInventoryItemsMock.mockReturnValue({
       ...defaultInventoryItemsReturnValue,
       inventoryItems: [
@@ -42,7 +42,7 @@ describe('useCurrencyBalance', () => {
       ],
     });
 
-    const { result } = renderHook(useCurrencyBalance);
+    const { result } = await renderHook(useCurrencyBalance);
 
     expect(result.current.coinsBalance).toBe(100);
     expect(result.current.bucksBalance).toBe(200);
@@ -51,7 +51,7 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('returns zero when the currency is not found', () => {
+  it('returns zero when the currency is not found', async () => {
     useGetInventoryItemsMock.mockReturnValue({
       ...defaultInventoryItemsReturnValue,
       inventoryItems: [
@@ -60,7 +60,7 @@ describe('useCurrencyBalance', () => {
       ],
     });
 
-    const { result } = renderHook(useCurrencyBalance);
+    const { result } = await renderHook(useCurrencyBalance);
 
     expect(result.current.coinsBalance).toBe(0);
     expect(result.current.bucksBalance).toBe(0);
@@ -69,10 +69,10 @@ describe('useCurrencyBalance', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('returns undefined balances and error state when the inventory items failed to load', () => {
+  it('returns undefined balances and error state when the inventory items failed to load', async () => {
     useGetInventoryItemsMock.mockReturnValue(defaultInventoryItemsReturnValue);
 
-    const { result } = renderHook(useCurrencyBalance);
+    const { result } = await renderHook(useCurrencyBalance);
 
     expect(result.current.coinsBalance).toBeUndefined();
     expect(result.current.bucksBalance).toBeUndefined();

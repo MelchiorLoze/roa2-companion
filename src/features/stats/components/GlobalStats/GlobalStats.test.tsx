@@ -21,8 +21,8 @@ const defaultUserGlobalStatsReturnValue: ReturnType<typeof useUserGlobalStats> =
   isError: false,
 };
 
-const renderComponent = () => {
-  render(<GlobalStats />);
+const renderComponent = async () => {
+  await render(<GlobalStats />);
 
   expect(useUserGlobalStatsMock).toHaveBeenCalledTimes(1);
 };
@@ -32,8 +32,8 @@ describe('GlobalStats', () => {
     useUserGlobalStatsMock.mockReturnValue(defaultUserGlobalStatsReturnValue);
   });
 
-  it('renders global stats with correct values', () => {
-    renderComponent();
+  it('renders global stats with correct values', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Global wins')).toBeTruthy();
     expect(screen.getByText('358')).toBeTruthy();
@@ -48,14 +48,14 @@ describe('GlobalStats', () => {
     expect(screen.getByText('Games')).toBeTruthy();
   });
 
-  it('displays loading spinner when stats are loading', () => {
+  it('displays loading spinner when stats are loading', async () => {
     useUserGlobalStatsMock.mockReturnValue({
       ...defaultUserGlobalStatsReturnValue,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });

@@ -21,7 +21,7 @@ type TestData = {
 };
 const responseDataMock: { data: TestData } = { data: { id: 1, name: 'test' } };
 
-const renderUseGameApiClient = () => renderHook(useGameApiClient);
+const renderUseGameApiClient = async () => await renderHook(useGameApiClient);
 
 describe('useGameApiClient', () => {
   beforeEach(() => {
@@ -36,7 +36,7 @@ describe('useGameApiClient', () => {
       },
     });
 
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     await result.current.post('/api/data');
     expect(fetchMock.callHistory.callLogs).toHaveLength(1);
@@ -49,7 +49,7 @@ describe('useGameApiClient', () => {
       isValid: false,
     });
 
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock, {
       matcherFunction: ({ options }) => {
@@ -63,7 +63,7 @@ describe('useGameApiClient', () => {
   });
 
   it('handles successful responses with data property', async () => {
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock);
 
@@ -72,7 +72,7 @@ describe('useGameApiClient', () => {
   });
 
   it('handles successful responses without data property', async () => {
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock.data);
 
@@ -81,7 +81,7 @@ describe('useGameApiClient', () => {
   });
 
   it('clears session and throw error on 401 response', async () => {
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, {
       status: 401,
@@ -93,7 +93,7 @@ describe('useGameApiClient', () => {
   });
 
   it('throws error on other failed responses', async () => {
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, {
       status: 500,
@@ -105,7 +105,7 @@ describe('useGameApiClient', () => {
   });
 
   it('handles typed responses correctly', async () => {
-    const { result } = renderUseGameApiClient();
+    const { result } = await renderUseGameApiClient();
 
     fetchMock.postOnce(`${GAME_API_BASE_URL}/api/data`, responseDataMock);
 

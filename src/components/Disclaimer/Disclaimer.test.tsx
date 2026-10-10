@@ -13,18 +13,18 @@ useRouterMock.mockReturnValue({
 } as unknown as ReturnType<typeof useRouter>);
 
 describe('Disclaimer', () => {
-  it('renders correctly', () => {
-    render(<Disclaimer />);
+  it('renders correctly', async () => {
+    await render(<Disclaimer />);
 
     expect(screen.getByTestId('disclaimer')).toBeTruthy();
     expect(screen.getByText(disclaimerText)).toBeTruthy();
   });
 
-  it('navigates to /about on press', () => {
-    render(<Disclaimer />);
+  it('navigates to /about on press', async () => {
+    await render(<Disclaimer />);
 
     const disclaimerButton = screen.getByText(disclaimerText);
-    fireEvent.press(disclaimerButton);
+    await fireEvent.press(disclaimerButton);
 
     expect(navigateMock).toHaveBeenCalledTimes(1);
     expect(navigateMock).toHaveBeenCalledWith('/about');

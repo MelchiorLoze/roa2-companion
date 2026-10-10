@@ -30,8 +30,8 @@ describe('PurchaseConfirmationDialog', () => {
     usePurchaseInventoryItemsMock.mockReturnValue(defaultPurchaseReturnValue);
   });
 
-  it('renders correctly', () => {
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
+  it('renders correctly', async () => {
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledTimes(1);
     expect(usePurchaseInventoryItemsMock).toHaveBeenCalledWith({ onSuccess: expect.any(Function) });
@@ -43,26 +43,26 @@ describe('PurchaseConfirmationDialog', () => {
     expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
-  it('calls onClose when the overlay is pressed', () => {
+  it('calls onClose when the overlay is pressed', async () => {
     const mockOnClose = jest.fn();
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    fireEvent.press(screen.getByTestId('overlay'));
+    await fireEvent.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('calls onClose when No button is pressed', () => {
+  it('calls onClose when No button is pressed', async () => {
     const mockOnClose = jest.fn();
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const closeButton = screen.getByRole('button', { name: 'Close' });
-    fireEvent.press(closeButton);
+    await fireEvent.press(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('calls purchase when Yes button is pressed', () => {
+  it('calls purchase when Yes button is pressed', async () => {
     const mockPurchase = jest.fn();
     usePurchaseInventoryItemsMock.mockImplementation((props) => ({
       ...defaultPurchaseReturnValue,
@@ -70,10 +70,10 @@ describe('PurchaseConfirmationDialog', () => {
     }));
 
     const mockOnClose = jest.fn();
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const confirmButton = screen.getByRole('button', { name: 'Confirm' });
-    fireEvent.press(confirmButton);
+    await fireEvent.press(confirmButton);
 
     expect(mockPurchase).toHaveBeenCalledTimes(1);
     expect(mockPurchase).toHaveBeenCalledWith({
@@ -84,26 +84,26 @@ describe('PurchaseConfirmationDialog', () => {
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('shows loading spinner when purchasing', () => {
+  it('shows loading spinner when purchasing', async () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
       purchase: defaultPurchaseReturnValue.purchase,
       isLoading: true,
       isError: false,
     });
 
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('shows error message when purchase fails', () => {
+  it('shows error message when purchase fails', async () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
       purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
       isError: true,
     });
 
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
     expect(screen.getByText('Test Icon')).toBeTruthy();
     expect(
@@ -114,17 +114,17 @@ describe('PurchaseConfirmationDialog', () => {
     expect(screen.getByText("If you have the game opened, don't try to buy the same item twice")).toBeTruthy();
   });
 
-  it('calls purchase when Retry button is pressed in error state', () => {
+  it('calls purchase when Retry button is pressed in error state', async () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
       purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
       isError: true,
     });
 
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
     const retryButton = screen.getByRole('button', { name: 'Retry' });
-    fireEvent.press(retryButton);
+    await fireEvent.press(retryButton);
 
     expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledTimes(1);
     expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledWith({
@@ -133,7 +133,7 @@ describe('PurchaseConfirmationDialog', () => {
     });
   });
 
-  it('calls onClose when Cancel button is pressed in error state', () => {
+  it('calls onClose when Cancel button is pressed in error state', async () => {
     usePurchaseInventoryItemsMock.mockReturnValue({
       purchase: defaultPurchaseReturnValue.purchase,
       isLoading: false,
@@ -141,10 +141,10 @@ describe('PurchaseConfirmationDialog', () => {
     });
 
     const mockOnClose = jest.fn();
-    render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
+    await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const cancelButton = screen.getByRole('button', { name: 'Cancel' });
-    fireEvent.press(cancelButton);
+    await fireEvent.press(cancelButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });

@@ -83,8 +83,10 @@ const mockStatistics: PlayerStatistics = {
   [StatisticName.RANKED_BEST_WIN_STREAK]: 12,
 };
 
-const renderUseUserRankedStats = (seasonEloStatName: StatisticName = 'Ranked_SeasonEloPure_4' as StatisticName) => {
-  const { result } = renderHook(useUserRankedStats);
+const renderUseUserRankedStats = async (
+  seasonEloStatName: StatisticName = 'Ranked_SeasonEloPure_4' as StatisticName,
+) => {
+  const { result } = await renderHook(useUserRankedStats);
 
   expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
@@ -106,35 +108,35 @@ describe('useUserRankedStats', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsMock);
   });
 
-  it('returns loading state when statistics are loading', () => {
+  it('returns loading state when statistics are loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns loading state when leaderboard data is loading', () => {
+  it('returns loading state when leaderboard data is loading', async () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
       playerPositions: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns loading state when season is loading', () => {
+  it('returns loading state when season is loading', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: undefined,
@@ -145,7 +147,7 @@ describe('useUserRankedStats', () => {
       isError: false,
     });
 
-    const { result } = renderHook(useUserRankedStats);
+    const { result } = await renderHook(useUserRankedStats);
 
     expect(useGetLeaderboardAroundPlayerMock).toHaveBeenCalledWith({
       maxResultCount: 1,
@@ -156,37 +158,37 @@ describe('useUserRankedStats', () => {
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns refetching state when statistics are being refetched', () => {
+  it('returns refetching state when statistics are being refetched', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       isRefetching: true,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
   });
 
-  it('returns refetching state when leaderboard data is being refetched', () => {
+  it('returns refetching state when leaderboard data is being refetched', async () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
       isRefetching: true,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
   });
 
-  it('computes ranked stats correctly from player stats for last (current) season', () => {
+  it('computes ranked stats correctly from player stats for last (current) season', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
@@ -203,7 +205,7 @@ describe('useUserRankedStats', () => {
     });
   });
 
-  it('computes ranked stats correctly from player stats for first season', () => {
+  it('computes ranked stats correctly from player stats for first season', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -219,7 +221,7 @@ describe('useUserRankedStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
+    const { result } = await renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
@@ -236,7 +238,7 @@ describe('useUserRankedStats', () => {
     });
   });
 
-  it('computes ranked stats correctly from player stats for neither first nor last season', () => {
+  it('computes ranked stats correctly from player stats for neither first nor last season', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -252,7 +254,7 @@ describe('useUserRankedStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserRankedStats('Ranked_SeasonEloPure_2' as StatisticName);
+    const { result } = await renderUseUserRankedStats('Ranked_SeasonEloPure_2' as StatisticName);
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
@@ -269,7 +271,7 @@ describe('useUserRankedStats', () => {
     });
   });
 
-  it('handles zero matches played when calculating win rates', () => {
+  it('handles zero matches played when calculating win rates', async () => {
     const mockZeroMatchesStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.RANKED_SETS]: 0,
@@ -281,12 +283,12 @@ describe('useUserRankedStats', () => {
       statistics: mockZeroMatchesStatistics,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.stats?.setStats?.winRate).toBe(0);
   });
 
-  it('handles undefined matches played', () => {
+  it('handles undefined matches played', async () => {
     const mockUndefinedMatchesStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
     };
@@ -296,14 +298,14 @@ describe('useUserRankedStats', () => {
       statistics: mockUndefinedMatchesStatistics,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.stats?.setStats?.setCount).toBe(0);
     expect(result.current.stats?.setStats?.winCount).toBe(0);
     expect(result.current.stats?.setStats?.winRate).toBe(0);
   });
 
-  it('handles undefined matches played for first season', () => {
+  it('handles undefined matches played for first season', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -321,7 +323,7 @@ describe('useUserRankedStats', () => {
       },
     });
 
-    const { result } = renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
+    const { result } = await renderUseUserRankedStats(StatisticName.RANKED_S1_ELO);
 
     expect(result.current.stats?.setStats?.setCount).toBe(0);
     expect(result.current.stats?.setStats?.winCount).toBe(0);
@@ -336,14 +338,14 @@ describe('useUserRankedStats', () => {
       refetch: mockRefetchStatistics,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     await act(async () => result.current.refresh());
 
     expect(mockRefetchStatistics).toHaveBeenCalledTimes(1);
   });
 
-  it('returns undefined elo and rank when elo stat is not present', () => {
+  it('returns undefined elo and rank when elo stat is not present', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: {
@@ -353,14 +355,14 @@ describe('useUserRankedStats', () => {
       },
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.stats).toBeTruthy();
     expect(result.current.stats?.elo).toBeUndefined();
     expect(result.current.stats?.rank).toBeUndefined();
   });
 
-  it('returns 0 as player count when leaderboard entries are undefined', () => {
+  it('returns 0 as player count when leaderboard entries are undefined', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsMock,
       firstPlayerElo: undefined,
@@ -370,14 +372,14 @@ describe('useUserRankedStats', () => {
       isLoading: true,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toBeDefined();
     expect(result.current.stats?.playerCount).toBe(0);
   });
 
-  it('returns error state when statistics and position are missing but not loading', () => {
+  it('returns error state when statistics and position are missing but not loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
@@ -389,7 +391,7 @@ describe('useUserRankedStats', () => {
       isLoading: false,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
@@ -409,7 +411,7 @@ describe('useUserRankedStats', () => {
       refetch: mockRefetchPosition,
     });
 
-    const { result } = renderUseUserRankedStats();
+    const { result } = await renderUseUserRankedStats();
 
     await act(async () => result.current.refresh());
 

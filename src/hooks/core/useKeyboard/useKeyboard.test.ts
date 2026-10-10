@@ -32,52 +32,52 @@ describe('useKeyboard', () => {
     isVisibleMock.mockReturnValue(false);
   });
 
-  it('returns initial state with current keyboard visibility', () => {
-    const { result } = renderHook(useKeyboard);
+  it('returns initial state with current keyboard visibility', async () => {
+    const { result } = await renderHook(useKeyboard);
 
     expect(result.current.isVisible).toBe(false);
   });
 
-  it('initializes with true when keyboard is already visible', () => {
+  it('initializes with true when keyboard is already visible', async () => {
     isVisibleMock.mockReturnValue(true);
 
-    const { result } = renderHook(useKeyboard);
+    const { result } = await renderHook(useKeyboard);
 
     expect(result.current.isVisible).toBe(true);
   });
 
-  it('sets up keyboard event listeners on mount', () => {
-    renderHook(useKeyboard);
+  it('sets up keyboard event listeners on mount', async () => {
+    await renderHook(useKeyboard);
 
     expect(addListenerMock).toHaveBeenCalledWith('keyboardDidShow', expect.any(Function));
     expect(addListenerMock).toHaveBeenCalledWith('keyboardDidHide', expect.any(Function));
     expect(addListenerMock).toHaveBeenCalledTimes(2);
   });
 
-  it('updates state to true when keyboard is shown', () => {
-    const { result } = renderHook(useKeyboard);
+  it('updates state to true when keyboard is shown', async () => {
+    const { result } = await renderHook(useKeyboard);
     expect(result.current.isVisible).toBe(false);
 
     const showCallback = getEventCallback('keyboardDidShow');
-    act(showCallback);
+    await act(showCallback);
 
     expect(result.current.isVisible).toBe(true);
   });
 
-  it('updates state to false when keyboard is hidden', () => {
+  it('updates state to false when keyboard is hidden', async () => {
     isVisibleMock.mockReturnValue(true);
 
-    const { result } = renderHook(useKeyboard);
+    const { result } = await renderHook(useKeyboard);
     expect(result.current.isVisible).toBe(true);
 
     const hideCallback = getEventCallback('keyboardDidHide');
-    act(hideCallback);
+    await act(hideCallback);
 
     expect(result.current.isVisible).toBe(false);
   });
 
-  it('handles multiple keyboard show/hide events correctly', () => {
-    const { result } = renderHook(useKeyboard);
+  it('handles multiple keyboard show/hide events correctly', async () => {
+    const { result } = await renderHook(useKeyboard);
 
     const showCallback = getEventCallback('keyboardDidShow');
     const hideCallback = getEventCallback('keyboardDidHide');
@@ -86,52 +86,52 @@ describe('useKeyboard', () => {
     expect(result.current.isVisible).toBe(false);
 
     // Show keyboard
-    act(showCallback);
+    await act(showCallback);
     expect(result.current.isVisible).toBe(true);
 
     // Hide keyboard
-    act(hideCallback);
+    await act(hideCallback);
     expect(result.current.isVisible).toBe(false);
 
     // Show again
-    act(showCallback);
+    await act(showCallback);
     expect(result.current.isVisible).toBe(true);
 
     // Hide again
-    act(hideCallback);
+    await act(hideCallback);
     expect(result.current.isVisible).toBe(false);
   });
 
-  it('handles consecutive show events without state issues', () => {
-    const { result } = renderHook(useKeyboard);
+  it('handles consecutive show events without state issues', async () => {
+    const { result } = await renderHook(useKeyboard);
 
     const showCallback = getEventCallback('keyboardDidShow');
 
-    act(showCallback);
+    await act(showCallback);
     expect(result.current.isVisible).toBe(true);
 
     // Second show event (keyboard already shown)
-    act(showCallback);
+    await act(showCallback);
     expect(result.current.isVisible).toBe(true);
   });
 
-  it('handles consecutive hide events without state issues', () => {
+  it('handles consecutive hide events without state issues', async () => {
     isVisibleMock.mockReturnValue(true);
 
-    const { result } = renderHook(useKeyboard);
+    const { result } = await renderHook(useKeyboard);
 
     const hideCallback = getEventCallback('keyboardDidHide');
 
-    act(hideCallback);
+    await act(hideCallback);
     expect(result.current.isVisible).toBe(false);
 
     // Second hide event (keyboard already hidden)
-    act(hideCallback);
+    await act(hideCallback);
     expect(result.current.isVisible).toBe(false);
   });
 
-  it('removes event listeners on unmount', () => {
-    renderHook(useKeyboard).unmount();
+  it('removes event listeners on unmount', async () => {
+    await (await renderHook(useKeyboard)).unmount();
 
     expect(subscriptionRemoveMock).toHaveBeenCalledTimes(2);
   });

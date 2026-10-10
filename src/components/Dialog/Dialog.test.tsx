@@ -11,8 +11,8 @@ describe('Dialog', () => {
     keyboardIsVisibleSpy.mockReturnValue(false);
   });
 
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <Dialog onClose={jest.fn()}>
         <Text>Dialog Content</Text>
       </Dialog>,
@@ -22,8 +22,8 @@ describe('Dialog', () => {
     expect(screen.getByTestId('overlay')).toBeTruthy();
   });
 
-  it('renders alert text when provided', () => {
-    render(
+  it('renders alert text when provided', async () => {
+    await render(
       <Dialog alertText="This is an alert" onClose={jest.fn()}>
         <Text>Dialog Content</Text>
       </Dialog>,
@@ -33,22 +33,22 @@ describe('Dialog', () => {
     expect(screen.getByText('This is an alert')).toBeTruthy();
   });
 
-  it('calls onClose when overlay is pressed', () => {
+  it('calls onClose when overlay is pressed', async () => {
     const mockOnClose = jest.fn();
-    render(
+    await render(
       <Dialog onClose={mockOnClose}>
         <Text>Dialog Content</Text>
       </Dialog>,
     );
 
-    fireEvent.press(screen.getByTestId('overlay'));
+    await fireEvent.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('dismisses keyboard when overlay is pressed and keyboard is visible', () => {
+  it('dismisses keyboard when overlay is pressed and keyboard is visible', async () => {
     const mockOnClose = jest.fn();
-    render(
+    await render(
       <Dialog onClose={mockOnClose}>
         <Text>Dialog Content</Text>
       </Dialog>,
@@ -56,7 +56,7 @@ describe('Dialog', () => {
 
     // Simulate keyboard being visible
     keyboardIsVisibleSpy.mockReturnValue(true);
-    fireEvent.press(screen.getByTestId('overlay'));
+    await fireEvent.press(screen.getByTestId('overlay'));
 
     expect(keyboardDismissSpy).toHaveBeenCalledTimes(1);
     expect(mockOnClose).not.toHaveBeenCalled();

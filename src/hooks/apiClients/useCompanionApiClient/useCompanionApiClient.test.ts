@@ -12,7 +12,7 @@ type TestData = {
 
 const responseDataMock: TestData = { id: 1, name: 'test' };
 
-const renderUseCompanionApiClient = () => renderHook(useCompanionApiClient);
+const renderUseCompanionApiClient = async () => await renderHook(useCompanionApiClient);
 
 describe('useCompanionApiClient', () => {
   it('makes GET requests with correct headers', async () => {
@@ -23,14 +23,14 @@ describe('useCompanionApiClient', () => {
       },
     });
 
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     await result.current.get('/api/data');
     expect(fetchMock.callHistory.callLogs).toHaveLength(1);
   });
 
   it('handles successful GET responses', async () => {
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, responseDataMock);
 
@@ -39,7 +39,7 @@ describe('useCompanionApiClient', () => {
   });
 
   it('handles successful GET responses with query params', async () => {
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data?size=100&minEntrants=16`, responseDataMock);
 
@@ -50,7 +50,7 @@ describe('useCompanionApiClient', () => {
   });
 
   it('throws error on failed GET responses', async () => {
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, {
       status: 500,
@@ -61,7 +61,7 @@ describe('useCompanionApiClient', () => {
   });
 
   it('throws error on 404 responses', async () => {
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, {
       status: 404,
@@ -72,7 +72,7 @@ describe('useCompanionApiClient', () => {
   });
 
   it('handles typed responses correctly', async () => {
-    const { result } = renderUseCompanionApiClient();
+    const { result } = await renderUseCompanionApiClient();
 
     fetchMock.getOnce(`${COMPANION_API_BASE_URL}/api/data`, responseDataMock);
 

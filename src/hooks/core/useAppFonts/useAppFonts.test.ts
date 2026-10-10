@@ -7,20 +7,20 @@ jest.mock('expo-font');
 const useFontsMock = jest.mocked(useFonts);
 
 describe('useAppFonts', () => {
-  it('hides splash screen when fonts are loaded', () => {
+  it('hides splash screen when fonts are loaded', async () => {
     useFontsMock.mockReturnValue([true, null]);
 
     const onLoadedMock = jest.fn();
-    renderHook(() => useAppFonts({ onLoaded: onLoadedMock }));
+    await renderHook(() => useAppFonts({ onLoaded: onLoadedMock }));
 
     expect(onLoadedMock).toHaveBeenCalledTimes(1);
   });
 
-  it('does not hide splash screen when fonts are not loaded yet', () => {
+  it('does not hide splash screen when fonts are not loaded yet', async () => {
     useFontsMock.mockReturnValue([false, null]);
 
     const onLoadedMock = jest.fn();
-    renderHook(() => useAppFonts({ onLoaded: onLoadedMock }));
+    await renderHook(() => useAppFonts({ onLoaded: onLoadedMock }));
 
     expect(onLoadedMock).toHaveBeenCalledTimes(0);
   });

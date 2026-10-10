@@ -15,8 +15,8 @@ useLeaderboardStatsMock.mockReturnValue({
 });
 
 describe('RankedDistributionChart', () => {
-  it('renders correctly with given props', () => {
-    render(<RankedDistributionChart elo={925} />);
+  it('renders correctly with given props', async () => {
+    await render(<RankedDistributionChart elo={925} />);
 
     expect(screen.getByTestId('rank-distribution')).toBeTruthy();
     expect(screen.getByTestId('elo-distribution')).toBeTruthy();

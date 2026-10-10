@@ -39,8 +39,8 @@ const defaultUserDoublesStatsReturnValue: ReturnType<typeof useUserDoublesStats>
   isError: false,
 };
 
-const renderComponent = () => {
-  render(<DoublesStats />);
+const renderComponent = async () => {
+  await render(<DoublesStats />);
 
   expect(useUserDoublesStatsMock).toHaveBeenCalledTimes(1);
 };
@@ -51,8 +51,8 @@ describe('DoublesStats', () => {
     useUserDoublesStatsMock.mockReturnValue(defaultUserDoublesStatsReturnValue);
   });
 
-  it('renders doubles stats with correct values', () => {
-    renderComponent();
+  it('renders doubles stats with correct values', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Season 5')).toBeTruthy();
 
@@ -66,26 +66,26 @@ describe('DoublesStats', () => {
     expect(screen.getByText('9')).toBeTruthy();
   });
 
-  it('displays loading spinner when stats are loading', () => {
+  it('displays loading spinner when stats are loading', async () => {
     useUserDoublesStatsMock.mockReturnValue({
       ...defaultUserDoublesStatsReturnValue,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('displays loading spinner when stats are undefined', () => {
+  it('displays loading spinner when stats are undefined', async () => {
     useUserDoublesStatsMock.mockReturnValue({
       ...defaultUserDoublesStatsReturnValue,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });

@@ -12,8 +12,8 @@ const tabs = [
   { label: 'Tab 3', onPress: onPressTab3Mock },
 ];
 
-const renderComponent = (selectedTab: string) => {
-  render(<Tabs selectedTab={selectedTab} tabs={tabs} />);
+const renderComponent = async (selectedTab: string) => {
+  await render(<Tabs selectedTab={selectedTab} tabs={tabs} />);
 
   expect(onPressTab1Mock).not.toHaveBeenCalled();
   expect(onPressTab2Mock).not.toHaveBeenCalled();
@@ -21,39 +21,39 @@ const renderComponent = (selectedTab: string) => {
 };
 
 describe('Tabs', () => {
-  it('renders all tabs', () => {
-    renderComponent('Tab 1');
+  it('renders all tabs', async () => {
+    await renderComponent('Tab 1');
 
     expect(screen.getByText('Tab 1')).toBeDisabled();
     expect(screen.getByText('Tab 2')).toBeEnabled();
     expect(screen.getByText('Tab 3')).toBeEnabled();
   });
 
-  it('calls the correct onPress when a tab is pressed', () => {
-    renderComponent('Tab 1');
+  it('calls the correct onPress when a tab is pressed', async () => {
+    await renderComponent('Tab 1');
 
     const tab1 = screen.getByText('Tab 1');
     const tab2 = screen.getByText('Tab 2');
     const tab3 = screen.getByText('Tab 3');
 
-    fireEvent.press(tab1);
+    await fireEvent.press(tab1);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).not.toHaveBeenCalled();
     expect(onPressTab3Mock).not.toHaveBeenCalled();
 
-    fireEvent.press(tab2);
+    await fireEvent.press(tab2);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).toHaveBeenCalledTimes(1);
     expect(onPressTab3Mock).not.toHaveBeenCalled();
 
-    fireEvent.press(tab3);
+    await fireEvent.press(tab3);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).toHaveBeenCalledTimes(1);
     expect(onPressTab3Mock).toHaveBeenCalledTimes(1);
   });
 
-  it('renders differently when selectedTab changes', () => {
-    const { rerender } = render(<Tabs selectedTab="Tab 1" tabs={tabs} />);
+  it('renders differently when selectedTab changes', async () => {
+    const { rerender } = await render(<Tabs selectedTab="Tab 1" tabs={tabs} />);
     const tab1SelectedView = screen.toJSON();
 
     const tab1Selected = screen.getByText('Tab 1');
@@ -61,7 +61,7 @@ describe('Tabs', () => {
     expect(tab1Selected).toBeDisabled();
     expect(tab2Unselected).toBeEnabled();
 
-    rerender(<Tabs selectedTab="Tab 2" tabs={tabs} />);
+    await rerender(<Tabs selectedTab="Tab 2" tabs={tabs} />);
     const tab2SelectedView = screen.toJSON();
     expect(tab2SelectedView).not.toEqual(tab1SelectedView);
 
@@ -71,13 +71,13 @@ describe('Tabs', () => {
     expect(tab2Selected).toBeDisabled();
   });
 
-  it('renders with two tabs', () => {
+  it('renders with two tabs', async () => {
     const twoTabs = [
       { label: 'Active', onPress: jest.fn() },
       { label: 'Past', onPress: jest.fn() },
     ];
 
-    render(<Tabs selectedTab="Active" tabs={twoTabs} />);
+    await render(<Tabs selectedTab="Active" tabs={twoTabs} />);
 
     expect(screen.getByText('Active')).toBeTruthy();
     expect(screen.getByText('Past')).toBeTruthy();

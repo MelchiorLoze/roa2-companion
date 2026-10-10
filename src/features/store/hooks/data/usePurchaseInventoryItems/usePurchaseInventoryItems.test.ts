@@ -18,7 +18,7 @@ const invalidateGetInventoryItemsMock = jest.mocked(invalidateGetInventoryItems)
 const invalidateGetMyRotationalCoinStoreMock = jest.mocked(invalidateGetMyRotationalCoinStore);
 
 const renderUsePurchaseInventoryItems = async (...props: Parameters<typeof usePurchaseInventoryItems>) => {
-  const { result } = renderHook(() => usePurchaseInventoryItems(...props), { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(() => usePurchaseInventoryItems(...props), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };

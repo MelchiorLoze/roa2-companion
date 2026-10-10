@@ -38,8 +38,8 @@ const defaultLeaderboardAroundPlayerReturnValue: ReturnType<typeof useGetLeaderb
   isRefetching: false,
 };
 
-const renderUseUserDoublesStats = () => {
-  const { result } = renderHook(useUserDoublesStats);
+const renderUseUserDoublesStats = async () => {
+  const { result } = await renderHook(useUserDoublesStats);
 
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
 
@@ -52,41 +52,41 @@ describe('useUserDoublesStats', () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue(defaultLeaderboardAroundPlayerReturnValue);
   });
 
-  it('returns loading state when statistics are loading', () => {
+  it('returns loading state when statistics are loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns loading state when leaderboard position is loading', () => {
+  it('returns loading state when leaderboard position is loading', async () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
       playerPositions: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns refetching state when statistics are being refetched', () => {
+  it('returns refetching state when statistics are being refetched', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       isRefetching: true,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
@@ -102,13 +102,13 @@ describe('useUserDoublesStats', () => {
     });
   });
 
-  it('returns refetching state when leaderboard position is being refetched', () => {
+  it('returns refetching state when leaderboard position is being refetched', async () => {
     useGetLeaderboardAroundPlayerMock.mockReturnValue({
       ...defaultLeaderboardAroundPlayerReturnValue,
       isRefetching: true,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
@@ -124,8 +124,8 @@ describe('useUserDoublesStats', () => {
     });
   });
 
-  it('computes doubles stats correctly from player statistics', () => {
-    const { result } = renderUseUserDoublesStats();
+  it('computes doubles stats correctly from player statistics', async () => {
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toEqual({
@@ -140,7 +140,7 @@ describe('useUserDoublesStats', () => {
     });
   });
 
-  it('handles missing elo stat by defaulting to 1000', () => {
+  it('handles missing elo stat by defaulting to 1000', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.DOUBLES_SETS]: 25,
@@ -152,14 +152,14 @@ describe('useUserDoublesStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.stats).toBeDefined();
     expect(result.current.stats?.elo).toBe(1000);
     expect(result.current.stats?.setStats.setCount).toBe(25);
   });
 
-  it('handles missing set count by defaulting to 0', () => {
+  it('handles missing set count by defaulting to 0', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.DOUBLES_ELO]: 22000,
@@ -171,14 +171,14 @@ describe('useUserDoublesStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.stats).toBeDefined();
     expect(result.current.stats?.elo).toBe(2000);
     expect(result.current.stats?.setStats.setCount).toBe(0);
   });
 
-  it('handles missing best win streak by defaulting to 0', () => {
+  it('handles missing best win streak by defaulting to 0', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.DOUBLES_ELO]: 21500,
@@ -190,7 +190,7 @@ describe('useUserDoublesStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.stats).toBeDefined();
     expect(result.current.stats?.elo).toBe(1500);
@@ -211,7 +211,7 @@ describe('useUserDoublesStats', () => {
       refetch: mockRefetchLeaderboardPosition,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     await act(async () => result.current.refresh());
 
@@ -219,7 +219,7 @@ describe('useUserDoublesStats', () => {
     expect(mockRefetchLeaderboardPosition).toHaveBeenCalledTimes(1);
   });
 
-  it('returns error state when both hooks fail', () => {
+  it('returns error state when both hooks fail', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
@@ -230,7 +230,7 @@ describe('useUserDoublesStats', () => {
       playerPositions: undefined,
     });
 
-    const { result } = renderUseUserDoublesStats();
+    const { result } = await renderUseUserDoublesStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);

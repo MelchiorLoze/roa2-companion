@@ -128,8 +128,8 @@ describe('Stats', () => {
     jest.useRealTimers();
   });
 
-  it('renders correctly on initial tab (ranked)', () => {
-    const { toJSON } = render(<Stats />);
+  it('renders correctly on initial tab (ranked)', async () => {
+    const { toJSON } = await render(<Stats />);
 
     expect(screen.getByText('ranked')).toBeDisabled();
     expect(screen.getByText('2v2')).toBeEnabled();
@@ -138,16 +138,19 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders correctly on 2v2 tab', () => {
-    const { toJSON } = render(<Stats />);
+  it('renders correctly on 2v2 tab', async () => {
+    const { toJSON } = await render(<Stats />);
 
     const doublesTab = screen.getByText('2v2');
-    fireEvent.press(doublesTab);
+    await fireEvent.press(doublesTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeDisabled();
@@ -156,16 +159,19 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders correctly on crews tab', () => {
-    const { toJSON } = render(<Stats />);
+  it('renders correctly on crews tab', async () => {
+    const { toJSON } = await render(<Stats />);
 
     const crewsTab = screen.getByText('crews');
-    fireEvent.press(crewsTab);
+    await fireEvent.press(crewsTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeEnabled();
@@ -174,16 +180,19 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders correctly on global tab', () => {
-    const { toJSON } = render(<Stats />);
+  it('renders correctly on global tab', async () => {
+    const { toJSON } = await render(<Stats />);
 
     const globalTab = screen.getByText('global');
-    fireEvent.press(globalTab);
+    await fireEvent.press(globalTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeEnabled();
@@ -192,12 +201,15 @@ describe('Stats', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && Array.isArray(tree) && typeof tree[1] !== 'string') delete tree[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders correctly when player is unranked', () => {
+  it('renders correctly when player is unranked', async () => {
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsReturnValue,
       stats: {
@@ -211,7 +223,7 @@ describe('Stats', () => {
       },
     });
 
-    render(<Stats />);
+    await render(<Stats />);
 
     expect(screen.getByText('UNRANKED')).toBeTruthy();
   });

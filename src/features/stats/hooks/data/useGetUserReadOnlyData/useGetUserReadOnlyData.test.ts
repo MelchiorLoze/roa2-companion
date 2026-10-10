@@ -2,6 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Character } from '@/types/character';
 
@@ -12,7 +13,7 @@ jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetUserReadOnlyData = async () => {
-  const { result } = renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -24,10 +25,18 @@ describe('useGetUserReadOnlyData', () => {
   });
 
   it('returns nothing when the request is loading', async () => {
-    const { result } = renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return { status: 400 };
+    });
+
+    const { result } = await renderHook(useGetUserReadOnlyData, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.userData).toBeUndefined();
+
+    response.resolve();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 

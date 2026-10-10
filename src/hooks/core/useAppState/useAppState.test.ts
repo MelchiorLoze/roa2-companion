@@ -19,30 +19,30 @@ addEventListenerMock.mockReturnValue({
 const getChangeCallback = () => addEventListenerMock.mock.calls.find((call) => call[0] === 'change')?.[1];
 
 describe('useAppState', () => {
-  it('returns initial state with current app state', () => {
-    const { result } = renderHook(useAppState);
+  it('returns initial state with current app state', async () => {
+    const { result } = await renderHook(useAppState);
 
     expect(result.current).toBe('unknown');
   });
 
-  it('sets up app state change listener on mount', () => {
-    renderHook(useAppState);
+  it('sets up app state change listener on mount', async () => {
+    await renderHook(useAppState);
 
     expect(addEventListenerMock).toHaveBeenCalledWith('change', expect.any(Function));
   });
 
-  it('updates state when app state changes', () => {
-    const { result } = renderHook(useAppState);
+  it('updates state when app state changes', async () => {
+    const { result } = await renderHook(useAppState);
 
     const changeCallback = getChangeCallback();
 
-    act(() => changeCallback?.('background'));
+    await act(() => changeCallback?.('background'));
 
     expect(result.current).toBe('background');
   });
 
-  it('handles multiple app state changes correctly', () => {
-    const { result } = renderHook(useAppState);
+  it('handles multiple app state changes correctly', async () => {
+    const { result } = await renderHook(useAppState);
 
     const changeCallback = getChangeCallback();
 
@@ -50,20 +50,20 @@ describe('useAppState', () => {
     expect(result.current).toBe('unknown');
 
     // Background -> Inactive -> Active sequence
-    act(() => changeCallback?.('background'));
+    await act(() => changeCallback?.('background'));
     expect(result.current).toBe('background');
 
-    act(() => changeCallback?.('inactive'));
+    await act(() => changeCallback?.('inactive'));
     expect(result.current).toBe('inactive');
 
-    act(() => changeCallback?.('active'));
+    await act(() => changeCallback?.('active'));
     expect(result.current).toBe('active');
   });
 
-  it('removes event listener on unmount', () => {
-    const { unmount } = renderHook(useAppState);
+  it('removes event listener on unmount', async () => {
+    const { unmount } = await renderHook(useAppState);
 
-    unmount();
+    await unmount();
 
     expect(subscriptionRemoveMock).toHaveBeenCalledTimes(1);
   });

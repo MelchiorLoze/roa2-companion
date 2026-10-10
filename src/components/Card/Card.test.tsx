@@ -11,8 +11,8 @@ jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
 
 const onPressMock = jest.fn();
 
-const renderComponent = () => {
-  render(
+const renderComponent = async () => {
+  await render(
     <Card onPress={onPressMock} role="button">
       {() => <Text>Content</Text>}
     </Card>,
@@ -22,24 +22,24 @@ const renderComponent = () => {
 };
 
 describe('Card', () => {
-  it('renders children', () => {
-    renderComponent();
+  it('renders children', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Content')).toBeTruthy();
   });
 
-  it('calls onPress when pressed', () => {
-    renderComponent();
+  it('calls onPress when pressed', async () => {
+    await renderComponent();
 
-    fireEvent.press(screen.getByRole('button'));
+    await fireEvent.press(screen.getByRole('button'));
 
     expect(onPressMock).toHaveBeenCalled();
   });
 
-  it('passes pressed state to children', () => {
+  it('passes pressed state to children', async () => {
     let isPressed = true;
 
-    render(
+    await render(
       <Card onPress={onPressMock}>
         {(pressed) => {
           isPressed = pressed;

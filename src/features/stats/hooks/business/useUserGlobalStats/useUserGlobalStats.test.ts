@@ -54,8 +54,8 @@ const defaultUserReadOnlyDataReturnValue: ReturnType<typeof useGetUserReadOnlyDa
   isRefetching: false,
 };
 
-const renderUseUserGlobalStats = () => {
-  const { result } = renderHook(useUserGlobalStats);
+const renderUseUserGlobalStats = async () => {
+  const { result } = await renderHook(useUserGlobalStats);
 
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
   expect(useGetUserReadOnlyDataMock).toHaveBeenCalledTimes(1);
@@ -69,27 +69,27 @@ describe('useUserGlobalStats', () => {
     useGetUserReadOnlyDataMock.mockReturnValue(defaultUserReadOnlyDataReturnValue);
   });
 
-  it('returns loading state when statistics are loading', () => {
+  it('returns loading state when statistics are loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isRefreshing).toBe(false);
     expect(result.current.stats).toBeUndefined();
   });
 
-  it('returns refetching state when statistics are being refetched', () => {
+  it('returns refetching state when statistics are being refetched', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       isRefetching: true,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isRefreshing).toBe(true);
@@ -97,7 +97,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats?.gameStats).toBeTruthy();
   });
 
-  it('computes global stats correctly from player statistics', () => {
+  it('computes global stats correctly from player statistics', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.TOTAL_GAMES]: 200,
@@ -109,7 +109,7 @@ describe('useUserGlobalStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.stats).toMatchObject({
@@ -118,7 +118,7 @@ describe('useUserGlobalStats', () => {
     expect(result.current.stats?.characterStats).toHaveLength(Object.values(Character).length);
   });
 
-  it('handles zero matches played when calculating win rates', () => {
+  it('handles zero matches played when calculating win rates', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
       [StatisticName.TOTAL_GAMES]: 0,
@@ -130,12 +130,12 @@ describe('useUserGlobalStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.stats?.gameStats.winRate).toBe(0);
   });
 
-  it('handles undefined matches played', () => {
+  it('handles undefined matches played', async () => {
     const mockStatistics: PlayerStatistics = {
       [StatisticName.RANKED_SEASON_INDEX]: 1,
     };
@@ -145,14 +145,14 @@ describe('useUserGlobalStats', () => {
       statistics: mockStatistics,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.stats?.gameStats.gameCount).toBe(0);
     expect(result.current.stats?.gameStats.winCount).toBe(0);
     expect(result.current.stats?.gameStats.winRate).toBe(0);
   });
 
-  it('returns error state when statistics are undefined and not loading', () => {
+  it('returns error state when statistics are undefined and not loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
@@ -164,7 +164,7 @@ describe('useUserGlobalStats', () => {
       isLoading: false,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
@@ -179,7 +179,7 @@ describe('useUserGlobalStats', () => {
       refetch: mockRefetchStatistics,
     });
 
-    const { result } = renderUseUserGlobalStats();
+    const { result } = await renderUseUserGlobalStats();
 
     await act(async () => result.current.refresh());
 

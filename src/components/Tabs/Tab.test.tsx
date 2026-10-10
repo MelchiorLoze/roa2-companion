@@ -4,36 +4,36 @@ import { Tab } from './Tab';
 
 const onPressMock = jest.fn();
 
-const renderComponent = (selected: boolean) => {
-  render(<Tab label="Test Tab" onPress={onPressMock} selected={selected} />);
+const renderComponent = async (selected: boolean) => {
+  await render(<Tab label="Test Tab" onPress={onPressMock} selected={selected} />);
 
   expect(onPressMock).not.toHaveBeenCalled();
 };
 
 describe('Tab', () => {
-  it('renders the label', () => {
-    renderComponent(false);
+  it('renders the label', async () => {
+    await renderComponent(false);
 
     expect(screen.getByText('Test Tab')).toBeEnabled();
   });
 
-  it('calls onPress when pressed', () => {
-    renderComponent(false);
+  it('calls onPress when pressed', async () => {
+    await renderComponent(false);
 
     const tab = screen.getByText('Test Tab');
-    fireEvent.press(tab);
+    await fireEvent.press(tab);
 
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });
 
-  it('renders differently when selected', () => {
-    const { rerender } = render(<Tab label="Test Tab" onPress={onPressMock} selected={false} />);
+  it('renders differently when selected', async () => {
+    const { rerender } = await render(<Tab label="Test Tab" onPress={onPressMock} selected={false} />);
     const unselectedView = screen.toJSON();
 
     const unselectedTab = screen.getByText('Test Tab');
     expect(unselectedTab).toBeEnabled();
 
-    rerender(<Tab label="Test Tab" onPress={onPressMock} selected={true} />);
+    await rerender(<Tab label="Test Tab" onPress={onPressMock} selected={true} />);
     const selectedView = screen.toJSON();
     expect(selectedView).not.toEqual(unselectedView);
 
