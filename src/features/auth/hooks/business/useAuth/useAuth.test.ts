@@ -26,7 +26,7 @@ const defaultLoginWithEmailReturnValue: ReturnType<typeof useLoginWithEmail> = {
   isError: false,
 };
 
-const renderUseAuth = () => renderHook(useAuth);
+const renderUseAuth = async () => await renderHook(useAuth);
 
 describe('useAuth hook', () => {
   beforeEach(() => {
@@ -34,8 +34,8 @@ describe('useAuth hook', () => {
     useLoginWithEmailMock.mockReturnValue(defaultLoginWithEmailReturnValue);
   });
 
-  it('returns correct initial state', () => {
-    const { result } = renderUseAuth();
+  it('returns correct initial state', async () => {
+    const { result } = await renderUseAuth();
 
     expect(result.current.isLoggedIn).toBe(false);
     expect(typeof result.current.login).toBe('function');
@@ -44,20 +44,20 @@ describe('useAuth hook', () => {
     expect(result.current.isError).toBe(false);
   });
 
-  it('calls setSession when login data is available', () => {
+  it('calls setSession when login data is available', async () => {
     const loginSession: Session = { entityToken: 'mock-token', expirationDate: DateTime.utc().plus({ day: 1 }) };
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailReturnValue,
       session: loginSession,
     });
 
-    renderUseAuth();
+    await renderUseAuth();
 
     expect(defaultSessionReturnValue.setSession).toHaveBeenCalledWith(loginSession);
   });
 
-  it('updates isLoggedIn when session becomes valid', () => {
-    const { result, rerender } = renderUseAuth();
+  it('updates isLoggedIn when session becomes valid', async () => {
+    const { result, rerender } = await renderUseAuth();
     expect(result.current.isLoggedIn).toBe(false);
 
     useSessionMock.mockReturnValue({
@@ -65,52 +65,52 @@ describe('useAuth hook', () => {
       isValid: true,
     });
 
-    rerender(undefined);
+    await rerender(undefined);
 
     expect(result.current.isLoggedIn).toBe(true);
   });
 
-  it('clears the session when calling logout', () => {
+  it('clears the session when calling logout', async () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionReturnValue,
       isValid: true,
     });
 
-    const { result } = renderUseAuth();
-    act(result.current.logout);
+    const { result } = await renderUseAuth();
+    await act(result.current.logout);
 
     expect(defaultSessionReturnValue.clearSession).toHaveBeenCalledTimes(1);
   });
 
-  it('sets isLoading to true when session is loading', () => {
+  it('sets isLoading to true when session is loading', async () => {
     useSessionMock.mockReturnValue({
       ...defaultSessionReturnValue,
       isLoading: true,
     });
 
-    const { result } = renderUseAuth();
+    const { result } = await renderUseAuth();
 
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('sets isLoading to true when login is loading', () => {
+  it('sets isLoading to true when login is loading', async () => {
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailReturnValue,
       isLoading: true,
     });
 
-    const { result } = renderUseAuth();
+    const { result } = await renderUseAuth();
 
     expect(result.current.isLoading).toBe(true);
   });
 
-  it('exposes login error state', () => {
+  it('exposes login error state', async () => {
     useLoginWithEmailMock.mockReturnValue({
       ...defaultLoginWithEmailReturnValue,
       isError: true,
     });
 
-    const { result } = renderUseAuth();
+    const { result } = await renderUseAuth();
 
     expect(result.current.isError).toBe(true);
   });

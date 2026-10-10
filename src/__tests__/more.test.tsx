@@ -30,35 +30,35 @@ describe('More', () => {
     useAuthMock.mockReturnValue(defaultAuthReturnValue);
   });
 
-  it('matches snapshot', () => {
-    const tree = render(<More />).toJSON();
+  it('matches snapshot', async () => {
+    const tree = (await render(<More />)).toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('renders the list of external links', () => {
-    render(<More />);
+  it('renders the list of external links', async () => {
+    await render(<More />);
 
     const links = screen.getAllByRole('link');
 
     expect(links).toHaveLength(4);
   });
 
-  it('navigates to about page on button press', () => {
-    render(<More />);
+  it('navigates to about page on button press', async () => {
+    await render(<More />);
 
     const button = screen.getByRole('button', { name: 'About this app' });
-    fireEvent.press(button);
+    await fireEvent.press(button);
 
     expect(navigateMock).toHaveBeenCalledTimes(1);
     expect(navigateMock).toHaveBeenCalledWith('/about');
   });
 
-  it('calls logout on button press', () => {
-    render(<More />);
+  it('calls logout on button press', async () => {
+    await render(<More />);
 
     const button = screen.getByRole('button', { name: 'Log out' });
-    fireEvent.press(button);
+    await fireEvent.press(button);
 
     expect(logoutMock).toHaveBeenCalledTimes(1);
   });

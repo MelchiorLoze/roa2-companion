@@ -38,7 +38,7 @@ const mockTournament: Tournament = {
   ],
 };
 
-const renderComponent = (tournament: Tournament) => render(<TournamentCard tournament={tournament} />);
+const renderComponent = async (tournament: Tournament) => await render(<TournamentCard tournament={tournament} />);
 
 describe('TournamentCard', () => {
   beforeEach(() => {
@@ -47,94 +47,94 @@ describe('TournamentCard', () => {
     } as unknown as ReturnType<typeof useRouter>);
   });
 
-  it('renders tournament information correctly', () => {
-    renderComponent(mockTournament);
+  it('renders tournament information correctly', async () => {
+    await renderComponent(mockTournament);
 
     expect(screen.getByText('Test Tournament')).toBeTruthy();
     expect(screen.getByText(/100 attendees/)).toBeTruthy();
   });
 
-  it('displays date range for same day', () => {
+  it('displays date range for same day', async () => {
     const sameDayTournament = {
       ...mockTournament,
       startAt: DateTime.fromISO('2025-01-10T10:00:00Z', { zone: 'utc' }),
       endAt: DateTime.fromISO('2025-01-10T18:30:00Z', { zone: 'utc' }),
     };
 
-    renderComponent(sameDayTournament);
+    await renderComponent(sameDayTournament);
 
     expect(screen.getByText('Jan 10, 2025')).toBeTruthy();
   });
 
-  it('displays date range for same month', () => {
+  it('displays date range for same month', async () => {
     const sameMonthTournament = {
       ...mockTournament,
       startAt: DateTime.fromISO('2025-01-10T10:30:00Z', { zone: 'utc' }),
       endAt: DateTime.fromISO('2025-01-15T10:30:00Z', { zone: 'utc' }),
     };
 
-    renderComponent(sameMonthTournament);
+    await renderComponent(sameMonthTournament);
 
     expect(screen.getByText('Jan 10-15, 2025')).toBeTruthy();
   });
 
-  it('displays date range for different months', () => {
+  it('displays date range for different months', async () => {
     const diffMonthTournament = {
       ...mockTournament,
       startAt: DateTime.fromISO('2025-01-30T10:30:00Z', { zone: 'utc' }),
       endAt: DateTime.fromISO('2025-02-05T10:30:00Z', { zone: 'utc' }),
     };
 
-    renderComponent(diffMonthTournament);
+    await renderComponent(diffMonthTournament);
 
     expect(screen.getByText('Jan 30 - Feb 05, 2025')).toBeTruthy();
   });
 
-  it('displays wifi icon for online tournaments', () => {
-    renderComponent(mockTournament);
+  it('displays wifi icon for online tournaments', async () => {
+    await renderComponent(mockTournament);
 
     expect(screen.getByText('Test Tournament')).toBeTruthy();
     // WiFi icon is present in the component when isOnline is true
   });
 
-  it('does not display wifi icon for offline tournaments', () => {
+  it('does not display wifi icon for offline tournaments', async () => {
     const offlineTournament = { ...mockTournament, isOnline: false };
-    renderComponent(offlineTournament);
+    await renderComponent(offlineTournament);
 
     expect(screen.getByText('Test Tournament')).toBeTruthy();
     // WiFi icon is not present when isOnline is false
   });
 
-  it('displays country flag when countryCode is provided', () => {
-    renderComponent(mockTournament);
+  it('displays country flag when countryCode is provided', async () => {
+    await renderComponent(mockTournament);
 
     expect(screen.getByText(/🇺🇸/)).toBeTruthy();
   });
 
-  it('does not display country flag when countryCode is not provided', () => {
+  it('does not display country flag when countryCode is not provided', async () => {
     const noCountryTournament = { ...mockTournament, countryCode: undefined };
-    renderComponent(noCountryTournament);
+    await renderComponent(noCountryTournament);
 
     expect(screen.queryByText(/🇺🇸/)).toBeNull();
   });
 
-  it('displays tournament image when imageUrl is provided', () => {
-    renderComponent(mockTournament);
+  it('displays tournament image when imageUrl is provided', async () => {
+    await renderComponent(mockTournament);
 
     expect(screen.getByText('Test Tournament')).toBeTruthy();
     // Image is rendered when imageUrl is provided
   });
 
-  it('does not display tournament image when imageUrl is not provided', () => {
+  it('does not display tournament image when imageUrl is not provided', async () => {
     const noImageTournament = { ...mockTournament, imageUrl: undefined };
-    renderComponent(noImageTournament);
+    await renderComponent(noImageTournament);
 
     expect(screen.getByText('Test Tournament')).toBeTruthy();
     // Image is not rendered when imageUrl is not provided
   });
 
-  it('displays all events', () => {
-    renderComponent(mockTournament);
+  it('displays all events', async () => {
+    await renderComponent(mockTournament);
 
     expect(screen.getByText('Event 1')).toBeTruthy();
     expect(screen.getByText('Jan 02 - 50 entrants')).toBeTruthy();
@@ -142,11 +142,11 @@ describe('TournamentCard', () => {
     expect(screen.getByText('Jan 03 - 30 entrants')).toBeTruthy();
   });
 
-  it('navigates to tournament URL when pressed', () => {
-    renderComponent(mockTournament);
+  it('navigates to tournament URL when pressed', async () => {
+    await renderComponent(mockTournament);
 
     const card = screen.getByText('Test Tournament');
-    fireEvent.press(card);
+    await fireEvent.press(card);
 
     expect(pushMock).toHaveBeenCalledWith('https://example.com/tournament/1');
   });

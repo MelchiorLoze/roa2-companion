@@ -3,7 +3,7 @@ import { DateTime } from 'luxon';
 
 import { CoinStoreRotationCountdown } from './CoinStoreRotationCountdown';
 
-const renderComponent = (date: DateTime) => render(<CoinStoreRotationCountdown expirationDate={date} />);
+const renderComponent = async (date: DateTime) => await render(<CoinStoreRotationCountdown expirationDate={date} />);
 
 describe('CoinStoreRotationCountdown', () => {
   beforeEach(() => {
@@ -15,59 +15,59 @@ describe('CoinStoreRotationCountdown', () => {
     jest.useRealTimers();
   });
 
-  it('renders initial countdown correctly for future date', () => {
+  it('renders initial countdown correctly for future date', async () => {
     const futureDate = DateTime.utc().plus({ hours: 2, minutes: 30, seconds: 45 });
 
-    renderComponent(futureDate);
+    await renderComponent(futureDate);
 
     expect(screen.getByText('02:30:45')).toBeTruthy();
   });
 
-  it('renders countdown with zero hours correctly', () => {
+  it('renders countdown with zero hours correctly', async () => {
     const futureDate = DateTime.utc().plus({ minutes: 45, seconds: 20 });
 
-    renderComponent(futureDate);
+    await renderComponent(futureDate);
 
     expect(screen.getByText('00:45:20')).toBeTruthy();
   });
 
-  it('renders consistent width placeholder', () => {
+  it('renders consistent width placeholder', async () => {
     const futureDate = DateTime.utc().plus({ hours: 1, minutes: 30, seconds: 45 });
 
-    renderComponent(futureDate);
+    await renderComponent(futureDate);
 
     expect(screen.getByText('01:30:45')).toBeTruthy();
     expect(screen.getByText('01:30:88')).toBeTruthy();
   });
 
-  it('handles large time differences correctly', () => {
+  it('handles large time differences correctly', async () => {
     const farFutureDate = DateTime.utc().plus({ hours: 25, minutes: 30, seconds: 45 });
 
-    renderComponent(farFutureDate);
+    await renderComponent(farFutureDate);
 
     expect(screen.getByText('25:30:45')).toBeTruthy();
   });
 
-  it('cleans up interval on unmount', () => {
+  it('cleans up interval on unmount', async () => {
     const futureDate = DateTime.utc().plus({ hours: 1 });
     const clearIntervalSpy = jest.spyOn(global, 'clearInterval');
 
-    const { unmount } = renderComponent(futureDate);
+    const { unmount } = await renderComponent(futureDate);
 
-    unmount();
+    await unmount();
 
     expect(clearIntervalSpy).toHaveBeenCalledTimes(1);
     clearIntervalSpy.mockRestore();
   });
 
-  it('updates countdown correctly when time advances', () => {
+  it('updates countdown correctly when time advances', async () => {
     const futureDate = DateTime.utc().plus({ minutes: 5, seconds: 10 });
 
-    renderComponent(futureDate);
+    await renderComponent(futureDate);
 
     expect(screen.getByText('00:05:10')).toBeTruthy();
 
-    act(() => jest.advanceTimersByTime(5000));
+    await act(() => jest.advanceTimersByTime(5000));
 
     expect(screen.getByText('00:05:05')).toBeTruthy();
   });

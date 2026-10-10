@@ -76,24 +76,24 @@ const mockTournament3: Tournament = {
 
 const refreshControl = <RefreshControl onRefresh={jest.fn()} refreshing={false} />;
 
-const renderComponent = (tournaments: Tournament[]) =>
-  render(<TournamentList refreshControl={refreshControl} tournaments={tournaments} />);
+const renderComponent = async (tournaments: Tournament[]) =>
+  await render(<TournamentList refreshControl={refreshControl} tournaments={tournaments} />);
 
 describe('TournamentList', () => {
-  it('renders empty list correctly', () => {
-    renderComponent([]);
+  it('renders empty list correctly', async () => {
+    await renderComponent([]);
 
     expect(screen.queryByText(/Test Tournament/)).toBeNull();
   });
 
-  it('renders single tournament correctly', () => {
-    renderComponent([mockTournament1]);
+  it('renders single tournament correctly', async () => {
+    await renderComponent([mockTournament1]);
 
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
   });
 
-  it('renders multiple tournaments correctly', () => {
-    renderComponent([mockTournament1, mockTournament2, mockTournament3]);
+  it('renders multiple tournaments correctly', async () => {
+    await renderComponent([mockTournament1, mockTournament2, mockTournament3]);
 
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
     expect(screen.getByText('Test Tournament 2')).toBeTruthy();

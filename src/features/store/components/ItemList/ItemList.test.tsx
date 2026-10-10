@@ -13,21 +13,21 @@ jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
 
 const onSelectMock = jest.fn();
 
-const renderComponent = (items: Item[]) => {
-  render(<ItemList items={items} onSelect={onSelectMock} />);
+const renderComponent = async (items: Item[]) => {
+  await render(<ItemList items={items} onSelect={onSelectMock} />);
 
   expect(onSelectMock).not.toHaveBeenCalled();
 };
 
 describe('ItemList', () => {
-  it('renders correctly an empty item list', () => {
-    renderComponent([]);
+  it('renders correctly an empty item list', async () => {
+    await renderComponent([]);
 
     expect(screen.queryByRole('button')).toBeNull();
   });
 
-  it('renders correctly items from the list', () => {
-    renderComponent(testItemList);
+  it('renders correctly items from the list', async () => {
+    await renderComponent(testItemList);
 
     const itemCards = screen.getAllByRole('button');
     expect(itemCards).toHaveLength(testItemList.length);
@@ -35,11 +35,11 @@ describe('ItemList', () => {
     within(itemCards[1]).getByText(testItemList[1].name);
   });
 
-  it('calls onSelect when an item is pressed', () => {
-    renderComponent(testItemList);
+  it('calls onSelect when an item is pressed', async () => {
+    await renderComponent(testItemList);
 
     const itemCards = screen.getAllByRole('button');
-    fireEvent.press(itemCards[0]);
+    await fireEvent.press(itemCards[0]);
 
     expect(onSelectMock).toHaveBeenCalledTimes(1);
     expect(onSelectMock).toHaveBeenCalledWith(testItemList[0]);

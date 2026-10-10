@@ -5,18 +5,18 @@ import { Button } from './Button';
 const label = 'My Button';
 const onPressMock = jest.fn();
 
-const renderComponent = () => {
-  render(<Button label={label} onPress={onPressMock} />);
+const renderComponent = async () => {
+  await render(<Button label={label} onPress={onPressMock} />);
 
   expect(onPressMock).not.toHaveBeenCalled();
 };
 
 describe('Button', () => {
-  it('calls onPress when pressed', () => {
-    renderComponent();
+  it('calls onPress when pressed', async () => {
+    await renderComponent();
 
     const button = screen.getByRole('button', { name: label });
-    fireEvent.press(button);
+    await fireEvent.press(button);
 
     expect(onPressMock).toHaveBeenCalled();
   });

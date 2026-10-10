@@ -15,8 +15,8 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   isError: false,
 };
 
-const renderUseEloDistribution = () => {
-  const { result } = renderHook(useEloDistribution);
+const renderUseEloDistribution = async () => {
+  const { result } = await renderHook(useEloDistribution);
 
   expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(1);
 
@@ -28,7 +28,7 @@ describe('useEloDistribution', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('returns correct values when leaderboard stats are loading', () => {
+  it('returns correct values when leaderboard stats are loading', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -38,20 +38,20 @@ describe('useEloDistribution', () => {
       isLoading: true,
     });
 
-    const { result } = renderUseEloDistribution();
+    const { result } = await renderUseEloDistribution();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.eloDistribution).toBeUndefined();
   });
 
-  it('returns correct elo distribution for complete leaderboard', () => {
-    const { result } = renderUseEloDistribution();
+  it('returns correct elo distribution for complete leaderboard', async () => {
+    const { result } = await renderUseEloDistribution();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.eloDistribution).toMatchSnapshot();
   });
 
-  it('returns error state when leaderboard stats have error', () => {
+  it('returns error state when leaderboard stats have error', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -62,7 +62,7 @@ describe('useEloDistribution', () => {
       isError: true,
     });
 
-    const { result } = renderUseEloDistribution();
+    const { result } = await renderUseEloDistribution();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);

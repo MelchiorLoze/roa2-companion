@@ -8,14 +8,15 @@ const BASE_URL = 'https://example.com';
 const responseDataMock = { data: { id: 1, name: 'test' } };
 const handleResponseMock = jest.fn().mockResolvedValue(responseDataMock);
 
-const renderUseHttpClient = (options?: Pick<Parameters<typeof useHttpClient>[0], 'baseQueryParams' | 'headers'>) =>
-  renderHook(() => useHttpClient({ baseUrl: BASE_URL, handleResponse: handleResponseMock, ...options }));
+const renderUseHttpClient = async (
+  options?: Pick<Parameters<typeof useHttpClient>[0], 'baseQueryParams' | 'headers'>,
+) => await renderHook(() => useHttpClient({ baseUrl: BASE_URL, handleResponse: handleResponseMock, ...options }));
 
 describe('useHttpClient', () => {
   it('allows request with no params', async () => {
     fetchMock.postOnce(`${BASE_URL}/api/data`, responseDataMock);
 
-    const { result } = renderUseHttpClient();
+    const { result } = await renderUseHttpClient();
     const response = await result.current.post('/api/data');
 
     expect(response).toEqual(responseDataMock);
@@ -28,7 +29,7 @@ describe('useHttpClient', () => {
       headers: { 'x-custom-header': 'value' },
     });
 
-    const { result } = renderUseHttpClient({ headers: { 'x-custom-header': 'value' } });
+    const { result } = await renderUseHttpClient({ headers: { 'x-custom-header': 'value' } });
     const response = await result.current.post('/api/data');
 
     expect(response).toEqual(responseDataMock);
@@ -39,7 +40,7 @@ describe('useHttpClient', () => {
   it('allows request with params', async () => {
     fetchMock.postOnce(`${BASE_URL}/api/data?param1=value1&param2=value2`, responseDataMock);
 
-    const { result } = renderUseHttpClient({ baseQueryParams: { param1: 'value1' } });
+    const { result } = await renderUseHttpClient({ baseQueryParams: { param1: 'value1' } });
     const response = await result.current.post('/api/data', { params: { param2: 'value2' } });
 
     expect(response).toEqual(responseDataMock);
@@ -53,7 +54,7 @@ describe('useHttpClient', () => {
       body: requestBody,
     });
 
-    const { result } = renderUseHttpClient();
+    const { result } = await renderUseHttpClient();
     const response = await result.current.post('/api/data', { body: requestBody });
 
     expect(response).toEqual(responseDataMock);

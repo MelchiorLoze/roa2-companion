@@ -11,20 +11,20 @@ const defaultCharacterStats = [
   { character: Character.ETALUS, gameCount: 3, level: 4 },
 ];
 
-const renderComponent = (characterStats = defaultCharacterStats) => {
-  render(<CharacterStatsTable characterStats={characterStats} />);
+const renderComponent = async (characterStats = defaultCharacterStats) => {
+  await render(<CharacterStatsTable characterStats={characterStats} />);
 };
 
 describe('CharacterStatsTable', () => {
-  it('renders header labels', () => {
-    renderComponent();
+  it('renders header labels', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Level')).toBeTruthy();
     expect(screen.getByText('Games')).toBeTruthy();
   });
 
-  it('renders character stats values', () => {
-    renderComponent();
+  it('renders character stats values', async () => {
+    await renderComponent();
 
     expect(screen.getAllByText('5')).toHaveLength(2);
     expect(screen.getByText('100')).toBeTruthy();
@@ -34,8 +34,8 @@ describe('CharacterStatsTable', () => {
     expect(screen.getByText('50')).toBeTruthy();
   });
 
-  it('sorts by level descending then by game count descending', () => {
-    renderComponent();
+  it('sorts by level descending then by game count descending', async () => {
+    await renderComponent();
 
     const allTexts = screen.getAllByText(/^\d+$/).map((el) => el.props.children as number);
 
@@ -43,8 +43,8 @@ describe('CharacterStatsTable', () => {
     expect(allTexts).toEqual([5, 200, 5, 100, 4, 3, 3, 50]);
   });
 
-  it('renders an empty table when there are no character stats', () => {
-    renderComponent([]);
+  it('renders an empty table when there are no character stats', async () => {
+    await renderComponent([]);
 
     expect(screen.getByText('Level')).toBeTruthy();
     expect(screen.getByText('Games')).toBeTruthy();

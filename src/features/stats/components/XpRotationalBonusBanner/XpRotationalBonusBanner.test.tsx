@@ -12,7 +12,7 @@ const defaultReturnValue: ReturnType<typeof useXpRotationalBonus> = {
   expirationDate: DateTime.utc(),
 };
 
-const renderComponent = () => render(<XpRotationalBonusBanner />);
+const renderComponent = async () => await render(<XpRotationalBonusBanner />);
 
 describe('XpRotationalBonusBanner', () => {
   beforeEach(() => {
@@ -26,8 +26,8 @@ describe('XpRotationalBonusBanner', () => {
     jest.useRealTimers();
   });
 
-  it('renders correctly', () => {
-    renderComponent();
+  it('renders correctly', async () => {
+    await renderComponent();
 
     expect(screen.getByText('casual — Bonus +50%')).toBeTruthy();
     expect(screen.getByText('xp')).toBeTruthy();
@@ -37,45 +37,45 @@ describe('XpRotationalBonusBanner', () => {
     expect(screen.getByText('45:88')).toBeTruthy(); // placeholder
   });
 
-  it('renders a different queue name', () => {
+  it('renders a different queue name', async () => {
     useXpRotationalBonusMock.mockReturnValue({
       ...defaultReturnValue,
       currentQueue: '2v2',
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('2v2 — Bonus +50%')).toBeTruthy();
   });
 
-  it('updates the formatted time as the countdown ticks', () => {
-    renderComponent();
+  it('updates the formatted time as the countdown ticks', async () => {
+    await renderComponent();
 
     expect(screen.getByText('45:30')).toBeTruthy();
 
-    act(() => jest.advanceTimersByTime(1000));
+    await act(() => jest.advanceTimersByTime(1000));
 
     expect(screen.getByText('45:29')).toBeTruthy();
   });
 
-  it('formats single-digit minutes and seconds with leading zeros', () => {
+  it('formats single-digit minutes and seconds with leading zeros', async () => {
     useXpRotationalBonusMock.mockReturnValue({
       ...defaultReturnValue,
       expirationDate: DateTime.utc().plus({ minutes: 5, seconds: 9 }),
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('05:09')).toBeTruthy();
   });
 
-  it('handles durations above one hour correctly', () => {
+  it('handles durations above one hour correctly', async () => {
     useXpRotationalBonusMock.mockReturnValue({
       ...defaultReturnValue,
       expirationDate: DateTime.utc().plus({ hours: 1, minutes: 22, seconds: 3 }),
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('82:03')).toBeTruthy();
   });

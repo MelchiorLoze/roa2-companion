@@ -5,8 +5,8 @@ import { Rank } from '../../types/rank';
 import { LeaderboardPositionRow } from './LeaderboardPositionStatRow';
 
 describe('LeaderboardPositionStatRow', () => {
-  it('renders correctly', () => {
-    render(
+  it('renders correctly', async () => {
+    await render(
       <LeaderboardPositionRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         elo={1200}
@@ -22,8 +22,8 @@ describe('LeaderboardPositionStatRow', () => {
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 
-  it('renders correctly without rank and elo', () => {
-    render(
+  it('renders correctly without rank and elo', async () => {
+    await render(
       <LeaderboardPositionRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         playerName="Test Player"
@@ -36,8 +36,8 @@ describe('LeaderboardPositionStatRow', () => {
     expect(screen.getByText('UNRANKED')).toBeTruthy();
   });
 
-  it('renders correctly without rank if the rankIcon is provided', () => {
-    render(
+  it('renders correctly without rank if the rankIcon is provided', async () => {
+    await render(
       <LeaderboardPositionRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         elo={1500}

@@ -8,7 +8,7 @@ jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance');
 const useCurrencyBalanceMock = jest.mocked(useCurrencyBalance);
 
 describe('CurrenciesBalance', () => {
-  it('renders correctly when the balances are loaded', () => {
+  it('renders correctly when the balances are loaded', async () => {
     useCurrencyBalanceMock.mockReturnValue({
       coinsBalance: 208092,
       bucksBalance: 2850,
@@ -17,7 +17,7 @@ describe('CurrenciesBalance', () => {
       isError: false,
     });
 
-    render(<CurrenciesBalance />);
+    await render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
     expect(screen.getByText('208,092')).toBeTruthy();
@@ -25,7 +25,7 @@ describe('CurrenciesBalance', () => {
     expect(screen.getByText('13')).toBeTruthy();
   });
 
-  it('renders correctly when the balances are loading', () => {
+  it('renders correctly when the balances are loading', async () => {
     useCurrencyBalanceMock.mockReturnValue({
       coinsBalance: undefined,
       bucksBalance: undefined,
@@ -34,7 +34,7 @@ describe('CurrenciesBalance', () => {
       isError: false,
     });
 
-    render(<CurrenciesBalance />);
+    await render(<CurrenciesBalance />);
 
     expect(useCurrencyBalanceMock).toHaveBeenCalledTimes(1);
     expect(screen.getAllByText('0')).toHaveLength(3);

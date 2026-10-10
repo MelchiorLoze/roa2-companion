@@ -104,7 +104,7 @@ describe('ESport', () => {
     useGetPastTournamentsMock.mockReturnValue(defaultPastTournamentsReturnValue);
   });
 
-  it('matches snapshot on initial tab', () => {
+  it('matches snapshot on initial tab', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1],
@@ -115,7 +115,7 @@ describe('ESport', () => {
       tournaments: [mockTournament2, mockTournament3],
     });
 
-    const { toJSON } = render(<ESport />);
+    const { toJSON } = await render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
@@ -125,13 +125,15 @@ describe('ESport', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && !Array.isArray(tree) && typeof tree.children?.[1] !== 'string')
-      delete tree.children?.[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('matches snapshot on past tournaments tab', () => {
+  it('matches snapshot on past tournaments tab', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1],
@@ -142,11 +144,11 @@ describe('ESport', () => {
       tournaments: [mockTournament2, mockTournament3],
     });
 
-    const { toJSON } = render(<ESport />);
+    const { toJSON } = await render(<ESport />);
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     expect(screen.getByText('active')).toBeEnabled();
     expect(screen.getByText('past')).toBeDisabled();
@@ -156,145 +158,147 @@ describe('ESport', () => {
 
     const tree = toJSON();
     // Remove circular references for snapshot testing
-    if (tree && !Array.isArray(tree) && typeof tree.children?.[1] !== 'string')
-      delete tree.children?.[1].props.refreshControl;
+    if (tree) {
+      const scrollable = tree.children[1];
+      if (scrollable && typeof scrollable !== 'string') delete scrollable.props.refreshControl;
+    }
 
     expect(tree).toMatchSnapshot();
   });
 
-  it('shows spinner when loading', () => {
+  it('shows spinner when loading', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       isLoading: true,
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('shows error message when request fails', () => {
-    render(<ESport />);
+  it('shows error message when request fails', async () => {
+    await render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
-  it('shows error message when tournament list is empty', () => {
+  it('shows error message when tournament list is empty', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [],
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
-  it('calls active tab onPress when active tab is pressed', () => {
+  it('calls active tab onPress when active tab is pressed', async () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
       tournaments: [mockTournament1],
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     // Switch back to active tab
     const activeTab = screen.getByText('active');
-    fireEvent.press(activeTab);
+    await fireEvent.press(activeTab);
 
     // Verify active tab is now selected (disabled)
     expect(screen.getByText('active')).toBeDisabled();
     expect(screen.getByText('past')).toBeEnabled();
   });
 
-  it('calls past tab onPress when past tab is pressed', () => {
+  it('calls past tab onPress when past tab is pressed', async () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
       tournaments: [mockTournament1],
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     // Verify past tab is now selected (disabled)
     expect(screen.getByText('past')).toBeDisabled();
     expect(screen.getByText('active')).toBeEnabled();
   });
 
-  it('shows active tournaments when active tab is selected', () => {
+  it('shows active tournaments when active tab is selected', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1, mockTournament2],
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     // Verify active tournaments are displayed
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
     expect(screen.getByText('Test Tournament 2')).toBeTruthy();
   });
 
-  it('shows loading state when past tab is loading', () => {
+  it('shows loading state when past tab is loading', async () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
       isLoading: true,
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     // Verify spinner is shown
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('shows error when past tab has error', () => {
+  it('shows error when past tab has error', async () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
       tournaments: undefined,
       isLoading: false,
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     // Verify error message is shown
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
-  it('shows error when past tab has empty tournaments', () => {
+  it('shows error when past tab has empty tournaments', async () => {
     useGetPastTournamentsMock.mockReturnValue({
       ...defaultPastTournamentsReturnValue,
       tournaments: [],
     });
 
-    render(<ESport />);
+    await render(<ESport />);
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
+    await fireEvent.press(pastTab);
 
     // Verify error message is shown
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
   });
 
-  it('maintains separate state for each tab', () => {
+  it('maintains separate state for each tab', async () => {
     useGetActiveTournamentsMock.mockReturnValue({
       ...defaultActiveTournamentsReturnValue,
       tournaments: [mockTournament1],
@@ -305,23 +309,23 @@ describe('ESport', () => {
       tournaments: [mockTournament3],
     });
 
-    const { rerender } = render(<ESport />);
+    const { rerender } = await render(<ESport />);
 
     // Verify active tab shows active tournament
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    fireEvent.press(pastTab);
-    rerender(<ESport />);
+    await fireEvent.press(pastTab);
+    await rerender(<ESport />);
 
     // Verify past tab shows past tournament
     expect(screen.getByText('Test Tournament 3')).toBeTruthy();
 
     // Switch back to active tab
     const activeTab = screen.getByText('active');
-    fireEvent.press(activeTab);
-    rerender(<ESport />);
+    await fireEvent.press(activeTab);
+    await rerender(<ESport />);
 
     // Verify active tab still shows active tournament
     expect(screen.getByText('Test Tournament 1')).toBeTruthy();

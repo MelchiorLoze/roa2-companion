@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Stats renders correctly on 2v2 tab 1`] = `
-[
+<>
   <View
     style={
       {
@@ -345,7 +345,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         </View>
       </View>
     </View>
-  </View>,
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {
@@ -873,7 +873,7 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         </View>
       </View>
     </View>
-  </RCTScrollView>,
+  </RCTScrollView>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -1091,12 +1091,12 @@ exports[`Stats renders correctly on 2v2 tab 1`] = `
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>,
-]
+  </ViewManagerAdapter_ExpoLinearGradient>
+</>
 `;
 
 exports[`Stats renders correctly on crews tab 1`] = `
-[
+<>
   <View
     style={
       {
@@ -1440,7 +1440,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
         </View>
       </View>
     </View>
-  </View>,
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {
@@ -1968,7 +1968,7 @@ exports[`Stats renders correctly on crews tab 1`] = `
         </View>
       </View>
     </View>
-  </RCTScrollView>,
+  </RCTScrollView>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -2186,12 +2186,12 @@ exports[`Stats renders correctly on crews tab 1`] = `
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>,
-]
+  </ViewManagerAdapter_ExpoLinearGradient>
+</>
 `;
 
 exports[`Stats renders correctly on global tab 1`] = `
-[
+<>
   <View
     style={
       {
@@ -2535,7 +2535,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         </View>
       </View>
     </View>
-  </View>,
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {
@@ -3311,7 +3311,7 @@ exports[`Stats renders correctly on global tab 1`] = `
         </View>
       </View>
     </View>
-  </RCTScrollView>,
+  </RCTScrollView>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -3529,12 +3529,12 @@ exports[`Stats renders correctly on global tab 1`] = `
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>,
-]
+  </ViewManagerAdapter_ExpoLinearGradient>
+</>
 `;
 
 exports[`Stats renders correctly on initial tab (ranked) 1`] = `
-[
+<>
   <View
     style={
       {
@@ -3878,7 +3878,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         </View>
       </View>
     </View>
-  </View>,
+  </View>
   <RCTScrollView
     contentContainerStyle={
       {
@@ -5102,7 +5102,7 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         </View>
       </View>
     </View>
-  </RCTScrollView>,
+  </RCTScrollView>
   <ViewManagerAdapter_ExpoLinearGradient
     colors={
       [
@@ -5320,6 +5320,6 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
         </View>
       </ViewManagerAdapter_ExpoLinearGradient>
     </View>
-  </ViewManagerAdapter_ExpoLinearGradient>,
-]
+  </ViewManagerAdapter_ExpoLinearGradient>
+</>
 `;

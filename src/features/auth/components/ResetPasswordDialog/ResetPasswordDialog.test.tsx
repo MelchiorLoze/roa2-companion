@@ -17,8 +17,8 @@ describe('ResetPasswordDialog', () => {
     useSendAccountRecoveryEmailMock.mockReturnValue(defaultSendAccountRecoveryEmailReturnValue);
   });
 
-  it('renders correctly', () => {
-    render(<ResetPasswordDialog onClose={jest.fn()} />);
+  it('renders correctly', async () => {
+    await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     expect(useSendAccountRecoveryEmailMock).toHaveBeenCalledTimes(1);
 
@@ -31,32 +31,32 @@ describe('ResetPasswordDialog', () => {
     expect(screen.getByRole('button', { name: 'Reset password' })).toBeTruthy();
   });
 
-  it('renders correctly when an email is provided', () => {
-    render(<ResetPasswordDialog email="kragg@example.com" onClose={jest.fn()} />);
+  it('renders correctly when an email is provided', async () => {
+    await render(<ResetPasswordDialog email="kragg@example.com" onClose={jest.fn()} />);
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
     expect(emailInput).toHaveDisplayValue('kragg@example.com');
   });
 
-  it('calls onClose when the overlay is pressed', () => {
+  it('calls onClose when the overlay is pressed', async () => {
     const mockOnClose = jest.fn();
-    render(<ResetPasswordDialog onClose={mockOnClose} />);
+    await render(<ResetPasswordDialog onClose={mockOnClose} />);
 
-    fireEvent.press(screen.getByTestId('overlay'));
+    await fireEvent.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
 
-  it('calls sendRecoveryEmail when the button is pressed', () => {
-    render(<ResetPasswordDialog onClose={jest.fn()} />);
+  it('calls sendRecoveryEmail when the button is pressed', async () => {
+    await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
-    fireEvent.press(submitButton);
+    await fireEvent.press(submitButton);
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
-    fireEvent.changeText(emailInput, 'kragg@example.com');
-    fireEvent.press(submitButton);
+    await fireEvent.changeText(emailInput, 'kragg@example.com');
+    await fireEvent.press(submitButton);
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
 
     expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledTimes(1);
@@ -64,17 +64,17 @@ describe('ResetPasswordDialog', () => {
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
   });
 
-  it('shows error message when email is invalid', () => {
-    render(<ResetPasswordDialog onClose={jest.fn()} />);
+  it('shows error message when email is invalid', async () => {
+    await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
-    fireEvent.press(submitButton);
+    await fireEvent.press(submitButton);
 
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
     expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).not.toHaveBeenCalled();
   });
 
-  it('shows error message when email is not sent', () => {
+  it('shows error message when email is not sent', async () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
       sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
@@ -82,12 +82,12 @@ describe('ResetPasswordDialog', () => {
       isError: true,
     });
 
-    render(<ResetPasswordDialog onClose={jest.fn()} />);
+    await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
   });
 
-  it('shows success message when email is sent', () => {
+  it('shows success message when email is sent', async () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
       sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: false,
@@ -95,7 +95,7 @@ describe('ResetPasswordDialog', () => {
       isError: false,
     });
 
-    render(<ResetPasswordDialog email="kragg@example.com" onClose={jest.fn()} />);
+    await render(<ResetPasswordDialog email="kragg@example.com" onClose={jest.fn()} />);
 
     screen.getByText(
       'Check your inbox, an email sent to kragg@example.com to reset your password! (you may have to wait a couple of minutes until you receive it)',
@@ -103,7 +103,7 @@ describe('ResetPasswordDialog', () => {
     expect(screen.getByRole('button', { name: 'Ok' })).toBeTruthy();
   });
 
-  it('shows loading spinner when sending email', () => {
+  it('shows loading spinner when sending email', async () => {
     useSendAccountRecoveryEmailMock.mockReturnValue({
       sendRecoveryEmail: defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail,
       isLoading: true,
@@ -111,7 +111,7 @@ describe('ResetPasswordDialog', () => {
       isError: false,
     });
 
-    render(<ResetPasswordDialog onClose={jest.fn()} />);
+    await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });

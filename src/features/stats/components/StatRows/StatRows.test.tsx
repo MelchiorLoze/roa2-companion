@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react-native';
 import { StatRows } from './StatRows';
 
 describe('StatRows', () => {
-  it('renders all rows with string values', () => {
-    render(
+  it('renders all rows with string values', async () => {
+    await render(
       <StatRows
         rows={[
           { label: 'Rank', value: 'Gold' },
@@ -19,8 +19,8 @@ describe('StatRows', () => {
     expect(screen.getByText('NA')).toBeTruthy();
   });
 
-  it('renders all rows with number values', () => {
-    render(
+  it('renders all rows with number values', async () => {
+    await render(
       <StatRows
         rows={[
           { label: 'Wins', value: 10 },
@@ -35,14 +35,14 @@ describe('StatRows', () => {
     expect(screen.getByText('3')).toBeTruthy();
   });
 
-  it('renders nothing when rows is empty', () => {
-    render(<StatRows rows={[]} />);
+  it('renders nothing when rows is empty', async () => {
+    await render(<StatRows rows={[]} />);
 
     expect(screen.queryByText(/.+/)).toBeNull();
   });
 
-  it('renders a single row', () => {
-    render(<StatRows rows={[{ label: 'ELO', value: 1500 }]} />);
+  it('renders a single row', async () => {
+    await render(<StatRows rows={[{ label: 'ELO', value: 1500 }]} />);
 
     expect(screen.getByText('ELO')).toBeTruthy();
     expect(screen.getByText('1500')).toBeTruthy();

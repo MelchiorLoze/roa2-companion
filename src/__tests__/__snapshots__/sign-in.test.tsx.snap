@@ -346,7 +346,7 @@ exports[`SignIn matches snapshot 1`] = `
 `;
 
 exports[`SignIn matches snapshot with password reset dialog open 1`] = `
-[
+<>
   <View
     onLayout={[Function]}
     style={
@@ -688,7 +688,7 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         </Text>
       </Text>
     </View>
-  </View>,
+  </View>
   <View>
     <Modal
       animationType="fade"
@@ -953,6 +953,6 @@ exports[`SignIn matches snapshot with password reset dialog open 1`] = `
         </View>
       </View>
     </Modal>
-  </View>,
-]
+  </View>
+</>
 `;

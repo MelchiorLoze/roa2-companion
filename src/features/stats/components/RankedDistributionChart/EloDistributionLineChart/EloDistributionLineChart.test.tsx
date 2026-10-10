@@ -15,8 +15,8 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   isError: false,
 };
 
-const renderComponent = () => {
-  const result = render(<EloDistributionLineChart userElo={1000} width={300} />);
+const renderComponent = async () => {
+  const result = await render(<EloDistributionLineChart userElo={1000} width={300} />);
 
   expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(1);
 
@@ -28,7 +28,7 @@ describe('EloDistributionLineChart', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('does not render when leaderboard stats are loading', () => {
+  it('does not render when leaderboard stats are loading', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -38,13 +38,13 @@ describe('EloDistributionLineChart', () => {
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.queryByTestId('elo-distribution')).toBeNull();
   });
 
-  it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent().toJSON();
+  it('renders the chart when leaderboard stats are available', async () => {
+    const tree = (await renderComponent()).toJSON();
 
     expect(screen.getByTestId('elo-distribution')).toBeTruthy();
     expect(tree).toMatchSnapshot();

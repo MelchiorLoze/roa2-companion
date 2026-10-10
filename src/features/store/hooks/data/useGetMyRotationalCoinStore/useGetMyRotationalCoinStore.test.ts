@@ -4,6 +4,7 @@ import fetchMock from 'fetch-mock';
 import { DateTime, Duration } from 'luxon';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { invalidateGetMyRotationalCoinStore, useGetMyRotationalCoinStore } from './useGetMyRotationalCoinStore';
@@ -14,18 +15,25 @@ jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 
 const useSessionMock = jest.mocked(useSession);
 
-const mockSuccessfulResponse = ({ itemIds = [null, '1', null, '2', null], expirationDate = VALID_DATE } = {}) => {
-  fetchMock.postOnce('*', {
-    status: 200,
-    body: {
-      data: {
-        FunctionResult: {
-          itemIds,
-          expirationDateTime: expirationDate.toISO(),
+const mockSuccessfulResponse = (
+  { itemIds = [null, '1', null, '2', null], expirationDate = VALID_DATE } = {},
+  delayMs?: number,
+) => {
+  fetchMock.postOnce(
+    '*',
+    {
+      status: 200,
+      body: {
+        data: {
+          FunctionResult: {
+            itemIds,
+            expirationDateTime: expirationDate.toISO(),
+          },
         },
       },
     },
-  });
+    { delay: delayMs },
+  );
 };
 
 const mockFailedResponse = () => {
@@ -35,7 +43,7 @@ const mockFailedResponse = () => {
 };
 
 const renderUseGetMyRotationalCoinStore = async () => {
-  const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -47,10 +55,18 @@ describe('useGetMyRotationalCoinStore', () => {
   });
 
   it('returns nothing when the request is loading', async () => {
-    const { result } = renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return { status: 400 };
+    });
+
+    const { result } = await renderHook(useGetMyRotationalCoinStore, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rotationalCoinStore).toBeUndefined();
+
+    response.resolve();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
@@ -61,16 +77,16 @@ describe('useGetMyRotationalCoinStore', () => {
 
     const queryClient = new QueryClient();
 
-    const { result, rerender } = renderHook(useGetMyRotationalCoinStore, {
+    const { result, rerender } = await renderHook(useGetMyRotationalCoinStore, {
       wrapper: ({ children }) => QueryClientProvider({ client: queryClient, children }),
     });
 
     await waitFor(() => expect(result.current.isLoading).toBe(false));
     expect(result.current.rotationalCoinStore).toEqual(firstResult);
 
-    mockSuccessfulResponse(secondResult);
+    mockSuccessfulResponse(secondResult, 100);
     invalidateGetMyRotationalCoinStore(queryClient);
-    rerender(undefined);
+    await rerender(undefined);
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rotationalCoinStore).toEqual(firstResult);
@@ -86,7 +102,7 @@ describe('useGetMyRotationalCoinStore', () => {
     const queryClient = new QueryClient();
     const invalidateQueriesSpy = jest.spyOn(queryClient, 'invalidateQueries');
 
-    const { result } = renderHook(useGetMyRotationalCoinStore, {
+    const { result } = await renderHook(useGetMyRotationalCoinStore, {
       wrapper: ({ children }) => QueryClientProvider({ client: queryClient, children }),
     });
 
@@ -94,11 +110,11 @@ describe('useGetMyRotationalCoinStore', () => {
     expect(result.current.rotationalCoinStore).toBeDefined();
 
     // Fast-forward time to just before expiration - should not invalidate
-    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 4 }).toMillis())); // 4 minutes
+    await act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 4 }).toMillis())); // 4 minutes
     expect(invalidateQueriesSpy).not.toHaveBeenCalled();
 
     // Fast-forward to expiration time - should invalidate
-    act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 1 }).toMillis())); // 1 more minute = 5 minutes total
+    await act(() => jest.advanceTimersByTime(Duration.fromObject({ minutes: 1 }).toMillis())); // 1 more minute = 5 minutes total
     expect(invalidateQueriesSpy).toHaveBeenCalledWith({ queryKey: ['getMyRotationalCoinStore'] });
 
     jest.useRealTimers();

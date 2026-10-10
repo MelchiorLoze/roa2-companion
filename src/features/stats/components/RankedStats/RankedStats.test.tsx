@@ -56,8 +56,8 @@ useLeaderboardStatsMock.mockReturnValue({
   isError: false,
 });
 
-const renderComponent = () => {
-  render(<RankedStats />);
+const renderComponent = async () => {
+  await render(<RankedStats />);
 
   expect(useSeasonMock).toHaveBeenCalledTimes(1);
   expect(useUserRankedStatsMock).toHaveBeenCalledTimes(1);
@@ -69,8 +69,8 @@ describe('RankedStats', () => {
     useUserRankedStatsMock.mockReturnValue(defaultUserRankedStatsState);
   });
 
-  it('renders correctly', () => {
-    renderComponent();
+  it('renders correctly', async () => {
+    await renderComponent();
 
     expect(screen.getByText('Season 5')).toBeTruthy();
     expect(screen.getByText('S5')).toBeTruthy();
@@ -96,7 +96,7 @@ describe('RankedStats', () => {
     expect(screen.getByText('Top 12.30%')).toBeTruthy();
   });
 
-  it('does not allow to switch to previous session when already at the first', () => {
+  it('does not allow to switch to previous session when already at the first', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -106,7 +106,7 @@ describe('RankedStats', () => {
       },
     });
 
-    renderComponent();
+    await renderComponent();
 
     const [prevButton, nextButton] = screen.getAllByRole('button');
 
@@ -114,7 +114,7 @@ describe('RankedStats', () => {
     expect(nextButton).toBeEnabled();
   });
 
-  it('does not allow to switch to next session when already at the last', () => {
+  it('does not allow to switch to next session when already at the last', async () => {
     useSeasonMock.mockReturnValue({
       ...defaultSeasonReturnValue,
       season: {
@@ -124,7 +124,7 @@ describe('RankedStats', () => {
       },
     });
 
-    renderComponent();
+    await renderComponent();
 
     const [prevButton, nextButton] = screen.getAllByRole('button');
 
@@ -132,34 +132,34 @@ describe('RankedStats', () => {
     expect(nextButton).toBeDisabled();
   });
 
-  it('allows navigation between seasons', () => {
-    renderComponent();
+  it('allows navigation between seasons', async () => {
+    await renderComponent();
 
     const [prevButton, nextButton] = screen.getAllByRole('button');
 
     expect(prevButton).toBeEnabled();
     expect(nextButton).toBeEnabled();
 
-    fireEvent.press(prevButton);
+    await fireEvent.press(prevButton);
     expect(setPreviousSeasonMock).toHaveBeenCalledTimes(1);
 
-    fireEvent.press(nextButton);
+    await fireEvent.press(nextButton);
     expect(setNextSeasonMock).toHaveBeenCalledTimes(1);
   });
 
-  it('displays loading spinner when stats are loading', () => {
+  it('displays loading spinner when stats are loading', async () => {
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsState,
       stats: undefined,
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
   });
 
-  it('displays UNRANKED when elo is undefined', () => {
+  it('displays UNRANKED when elo is undefined', async () => {
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsState,
       stats: {
@@ -169,7 +169,7 @@ describe('RankedStats', () => {
       },
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('123')).toBeTruthy();
     expect(screen.getByText('Player1')).toBeTruthy();
@@ -177,7 +177,7 @@ describe('RankedStats', () => {
     expect(screen.queryByText('Top 12.30%')).toBeNull();
   });
 
-  it('does not display UNRANKED when elo is 0', () => {
+  it('does not display UNRANKED when elo is 0', async () => {
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsState,
       stats: {
@@ -187,7 +187,7 @@ describe('RankedStats', () => {
       },
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('123')).toBeTruthy();
     expect(screen.getByText('Player1')).toBeTruthy();
@@ -196,7 +196,7 @@ describe('RankedStats', () => {
     expect(screen.queryByText('UNRANKED')).toBeNull();
   });
 
-  it('does not display percentage when player count is zero', () => {
+  it('does not display percentage when player count is zero', async () => {
     useUserRankedStatsMock.mockReturnValue({
       ...defaultUserRankedStatsState,
       stats: {
@@ -205,7 +205,7 @@ describe('RankedStats', () => {
       },
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByText('123')).toBeTruthy();
     expect(screen.getByText('Player1')).toBeTruthy();

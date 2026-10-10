@@ -1,6 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { type TournamentDto, TournamentState } from '../../../types/tournament';
@@ -28,7 +29,7 @@ const mockTournamentDto: TournamentDto = {
 };
 
 const renderUseGetActiveTournaments = async () => {
-  const { result } = renderHook(() => useGetActiveTournaments(), { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(() => useGetActiveTournaments(), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -37,10 +38,18 @@ const renderUseGetActiveTournaments = async () => {
 describe('useGetActiveTournaments', () => {
   describe('returns undefined', () => {
     it('when the request is loading', async () => {
-      const { result } = renderHook(() => useGetActiveTournaments(), { wrapper: TestQueryClientProvider });
+      const response = deferred();
+      fetchMock.anyOnce(async () => {
+        await response.promise;
+        return { status: 400 };
+      });
+
+      const { result } = await renderHook(() => useGetActiveTournaments(), { wrapper: TestQueryClientProvider });
 
       expect(result.current.isLoading).toBe(true);
       expect(result.current.tournaments).toBeUndefined();
+
+      response.resolve();
       await waitFor(() => expect(result.current.isLoading).toBe(false));
     });
 

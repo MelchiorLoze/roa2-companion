@@ -2,6 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import fetchMock from 'fetch-mock';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { StatisticName } from '../../../types/stats';
@@ -41,9 +42,9 @@ const defaultRequest = {
 const renderUseGetLeaderboardAroundPlayer = async (
   args: Parameters<typeof useGetLeaderboardAroundPlayer>[0] = defaultRequest,
 ) => {
-  const { result } = renderHook(() => useGetLeaderboardAroundPlayer(args), { wrapper: TestQueryClientProvider });
-  expect(result.current.isLoading).toBe(true);
-  expect(result.current.playerPositions).toBeUndefined();
+  const { result } = await renderHook(() => useGetLeaderboardAroundPlayer(args), {
+    wrapper: TestQueryClientProvider,
+  });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -55,6 +56,24 @@ describe('useGetLeaderboardAroundPlayer', () => {
   });
 
   it('returns nothing when the request is loading', async () => {
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return mockResponse;
+    });
+
+    const { result } = await renderHook(() => useGetLeaderboardAroundPlayer(defaultRequest), {
+      wrapper: TestQueryClientProvider,
+    });
+
+    expect(result.current.isLoading).toBe(true);
+    expect(result.current.playerPositions).toBeUndefined();
+
+    response.resolve();
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+  });
+
+  it('returns the leaderboard around the player', async () => {
     fetchMock.postOnce('*', mockResponse);
 
     const { result } = await renderUseGetLeaderboardAroundPlayer();
@@ -102,9 +121,9 @@ describe('useGetLeaderboardAroundPlayer', () => {
     expect(result.current.playerPositions?.[0].statisticName).toBe(StatisticName.RANKED_WINS);
   });
 
-  it('does not fetch when statisticName is undefined', () => {
+  it('does not fetch when statisticName is undefined', async () => {
     // No fetch mock registered — if a request were made, it would fail
-    const { result } = renderHook(
+    const { result } = await renderHook(
       () => useGetLeaderboardAroundPlayer({ maxResultCount: 10, statisticName: undefined }),
       { wrapper: TestQueryClientProvider },
     );

@@ -49,9 +49,7 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
-
-      expect(result.current.image).toBe(null);
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
@@ -71,9 +69,7 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
-
-      expect(result.current.image).toBe(null);
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
@@ -87,7 +83,7 @@ describe('useCachedSkiaImage', () => {
       getCachePathAsyncMock.mockResolvedValue(null);
       prefetchMock.mockResolvedValue(true);
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       expect(result.current.image).toBe(null);
 
@@ -107,7 +103,7 @@ describe('useCachedSkiaImage', () => {
       const pixelArtImageMock = { width: () => 100 } as SkImage;
       makeImageFromEncodedMock.mockReturnValue(pixelArtImageMock);
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       await waitFor(() => expect(result.current.image).toBe(pixelArtImageMock));
 
@@ -120,7 +116,7 @@ describe('useCachedSkiaImage', () => {
       const largerImageMock = { width: () => 1500 } as SkImage;
       makeImageFromEncodedMock.mockReturnValue(largerImageMock);
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       await waitFor(() => expect(result.current.image).toBe(largerImageMock));
 
@@ -135,7 +131,7 @@ describe('useCachedSkiaImage', () => {
       console.error = consoleErrorMock;
       getCachePathAsyncMock.mockRejectedValue(new Error('Cache path error'));
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       expect(result.current.image).toBe(null);
 
@@ -158,7 +154,7 @@ describe('useCachedSkiaImage', () => {
       getCachePathAsyncMock.mockResolvedValue(null);
       prefetchMock.mockRejectedValue(new Error('Prefetch error'));
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       expect(result.current.image).toBe(null);
 
@@ -180,7 +176,7 @@ describe('useCachedSkiaImage', () => {
       getCachePathAsyncMock.mockResolvedValue(cachePathMock);
       fromURIMock.mockRejectedValue(new Error('Skia data error'));
 
-      const { result } = renderHook(() => useCachedSkiaImage(urlMock));
+      const { result } = await renderHook(() => useCachedSkiaImage(urlMock));
 
       expect(result.current.image).toBe(null);
 
@@ -202,15 +198,14 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValue(skImageMock);
 
-      const { result: result1 } = renderHook(() => useCachedSkiaImage(urlMock));
-      const { result: result2 } = renderHook(() => useCachedSkiaImage(urlMock));
-
-      expect(result1.current.image).toBe(null);
-      expect(result2.current.image).toBe(null);
+      const { result } = await renderHook(() => ({
+        first: useCachedSkiaImage(urlMock),
+        second: useCachedSkiaImage(urlMock),
+      }));
 
       await waitFor(() => {
-        expect(result1.current.image).toBe(skImageMock);
-        expect(result2.current.image).toBe(skImageMock);
+        expect(result.current.first.image).toBe(skImageMock);
+        expect(result.current.second.image).toBe(skImageMock);
       });
 
       // Should only call getCachePathAsync once due to deduplication
@@ -228,8 +223,8 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result: result1 } = renderHook(() => useCachedSkiaImage(urlMock));
-      const { result: result2 } = renderHook(() => useCachedSkiaImage(otherUrlMock));
+      const { result: result1 } = await renderHook(() => useCachedSkiaImage(urlMock));
+      const { result: result2 } = await renderHook(() => useCachedSkiaImage(otherUrlMock));
 
       await waitFor(() => {
         expect(result1.current.image).toBe(skImageMock);
@@ -252,7 +247,7 @@ describe('useCachedSkiaImage', () => {
       fromURIMock.mockResolvedValue(skDataMock);
       makeImageFromEncodedMock.mockReturnValueOnce(skImageMock).mockReturnValueOnce(otherSkImageMock);
 
-      const { result, rerender } = renderHook<ReturnType<typeof useCachedSkiaImage>, { url: URL }>(
+      const { result, rerender } = await renderHook<ReturnType<typeof useCachedSkiaImage>, { url: URL }>(
         ({ url }) => useCachedSkiaImage(url),
         {
           initialProps: { url: urlMock },
@@ -263,7 +258,7 @@ describe('useCachedSkiaImage', () => {
       await waitFor(() => expect(result.current.image).toBe(skImageMock));
 
       // Change the friendlyId
-      rerender({ url: otherUrlMock });
+      await rerender({ url: otherUrlMock });
 
       // Should eventually get the second image
       await waitFor(() => expect(result.current.image).toBe(otherSkImageMock));

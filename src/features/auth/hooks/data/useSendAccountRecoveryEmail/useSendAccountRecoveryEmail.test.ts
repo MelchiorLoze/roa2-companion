@@ -11,7 +11,7 @@ jest.mock('../../../contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 
 const renderUseSendAccountRecoveryEmail = async () => {
-  const { result } = renderHook(useSendAccountRecoveryEmail, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useSendAccountRecoveryEmail, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };

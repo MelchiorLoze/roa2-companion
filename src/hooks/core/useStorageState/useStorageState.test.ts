@@ -50,9 +50,14 @@ const MOCK_OBJECT: TestData = {
 const SERIALIZED_MOCK_OBJECT = JSON.stringify(MOCK_OBJECT);
 
 const renderUseStorageState = async (isMobileEnv = true, converter?: (raw: unknown) => TestData) => {
-  const { result } = renderHook(() => useStorageState<TestData>(TEST_KEY, converter));
+  const loadingStates: boolean[] = [];
+  const { result } = await renderHook(() => {
+    const state = useStorageState<TestData>(TEST_KEY, converter);
+    loadingStates.push(state[0][1]);
+    return state;
+  });
 
-  if (isMobileEnv) expect(result.current[0][1]).toBe(true);
+  if (isMobileEnv) expect(loadingStates[0]).toBe(true);
 
   await waitFor(() => expect(result.current[0][1]).toBe(false));
   return { result };
@@ -99,7 +104,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
-      act(() => setValue(MOCK_OBJECT));
+      await act(() => setValue(MOCK_OBJECT));
 
       expect(setItemAsyncMock).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
 
@@ -113,7 +118,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState();
       const [_, setValue] = result.current;
 
-      act(() => setValue(null));
+      await act(() => setValue(null));
 
       expect(deleteItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
     });
@@ -174,7 +179,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
-      act(() => setValue(MOCK_OBJECT));
+      await act(() => setValue(MOCK_OBJECT));
 
       expect(localStorageMock.setItem).toHaveBeenCalledWith(TEST_KEY, expect.any(String));
 
@@ -188,7 +193,7 @@ describe('useStorageState', () => {
       const { result } = await renderUseStorageState(false);
       const [_, setValue] = result.current;
 
-      act(() => setValue(null));
+      await act(() => setValue(null));
 
       expect(localStorageMock.removeItem).toHaveBeenCalledWith(TEST_KEY);
     });
@@ -200,7 +205,7 @@ describe('useStorageState', () => {
 
       const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
 
-      renderHook(() => useStorageState(TEST_KEY));
+      await renderHook(() => useStorageState(TEST_KEY));
 
       expect(consoleSpy).toHaveBeenCalledTimes(1);
       expect(consoleSpy).toHaveBeenCalledWith('Local storage is unavailable:', new Error('localStorage error'));
@@ -213,7 +218,7 @@ describe('useStorageState', () => {
 
       const consoleSpy = jest.spyOn(console, 'error');
 
-      renderHook(() => useStorageState(TEST_KEY));
+      await renderHook(() => useStorageState(TEST_KEY));
 
       expect(consoleSpy).not.toHaveBeenCalled();
     });

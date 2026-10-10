@@ -16,8 +16,8 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   isError: false,
 };
 
-const renderUseRankDistribution = () => {
-  const { result } = renderHook(useRankDistribution);
+const renderUseRankDistribution = async () => {
+  const { result } = await renderHook(useRankDistribution);
 
   expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(1);
 
@@ -29,7 +29,7 @@ describe('useRankDistribution', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('returns correct values when leaderboard stats are loading', () => {
+  it('returns correct values when leaderboard stats are loading', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -39,14 +39,14 @@ describe('useRankDistribution', () => {
       isLoading: true,
     });
 
-    const { result } = renderUseRankDistribution();
+    const { result } = await renderUseRankDistribution();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.rankDistribution).toBeUndefined();
   });
 
-  it('returns correct elo distribution for complete leaderboard', () => {
-    const { result } = renderUseRankDistribution();
+  it('returns correct elo distribution for complete leaderboard', async () => {
+    const { result } = await renderUseRankDistribution();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.rankDistribution).toEqual({
@@ -62,7 +62,7 @@ describe('useRankDistribution', () => {
     });
   });
 
-  it('returns error state when leaderboard stats have error', () => {
+  it('returns error state when leaderboard stats have error', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -73,20 +73,20 @@ describe('useRankDistribution', () => {
       isError: true,
     });
 
-    const { result } = renderUseRankDistribution();
+    const { result } = await renderUseRankDistribution();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);
     expect(result.current.rankDistribution).toBeUndefined();
   });
 
-  it('returns empty rank distribution when leaderboard entries is empty', () => {
+  it('returns empty rank distribution when leaderboard entries is empty', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       leaderboardEntries: [],
     });
 
-    const { result } = renderUseRankDistribution();
+    const { result } = await renderUseRankDistribution();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.rankDistribution).toEqual({

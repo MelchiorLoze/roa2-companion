@@ -33,8 +33,8 @@ const Wrapper = ({ children }: PropsWithChildren) => (
   </TestQueryClientProvider>
 );
 
-const renderUseSession = () => {
-  const { result } = renderHook(useSession, { wrapper: Wrapper });
+const renderUseSession = async () => {
+  const { result } = await renderHook(useSession, { wrapper: Wrapper });
   expect(result.current.isLoading).toBe(false);
 
   return { result };
@@ -48,12 +48,12 @@ describe('useSession', () => {
   it('throws an error when not used inside a SessionProvider', async () => {
     const originalError = console.error;
     console.error = jest.fn();
-    expect(() => renderHook(useSession)).toThrow('useSession must be used within a SessionProvider');
+    await expect(renderHook(useSession)).rejects.toThrow('useSession must be used within a SessionProvider');
     console.error = originalError;
   });
 
   it('does not be logged in when the storage an login sessions are empty', async () => {
-    const { result } = renderUseSession();
+    const { result } = await renderUseSession();
 
     expect(result.current.isValid).toBe(false);
   });
@@ -62,7 +62,7 @@ describe('useSession', () => {
     it('returns true storage contains a valid session', async () => {
       mockValidSession();
 
-      const { result } = renderUseSession();
+      const { result } = await renderUseSession();
 
       expect(result.current.isValid).toBe(true);
       expect(result.current.entityToken).toBe('validToken');
@@ -71,7 +71,7 @@ describe('useSession', () => {
     it('returns false when the storage contains an expired session', async () => {
       mockExpiredSession();
 
-      const { result } = renderUseSession();
+      const { result } = await renderUseSession();
 
       expect(result.current.isValid).toBe(false);
     });
@@ -80,7 +80,7 @@ describe('useSession', () => {
   it('allows to clear session', async () => {
     mockValidSession();
 
-    const { result } = renderUseSession();
+    const { result } = await renderUseSession();
     expect(result.current.isValid).toBe(true);
     await act(async () => result.current.clearSession());
 
@@ -90,7 +90,7 @@ describe('useSession', () => {
   it('allows to setSession to a valid session', async () => {
     mockExpiredSession();
 
-    const { result } = renderUseSession();
+    const { result } = await renderUseSession();
     expect(result.current.isValid).toBe(false);
     await act(async () => result.current.setSession({ entityToken: 'validToken', expirationDate: VALID_DATE }));
 
@@ -101,7 +101,7 @@ describe('useSession', () => {
   it('does not allow to setSession to an expired session', async () => {
     mockValidSession();
 
-    const { result } = renderUseSession();
+    const { result } = await renderUseSession();
     expect(result.current.isValid).toBe(true);
     await act(async () => result.current.setSession({ entityToken: 'expiredToken', expirationDate: EXPIRED_DATE }));
 
@@ -112,6 +112,6 @@ describe('useSession', () => {
   it('throws an error when the retrieved object is not a valid session', async () => {
     mockSession('invalidSessionData' as unknown as Session);
 
-    expect(renderUseSession).toThrow('Invalid session data');
+    await expect(renderUseSession()).rejects.toThrow('Invalid session data');
   });
 });

@@ -67,14 +67,14 @@ describe('useTournamentsTab', () => {
     useGetPastTournamentsMock.mockReturnValue(defaultPastTournamentsReturnValue);
   });
 
-  it('defaults to active tab', () => {
-    const { result } = renderHook(() => useTournamentsTab());
+  it('defaults to active tab', async () => {
+    const { result } = await renderHook(() => useTournamentsTab());
 
     expect(result.current.selectedTab).toBe('active');
   });
 
-  it('returns tabs array with active and past tabs', () => {
-    const { result } = renderHook(() => useTournamentsTab());
+  it('returns tabs array with active and past tabs', async () => {
+    const { result } = await renderHook(() => useTournamentsTab());
 
     expect(result.current.tabs).toHaveLength(2);
     expect(result.current.tabs[0].label).toBe('active');
@@ -84,164 +84,164 @@ describe('useTournamentsTab', () => {
   });
 
   describe('when active tab is selected', () => {
-    it('returns active tournaments', () => {
+    it('returns active tournaments', async () => {
       useGetActiveTournamentsMock.mockReturnValue({
         ...defaultActiveTournamentsReturnValue,
         tournaments: mockActiveTournaments,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       expect(result.current.tournaments).toEqual(mockActiveTournaments);
     });
 
-    it('returns loading state from active tournaments', () => {
+    it('returns loading state from active tournaments', async () => {
       useGetActiveTournamentsMock.mockReturnValue({
         ...defaultActiveTournamentsReturnValue,
         isLoading: true,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       expect(result.current.isLoading).toBe(true);
     });
 
-    it('returns refreshing state from active tournaments', () => {
+    it('returns refreshing state from active tournaments', async () => {
       useGetActiveTournamentsMock.mockReturnValue({
         ...defaultActiveTournamentsReturnValue,
         tournaments: mockActiveTournaments,
         isRefetching: true,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       expect(result.current.isRefreshing).toBe(true);
     });
 
-    it('returns error state when tournaments are undefined and not loading', () => {
+    it('returns error state when tournaments are undefined and not loading', async () => {
       useGetActiveTournamentsMock.mockReturnValue({
         ...defaultActiveTournamentsReturnValue,
         tournaments: undefined,
         isLoading: false,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       expect(result.current.isError).toBe(true);
     });
   });
 
   describe('when past tab is selected', () => {
-    it('returns past tournaments', () => {
+    it('returns past tournaments', async () => {
       useGetPastTournamentsMock.mockReturnValue({
         ...defaultPastTournamentsReturnValue,
         tournaments: mockPastTournaments,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.tournaments).toEqual(mockPastTournaments);
     });
 
-    it('returns loading state from past tournaments', () => {
+    it('returns loading state from past tournaments', async () => {
       useGetPastTournamentsMock.mockReturnValue({
         ...defaultPastTournamentsReturnValue,
         isLoading: true,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.isLoading).toBe(true);
     });
 
-    it('returns refreshing state from past tournaments', () => {
+    it('returns refreshing state from past tournaments', async () => {
       useGetPastTournamentsMock.mockReturnValue({
         ...defaultPastTournamentsReturnValue,
         tournaments: mockPastTournaments,
         isRefetching: true,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.isRefreshing).toBe(true);
     });
 
-    it('returns error state when tournaments are undefined and not loading', () => {
+    it('returns error state when tournaments are undefined and not loading', async () => {
       useGetPastTournamentsMock.mockReturnValue({
         ...defaultPastTournamentsReturnValue,
         tournaments: undefined,
         isLoading: false,
       });
 
-      const { result } = renderHook(() => useTournamentsTab());
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.isError).toBe(true);
     });
   });
 
   describe('tab selection', () => {
-    it('switches to active tab when active tab is pressed', () => {
-      const { result } = renderHook(() => useTournamentsTab());
+    it('switches to active tab when active tab is pressed', async () => {
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
       const activeTab = result.current.tabs.find((tab) => tab.label === 'active');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.selectedTab).toBe('past');
 
-      act(activeTab!.onPress);
+      await act(activeTab!.onPress);
 
       expect(result.current.selectedTab).toBe('active');
     });
 
-    it('switches to past tab when past tab is pressed', () => {
-      const { result } = renderHook(() => useTournamentsTab());
+    it('switches to past tab when past tab is pressed', async () => {
+      const { result } = await renderHook(() => useTournamentsTab());
 
       expect(result.current.selectedTab).toBe('active');
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
       expect(result.current.selectedTab).toBe('past');
     });
   });
 
   describe('refresh', () => {
-    it('calls refetch for both active and past tournaments', () => {
-      const { result } = renderHook(() => useTournamentsTab());
+    it('calls refetch for both active and past tournaments', async () => {
+      const { result } = await renderHook(() => useTournamentsTab());
 
-      act(result.current.refresh);
+      await act(result.current.refresh);
 
       expect(mockRefetchActive).toHaveBeenCalled();
       expect(mockRefetchPast).toHaveBeenCalled();
     });
 
-    it('refetches both tournaments regardless of selected tab', () => {
-      const { result } = renderHook(() => useTournamentsTab());
+    it('refetches both tournaments regardless of selected tab', async () => {
+      const { result } = await renderHook(() => useTournamentsTab());
 
       const pastTab = result.current.tabs.find((tab) => tab.label === 'past');
 
-      act(pastTab!.onPress);
+      await act(pastTab!.onPress);
 
-      act(result.current.refresh);
+      await act(result.current.refresh);
 
       expect(mockRefetchActive).toHaveBeenCalled();
       expect(mockRefetchPast).toHaveBeenCalled();

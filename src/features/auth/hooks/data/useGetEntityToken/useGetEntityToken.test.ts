@@ -15,7 +15,7 @@ const useSessionMock = jest.mocked(useSession);
 const onSuccessMock = jest.fn();
 
 const renderUseGetEntityToken = async () => {
-  const { result } = renderHook(() => useGetEntityToken({ onSuccess: onSuccessMock }), {
+  const { result } = await renderHook(() => useGetEntityToken({ onSuccess: onSuccessMock }), {
     wrapper: TestQueryClientProvider,
   });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
@@ -50,7 +50,7 @@ describe('useGetEntityToken', () => {
 
       const { result } = await renderUseGetEntityToken();
 
-      act(result.current.renew);
+      await act(result.current.renew);
 
       await waitFor(() => expect(onSuccessMock).toHaveBeenCalledTimes(1));
       expect(onSuccessMock).toHaveBeenCalledWith({
@@ -72,7 +72,7 @@ describe('useGetEntityToken', () => {
     it('does not call onSuccess', async () => {
       const { result } = await renderUseGetEntityToken();
 
-      act(result.current.renew);
+      await act(result.current.renew);
 
       await waitFor(() => expect(result.current.isError).toBe(true));
       expect(result.current.isLoading).toBe(false);

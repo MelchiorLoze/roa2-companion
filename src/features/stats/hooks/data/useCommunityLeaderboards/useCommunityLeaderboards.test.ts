@@ -2,12 +2,13 @@ import { renderHook, waitFor } from '@testing-library/react-native';
 import XMLBuilder from 'fast-xml-builder';
 import fetchMock from 'fetch-mock';
 
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 
 import { useCommunityLeaderboards } from './useCommunityLeaderboards';
 
 const renderUseCommunityLeaderboards = async () => {
-  const { result } = renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -15,10 +16,18 @@ const renderUseCommunityLeaderboards = async () => {
 
 describe('useCommunityLeaderboards', () => {
   it('returns empty array when the request is loading', async () => {
-    const { result } = renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
+    const response = deferred();
+    fetchMock.anyOnce(async () => {
+      await response.promise;
+      return { status: 400 };
+    });
+
+    const { result } = await renderHook(useCommunityLeaderboards, { wrapper: TestQueryClientProvider });
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.leaderboards).toBeUndefined();
+
+    response.resolve();
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 

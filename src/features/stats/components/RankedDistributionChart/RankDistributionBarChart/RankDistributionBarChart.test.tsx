@@ -15,8 +15,8 @@ const defaultLeaderboardStatsReturnValue: ReturnType<typeof useLeaderboardStats>
   isError: false,
 };
 
-const renderComponent = () => {
-  const result = render(<RankDistributionBarChart width={300} />);
+const renderComponent = async () => {
+  const result = await render(<RankDistributionBarChart width={300} />);
 
   expect(useLeaderboardStatsMock).toHaveBeenCalledTimes(2);
 
@@ -28,7 +28,7 @@ describe('RankDistributionBarChart', () => {
     useLeaderboardStatsMock.mockReturnValue(defaultLeaderboardStatsReturnValue);
   });
 
-  it('renders loading state when leaderboard stats are loading', () => {
+  it('renders loading state when leaderboard stats are loading', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -38,13 +38,13 @@ describe('RankDistributionBarChart', () => {
       isLoading: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 
-  it('renders loading state when leaderboard stats have error', () => {
+  it('renders loading state when leaderboard stats have error', async () => {
     useLeaderboardStatsMock.mockReturnValue({
       ...defaultLeaderboardStatsReturnValue,
       firstPlayerElo: undefined,
@@ -55,14 +55,14 @@ describe('RankDistributionBarChart', () => {
       isError: true,
     });
 
-    renderComponent();
+    await renderComponent();
 
     expect(screen.getByTestId('spinner')).toBeTruthy();
     expect(screen.queryByTestId('rank-distribution')).toBeNull();
   });
 
-  it('renders the chart when leaderboard stats are available', () => {
-    const tree = renderComponent().toJSON();
+  it('renders the chart when leaderboard stats are available', async () => {
+    const tree = (await renderComponent()).toJSON();
 
     expect(screen.getByTestId('rank-distribution')).toBeTruthy();
     expect(tree).toMatchSnapshot();

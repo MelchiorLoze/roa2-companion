@@ -16,8 +16,8 @@ const defaultPlayerStatisticsReturnValue: ReturnType<typeof useGetPlayerStatisti
   isRefetching: false,
 };
 
-const renderUseCurrentSeasonIndex = () => {
-  const { result } = renderHook(useCurrentSeasonIndex);
+const renderUseCurrentSeasonIndex = async () => {
+  const { result } = await renderHook(useCurrentSeasonIndex);
 
   expect(useGetPlayerStatisticsMock).toHaveBeenCalledTimes(1);
 
@@ -29,36 +29,36 @@ describe('useCurrentSeasonIndex', () => {
     useGetPlayerStatisticsMock.mockReturnValue(defaultPlayerStatisticsReturnValue);
   });
 
-  it('returns the current season index from statistics', () => {
-    const { result } = renderUseCurrentSeasonIndex();
+  it('returns the current season index from statistics', async () => {
+    const { result } = await renderUseCurrentSeasonIndex();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(false);
     expect(result.current.currentSeasonIndex).toBe(3);
   });
 
-  it('returns loading state when statistics are loading', () => {
+  it('returns loading state when statistics are loading', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
       isLoading: true,
     });
 
-    const { result } = renderUseCurrentSeasonIndex();
+    const { result } = await renderUseCurrentSeasonIndex();
 
     expect(result.current.isLoading).toBe(true);
     expect(result.current.isError).toBe(false);
     expect(result.current.currentSeasonIndex).toBeUndefined();
   });
 
-  it('returns error state when statistics are not loading and not available', () => {
+  it('returns error state when statistics are not loading and not available', async () => {
     useGetPlayerStatisticsMock.mockReturnValue({
       ...defaultPlayerStatisticsReturnValue,
       statistics: undefined,
       isLoading: false,
     });
 
-    const { result } = renderUseCurrentSeasonIndex();
+    const { result } = await renderUseCurrentSeasonIndex();
 
     expect(result.current.isLoading).toBe(false);
     expect(result.current.isError).toBe(true);

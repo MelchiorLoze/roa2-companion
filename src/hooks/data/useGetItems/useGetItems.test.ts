@@ -3,6 +3,7 @@ import fetchMock from 'fetch-mock';
 
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { createItemDto } from '@/test-helpers/createItemDto';
+import { deferred } from '@/test-helpers/deferred';
 import { TestQueryClientProvider } from '@/test-helpers/TestQueryClientProvider';
 import { Category, type Item, Rarity } from '@/types/item';
 
@@ -13,7 +14,7 @@ jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
 const useSessionMock = jest.mocked(useSession);
 
 const renderUseGetItems = async (itemIds: Item['id'][]) => {
-  const { result } = renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
+  const { result } = await renderHook(() => useGetItems(itemIds), { wrapper: TestQueryClientProvider });
   await waitFor(() => expect(result.current.isLoading).toBe(false));
 
   return { result };
@@ -26,10 +27,18 @@ describe('useGetItems', () => {
 
   describe('returns empty array', () => {
     it('when the request is loading', async () => {
-      const { result } = renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });
+      const response = deferred();
+      fetchMock.anyOnce(async () => {
+        await response.promise;
+        return { status: 400 };
+      });
+
+      const { result } = await renderHook(() => useGetItems(['1', '2']), { wrapper: TestQueryClientProvider });
 
       expect(result.current.isLoading).toBe(true);
       expect(result.current.items).toBeUndefined();
+
+      response.resolve();
       await waitFor(() => expect(result.current.isLoading).toBe(false));
     });
 
