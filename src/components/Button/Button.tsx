@@ -21,13 +21,11 @@ export const Button = ({ label, onPress }: Readonly<Props>) => {
             source={ButtonBackground}
             style={StyleSheet.absoluteFill}
           />
-          {pressed && <ParallelogramView skewAmount={5} style={styles.pressedBackground} />}
+          {pressed && <ParallelogramView skewAmount={7} style={styles.pressedBackground} />}
           <View style={styles.button}>
             <FancyText
-              style={{
-                ...styles.label,
-                gradient: { ...theme.color.gradient.labelText(pressed), direction: 'vertical' },
-              }}
+              gradient={{ ...theme.color.gradient.labelText(pressed), direction: 'vertical' }}
+              style={styles.label}
               text={label}
             />
           </View>
@@ -49,7 +47,7 @@ const styles = StyleSheet.create((theme) => ({
     fontFamily: theme.font.primary.bold,
     textTransform: 'uppercase',
     strokeWidth: 1,
-    strokeColor: theme.color.borderPrimary,
+    strokeColor: theme.color.labelOutline,
   },
   pressedBackground: {
     ...StyleSheet.absoluteFillObject,

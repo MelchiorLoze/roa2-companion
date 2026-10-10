@@ -45,7 +45,7 @@ exports[`Store matches snapshot 1`] = `
       source={
         [
           {
-            "testUri": "../../../src/assets/images/ui/coin-store-bg.png",
+            "testUri": "../../../src/features/store/assets/images/ui/coin-store-bg.png",
           },
         ]
       }
@@ -151,7 +151,7 @@ exports[`Store matches snapshot 1`] = `
           source={
             [
               {
-                "testUri": "../../../src/assets/images/ui/coin-store-title-bg.png",
+                "testUri": "../../../src/features/store/assets/images/ui/coin-store-title-bg.png",
               },
             ]
           }
@@ -228,7 +228,7 @@ exports[`Store matches snapshot 1`] = `
           source={
             [
               {
-                "testUri": "../../../src/assets/images/ui/coin-store-rotation-countdown-bg.png",
+                "testUri": "../../../src/features/store/assets/images/ui/coin-store-rotation-countdown-bg.png",
               },
             ]
           }
@@ -277,7 +277,7 @@ exports[`Store matches snapshot 1`] = `
           source={
             [
               {
-                "testUri": "../../../src/assets/images/ui/icons/time.png",
+                "testUri": "../../../src/features/store/assets/images/ui/icons/clock.png",
               },
             ]
           }
@@ -455,20 +455,24 @@ exports[`Store matches snapshot 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
             style={
-              {
-                "borderRadius": 14,
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "black",
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flex": 0.5,
-                "overflow": "hidden",
-              }
+              [
+                {
+                  "borderRadius": 14,
+                  "boxShadow": [
+                    {
+                      "blurRadius": 5,
+                      "color": "black",
+                      "offsetX": 0,
+                      "offsetY": 0,
+                      "spreadDistance": 0,
+                    },
+                  ],
+                  "overflow": "hidden",
+                },
+                {
+                  "flex": 0.5,
+                },
+              ]
             }
           >
             <View
@@ -485,14 +489,18 @@ exports[`Store matches snapshot 1`] = `
             />
             <View
               style={
-                {
-                  "flex": 1,
-                  "gap": 32,
-                  "margin": 5,
-                  "marginBottom": 8,
-                  "padding": 10,
-                  "paddingBottom": 2,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "margin": 5,
+                    "marginBottom": 8,
+                  },
+                  {
+                    "gap": 32,
+                    "padding": 10,
+                    "paddingBottom": 2,
+                  },
+                ]
               }
             >
               <View
@@ -930,20 +938,24 @@ exports[`Store matches snapshot 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
             style={
-              {
-                "borderRadius": 14,
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "black",
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flex": 0.5,
-                "overflow": "hidden",
-              }
+              [
+                {
+                  "borderRadius": 14,
+                  "boxShadow": [
+                    {
+                      "blurRadius": 5,
+                      "color": "black",
+                      "offsetX": 0,
+                      "offsetY": 0,
+                      "spreadDistance": 0,
+                    },
+                  ],
+                  "overflow": "hidden",
+                },
+                {
+                  "flex": 0.5,
+                },
+              ]
             }
           >
             <View
@@ -960,14 +972,18 @@ exports[`Store matches snapshot 1`] = `
             />
             <View
               style={
-                {
-                  "flex": 1,
-                  "gap": 32,
-                  "margin": 5,
-                  "marginBottom": 8,
-                  "padding": 10,
-                  "paddingBottom": 2,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "margin": 5,
+                    "marginBottom": 8,
+                  },
+                  {
+                    "gap": 32,
+                    "padding": 10,
+                    "paddingBottom": 2,
+                  },
+                ]
               }
             >
               <View
@@ -1354,20 +1370,24 @@ exports[`Store matches snapshot 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
             style={
-              {
-                "borderRadius": 14,
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "black",
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flex": 0.5,
-                "overflow": "hidden",
-              }
+              [
+                {
+                  "borderRadius": 14,
+                  "boxShadow": [
+                    {
+                      "blurRadius": 5,
+                      "color": "black",
+                      "offsetX": 0,
+                      "offsetY": 0,
+                      "spreadDistance": 0,
+                    },
+                  ],
+                  "overflow": "hidden",
+                },
+                {
+                  "flex": 0.5,
+                },
+              ]
             }
           >
             <View
@@ -1384,14 +1404,18 @@ exports[`Store matches snapshot 1`] = `
             />
             <View
               style={
-                {
-                  "flex": 1,
-                  "gap": 32,
-                  "margin": 5,
-                  "marginBottom": 8,
-                  "padding": 10,
-                  "paddingBottom": 2,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "margin": 5,
+                    "marginBottom": 8,
+                  },
+                  {
+                    "gap": 32,
+                    "padding": 10,
+                    "paddingBottom": 2,
+                  },
+                ]
               }
             >
               <View
@@ -1829,20 +1853,24 @@ exports[`Store matches snapshot 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
             style={
-              {
-                "borderRadius": 14,
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "black",
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flex": 0.5,
-                "overflow": "hidden",
-              }
+              [
+                {
+                  "borderRadius": 14,
+                  "boxShadow": [
+                    {
+                      "blurRadius": 5,
+                      "color": "black",
+                      "offsetX": 0,
+                      "offsetY": 0,
+                      "spreadDistance": 0,
+                    },
+                  ],
+                  "overflow": "hidden",
+                },
+                {
+                  "flex": 0.5,
+                },
+              ]
             }
           >
             <View
@@ -1859,14 +1887,18 @@ exports[`Store matches snapshot 1`] = `
             />
             <View
               style={
-                {
-                  "flex": 1,
-                  "gap": 32,
-                  "margin": 5,
-                  "marginBottom": 8,
-                  "padding": 10,
-                  "paddingBottom": 2,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "margin": 5,
+                    "marginBottom": 8,
+                  },
+                  {
+                    "gap": 32,
+                    "padding": 10,
+                    "paddingBottom": 2,
+                  },
+                ]
               }
             >
               <View
@@ -2253,20 +2285,24 @@ exports[`Store matches snapshot 1`] = `
             onStartShouldSetResponder={[Function]}
             role="button"
             style={
-              {
-                "borderRadius": 14,
-                "boxShadow": [
-                  {
-                    "blurRadius": 5,
-                    "color": "black",
-                    "offsetX": 0,
-                    "offsetY": 0,
-                    "spreadDistance": 0,
-                  },
-                ],
-                "flex": 0.5,
-                "overflow": "hidden",
-              }
+              [
+                {
+                  "borderRadius": 14,
+                  "boxShadow": [
+                    {
+                      "blurRadius": 5,
+                      "color": "black",
+                      "offsetX": 0,
+                      "offsetY": 0,
+                      "spreadDistance": 0,
+                    },
+                  ],
+                  "overflow": "hidden",
+                },
+                {
+                  "flex": 0.5,
+                },
+              ]
             }
           >
             <View
@@ -2283,14 +2319,18 @@ exports[`Store matches snapshot 1`] = `
             />
             <View
               style={
-                {
-                  "flex": 1,
-                  "gap": 32,
-                  "margin": 5,
-                  "marginBottom": 8,
-                  "padding": 10,
-                  "paddingBottom": 2,
-                }
+                [
+                  {
+                    "flex": 1,
+                    "margin": 5,
+                    "marginBottom": 8,
+                  },
+                  {
+                    "gap": 32,
+                    "padding": 10,
+                    "paddingBottom": 2,
+                  },
+                ]
               }
             >
               <View

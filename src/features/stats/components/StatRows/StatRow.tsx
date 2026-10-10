@@ -15,13 +15,15 @@ export const StatRow = ({ label, value }: Readonly<Props>) => {
     <View style={styles.container}>
       <View style={styles.labelContainer}>
         <FancyText
-          style={{ gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' }, ...styles.label }}
+          gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+          style={styles.label}
           text={label}
         />
       </View>
       <View style={styles.valueContainer}>
         <FancyText
-          style={{ gradient: { ...theme.color.gradient.labelText(), direction: 'vertical' }, ...styles.label }}
+          gradient={{ ...theme.color.gradient.labelText(), direction: 'vertical' }}
+          style={styles.label}
           text={value.toString()}
         />
       </View>

@@ -67,7 +67,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
           style={
             {
               "alignItems": "center",
-              "padding": 4,
+              "padding": 5,
             }
           }
         >
@@ -78,7 +78,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 16,
                 "textShadowColor": undefined,
-                "textShadowRadius": 2,
+                "textShadowRadius": 1.5,
               }
             }
           >
@@ -144,7 +144,7 @@ exports[`ESport matches snapshot on initial tab 1`] = `
             onLayout={[Function]}
             style={
               {
-                "padding": 1,
+                "padding": 2,
               }
             }
           >
@@ -261,20 +261,24 @@ exports[`ESport matches snapshot on initial tab 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            {
-              "borderRadius": 14,
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "black",
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "spreadDistance": 0,
-                },
-              ],
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            [
+              {
+                "borderRadius": 14,
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
+                "overflow": "hidden",
+              },
+              {
+                "flex": 1,
+              },
+            ]
           }
         >
           <View
@@ -291,12 +295,16 @@ exports[`ESport matches snapshot on initial tab 1`] = `
           />
           <View
             style={
-              {
-                "flex": 1,
-                "margin": 5,
-                "marginBottom": 8,
-                "padding": 8,
-              }
+              [
+                {
+                  "flex": 1,
+                  "margin": 5,
+                  "marginBottom": 8,
+                },
+                {
+                  "padding": 8,
+                },
+              ]
             }
           >
             <View
@@ -684,7 +692,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
             onLayout={[Function]}
             style={
               {
-                "padding": 1,
+                "padding": 2,
               }
             }
           >
@@ -765,7 +773,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           style={
             {
               "alignItems": "center",
-              "padding": 4,
+              "padding": 5,
             }
           }
         >
@@ -776,7 +784,7 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
                 "fontFamily": "AgencyFB-Bold",
                 "fontSize": 16,
                 "textShadowColor": undefined,
-                "textShadowRadius": 2,
+                "textShadowRadius": 1.5,
               }
             }
           >
@@ -897,20 +905,24 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            {
-              "borderRadius": 14,
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "black",
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "spreadDistance": 0,
-                },
-              ],
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            [
+              {
+                "borderRadius": 14,
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
+                "overflow": "hidden",
+              },
+              {
+                "flex": 1,
+              },
+            ]
           }
         >
           <View
@@ -927,12 +939,16 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           />
           <View
             style={
-              {
-                "flex": 1,
-                "margin": 5,
-                "marginBottom": 8,
-                "padding": 8,
-              }
+              [
+                {
+                  "flex": 1,
+                  "margin": 5,
+                  "marginBottom": 8,
+                },
+                {
+                  "padding": 8,
+                },
+              ]
             }
           >
             <View
@@ -1255,20 +1271,24 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           onResponderTerminationRequest={[Function]}
           onStartShouldSetResponder={[Function]}
           style={
-            {
-              "borderRadius": 14,
-              "boxShadow": [
-                {
-                  "blurRadius": 5,
-                  "color": "black",
-                  "offsetX": 0,
-                  "offsetY": 0,
-                  "spreadDistance": 0,
-                },
-              ],
-              "flex": 1,
-              "overflow": "hidden",
-            }
+            [
+              {
+                "borderRadius": 14,
+                "boxShadow": [
+                  {
+                    "blurRadius": 5,
+                    "color": "black",
+                    "offsetX": 0,
+                    "offsetY": 0,
+                    "spreadDistance": 0,
+                  },
+                ],
+                "overflow": "hidden",
+              },
+              {
+                "flex": 1,
+              },
+            ]
           }
         >
           <View
@@ -1285,12 +1305,16 @@ exports[`ESport matches snapshot on past tournaments tab 1`] = `
           />
           <View
             style={
-              {
-                "flex": 1,
-                "margin": 5,
-                "marginBottom": 8,
-                "padding": 8,
-              }
+              [
+                {
+                  "flex": 1,
+                  "margin": 5,
+                  "marginBottom": 8,
+                },
+                {
+                  "padding": 8,
+                },
+              ]
             }
           >
             <View

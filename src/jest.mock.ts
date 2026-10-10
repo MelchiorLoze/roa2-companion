@@ -20,8 +20,8 @@ jest.mock('react-native-gifted-charts', () => ({
 }));
 
 jest.mock('@/components/FancyText/FancyText');
-jest.mocked(FancyText).mockImplementation(({ text, style }) => {
-  const color = style.gradient ? style.gradient.colors[0] : style.color;
+jest.mocked(FancyText).mockImplementation(({ text, style, gradient }) => {
+  const color = gradient ? gradient.colors[0] : style.color;
 
   return createElement(
     Text,

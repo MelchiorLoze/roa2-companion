@@ -2,8 +2,8 @@ import { ImageBackground } from 'expo-image';
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { CoinStoreTitleBackground } from '@/assets/images/ui';
 import { FancyText } from '@/components/FancyText/FancyText';
+import { CoinStoreTitleBackground } from '@/features/store/assets/images/ui';
 
 type Props = {
   seasonName: string;
