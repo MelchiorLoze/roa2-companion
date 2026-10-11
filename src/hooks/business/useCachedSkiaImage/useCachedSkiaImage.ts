@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const PIXEL_ART_SIZE_THRESHOLD = 256;
 
 const pendingRequests = new Map<string, Promise<SkImage | null>>();
+const resolvedCache = new Map<string, SkImage>();
 
 const retrieveOrFetchImage = async (url: URL): Promise<SkImage | null> => {
   try {
@@ -35,7 +36,19 @@ export const useCachedSkiaImage = (url: URL) => {
   const canvasFilter = image && image.width() > PIXEL_ART_SIZE_THRESHOLD ? FilterMode.Linear : FilterMode.Nearest;
 
   useEffect(() => {
-    const requestId = url.pathname;
+    const requestId = url.toString();
+    let active = true;
+
+    const cached = resolvedCache.get(requestId);
+    if (cached) {
+      setImage(cached);
+      return () => {
+        active = false;
+      };
+    }
+
+    setImage(null);
+
     let imagePromise = pendingRequests.get(requestId);
 
     if (!imagePromise) {
@@ -45,7 +58,21 @@ export const useCachedSkiaImage = (url: URL) => {
       void imagePromise.finally(() => pendingRequests.delete(requestId));
     }
 
-    void imagePromise.then(setImage);
+    void imagePromise.then((resolved) => {
+      if (resolved && active) {
+        resolvedCache.set(requestId, resolved);
+        setImage(resolved);
+      } else if (active && resolved === null) {
+        setImage(null);
+      } else if (resolved && !active) {
+        // Disposed if not used - but we don't want to leak? Or let cache keep it
+        // Cache keeps resolved images per recommendation
+      }
+    });
+
+    return () => {
+      active = false;
+    };
   }, [url]);
 
   return { image, canvasRef, canvasSize, canvasFilter } as const;
