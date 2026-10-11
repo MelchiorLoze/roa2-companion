@@ -17,6 +17,7 @@ import {
   type TransformProp,
   useFonts,
 } from '@shopify/react-native-skia';
+import { useEffect, useMemo } from 'react';
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
 import { type FontFamily, FONTS } from '@/types/font';
@@ -182,23 +183,41 @@ export const FancyText = <T extends GradientColors>({ text, style, gradient, sha
   const { fontScale } = useWindowDimensions();
   const fontProvider = useFonts(SKIA_FONTS);
 
-  if (!fontProvider) return null;
+  const computed = useMemo(() => {
+    if (!fontProvider) return null;
 
-  const textStyle: FancyTextStyle = {
-    ...style,
-    fontSize: style.fontSize * fontScale,
-    letterSpacing: (style.letterSpacing ?? 0) * fontScale,
-    strokeWidth: (style.strokeWidth ?? 0) * fontScale,
-  };
+    const textStyle: FancyTextStyle = {
+      ...style,
+      fontSize: style.fontSize * fontScale,
+      letterSpacing: (style.letterSpacing ?? 0) * fontScale,
+      strokeWidth: (style.strokeWidth ?? 0) * fontScale,
+    };
 
-  const { paragraphFill, paragraphStroke, paragraphRect } = createParagraphs(
-    style.textTransform === 'uppercase' ? text.toUpperCase() : text,
-    textStyle,
-    gradient,
-    shadow,
-    fontProvider,
-  );
-  const { width, height, x, y, transform } = computeSkew(style.skew ?? 0, paragraphRect);
+    const paragraphs = createParagraphs(
+      style.textTransform === 'uppercase' ? text.toUpperCase() : text,
+      textStyle,
+      gradient,
+      shadow,
+      fontProvider,
+    );
+    const skewed = computeSkew(style.skew ?? 0, paragraphs.paragraphRect);
+
+    return {
+      paragraphFill: paragraphs.paragraphFill,
+      paragraphStroke: paragraphs.paragraphStroke,
+      ...skewed,
+    };
+  }, [text, style, gradient, shadow, fontProvider, fontScale]);
+
+  useEffect(() => {
+    return () => {
+      computed?.paragraphFill.dispose();
+      computed?.paragraphStroke.dispose();
+    };
+  }, [computed]);
+
+  if (!computed) return null;
+  const { paragraphFill, paragraphStroke, width, height, x, y, transform } = computed;
 
   return (
     <Canvas style={{ height, width }}>
