@@ -36,9 +36,12 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
       if (value) {
         const parsedValue: unknown = JSON.parse(value);
         const convertedValue = converterRef.current ? converterRef.current(parsedValue) : (parsedValue as T);
-        setState(convertedValue);
+        setState((prev) => {
+          if (Object.is(prev, convertedValue)) return prev;
+          return convertedValue;
+        });
       } else {
-        setState(null);
+        setState((prev) => (prev === null ? prev : null));
       }
     };
 
