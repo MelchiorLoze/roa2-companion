@@ -33,7 +33,14 @@ export const getGradientProps = <T extends GradientColors>({
 
   const start = times?.[0] ?? 0;
   const end = times?.[times.length - 1] ?? 1;
-  const locations = times?.map((pos) => (pos - start) / (end - start)) as GradientProps<T>['locations'];
+  if (end === start) {
+    throw new Error('Gradient start and end times must be different');
+  }
+  let locations: readonly number[] | undefined;
+  if (times) {
+    const denominator = end - start;
+    locations = times.map((pos) => Math.max(0, Math.min(1, (pos - start) / denominator)));
+  }
 
   const isHorizontal = direction === 'horizontal';
   const isVertical = direction === 'vertical';
