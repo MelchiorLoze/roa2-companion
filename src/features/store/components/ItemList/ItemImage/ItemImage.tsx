@@ -27,7 +27,6 @@ export const ItemImage = ({ item }: Readonly<Props>) => {
         />
       </Canvas>
       <Image source={RARITY_FRONT_FRAMES[item.rarity]} style={StyleSheet.absoluteFill} />
-      <Image source={RARITY_FRONT_FRAMES[item.rarity]} style={StyleSheet.absoluteFill} />
       <Image source={CATEGORY_ICONS[item.category]} style={styles.categoryIcon} />
     </View>
   );

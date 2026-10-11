@@ -3,9 +3,9 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { FancyText } from '@/components/FancyText/FancyText';
 
-type Props = {
-  label: string;
-  value: string | number;
+export type Props = {
+  readonly label: string;
+  readonly value: string | number;
 };
 
 export const StatRow = ({ label, value }: Readonly<Props>) => {

@@ -22,6 +22,10 @@ jest.mock('react-native-gifted-charts', () => ({
 jest.mock('@/components/FancyText/FancyText');
 jest.mocked(FancyText).mockImplementation(({ text, style, gradient }) => {
   const color = gradient ? gradient.colors[0] : style.color;
+  const transformedText = style.textTransform === 'uppercase' ? String(text).toUpperCase() : String(text);
+  const letterSpacing = style.letterSpacing ?? 0;
+  const fontSize = style.fontSize ?? 0;
+  const fontScale = style.fontSize ? 1 : 1; // preserve spacing relative to scaled font if needed
 
   return createElement(
     Text,
@@ -29,12 +33,13 @@ jest.mocked(FancyText).mockImplementation(({ text, style, gradient }) => {
       style: {
         color,
         fontFamily: style.fontFamily,
-        fontSize: style.fontSize,
+        fontSize,
+        letterSpacing,
         textShadowColor: style.strokeColor,
         textShadowRadius: style.strokeWidth,
       } as TextStyle,
     },
-    text,
+    transformedText,
   );
 });
 

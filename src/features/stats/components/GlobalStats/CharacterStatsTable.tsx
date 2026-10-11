@@ -1,4 +1,5 @@
 import { Image } from 'expo-image';
+import React from 'react';
 import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
@@ -18,7 +19,7 @@ type Props = {
 export const CharacterStatsTable = ({ characterStats }: Props) => {
   const { theme } = useUnistyles();
 
-  const sorted = [...characterStats].sort((a, b) => b.level - a.level || b.gameCount - a.gameCount);
+  const sorted = React.useMemo(() => [...characterStats].sort((a, b) => b.level - a.level || b.gameCount - a.gameCount), [characterStats]);
 
   return (
     <View>

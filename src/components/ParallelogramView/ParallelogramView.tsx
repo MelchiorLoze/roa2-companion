@@ -200,9 +200,14 @@ export const ParallelogramView = <T extends GradientColors>({
 
   return (
     <View
-      onLayout={(e) =>
-        setSize({ width: Math.ceil(e.nativeEvent.layout.width), height: Math.ceil(e.nativeEvent.layout.height) })
-      }
+      onLayout={(e) => {
+        const newWidth = Math.ceil(e.nativeEvent.layout.width);
+        const newHeight = Math.ceil(e.nativeEvent.layout.height);
+        setSize((prev) => {
+          if (prev.width === newWidth && prev.height === newHeight) return prev;
+          return { width: newWidth, height: newHeight };
+        });
+      }}
       style={viewStyle}
     >
       {renderSvg()}
