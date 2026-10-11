@@ -1,12 +1,13 @@
 import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
-import { StatRow } from './StatRow';
+import { StatRow, type Props as StatRowProps } from './StatRow';
+
 type Props = {
-  readonly rows: { label: string; value: string | number }[];
+  readonly rows: ReadonlyArray<Pick<StatRowProps, 'label' | 'value'>>;
 };
 
-export const StatRows = ({ rows }: Props) => {
+export const StatRows = ({ rows }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
       <View style={styles.innerBorder}>
