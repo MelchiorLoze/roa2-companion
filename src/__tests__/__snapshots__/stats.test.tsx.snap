@@ -4387,7 +4387,9 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
           </View>
         </View>
         <View>
-          <View>
+          <View
+            onLayout={[Function]}
+          >
             <View
               testID="rank-distribution"
             >
@@ -4396,55 +4398,55 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                 data={
                   [
                     {
-                      "barWidth": 186.1246133451171,
+                      "barWidth": 0,
                       "frontColor": "#7F7A66",
                       "topLabelComponent": [Function],
                       "value": 3,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#B87A2E",
                       "topLabelComponent": [Function],
                       "value": 2,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#C8C8D5",
                       "topLabelComponent": [Function],
                       "value": 2,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#FFC64E",
                       "topLabelComponent": [Function],
                       "value": 2,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#C3C4FF",
                       "topLabelComponent": [Function],
                       "value": 3,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#95DFEC",
                       "topLabelComponent": [Function],
                       "value": 1,
                     },
                     {
-                      "barWidth": 62.0415377817057,
+                      "barWidth": 0,
                       "frontColor": "#9CE7AC",
                       "topLabelComponent": [Function],
                       "value": 3,
                     },
                     {
-                      "barWidth": 42.80866106937693,
+                      "barWidth": 0,
                       "frontColor": "#FC7575",
                       "topLabelComponent": [Function],
                       "value": 1,
                     },
                     {
-                      "barWidth": 100.81749889527177,
+                      "barWidth": 0,
                       "frontColor": "#BD7CC5",
                       "topLabelComponent": [Function],
                       "value": 4,
@@ -4453,10 +4455,10 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                 }
                 disablePress={true}
                 disableScroll={true}
-                height={702}
+                height={0}
                 hideAxesAndRules={true}
                 spacing={0}
-                width={702}
+                width={0}
                 xAxisLabelsHeight={0}
                 yAxisLabelWidth={0}
               />
@@ -4826,11 +4828,11 @@ exports[`Stats renders correctly on initial tab (ranked) 1`] = `
                 }
                 dataPointsColor="transparent"
                 disableScroll={true}
-                height={702}
+                height={0}
                 hideAxesAndRules={true}
                 initialSpacing={0}
                 thickness={1}
-                width={702}
+                width={0}
                 xAxisLabelsHeight={0}
                 yAxisLabelWidth={0}
               />
