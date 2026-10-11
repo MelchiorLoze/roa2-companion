@@ -36,39 +36,33 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
       if (value) {
         const parsedValue: unknown = JSON.parse(value);
         const convertedValue = converterRef.current ? converterRef.current(parsedValue) : (parsedValue as T);
-        // Only update if different to avoid loops from inline converters
-        if (!Object.is(convertedValue, state)) {
-          setState(convertedValue);
-        } else if (state === null && isLoadingForComparison(state)) {
-          // If we were loading, set to the value
-          setState(convertedValue);
-        }
-      } else setState(null);
+        setState(convertedValue);
+      } else {
+        setState(null);
+      }
     };
 
-    // We need to detect loading state - track it
     if (Platform.OS === 'web') {
       try {
         if (typeof localStorage !== 'undefined') setStateFromString(localStorage.getItem(key));
-        else setState(null);
       } catch (error) {
         console.error('Local storage is unavailable:', error);
-        setState(null);
       }
     } else {
       SecureStorage.getItemAsync(key)
         .then(setStateFromString)
         .catch((error) => {
           console.error(error);
-          setState(null);
         });
     }
-  }, [key]); // Removed converter and setState from deps, use refs
+  }, [key]);
 
   // Set
   const setValue = (value: T | null) => {
     setState(value);
-    void setStorageItemAsync(key, value);
+    setStorageItemAsync(key, value).catch((error) => {
+      console.error('Storage write failed:', error);
+    });
   };
 
   return [state, setValue] as const;
