@@ -1,5 +1,5 @@
-import { type ConfigContext, type ExpoConfig } from '@expo/config';
-import { withAppBuildGradle, withGradleProperties } from '@expo/config-plugins';
+import { type ConfigContext, type ExpoConfig } from 'expo/config';
+import { withAppBuildGradle, withGradleProperties } from 'expo/config-plugins';
 
 const GRADLE_PROPERTIES: Record<string, string> = {
   MYAPP_UPLOAD_STORE_FILE: 'upload-keystore.jks',
