@@ -1,8 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
 import More from '@/app/(private)/more';
 import { useAuth } from '@/features/auth/hooks/business/useAuth/useAuth';
+
+const user = userEvent.setup();
 
 jest.mock('expo-router');
 jest.mock('@/features/auth/hooks/business/useAuth/useAuth');
@@ -48,7 +50,7 @@ describe('More', () => {
     await render(<More />);
 
     const button = screen.getByRole('button', { name: 'About this app' });
-    await fireEvent.press(button);
+    await user.press(button);
 
     expect(navigateMock).toHaveBeenCalledTimes(1);
     expect(navigateMock).toHaveBeenCalledWith('/about');
@@ -58,7 +60,7 @@ describe('More', () => {
     await render(<More />);
 
     const button = screen.getByRole('button', { name: 'Log out' });
-    await fireEvent.press(button);
+    await user.press(button);
 
     expect(logoutMock).toHaveBeenCalledTimes(1);
   });

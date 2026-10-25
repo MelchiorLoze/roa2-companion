@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react-native';
+import { render, screen, userEvent, within } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import Store from '@/app/(private)/store';
@@ -6,6 +6,8 @@ import { useSession } from '@/features/auth/contexts/SessionContext/SessionConte
 import { useRotatingCoinShop } from '@/features/store/hooks/business/useRotatingCoinShop/useRotatingCoinShop';
 import { usePurchaseInventoryItems } from '@/features/store/hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { testItemList } from '@/test-helpers/testItemList';
+
+const user = userEvent.setup();
 
 jest.mock('expo-router');
 jest.mock('@/features/auth/contexts/SessionContext/SessionContext');
@@ -76,7 +78,7 @@ describe('Store', () => {
     expect(within(itemCards[0]).getByText(testItemList[0].name)).toBeTruthy();
     expect(within(itemCards[1]).getByText(testItemList[1].name)).toBeTruthy();
 
-    await fireEvent.press(itemCards[0]);
+    await user.press(itemCards[0]);
     const withinDialog = within(screen.getByTestId('dialog'));
 
     expect(withinDialog.getByText(testItemList[0].name)).toBeTruthy();
@@ -93,7 +95,7 @@ describe('Store', () => {
     const itemCards = screen.getAllByRole('button');
     expect(within(itemCards[1]).getByText(testItemList[1].name)).toBeTruthy();
 
-    await fireEvent.press(itemCards[1]);
+    await user.press(itemCards[1]);
 
     expect(screen.queryByTestId('dialog')).toBeNull();
   });
@@ -115,13 +117,13 @@ describe('Store', () => {
     await render(<Store />);
 
     const itemCards = screen.getAllByRole('button');
-    await fireEvent.press(itemCards[0]);
+    await user.press(itemCards[0]);
 
     const dialog = screen.getByTestId('dialog');
     expect(dialog).toBeTruthy();
 
     const closeButton = within(dialog).getByRole('button', { name: 'Close' });
-    await fireEvent.press(closeButton);
+    await user.press(closeButton);
 
     expect(screen.queryByTestId('dialog')).toBeNull();
   });

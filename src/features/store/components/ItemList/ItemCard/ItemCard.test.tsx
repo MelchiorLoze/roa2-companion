@@ -1,8 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { Category, CATEGORY_LABELS, type Item, Rarity } from '@/types/item';
 
 import { ItemCard } from './ItemCard';
+
+const user = userEvent.setup();
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
@@ -50,7 +52,7 @@ describe('ItemCard', () => {
     await renderComponent(mockItem);
 
     const card = screen.getByRole('button');
-    await fireEvent.press(card);
+    await user.press(card);
 
     expect(onPressMock).toHaveBeenCalled();
   });

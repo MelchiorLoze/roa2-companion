@@ -16,6 +16,26 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const crossFeatureImportConfig = (feature, otherFeatures) => ({
+  files: [`src/features/${feature}/**/*.{ts,tsx}`],
+  rules: {
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [
+          {
+            group: otherFeatures.flatMap((otherFeature) => [
+              `@/features/${otherFeature}`,
+              `@/features/${otherFeature}/**`,
+            ]),
+            message: 'Features must not import from other features. Move shared code outside of src/features.',
+          },
+        ],
+      },
+    ],
+  },
+});
+
 const config = defineConfig([
   // Global ignores - must be first
   {
@@ -114,6 +134,12 @@ const config = defineConfig([
       ],
     },
   },
+
+  // Feature isolation
+  crossFeatureImportConfig('auth', ['e-sport', 'stats', 'store']),
+  crossFeatureImportConfig('e-sport', ['stats', 'store']),
+  crossFeatureImportConfig('stats', ['e-sport', 'store']),
+  crossFeatureImportConfig('store', ['e-sport', 'stats']),
 
   // Test file specific configuration
   {

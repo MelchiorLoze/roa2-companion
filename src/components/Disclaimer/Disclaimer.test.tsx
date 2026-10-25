@@ -1,7 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
 import { Disclaimer } from './Disclaimer';
+
+const user = userEvent.setup();
 
 const disclaimerText = `This project is a fan-made creation and is not affiliated with Aether Studios or Offbrand Games in any official capacity. The app works directly between your device and the official game servers, with no third parties involved in transferring or processing your data. Learn more...`;
 
@@ -24,7 +26,7 @@ describe('Disclaimer', () => {
     await render(<Disclaimer />);
 
     const disclaimerButton = screen.getByText(disclaimerText);
-    await fireEvent.press(disclaimerButton);
+    await user.press(disclaimerButton);
 
     expect(navigateMock).toHaveBeenCalledTimes(1);
     expect(navigateMock).toHaveBeenCalledWith('/about');

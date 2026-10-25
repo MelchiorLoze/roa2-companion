@@ -1,9 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 
 import { useCurrencyBalance } from '@/hooks/business/useCurrencyBalance/useCurrencyBalance';
 
 import { Header } from './Header';
+
+const user = userEvent.setup();
 
 jest.mock('expo-router');
 jest.mock('@/hooks/business/useCurrencyBalance/useCurrencyBalance');
@@ -61,7 +63,7 @@ describe('Header', () => {
     expect(screen.getByText('Test Title')).toBeTruthy();
 
     const backButton = screen.getByRole('button');
-    await fireEvent.press(backButton);
+    await user.press(backButton);
 
     expect(backMock).toHaveBeenCalledTimes(1);
   });

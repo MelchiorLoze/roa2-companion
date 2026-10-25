@@ -1,5 +1,6 @@
 import { COMPANION_API_BASE_URL } from '@/constants';
-import { useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
+
+import { useHttpClient } from '../../core/useHttpClient/useHttpClient';
 
 export const useCompanionApiClient = () => {
   const headers: Record<string, string> = {};

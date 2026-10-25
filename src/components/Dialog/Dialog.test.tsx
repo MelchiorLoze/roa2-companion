@@ -1,7 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { Keyboard, Text } from 'react-native';
 
 import { Dialog } from './Dialog';
+
+const user = userEvent.setup();
 
 const keyboardDismissSpy = jest.spyOn(Keyboard, 'dismiss');
 const keyboardIsVisibleSpy = jest.spyOn(Keyboard, 'isVisible');
@@ -41,7 +43,7 @@ describe('Dialog', () => {
       </Dialog>,
     );
 
-    await fireEvent.press(screen.getByTestId('overlay'));
+    await user.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -56,7 +58,7 @@ describe('Dialog', () => {
 
     // Simulate keyboard being visible
     keyboardIsVisibleSpy.mockReturnValue(true);
-    await fireEvent.press(screen.getByTestId('overlay'));
+    await user.press(screen.getByTestId('overlay'));
 
     expect(keyboardDismissSpy).toHaveBeenCalledTimes(1);
     expect(mockOnClose).not.toHaveBeenCalled();

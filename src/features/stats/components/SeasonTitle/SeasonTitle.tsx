@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { FancyText } from '@/components/FancyText/FancyText';
-import { CoinStoreTitleBackground } from '@/features/store/assets/images/ui';
+
+import { SeasonTitleBackground } from '../../assets/images/ui';
 
 type Props = {
   seasonName: string;
@@ -12,7 +13,7 @@ type Props = {
 export const SeasonTitle = ({ seasonName }: Readonly<Props>) => {
   return (
     <View style={styles.container}>
-      <ImageBackground contentFit="fill" source={CoinStoreTitleBackground} style={StyleSheet.absoluteFill} />
+      <ImageBackground contentFit="fill" source={SeasonTitleBackground} style={StyleSheet.absoluteFill} />
 
       <FancyText style={styles.title} text={seasonName} />
     </View>

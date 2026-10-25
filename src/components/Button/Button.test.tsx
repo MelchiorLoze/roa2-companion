@@ -1,6 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { Button } from './Button';
+
+const user = userEvent.setup();
 
 const label = 'My Button';
 const onPressMock = jest.fn();
@@ -16,7 +18,7 @@ describe('Button', () => {
     await renderComponent();
 
     const button = screen.getByRole('button', { name: label });
-    await fireEvent.press(button);
+    await user.press(button);
 
     expect(onPressMock).toHaveBeenCalled();
   });

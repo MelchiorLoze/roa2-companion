@@ -2,7 +2,7 @@ import fetchMock from 'fetch-mock';
 import { createElement } from 'react';
 import { Text, type TextStyle } from 'react-native';
 
-import { FancyText } from './components/FancyText/FancyText';
+import { FancyText } from '@/components/FancyText/FancyText';
 
 globalThis.expo.modules.ExpoObserve = {
   ...globalThis.expo.modules.ExpoObserve,

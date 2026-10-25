@@ -1,7 +1,8 @@
-import { useGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
 import { CurrencyId } from '@/types/currency';
 import { type Item } from '@/types/item';
 import { type LoadableState } from '@/types/loadableState';
+
+import { useGetInventoryItems } from '../../data/useGetInventoryItems/useGetInventoryItems';
 
 const getCurrencyBalance = (
   currencyId: Item['id'],

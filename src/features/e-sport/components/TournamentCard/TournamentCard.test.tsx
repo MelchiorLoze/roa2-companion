@@ -1,9 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 import { DateTime } from 'luxon';
 
 import { type Tournament, TournamentState } from '../../types/tournament';
 import { TournamentCard } from './TournamentCard';
+
+const user = userEvent.setup();
 
 jest.mock('expo-router');
 
@@ -146,7 +148,7 @@ describe('TournamentCard', () => {
     await renderComponent(mockTournament);
 
     const card = screen.getByText('Test Tournament');
-    await fireEvent.press(card);
+    await user.press(card);
 
     expect(pushMock).toHaveBeenCalledWith('https://example.com/tournament/1');
   });

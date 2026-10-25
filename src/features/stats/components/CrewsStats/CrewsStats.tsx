@@ -6,7 +6,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 import { CrewsIcon } from '../../assets/images/crews';
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserCrewsStats } from '../../hooks/business/useUserCrewsStats/useUserCrewsStats';
-import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
+import { LeaderboardPositionStatRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
@@ -29,7 +29,7 @@ export const CrewsStats = () => {
 
       <View style={styles.titlePadding} />
 
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={stats.profile.avatarUrl}
         elo={stats.elo}
         playerName={stats.profile.playerName}

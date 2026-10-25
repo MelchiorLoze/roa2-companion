@@ -6,7 +6,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 import { DoublesIcon } from '../../assets/images/doubles';
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserDoublesStats } from '../../hooks/business/useUserDoublesStats/useUserDoublesStats';
-import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
+import { LeaderboardPositionStatRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRows } from '../StatRows/StatRows';
 import { StatsTabContentWrapper } from '../StatsTabContentWrapper/StatsTabContentWrapper';
@@ -29,7 +29,7 @@ export const DoublesStats = () => {
 
       <View style={styles.titlePadding} />
 
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={stats.profile.avatarUrl}
         elo={stats.elo}
         playerName={stats.profile.playerName}

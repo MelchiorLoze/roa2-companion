@@ -91,3 +91,9 @@ export type PlayerStatistics = Require<Partial<Record<StatisticName, number>>, S
 export type UserData = DeepReadonly<{
   characterData: Record<Character, { lvl: number } | undefined>;
 }>;
+
+export type CharacterStat = Readonly<{
+  character: Character;
+  gameCount: number;
+  level: number;
+}>;

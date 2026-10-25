@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react-native';
 
-import { useGetInventoryItems } from '@/hooks/data/useGetInventoryItems/useGetInventoryItems';
 import { CurrencyId } from '@/types/currency';
 
+import { useGetInventoryItems } from '../../data/useGetInventoryItems/useGetInventoryItems';
 import { useCurrencyBalance } from './useCurrencyBalance';
 
-jest.mock('@/hooks/data/useGetInventoryItems/useGetInventoryItems');
+jest.mock('../../data/useGetInventoryItems/useGetInventoryItems');
 const useGetInventoryItemsMock = jest.mocked(useGetInventoryItems);
 
 const defaultInventoryItemsReturnValue: ReturnType<typeof useGetInventoryItems> = {

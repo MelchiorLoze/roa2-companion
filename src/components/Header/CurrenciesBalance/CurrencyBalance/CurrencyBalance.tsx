@@ -1,9 +1,10 @@
 import { View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { FancyText } from '@/components/FancyText/FancyText';
-import { NineSlicesImage } from '@/components/NineSlicesImage/NineSlicesImage';
 import { type Currency, CURRENCY_BACKGROUNDS } from '@/types/currency';
+
+import { FancyText } from '../../../FancyText/FancyText';
+import { NineSlicesImage } from '../../../NineSlicesImage/NineSlicesImage';
 
 const formatCurrency = (amount: number) => {
   // adds commas every three digits

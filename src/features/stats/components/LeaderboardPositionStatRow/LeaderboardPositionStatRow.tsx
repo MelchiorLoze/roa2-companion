@@ -21,7 +21,14 @@ type Props = {
   elo?: number;
 } & RankOrIcon;
 
-export const LeaderboardPositionRow = ({ position, avatarUrl, playerName, elo, rank, rankIcon }: Readonly<Props>) => {
+export const LeaderboardPositionStatRow = ({
+  position,
+  avatarUrl,
+  playerName,
+  elo,
+  rank,
+  rankIcon,
+}: Readonly<Props>) => {
   const { theme } = useUnistyles();
   const { image: avatarImage, canvasRef, canvasSize, canvasFilter } = useCachedSkiaImage(avatarUrl);
 
