@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react-native';
 
 import { CrewsIcon } from '../../assets/images/crews';
 import { Rank } from '../../types/rank';
-import { LeaderboardPositionRow } from './LeaderboardPositionStatRow';
+import { LeaderboardPositionStatRow } from './LeaderboardPositionStatRow';
 
 describe('LeaderboardPositionStatRow', () => {
   it('renders correctly', async () => {
     await render(
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         elo={1200}
         playerName="Test Player"
@@ -24,7 +24,7 @@ describe('LeaderboardPositionStatRow', () => {
 
   it('renders correctly without rank and elo', async () => {
     await render(
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         playerName="Test Player"
         position={1}
@@ -38,7 +38,7 @@ describe('LeaderboardPositionStatRow', () => {
 
   it('renders correctly without rank if the rankIcon is provided', async () => {
     await render(
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={new URL('https://example.com/avatar.png')}
         elo={1500}
         playerName="Test Player"

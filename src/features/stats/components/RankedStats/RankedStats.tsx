@@ -7,7 +7,7 @@ import { Spinner } from '@/components/Spinner/Spinner';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
-import { LeaderboardPositionRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
+import { LeaderboardPositionStatRow } from '../LeaderboardPositionStatRow/LeaderboardPositionStatRow';
 import { RankedDistributionChart } from '../RankedDistributionChart/RankedDistributionChart';
 import { SeasonTitle } from '../SeasonTitle/SeasonTitle';
 import { StatRows } from '../StatRows/StatRows';
@@ -57,7 +57,7 @@ export const RankedStats = () => {
         />
       </View>
 
-      <LeaderboardPositionRow
+      <LeaderboardPositionStatRow
         avatarUrl={stats.profile.avatarUrl}
         elo={stats.elo}
         playerName={stats.profile.playerName}
