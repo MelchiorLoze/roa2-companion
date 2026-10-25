@@ -123,6 +123,55 @@ describe('useStorageState', () => {
       expect(deleteItemAsyncMock).toHaveBeenCalledWith(TEST_KEY);
     });
 
+    it('logs an error when saving to SecureStore fails', async () => {
+      const error = new Error('SecureStore set error');
+      setItemAsyncMock.mockRejectedValueOnce(error);
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+
+      const { result } = await renderUseStorageState();
+      const [_, setValue] = result.current;
+
+      await act(async () => {
+        setValue(MOCK_OBJECT);
+        await Promise.resolve();
+      });
+
+      expect(consoleSpy).toHaveBeenCalledWith('Secure storage is unavailable:', error);
+      consoleSpy.mockRestore();
+    });
+
+    it('logs an error when removing from SecureStore fails', async () => {
+      const error = new Error('SecureStore delete error');
+      deleteItemAsyncMock.mockRejectedValueOnce(error);
+      const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+
+      const { result } = await renderUseStorageState();
+      const [_, setValue] = result.current;
+
+      await act(async () => {
+        setValue(null);
+        await Promise.resolve();
+      });
+
+      expect(consoleSpy).toHaveBeenCalledWith('Secure storage is unavailable:', error);
+      consoleSpy.mockRestore();
+    });
+
+    it('does not reload storage when an inline converter changes every render', async () => {
+      getItemAsyncMock.mockResolvedValue(SERIALIZED_MOCK_OBJECT);
+      const converter = jest.fn((raw: unknown) => ({ ...(raw as TestData) }));
+
+      const { result } = await renderHook(() => useStorageState<TestData>(TEST_KEY, (raw) => converter(raw)));
+
+      await waitFor(() => expect(result.current[0][1]).toBe(false));
+      await act(async () => {
+        await new Promise((resolve) => setTimeout(resolve, 0));
+      });
+
+      expect(converter).toHaveBeenCalledTimes(1);
+      expect(getItemAsyncMock).toHaveBeenCalledTimes(1);
+    });
+
     it.each([
       { mock: '"my-state-value"', expected: 'my-state-value' },
       { mock: '123', expected: 123 },

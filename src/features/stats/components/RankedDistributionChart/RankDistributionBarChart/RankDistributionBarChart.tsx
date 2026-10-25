@@ -48,14 +48,14 @@ type Props = {
   width: number;
 };
 
-const InnerBar = (maxValue: number, item?: barDataItem | stackDataItem) => {
+const renderInnerBar = (maxValue: number, theme: Theme, item?: barDataItem | stackDataItem) => {
   if (!item || !('frontColor' in item) || !item.frontColor || item.value == null) return null;
 
   const diffProportion = (maxValue - item.value) / maxValue;
 
   return (
     <LinearGradient
-      colors={['#210D2C', item.frontColor]}
+      colors={[theme.color.rankDistributionBarGradientStart, item.frontColor]}
       style={StyleSheet.absoluteFill}
       times={[-0.5 - diffProportion, 0.7]}
       vertical
@@ -85,12 +85,13 @@ export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
       </View>
     );
 
+  const maxRankCount = Math.max(...Object.values(rankDistribution));
   const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
 
   return (
     <View testID="rank-distribution">
       <BarChart
-        barInnerComponent={(item) => InnerBar(Math.max(...Object.values(rankDistribution)), item)}
+        barInnerComponent={(item) => renderInnerBar(maxRankCount, theme, item)}
         data={formatBarData(rankDistribution, barWidths, theme)}
         disablePress
         disableScroll

@@ -1,4 +1,5 @@
-import { useWindowDimensions, View } from 'react-native';
+import { useState } from 'react';
+import { View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { EloDistributionLineChart } from './EloDistributionLineChart/EloDistributionLineChart';
@@ -9,11 +10,10 @@ type Props = {
 };
 
 export const RankedDistributionChart = ({ elo }: Readonly<Props>) => {
-  const dimensions = useWindowDimensions();
-  const width = dimensions.width - 2 * 24;
+  const [width, setWidth] = useState(0);
 
   return (
-    <View>
+    <View onLayout={(event) => setWidth(event.nativeEvent.layout.width)}>
       <RankDistributionBarChart width={width} />
       <EloDistributionLineChart style={StyleSheet.absoluteFill} userElo={elo} width={width} />
     </View>

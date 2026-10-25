@@ -3,6 +3,7 @@ import { type PropsWithChildren, type ReactNode, useId, useState } from 'react';
 import {
   type ColorValue,
   type ImageSourcePropType,
+  type LayoutChangeEvent,
   type StyleProp,
   StyleSheet,
   View,
@@ -198,13 +199,20 @@ export const ParallelogramView = <T extends GradientColors>({
       </Svg>
     ) : null;
 
+  const onLayout = (event: LayoutChangeEvent) => {
+    const newSize = {
+      width: Math.ceil(event.nativeEvent.layout.width),
+      height: Math.ceil(event.nativeEvent.layout.height),
+    };
+    setSize((previousSize) => {
+      if (previousSize.width === newSize.width && previousSize.height === newSize.height) return previousSize;
+
+      return newSize;
+    });
+  };
+
   return (
-    <View
-      onLayout={(e) =>
-        setSize({ width: Math.ceil(e.nativeEvent.layout.width), height: Math.ceil(e.nativeEvent.layout.height) })
-      }
-      style={viewStyle}
-    >
+    <View onLayout={onLayout} style={viewStyle}>
       {renderSvg()}
       {children}
     </View>
