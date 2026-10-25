@@ -88,7 +88,7 @@
     "@react-native-community/cli": "^20.2.0",
     "@react-native/eslint-config": "^0.87.1",
     "@tanstack/eslint-plugin-query": "^5.104.1",
-    "@testing-library/react-native": "^14.0.0-0",
+    "@testing-library/react-native": "^14.1.0",
     "@types/country-flag-icons": "^1.2.2",
     "@types/jest": "29.5.14",
     "@types/luxon": "^3.7.3",
