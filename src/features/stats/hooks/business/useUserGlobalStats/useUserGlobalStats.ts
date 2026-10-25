@@ -1,7 +1,7 @@
 import { Character } from '@/types/character';
 import { type RefreshableState } from '@/types/loadableState';
 
-import { type PlayerStatistics, StatisticName, type UserData } from '../../../types/stats';
+import { type CharacterStat, type PlayerStatistics, StatisticName, type UserData } from '../../../types/stats';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 import { useGetUserReadOnlyData } from '../../data/useGetUserReadOnlyData/useGetUserReadOnlyData';
 
@@ -27,11 +27,7 @@ type UserGlobalStatsState = RefreshableState<{
       winCount: number;
       winRate: number;
     };
-    characterStats: {
-      character: Character;
-      gameCount: number;
-      level: number;
-    }[];
+    characterStats: CharacterStat[];
   };
 }>;
 

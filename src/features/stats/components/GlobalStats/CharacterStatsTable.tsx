@@ -3,13 +3,9 @@ import { Text, View } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { FancyText } from '@/components/FancyText/FancyText';
-import { type Character, CHARACTER_ICONS } from '@/types/character';
+import { CHARACTER_ICONS } from '@/types/character';
 
-type CharacterStat = {
-  character: Character;
-  gameCount: number;
-  level: number;
-};
+import { type CharacterStat } from '../../types/stats';
 
 type Props = {
   readonly characterStats: CharacterStat[];
