@@ -1,5 +1,5 @@
 import * as SecureStorage from 'expo-secure-store';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { Platform } from 'react-native';
 
 type AsyncState<T> = [value: T | null, isLoading: boolean];
@@ -16,20 +16,29 @@ const setStorageItemAsync = async <T>(key: string, value: T | null) => {
       console.error('Local storage is unavailable:', error);
     }
   } else {
-    if (value == null) await SecureStorage.deleteItemAsync(key);
-    else await SecureStorage.setItemAsync(key, JSON.stringify(value));
+    try {
+      if (value == null) await SecureStorage.deleteItemAsync(key);
+      else await SecureStorage.setItemAsync(key, JSON.stringify(value));
+    } catch (error) {
+      console.error('Secure storage is unavailable:', error);
+    }
   }
 };
 
 export const useStorageState = <T>(key: string, converter?: (value: unknown) => T) => {
   const [state, setState] = useAsyncState<T>();
+  const converterRef = useRef(converter);
+
+  useEffect(() => {
+    converterRef.current = converter;
+  }, [converter]);
 
   // Get
   useEffect(() => {
     const setStateFromString = (value: string | null) => {
       if (value) {
         const parsedValue: unknown = JSON.parse(value);
-        setState(converter ? converter(parsedValue) : (parsedValue as T));
+        setState(converterRef.current ? converterRef.current(parsedValue) : (parsedValue as T));
       } else setState(null);
     };
 
@@ -40,7 +49,7 @@ export const useStorageState = <T>(key: string, converter?: (value: unknown) => 
         console.error('Local storage is unavailable:', error);
       }
     } else SecureStorage.getItemAsync(key).then(setStateFromString).catch(console.error);
-  }, [key, converter, setState]);
+  }, [key, setState]);
 
   // Set
   const setValue = (value: T | null) => {
