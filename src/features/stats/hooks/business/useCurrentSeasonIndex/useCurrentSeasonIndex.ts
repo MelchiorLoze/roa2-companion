@@ -1,6 +1,6 @@
-import { StatisticName } from '@/features/stats/types/stats';
 import { type LoadableState } from '@/types/loadableState';
 
+import { StatisticName } from '../../../types/stats';
 import { useGetPlayerStatistics } from '../../data/useGetPlayerStatistics/useGetPlayerStatistics';
 
 export const useCurrentSeasonIndex = (): LoadableState<{ currentSeasonIndex: number }> => {

@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { useGameApiClient } from '@/hooks/apiClients/useGameApiClient/useGameApiClient';
 import { type Item, type ItemDto } from '@/types/item';
 import { itemFromDto } from '@/utils/itemFromDto';
+
+import { useGameApiClient } from '../../apiClients/useGameApiClient/useGameApiClient';
 
 type GetItemsRequest = Readonly<{
   Ids: readonly Item['id'][];

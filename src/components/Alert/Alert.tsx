@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { type StyleProp, Text, type ViewStyle } from 'react-native';
 import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
-import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
+import { LinearGradient } from '../LinearGradient/LinearGradient';
 
 type Props = {
   text: string;

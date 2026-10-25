@@ -4,10 +4,10 @@ import { StyleSheet, useUnistyles } from 'react-native-unistyles';
 
 import { FancyText } from '@/components/FancyText/FancyText';
 import { LinearGradient } from '@/components/LinearGradient/LinearGradient';
-import { useXpRotationalBonus } from '@/features/stats/hooks/business/useXpRotationalBonus/useXpRotationalBonus';
 import { useCountdown } from '@/hooks/business/useCountdown/useCountdown';
 
 import { ClockIcon } from '../../assets/images/ui/icons';
+import { useXpRotationalBonus } from '../../hooks/business/useXpRotationalBonus/useXpRotationalBonus';
 
 export const XpRotationalBonusBanner = () => {
   const { theme } = useUnistyles();

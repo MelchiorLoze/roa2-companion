@@ -1,6 +1,7 @@
 import { TITLE_ID } from '@/constants';
 import { useSession } from '@/features/auth/contexts/SessionContext/SessionContext';
-import { type HttpClient, useHttpClient } from '@/hooks/core/useHttpClient/useHttpClient';
+
+import { type HttpClient, useHttpClient } from '../../core/useHttpClient/useHttpClient';
 
 export const GAME_API_BASE_URL = `https://${TITLE_ID}.playfabapi.com`;
 
