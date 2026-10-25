@@ -1,7 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { useSendAccountRecoveryEmail } from '../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail';
 import { ResetPasswordDialog } from './ResetPasswordDialog';
+
+const user = userEvent.setup();
 
 jest.mock('../../hooks/data/useSendAccountRecoveryEmail/useSendAccountRecoveryEmail');
 const useSendAccountRecoveryEmailMock = jest.mocked(useSendAccountRecoveryEmail);
@@ -42,7 +44,7 @@ describe('ResetPasswordDialog', () => {
     const mockOnClose = jest.fn();
     await render(<ResetPasswordDialog onClose={mockOnClose} />);
 
-    await fireEvent.press(screen.getByTestId('overlay'));
+    await user.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -51,12 +53,12 @@ describe('ResetPasswordDialog', () => {
     await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
-    await fireEvent.press(submitButton);
+    await user.press(submitButton);
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
 
     const emailInput = screen.getByPlaceholderText('EMAIL');
-    await fireEvent.changeText(emailInput, 'kragg@example.com');
-    await fireEvent.press(submitButton);
+    await user.type(emailInput, 'kragg@example.com');
+    await user.press(submitButton);
     expect(screen.queryByText('Please provide a valid email')).toBeNull();
 
     expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).toHaveBeenCalledTimes(1);
@@ -68,7 +70,7 @@ describe('ResetPasswordDialog', () => {
     await render(<ResetPasswordDialog onClose={jest.fn()} />);
 
     const submitButton = screen.getByRole('button', { name: 'Reset password' });
-    await fireEvent.press(submitButton);
+    await user.press(submitButton);
 
     expect(screen.getByText('Please provide a valid email')).toBeTruthy();
     expect(defaultSendAccountRecoveryEmailReturnValue.sendRecoveryEmail).not.toHaveBeenCalled();

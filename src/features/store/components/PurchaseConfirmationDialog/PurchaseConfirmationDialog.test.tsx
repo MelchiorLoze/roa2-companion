@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { CurrencyId } from '@/types/currency';
 import { Category, Rarity } from '@/types/item';
@@ -6,6 +6,8 @@ import { Category, Rarity } from '@/types/item';
 import { usePurchaseInventoryItems } from '../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems';
 import { type CoinStoreItem } from '../../types/item';
 import { PurchaseConfirmationDialog } from './PurchaseConfirmationDialog';
+
+const user = userEvent.setup();
 
 jest.mock('../../hooks/data/usePurchaseInventoryItems/usePurchaseInventoryItems');
 const usePurchaseInventoryItemsMock = jest.mocked(usePurchaseInventoryItems);
@@ -47,7 +49,7 @@ describe('PurchaseConfirmationDialog', () => {
     const mockOnClose = jest.fn();
     await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
-    await fireEvent.press(screen.getByTestId('overlay'));
+    await user.press(screen.getByTestId('overlay'));
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -57,7 +59,7 @@ describe('PurchaseConfirmationDialog', () => {
     await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const closeButton = screen.getByRole('button', { name: 'Close' });
-    await fireEvent.press(closeButton);
+    await user.press(closeButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });
@@ -73,7 +75,7 @@ describe('PurchaseConfirmationDialog', () => {
     await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const confirmButton = screen.getByRole('button', { name: 'Confirm' });
-    await fireEvent.press(confirmButton);
+    await user.press(confirmButton);
 
     expect(mockPurchase).toHaveBeenCalledTimes(1);
     expect(mockPurchase).toHaveBeenCalledWith({
@@ -124,7 +126,7 @@ describe('PurchaseConfirmationDialog', () => {
     await render(<PurchaseConfirmationDialog item={mockItem} onClose={jest.fn()} />);
 
     const retryButton = screen.getByRole('button', { name: 'Retry' });
-    await fireEvent.press(retryButton);
+    await user.press(retryButton);
 
     expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledTimes(1);
     expect(defaultPurchaseReturnValue.purchase).toHaveBeenCalledWith({
@@ -144,7 +146,7 @@ describe('PurchaseConfirmationDialog', () => {
     await render(<PurchaseConfirmationDialog item={mockItem} onClose={mockOnClose} />);
 
     const cancelButton = screen.getByRole('button', { name: 'Cancel' });
-    await fireEvent.press(cancelButton);
+    await user.press(cancelButton);
 
     expect(mockOnClose).toHaveBeenCalledTimes(1);
   });

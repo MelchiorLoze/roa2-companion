@@ -1,6 +1,22 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
+import { useState } from 'react';
 
 import { Input } from './Input';
+
+const user = userEvent.setup();
+
+type StatefulInputProps = { onChange: (text: string) => void };
+
+const StatefulInput = ({ onChange }: Readonly<StatefulInputProps>) => {
+  const [value, setValue] = useState('');
+
+  const handleChange = (text: string) => {
+    setValue(text);
+    onChange(text);
+  };
+
+  return <Input autoComplete="email" onChange={handleChange} placeholder="EMAIL" value={value} />;
+};
 
 describe('Input', () => {
   it('renders correctly', async () => {
@@ -13,11 +29,12 @@ describe('Input', () => {
 
   it('calls onChange when text is entered', async () => {
     const mockOnChange = jest.fn();
-    await render(<Input autoComplete="email" onChange={mockOnChange} placeholder="EMAIL" value="" />);
+    await render(<StatefulInput onChange={mockOnChange} />);
 
     const input = screen.getByPlaceholderText('EMAIL');
-    await fireEvent.changeText(input, 'kragg@example.com');
+    await user.type(input, 'kragg@example.com');
 
+    expect(input).toHaveDisplayValue('kragg@example.com');
     expect(mockOnChange).toHaveBeenCalledWith('kragg@example.com');
   });
 
@@ -58,7 +75,7 @@ describe('Input', () => {
     );
 
     const ctaButton = screen.getByRole('button', { name: 'Forgot your password?' });
-    await fireEvent.press(ctaButton);
+    await user.press(ctaButton);
 
     expect(mockOnPress).toHaveBeenCalledTimes(1);
   });

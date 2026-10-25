@@ -1,6 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { Tabs } from './Tabs';
+
+const user = userEvent.setup();
 
 const onPressTab1Mock = jest.fn();
 const onPressTab2Mock = jest.fn();
@@ -36,17 +38,17 @@ describe('Tabs', () => {
     const tab2 = screen.getByText('Tab 2');
     const tab3 = screen.getByText('Tab 3');
 
-    await fireEvent.press(tab1);
+    await user.press(tab1);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).not.toHaveBeenCalled();
     expect(onPressTab3Mock).not.toHaveBeenCalled();
 
-    await fireEvent.press(tab2);
+    await user.press(tab2);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).toHaveBeenCalledTimes(1);
     expect(onPressTab3Mock).not.toHaveBeenCalled();
 
-    await fireEvent.press(tab3);
+    await user.press(tab3);
     expect(onPressTab1Mock).not.toHaveBeenCalled();
     expect(onPressTab2Mock).toHaveBeenCalledTimes(1);
     expect(onPressTab3Mock).toHaveBeenCalledTimes(1);

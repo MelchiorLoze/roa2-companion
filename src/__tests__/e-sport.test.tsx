@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { DateTime } from 'luxon';
 
 import ESport from '@/app/(private)/e-sport';
 import { useGetActiveTournaments } from '@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments';
 import { useGetPastTournaments } from '@/features/e-sport/hooks/data/useGetPastTournaments/useGetPastTournaments';
 import { type Tournament, TournamentState } from '@/features/e-sport/types/tournament';
+
+const user = userEvent.setup();
 
 jest.mock('@/features/e-sport/hooks/data/useGetActiveTournaments/useGetActiveTournaments');
 jest.mock('@/features/e-sport/hooks/data/useGetPastTournaments/useGetPastTournaments');
@@ -148,7 +150,7 @@ describe('ESport', () => {
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     expect(screen.getByText('active')).toBeEnabled();
     expect(screen.getByText('past')).toBeDisabled();
@@ -209,11 +211,11 @@ describe('ESport', () => {
     await render(<ESport />);
 
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     // Switch back to active tab
     const activeTab = screen.getByText('active');
-    await fireEvent.press(activeTab);
+    await user.press(activeTab);
 
     // Verify active tab is now selected (disabled)
     expect(screen.getByText('active')).toBeDisabled();
@@ -229,7 +231,7 @@ describe('ESport', () => {
     await render(<ESport />);
 
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     // Verify past tab is now selected (disabled)
     expect(screen.getByText('past')).toBeDisabled();
@@ -259,7 +261,7 @@ describe('ESport', () => {
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     // Verify spinner is shown
     expect(screen.getByTestId('spinner')).toBeTruthy();
@@ -276,7 +278,7 @@ describe('ESport', () => {
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     // Verify error message is shown
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
@@ -292,7 +294,7 @@ describe('ESport', () => {
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
 
     // Verify error message is shown
     expect(screen.getByText('An error occurred while loading tournaments. Please try again later.')).toBeTruthy();
@@ -316,7 +318,7 @@ describe('ESport', () => {
 
     // Switch to past tab
     const pastTab = screen.getByText('past');
-    await fireEvent.press(pastTab);
+    await user.press(pastTab);
     await rerender(<ESport />);
 
     // Verify past tab shows past tournament
@@ -324,7 +326,7 @@ describe('ESport', () => {
 
     // Switch back to active tab
     const activeTab = screen.getByText('active');
-    await fireEvent.press(activeTab);
+    await user.press(activeTab);
     await rerender(<ESport />);
 
     // Verify active tab still shows active tournament

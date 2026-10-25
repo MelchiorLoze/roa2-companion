@@ -1,8 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { useRouter } from 'expo-router';
 import { type ComponentProps } from 'react';
 
 import { ActionRow } from './ActionRow';
+
+const user = userEvent.setup();
 
 jest.mock('expo-router');
 const useRouterMock = jest.mocked(useRouter);
@@ -35,7 +37,7 @@ describe('ActionRow', () => {
     await renderComponent(linkProps);
 
     const link = screen.getByRole('link', { name: linkProps.label });
-    await fireEvent.press(link);
+    await user.press(link);
 
     expect(pushMock).toHaveBeenCalledTimes(1);
     expect(pushMock).toHaveBeenCalledWith(linkProps.url.toString());
@@ -45,7 +47,7 @@ describe('ActionRow', () => {
     await renderComponent(buttonProps);
 
     const button = screen.getByRole('button', { name: buttonProps.label });
-    await fireEvent.press(button);
+    await user.press(button);
 
     expect(pushMock).not.toHaveBeenCalled();
     expect(buttonProps.onPress).toHaveBeenCalledTimes(1);

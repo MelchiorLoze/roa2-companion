@@ -1,6 +1,8 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { Tab } from './Tab';
+
+const user = userEvent.setup();
 
 const onPressMock = jest.fn();
 
@@ -21,7 +23,7 @@ describe('Tab', () => {
     await renderComponent(false);
 
     const tab = screen.getByText('Test Tab');
-    await fireEvent.press(tab);
+    await user.press(tab);
 
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });

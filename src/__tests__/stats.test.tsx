@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import Stats from '@/app/(private)/stats';
 import { useSeason } from '@/features/stats/contexts/SeasonContext/SeasonContext';
@@ -10,6 +10,8 @@ import { useUserRankedStats } from '@/features/stats/hooks/business/useUserRanke
 import { testLeaderboardEntries } from '@/features/stats/test-helpers/testLeaderboardEntries';
 import { Rank } from '@/features/stats/types/rank';
 import { Character } from '@/types/character';
+
+const user = userEvent.setup();
 
 jest.mock('@/features/stats/contexts/SeasonContext/SeasonContext');
 jest.mock('@/features/stats/hooks/business/useUserRankedStats/useUserRankedStats');
@@ -150,7 +152,7 @@ describe('Stats', () => {
     const { toJSON } = await render(<Stats />);
 
     const doublesTab = screen.getByText('2v2');
-    await fireEvent.press(doublesTab);
+    await user.press(doublesTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeDisabled();
@@ -171,7 +173,7 @@ describe('Stats', () => {
     const { toJSON } = await render(<Stats />);
 
     const crewsTab = screen.getByText('crews');
-    await fireEvent.press(crewsTab);
+    await user.press(crewsTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeEnabled();
@@ -192,7 +194,7 @@ describe('Stats', () => {
     const { toJSON } = await render(<Stats />);
 
     const globalTab = screen.getByText('global');
-    await fireEvent.press(globalTab);
+    await user.press(globalTab);
 
     expect(screen.getByText('ranked')).toBeEnabled();
     expect(screen.getByText('2v2')).toBeEnabled();

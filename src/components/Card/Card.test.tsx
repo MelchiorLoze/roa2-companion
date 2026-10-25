@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 import { Text } from 'react-native';
 
 import { Card } from './Card';
@@ -9,6 +9,7 @@ jest.requireMock('@shopify/react-native-skia').useCanvasSize = () => ({
   size: { width: 0, height: 0 },
 });
 
+const user = userEvent.setup();
 const onPressMock = jest.fn();
 
 const renderComponent = async () => {
@@ -31,7 +32,7 @@ describe('Card', () => {
   it('calls onPress when pressed', async () => {
     await renderComponent();
 
-    await fireEvent.press(screen.getByRole('button'));
+    await user.press(screen.getByRole('button'));
 
     expect(onPressMock).toHaveBeenCalled();
   });

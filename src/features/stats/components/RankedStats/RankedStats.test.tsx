@@ -1,10 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import { render, screen, userEvent } from '@testing-library/react-native';
 
 import { useSeason } from '../../contexts/SeasonContext/SeasonContext';
 import { useLeaderboardStats } from '../../hooks/business/useLeaderboardStats/useLeaderboardStats';
 import { useUserRankedStats } from '../../hooks/business/useUserRankedStats/useUserRankedStats';
 import { Rank } from '../../types/rank';
 import { RankedStats } from './RankedStats';
+
+const user = userEvent.setup();
 
 jest.mock('../../contexts/SeasonContext/SeasonContext');
 const useSeasonMock = jest.mocked(useSeason);
@@ -140,10 +142,10 @@ describe('RankedStats', () => {
     expect(prevButton).toBeEnabled();
     expect(nextButton).toBeEnabled();
 
-    await fireEvent.press(prevButton);
+    await user.press(prevButton);
     expect(setPreviousSeasonMock).toHaveBeenCalledTimes(1);
 
-    await fireEvent.press(nextButton);
+    await user.press(nextButton);
     expect(setNextSeasonMock).toHaveBeenCalledTimes(1);
   });
 
