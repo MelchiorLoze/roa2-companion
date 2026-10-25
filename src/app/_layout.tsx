@@ -8,6 +8,7 @@ import { AppBackground } from '@/assets/images';
 import { Header } from '@/components/Header/Header';
 import { SessionProvider } from '@/features/auth/contexts/SessionContext/SessionContext';
 import { useAppFonts } from '@/hooks/core/useAppFonts/useAppFonts';
+import { SkiaFontProvider } from '@/hooks/core/useSkiaFontProvider/useSkiaFontProvider';
 
 const queryClient = new QueryClient();
 
@@ -22,24 +23,26 @@ export default function RootLayout() {
 
   return (
     <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <SessionProvider>
-          <ImageBackground source={AppBackground} style={styles.backgroundImage}>
-            <Stack
-              initialRouteName="sign-in"
-              screenOptions={{
-                header: renderHeader,
-                contentStyle: { backgroundColor: theme.color.transparent },
-                animation: 'slide_from_right',
-              }}
-            >
-              <Stack.Screen name="sign-in" />
-              <Stack.Screen name="about" options={{ title: 'About this app' }} />
-              <Stack.Screen name="(private)" options={{ headerShown: false }} />
-            </Stack>
-          </ImageBackground>
-        </SessionProvider>
-      </QueryClientProvider>
+      <SkiaFontProvider>
+        <QueryClientProvider client={queryClient}>
+          <SessionProvider>
+            <ImageBackground source={AppBackground} style={styles.backgroundImage}>
+              <Stack
+                initialRouteName="sign-in"
+                screenOptions={{
+                  header: renderHeader,
+                  contentStyle: { backgroundColor: theme.color.transparent },
+                  animation: 'slide_from_right',
+                }}
+              >
+                <Stack.Screen name="sign-in" />
+                <Stack.Screen name="about" options={{ title: 'About this app' }} />
+                <Stack.Screen name="(private)" options={{ headerShown: false }} />
+              </Stack>
+            </ImageBackground>
+          </SessionProvider>
+        </QueryClientProvider>
+      </SkiaFontProvider>
     </StrictMode>
   );
 }

@@ -1,6 +1,5 @@
 import {
   Canvas,
-  type DataModule,
   matchFont,
   PaintStyle,
   Paragraph,
@@ -15,20 +14,12 @@ import {
   TextHeightBehavior,
   TileMode,
   type TransformProp,
-  useFonts,
 } from '@shopify/react-native-skia';
 import { type ColorValue, useWindowDimensions } from 'react-native';
 
-import { type FontFamily, FONTS } from '@/types/font';
+import { useSkiaFontProvider } from '@/hooks/core/useSkiaFontProvider/useSkiaFontProvider';
+import { type FontFamily } from '@/types/font';
 import { getGradientProps, type GradientColors, type GradientWithDirection } from '@/utils/getGradientProps';
-
-const SKIA_FONTS = Object.entries(FONTS).reduce(
-  (acc, [key, value]) => {
-    acc[key as FontFamily] = [value as DataModule];
-    return acc;
-  },
-  {} as Record<FontFamily, [DataModule]>,
-);
 
 type ParagraphResult = {
   paragraphFill: SkParagraph;
@@ -180,9 +171,7 @@ const computeSkew = (skew: number, initialRect: SkRect): SkRect & TransformProp 
 
 export const FancyText = <T extends GradientColors>({ text, style, gradient, shadow }: Readonly<Props<T>>) => {
   const { fontScale } = useWindowDimensions();
-  const fontProvider = useFonts(SKIA_FONTS);
-
-  if (!fontProvider) return null;
+  const fontProvider = useSkiaFontProvider();
 
   const textStyle: FancyTextStyle = {
     ...style,
