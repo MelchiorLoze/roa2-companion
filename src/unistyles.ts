@@ -60,6 +60,7 @@ const theme = {
     statRowsBackground: '#1F094C',
     statRowBackground: '#3E1399',
     leaderboardLabelOutline: '#0000008F',
+    rankDistributionBarGradientStart: '#210D2C',
     // Gradients
     gradient: {
       labelText: (pressed?: boolean, light?: boolean) => ({
