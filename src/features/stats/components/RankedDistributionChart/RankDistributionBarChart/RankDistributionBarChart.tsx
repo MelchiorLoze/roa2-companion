@@ -85,12 +85,13 @@ export const RankDistributionBarChart = ({ width }: Readonly<Props>) => {
       </View>
     );
 
+  const maxRankCount = Math.max(...Object.values(rankDistribution));
   const barWidths = getBarWidths(firstPlayerElo, lastPlayerElo, lastAethereanElo, width);
 
   return (
     <View testID="rank-distribution">
       <BarChart
-        barInnerComponent={(item) => InnerBar(Math.max(...Object.values(rankDistribution)), item)}
+        barInnerComponent={(item) => InnerBar(maxRankCount, item)}
         data={formatBarData(rankDistribution, barWidths, theme)}
         disablePress
         disableScroll
