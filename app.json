@@ -7,7 +7,7 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "roa2-companion",
     "userInterfaceStyle": "dark",
-    "backgroundColor": "#0B0825",
+    "backgroundColor": "#170825",
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cp0-mand4le.roa2companion"
@@ -17,7 +17,7 @@
       "package": "com.cp0_mand4le.roa2companion",
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/adaptive-icon.png",
-        "backgroundColor": "#0B0825"
+        "backgroundColor": "#170825"
       }
     },
     "web": {
@@ -56,7 +56,7 @@
         {
           "image": "./src/assets/images/icon.png",
           "imageWidth": 200,
-          "backgroundColor": "#0B0825"
+          "backgroundColor": "#170825"
         }
       ],
       [
