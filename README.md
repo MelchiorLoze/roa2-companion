@@ -1,4 +1,4 @@
-# <img width="1280" height="640" alt="feature-graphic-6 1280x640 (github thumbnail)" src="https://github.com/user-attachments/assets/34f8e9fb-1ce6-426d-b419-c33d9e8499f2" />
+# <img width="1280" height="640" alt="" src="https://github.com/user-attachments/assets/0a738a64-954b-4172-91d8-80739328646e" />
 
 Using the game's client API, this app provide useful information and tools for players on their mobile. \
 Key features:
